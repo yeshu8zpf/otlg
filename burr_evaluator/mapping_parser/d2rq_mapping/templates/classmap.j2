@@ -1,0 +1,28 @@
+map:{% if mapping_name %}{{ mapping_name }}{% else %}{{ class_name }} {% endif %} a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class {{ prefix }}:{{ class_name }};
+    {%- if uri_patterns %}
+    d2rq:uriPattern "{% if parent_class is not none %}{{ parent_class }}{% else %}{{ class_name }}{% endif %}{{uri_patterns}}";
+    {%- endif %}
+    {%- if uri_column %}d2rq:uriColumn "{{ uri_column }}";{%- endif %}
+    {% if translate_with %}d2rq:translateWith map:{{ translate_with }};{%- endif %}
+    {%- if conditions -%}
+    {%- for condition in conditions %}
+    d2rq:condition "{{ condition }}";
+    {%- endfor %}
+    {%- endif -%}
+    {% if bNodeIdColumns %}
+    d2rq:bNodeIdColumns "{{bNodeIdColumns}}";
+    {%- endif -%}
+    {%- if joins -%}
+    {%- for join in joins %}
+    d2rq:join "{{ join }}";
+    {%- endfor %}
+    {%- endif %}
+    {% if parent_classes %}
+    {%- for parent_class in parent_classes %}
+    d2rq:additionalClassDefinitionProperty map:{{mapping_name}}_SubClassOf_{{ parent_class }};
+    {%- endfor %}
+    {%- endif %}
+    .
+

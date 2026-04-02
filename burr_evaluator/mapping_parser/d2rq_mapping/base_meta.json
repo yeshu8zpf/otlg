@@ -1,0 +1,8 @@
+{   "relation_prefix": "base",
+    "prefixes": [
+        {
+            "prefix": "base",
+            "uri": "/base/"
+        }
+    ]
+}

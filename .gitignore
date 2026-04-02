@@ -1,0 +1,5 @@
+__pycache__/
+.vscode/
+outputs/
+test/
+batch_run_one_shot_fk_control.py

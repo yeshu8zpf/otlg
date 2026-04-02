@@ -1,0 +1,6 @@
+map:{{ mapping_name }} a d2rq:TranslationTable;
+    {%- for translation in translations %}
+    d2rq:translation [ d2rq:databaseValue "{{ translation.databaseValue }}"; d2rq:rdfValue "{{ translation.targetValue }}"; ];
+    {%- endfor %}
+    .
+

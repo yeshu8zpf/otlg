@@ -1,0 +1,19 @@
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix cmt: <http://cmt/> .
+@prefix map: <http://mapping/> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+{%- if prefixes -%}
+{%- for prefix in prefixes %}
+@prefix {{ prefix.prefix }}: <{{prefix.uri}}> .
+{%- endfor %}
+{%- endif %}
+
+map:database a d2rq:Database;
+	d2rq:jdbcDriver "org.postgresql.Driver";
+	d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/{{ database }}";
+	d2rq:username "{{ database_username}}";
+	jdbc:keepAlive "3600";				# sends noop-query every 3600 seconds
+	.
+
+

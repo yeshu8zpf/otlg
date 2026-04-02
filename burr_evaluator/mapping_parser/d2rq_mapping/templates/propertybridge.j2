@@ -1,0 +1,57 @@
+map:{{ mapping_name }} a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:{{ belongs_to_class_map }};
+    {%- if refers_to_class_map %}
+    d2rq:refersToClassMap map:{{ refers_to_class_map }};
+    {%- endif %}
+    {%- if constant_value %}
+    d2rq:constantValue {{ prefix }}:{{ constant_value }};
+    {%- endif %}
+    d2rq:property {{ prefix }}:{{ property }};
+    {% if translate_with %}d2rq:translateWith map:{{ translate_with }};{%- endif %}
+    {%- if joins -%}
+    {%- for join in joins %}
+    d2rq:join "{{ join }}";
+    {%- endfor %}
+    {%- endif -%}
+    {%- if conditions -%}
+    {%- for condition in conditions %}
+    d2rq:condition "{{ condition }}";
+    {%- endfor %}
+    {%- endif -%}
+    {%- if pattern -%}
+    d2rq:pattern "{{ pattern }}";
+    {%- endif %}
+    {%- if sqlExpression %}
+    d2rq:sqlExpression "{{ sqlExpression }}";
+    {%- endif %}
+    {%- if column %}
+    d2rq:column "{{ column }}";
+    {%- endif %}
+    {%- if datatype %}
+    d2rq:datatype {{ datatype }};
+    {%- endif %}
+    .
+
+{% if inverse_of -%}
+map:{{ mapping_name }}_inverse a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:{{ refers_to_class_map }};
+    d2rq:refersToClassMap map:{{ belongs_to_class_map }};
+    d2rq:property {{ prefix }}:{{ inverse_of }};
+    {%- if joins -%}
+    {%- for join in joins %}
+    d2rq:join "{{ join }}";
+    {%- endfor %}
+    {%- endif -%}
+    {%- if conditions -%}
+    {%- for condition in conditions %}
+    d2rq:condition "{{ condition }}";
+    {%- endfor %}
+    {%- endif -%}
+    {%- if column %}
+    d2rq:column "{{ column }}";
+    {%- endif %}
+    {%- if datatype %}
+    d2rq:datatype {{ datatype }};
+    {%- endif %}
+    .
+{%- endif %}
