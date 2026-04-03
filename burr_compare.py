@@ -4,7 +4,7 @@ import argparse
 import json
 import sys
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional
 
 # ============================================================
 # Path setup
@@ -14,8 +14,6 @@ PROJECT_ROOT = Path(__file__).resolve().parent
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-LOCAL_BURR_EVAL = PROJECT_ROOT / "burr_evaluator"
-LOCAL_BURR_ROOT = PROJECT_ROOT / "burr"
 
 # ============================================================
 # Basic IO helpers
@@ -38,39 +36,34 @@ def write_json(path: Path, obj: Any) -> None:
 
 
 # ============================================================
-# Burr import resolution
+# Import resolution for your repo
 # ============================================================
 
-def _resolve_burr_python_root(burr_root: Optional[Path]) -> Path:
-    if LOCAL_BURR_EVAL.exists():
-        return PROJECT_ROOT
+def _import_local_burr_modules():
+    """
+    Import local evaluator modules.
+    Some copied Burr evaluator files import optional logging deps like wandb
+    at module import time. We provide a tiny stub if wandb is unavailable.
+    """
+    if str(PROJECT_ROOT) not in sys.path:
+        sys.path.insert(0, str(PROJECT_ROOT))
 
-    if burr_root is None:
-        burr_root = LOCAL_BURR_ROOT
+    try:
+        import wandb  # noqa: F401
+    except ModuleNotFoundError:
+        class _WandbStub:
+            def __getattr__(self, name):
+                def _noop(*args, **kwargs):
+                    return None
+                return _noop
 
-    burr_root = burr_root.resolve()
-    if not burr_root.exists():
-        raise FileNotFoundError(f"Burr root not found: {burr_root}")
-
-    if not (burr_root / "evaluator").exists():
-        raise FileNotFoundError(
-            f"Burr evaluator package not found under: {burr_root}. "
-            f"Expected {burr_root / 'evaluator'}"
-        )
-
-    return burr_root
-
-
-def _import_burr_classes(burr_root: Optional[Path]):
-    python_root = _resolve_burr_python_root(burr_root)
-    if str(python_root) not in sys.path:
-        sys.path.insert(0, str(python_root))
+        sys.modules["wandb"] = _WandbStub()
 
     from burr_evaluator.mapping_parser.mapping.JsonMapping import JsonMapping
     from burr_evaluator.mapping_parser.mapping.D2RQMapping import D2RQMapping
-    from burr_evaluator.comparer.Comparator import Comparator
+    from burr_evaluator.metrics.caclulate_metrics import calculate_metrics
 
-    return JsonMapping, D2RQMapping, Comparator
+    return JsonMapping, D2RQMapping, calculate_metrics
 
 
 # ============================================================
@@ -79,12 +72,7 @@ def _import_burr_classes(burr_root: Optional[Path]):
 
 def find_ttl_candidates(scenario_dir: Path) -> List[Path]:
     """
-    Discover likely single-file GT TTL mappings in a scenario directory.
-
-    Burr real-world examples include:
-    - iswc/groundtruth.ttl
-    - npd_factpages/map_d2rq.ttl
-    Some micro benchmark dirs also contain mapping.ttl / test_mapping.ttl.
+    Burr-style GT TTL forms that appear in real-world datasets.
     """
     preferred_names = [
         "groundtruth.ttl",
@@ -99,7 +87,6 @@ def find_ttl_candidates(scenario_dir: Path) -> List[Path]:
         if p.exists() and p.is_file():
             found.append(p)
 
-    # Also include other .ttl files at the scenario root
     for p in sorted(scenario_dir.glob("*.ttl"), key=lambda x: x.name):
         if p not in found:
             found.append(p)
@@ -109,17 +96,21 @@ def find_ttl_candidates(scenario_dir: Path) -> List[Path]:
 
 def resolve_gt_for_scenario(scenario_dir: Path) -> Dict[str, Any]:
     """
-    Compatible with the GT forms used in Burr:
-      1. single_json:
+    Compatible with the GT forms used in Burr / your repo:
+
+      1) single_json:
          scenario_dir / mapping.json
-      2. single_ttl:
+
+      2) single_ttl:
          scenario_dir / groundtruth.ttl
          scenario_dir / map_d2rq.ttl
          scenario_dir / mapping.ttl
          scenario_dir / test_mapping.ttl
-         or any single/priority *.ttl at scenario root
-      3. mapping_dir:
+         or any *.ttl at scenario root
+
+      3) mapping_dir:
          scenario_dir / mappings / *.json   (excluding meta.json)
+         merged before evaluation
 
     Returns:
       {
@@ -156,7 +147,6 @@ def resolve_gt_for_scenario(scenario_dir: Path) -> Dict[str, Any]:
     ttl_candidates = find_ttl_candidates(scenario_dir)
     result["ttl_candidates"] = ttl_candidates
     if ttl_candidates:
-        # Prefer the first candidate according to preferred_names then lexical *.ttl
         result["kind"] = "single_ttl"
         result["mapping_ttl"] = ttl_candidates[0]
         return result
@@ -184,7 +174,7 @@ def resolve_gt_for_scenario(scenario_dir: Path) -> Dict[str, Any]:
 
 def merge_mapping_json_files(json_files: List[Path]) -> Dict[str, Any]:
     """
-    Merge Burr real-world mapping fragments in the same spirit as Burr's Experiment setup:
+    Merge mapping fragments the same way Burr's experiment setup merges them:
     - list values -> extend
     - dict values -> update
     - other values -> overwrite
@@ -255,9 +245,8 @@ def load_mapping_as_d2rq_from_json_data(
     data: Dict[str, Any],
     database_name: str,
     meta: Optional[Dict[str, Any]],
-    burr_root: Optional[Path],
 ):
-    JsonMapping, _, _ = _import_burr_classes(burr_root)
+    JsonMapping, _, _ = _import_local_burr_modules()
     return JsonMapping(data, database_name, meta).to_D2RQ_Mapping()
 
 
@@ -265,9 +254,8 @@ def load_mapping_as_d2rq(
     mapping_path: Path,
     database_name: str,
     meta: Optional[Dict[str, Any]],
-    burr_root: Optional[Path],
 ):
-    JsonMapping, D2RQMapping, _ = _import_burr_classes(burr_root)
+    JsonMapping, D2RQMapping, _ = _import_local_burr_modules()
 
     mapping_path = mapping_path.resolve()
     if not mapping_path.exists():
@@ -288,12 +276,11 @@ def load_gt_mapping_as_d2rq(
     gt_mapping_path: Optional[Path],
     meta_path: Optional[Path],
     database_name: str,
-    burr_root: Optional[Path],
 ):
     meta = read_json(meta_path) if meta_path is not None and meta_path.exists() else None
 
     if gt_mapping_path is not None:
-        return load_mapping_as_d2rq(gt_mapping_path, database_name, meta, burr_root), {
+        return load_mapping_as_d2rq(gt_mapping_path, database_name, meta), {
             "gt_mode": "explicit_single",
             "gt_mapping_path": str(gt_mapping_path),
             "meta_path": str(meta_path) if meta_path else None,
@@ -303,13 +290,13 @@ def load_gt_mapping_as_d2rq(
     if gt_info["kind"] == "missing":
         raise FileNotFoundError(
             f"GT mapping not found for scenario: {scenario_dir}. "
-            f"Expected one of: mapping.json, preferred *.ttl (groundtruth.ttl/map_d2rq.ttl/...), "
-            f"or mappings/*.json"
+            f"Expected one of: mapping.json, preferred *.ttl "
+            f"(groundtruth.ttl/map_d2rq.ttl/...), or mappings/*.json"
         )
 
     if gt_info["kind"] == "single_json":
         path = gt_info["mapping_json"]
-        return load_mapping_as_d2rq(path, database_name, meta, burr_root), {
+        return load_mapping_as_d2rq(path, database_name, meta), {
             "gt_mode": "single_json",
             "gt_mapping_path": str(path),
             "meta_path": str(meta_path) if meta_path else None,
@@ -317,7 +304,7 @@ def load_gt_mapping_as_d2rq(
 
     if gt_info["kind"] == "single_ttl":
         path = gt_info["mapping_ttl"]
-        return load_mapping_as_d2rq(path, database_name, meta, burr_root), {
+        return load_mapping_as_d2rq(path, database_name, meta), {
             "gt_mode": "single_ttl",
             "gt_mapping_path": str(path),
             "ttl_candidates": [str(p) for p in gt_info.get("ttl_candidates", [])],
@@ -329,7 +316,7 @@ def load_gt_mapping_as_d2rq(
         raise FileNotFoundError(f"No GT JSON files found under mapping dir: {gt_info['mappings_dir']}")
 
     merged_data = merge_mapping_json_files(json_files)
-    d2rq = load_mapping_as_d2rq_from_json_data(merged_data, database_name, meta, burr_root)
+    d2rq = load_mapping_as_d2rq_from_json_data(merged_data, database_name, meta)
     return d2rq, {
         "gt_mode": "mapping_dir_merged",
         "gt_mapping_dir": str(gt_info["mappings_dir"]),
@@ -343,19 +330,14 @@ def load_gt_mapping_as_d2rq(
 # Compare
 # ============================================================
 
-def compare_mappings(learned_mapping, reference_mapping, burr_root: Optional[Path]) -> Dict[str, Any]:
-    _, _, Comparator = _import_burr_classes(burr_root)
-    comparator = Comparator(learned_mapping, reference_mapping)
-
-    mapping_based = comparator.compare_mapping_based()
-    name_based = comparator.compare_name_based()
-
-    return {
-        "metrics": {
-            "mapping_based": mapping_based,
-            "name_based": name_based,
-        }
-    }
+def compare_mappings(learned_mapping, reference_mapping) -> Dict[str, Any]:
+    """
+    Your repo does not have Comparator class.
+    It uses burr_evaluator.metrics.caclulate_metrics.calculate_metrics(reference, learned).
+    """
+    _, _, calculate_metrics = _import_local_burr_modules()
+    metrics = calculate_metrics(reference_mapping, learned_mapping)
+    return {"metrics": metrics}
 
 
 def run_compare(
@@ -363,7 +345,6 @@ def run_compare(
     pred_mapping_path: Path,
     gt_mapping_path: Optional[Path] = None,
     meta_path: Optional[Path] = None,
-    burr_root: Optional[Path] = None,
     database_name: Optional[str] = None,
 ) -> Dict[str, Any]:
     scenario_dir = scenario_dir.resolve()
@@ -381,7 +362,6 @@ def run_compare(
         pred_mapping_path,
         effective_database_name,
         meta,
-        burr_root,
     )
 
     reference_mapping, gt_resolution = load_gt_mapping_as_d2rq(
@@ -389,10 +369,9 @@ def run_compare(
         gt_mapping_path=Path(gt_mapping_path).resolve() if gt_mapping_path is not None else None,
         meta_path=effective_meta_path,
         database_name=effective_database_name,
-        burr_root=burr_root,
     )
 
-    compare_payload = compare_mappings(learned_mapping, reference_mapping, burr_root)
+    compare_payload = compare_mappings(learned_mapping, reference_mapping)
 
     result = {
         "scenario_dir": str(scenario_dir),
@@ -411,13 +390,12 @@ def run_compare(
 
 def main() -> None:
     parser = argparse.ArgumentParser(
-        description="Run Burr comparison between a predicted mapping and the GT mapping(s) for a scenario."
+        description="Run comparison between a predicted mapping and the GT mapping(s) for a scenario."
     )
     parser.add_argument("--scenario-dir", type=str, required=True)
     parser.add_argument("--pred-mapping-path", type=str, required=True)
     parser.add_argument("--gt-mapping-path", type=str, default=None)
     parser.add_argument("--meta-path", type=str, default=None)
-    parser.add_argument("--burr-root", type=str, default=None)
     parser.add_argument("--database-name", type=str, default=None)
     parser.add_argument("--out-path", type=str, default=None)
 
@@ -428,7 +406,6 @@ def main() -> None:
         pred_mapping_path=Path(args.pred_mapping_path).resolve(),
         gt_mapping_path=Path(args.gt_mapping_path).resolve() if args.gt_mapping_path else None,
         meta_path=Path(args.meta_path).resolve() if args.meta_path else None,
-        burr_root=Path(args.burr_root).resolve() if args.burr_root else None,
         database_name=args.database_name,
     )
 

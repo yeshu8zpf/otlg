@@ -3,3 +3,5 @@ __pycache__/
 outputs/
 test/
 batch_run_one_shot_fk_control.py
+output.ttl
+temp_mapping_file.ttl

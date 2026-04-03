@@ -521,7 +521,7 @@ def call_llm_json(
         "model": model,
         "messages": [
             {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "user", "content": prompt},
+            {"role": "user", "content": prompt[:2000]},
         ],
         "temperature": 0.0,
     }
@@ -923,7 +923,6 @@ def main() -> None:
                 pred_mapping_path=out_dir / "mapping.json",
                 gt_mapping_path=None,
                 meta_path=Path(args.meta_path).resolve() if args.meta_path else None,
-                burr_root=Path(args.burr_root).resolve(),
                 database_name=args.database_name or scenario_dir.name,
             )
             write_json(out_dir / "compare.json", compare_result)
