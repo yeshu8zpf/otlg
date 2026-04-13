@@ -1,0 +1,27 @@
+{
+    "classes": [
+        {
+            "id": "employee/@@employee.id@@",
+            "class": "Employee",
+            "name": "Employee"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "manages",
+            "belongsToClassMap": "Employee",
+            "refersToClassMap": "Employee",
+            "join": [
+                "employee.id = employee.boss_id"
+            ]
+        }
+    ],
+    "data_properties": [
+        {
+            "property": "name",
+            "belongsToClassMap": "Employee",
+            "type": "string",
+            "column": "employee.name"
+        }
+    ]
+}

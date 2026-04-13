@@ -1,0 +1,66 @@
+{
+    "classes": [
+        {
+            "id": "@@SPM.Solution_Process_Sequence_1@@/@@SPM.Solution_Process_1@@/@@SPM.Solution_Process_ID_1@@",
+            "prefix": "SPM",
+            "class": "SolutionProcessSequence",
+            "name": "SolutionProcessSequence_1"
+        },
+        {
+            "id": "@@SPM.Solution_Process_Sequence_2@@/@@SPM.Solution_Process_2@@/@@SPM.Solution_Process_ID_2@@",
+            "prefix": "SPM",
+            "class": "SolutionProcessSequence",
+            "name": "SolutionProcessSequence_2"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "references",
+            "belongsToClassMap": "SolutionProcessSequence_1",
+            "refersToClassMap": "SolutionProcess_1"
+        },
+        {
+            "property": "references",
+            "belongsToClassMap": "SolutionProcessSequence_2",
+            "refersToClassMap": "SolutionProcess_2"
+        }
+    ],
+    "data_properties": [
+        {
+            "property": "Identifier",
+            "belongsToClassMap": "SolutionProcessSequence_1",
+            "type": "string",
+            "column": "SPM.Solution_Process_Sequence_1"
+        },
+        {
+            "property": "Identifier",
+            "belongsToClassMap": "SolutionProcessSequence_2",
+            "type": "string",
+            "column": "SPM.Solution_Process_Sequence_2"
+        },
+        {
+            "property": "sequenceID",
+            "belongsToClassMap": "SolutionProcessSequence_1",
+            "type": "string",
+            "column": "SPM.Solution_Process_Sequence_1"
+        },
+        {
+            "property": "sequenceID",
+            "belongsToClassMap": "SolutionProcessSequence_2",
+            "type": "string",
+            "column": "SPM.Solution_Process_Sequence_2"
+        },
+        {
+            "property": "Name",
+            "belongsToClassMap": "SolutionProcessSequence_1",
+            "type": "string",
+            "sqlExpression": "CONCAT(@@spm.solution_process_sequence_1@@, CONCAT(' - ', CONCAT(@@spm.solution_process_1@@, CONCAT(' (', CONCAT(@@spm.solution_process_id_1@@, ')')))))"
+        },
+        {
+            "property": "Name",
+            "belongsToClassMap": "SolutionProcessSequence_2",
+            "type": "string",
+            "sqlExpression": "CONCAT(@@SPM.Solution_Process_Sequence_2@@, CONCAT(' - ', CONCAT(@@SPM.Solution_Process_2@@, CONCAT(' (', CONCAT(@@SPM.Solution_Process_ID_2@@, ')')))))"
+        }
+    ]
+}

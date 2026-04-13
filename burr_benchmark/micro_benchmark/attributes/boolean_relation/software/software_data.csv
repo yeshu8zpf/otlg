@@ -1,0 +1,501 @@
+id,name,supports_windows,supports_mac,supports_linux
+1,Docker Desktop Pro,true,false,false
+2,Mozilla Firefox Studio,true,true,false
+3,Slack Viewer,true,false,false
+4,Safari Pro,true,false,true
+5,Zoom Cloud,true,true,true
+6,Norton Antivirus,true,true,false
+7,Slack Studio,true,true,true
+8,Microsoft Excel Insiders,true,true,false
+9,Microsoft Outlook Insiders,true,true,true
+10,Adobe Audition Cloud,true,true,false
+11,Adobe Acrobat DC Pro,true,false,false
+12,SPSS,true,true,false
+13,Microsoft Publisher Mobile,true,true,false
+14,Microsoft OneNote Cloud,true,false,false
+15,Microsoft Teams Studio,true,true,false
+16,PyCharm Cloud,true,true,false
+17,Zoom Enterprise,true,false,false
+18,Kubernetes,true,true,true
+19,NetBeans Beta,true,true,true
+20,Adobe Premiere Pro Desktop,true,false,false
+21,Microsoft Word Viewer,true,true,true
+22,GitHub Desktop Studio,true,true,true
+23,Visual Studio Code Mobile,true,true,false
+24,Mozilla Firefox Lite,true,true,false
+25,Atom Mobile,true,true,false
+26,Discord,true,true,true
+27,Spotify,true,true,false
+28,Discord Beta,true,true,true
+29,Discord Viewer,true,true,false
+30,Discord Mobile,true,false,false
+31,Adobe Audition Viewer,true,true,false
+32,Safari Cloud,true,true,true
+33,Adobe InDesign Pro,true,true,false
+34,Eclipse Enterprise,true,false,false
+35,Jenkins Enterprise,true,false,false
+36,Mozilla Firefox Enterprise,true,true,false
+37,Adobe Lightroom Pro,true,false,false
+38,Mozilla Firefox Mobile,true,false,false
+39,Git Beta,true,true,true
+40,Mozilla Firefox Insiders,true,false,false
+41,Safari,true,true,true
+42,Safari Insiders,true,true,false
+43,GitHub Desktop,true,true,false
+44,Kubernetes Enterprise,true,true,true
+45,Opera,true,true,false
+46,Vivaldi,true,false,false
+47,WinZip,true,true,true
+48,Mozilla Firefox,true,true,false
+49,Adobe After Effects Lite,true,true,true
+50,Skype Insiders,true,true,false
+51,iCloud,true,true,false
+52,Opera Viewer,true,false,false
+53,Skype Desktop,true,true,false
+54,Adobe InDesign Viewer,true,true,false
+55,TeamCity Pro,true,true,false
+56,Adobe Lightroom Mobile,true,true,false
+57,Skype Viewer,true,true,true
+58,Notepad++ Mobile,true,false,true
+59,Adobe Premiere Pro Cloud,true,false,true
+60,SAS,true,true,false
+61,pgAdmin,true,false,true
+62,Opera Cloud,true,false,true
+63,Inkscape,true,false,false
+64,Azure DevOps,true,true,false
+65,Microsoft OneNote Desktop,true,false,false
+66,Safari Viewer,true,true,true
+67,Microsoft PowerPoint Lite,true,false,true
+68,Slack Lite,true,true,false
+69,Opera Insiders,true,false,true
+70,Xcode,true,true,false
+71,Sublime Text Beta,true,false,false
+72,Azure DevOps Mobile,true,true,false
+73,Adobe Premiere Pro Lite,true,true,true
+74,Microsoft Outlook Desktop,true,false,false
+75,Adobe Audition Beta,true,false,true
+76,Box,true,true,true
+77,Google Chrome Beta,true,true,true
+78,Microsoft Word Enterprise,true,false,false
+79,PyCharm,true,false,true
+80,Microsoft Excel,true,false,true
+81,Microsoft Word Insiders,true,true,true
+82,Avast,true,true,true
+83,Ansible Viewer,true,true,true
+84,Ansible Cloud,true,true,true
+85,Adobe Photoshop Desktop,true,true,false
+86,NetBeans Pro,true,false,true
+87,Zoom Rooms,true,true,true
+88,Zoom Beta,true,true,false
+89,SourceTree,true,true,true
+90,Adobe Photoshop,true,true,true
+91,Discord Lite,true,true,true
+92,GitHub Desktop Mobile,true,true,false
+93,SourceTree Mobile,true,true,true
+94,VirtualBox,true,true,false
+95,NetBeans Enterprise,true,false,false
+96,Microsoft Visual Studio Beta,true,true,false
+97,Dropbox,true,false,true
+98,Microsoft Excel Desktop,true,true,true
+99,Power BI Desktop,true,true,false
+100,Microsoft Access Studio,true,true,false
+101,Adobe Acrobat DC Mobile,true,true,true
+102,Adobe After Effects Mobile,true,true,true
+103,Adobe InDesign Insiders,true,true,true
+104,GitHub Desktop Lite,true,false,true
+105,Xcode Insiders,true,true,false
+106,Sublime Text Cloud,true,false,true
+107,Microsoft Publisher Desktop,true,true,true
+108,Visual Studio Code Enterprise,true,true,false
+109,7-Zip,true,false,false
+110,Slack Insiders,true,false,false
+111,Slack Pro,true,true,true
+112,SumatraPDF,true,true,false
+113,Adobe Lightroom Beta,true,true,true
+114,Azure DevOps Insiders,true,true,false
+115,Adobe Acrobat DC Insiders,true,false,true
+116,Terraform Beta,true,true,false
+117,Adobe After Effects Desktop,true,true,false
+118,Notepad++,true,false,true
+119,Sublime Text Insiders,true,false,true
+120,Microsoft Visual Studio Mobile,true,false,false
+121,NetBeans Mobile,true,true,false
+122,Microsoft Word Beta,true,true,true
+123,Microsoft Edge,true,true,false
+124,McAfee,true,false,true
+125,Adobe Lightroom,true,false,true
+126,Chromium Lite,true,true,false
+127,Eclipse Viewer,true,true,true
+128,Microsoft Teams Cloud,true,false,false
+129,Safari Enterprise,true,false,false
+130,Terraform Pro,true,true,false
+131,NetBeans Insiders,true,true,false
+132,Adobe Premiere Pro,true,false,false
+133,Visual Studio Code Studio,true,false,false
+134,Adobe Premiere Pro Insiders,true,true,false
+135,Microsoft Word,true,true,false
+136,Tableau,true,true,false
+137,Brave Pro,true,true,true
+138,NetBeans Desktop,true,true,false
+139,Adobe Acrobat DC Beta,true,true,true
+140,Adobe After Effects Pro,true,false,false
+141,Microsoft Access Lite,true,false,true
+142,Chromium Insiders,true,false,true
+143,Atom Insiders,true,true,false
+144,Microsoft Word Mobile,true,false,true
+145,Visual Studio Code Pro,true,true,true
+146,Vivaldi Pro,true,true,false
+147,Adobe Illustrator Lite,true,false,false
+148,Brave Enterprise,true,true,true
+149,AutoCAD,true,true,true
+150,GitHub Desktop Beta,true,true,true
+151,Git Viewer,true,true,false
+152,SolidWorks,true,true,true
+153,Microsoft Visual Studio Pro,true,true,true
+154,Microsoft Visual Studio Cloud,true,true,true
+155,IntelliJ IDEA Desktop,true,false,true
+156,Zoom,true,true,true
+157,Adobe Photoshop Viewer,true,true,false
+158,Adobe Lightroom Viewer,true,true,false
+159,Adobe Illustrator Desktop,true,false,false
+160,DataGrip,true,true,true
+161,Eclipse Lite,true,false,true
+162,Microsoft Visual Studio Lite,true,true,false
+163,Microsoft Visual Studio Viewer,true,true,false
+164,SourceTree Enterprise,true,true,false
+165,Microsoft Visual Studio Enterprise,true,false,true
+166,Brave Studio,true,true,true
+167,Maya,true,true,false
+168,Terraform Desktop,true,true,false
+169,Atom Lite,true,true,false
+170,Kubernetes Insiders,true,true,true
+171,Microsoft PowerPoint Viewer,true,true,false
+172,Skype Studio,true,true,true
+173,Microsoft Edge Mobile,true,true,true
+174,Opera Enterprise,true,false,true
+175,TeamCity Insiders,true,true,true
+176,Adobe Photoshop Cloud,true,true,false
+177,Azure DevOps Viewer,true,false,true
+178,Notepad++ Insiders,true,true,true
+179,Bitdefender,true,false,true
+180,PyCharm Enterprise,true,true,true
+181,SourceTree Insiders,true,false,true
+182,Adobe Audition Enterprise,true,false,false
+183,Safari Desktop,true,false,true
+184,Chromium Cloud,true,false,false
+185,Google Chrome Viewer,true,false,true
+186,Microsoft OneNote Studio,true,false,true
+187,Azure DevOps Lite,true,true,false
+188,Adobe Audition Studio,true,true,false
+189,GOG Galaxy,true,false,true
+190,Microsoft Edge Cloud,true,true,false
+191,iTunes,true,true,true
+192,Sublime Text Desktop,true,true,false
+193,Opera Studio,true,false,false
+194,Microsoft PowerPoint Insiders,true,true,false
+195,Microsoft Publisher,true,true,true
+196,Adobe Lightroom Cloud,true,true,false
+197,Atom Viewer,true,true,true
+198,MySQL Workbench,true,true,false
+199,Sublime Text Lite,true,false,false
+200,Notepad++ Cloud,true,true,true
+201,Vivaldi Beta,true,true,false
+202,Git Cloud,true,true,false
+203,Sublime Text,true,false,true
+204,Notepad++ Studio,true,true,true
+205,IntelliJ IDEA,true,true,false
+206,Jenkins Insiders,true,false,false
+207,Audacity,true,false,false
+208,Jenkins Studio,true,false,false
+209,IntelliJ IDEA Pro,true,true,true
+210,Mozilla Firefox Desktop,true,true,false
+211,SourceTree Pro,true,false,false
+212,HandBrake,true,true,false
+213,Microsoft OneNote,true,true,false
+214,Adobe InDesign Cloud,true,false,false
+215,Cinema 4D,true,true,true
+216,Eclipse Beta,true,false,false
+217,Microsoft Excel Beta,true,true,false
+218,Notepad++ Desktop,true,false,false
+219,Adobe Acrobat DC Viewer,true,false,false
+220,Sublime Text Studio,true,true,true
+221,IntelliJ IDEA Beta,true,false,true
+222,Adobe Photoshop Mobile,true,true,true
+223,Microsoft Access,true,true,true
+224,Atom Desktop,true,false,false
+225,SourceTree Cloud,true,true,false
+226,Adobe Photoshop Studio,true,true,false
+227,Vivaldi Desktop,true,true,false
+228,VLC Media Player,true,false,false
+229,Mozilla Firefox Pro,true,false,false
+230,ClamAV,true,true,false
+231,SourceTree Beta,true,true,true
+232,Kubernetes Pro,true,true,false
+233,Kubernetes Lite,true,true,true
+234,Microsoft Outlook Enterprise,true,false,false
+235,DBeaver,true,false,true
+236,Vivaldi Lite,true,true,false
+237,Pro Tools,true,true,true
+238,Zoom Mobile,true,true,false
+239,Microsoft Outlook Studio,true,true,false
+240,Kubernetes Studio,true,true,false
+241,Kubernetes Viewer,true,false,true
+242,Adobe Audition Desktop,true,true,true
+243,NetBeans,true,true,false
+244,Adobe InDesign Lite,true,true,false
+245,Microsoft Outlook Cloud,true,false,false
+246,Microsoft Teams Mobile,true,true,false
+247,Ansible Beta,true,true,true
+248,Microsoft Teams Beta,true,false,true
+249,Xcode Desktop,true,false,false
+250,Visual Studio Code Lite,true,true,false
+251,Microsoft Excel Enterprise,true,false,true
+252,Adobe Illustrator Enterprise,true,true,false
+253,Jenkins Viewer,true,false,true
+254,Eclipse Desktop,true,false,true
+255,Microsoft Word Cloud,true,true,false
+256,Brave Lite,true,false,false
+257,Adobe After Effects Beta,true,true,false
+258,Adobe InDesign Studio,true,true,false
+259,Adobe After Effects Insiders,true,true,false
+260,Microsoft PowerPoint Cloud,true,true,false
+261,RStudio,true,false,false
+262,Epic Games Launcher,true,true,false
+263,Microsoft Excel Lite,true,false,false
+264,Opera Lite,true,false,true
+265,Parallels Desktop,true,false,true
+266,TeamCity Enterprise,true,true,true
+267,Skype,true,false,true
+268,Microsoft Visual Studio Insiders,true,false,false
+269,Docker Desktop Beta,true,true,true
+270,TeamCity Mobile,true,false,true
+271,Microsoft Publisher Viewer,true,true,false
+272,Adobe Acrobat DC Lite,true,true,false
+273,PyCharm Studio,true,true,false
+274,Origin,true,false,false
+275,IntelliJ IDEA Mobile,true,false,false
+276,Microsoft PowerPoint,true,true,false
+277,GarageBand,true,true,false
+278,Adobe Illustrator Pro,true,false,true
+279,Adobe Illustrator Mobile,true,true,false
+280,FileZilla,true,true,true
+281,Google Chrome Insiders,true,true,true
+282,Eclipse Insiders,true,false,false
+283,Qlik Sense Desktop,true,true,true
+284,Zoom Viewer,true,true,true
+285,Atom,true,true,false
+286,Adobe Audition,true,false,false
+287,Slack Desktop,true,true,true
+288,Opera Desktop,true,false,false
+289,Adobe Photoshop Pro,true,true,false
+290,Microsoft PowerPoint Enterprise,true,true,false
+291,Microsoft Edge Enterprise,true,true,true
+292,Notepad++ Pro,true,false,true
+293,Microsoft Access Pro,true,true,false
+294,Vivaldi Enterprise,true,false,false
+295,NetBeans Viewer,true,true,false
+296,Kubernetes Mobile,true,false,true
+297,NetBeans Studio,true,true,false
+298,Adobe Acrobat DC Desktop,true,false,true
+299,Microsoft Teams Desktop,true,false,false
+300,Google Chrome Lite,true,true,true
+301,Adobe Audition Mobile,true,true,false
+302,Ansible Enterprise,true,true,true
+303,Sublime Text Viewer,true,true,false
+304,Ansible Lite,true,true,false
+305,Eclipse Mobile,true,false,true
+306,Microsoft Outlook Pro,true,true,false
+307,Kubernetes Cloud,true,true,true
+308,WinRAR,true,true,true
+309,Vivaldi Viewer,true,true,false
+310,Adobe Lightroom Desktop,true,false,true
+311,Microsoft OneNote Insiders,true,false,false
+312,Zoom Studio,true,true,false
+313,Xcode Lite,true,false,false
+314,Vivaldi Insiders,true,false,false
+315,Microsoft Excel Studio,true,true,true
+316,Adobe After Effects,true,false,true
+317,Brave,true,false,true
+318,Microsoft Edge Pro,true,true,false
+319,Microsoft Outlook Beta,true,false,false
+320,Discord Enterprise,true,false,false
+321,Sublime Text Pro,true,true,false
+322,Ansible Mobile,true,false,false
+323,Git Desktop,true,true,true
+324,Kaspersky,true,false,false
+325,Zoom Insiders,true,true,true
+326,Malwarebytes,true,false,false
+327,Microsoft Access Desktop,true,true,true
+328,Chromium Viewer,true,true,true
+329,Mozilla Firefox Viewer,true,false,false
+330,Microsoft Publisher Insiders,true,true,false
+331,GitHub Desktop Desktop,true,true,false
+332,Xcode Beta,true,false,true
+333,IntelliJ IDEA Cloud,true,false,true
+334,Microsoft Outlook Mobile,true,false,true
+335,Brave Cloud,true,true,true
+336,Docker Desktop Enterprise,true,true,false
+337,Microsoft Edge Beta,true,true,false
+338,Brave Mobile,true,false,false
+339,Jenkins,true,true,false
+340,Jenkins Cloud,true,true,false
+341,Adobe Illustrator,true,false,false
+342,Adobe Lightroom Insiders,true,false,true
+343,Microsoft Excel Pro,true,true,true
+344,TeamCity Desktop,true,true,true
+345,Foxit Reader,true,true,true
+346,Terraform,true,true,false
+347,NetBeans Lite,true,false,true
+348,Xcode Cloud,true,true,false
+349,Slack Mobile,true,false,true
+350,Safari Mobile,true,true,false
+351,Microsoft Edge Studio,true,false,true
+352,Skype Cloud,true,true,false
+353,Azure DevOps Pro,true,true,false
+354,Microsoft Publisher Beta,true,true,false
+355,Terraform Insiders,true,true,false
+356,Visual Studio Code,true,true,true
+357,Microsoft PowerPoint Beta,true,false,false
+358,Adobe After Effects Viewer,true,false,false
+359,Microsoft Visual Studio Desktop,true,false,true
+360,Ansible,true,true,false
+361,Google Chrome Pro,true,true,false
+362,Atom Pro,true,true,false
+363,AWS CLI Pro,true,true,false
+364,Safari Lite,true,false,false
+365,Terraform Studio,true,false,false
+366,Vivaldi Cloud,true,true,true
+367,Adobe Premiere Pro Studio,true,false,false
+368,Microsoft Teams Enterprise,true,true,false
+369,VMware Workstation,true,false,true
+370,Git Mobile,true,true,true
+371,Git Lite,true,true,false
+372,PyCharm Pro,true,false,true
+373,Adobe After Effects Enterprise,true,false,false
+374,PyCharm Lite,true,true,true
+375,Ansible Insiders,true,false,true
+376,Slack Cloud,true,true,true
+377,TeamCity Cloud,true,true,true
+378,Xcode Viewer,true,true,true
+379,Visual Studio Code Desktop,true,true,false
+380,Azure DevOps Enterprise,true,true,true
+381,Adobe Lightroom Enterprise,true,true,false
+382,Sublime Text Mobile,true,true,true
+383,Notepad++ Beta,true,true,false
+384,Microsoft Teams Pro,true,true,false
+385,Azure DevOps Beta,true,true,false
+386,Docker Desktop Desktop,true,false,false
+387,Microsoft Publisher Lite,true,false,false
+388,AWS CLI Enterprise,true,true,false
+389,Jenkins Beta,true,false,true
+390,PuTTY,true,true,false
+391,Microsoft Visual Studio,true,true,false
+392,Microsoft Access Beta,true,true,true
+393,Azure DevOps Desktop,true,true,false
+394,Chromium Studio,true,true,true
+395,Insomnia,true,true,true
+396,Ansible Studio,true,true,false
+397,Adobe Photoshop Insiders,true,false,false
+398,Azure DevOps Studio,true,false,true
+399,Adobe InDesign Enterprise,true,true,true
+400,Adobe InDesign Beta,true,true,true
+401,IntelliJ IDEA Enterprise,true,true,true
+402,AnyDesk,true,false,true
+403,Steam,true,false,false
+404,TeamCity Lite,true,false,false
+405,Docker Desktop Insiders,true,true,false
+406,Xcode Studio,true,false,false
+407,AWS CLI,true,false,false
+408,Jenkins Pro,true,true,false
+409,Adobe InDesign,true,true,true
+410,SourceTree Studio,true,true,false
+411,Microsoft Publisher Studio,true,false,true
+412,Sublime Text Enterprise,true,false,false
+413,Vivaldi Mobile,true,false,true
+414,Discord Desktop,true,false,false
+415,Microsoft Publisher Enterprise,true,true,true
+416,Skype Mobile,true,true,false
+417,Xcode Mobile,true,false,false
+418,Adobe Illustrator Viewer,true,false,false
+419,Microsoft Outlook Lite,true,true,false
+420,OBS Studio,true,true,true
+421,Notepad++ Viewer,true,true,true
+422,Microsoft Excel Cloud,true,false,true
+423,gcloud CLI,true,false,false
+424,Adobe InDesign Desktop,true,true,false
+425,Adobe Illustrator Cloud,true,true,false
+426,Vivaldi Studio,true,true,false
+427,Chromium Desktop,true,true,false
+428,TeamCity Studio,true,true,true
+429,Mozilla Firefox Beta,true,true,true
+430,Zoom Pro,true,true,false
+431,Adobe Illustrator Studio,true,true,false
+432,Microsoft OneNote Lite,true,true,false
+433,GitHub Desktop Insiders,true,true,false
+434,Microsoft Visual Studio Studio,true,true,false
+435,Adobe Premiere Pro Viewer,true,false,false
+436,IntelliJ IDEA Insiders,true,false,true
+437,Kubernetes Desktop,true,true,true
+438,Jenkins Mobile,true,false,false
+439,Docker Desktop Studio,true,false,false
+440,Adobe Acrobat DC Enterprise,true,true,false
+441,Microsoft PowerPoint Studio,true,true,false
+442,TeamCity,true,false,false
+443,Calibre,true,true,false
+444,SQL Server Management Studio,true,true,false
+445,Microsoft Access Enterprise,true,true,false
+446,Adobe Acrobat DC Studio,true,true,false
+447,Docker Desktop Viewer,true,false,false
+448,IntelliJ IDEA Lite,true,false,false
+449,Eclipse Pro,true,true,false
+450,GitHub Desktop Cloud,true,false,true
+451,Terraform Lite,true,true,false
+452,Microsoft Publisher Pro,true,false,true
+453,Docker Desktop Lite,true,false,true
+454,SketchUp,true,true,true
+455,Google Chrome,true,true,false
+456,Microsoft Word Desktop,true,true,false
+457,Docker Desktop Mobile,true,false,false
+458,Ubisoft Connect,true,true,false
+459,Eclipse,true,false,false
+460,GitHub Desktop Pro,true,true,false
+461,Eclipse Cloud,true,true,true
+462,Adobe Illustrator Beta,true,false,false
+463,Adobe Photoshop Beta,true,false,true
+464,Microsoft Teams Viewer,true,true,false
+465,Safari Beta,true,true,false
+466,Microsoft Access Cloud,true,false,false
+467,Adobe Acrobat DC Cloud,true,false,true
+468,Adobe Photoshop Lite,true,true,false
+469,Blender,true,true,false
+470,PyCharm Beta,true,true,true
+471,Opera Beta,true,false,false
+472,Microsoft Word Pro,true,true,false
+473,PyCharm Mobile,true,false,false
+474,Microsoft OneNote Beta,true,true,false
+475,Microsoft Teams,true,false,false
+476,Ansible Desktop,true,true,true
+477,Zoom Desktop,true,true,false
+478,SourceTree Desktop,true,true,false
+479,SourceTree Viewer,true,true,true
+480,GitHub Desktop Enterprise,true,true,false
+481,Microsoft OneNote Viewer,true,false,false
+482,Discord Cloud,true,false,false
+483,SourceTree Lite,true,true,true
+484,Slack Beta,true,true,false
+485,TeamViewer,true,true,true
+486,Xcode Enterprise,true,true,false
+487,Docker Desktop,true,true,true
+488,Adobe Premiere Pro Enterprise,true,true,false
+489,Postman,true,false,false
+490,Atom Enterprise,true,true,false
+491,Skype Pro,true,true,false
+492,Chromium Pro,true,false,false
+493,Chromium Beta,true,true,false
+494,Ableton Live,true,false,false
+495,Google Drive,true,true,true
+496,Jenkins Desktop,true,true,false
+497,Docker Desktop Cloud,true,true,false
+498,Zoom Lite,true,false,true
+499,IntelliJ IDEA Viewer,true,false,false
+500,Microsoft Excel Mobile,true,false,false

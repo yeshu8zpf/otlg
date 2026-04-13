@@ -1,0 +1,294 @@
+{
+    "classes": [
+        {
+            "id": "@@BPM.Business_Process_ID@@",
+            "prefix": "RBA",
+            "class": "BusinessProcess",
+            "name": "BusinessProcess_0"
+        },
+        {
+            "id": "@@BPM.Business_Process_ID_1@@",
+            "prefix": "RBA",
+            "class": "BusinessProcess",
+            "name": "BusinessProcess_1"
+        },
+        {
+            "id": "@@BPM.Business_Process_ID_2@@",
+            "prefix": "RBA",
+            "class": "BusinessProcess",
+            "name": "BusinessProcess_2"
+        },
+        {
+            "id": "@@BPM.Object_ID_FP@@",
+            "prefix": "RBA",
+            "class": "BusinessProcess",
+            "name": "BusinessProcess_fp"
+        },
+        {
+            "id": "@@BPM.Based_on@@",
+            "prefix": "RBA",
+            "class": "BusinessProcess",
+            "name": "BusinessProcess_BasedOn_0"
+        },
+        {
+            "id": "@@BPM.Based_on_1@@",
+            "prefix": "RBA",
+            "class": "BusinessProcess",
+            "name": "BusinessProcess_BasedOn_1"
+        },
+        {
+            "id": "@@BPM.Based_on_2@@",
+            "prefix": "RBA",
+            "class": "BusinessProcess",
+            "name": "BusinessProcess_BasedOn_2"
+        }
+    ],
+    "object_properties": [
+       {
+            "property": "hasVariant",
+            "belongsToClassMap": "BusinessProcess_BasedOn_0",
+            "refersToClassMap": "BusinessProcess_0"
+       },
+       {
+            "property": "hasVariant",
+            "belongsToClassMap": "BusinessProcess_BasedOn_1",
+            "refersToClassMap": "BusinessProcess_1"
+       },
+       {
+            "property": "hasVariant",
+            "belongsToClassMap": "BusinessProcess_BasedOn_2",
+            "refersToClassMap": "BusinessProcess_2"
+       },
+       {
+            "property": "isElementOf",
+            "belongsToClassMap": "BusinessProcess_0",
+            "refersToClassMap": "BusinessProcessType_0"
+       },
+       {
+            "property": "isElementOf",
+            "belongsToClassMap": "BusinessProcess_1",
+            "refersToClassMap": "BusinessProcessType_1"
+       },
+       {
+            "property": "isElementOf",
+            "belongsToClassMap": "BusinessProcess_2",
+            "refersToClassMap": "BusinessProcessType_2"
+       },
+       {
+            "property": "hasComponent",
+            "belongsToClassMap": "BusinessProcess_2",
+            "refersToClassMap": "BusinessActivity_BA"
+       },
+       {
+            "property": "isMemberOf",
+            "belongsToClassMap": "BusinessProcess_0",
+            "refersToClass": "Industry",
+            "condition": ["BPM.BP_Relevant_for_Cross_Industry = 'Relevant'", "Ind.Industry_ID = 'Ind026'"]
+        },
+        {
+            "property": "isMemberOf",
+            "belongsToClassMap": "BusinessProcess_0",
+            "refersToClass": "Industry",
+            "condition": ["BPM.BP_Relevant_for_Retail_Industry = 'Relevant'", "Ind.Industry_ID = 'Ind001'"]
+        },
+        {
+            "property": "isMemberOf",
+            "belongsToClassMap": "BusinessProcess_0",
+            "refersToClass": "Industry",
+            "condition": ["BPM.BP_Relevant_for_Automotive = 'Relevant'", "Ind.Industry_ID = 'Ind006'"]
+        },
+        {
+            "property": "isMemberOf",
+            "belongsToClassMap": "BusinessProcess_0",
+            "refersToClass": "Industry",
+            "condition": ["BPM.BP_Relevant_for_Professional_Services = 'Relevant'", "Ind.Industry_ID = 'Ind022'"]
+        },
+        {
+            "property": "hasImplementation",
+            "belongsToClassMap": "BusinessProcess_0",
+            "refersToClassMap": "SolutionProcess_0",
+            "join": ["BPM.Business_Process_ID = SPM.Business_Process_ID"]
+        },
+        {
+            "property": "hasImplementation",
+            "belongsToClassMap": "BusinessProcess_1",
+            "refersToClassMap": "SolutionProcess_1",
+            "join": ["BPM.Business_Process_ID_1 = SPM.Business_Process_ID_1"]
+        },
+        {
+            "property": "hasImplementation",
+            "belongsToClassMap": "BusinessProcess_2",
+            "refersToClassMap": "SolutionProcess_2",
+            "join": ["BPM.Business_Process_ID_2 = SPM.Business_Process_ID_2"]
+        },
+        {
+            "property": "isElementOf",
+            "belongsToClassMap": "BusinessProcess_0",
+            "refersToClassMap": "BusinessProcessCategory_0"
+        },
+        {
+            "property": "isElementOf",
+            "belongsToClassMap": "BusinessProcess_1",
+            "refersToClassMap": "BusinessProcessCategory_1"
+        },
+        {
+            "property": "isElementOf",
+            "belongsToClassMap": "BusinessProcess_2",
+            "refersToClassMap": "BusinessProcessCategory_2"
+        },
+        {
+            "property": "hasComponent",
+            "belongsToClassMap": "BusinessProcess_1",
+            "refersToClassMap": "BusinessProcessSequence_2"
+        },
+        {
+            "property": "hasComponent",
+            "belongsToClassMap": "BusinessProcess_0",
+            "refersToClassMap": "BusinessProcessSequence_1"
+        }
+    ],
+    "data_properties": [
+        {
+            "property": "Identifier",
+            "belongsToClassMap": "BusinessProcess_0",
+            "type": "string",
+            "column": "BPM.Business_Process_ID"
+        },
+        {
+            "property": "Identifier",
+            "belongsToClassMap": "BusinessProcess_1",
+            "type": "string",
+            "column": "BPM.Business_Process_ID_1"
+        },
+        {
+            "property": "Identifier",
+            "belongsToClassMap": "BusinessProcess_2",
+            "type": "string",
+            "column": "BPM.Business_Process_ID_2"
+        },
+        {
+            "property": "Identifier",
+            "belongsToClassMap": "BusinessProcess_fp",
+            "type": "string",
+            "column": "BPM.Object_ID_FP"
+        },
+        {
+            "property": "Name",
+            "belongsToClassMap": "BusinessProcess_0",
+            "type": "string",
+            "column": "BPM.Business_Process"
+        },
+        {
+            "property": "Name",
+            "belongsToClassMap": "BusinessProcess_1",
+            "type": "string",
+            "column": "BPM.Business_Process_1"
+        },
+        {
+            "property": "Name",
+            "belongsToClassMap": "BusinessProcess_2",
+            "type": "string",
+            "column": "BPM.Business_Process_2"
+        },
+        {
+            "property": "Name",
+            "belongsToClassMap": "BusinessProcess_fp",
+            "type": "string",
+            "column": "BPM.Forward_Pointer"
+        },
+        {
+            "property": "Description",
+            "belongsToClassMap": "BusinessProcess_0",
+            "type": "string",
+            "column": "BPM.BP_Description"
+        },
+        {
+            "property": "Description",
+            "belongsToClassMap": "BusinessProcess_1",
+            "type": "string",
+            "column": "BPM.Business_Process_Description_1"
+        },
+        {
+            "property": "Level",
+            "belongsToClassMap": "BusinessProcess_0",
+            "type": "string",
+            "column": "BPM.Business_Process_Type",
+            "translateWith": "LevelConversion"
+        },
+        {
+            "property": "Level",
+            "belongsToClassMap": "BusinessProcess_1",
+            "type": "string",
+            "column": "BPM.Business_Process_Type_1",
+            "translateWith": "LevelConversion"
+        },
+        {
+            "property": "Level",
+            "belongsToClassMap": "BusinessProcess_2",
+            "type": "string",
+            "column": "BPM.Business_Process_Type_2",
+            "translateWith": "LevelConversion"
+        },
+        {
+            "property": "Level",
+            "belongsToClassMap": "BusinessProcess_fp",
+            "type": "string",
+            "column": "BPM.FP_Object_Type",
+            "translateWith": "LevelConversion"
+        },
+        {
+            "property": "isMemberOf",
+            "belongsToClassMap": "BusinessProcess_0",
+            "refersToClassMap": "EnterpriseDomainLevel_1_BCM"
+        },
+        {
+            "property": "isMemberOf",
+            "belongsToClassMap": "BusinessProcess_1",
+            "refersToClassMap": "EnterpriseDomainLevel_2_BCM"
+        },
+        {
+            "property": "isMemberOf",
+            "belongsToClassMap": "BusinessProcess_2",
+            "refersToClassMap": "EnterpriseDomainLevel_3_BCM"
+        }
+    ],
+    "translation_tables": [
+        {
+            "name": "LevelConversion",
+            "translations": [
+                {
+                    "databaseValue": "Generic E2E Business Process",
+                    "targetValue": "1"
+                },
+                {
+                    "databaseValue": "E2E Generic Business Process",
+                    "targetValue": "1"
+                },
+                {
+                    "databaseValue": "Business Process",
+                    "targetValue": "1"
+                },
+                {
+                    "databaseValue": "Modular Business Process",
+                    "targetValue": "2"
+                },
+                {
+                    "databaseValue": "Business Process Module",
+                    "targetValue": "2"
+                },
+                {
+                    "databaseValue": "Business Process Modular",
+                    "targetValue": "2"
+                },
+                {
+                    "databaseValue": "Business Process Segment",
+                    "targetValue": "3"
+                },
+                {
+                    "databaseValue": "Sub Process",
+                    "targetValue": "4"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,46 @@
+{
+    "classes": [
+        {
+            "id": "movie/@@movie.id@@",
+            "class": "Movie"
+        },
+        {
+            "id": "director/@@director.name@@",
+            "class": "Director"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "directed",
+            "belongsToClass": "Director",
+            "refersToClass": "Movie",
+            "join": ["movie.director = director.name"]
+        }
+    ],
+    "data_properties": [
+        {
+            "property": "title",
+            "belongsToClass": "Movie",
+            "type": "string",
+            "column": "movie.title"
+        },
+        {
+            "property": "year",
+            "belongsToClass": "Movie",
+            "type": "int",
+            "column": "movie.year"
+        },
+        {
+            "property": "name",
+            "belongsToClass": "Director",
+            "type": "string",
+            "column": "director.name"
+        },
+        {
+            "property": "birth_year",
+            "belongsToClass": "Director",
+            "type": "int",
+            "column": "director.birth_year"
+        }
+    ]
+}

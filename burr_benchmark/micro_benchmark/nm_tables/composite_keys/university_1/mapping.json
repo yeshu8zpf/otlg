@@ -1,0 +1,64 @@
+{
+    "classes": [
+        {
+            "id": "student/@@student.first_name@@_@@student.last_name@@_@@student.planned_graduation_year@@",
+            "class": "Student"
+        },
+        {
+            "id": "course/@@course.semester@@_@@course.course_name@@",
+            "class": "Course"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "enrolled_in",
+            "belongsToClass": "Student",
+            "refersToClass": "Course",
+            "join": [
+                "student.planned_graduation_year = enrollment.planned_graduation_year",
+                "student.first_name = enrollment.first_name",
+                "student.last_name = enrollment.last_name",
+                "course.semester = enrollment.semester",
+                "course.course_name = enrollment.course_name"
+            ]
+        }
+    ],
+    "data_properties": [
+        {
+            "property": "credits",
+            "belongsToClass": "Course",
+            "type": "integer",
+            "column": "course.credits"
+        },
+        {
+            "property": "name",
+            "belongsToClass": "Course",
+            "type": "string",
+            "column": "course.course_name"
+        },
+        {
+            "property": "semester",
+            "belongsToClass": "Course",
+            "type": "string",
+            "column": "course.semester"
+        },
+        {
+            "property": "planned_graduation_year",
+            "belongsToClass": "Student",
+            "type": "integer",
+            "column": "student.planned_graduation_year"
+        },
+        {
+            "property": "first_name",
+            "belongsToClass": "Student",
+            "type": "string",
+            "column": "student.first_name"
+        },
+        {
+            "property": "last_name",
+            "belongsToClass": "Student",
+            "type": "string",
+            "column": "student.last_name"
+        }
+    ]
+}

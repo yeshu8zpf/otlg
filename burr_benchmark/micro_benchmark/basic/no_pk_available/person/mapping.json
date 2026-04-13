@@ -1,0 +1,10 @@
+{
+    "classes": [
+        {
+            "id": "person/@@person.id@@",
+            "class": "Person"
+        }
+    ],
+    "object_properties": [],
+    "data_properties": []
+}

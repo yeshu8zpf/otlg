@@ -1,0 +1,62 @@
+{
+    "classes": [
+        {
+            "id": "@@BPM.Type@@",
+            "prefix": "RBA",
+            "class": "BusinessProcessCategory",
+            "name": "BusinessProcessCategory_0"
+        },
+        {
+            "id": "@@BPM.Type_1@@",
+            "prefix": "RBA",
+            "class": "BusinessProcessCategory",
+            "name": "BusinessProcessCategory_1"
+        },
+        {
+            "id": "@@BPM.Type_2@@",
+            "prefix": "RBA",
+            "class": "BusinessProcessCategory",
+            "name": "BusinessProcessCategory_2"
+        }
+    ],
+    "object_properties": [
+    ],
+    "data_properties": [
+        {
+            "property": "Name",
+            "belongsToClassMap": "BusinessProcessCategory_0",
+            "type": "string",
+            "column": "BPM.Type",
+            "translateWith": "TypeConversionBPC"
+        },
+        {
+            "property": "Name",
+            "belongsToClassMap": "BusinessProcessCategory_1",
+            "type": "string",
+            "column": "BPM.Type_1",
+            "translateWith": "TypeConversionBPC"
+        },
+        {
+            "property": "Name",
+            "belongsToClassMap": "BusinessProcessCategory_2",
+            "type": "string",
+            "column": "BPM.Type_2",
+            "translateWith": "TypeConversionBPC"
+        }
+    ],
+    "translation_tables": [
+        {
+            "name": "TypeConversionBPC",
+            "translations": [
+                {
+                    "databaseValue": "G",
+                    "targetValue": "Generic"
+                },
+                {
+                    "databaseValue": "V",
+                    "targetValue": "Variant"
+                }
+            ]
+        }
+    ]
+}

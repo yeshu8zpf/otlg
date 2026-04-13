@@ -1,0 +1,69 @@
+{
+    "classes": [
+        {
+            "id": "book/@@book.isbn@@",
+            "class": "Book"
+        },
+        {
+            "id": "author/@@book.author@@",
+            "class": "Author"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "writtenBy",
+            "belongsToClass": "Book",
+            "refersToClass": "Author"
+        }
+    ],
+    "data_properties": [
+        {
+            "property": "name",
+            "belongsToClass": "Book",
+            "type": "string",
+            "column": "book.name"
+        },
+        {
+            "property": "publicationYear",
+            "belongsToClass": "Book",
+            "type": "integer",
+            "column": "book.publication_year"
+        },
+        {
+            "property": "copiesAvailable",
+            "belongsToClass": "Book",
+            "type": "integer",
+            "column": "book.copies_available"
+        },
+        {
+            "property": "isbn",
+            "belongsToClass": "Book",
+            "type": "string",
+            "column": "book.isbn"
+        },
+        {
+            "property": "name",
+            "belongsToClass": "Author",
+            "type": "string",
+            "column": "book.author"
+        },
+        {
+            "property": "birthYear",
+            "belongsToClass": "Author",
+            "type": "integer",
+            "column": "book.birth_year"
+        },
+        {
+            "property": "nationality",
+            "belongsToClass": "Author",
+            "type": "string",
+            "column": "book.nationality"
+        },
+        {
+            "property": "address",
+            "belongsToClass": "Author",
+            "type": "string",
+            "column": "book.address"
+        }
+    ]
+}

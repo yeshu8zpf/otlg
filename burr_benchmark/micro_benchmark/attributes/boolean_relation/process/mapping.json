@@ -1,0 +1,117 @@
+{
+    "classes": [
+        {
+            "id": "service/@@service.id@@",
+            "class": "Service"
+        },
+        {
+            "id": "OilAndGas",
+            "class": "Industry",
+            "name": "IndustryOilGas"
+        },
+        {
+            "id": "Automotive",
+            "class": "Industry",
+            "name": "IndustryAutomotive"
+        },
+        {
+            "id": "Chemical",
+            "class": "Industry",
+            "name": "IndustryChemical"
+        },
+        {
+            "id": "Pharma",
+            "class": "Industry",
+            "name": "IndustryPharma"
+        },
+        {
+            "id": "Food",
+            "class": "Industry",
+            "name": "IndustryFood"
+        },
+        {
+            "id": "Retail",
+            "class": "Industry",
+            "name": "IndustryRetail"
+        },
+        {
+            "id": "Logistics",
+            "class": "Industry",
+            "name": "IndustryLogistics"
+        },
+        {
+            "id": "Aviation",
+            "class": "Industry",
+            "name": "IndustryAviation"
+        },
+        {
+            "id": "Energy",
+            "class": "Industry",
+            "name": "IndustryEnergy"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "isMemberOf",
+            "belongsToClass": "Service",
+            "refersToClassMap": "IndustryOilGas",
+            "condition": "service.relevant_for_oil_and_gas = 'True'"
+        },
+        {
+            "property": "isMemberOf",
+            "belongsToClass": "Service",
+            "refersToClassMap": "IndustryAutomotive",
+            "condition": "service.relevant_for_automotive = 'True'"
+        },
+        {
+            "property": "isMemberOf",
+            "belongsToClass": "Service",
+            "refersToClassMap": "IndustryChemical",
+            "condition": "service.relevant_for_chemical = 'True'"
+        },
+        {
+            "property": "isMemberOf",
+            "belongsToClass": "Service",
+            "refersToClassMap": "IndustryPharma",
+            "condition": "service.relevant_for_pharma = 'True'"
+        },
+        {
+            "property": "isMemberOf",
+            "belongsToClass": "Service",
+            "refersToClassMap": "IndustryFood",
+            "condition": "service.relevant_for_food = 'True'"
+        },
+        {
+            "property": "isMemberOf",
+            "belongsToClass": "Service",
+            "refersToClassMap": "IndustryRetail",
+            "condition": "service.relevant_for_retail = 'True'"
+        },
+        {
+            "property": "isMemberOf",
+            "belongsToClass": "Service",
+            "refersToClassMap": "IndustryLogistics",
+            "condition": "service.relevant_for_logistics = 'True'"
+        },
+        {
+            "property": "isMemberOf",
+            "belongsToClass": "Service",
+            "refersToClassMap": "IndustryAviation",
+            "condition": "service.relevant_for_aviation = 'True'"
+        },
+        {
+            "property": "isMemberOf",
+            "belongsToClass": "Service",
+            "refersToClassMap": "IndustryEnergy",
+            "condition": "service.relevant_for_energy = 'True'"
+        }
+    ],
+    "data_properties": [
+        {
+            "property": "name",
+            "belongsToClass": "Service",
+            "type": "string",
+            "column": "service.name"
+        }
+    ]
+}

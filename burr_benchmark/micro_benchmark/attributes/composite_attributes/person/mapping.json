@@ -1,0 +1,41 @@
+{
+    "classes": [
+        {
+            "id": "person/@@person.id@@",
+            "class": "Person"
+        }
+    ],
+    "object_properties": [],
+    "data_properties": [
+        {
+            "property": "name",
+            "belongsToClass": "Person",
+            "type": "string",
+            "column": "person.name"
+        },
+        {
+            "property": "street",
+            "belongsToClass": "Person",
+            "type": "string",
+            "sqlExpression": "split_part(person.address, ',', 1)"
+        },
+        {
+            "property": "city",
+            "belongsToClass": "Person",
+            "type": "string",
+            "sqlExpression": "split_part(person.address, ',', 2)"
+        },
+        {
+            "property": "state",
+            "belongsToClass": "Person",
+            "type": "string",
+            "sqlExpression": "split_part(person.address, ',', 3)"
+        },
+        {
+            "property": "country",
+            "belongsToClass": "Person",
+            "type": "string",
+            "sqlExpression": "split_part(person.address, ',', 4)"
+        }
+    ]
+}

@@ -1,0 +1,501 @@
+id,name,contains_caffeine,contains_sugar,contains_alcohol,contains_dairy,contains_gluten,contains_nuts
+1,Strawberry-Banana Smoothie,false,true,false,false,false,false
+2,Light Iced Coffee,true,false,false,false,false,false
+3,Original Pineapple Juice,false,true,false,false,false,false
+4,Diet Skim Milk,false,false,false,true,false,false
+5,Diet Oolong Tea,true,false,false,false,false,false
+6,Large Rosé Wine,false,false,true,false,false,false
+7,Diet Porter,false,false,true,false,true,false
+8,Original Root Beer,true,true,false,false,false,false
+9,Iced Iced Tea,true,false,false,false,false,false
+10,Light Latte,true,false,false,false,false,false
+11,Large Diet Cola,true,true,false,false,false,false
+12,Hot Mocha,true,false,false,false,false,false
+13,Original Lager,false,false,true,false,true,false
+14,Orange Juice,false,true,false,false,false,false
+15,Ale,false,false,true,false,true,false
+16,Cosmopolitan,false,true,true,false,false,false
+17,Diet Latte,true,false,false,false,false,false
+18,Large Porter,false,false,true,false,true,false
+19,Large Daiquiri,false,true,true,false,false,false
+20,Original Matcha Latte,true,false,false,false,false,false
+21,Light Tonic Water,true,false,false,false,false,false
+22,Light Strawberry Milkshake,false,true,false,true,false,false
+23,Iced Orange Soda,false,true,false,false,false,false
+24,Large White Wine,false,false,true,false,false,false
+25,Zero Strawberry Milkshake,false,true,false,true,false,false
+26,Large Strawberry Milkshake,false,true,false,true,false,false
+27,Hot Iced Coffee,true,false,false,false,false,false
+28,Large Skim Milk,false,false,false,true,false,false
+29,Diet Chai Latte,true,false,false,false,false,false
+30,Diet Strawberry Milkshake,false,true,false,true,false,false
+31,Diet Chocolate Milk,false,true,false,true,false,false
+32,Zero Wheat Beer,false,false,true,false,true,false
+33,Large Grape Juice,false,true,false,false,false,false
+34,Zero Cosmopolitan,false,true,true,false,false,false
+35,Flavored Water,false,false,false,false,false,false
+36,Original Flat White,true,false,false,false,false,false
+37,Diet Mixed Fruit Juice,false,true,false,false,false,false
+38,Original Cosmopolitan,false,true,true,false,false,false
+39,Zero Cold Brew,true,false,false,false,false,false
+40,Zero Lemon-Lime Soda,false,true,false,false,false,false
+41,Large Cosmopolitan,false,true,true,false,false,false
+42,Diet Green Tea,true,false,false,false,false,false
+43,Large Chai Latte,true,false,false,false,false,false
+44,Espresso,true,false,false,false,false,false
+45,Small Mojito,false,true,true,false,false,false
+46,Light Cosmopolitan,false,true,true,false,false,false
+47,Hot Oolong Tea,true,false,false,false,false,false
+48,Original Champagne,false,false,true,false,false,false
+49,Hot Champagne,false,false,true,false,false,false
+50,Iced Pineapple Juice,false,true,false,false,false,false
+51,Diet Cosmopolitan,false,true,true,false,false,false
+52,Iced Tomato Juice,false,true,false,false,false,false
+53,Hot Cappuccino,true,false,false,false,false,false
+54,Small Cappuccino,true,false,false,false,false,false
+55,Small Macchiato,true,false,false,false,false,false
+56,Iced Green Tea,true,false,false,false,false,false
+57,Original Martini,false,true,true,false,false,false
+58,Iced Porter,false,false,true,false,true,false
+59,Hot Green Tea,true,false,false,false,false,false
+60,Small Mocha,true,false,false,false,false,false
+61,Rockstar,true,true,false,false,false,false
+62,Champagne,false,false,true,false,false,false
+63,Diet Old Fashioned,false,true,true,false,false,false
+64,Large Chocolate Milk,false,true,false,true,false,false
+65,Zero Macchiato,true,false,false,false,false,false
+66,Light Stout,false,false,true,false,true,false
+67,Light Lemon-Lime Soda,false,true,false,false,false,false
+68,Light Daiquiri,false,true,true,false,false,false
+69,Hot Yogurt Drink,false,true,false,true,false,false
+70,Diet IPA,false,false,true,false,true,false
+71,Diet Sparkling Wine,false,false,true,false,false,false
+72,Iced Americano,true,false,false,false,false,false
+73,Light Root Beer,true,true,false,false,false,false
+74,Zero Americano,true,false,false,false,false,false
+75,Soy Milk,false,false,false,false,false,false
+76,Diet Grape Juice,false,true,false,false,false,false
+77,Iced Mocha,true,false,false,false,false,false
+78,Large Lemon-Lime Soda,false,true,false,false,false,false
+79,Light Porter,false,false,true,false,true,false
+80,Small Chocolate Milk,false,true,false,true,false,false
+81,Iced Skim Milk,false,false,false,true,false,false
+82,Yogurt Drink,false,true,false,true,false,false
+83,Zero Cappuccino,true,false,false,false,false,false
+84,Zero Cranberry Juice,false,true,false,false,false,false
+85,Light Macchiato,true,false,false,false,false,false
+86,Light Flat White,true,false,false,false,false,false
+87,Iced Sparkling Wine,false,false,true,false,false,false
+88,Hot Cranberry Juice,false,true,false,false,false,false
+89,Hot Old Fashioned,false,true,true,false,false,false
+90,Large Flat White,true,false,false,false,false,false
+91,Zero Cola,true,true,false,false,false,false
+92,Whole Milk,false,false,false,true,false,false
+93,Rosé Wine,false,false,true,false,false,false
+94,Hot Rosé Wine,false,false,true,false,false,false
+95,Iced Flat White,true,false,false,false,false,false
+96,Small Whole Milk,false,false,false,true,false,false
+97,Small Iced Tea,true,false,false,false,false,false
+98,Diet Espresso,true,false,false,false,false,false
+99,Large Herbal Tea,true,false,false,false,false,false
+100,Light Margarita,false,true,true,false,false,false
+101,Hot White Wine,false,false,true,false,false,false
+102,Iced Grape Soda,false,true,false,false,false,false
+103,Zero Carrot Juice,false,true,false,false,false,false
+104,Original Sparkling Wine,false,false,true,false,false,false
+105,Large Tonic Water,true,false,false,false,false,false
+106,Diet Tonic Water,true,false,false,false,false,false
+107,Small Grape Soda,false,true,false,false,false,false
+108,Diet Vanilla Milkshake,false,true,false,true,false,false
+109,Cappuccino,true,false,false,false,false,false
+110,Diet Orange Juice,false,true,false,false,false,false
+111,Iced Wheat Beer,false,false,true,false,true,false
+112,Light Lager,false,false,true,false,true,false
+113,Original Daiquiri,false,true,true,false,false,false
+114,Small Green Tea,true,false,false,false,false,false
+115,Mango Smoothie,false,true,false,false,false,false
+116,Original Red Wine,false,false,true,false,false,false
+117,Hot Pilsner,false,false,true,false,true,false
+118,Diet Stout,false,false,true,false,true,false
+119,Large Macchiato,true,false,false,false,false,false
+120,Iced Daiquiri,false,true,true,false,false,false
+121,Iced Rosé Wine,false,false,true,false,false,false
+122,Hot Cola,true,true,false,false,false,false
+123,Diet Pineapple Juice,false,true,false,false,false,false
+124,Small Orange Juice,false,true,false,false,false,false
+125,Light Yogurt Drink,false,true,false,true,false,false
+126,Diet Cappuccino,true,false,false,false,false,false
+127,Original Herbal Tea,true,false,false,false,false,false
+128,Iced Cold Brew,true,false,false,false,false,false
+129,Original Wheat Beer,false,false,true,false,true,false
+130,Iced Ale,false,false,true,false,true,false
+131,Light Cranberry Juice,false,true,false,false,false,false
+132,Small Sparkling Wine,false,false,true,false,false,false
+133,Strawberry Milkshake,false,true,false,true,false,false
+134,Herbal Tea,true,false,false,false,false,false
+135,Large Americano,true,false,false,false,false,false
+136,Zero Espresso,true,false,false,false,false,false
+137,Zero Chocolate Milk,false,true,false,true,false,false
+138,Large IPA,false,false,true,false,true,false
+139,Root Beer,true,true,false,false,false,false
+140,Light Tomato Juice,false,true,false,false,false,false
+141,Zero Ginger Ale,true,true,true,false,true,false
+142,Original Rosé Wine,false,false,true,false,false,false
+143,Large Cranberry Juice,false,true,false,false,false,false
+144,Zero Pilsner,false,false,true,false,true,false
+145,Original Whiskey Sour,false,true,true,false,false,false
+146,Zero Porter,false,false,true,false,true,false
+147,Hot Espresso,true,false,false,false,false,false
+148,Large Pineapple Juice,false,true,false,false,false,false
+149,Mixed Fruit Juice,false,true,false,false,false,false
+150,Zero Tomato Juice,false,true,false,false,false,false
+151,Hot Orange Soda,false,true,false,false,false,false
+152,Small Wheat Beer,false,false,true,false,true,false
+153,Diet White Wine,false,false,true,false,false,false
+154,Red Bull,true,true,false,false,false,false
+155,Original Porter,false,false,true,false,true,false
+156,Latte,true,false,false,false,false,false
+157,Light Pineapple Juice,false,true,false,false,false,false
+158,Small Pilsner,false,false,true,false,true,false
+159,Large Margarita,false,true,true,false,false,false
+160,IPA,false,false,true,false,true,false
+161,Zero Apple Juice,false,true,false,false,false,false
+162,Large Whiskey Sour,false,true,true,false,false,false
+163,Original Mixed Fruit Juice,false,true,false,false,false,false
+164,Zero Iced Coffee,true,false,false,false,false,false
+165,Zero White Wine,false,false,true,false,false,false
+166,Zero Orange Soda,false,true,false,false,false,false
+167,Large Black Tea,true,false,false,false,false,false
+168,Iced Mojito,false,true,true,false,false,false
+169,Iced Macchiato,true,false,false,false,false,false
+170,Original Iced Coffee,true,false,false,false,false,false
+171,Iced Lemon-Lime Soda,false,true,false,false,false,false
+172,Small Champagne,false,false,true,false,false,false
+173,Light Mojito,false,true,true,false,false,false
+174,Large Iced Tea,true,false,false,false,false,false
+175,Hot Sparkling Wine,false,false,true,false,false,false
+176,Light Red Wine,false,false,true,false,false,false
+177,Diet Flat White,true,false,false,false,false,false
+178,Light Wheat Beer,false,false,true,false,true,false
+179,Hot Root Beer,true,true,false,false,false,false
+180,Iced Old Fashioned,false,true,true,false,false,false
+181,Original Diet Cola,true,true,false,false,false,false
+182,Zero Herbal Tea,true,false,false,false,false,false
+183,Iced Red Wine,false,false,true,false,false,false
+184,Zero Skim Milk,false,false,false,true,false,false
+185,Hot Grape Juice,false,true,false,false,false,false
+186,Light Chocolate Milk,false,true,false,true,false,false
+187,Large Cappuccino,true,false,false,false,false,false
+188,Hot Iced Tea,true,false,false,false,false,false
+189,Gatorade,false,true,false,false,false,false
+190,Original Grape Juice,false,true,false,false,false,false
+191,Hot Black Tea,true,false,false,false,false,false
+192,Small Matcha Latte,true,false,false,false,false,false
+193,Original Black Tea,true,false,false,false,false,false
+194,Iced Herbal Tea,true,false,false,false,false,false
+195,Hot Lemon-Lime Soda,false,true,false,false,false,false
+196,Zero IPA,false,false,true,false,true,false
+197,Hot Skim Milk,false,false,false,true,false,false
+198,Flat White,true,false,false,false,false,false
+199,Diet Carrot Juice,false,true,false,false,false,false
+200,Hot Americano,true,false,false,false,false,false
+201,Large Stout,false,false,true,false,true,false
+202,Light Grape Juice,false,true,false,false,false,false
+203,Small IPA,false,false,true,false,true,false
+204,Large Oolong Tea,true,false,false,false,false,false
+205,Iced Whiskey Sour,false,true,true,false,false,false
+206,Small Carrot Juice,false,true,false,false,false,false
+207,Rice Milk,false,false,false,false,false,false
+208,Large Vanilla Milkshake,false,true,false,true,false,false
+209,Large Latte,true,false,false,false,false,false
+210,Iced Cola,true,true,false,false,false,false
+211,Zero Kefir,false,true,false,true,false,false
+212,Diet Matcha Latte,true,false,false,false,false,false
+213,Large Matcha Latte,true,false,false,false,false,false
+214,Original Whole Milk,false,false,false,true,false,false
+215,Hazelnut Milk,false,false,false,false,false,true
+216,Diet Sparkling Water,false,true,false,false,false,false
+217,Original Chocolate Milk,false,true,false,true,false,false
+218,Iced Root Beer,true,true,false,false,false,false
+219,Spring Water,false,false,false,false,false,false
+220,Zero Yogurt Drink,false,true,false,true,false,false
+221,Grape Juice,false,true,false,false,false,false
+222,Small Cosmopolitan,false,true,true,false,false,false
+223,Diet Pilsner,false,false,true,false,true,false
+224,Coconut Milk,false,false,false,false,false,false
+225,Diet Orange Soda,false,true,false,false,false,false
+226,Original Oolong Tea,true,false,false,false,false,false
+227,Zero Oolong Tea,true,false,false,false,false,false
+228,Light Rosé Wine,false,false,true,false,false,false
+229,Zero Lager,false,false,true,false,true,false
+230,Cola,true,true,false,false,false,false
+231,Grape Soda,false,true,false,false,false,false
+232,Zero Root Beer,true,true,false,false,false,false
+233,Zero Mocha,true,false,false,false,false,false
+234,Zero Grape Soda,false,true,false,false,false,false
+235,Light Mixed Fruit Juice,false,true,false,false,false,false
+236,Tomato Juice,false,true,false,false,false,false
+237,Large Sparkling Wine,false,false,true,false,false,false
+238,Iced Coffee,true,false,false,false,false,false
+239,Original Vanilla Milkshake,false,true,false,true,false,false
+240,Light Iced Tea,true,false,false,false,false,false
+241,Iced Lager,false,false,true,false,true,false
+242,Light Herbal Tea,true,false,false,false,false,false
+243,Iced Black Tea,true,false,false,false,false,false
+244,Hot Ginger Ale,true,true,true,false,true,false
+245,Diet Champagne,false,false,true,false,false,false
+246,Iced Grape Juice,false,true,false,false,false,false
+247,Iced Stout,false,false,true,false,true,false
+248,Iced Oolong Tea,true,false,false,false,false,false
+249,Black Tea,true,false,false,false,false,false
+250,Light Grape Soda,false,true,false,false,false,false
+251,Iced Martini,false,true,true,false,false,false
+252,Small Pineapple Juice,false,true,false,false,false,false
+253,Original Margarita,false,true,true,false,false,false
+254,Small Lemon-Lime Soda,false,true,false,false,false,false
+255,Diet Kefir,false,true,false,true,false,false
+256,Original Espresso,true,false,false,false,false,false
+257,Iced Yogurt Drink,false,true,false,true,false,false
+258,Light Skim Milk,false,false,false,true,false,false
+259,Large Apple Juice,false,true,false,false,false,false
+260,Zero Mixed Fruit Juice,false,true,false,false,false,false
+261,Red Wine,false,false,true,false,false,false
+262,Iced Orange Juice,false,true,false,false,false,false
+263,Diet Red Wine,false,false,true,false,false,false
+264,Large Red Wine,false,false,true,false,false,false
+265,Stout,false,false,true,false,true,false
+266,Pilsner,false,false,true,false,true,false
+267,Large Cola,true,true,false,false,false,false
+268,Original Strawberry Milkshake,false,true,false,true,false,false
+269,Distilled Water,false,false,false,false,false,false
+270,Small Ginger Ale,true,true,true,false,true,false
+271,Chai Latte,true,false,false,false,false,false
+272,Cold Brew,true,false,false,false,false,false
+273,Wheat Beer,false,false,true,false,true,false
+274,Hot Macchiato,true,false,false,false,false,false
+275,Iced Matcha Latte,true,false,false,false,false,false
+276,Small Strawberry Milkshake,false,true,false,true,false,false
+277,Small Rosé Wine,false,false,true,false,false,false
+278,Large Martini,false,true,true,false,false,false
+279,Zero Mojito,false,true,true,false,false,false
+280,Small White Wine,false,false,true,false,false,false
+281,Iced Cappuccino,true,false,false,false,false,false
+282,Zero Green Tea,true,false,false,false,false,false
+283,Iced Latte,true,false,false,false,false,false
+284,Zero Vanilla Milkshake,false,true,false,true,false,false
+285,Hot Tomato Juice,false,true,false,false,false,false
+286,Light Cola,true,true,false,false,false,false
+287,Hot Mojito,false,true,true,false,false,false
+288,Iced Vanilla Milkshake,false,true,false,true,false,false
+289,Hot Pineapple Juice,false,true,false,false,false,false
+290,Light Chai Latte,true,false,false,false,false,false
+291,Light Apple Juice,false,true,false,false,false,false
+292,Large Espresso,true,false,false,false,false,false
+293,Iced Cranberry Juice,false,true,false,false,false,false
+294,Small Chai Latte,true,false,false,false,false,false
+295,Original Mojito,false,true,true,false,false,false
+296,Iced Sparkling Water,false,true,false,false,false,false
+297,Small Martini,false,true,true,false,false,false
+298,Large Root Beer,true,true,false,false,false,false
+299,Hot Ale,false,false,true,false,true,false
+300,Large Green Tea,true,false,false,false,false,false
+301,Cashew Milk,false,false,false,false,false,true
+302,Iced Mixed Fruit Juice,false,true,false,false,false,false
+303,Original Lemon-Lime Soda,false,true,false,false,false,false
+304,Green Tea,true,false,false,false,false,false
+305,Diet Macchiato,true,false,false,false,false,false
+306,Light Oolong Tea,true,false,false,false,false,false
+307,Original Stout,false,false,true,false,true,false
+308,Iced Apple Juice,false,true,false,false,false,false
+309,Original Mocha,true,false,false,false,false,false
+310,Almond Milk,false,false,false,false,false,true
+311,Macchiato,true,false,false,false,false,false
+312,Vanilla Milkshake,false,true,false,true,false,false
+313,Large Old Fashioned,false,true,true,false,false,false
+314,Small Iced Coffee,true,false,false,false,false,false
+315,Banana Smoothie,false,true,false,false,false,false
+316,Original Cappuccino,true,false,false,false,false,false
+317,Iced Tonic Water,true,false,false,false,false,false
+318,Tonic Water,true,false,false,false,false,false
+319,Small Old Fashioned,false,true,true,false,false,false
+320,Hot Vanilla Milkshake,false,true,false,true,false,false
+321,Original Orange Juice,false,true,false,false,false,false
+322,Original Old Fashioned,false,true,true,false,false,false
+323,Original Cold Brew,true,false,false,false,false,false
+324,Original Ginger Ale,true,true,true,false,true,false
+325,Small Stout,false,false,true,false,true,false
+326,Hot Daiquiri,false,true,true,false,false,false
+327,Original Tomato Juice,false,true,false,false,false,false
+328,Iced Kefir,false,true,false,true,false,false
+329,Daiquiri,false,true,true,false,false,false
+330,Large Mocha,true,false,false,false,false,false
+331,Diet Cranberry Juice,false,true,false,false,false,false
+332,Small Cola,true,true,false,false,false,false
+333,Hot Wheat Beer,false,false,true,false,true,false
+334,Light Orange Soda,false,true,false,false,false,false
+335,Sparkling Wine,false,false,true,false,false,false
+336,Original Macchiato,true,false,false,false,false,false
+337,Small Sparkling Water,false,true,false,false,false,false
+338,Large Yogurt Drink,false,true,false,true,false,false
+339,Diet Lager,false,false,true,false,true,false
+340,Small Espresso,true,false,false,false,false,false
+341,Original IPA,false,false,true,false,true,false
+342,Small Red Wine,false,false,true,false,false,false
+343,Hot Margarita,false,true,true,false,false,false
+344,Small Grape Juice,false,true,false,false,false,false
+345,Light Old Fashioned,false,true,true,false,false,false
+346,Iced Chocolate Milk,false,true,false,true,false,false
+347,Small Tonic Water,true,false,false,false,false,false
+348,Large Iced Coffee,true,false,false,false,false,false
+349,Iced Margarita,false,true,true,false,false,false
+350,Large Grape Soda,false,true,false,false,false,false
+351,Zero Daiquiri,false,true,true,false,false,false
+352,Diet Diet Cola,true,true,false,false,false,false
+353,Matcha Latte,true,false,false,false,false,false
+354,5-hour Energy,true,true,false,false,false,false
+355,Light Mocha,true,false,false,false,false,false
+356,Diet Margarita,false,true,true,false,false,false
+357,Large Sparkling Water,false,true,false,false,false,false
+358,Light Espresso,true,false,false,false,false,false
+359,Hot Tonic Water,true,false,false,false,false,false
+360,Diet Ale,false,false,true,false,true,false
+361,Light Cold Brew,true,false,false,false,false,false
+362,Small Skim Milk,false,false,false,true,false,false
+363,Martini,false,true,true,false,false,false
+364,Hot Apple Juice,false,true,false,false,false,false
+365,Hot Chocolate Milk,false,true,false,true,false,false
+366,Small Porter,false,false,true,false,true,false
+367,Iced Cosmopolitan,false,true,true,false,false,false
+368,Small Vanilla Milkshake,false,true,false,true,false,false
+369,Large Mojito,false,true,true,false,false,false
+370,Powerade,false,true,false,false,false,false
+371,Hot Matcha Latte,true,false,false,false,false,false
+372,Iced Diet Cola,true,true,false,false,false,false
+373,Hot Martini,false,true,true,false,false,false
+374,Iced Ginger Ale,true,true,true,false,true,false
+375,Original Green Tea,true,false,false,false,false,false
+376,Porter,false,false,true,false,true,false
+377,Original Sparkling Water,false,true,false,false,false,false
+378,Oolong Tea,true,false,false,false,false,false
+379,Whiskey Sour,false,true,true,false,false,false
+380,Diet Yogurt Drink,false,true,false,true,false,false
+381,Pineapple Juice,false,true,false,false,false,false
+382,Skim Milk,false,false,false,true,false,false
+383,Light Ale,false,false,true,false,true,false
+384,Hot Latte,true,false,false,false,false,false
+385,Diet Daiquiri,false,true,true,false,false,false
+386,Diet Mojito,false,true,true,false,false,false
+387,Original Carrot Juice,false,true,false,false,false,false
+388,Diet Whole Milk,false,false,false,true,false,false
+389,Diet Cola,true,true,false,false,false,false
+390,Hot Grape Soda,false,true,false,false,false,false
+391,Original Yogurt Drink,false,true,false,true,false,false
+392,Original White Wine,false,false,true,false,false,false
+393,Small Latte,true,false,false,false,false,false
+394,Iced Strawberry Milkshake,false,true,false,true,false,false
+395,Zero Red Wine,false,false,true,false,false,false
+396,Light Champagne,false,false,true,false,false,false
+397,Hot Chai Latte,true,false,false,false,false,false
+398,Large Tomato Juice,false,true,false,false,false,false
+399,Small Daiquiri,false,true,true,false,false,false
+400,Light Ginger Ale,true,true,true,false,true,false
+401,Large Wheat Beer,false,false,true,false,true,false
+402,Iced Champagne,false,false,true,false,false,false
+403,Light Kefir,false,true,false,true,false,false
+404,Small Diet Cola,true,true,false,false,false,false
+405,Hot Carrot Juice,false,true,false,false,false,false
+406,Zero Grape Juice,false,true,false,false,false,false
+407,Zero Flat White,true,false,false,false,false,false
+408,Margarita,false,true,true,false,false,false
+409,Diet Lemon-Lime Soda,false,true,false,false,false,false
+410,Zero Whiskey Sour,false,true,true,false,false,false
+411,Small Margarita,false,true,true,false,false,false
+412,Large Mixed Fruit Juice,false,true,false,false,false,false
+413,Zero Whole Milk,false,false,false,true,false,false
+414,Original Tonic Water,true,false,false,false,false,false
+415,Ginger Ale,true,true,true,false,true,false
+416,Small Orange Soda,false,true,false,false,false,false
+417,Hot Herbal Tea,true,false,false,false,false,false
+418,Zero Ale,false,false,true,false,true,false
+419,Diet Ginger Ale,true,true,true,false,true,false
+420,Orange Soda,false,true,false,false,false,false
+421,Hot Stout,false,false,true,false,true,false
+422,Iced Tea,true,false,false,false,false,false
+423,Small Oolong Tea,true,false,false,false,false,false
+424,Small Tomato Juice,false,true,false,false,false,false
+425,Small Yogurt Drink,false,true,false,true,false,false
+426,Hot Flat White,true,false,false,false,false,false
+427,Zero Rosé Wine,false,false,true,false,false,false
+428,Old Fashioned,false,true,true,false,false,false
+429,Original Ale,false,false,true,false,true,false
+430,Original Grape Soda,false,true,false,false,false,false
+431,Small Ale,false,false,true,false,true,false
+432,Diet Herbal Tea,true,false,false,false,false,false
+433,White Wine,false,false,true,false,false,false
+434,Diet Mocha,true,false,false,false,false,false
+435,Light Matcha Latte,true,false,false,false,false,false
+436,Hot Whole Milk,false,false,false,true,false,false
+437,Light Diet Cola,true,true,false,false,false,false
+438,Light Black Tea,true,false,false,false,false,false
+439,Original Americano,true,false,false,false,false,false
+440,Original Orange Soda,false,true,false,false,false,false
+441,Diet Rosé Wine,false,false,true,false,false,false
+442,Diet Wheat Beer,false,false,true,false,true,false
+443,Diet Iced Coffee,true,false,false,false,false,false
+444,Large Pilsner,false,false,true,false,true,false
+445,Light Whiskey Sour,false,true,true,false,false,false
+446,Hot Lager,false,false,true,false,true,false
+447,Small Americano,true,false,false,false,false,false
+448,Small Whiskey Sour,false,true,true,false,false,false
+449,Hot Porter,false,false,true,false,true,false
+450,Iced Pilsner,false,false,true,false,true,false
+451,Large Whole Milk,false,false,false,true,false,false
+452,Diet Cold Brew,true,false,false,false,false,false
+453,Light Vanilla Milkshake,false,true,false,true,false,false
+454,Light Pilsner,false,false,true,false,true,false
+455,Light Cappuccino,true,false,false,false,false,false
+456,Large Orange Soda,false,true,false,false,false,false
+457,Diet Root Beer,true,true,false,false,false,false
+458,Zero Old Fashioned,false,true,true,false,false,false
+459,Hot Sparkling Water,false,true,false,false,false,false
+460,Hot Strawberry Milkshake,false,true,false,true,false,false
+461,Original Iced Tea,true,false,false,false,false,false
+462,Original Pilsner,false,false,true,false,true,false
+463,Small Cranberry Juice,false,true,false,false,false,false
+464,Small Mixed Fruit Juice,false,true,false,false,false,false
+465,Hot Kefir,false,true,false,true,false,false
+466,Diet Americano,true,false,false,false,false,false
+467,Original Kefir,false,true,false,true,false,false
+468,Zero Matcha Latte,true,false,false,false,false,false
+469,Americano,true,false,false,false,false,false
+470,Original Apple Juice,false,true,false,false,false,false
+471,Original Cola,true,true,false,false,false,false
+472,Hot Whiskey Sour,false,true,true,false,false,false
+473,Diet Iced Tea,true,false,false,false,false,false
+474,Large Ale,false,false,true,false,true,false
+475,Hot Orange Juice,false,true,false,false,false,false
+476,Oat Milk,false,false,false,false,false,false
+477,Iced Espresso,true,false,false,false,false,false
+478,Sparkling Water,false,true,false,false,false,false
+479,Hot IPA,false,false,true,false,true,false
+480,Light Americano,true,false,false,false,false,false
+481,Light IPA,false,false,true,false,true,false
+482,Diet Martini,false,true,true,false,false,false
+483,Small Herbal Tea,true,false,false,false,false,false
+484,Light Orange Juice,false,true,false,false,false,false
+485,Berry Smoothie,false,true,false,false,false,false
+486,Lager,false,false,true,false,true,false
+487,Apple Juice,false,true,false,false,false,false
+488,Small Black Tea,true,false,false,false,false,false
+489,Zero Tonic Water,true,false,false,false,false,false
+490,Large Lager,false,false,true,false,true,false
+491,Cranberry Juice,false,true,false,false,false,false
+492,Zero Margarita,false,true,true,false,false,false
+493,Light White Wine,false,false,true,false,false,false
+494,Zero Sparkling Wine,false,false,true,false,false,false
+495,Large Champagne,false,false,true,false,false,false
+496,Large Cold Brew,true,false,false,false,false,false
+497,Original Latte,true,false,false,false,false,false
+498,Hot Red Wine,false,false,true,false,false,false
+499,Large Ginger Ale,true,true,true,false,true,false
+500,Hot Cosmopolitan,false,true,true,false,false,false

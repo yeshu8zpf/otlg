@@ -1,0 +1,37 @@
+{
+    "classes": [
+        {
+            "id": "customer/@@customer.id@@",
+            "class": "Customer"
+        },
+        {
+            "id": "preference/@@preference.id@@",
+            "class": "Preference"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "has_preference",
+            "belongsToClass": "Customer",
+            "refersToClass": "Preference",
+            "join": [
+                "customer.id = customer_preference.customer_id",
+                "preference.id = customer_preference.preference_id"
+            ]
+        }
+    ],
+    "data_properties": [
+        {
+            "property": "name",
+            "belongsToClass": "Customer",
+            "type": "string",
+            "column": "customer.name"
+        },
+        {
+            "property": "name",
+            "belongsToClass": "Preference",
+            "type": "string",
+            "column": "preference.name"
+        }
+    ]
+}

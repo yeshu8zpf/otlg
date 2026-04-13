@@ -1,0 +1,80 @@
+{
+    "classes": [
+        {
+            "id": "@@organization.abbreviation@@",
+            "class": "Organization",
+            "prefix": "mondial"
+        },
+        {
+            "id": "@@ismember.country@@/@@ismember.Organization@@",
+            "class": "Membership",
+            "prefix": "mondial"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "ofMember",
+            "belongsToClass": "Membership",
+            "refersToClassMap": "CountryFull",
+            "join": [
+                "country.code = ismember.country"
+            ],
+            "inverseOf": "isInMembership"
+        },
+        {
+            "property": "inOrganization",
+            "belongsToClass": "Membership",
+            "refersToClass": "Organization",
+            "join": [
+                "organization.abbreviation = ismember.organization"
+            ],
+            "inverseOf": "hasMembership"
+        },
+        {
+            "property": "isMember",
+            "belongsToClassMap": "CountryFull",
+            "refersToClass": "Organization",
+            "join": [
+                "organization.abbreviation = ismember.organization",
+                "country.code = ismember.country"
+            ],
+            "inverseOf": "hasMember"
+        },
+        {
+            "property": "hasHeadq",
+            "belongsToClass": "Organization",
+            "refersToClass": "City",
+            "join": [
+                "organization.city = city.name",
+                "organization.country = city.country",
+                "organization.province = city.province"
+            ]
+        }
+    ],
+    "data_properties": [
+        {
+            "property": "name",
+            "belongsToClass": "Organization",
+            "type": "string",
+            "column": "organization.name"
+        },
+        {
+            "property": "abbrev",
+            "belongsToClass": "Organization",
+            "type": "string",
+            "column": "organization.abbreviation"
+        },
+        {
+            "property": "established",
+            "belongsToClass": "Organization",
+            "type": "date",
+            "column": "organization.established"
+        },
+        {
+            "property": "type",
+            "belongsToClass": "Membership",
+            "type": "string",
+            "column": "ismember.type"
+        }
+    ]
+}

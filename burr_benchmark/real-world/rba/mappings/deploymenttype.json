@@ -1,0 +1,25 @@
+{
+    "classes": [
+        {
+            "id": "@@SCM.Deployment_Type@@",
+            "prefix": "SCM",
+            "class": "DeploymentType"
+        }
+    ],
+    "object_properties": [
+    ],
+    "data_properties": [
+        {
+            "property": "Identifier",
+            "belongsToClass": "DeploymentType",
+            "type": "string",
+            "column": "SCM.Deployment_Type"
+        },
+        {
+            "property": "Name",
+            "belongsToClass": "DeploymentType",
+            "type": "string",
+            "column": "SCM.Deployment_Type"
+        }
+    ]
+}

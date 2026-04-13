@@ -1,0 +1,37 @@
+{
+    "classes": [
+        {
+            "id": "person/@@person.NFSA@@",
+            "class": "Person",
+            "name": "Person",
+            "prefix": "base"
+        }
+    ],
+    "object_properties": [],
+    "data_properties": [
+        {
+            "property": "name",
+            "belongsToClassMap": "Person",
+            "type": "string",
+            "column": "person.NZQW2ZI"
+        },
+        {
+            "property": "address",
+            "belongsToClass": "Person",
+            "type": "string",
+            "column": "person.MFSGI4TFONZQ"
+        },
+        {
+            "property": "phone_number",
+            "belongsToClass": "Person",
+            "type": "int",
+            "column": "person.OBUG63TFL5XHK3LCMVZA"
+        },
+        {
+            "property": "email",
+            "belongsToClass": "Person",
+            "type": "string",
+            "column": "person.MVWWC2LM"
+        }
+    ]
+}

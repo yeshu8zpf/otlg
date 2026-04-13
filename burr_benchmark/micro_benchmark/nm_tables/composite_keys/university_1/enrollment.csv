@@ -1,0 +1,2222 @@
+planned_graduation_year,first_name,last_name,semester,course_name
+2028,Edward,Flores,Spring 2030,Advanced Business
+2028,Edward,Flores,Spring 2026,Topics in Art
+2028,Edward,Flores,Fall 2023,Intro to Statistics
+2028,Edward,Flores,Fall 2030,Special Topics in Economics
+2025,Donna,Garcia,Fall 2030,Seminar on Engineering
+2025,Donna,Garcia,Fall 2025,Topics in Business
+2025,Donna,Garcia,Spring 2030,Fundamentals of Computer Science
+2025,Donna,Garcia,Spring 2027,Advanced Sociology
+2025,Donna,Garcia,Spring 2024,Workshop in Literature
+2025,Donna,Garcia,Fall 2028,Fundamentals of Music
+2026,Donald,King,Fall 2023,Topics in Environmental Science
+2026,Donald,King,Spring 2030,Intro to Philosophy
+2026,Donald,King,Fall 2030,Special Topics in Economics
+2026,Donald,King,Spring 2023,Topics in Literature
+2026,Donald,King,Spring 2022,Intro to Environmental Science
+2026,Donald,King,Spring 2029,Topics in Political Science
+2028,Christopher,Anderson,Fall 2029,Advanced Statistics
+2028,Christopher,Anderson,Spring 2027,Topics in Law
+2028,Christopher,Anderson,Fall 2027,Advanced Music
+2028,Christopher,Anderson,Fall 2023,Topics in Sociology
+2027,Karen,Allen,Spring 2024,Topics in Physics
+2027,Karen,Allen,Fall 2027,Fundamentals of Sociology
+2027,Karen,Allen,Spring 2030,Workshop in Art
+2022,Elizabeth,Harris,Fall 2030,Fundamentals of Psychology
+2022,Elizabeth,Harris,Fall 2028,Topics in Music
+2022,Elizabeth,Harris,Fall 2026,Advanced Computer Science
+2022,Elizabeth,Harris,Spring 2028,Intro to Art
+2024,Steven,Jones,Spring 2029,Special Topics in Psychology
+2024,Steven,Jones,Fall 2025,Topics in Philosophy
+2024,Steven,Jones,Fall 2025,Topics in Business
+2024,Steven,Jones,Fall 2022,Advanced Economics
+2024,Steven,Jones,Fall 2029,Advanced Mathematics
+2029,Brian,Smith,Spring 2029,Special Topics in Psychology
+2029,Brian,Smith,Spring 2023,Intro to History
+2029,Brian,Smith,Spring 2028,Topics in Statistics
+2030,Thomas,Nguyen,Spring 2030,Topics in Medicine
+2030,Thomas,Nguyen,Fall 2030,Seminar on Literature
+2030,Thomas,Nguyen,Spring 2029,Special Topics in Psychology
+2025,Edward,Nguyen,Fall 2027,Advanced Music
+2025,Edward,Nguyen,Spring 2030,Fundamentals of Computer Science
+2025,Edward,Nguyen,Fall 2029,Advanced Statistics
+2029,Betty,Jones,Fall 2025,Topics in Business
+2029,Betty,Jones,Fall 2028,Advanced Environmental Science
+2029,Betty,Jones,Spring 2030,Advanced Business
+2028,Jessica,Lopez,Spring 2027,Fundamentals of Literature
+2028,Jessica,Lopez,Fall 2022,Workshop in Medicine
+2028,Jessica,Lopez,Fall 2030,Fundamentals of Psychology
+2028,Jessica,Lopez,Spring 2022,Advanced Law
+2028,Jessica,Lopez,Spring 2030,Fundamentals of Computer Science
+2024,Joseph,Thomas,Spring 2023,Topics in Literature
+2024,Joseph,Thomas,Fall 2023,Topics in Sociology
+2024,Joseph,Thomas,Fall 2028,Advanced Environmental Science
+2024,Joseph,Thomas,Spring 2026,Intro to Computer Science
+2024,Joseph,Thomas,Fall 2025,Seminar on Literature
+2027,Ashley,Johnson,Spring 2022,Advanced Engineering
+2027,Ashley,Johnson,Fall 2023,Topics in Environmental Science
+2027,Ashley,Johnson,Spring 2030,Topics in Medicine
+2027,Anthony,Miller,Fall 2022,Intro to Business
+2027,Anthony,Miller,Spring 2027,Intro to Sociology
+2027,Anthony,Miller,Spring 2028,Topics in History
+2027,Anthony,Miller,Spring 2026,Special Topics in Medicine
+2027,Anthony,Miller,Spring 2022,Advanced Engineering
+2022,Anthony,Lee,Spring 2025,Topics in Biology
+2022,Anthony,Lee,Fall 2029,Fundamentals of Political Science
+2022,Anthony,Lee,Fall 2022,Topics in Chemistry
+2022,Anthony,Lee,Fall 2029,Advanced Statistics
+2022,Anthony,Lee,Spring 2022,Intro to Environmental Science
+2029,Joseph,Ramirez,Fall 2022,Intro to Economics
+2029,Joseph,Ramirez,Spring 2027,Intro to Sociology
+2029,Joseph,Ramirez,Spring 2030,Intro to Philosophy
+2029,Joseph,Ramirez,Spring 2026,Intro to Mathematics
+2029,Joseph,Ramirez,Spring 2030,Topics in Medicine
+2029,Joseph,Ramirez,Spring 2027,Advanced Philosophy
+2023,Margaret,Williams,Spring 2023,Topics in Literature
+2023,Margaret,Williams,Fall 2022,Advanced Economics
+2023,Margaret,Williams,Spring 2027,Advanced Philosophy
+2023,Margaret,Williams,Fall 2025,Seminar on Literature
+2023,Margaret,Williams,Spring 2022,Advanced Law
+2029,Karen,Lee,Spring 2029,Topics in Computer Science
+2029,Karen,Lee,Spring 2022,Intro to Environmental Science
+2029,Karen,Lee,Fall 2022,Intro to Biology
+2029,Karen,Lee,Spring 2029,Fundamentals of Biology
+2029,Karen,Lee,Fall 2025,Topics in Mathematics
+2030,Joseph,Moore,Fall 2023,Topics in Sociology
+2030,Joseph,Moore,Spring 2025,Topics in Biology
+2030,Joseph,Moore,Spring 2023,Intro to History
+2030,Joseph,Moore,Fall 2028,Fundamentals of Economics
+2030,Joseph,Moore,Spring 2024,Intro to Engineering
+2027,Christopher,Anderson,Fall 2030,Fundamentals of History
+2027,Christopher,Anderson,Spring 2022,Advanced Law
+2027,Christopher,Anderson,Fall 2022,Intro to Business
+2027,Christopher,Anderson,Spring 2029,Fundamentals of Art
+2027,Christopher,Anderson,Fall 2030,Seminar on Literature
+2027,Joshua,Perez,Spring 2027,Topics in Law
+2027,Joshua,Perez,Spring 2028,Topics in History
+2027,Joshua,Perez,Fall 2024,Intro to Medicine
+2027,Joshua,Perez,Spring 2029,Topics in Political Science
+2027,Joshua,Perez,Fall 2022,Advanced Economics
+2028,Deborah,Garcia,Spring 2029,Topics in Political Science
+2028,Deborah,Garcia,Spring 2027,Intro to Sociology
+2028,Deborah,Garcia,Spring 2029,Fundamentals of Art
+2022,Elizabeth,Lopez,Spring 2022,Advanced Law
+2022,Elizabeth,Lopez,Fall 2028,Special Topics in Environmental Science
+2022,Elizabeth,Lopez,Spring 2029,Fundamentals of Art
+2030,Carol,Adams,Spring 2026,Special Topics in Medicine
+2030,Carol,Adams,Spring 2030,Workshop in Art
+2030,Carol,Adams,Spring 2022,Advanced Law
+2030,Carol,Adams,Spring 2024,Seminar on Computer Science
+2027,Anthony,Rivera,Fall 2027,Fundamentals of Philosophy
+2027,Anthony,Rivera,Fall 2024,Intro to Medicine
+2027,Anthony,Rivera,Spring 2023,Special Topics in Philosophy
+2027,Anthony,Rivera,Spring 2030,Workshop in Art
+2027,Anthony,Rivera,Spring 2027,Fundamentals of Physics
+2027,Anthony,Rivera,Spring 2024,Intro to Engineering
+2028,Mary,Lee,Fall 2029,Fundamentals of Political Science
+2028,Mary,Lee,Fall 2028,Fundamentals of Chemistry
+2028,Mary,Lee,Spring 2024,Topics in Economics
+2028,Mary,Lee,Fall 2026,Advanced Computer Science
+2028,Mary,Lee,Fall 2025,Fundamentals of Environmental Science
+2027,Karen,King,Spring 2029,Topics in Political Science
+2027,Karen,King,Fall 2025,Intro to Literature
+2027,Karen,King,Fall 2030,Fundamentals of History
+2027,Karen,King,Spring 2022,Fundamentals of Mathematics
+2030,Linda,Lewis,Spring 2024,Topics in Physics
+2030,Linda,Lewis,Fall 2024,Advanced Medicine
+2030,Linda,Lewis,Spring 2027,Topics in Law
+2030,Linda,Lewis,Fall 2025,Fundamentals of Environmental Science
+2027,Karen,Hernandez,Spring 2022,Intro to Psychology
+2027,Karen,Hernandez,Fall 2023,Topics in Environmental Science
+2027,Karen,Hernandez,Fall 2023,Fundamentals of Business
+2028,Steven,Wright,Fall 2022,Intro to Economics
+2028,Steven,Wright,Fall 2025,Fundamentals of Environmental Science
+2028,Steven,Wright,Fall 2022,Workshop in Medicine
+2028,Steven,Wright,Spring 2027,Topics in Law
+2029,Joshua,Ramirez,Spring 2027,Fundamentals of Literature
+2029,Joshua,Ramirez,Fall 2022,Special Topics in Medicine
+2029,Joshua,Ramirez,Fall 2028,Fundamentals of Economics
+2024,Kimberly,Wilson,Fall 2025,Fundamentals of Engineering
+2024,Kimberly,Wilson,Spring 2023,Advanced Political Science
+2024,Kimberly,Wilson,Spring 2026,Intro to Mathematics
+2024,Kimberly,Wilson,Spring 2028,Topics in Statistics
+2024,Kimberly,Wilson,Spring 2026,Intro to Computer Science
+2024,Kimberly,Wilson,Fall 2029,Advanced Mathematics
+2028,Sarah,Gonzalez,Fall 2030,Fundamentals of History
+2028,Sarah,Gonzalez,Spring 2022,Intro to Environmental Science
+2028,Sarah,Gonzalez,Fall 2025,Special Topics in Sociology
+2023,Melissa,Perez,Spring 2027,Workshop in Engineering
+2023,Melissa,Perez,Fall 2025,Topics in Psychology
+2023,Melissa,Perez,Fall 2024,Intro to Chemistry
+2023,Melissa,Perez,Spring 2030,Fundamentals of Computer Science
+2023,Melissa,Perez,Fall 2025,Topics in Business
+2027,Mary,Scott,Spring 2030,Fundamentals of Computer Science
+2027,Mary,Scott,Spring 2029,Intro to Political Science
+2027,Mary,Scott,Fall 2028,Special Topics in Environmental Science
+2027,Mary,Scott,Fall 2022,Intro to Business
+2027,Mary,Scott,Spring 2028,Intro to Art
+2022,Barbara,Smith,Spring 2029,Topics in Political Science
+2022,Barbara,Smith,Spring 2023,Special Topics in Philosophy
+2022,Barbara,Smith,Fall 2023,Fundamentals of Business
+2025,Carol,Gonzalez,Spring 2029,Advanced Psychology
+2025,Carol,Gonzalez,Fall 2030,Fundamentals of History
+2025,Carol,Gonzalez,Fall 2028,Special Topics in Environmental Science
+2025,Carol,Gonzalez,Fall 2024,Intro to Medicine
+2025,Carol,Gonzalez,Spring 2029,Intro to Political Science
+2023,Andrew,Williams,Fall 2022,Advanced Literature
+2023,Andrew,Williams,Spring 2029,Special Topics in Psychology
+2023,Andrew,Williams,Fall 2022,Intro to Biology
+2026,Mark,Martin,Spring 2029,Fundamentals of Biology
+2026,Mark,Martin,Fall 2025,Topics in Philosophy
+2026,Mark,Martin,Fall 2023,Topics in Sociology
+2026,Mark,Martin,Spring 2026,Topics in Art
+2026,Mark,Martin,Fall 2023,Fundamentals of Business
+2026,Mark,Martin,Spring 2024,Seminar on Computer Science
+2028,Charles,White,Spring 2023,Intro to History
+2028,Charles,White,Spring 2028,Intro to Art
+2028,Charles,White,Spring 2027,Fundamentals of Literature
+2028,Charles,White,Fall 2022,Special Topics in Medicine
+2028,Charles,White,Spring 2029,Fundamentals of Art
+2026,Daniel,Torres,Fall 2022,Topics in Chemistry
+2026,Daniel,Torres,Fall 2028,Topics in Engineering
+2026,Daniel,Torres,Fall 2023,Advanced Chemistry
+2023,Mark,Anderson,Spring 2024,Fundamentals of Law
+2023,Mark,Anderson,Fall 2022,Fundamentals of Medicine
+2023,Mark,Anderson,Spring 2026,Topics in Art
+2023,Mark,Anderson,Fall 2025,Fundamentals of Environmental Science
+2030,Joshua,Allen,Spring 2030,Topics in Medicine
+2030,Joshua,Allen,Spring 2027,Advanced Sociology
+2030,Joshua,Allen,Spring 2030,Advanced Physics
+2030,Joshua,Allen,Spring 2026,Intro to Computer Science
+2030,Joshua,Allen,Spring 2028,Intro to Art
+2030,Joshua,Allen,Spring 2029,Advanced History
+2030,Emily,Perez,Fall 2022,Intro to Biology
+2030,Emily,Perez,Spring 2028,Intro to Art
+2030,Emily,Perez,Fall 2028,Fundamentals of Chemistry
+2030,Emily,Perez,Fall 2027,Fundamentals of Philosophy
+2030,Emily,Perez,Spring 2027,Advanced Philosophy
+2030,Emily,Perez,Spring 2029,Fundamentals of Biology
+2022,Daniel,Ramirez,Fall 2026,Special Topics in Philosophy
+2022,Daniel,Ramirez,Fall 2024,Advanced Medicine
+2022,Daniel,Ramirez,Spring 2029,Fundamentals of Art
+2022,Daniel,Ramirez,Spring 2022,Intro to Psychology
+2022,Daniel,Ramirez,Spring 2028,Intro to Art
+2022,Daniel,Ramirez,Spring 2027,Fundamentals of Literature
+2022,Patricia,Rodriguez,Fall 2028,Fundamentals of Music
+2022,Patricia,Rodriguez,Fall 2025,Topics in Mathematics
+2022,Patricia,Rodriguez,Fall 2022,Fundamentals of Medicine
+2022,Patricia,Rodriguez,Fall 2027,Fundamentals of Philosophy
+2022,Patricia,Rodriguez,Fall 2024,Intro to Medicine
+2027,Linda,Mitchell,Spring 2029,Special Topics in Psychology
+2027,Linda,Mitchell,Fall 2022,Topics in Chemistry
+2027,Linda,Mitchell,Spring 2026,Special Topics in Medicine
+2027,Linda,Mitchell,Fall 2027,Seminar on Philosophy
+2027,Linda,Mitchell,Spring 2030,Advanced Business
+2028,Ashley,Anderson,Fall 2028,Fundamentals of Chemistry
+2028,Ashley,Anderson,Fall 2028,Fundamentals of Music
+2028,Ashley,Anderson,Fall 2023,Fundamentals of Business
+2028,Ashley,Anderson,Fall 2022,Topics in Chemistry
+2027,Elizabeth,Robinson,Fall 2025,Topics in Psychology
+2027,Elizabeth,Robinson,Fall 2028,Fundamentals of Music
+2027,Elizabeth,Robinson,Fall 2028,Fundamentals of Economics
+2027,Elizabeth,Robinson,Fall 2030,Fundamentals of History
+2027,Elizabeth,Robinson,Fall 2022,Workshop in Medicine
+2027,Elizabeth,Robinson,Spring 2030,Workshop in Art
+2029,Joshua,Williams,Spring 2028,Topics in Statistics
+2029,Joshua,Williams,Fall 2025,Seminar on Literature
+2029,Joshua,Williams,Fall 2025,Intro to Literature
+2029,Joshua,Williams,Spring 2022,Advanced Art
+2029,Joshua,Williams,Fall 2030,Seminar on Engineering
+2029,Joshua,Williams,Fall 2025,Topics in Business
+2024,Joseph,Walker,Fall 2023,Fundamentals of Business
+2024,Joseph,Walker,Fall 2028,Fundamentals of Music
+2024,Joseph,Walker,Spring 2029,Advanced History
+2024,Joseph,Walker,Spring 2026,Intro to Computer Science
+2024,Joseph,Walker,Spring 2022,Fundamentals of Mathematics
+2022,Barbara,Campbell,Spring 2027,Advanced Sociology
+2022,Barbara,Campbell,Fall 2028,Fundamentals of Music
+2022,Barbara,Campbell,Fall 2022,Advanced Economics
+2022,Barbara,Campbell,Spring 2030,Advanced Business
+2022,Barbara,Campbell,Spring 2023,Special Topics in Philosophy
+2022,Barbara,Campbell,Spring 2029,Fundamentals of Biology
+2024,Elizabeth,Robinson,Spring 2022,Fundamentals of Mathematics
+2024,Elizabeth,Robinson,Fall 2029,Fundamentals of Political Science
+2024,Elizabeth,Robinson,Fall 2027,Advanced Music
+2024,Elizabeth,Robinson,Spring 2027,Fundamentals of Literature
+2026,Jennifer,Harris,Spring 2023,Advanced Political Science
+2026,Jennifer,Harris,Fall 2030,Fundamentals of History
+2026,Jennifer,Harris,Fall 2023,Fundamentals of Business
+2026,Jennifer,Harris,Spring 2030,Workshop in Art
+2029,Steven,Robinson,Spring 2029,Fundamentals of Art
+2029,Steven,Robinson,Fall 2025,Special Topics in Sociology
+2029,Steven,Robinson,Spring 2027,Advanced Philosophy
+2029,Steven,Robinson,Spring 2029,Advanced Psychology
+2029,Steven,Robinson,Fall 2023,Topics in Environmental Science
+2029,Sarah,Wilson,Spring 2026,Topics in Art
+2029,Sarah,Wilson,Fall 2025,Special Topics in Statistics
+2029,Sarah,Wilson,Fall 2028,Topics in Music
+2029,Sarah,Wilson,Fall 2022,Workshop in Medicine
+2029,Sarah,Wilson,Spring 2027,Intro to Sociology
+2026,Nancy,Thompson,Fall 2030,Fundamentals of Psychology
+2026,Nancy,Thompson,Spring 2024,Seminar on Computer Science
+2026,Nancy,Thompson,Spring 2025,Seminar on Engineering
+2026,Nancy,Thompson,Fall 2028,Intro to Law
+2026,Nancy,Thompson,Spring 2022,Advanced Law
+2026,Nancy,Thompson,Fall 2027,Seminar on Philosophy
+2026,Sandra,Wright,Spring 2022,Intro to Environmental Science
+2026,Sandra,Wright,Spring 2029,Fundamentals of Art
+2026,Sandra,Wright,Fall 2024,Intro to Chemistry
+2026,Sandra,Wright,Spring 2030,Workshop in Art
+2022,Kimberly,Flores,Spring 2027,Topics in Law
+2022,Kimberly,Flores,Fall 2030,Seminar on Engineering
+2022,Kimberly,Flores,Spring 2023,Advanced Political Science
+2022,Kimberly,Flores,Spring 2030,Workshop in Art
+2025,Kevin,Baker,Fall 2025,Special Topics in Sociology
+2025,Kevin,Baker,Fall 2022,Intro to Business
+2025,Kevin,Baker,Fall 2029,Fundamentals of Political Science
+2030,David,Nguyen,Fall 2025,Special Topics in Statistics
+2030,David,Nguyen,Spring 2027,Advanced Sociology
+2030,David,Nguyen,Fall 2030,Special Topics in Economics
+2030,David,Nguyen,Fall 2025,Seminar on Literature
+2030,David,Nguyen,Fall 2028,Intro to Law
+2026,Amanda,Hill,Fall 2030,Seminar on Engineering
+2026,Amanda,Hill,Spring 2030,Intro to Philosophy
+2026,Amanda,Hill,Fall 2025,Fundamentals of Environmental Science
+2029,Kenneth,Green,Spring 2028,Topics in Statistics
+2029,Kenneth,Green,Fall 2023,Topics in Environmental Science
+2029,Kenneth,Green,Fall 2026,Advanced Biology
+2029,Kenneth,Green,Fall 2022,Workshop in Medicine
+2030,Dorothy,Wright,Fall 2025,Special Topics in Sociology
+2030,Dorothy,Wright,Fall 2022,Fundamentals of Medicine
+2030,Dorothy,Wright,Fall 2028,Fundamentals of Music
+2030,Dorothy,Wright,Fall 2023,Advanced Chemistry
+2027,Mary,Moore,Fall 2027,Fundamentals of Sociology
+2027,Mary,Moore,Spring 2029,Topics in Computer Science
+2027,Mary,Moore,Spring 2027,Advanced Sociology
+2023,Melissa,Nguyen,Spring 2025,Seminar on Engineering
+2023,Melissa,Nguyen,Fall 2023,Fundamentals of Business
+2023,Melissa,Nguyen,Spring 2030,Advanced Physics
+2023,Melissa,Nguyen,Fall 2025,Seminar on Literature
+2023,Melissa,Nguyen,Fall 2022,Fundamentals of Medicine
+2030,Mary,Perez,Fall 2025,Topics in Philosophy
+2030,Mary,Perez,Fall 2023,Advanced Chemistry
+2030,Mary,Perez,Spring 2024,Fundamentals of Law
+2030,Mary,Perez,Fall 2022,Advanced Economics
+2028,Brian,Martin,Spring 2028,Topics in Statistics
+2028,Brian,Martin,Spring 2027,Fundamentals of Literature
+2028,Brian,Martin,Fall 2030,Seminar on Engineering
+2027,Elizabeth,Thompson,Fall 2030,Special Topics in Economics
+2027,Elizabeth,Thompson,Spring 2027,Topics in Law
+2027,Elizabeth,Thompson,Fall 2025,Intro to Literature
+2027,Elizabeth,Thompson,Fall 2027,Fundamentals of Sociology
+2027,Elizabeth,Thompson,Fall 2030,Fundamentals of Psychology
+2030,Daniel,Walker,Fall 2022,Topics in Chemistry
+2030,Daniel,Walker,Spring 2023,Advanced Political Science
+2030,Daniel,Walker,Fall 2026,Advanced Biology
+2030,Daniel,Walker,Spring 2027,Advanced Philosophy
+2027,David,Mitchell,Spring 2025,Topics in Biology
+2027,David,Mitchell,Fall 2028,Topics in Engineering
+2027,David,Mitchell,Spring 2030,Workshop in Art
+2027,David,Mitchell,Fall 2026,Advanced Biology
+2027,David,Mitchell,Spring 2025,Seminar on Engineering
+2027,David,Mitchell,Fall 2028,Special Topics in Environmental Science
+2024,Michelle,Perez,Fall 2028,Fundamentals of Chemistry
+2024,Michelle,Perez,Fall 2022,Intro to Biology
+2024,Michelle,Perez,Fall 2025,Topics in Philosophy
+2024,Nancy,Rodriguez,Spring 2027,Intro to Sociology
+2024,Nancy,Rodriguez,Spring 2029,Topics in Political Science
+2024,Nancy,Rodriguez,Spring 2030,Fundamentals of Computer Science
+2024,Nancy,Rodriguez,Fall 2030,Fundamentals of History
+2029,Susan,Perez,Fall 2024,Advanced Medicine
+2029,Susan,Perez,Spring 2024,Intro to Physics
+2029,Susan,Perez,Spring 2024,Topics in Economics
+2029,Susan,Perez,Spring 2027,Fundamentals of Physics
+2024,Carol,Flores,Fall 2029,Advanced Mathematics
+2024,Carol,Flores,Spring 2029,Topics in Political Science
+2024,Carol,Flores,Fall 2029,Advanced Statistics
+2024,Carol,Flores,Fall 2028,Intro to Law
+2024,Carol,Flores,Fall 2023,Advanced Chemistry
+2024,Carol,Flores,Fall 2028,Fundamentals of Music
+2027,Jessica,Ramirez,Spring 2028,Intro to Art
+2027,Jessica,Ramirez,Fall 2025,Fundamentals of Environmental Science
+2027,Jessica,Ramirez,Fall 2023,Fundamentals of Business
+2022,Michelle,Thomas,Spring 2022,Intro to Psychology
+2022,Michelle,Thomas,Spring 2026,Special Topics in Medicine
+2022,Michelle,Thomas,Spring 2027,Advanced Sociology
+2024,Susan,Miller,Spring 2025,Intro to Music
+2024,Susan,Miller,Spring 2027,Advanced Philosophy
+2024,Susan,Miller,Spring 2027,Topics in Law
+2027,Jennifer,Baker,Fall 2022,Advanced Literature
+2027,Jennifer,Baker,Spring 2027,Fundamentals of Physics
+2027,Jennifer,Baker,Spring 2023,Intro to History
+2027,Jennifer,Baker,Fall 2028,Fundamentals of Music
+2027,Jennifer,Baker,Spring 2030,Advanced Physics
+2023,Steven,Nguyen,Fall 2030,Seminar on Literature
+2023,Steven,Nguyen,Spring 2030,Topics in Medicine
+2023,Steven,Nguyen,Spring 2022,Advanced Law
+2029,Donna,Flores,Fall 2023,Topics in Sociology
+2029,Donna,Flores,Fall 2029,Advanced Statistics
+2029,Donna,Flores,Fall 2025,Fundamentals of Environmental Science
+2029,Donna,Flores,Fall 2030,Fundamentals of Psychology
+2029,Donna,Flores,Spring 2029,Topics in Political Science
+2029,Donna,Flores,Fall 2025,Intro to Literature
+2030,George,Flores,Spring 2024,Fundamentals of Law
+2030,George,Flores,Fall 2022,Intro to Economics
+2030,George,Flores,Fall 2027,Advanced Music
+2030,George,Flores,Spring 2029,Fundamentals of Art
+2030,George,Flores,Spring 2030,Advanced Business
+2030,George,Flores,Spring 2028,Fundamentals of Statistics
+2023,Dorothy,Mitchell,Fall 2027,Advanced Music
+2023,Dorothy,Mitchell,Spring 2027,Topics in Law
+2023,Dorothy,Mitchell,Spring 2029,Special Topics in Psychology
+2023,Dorothy,Mitchell,Spring 2024,Fundamentals of Law
+2022,Betty,King,Spring 2027,Workshop in Engineering
+2022,Betty,King,Fall 2030,Special Topics in Economics
+2022,Betty,King,Spring 2028,Fundamentals of Statistics
+2022,Betty,King,Fall 2022,Topics in Chemistry
+2022,Sarah,Gonzalez,Spring 2022,Intro to Psychology
+2022,Sarah,Gonzalez,Spring 2027,Advanced Philosophy
+2022,Sarah,Gonzalez,Fall 2024,Advanced Medicine
+2022,Sarah,Gonzalez,Fall 2025,Topics in Mathematics
+2023,Mary,Garcia,Fall 2024,Intro to Medicine
+2023,Mary,Garcia,Fall 2028,Fundamentals of Chemistry
+2023,Mary,Garcia,Fall 2030,Fundamentals of History
+2024,Christopher,Robinson,Fall 2023,Seminar on Medicine
+2024,Christopher,Robinson,Fall 2028,Topics in Music
+2024,Christopher,Robinson,Spring 2022,Advanced Art
+2024,Christopher,Robinson,Fall 2030,Special Topics in Economics
+2024,Christopher,Robinson,Fall 2027,Fundamentals of Philosophy
+2024,Christopher,Robinson,Spring 2029,Fundamentals of Biology
+2024,Jennifer,Young,Fall 2028,Topics in Music
+2024,Jennifer,Young,Spring 2027,Workshop in Engineering
+2024,Jennifer,Young,Fall 2022,Special Topics in Medicine
+2024,Jennifer,Young,Fall 2027,Advanced Music
+2029,Brian,Mitchell,Spring 2030,Topics in Medicine
+2029,Brian,Mitchell,Fall 2030,Fundamentals of Psychology
+2029,Brian,Mitchell,Fall 2022,Advanced Literature
+2029,Brian,Mitchell,Fall 2022,Fundamentals of Medicine
+2029,Brian,Mitchell,Spring 2022,Fundamentals of Mathematics
+2025,Edward,Young,Fall 2023,Intro to Statistics
+2025,Edward,Young,Spring 2024,Intro to Engineering
+2025,Edward,Young,Spring 2030,Advanced Business
+2025,Edward,Young,Spring 2024,Intro to Physics
+2025,Edward,Young,Spring 2024,Workshop in Literature
+2026,Joseph,Brown,Spring 2029,Advanced Psychology
+2026,Joseph,Brown,Spring 2023,Topics in Literature
+2026,Joseph,Brown,Fall 2023,Topics in Sociology
+2028,Michael,Brown,Fall 2028,Fundamentals of Music
+2028,Michael,Brown,Spring 2029,Intro to Political Science
+2028,Michael,Brown,Spring 2029,Topics in Computer Science
+2025,Michelle,Williams,Spring 2023,Intro to History
+2025,Michelle,Williams,Fall 2026,Special Topics in Philosophy
+2025,Michelle,Williams,Fall 2023,Intro to Statistics
+2025,Michelle,Williams,Spring 2028,Topics in Statistics
+2025,Michelle,Williams,Spring 2027,Topics in Law
+2025,Michelle,Williams,Fall 2024,Advanced Medicine
+2025,Dorothy,Sanchez,Fall 2023,Topics in Environmental Science
+2025,Dorothy,Sanchez,Spring 2025,Intro to Music
+2025,Dorothy,Sanchez,Fall 2022,Workshop in Medicine
+2025,Dorothy,Sanchez,Spring 2030,Intro to Philosophy
+2025,Dorothy,Sanchez,Fall 2022,Topics in Chemistry
+2022,Linda,Harris,Fall 2028,Fundamentals of Music
+2022,Linda,Harris,Fall 2022,Workshop in Medicine
+2022,Linda,Harris,Fall 2022,Advanced Economics
+2022,Linda,Harris,Fall 2025,Fundamentals of Environmental Science
+2022,Linda,Harris,Spring 2026,Topics in Art
+2022,Linda,Harris,Fall 2023,Intro to Statistics
+2028,Christopher,Jackson,Spring 2029,Fundamentals of Art
+2028,Christopher,Jackson,Fall 2023,Topics in Environmental Science
+2028,Christopher,Jackson,Spring 2028,Fundamentals of Statistics
+2028,Christopher,Jackson,Fall 2024,Intro to Chemistry
+2028,Christopher,Jackson,Spring 2026,Intro to Mathematics
+2028,Richard,Lopez,Fall 2028,Intro to Law
+2028,Richard,Lopez,Spring 2025,Intro to Music
+2028,Richard,Lopez,Spring 2022,Fundamentals of Mathematics
+2028,Richard,Lopez,Fall 2028,Fundamentals of Chemistry
+2028,Richard,Lopez,Fall 2024,Intro to Medicine
+2028,Richard,Lopez,Spring 2024,Workshop in Literature
+2028,Joshua,Garcia,Spring 2024,Fundamentals of Law
+2028,Joshua,Garcia,Fall 2025,Topics in Philosophy
+2028,Joshua,Garcia,Fall 2029,Fundamentals of Political Science
+2022,Donald,Hernandez,Fall 2027,Fundamentals of Philosophy
+2022,Donald,Hernandez,Fall 2028,Fundamentals of Music
+2022,Donald,Hernandez,Spring 2026,Intro to Computer Science
+2022,Donald,Hernandez,Fall 2022,Advanced Economics
+2023,Karen,Thomas,Fall 2026,Advanced Computer Science
+2023,Karen,Thomas,Fall 2029,Advanced Mathematics
+2023,Karen,Thomas,Spring 2024,Seminar on Computer Science
+2023,Karen,Thomas,Spring 2028,Topics in Statistics
+2026,Michael,Robinson,Fall 2023,Topics in Environmental Science
+2026,Michael,Robinson,Spring 2028,Fundamentals of Statistics
+2026,Michael,Robinson,Fall 2024,Intro to Medicine
+2026,Michael,Robinson,Fall 2022,Intro to Biology
+2026,Michael,Robinson,Fall 2022,Workshop in Medicine
+2026,Michael,Robinson,Fall 2027,Fundamentals of Philosophy
+2029,Amanda,Young,Fall 2030,Seminar on Engineering
+2029,Amanda,Young,Fall 2026,Advanced Biology
+2029,Amanda,Young,Spring 2023,Advanced Political Science
+2029,Amanda,Young,Fall 2023,Seminar on Medicine
+2029,Amanda,Young,Spring 2027,Topics in Law
+2025,Ashley,Torres,Fall 2027,Fundamentals of Sociology
+2025,Ashley,Torres,Spring 2029,Intro to Political Science
+2025,Ashley,Torres,Spring 2029,Topics in Political Science
+2025,Ashley,Torres,Fall 2028,Advanced Environmental Science
+2030,Kenneth,Johnson,Spring 2028,Topics in History
+2030,Kenneth,Johnson,Spring 2030,Workshop in Art
+2030,Kenneth,Johnson,Spring 2024,Topics in Physics
+2030,Kenneth,Johnson,Spring 2029,Topics in Political Science
+2030,Kenneth,Johnson,Spring 2030,Fundamentals of Computer Science
+2027,Sarah,Williams,Fall 2027,Seminar on Philosophy
+2027,Sarah,Williams,Fall 2025,Topics in Psychology
+2027,Sarah,Williams,Spring 2030,Advanced Business
+2027,Sarah,Williams,Fall 2025,Intro to Literature
+2027,Sarah,Williams,Fall 2024,Advanced Medicine
+2027,Sarah,Williams,Spring 2027,Advanced Philosophy
+2027,Barbara,Torres,Spring 2030,Workshop in Art
+2027,Barbara,Torres,Spring 2028,Fundamentals of Statistics
+2027,Barbara,Torres,Fall 2027,Advanced Music
+2027,Barbara,Torres,Fall 2022,Special Topics in Medicine
+2029,Patricia,Wright,Spring 2023,Intro to History
+2029,Patricia,Wright,Spring 2029,Fundamentals of Art
+2029,Patricia,Wright,Fall 2022,Topics in Chemistry
+2029,Patricia,Wright,Spring 2026,Topics in Art
+2029,Patricia,Wright,Fall 2025,Topics in Business
+2029,Patricia,Wright,Fall 2027,Seminar on Philosophy
+2029,Elizabeth,Adams,Spring 2027,Workshop in Engineering
+2029,Elizabeth,Adams,Spring 2024,Seminar on Computer Science
+2029,Elizabeth,Adams,Fall 2023,Fundamentals of Business
+2029,Elizabeth,Adams,Fall 2022,Intro to Biology
+2029,Elizabeth,Adams,Fall 2028,Intro to Law
+2024,Paul,Rivera,Fall 2028,Topics in Engineering
+2024,Paul,Rivera,Fall 2028,Special Topics in Environmental Science
+2024,Paul,Rivera,Fall 2025,Intro to Literature
+2024,Paul,Rivera,Spring 2029,Intro to Political Science
+2024,Paul,Rivera,Fall 2027,Seminar on Philosophy
+2029,Ashley,Smith,Fall 2022,Fundamentals of Medicine
+2029,Ashley,Smith,Fall 2029,Fundamentals of Political Science
+2029,Ashley,Smith,Fall 2025,Special Topics in Statistics
+2029,Ashley,Smith,Spring 2024,Topics in Physics
+2029,Ashley,Smith,Spring 2029,Advanced History
+2029,Ashley,Smith,Spring 2023,Special Topics in Philosophy
+2025,Robert,White,Spring 2026,Intro to Computer Science
+2025,Robert,White,Fall 2028,Topics in Engineering
+2025,Robert,White,Spring 2026,Special Topics in Medicine
+2025,Robert,White,Fall 2025,Fundamentals of Environmental Science
+2023,Joshua,Scott,Spring 2024,Intro to Engineering
+2023,Joshua,Scott,Fall 2025,Topics in Business
+2023,Joshua,Scott,Spring 2024,Topics in Physics
+2027,Barbara,Perez,Fall 2027,Advanced Music
+2027,Barbara,Perez,Spring 2027,Workshop in Engineering
+2027,Barbara,Perez,Fall 2028,Fundamentals of Music
+2027,Barbara,Perez,Fall 2028,Fundamentals of Chemistry
+2027,Barbara,Perez,Spring 2028,Topics in History
+2027,Barbara,Perez,Fall 2025,Fundamentals of Environmental Science
+2023,Steven,Lewis,Fall 2024,Advanced Medicine
+2023,Steven,Lewis,Fall 2022,Intro to Biology
+2023,Steven,Lewis,Spring 2023,Advanced Political Science
+2023,Steven,Lewis,Fall 2025,Intro to Literature
+2026,Anthony,Anderson,Fall 2025,Topics in Mathematics
+2026,Anthony,Anderson,Fall 2022,Intro to Economics
+2026,Anthony,Anderson,Fall 2028,Topics in Music
+2026,Anthony,Anderson,Fall 2026,Special Topics in Philosophy
+2026,Anthony,Anderson,Spring 2024,Intro to Engineering
+2022,Patricia,Williams,Fall 2022,Intro to Business
+2022,Patricia,Williams,Spring 2024,Workshop in Literature
+2022,Patricia,Williams,Spring 2030,Topics in Medicine
+2022,Patricia,Williams,Spring 2026,Special Topics in Medicine
+2022,Patricia,Williams,Spring 2025,Intro to Music
+2022,Patricia,Williams,Spring 2022,Advanced Art
+2025,Steven,King,Spring 2029,Topics in Political Science
+2025,Steven,King,Fall 2029,Fundamentals of Political Science
+2025,Steven,King,Spring 2024,Seminar on Computer Science
+2025,Steven,King,Spring 2026,Special Topics in Medicine
+2022,Michael,Brown,Fall 2023,Intro to Statistics
+2022,Michael,Brown,Fall 2023,Fundamentals of Business
+2022,Michael,Brown,Fall 2025,Topics in Mathematics
+2022,Michael,Brown,Spring 2024,Seminar on Computer Science
+2028,Sandra,Thomas,Fall 2025,Intro to Literature
+2028,Sandra,Thomas,Fall 2022,Intro to Economics
+2028,Sandra,Thomas,Fall 2025,Topics in Business
+2028,Sandra,Thomas,Spring 2026,Topics in Art
+2028,Sandra,Thomas,Fall 2026,Advanced Computer Science
+2028,Sandra,Thomas,Spring 2030,Intro to Philosophy
+2028,Elizabeth,Perez,Fall 2024,Intro to Medicine
+2028,Elizabeth,Perez,Fall 2023,Topics in Environmental Science
+2028,Elizabeth,Perez,Fall 2022,Intro to Economics
+2028,Elizabeth,Perez,Fall 2030,Seminar on Literature
+2028,Elizabeth,Perez,Spring 2026,Intro to Mathematics
+2029,Sandra,Clark,Fall 2022,Intro to Economics
+2029,Sandra,Clark,Fall 2025,Special Topics in Statistics
+2029,Sandra,Clark,Spring 2030,Advanced Business
+2029,Sandra,Clark,Spring 2024,Intro to Engineering
+2029,Sandra,Clark,Spring 2024,Seminar on Computer Science
+2026,Nancy,Brown,Spring 2030,Advanced Business
+2026,Nancy,Brown,Fall 2023,Seminar on Medicine
+2026,Nancy,Brown,Fall 2022,Advanced Literature
+2026,Nancy,Brown,Spring 2028,Topics in History
+2026,Nancy,Brown,Spring 2025,Topics in Biology
+2023,Brian,Anderson,Spring 2030,Intro to Philosophy
+2023,Brian,Anderson,Fall 2025,Seminar on Literature
+2023,Brian,Anderson,Spring 2024,Seminar on Computer Science
+2022,Patricia,Baker,Spring 2030,Advanced Business
+2022,Patricia,Baker,Spring 2028,Intro to Art
+2022,Patricia,Baker,Fall 2027,Fundamentals of Philosophy
+2022,Patricia,Baker,Spring 2027,Intro to Sociology
+2022,Betty,Flores,Fall 2029,Advanced Mathematics
+2022,Betty,Flores,Spring 2029,Topics in Computer Science
+2022,Betty,Flores,Spring 2029,Intro to Political Science
+2022,Betty,Flores,Spring 2027,Advanced Philosophy
+2022,Betty,Flores,Fall 2025,Topics in Philosophy
+2029,Kevin,Davis,Fall 2026,Advanced Computer Science
+2029,Kevin,Davis,Spring 2024,Workshop in Literature
+2029,Kevin,Davis,Spring 2030,Advanced Business
+2026,Thomas,Hernandez,Spring 2025,Intro to Music
+2026,Thomas,Hernandez,Spring 2028,Intro to Art
+2026,Thomas,Hernandez,Fall 2025,Special Topics in Sociology
+2026,Thomas,Hernandez,Fall 2030,Special Topics in Economics
+2026,Thomas,Hernandez,Fall 2028,Topics in Engineering
+2027,John,Green,Spring 2025,Intro to Music
+2027,John,Green,Fall 2026,Special Topics in Philosophy
+2027,John,Green,Fall 2025,Seminar on Literature
+2027,John,Green,Spring 2025,Seminar on Engineering
+2027,John,Green,Spring 2022,Fundamentals of Mathematics
+2023,Linda,Davis,Spring 2030,Fundamentals of Computer Science
+2023,Linda,Davis,Spring 2025,Topics in Biology
+2023,Linda,Davis,Fall 2028,Advanced Environmental Science
+2023,Linda,Davis,Spring 2029,Fundamentals of Biology
+2023,Linda,Davis,Fall 2022,Advanced Literature
+2030,Mary,Taylor,Fall 2030,Fundamentals of Psychology
+2030,Mary,Taylor,Spring 2030,Intro to Philosophy
+2030,Mary,Taylor,Fall 2027,Seminar on Philosophy
+2030,Mary,Taylor,Fall 2025,Seminar on Literature
+2030,Mary,Taylor,Spring 2029,Advanced History
+2024,Nancy,Moore,Fall 2022,Intro to Biology
+2024,Nancy,Moore,Fall 2022,Intro to Business
+2024,Nancy,Moore,Fall 2022,Fundamentals of Medicine
+2025,Lisa,Rivera,Spring 2025,Topics in Biology
+2025,Lisa,Rivera,Fall 2023,Fundamentals of Business
+2025,Lisa,Rivera,Spring 2024,Topics in Physics
+2025,Lisa,Rivera,Spring 2027,Advanced Sociology
+2025,Lisa,Rivera,Spring 2024,Workshop in Literature
+2027,Daniel,Hill,Fall 2028,Fundamentals of Music
+2027,Daniel,Hill,Fall 2023,Topics in Environmental Science
+2027,Daniel,Hill,Spring 2027,Fundamentals of Literature
+2027,Daniel,Hill,Spring 2022,Intro to Psychology
+2026,Ashley,Sanchez,Spring 2029,Intro to Political Science
+2026,Ashley,Sanchez,Fall 2026,Advanced Biology
+2026,Ashley,Sanchez,Spring 2027,Topics in Law
+2028,Edward,Martinez,Fall 2030,Special Topics in Economics
+2028,Edward,Martinez,Fall 2024,Intro to Chemistry
+2028,Edward,Martinez,Fall 2023,Fundamentals of Business
+2028,Edward,Martinez,Spring 2028,Intro to Art
+2029,George,Johnson,Fall 2022,Advanced Literature
+2029,George,Johnson,Fall 2030,Special Topics in Economics
+2029,George,Johnson,Spring 2022,Advanced Art
+2029,George,Johnson,Spring 2029,Fundamentals of Art
+2029,George,Johnson,Spring 2022,Intro to Environmental Science
+2024,Michael,Scott,Fall 2025,Topics in Philosophy
+2024,Michael,Scott,Spring 2029,Advanced History
+2024,Michael,Scott,Spring 2030,Advanced Physics
+2024,Michael,Scott,Spring 2028,Topics in Statistics
+2024,Michael,Scott,Fall 2025,Fundamentals of Environmental Science
+2026,George,Hill,Fall 2022,Topics in Chemistry
+2026,George,Hill,Spring 2023,Topics in Literature
+2026,George,Hill,Spring 2024,Intro to Engineering
+2026,George,Hill,Fall 2022,Intro to Biology
+2023,Melissa,Thompson,Spring 2025,Intro to Music
+2023,Melissa,Thompson,Spring 2030,Fundamentals of Computer Science
+2023,Melissa,Thompson,Fall 2025,Seminar on Literature
+2024,Amanda,Sanchez,Fall 2022,Special Topics in Medicine
+2024,Amanda,Sanchez,Spring 2026,Topics in Art
+2024,Amanda,Sanchez,Fall 2026,Special Topics in Philosophy
+2024,Amanda,Sanchez,Fall 2022,Advanced Economics
+2022,Ashley,Hernandez,Spring 2022,Advanced Art
+2022,Ashley,Hernandez,Spring 2029,Topics in Political Science
+2022,Ashley,Hernandez,Spring 2022,Fundamentals of Mathematics
+2022,Ashley,Hernandez,Spring 2024,Workshop in Literature
+2022,Ashley,Hernandez,Spring 2029,Advanced History
+2022,Ashley,Hernandez,Spring 2022,Intro to Environmental Science
+2027,Amanda,Anderson,Fall 2028,Topics in Engineering
+2027,Amanda,Anderson,Spring 2022,Intro to Environmental Science
+2027,Amanda,Anderson,Spring 2029,Fundamentals of Biology
+2024,Richard,Lee,Fall 2022,Intro to Business
+2024,Richard,Lee,Spring 2027,Fundamentals of Literature
+2024,Richard,Lee,Fall 2030,Special Topics in Economics
+2028,Richard,Adams,Fall 2022,Topics in Chemistry
+2028,Richard,Adams,Fall 2025,Special Topics in Statistics
+2028,Richard,Adams,Spring 2025,Topics in Biology
+2028,Richard,Adams,Spring 2028,Intro to Art
+2028,Richard,Adams,Spring 2023,Intro to History
+2028,Richard,Adams,Spring 2022,Advanced Engineering
+2029,Sandra,Thompson,Spring 2029,Advanced Psychology
+2029,Sandra,Thompson,Spring 2030,Advanced Business
+2029,Sandra,Thompson,Spring 2022,Advanced Law
+2029,Sandra,Thompson,Fall 2027,Advanced Music
+2027,Linda,Lewis,Spring 2024,Topics in Physics
+2027,Linda,Lewis,Spring 2026,Intro to Computer Science
+2027,Linda,Lewis,Fall 2022,Fundamentals of Medicine
+2027,Linda,Lewis,Fall 2028,Intro to Law
+2027,Linda,Lewis,Spring 2022,Intro to Psychology
+2027,Linda,Lewis,Spring 2030,Intro to Philosophy
+2026,John,Sanchez,Spring 2022,Advanced Law
+2026,John,Sanchez,Spring 2027,Advanced Philosophy
+2026,John,Sanchez,Spring 2026,Topics in Art
+2026,John,Sanchez,Spring 2022,Intro to Environmental Science
+2026,John,Sanchez,Spring 2024,Seminar on Computer Science
+2025,James,Anderson,Spring 2026,Special Topics in Medicine
+2025,James,Anderson,Fall 2028,Fundamentals of Economics
+2025,James,Anderson,Spring 2025,Intro to Music
+2024,Daniel,Flores,Fall 2025,Topics in Mathematics
+2024,Daniel,Flores,Spring 2024,Intro to Physics
+2024,Daniel,Flores,Fall 2026,Advanced Biology
+2030,Joshua,Johnson,Fall 2023,Topics in Environmental Science
+2030,Joshua,Johnson,Fall 2030,Special Topics in Economics
+2030,Joshua,Johnson,Fall 2030,Fundamentals of History
+2027,Richard,Clark,Spring 2026,Intro to Mathematics
+2027,Richard,Clark,Spring 2024,Topics in Economics
+2027,Richard,Clark,Spring 2030,Advanced Business
+2027,Richard,Clark,Fall 2028,Topics in Engineering
+2027,Richard,Clark,Fall 2022,Workshop in Medicine
+2028,Steven,Mitchell,Fall 2027,Fundamentals of Philosophy
+2028,Steven,Mitchell,Fall 2030,Fundamentals of Psychology
+2028,Steven,Mitchell,Spring 2024,Intro to Physics
+2024,Brian,Scott,Spring 2026,Intro to Computer Science
+2024,Brian,Scott,Spring 2027,Topics in Law
+2024,Brian,Scott,Fall 2023,Intro to Statistics
+2024,Brian,Scott,Spring 2030,Fundamentals of Computer Science
+2024,Brian,Scott,Spring 2028,Fundamentals of Statistics
+2028,Sarah,Jackson,Fall 2028,Topics in Music
+2028,Sarah,Jackson,Fall 2030,Fundamentals of History
+2028,Sarah,Jackson,Spring 2027,Workshop in Engineering
+2028,Sarah,Jackson,Fall 2025,Special Topics in Statistics
+2028,Sarah,Jackson,Spring 2024,Intro to Physics
+2028,Sarah,Jackson,Fall 2022,Intro to Economics
+2028,Susan,Thomas,Spring 2029,Topics in Political Science
+2028,Susan,Thomas,Spring 2030,Advanced Physics
+2028,Susan,Thomas,Spring 2025,Seminar on Engineering
+2024,Karen,Campbell,Fall 2025,Special Topics in Sociology
+2024,Karen,Campbell,Spring 2024,Topics in Physics
+2024,Karen,Campbell,Fall 2025,Seminar on Literature
+2023,Michelle,Moore,Fall 2022,Intro to Economics
+2023,Michelle,Moore,Spring 2024,Topics in Economics
+2023,Michelle,Moore,Fall 2025,Topics in Business
+2023,Michelle,Moore,Fall 2028,Topics in Engineering
+2023,Michelle,Moore,Spring 2024,Intro to Engineering
+2023,Carol,White,Spring 2028,Topics in History
+2023,Carol,White,Fall 2028,Topics in Engineering
+2023,Carol,White,Fall 2030,Seminar on Engineering
+2023,Carol,White,Fall 2026,Advanced Biology
+2030,Michael,Torres,Fall 2025,Special Topics in Statistics
+2030,Michael,Torres,Spring 2028,Topics in History
+2030,Michael,Torres,Fall 2024,Intro to Medicine
+2030,Michael,Torres,Spring 2027,Fundamentals of Physics
+2027,Thomas,White,Fall 2025,Topics in Business
+2027,Thomas,White,Fall 2028,Topics in Engineering
+2027,Thomas,White,Fall 2028,Advanced Environmental Science
+2028,Joseph,Brown,Fall 2028,Topics in Music
+2028,Joseph,Brown,Spring 2029,Advanced Psychology
+2028,Joseph,Brown,Fall 2025,Topics in Philosophy
+2028,Joseph,Brown,Spring 2027,Advanced Sociology
+2028,Joseph,Brown,Spring 2029,Special Topics in Psychology
+2028,Joseph,Brown,Fall 2024,Intro to Medicine
+2024,Dorothy,Davis,Fall 2030,Fundamentals of History
+2024,Dorothy,Davis,Spring 2030,Advanced Business
+2024,Dorothy,Davis,Spring 2028,Topics in History
+2024,Dorothy,Davis,Spring 2028,Intro to Art
+2022,Emily,Thomas,Spring 2024,Topics in Physics
+2022,Emily,Thomas,Fall 2027,Fundamentals of Philosophy
+2022,Emily,Thomas,Spring 2029,Advanced History
+2030,Deborah,Torres,Spring 2025,Intro to Music
+2030,Deborah,Torres,Spring 2029,Advanced Psychology
+2030,Deborah,Torres,Spring 2030,Topics in Medicine
+2030,Deborah,Torres,Spring 2022,Intro to Environmental Science
+2030,Deborah,Torres,Fall 2025,Special Topics in Sociology
+2024,Dorothy,Lee,Fall 2022,Topics in Chemistry
+2024,Dorothy,Lee,Fall 2023,Seminar on Medicine
+2024,Dorothy,Lee,Fall 2022,Workshop in Medicine
+2029,Kenneth,Robinson,Fall 2022,Fundamentals of Medicine
+2029,Kenneth,Robinson,Spring 2026,Intro to Mathematics
+2029,Kenneth,Robinson,Spring 2024,Intro to Engineering
+2029,Kenneth,Robinson,Fall 2027,Fundamentals of Philosophy
+2022,Elizabeth,Flores,Spring 2027,Advanced Philosophy
+2022,Elizabeth,Flores,Fall 2023,Topics in Environmental Science
+2022,Elizabeth,Flores,Fall 2025,Special Topics in Statistics
+2022,Elizabeth,Flores,Spring 2028,Topics in Statistics
+2023,Robert,Gonzalez,Spring 2029,Intro to Political Science
+2023,Robert,Gonzalez,Spring 2023,Intro to History
+2023,Robert,Gonzalez,Fall 2030,Seminar on Literature
+2026,James,Williams,Spring 2023,Advanced Political Science
+2026,James,Williams,Spring 2029,Fundamentals of Biology
+2026,James,Williams,Fall 2024,Advanced Medicine
+2026,James,Williams,Spring 2029,Special Topics in Psychology
+2024,Christopher,Brown,Fall 2029,Fundamentals of Political Science
+2024,Christopher,Brown,Fall 2030,Seminar on Engineering
+2024,Christopher,Brown,Fall 2022,Topics in Chemistry
+2025,Robert,Martinez,Fall 2025,Topics in Philosophy
+2025,Robert,Martinez,Spring 2024,Fundamentals of Law
+2025,Robert,Martinez,Fall 2025,Fundamentals of Engineering
+2025,Robert,Martinez,Spring 2028,Fundamentals of Statistics
+2025,Robert,Martinez,Fall 2022,Topics in Chemistry
+2025,Robert,Martinez,Spring 2022,Intro to Environmental Science
+2030,Robert,Wilson,Spring 2028,Topics in Statistics
+2030,Robert,Wilson,Fall 2022,Intro to Business
+2030,Robert,Wilson,Spring 2026,Topics in Art
+2030,Robert,Wilson,Spring 2029,Topics in Computer Science
+2030,Robert,Wilson,Fall 2022,Workshop in Medicine
+2030,Robert,Wilson,Fall 2025,Topics in Psychology
+2022,Mary,Jackson,Spring 2026,Special Topics in Medicine
+2022,Mary,Jackson,Fall 2022,Intro to Biology
+2022,Mary,Jackson,Spring 2030,Advanced Business
+2022,Mary,Jackson,Spring 2027,Fundamentals of Physics
+2022,Mary,Jackson,Fall 2027,Fundamentals of Philosophy
+2029,Robert,Jackson,Fall 2025,Intro to Literature
+2029,Robert,Jackson,Spring 2029,Intro to Political Science
+2029,Robert,Jackson,Spring 2028,Topics in Statistics
+2029,Robert,Jackson,Spring 2027,Workshop in Engineering
+2029,Robert,Jackson,Spring 2026,Intro to Computer Science
+2029,Robert,Jackson,Spring 2023,Intro to History
+2026,Anthony,Hernandez,Spring 2029,Special Topics in Psychology
+2026,Anthony,Hernandez,Spring 2024,Fundamentals of Law
+2026,Anthony,Hernandez,Fall 2023,Advanced Chemistry
+2028,Susan,Davis,Spring 2028,Topics in History
+2028,Susan,Davis,Spring 2029,Topics in Political Science
+2028,Susan,Davis,Fall 2025,Fundamentals of Environmental Science
+2029,Amanda,Wright,Spring 2024,Intro to Physics
+2029,Amanda,Wright,Spring 2026,Intro to Mathematics
+2029,Amanda,Wright,Spring 2022,Advanced Engineering
+2029,Amanda,Wright,Fall 2025,Topics in Mathematics
+2029,Amanda,Wright,Spring 2024,Topics in Economics
+2023,John,Flores,Spring 2030,Advanced Business
+2023,John,Flores,Spring 2026,Topics in Art
+2023,John,Flores,Spring 2023,Special Topics in Philosophy
+2023,John,Flores,Spring 2028,Intro to Art
+2023,John,Flores,Spring 2029,Intro to Political Science
+2023,John,Flores,Spring 2028,Topics in Statistics
+2024,Deborah,Lewis,Fall 2025,Topics in Mathematics
+2024,Deborah,Lewis,Fall 2025,Topics in Philosophy
+2024,Deborah,Lewis,Spring 2028,Topics in History
+2024,Deborah,Lewis,Spring 2024,Intro to Physics
+2030,Edward,Ramirez,Spring 2027,Fundamentals of Physics
+2030,Edward,Ramirez,Spring 2029,Advanced Psychology
+2030,Edward,Ramirez,Fall 2024,Intro to Chemistry
+2030,Edward,Ramirez,Spring 2030,Workshop in Art
+2030,Edward,Ramirez,Spring 2024,Intro to Physics
+2026,Steven,Johnson,Spring 2029,Intro to Political Science
+2026,Steven,Johnson,Spring 2024,Workshop in Literature
+2026,Steven,Johnson,Fall 2025,Intro to Literature
+2024,John,Hill,Fall 2025,Topics in Psychology
+2024,John,Hill,Spring 2027,Advanced Philosophy
+2024,John,Hill,Fall 2022,Advanced Economics
+2024,John,Hill,Spring 2030,Topics in Medicine
+2024,John,Hill,Spring 2026,Intro to Mathematics
+2024,John,Hill,Spring 2027,Workshop in Engineering
+2030,Kevin,Young,Spring 2023,Topics in Literature
+2030,Kevin,Young,Spring 2029,Fundamentals of Art
+2030,Kevin,Young,Spring 2022,Advanced Engineering
+2028,David,Adams,Fall 2030,Fundamentals of Psychology
+2028,David,Adams,Spring 2027,Advanced Sociology
+2028,David,Adams,Spring 2030,Intro to Philosophy
+2028,David,Adams,Fall 2026,Advanced Biology
+2022,Lisa,Hill,Fall 2027,Seminar on Philosophy
+2022,Lisa,Hill,Fall 2028,Special Topics in Environmental Science
+2022,Lisa,Hill,Spring 2025,Seminar on Engineering
+2030,Kimberly,Miller,Spring 2029,Fundamentals of Art
+2030,Kimberly,Miller,Spring 2029,Intro to Political Science
+2030,Kimberly,Miller,Spring 2030,Advanced Business
+2030,Kimberly,Miller,Fall 2025,Fundamentals of Engineering
+2030,Kimberly,Miller,Fall 2030,Special Topics in Economics
+2022,Michael,Campbell,Fall 2024,Intro to Chemistry
+2022,Michael,Campbell,Fall 2025,Intro to Literature
+2022,Michael,Campbell,Fall 2023,Seminar on Medicine
+2022,Michael,Campbell,Spring 2028,Fundamentals of Statistics
+2022,Michael,Campbell,Spring 2024,Topics in Physics
+2029,Daniel,Brown,Spring 2029,Topics in Political Science
+2029,Daniel,Brown,Fall 2030,Fundamentals of History
+2029,Daniel,Brown,Fall 2029,Advanced Statistics
+2029,Daniel,Brown,Fall 2023,Intro to Statistics
+2029,Daniel,Brown,Spring 2022,Intro to Psychology
+2029,Patricia,Allen,Fall 2025,Intro to Literature
+2029,Patricia,Allen,Fall 2025,Special Topics in Sociology
+2029,Patricia,Allen,Spring 2022,Advanced Art
+2029,Patricia,Allen,Fall 2024,Intro to Chemistry
+2029,Patricia,Allen,Spring 2029,Intro to Political Science
+2024,Sarah,Brown,Fall 2028,Special Topics in Environmental Science
+2024,Sarah,Brown,Fall 2029,Advanced Statistics
+2024,Sarah,Brown,Fall 2024,Intro to Medicine
+2024,Sarah,Brown,Fall 2025,Special Topics in Sociology
+2024,Sarah,Brown,Spring 2027,Fundamentals of Physics
+2024,Sarah,Brown,Spring 2029,Special Topics in Psychology
+2029,Christopher,Jackson,Spring 2022,Fundamentals of Mathematics
+2029,Christopher,Jackson,Spring 2024,Workshop in Literature
+2029,Christopher,Jackson,Fall 2022,Intro to Business
+2029,Christopher,Jackson,Spring 2027,Workshop in Engineering
+2029,Christopher,Jackson,Fall 2022,Advanced Economics
+2029,Christopher,Jackson,Fall 2025,Fundamentals of Engineering
+2022,Betty,White,Spring 2029,Topics in Political Science
+2022,Betty,White,Fall 2025,Topics in Psychology
+2022,Betty,White,Fall 2030,Seminar on Literature
+2022,Betty,White,Spring 2025,Seminar on Engineering
+2030,James,Wilson,Fall 2026,Advanced Computer Science
+2030,James,Wilson,Spring 2025,Topics in Biology
+2030,James,Wilson,Fall 2030,Fundamentals of History
+2030,James,Wilson,Spring 2027,Fundamentals of Literature
+2029,Amanda,Nelson,Spring 2029,Special Topics in Psychology
+2029,Amanda,Nelson,Spring 2027,Topics in Law
+2029,Amanda,Nelson,Spring 2030,Advanced Business
+2023,Susan,Brown,Fall 2023,Topics in Environmental Science
+2023,Susan,Brown,Fall 2028,Topics in Music
+2023,Susan,Brown,Fall 2028,Advanced Environmental Science
+2029,Richard,Rodriguez,Spring 2024,Topics in Physics
+2029,Richard,Rodriguez,Fall 2024,Intro to Chemistry
+2029,Richard,Rodriguez,Fall 2023,Topics in Sociology
+2029,Richard,Rodriguez,Fall 2028,Topics in Engineering
+2029,Richard,Rodriguez,Fall 2022,Intro to Biology
+2024,David,White,Spring 2024,Seminar on Computer Science
+2024,David,White,Spring 2026,Topics in Art
+2024,David,White,Fall 2023,Topics in Sociology
+2022,Jessica,Jackson,Fall 2022,Intro to Business
+2022,Jessica,Jackson,Spring 2029,Advanced Psychology
+2022,Jessica,Jackson,Fall 2023,Topics in Sociology
+2022,Jessica,Jackson,Fall 2022,Workshop in Medicine
+2022,Jessica,Jackson,Fall 2022,Intro to Economics
+2023,Betty,Anderson,Spring 2029,Fundamentals of Biology
+2023,Betty,Anderson,Fall 2028,Fundamentals of Chemistry
+2023,Betty,Anderson,Fall 2022,Advanced Literature
+2023,Betty,Anderson,Fall 2028,Topics in Engineering
+2023,Betty,Anderson,Fall 2025,Fundamentals of Environmental Science
+2027,Amanda,Hernandez,Fall 2022,Intro to Business
+2027,Amanda,Hernandez,Fall 2028,Topics in Engineering
+2027,Amanda,Hernandez,Fall 2030,Fundamentals of Psychology
+2027,Amanda,Hernandez,Spring 2030,Fundamentals of Computer Science
+2025,Daniel,Wilson,Fall 2023,Seminar on Medicine
+2025,Daniel,Wilson,Spring 2029,Topics in Computer Science
+2025,Daniel,Wilson,Spring 2023,Topics in Literature
+2027,Elizabeth,Campbell,Fall 2028,Topics in Music
+2027,Elizabeth,Campbell,Fall 2030,Fundamentals of Psychology
+2027,Elizabeth,Campbell,Fall 2025,Seminar on Literature
+2027,Elizabeth,Campbell,Spring 2026,Intro to Computer Science
+2027,Elizabeth,Campbell,Fall 2023,Intro to Statistics
+2027,Elizabeth,Campbell,Spring 2024,Topics in Economics
+2025,Edward,Smith,Fall 2025,Topics in Business
+2025,Edward,Smith,Fall 2027,Fundamentals of Philosophy
+2025,Edward,Smith,Spring 2023,Intro to History
+2025,Edward,Smith,Spring 2029,Fundamentals of Biology
+2025,Edward,Smith,Spring 2028,Intro to Art
+2024,Deborah,Robinson,Spring 2026,Topics in Art
+2024,Deborah,Robinson,Fall 2028,Special Topics in Environmental Science
+2024,Deborah,Robinson,Fall 2023,Seminar on Medicine
+2024,Deborah,Robinson,Fall 2025,Intro to Literature
+2024,Deborah,Robinson,Spring 2025,Intro to Music
+2028,Amanda,Mitchell,Fall 2023,Topics in Environmental Science
+2028,Amanda,Mitchell,Fall 2022,Topics in Chemistry
+2028,Amanda,Mitchell,Fall 2022,Intro to Economics
+2028,Amanda,Mitchell,Fall 2028,Topics in Engineering
+2028,Amanda,Mitchell,Fall 2025,Special Topics in Sociology
+2027,Sarah,Johnson,Fall 2024,Advanced Medicine
+2027,Sarah,Johnson,Spring 2028,Topics in History
+2027,Sarah,Johnson,Fall 2022,Advanced Literature
+2027,Sarah,Johnson,Fall 2025,Fundamentals of Environmental Science
+2027,Sarah,Johnson,Fall 2029,Fundamentals of Political Science
+2027,Sarah,Johnson,Spring 2024,Topics in Economics
+2022,Anthony,Adams,Spring 2022,Fundamentals of Mathematics
+2022,Anthony,Adams,Fall 2025,Topics in Psychology
+2022,Anthony,Adams,Spring 2029,Intro to Political Science
+2022,Anthony,Adams,Fall 2022,Advanced Literature
+2022,Anthony,Adams,Spring 2022,Advanced Engineering
+2029,Steven,Campbell,Spring 2027,Workshop in Engineering
+2029,Steven,Campbell,Spring 2024,Intro to Engineering
+2029,Steven,Campbell,Spring 2022,Advanced Art
+2029,Steven,Campbell,Fall 2022,Topics in Chemistry
+2030,Kimberly,Allen,Fall 2028,Topics in Music
+2030,Kimberly,Allen,Spring 2027,Fundamentals of Literature
+2030,Kimberly,Allen,Fall 2023,Seminar on Medicine
+2030,Kimberly,Allen,Fall 2030,Special Topics in Economics
+2027,Betty,Garcia,Spring 2024,Intro to Engineering
+2027,Betty,Garcia,Fall 2025,Fundamentals of Environmental Science
+2027,Betty,Garcia,Spring 2023,Advanced Political Science
+2027,Betty,Garcia,Spring 2025,Intro to Music
+2027,Betty,Garcia,Spring 2030,Advanced Business
+2027,Betty,Garcia,Spring 2028,Intro to Art
+2025,Sarah,Thompson,Fall 2025,Seminar on Literature
+2025,Sarah,Thompson,Fall 2025,Topics in Psychology
+2025,Sarah,Thompson,Fall 2023,Advanced Chemistry
+2025,Sarah,Thompson,Spring 2029,Topics in Political Science
+2025,Sarah,Thompson,Fall 2022,Fundamentals of Medicine
+2023,William,Jackson,Fall 2025,Special Topics in Statistics
+2023,William,Jackson,Spring 2027,Fundamentals of Literature
+2023,William,Jackson,Fall 2028,Topics in Engineering
+2026,Sarah,Williams,Spring 2024,Intro to Physics
+2026,Sarah,Williams,Fall 2025,Topics in Business
+2026,Sarah,Williams,Fall 2029,Advanced Statistics
+2026,Sarah,Williams,Spring 2026,Topics in Art
+2024,Mary,Davis,Fall 2028,Special Topics in Environmental Science
+2024,Mary,Davis,Spring 2027,Fundamentals of Literature
+2024,Mary,Davis,Spring 2026,Intro to Mathematics
+2029,Ashley,Flores,Fall 2028,Fundamentals of Chemistry
+2029,Ashley,Flores,Fall 2027,Advanced Music
+2029,Ashley,Flores,Spring 2023,Intro to History
+2029,Ashley,Flores,Spring 2025,Topics in Biology
+2029,Ashley,Flores,Spring 2030,Advanced Business
+2027,Melissa,Nguyen,Fall 2023,Topics in Sociology
+2027,Melissa,Nguyen,Spring 2029,Special Topics in Psychology
+2027,Melissa,Nguyen,Fall 2023,Advanced Chemistry
+2027,Melissa,Nguyen,Spring 2029,Intro to Political Science
+2027,Melissa,Nguyen,Spring 2029,Fundamentals of Art
+2028,Melissa,Lopez,Fall 2024,Intro to Medicine
+2028,Melissa,Lopez,Spring 2027,Advanced Philosophy
+2028,Melissa,Lopez,Fall 2028,Fundamentals of Chemistry
+2028,Melissa,Lopez,Fall 2030,Fundamentals of Psychology
+2025,Patricia,Young,Spring 2022,Fundamentals of Mathematics
+2025,Patricia,Young,Spring 2029,Topics in Political Science
+2025,Patricia,Young,Fall 2026,Advanced Computer Science
+2030,John,Jones,Fall 2023,Intro to Statistics
+2030,John,Jones,Spring 2030,Advanced Business
+2030,John,Jones,Fall 2022,Advanced Economics
+2030,John,Jones,Fall 2024,Advanced Medicine
+2025,William,Garcia,Fall 2028,Intro to Law
+2025,William,Garcia,Fall 2030,Special Topics in Economics
+2025,William,Garcia,Spring 2025,Topics in Biology
+2025,William,Garcia,Spring 2024,Fundamentals of Law
+2028,Melissa,Hill,Fall 2022,Intro to Economics
+2028,Melissa,Hill,Fall 2022,Advanced Economics
+2028,Melissa,Hill,Spring 2028,Topics in History
+2028,Melissa,Hill,Spring 2027,Fundamentals of Physics
+2028,Melissa,Hill,Spring 2023,Advanced Political Science
+2026,Barbara,Martin,Spring 2024,Intro to Engineering
+2026,Barbara,Martin,Fall 2030,Fundamentals of Psychology
+2026,Barbara,Martin,Spring 2024,Intro to Physics
+2026,Barbara,Martin,Fall 2028,Special Topics in Environmental Science
+2026,Barbara,Martin,Spring 2027,Advanced Philosophy
+2024,Kimberly,Torres,Spring 2029,Topics in Computer Science
+2024,Kimberly,Torres,Fall 2026,Advanced Biology
+2024,Kimberly,Torres,Spring 2023,Advanced Political Science
+2030,Anthony,Hill,Fall 2028,Topics in Engineering
+2030,Anthony,Hill,Spring 2027,Advanced Sociology
+2030,Anthony,Hill,Spring 2030,Advanced Business
+2030,Anthony,Hill,Fall 2027,Fundamentals of Philosophy
+2030,Anthony,Hill,Spring 2026,Special Topics in Medicine
+2030,Anthony,Hill,Spring 2029,Special Topics in Psychology
+2024,Kevin,Hill,Spring 2029,Advanced History
+2024,Kevin,Hill,Spring 2025,Topics in Biology
+2024,Kevin,Hill,Fall 2023,Fundamentals of Business
+2024,Kevin,Hill,Spring 2022,Intro to Psychology
+2024,Kevin,Hill,Spring 2026,Intro to Computer Science
+2024,Kevin,Hill,Fall 2025,Seminar on Literature
+2024,Kimberly,Flores,Spring 2023,Advanced Political Science
+2024,Kimberly,Flores,Fall 2027,Advanced Music
+2024,Kimberly,Flores,Spring 2022,Fundamentals of Mathematics
+2024,Kimberly,Flores,Spring 2030,Workshop in Art
+2024,Kimberly,Flores,Spring 2025,Topics in Biology
+2025,Kevin,Thompson,Fall 2025,Special Topics in Sociology
+2025,Kevin,Thompson,Spring 2023,Topics in Literature
+2025,Kevin,Thompson,Fall 2028,Fundamentals of Economics
+2025,Kevin,Thompson,Spring 2026,Intro to Computer Science
+2025,Kevin,Thompson,Spring 2027,Topics in Law
+2030,Edward,King,Spring 2029,Fundamentals of Art
+2030,Edward,King,Spring 2026,Intro to Mathematics
+2030,Edward,King,Spring 2025,Seminar on Engineering
+2027,Deborah,Green,Fall 2030,Seminar on Literature
+2027,Deborah,Green,Fall 2026,Advanced Biology
+2027,Deborah,Green,Fall 2026,Advanced Computer Science
+2027,Deborah,Green,Fall 2025,Topics in Business
+2029,Carol,Garcia,Spring 2024,Topics in Economics
+2029,Carol,Garcia,Fall 2030,Special Topics in Economics
+2029,Carol,Garcia,Spring 2024,Seminar on Computer Science
+2029,Carol,Garcia,Fall 2027,Fundamentals of Sociology
+2029,Carol,Garcia,Spring 2023,Special Topics in Philosophy
+2029,Carol,Garcia,Fall 2027,Fundamentals of Philosophy
+2022,Kevin,Flores,Spring 2026,Intro to Mathematics
+2022,Kevin,Flores,Fall 2027,Fundamentals of Philosophy
+2022,Kevin,Flores,Spring 2022,Advanced Law
+2022,Kevin,Flores,Spring 2025,Topics in Biology
+2024,Karen,Jackson,Spring 2030,Advanced Physics
+2024,Karen,Jackson,Fall 2023,Advanced Chemistry
+2024,Karen,Jackson,Spring 2029,Advanced History
+2024,Karen,Jackson,Spring 2023,Intro to History
+2025,Margaret,White,Fall 2029,Advanced Statistics
+2025,Margaret,White,Fall 2028,Special Topics in Environmental Science
+2025,Margaret,White,Fall 2025,Special Topics in Statistics
+2025,Margaret,White,Fall 2027,Fundamentals of Sociology
+2025,Margaret,White,Fall 2028,Topics in Engineering
+2029,Kevin,Mitchell,Fall 2028,Fundamentals of Economics
+2029,Kevin,Mitchell,Spring 2030,Topics in Medicine
+2029,Kevin,Mitchell,Fall 2022,Special Topics in Medicine
+2029,Kevin,Mitchell,Spring 2029,Fundamentals of Biology
+2026,Mark,Davis,Fall 2025,Intro to Literature
+2026,Mark,Davis,Fall 2024,Intro to Medicine
+2026,Mark,Davis,Fall 2028,Topics in Music
+2026,Mark,Davis,Spring 2023,Topics in Literature
+2024,Betty,Baker,Spring 2025,Seminar on Engineering
+2024,Betty,Baker,Fall 2026,Advanced Biology
+2024,Betty,Baker,Spring 2025,Topics in Biology
+2025,Daniel,Thomas,Fall 2025,Topics in Psychology
+2025,Daniel,Thomas,Spring 2030,Topics in Medicine
+2025,Daniel,Thomas,Fall 2028,Intro to Law
+2025,Daniel,Thomas,Fall 2030,Special Topics in Economics
+2025,Daniel,Thomas,Spring 2026,Intro to Mathematics
+2030,Matthew,Torres,Fall 2025,Fundamentals of Environmental Science
+2030,Matthew,Torres,Fall 2028,Intro to Law
+2030,Matthew,Torres,Fall 2027,Fundamentals of Philosophy
+2030,Matthew,Torres,Spring 2025,Topics in Biology
+2023,Nancy,Brown,Spring 2028,Topics in History
+2023,Nancy,Brown,Fall 2028,Topics in Engineering
+2023,Nancy,Brown,Spring 2026,Special Topics in Medicine
+2024,Brian,Jackson,Spring 2027,Fundamentals of Physics
+2024,Brian,Jackson,Spring 2023,Topics in Literature
+2024,Brian,Jackson,Fall 2028,Fundamentals of Music
+2024,Brian,Jackson,Spring 2028,Topics in History
+2024,Brian,Jackson,Fall 2030,Seminar on Literature
+2024,Brian,Jackson,Fall 2022,Special Topics in Medicine
+2026,Jessica,King,Spring 2027,Topics in Law
+2026,Jessica,King,Fall 2025,Special Topics in Statistics
+2026,Jessica,King,Fall 2022,Workshop in Medicine
+2026,Jessica,King,Spring 2027,Workshop in Engineering
+2022,Carol,Brown,Fall 2022,Special Topics in Medicine
+2022,Carol,Brown,Fall 2030,Seminar on Literature
+2022,Carol,Brown,Spring 2026,Special Topics in Medicine
+2022,Carol,Brown,Fall 2024,Intro to Medicine
+2022,Nancy,Lopez,Spring 2030,Advanced Physics
+2022,Nancy,Lopez,Spring 2029,Special Topics in Psychology
+2022,Nancy,Lopez,Fall 2027,Fundamentals of Philosophy
+2024,Daniel,Allen,Fall 2028,Fundamentals of Chemistry
+2024,Daniel,Allen,Fall 2027,Fundamentals of Sociology
+2024,Daniel,Allen,Fall 2028,Fundamentals of Economics
+2024,Daniel,Allen,Spring 2028,Intro to Art
+2029,Dorothy,Sanchez,Spring 2029,Topics in Political Science
+2029,Dorothy,Sanchez,Fall 2028,Special Topics in Environmental Science
+2029,Dorothy,Sanchez,Spring 2023,Special Topics in Philosophy
+2029,Dorothy,Sanchez,Spring 2028,Intro to Art
+2029,Dorothy,Sanchez,Fall 2022,Intro to Business
+2029,Dorothy,Sanchez,Fall 2028,Fundamentals of Music
+2022,Ashley,Lewis,Spring 2024,Intro to Engineering
+2022,Ashley,Lewis,Fall 2028,Fundamentals of Chemistry
+2022,Ashley,Lewis,Fall 2022,Intro to Economics
+2022,Michelle,Flores,Fall 2028,Topics in Engineering
+2022,Michelle,Flores,Spring 2025,Topics in Biology
+2022,Michelle,Flores,Spring 2022,Advanced Law
+2022,Michelle,Flores,Spring 2026,Intro to Mathematics
+2024,George,Sanchez,Spring 2028,Intro to Art
+2024,George,Sanchez,Fall 2029,Fundamentals of Political Science
+2024,George,Sanchez,Spring 2024,Intro to Physics
+2024,George,Sanchez,Spring 2027,Workshop in Engineering
+2024,George,Sanchez,Fall 2028,Topics in Engineering
+2024,George,Sanchez,Fall 2022,Special Topics in Medicine
+2029,Donald,Nguyen,Fall 2030,Special Topics in Economics
+2029,Donald,Nguyen,Spring 2029,Advanced Psychology
+2029,Donald,Nguyen,Fall 2024,Advanced Medicine
+2029,Donald,Nguyen,Spring 2029,Special Topics in Psychology
+2027,Ashley,Young,Fall 2022,Fundamentals of Medicine
+2027,Ashley,Young,Fall 2028,Topics in Music
+2027,Ashley,Young,Fall 2023,Fundamentals of Business
+2024,James,Robinson,Spring 2027,Topics in Law
+2024,James,Robinson,Spring 2026,Intro to Computer Science
+2024,James,Robinson,Fall 2026,Advanced Biology
+2023,Kimberly,Perez,Fall 2029,Advanced Mathematics
+2023,Kimberly,Perez,Spring 2024,Workshop in Literature
+2023,Kimberly,Perez,Spring 2024,Seminar on Computer Science
+2023,Kimberly,Perez,Spring 2026,Intro to Computer Science
+2023,Kimberly,Perez,Fall 2027,Advanced Music
+2023,Amanda,Thomas,Fall 2028,Fundamentals of Economics
+2023,Amanda,Thomas,Spring 2026,Topics in Art
+2023,Amanda,Thomas,Fall 2025,Topics in Philosophy
+2023,Amanda,Thomas,Fall 2022,Workshop in Medicine
+2023,Amanda,Thomas,Fall 2025,Topics in Business
+2026,Elizabeth,Brown,Spring 2028,Fundamentals of Statistics
+2026,Elizabeth,Brown,Spring 2030,Advanced Physics
+2026,Elizabeth,Brown,Fall 2025,Topics in Psychology
+2023,Edward,Taylor,Spring 2028,Intro to Art
+2023,Edward,Taylor,Fall 2025,Topics in Philosophy
+2023,Edward,Taylor,Fall 2028,Advanced Environmental Science
+2023,Edward,Taylor,Spring 2022,Advanced Engineering
+2026,Patricia,Torres,Spring 2024,Topics in Economics
+2026,Patricia,Torres,Fall 2028,Advanced Environmental Science
+2026,Patricia,Torres,Spring 2028,Intro to Art
+2026,Patricia,Torres,Fall 2026,Special Topics in Philosophy
+2026,Patricia,Torres,Fall 2028,Fundamentals of Chemistry
+2027,Edward,Rivera,Spring 2022,Intro to Psychology
+2027,Edward,Rivera,Fall 2022,Special Topics in Medicine
+2027,Edward,Rivera,Fall 2028,Fundamentals of Chemistry
+2027,Edward,Rivera,Spring 2023,Topics in Literature
+2027,Edward,Rivera,Spring 2030,Advanced Physics
+2027,Edward,Rivera,Fall 2026,Special Topics in Philosophy
+2026,Susan,Harris,Fall 2023,Topics in Sociology
+2026,Susan,Harris,Fall 2027,Advanced Music
+2026,Susan,Harris,Spring 2024,Workshop in Literature
+2026,Susan,Harris,Spring 2024,Fundamentals of Law
+2026,Susan,Harris,Fall 2022,Intro to Business
+2024,Daniel,Baker,Spring 2030,Advanced Physics
+2024,Daniel,Baker,Spring 2029,Advanced Psychology
+2024,Daniel,Baker,Fall 2024,Intro to Chemistry
+2024,Daniel,Baker,Fall 2028,Topics in Engineering
+2024,Daniel,Baker,Spring 2025,Intro to Music
+2024,Daniel,Baker,Spring 2030,Advanced Business
+2028,William,Johnson,Fall 2023,Topics in Sociology
+2028,William,Johnson,Spring 2022,Advanced Art
+2028,William,Johnson,Fall 2026,Special Topics in Philosophy
+2028,William,Johnson,Fall 2028,Fundamentals of Music
+2026,Deborah,Scott,Spring 2030,Advanced Physics
+2026,Deborah,Scott,Spring 2022,Advanced Art
+2026,Deborah,Scott,Fall 2025,Special Topics in Sociology
+2026,Deborah,Scott,Fall 2030,Fundamentals of Psychology
+2026,Deborah,Scott,Spring 2028,Topics in Statistics
+2026,Deborah,Scott,Spring 2024,Topics in Physics
+2028,Jennifer,Martinez,Spring 2030,Workshop in Art
+2028,Jennifer,Martinez,Fall 2025,Fundamentals of Engineering
+2028,Jennifer,Martinez,Spring 2027,Advanced Sociology
+2024,Donna,Ramirez,Spring 2028,Topics in Statistics
+2024,Donna,Ramirez,Fall 2023,Seminar on Medicine
+2024,Donna,Ramirez,Spring 2027,Advanced Sociology
+2022,Charles,Garcia,Fall 2023,Advanced Chemistry
+2022,Charles,Garcia,Spring 2029,Topics in Political Science
+2022,Charles,Garcia,Fall 2029,Fundamentals of Political Science
+2022,Charles,Garcia,Spring 2024,Fundamentals of Law
+2022,Charles,Garcia,Fall 2030,Seminar on Engineering
+2022,Charles,Garcia,Fall 2022,Intro to Economics
+2029,James,Davis,Fall 2028,Advanced Environmental Science
+2029,James,Davis,Fall 2024,Advanced Medicine
+2029,James,Davis,Spring 2027,Fundamentals of Physics
+2029,James,Davis,Spring 2023,Special Topics in Philosophy
+2029,James,Davis,Spring 2023,Topics in Literature
+2028,Margaret,Johnson,Spring 2024,Workshop in Literature
+2028,Margaret,Johnson,Fall 2025,Topics in Philosophy
+2028,Margaret,Johnson,Fall 2030,Fundamentals of History
+2028,James,Hernandez,Fall 2024,Intro to Chemistry
+2028,James,Hernandez,Fall 2028,Topics in Music
+2028,James,Hernandez,Spring 2026,Intro to Mathematics
+2028,James,Hernandez,Fall 2022,Intro to Business
+2022,Jennifer,Rivera,Spring 2026,Intro to Computer Science
+2022,Jennifer,Rivera,Spring 2027,Topics in Law
+2022,Jennifer,Rivera,Spring 2027,Fundamentals of Literature
+2022,Joshua,Lee,Spring 2024,Fundamentals of Law
+2022,Joshua,Lee,Fall 2028,Fundamentals of Music
+2022,Joshua,Lee,Fall 2027,Fundamentals of Philosophy
+2027,David,Perez,Spring 2024,Topics in Economics
+2027,David,Perez,Fall 2026,Advanced Biology
+2027,David,Perez,Spring 2028,Intro to Art
+2027,David,Perez,Fall 2023,Seminar on Medicine
+2027,David,Perez,Fall 2029,Advanced Mathematics
+2027,David,Perez,Spring 2027,Fundamentals of Physics
+2027,Patricia,Garcia,Spring 2027,Advanced Philosophy
+2027,Patricia,Garcia,Spring 2023,Intro to History
+2027,Patricia,Garcia,Spring 2030,Workshop in Art
+2029,Robert,Moore,Fall 2028,Advanced Environmental Science
+2029,Robert,Moore,Fall 2025,Seminar on Literature
+2029,Robert,Moore,Spring 2024,Intro to Engineering
+2029,Robert,Moore,Fall 2028,Topics in Engineering
+2022,Joshua,Gonzalez,Fall 2028,Topics in Music
+2022,Joshua,Gonzalez,Spring 2029,Topics in Computer Science
+2022,Joshua,Gonzalez,Spring 2026,Intro to Computer Science
+2022,Joshua,Gonzalez,Fall 2025,Seminar on Literature
+2022,Joshua,Gonzalez,Spring 2025,Topics in Biology
+2022,Joshua,Gonzalez,Fall 2022,Workshop in Medicine
+2023,Patricia,Ramirez,Spring 2028,Intro to Art
+2023,Patricia,Ramirez,Spring 2029,Advanced Psychology
+2023,Patricia,Ramirez,Spring 2024,Fundamentals of Law
+2023,Patricia,Ramirez,Spring 2029,Topics in Computer Science
+2029,Robert,Williams,Fall 2029,Fundamentals of Political Science
+2029,Robert,Williams,Fall 2027,Advanced Music
+2029,Robert,Williams,Spring 2023,Special Topics in Philosophy
+2029,Robert,Williams,Fall 2025,Intro to Literature
+2029,Robert,Williams,Spring 2022,Intro to Psychology
+2022,Karen,Nguyen,Spring 2025,Seminar on Engineering
+2022,Karen,Nguyen,Fall 2028,Fundamentals of Economics
+2022,Karen,Nguyen,Spring 2024,Intro to Engineering
+2022,Karen,Nguyen,Spring 2024,Topics in Economics
+2022,Karen,Nguyen,Fall 2025,Topics in Business
+2023,Donna,Thompson,Fall 2023,Fundamentals of Business
+2023,Donna,Thompson,Fall 2022,Topics in Chemistry
+2023,Donna,Thompson,Spring 2028,Topics in History
+2023,Donna,Thompson,Spring 2022,Advanced Engineering
+2023,Donna,Thompson,Fall 2024,Intro to Medicine
+2023,Donna,Thompson,Fall 2022,Advanced Literature
+2026,Joseph,Hill,Spring 2026,Special Topics in Medicine
+2026,Joseph,Hill,Spring 2028,Topics in Statistics
+2026,Joseph,Hill,Spring 2030,Intro to Philosophy
+2026,Joseph,Hill,Spring 2028,Topics in History
+2026,Joseph,Hill,Spring 2022,Advanced Law
+2026,Joseph,Hill,Fall 2023,Topics in Environmental Science
+2030,Deborah,Young,Fall 2022,Workshop in Medicine
+2030,Deborah,Young,Fall 2022,Intro to Economics
+2030,Deborah,Young,Fall 2023,Topics in Sociology
+2030,Deborah,Young,Spring 2030,Advanced Business
+2030,Deborah,Young,Spring 2026,Intro to Computer Science
+2030,Kevin,Rodriguez,Spring 2023,Intro to History
+2030,Kevin,Rodriguez,Spring 2027,Intro to Sociology
+2030,Kevin,Rodriguez,Spring 2024,Workshop in Literature
+2030,Kevin,Rodriguez,Fall 2030,Seminar on Engineering
+2023,Barbara,Lee,Fall 2030,Special Topics in Economics
+2023,Barbara,Lee,Fall 2028,Fundamentals of Economics
+2023,Barbara,Lee,Fall 2029,Fundamentals of Political Science
+2023,Barbara,Lee,Spring 2022,Advanced Law
+2027,Dorothy,Lopez,Fall 2028,Special Topics in Environmental Science
+2027,Dorothy,Lopez,Spring 2029,Intro to Political Science
+2027,Dorothy,Lopez,Spring 2029,Fundamentals of Biology
+2027,Dorothy,Lopez,Fall 2024,Advanced Medicine
+2028,Melissa,Moore,Spring 2025,Seminar on Engineering
+2028,Melissa,Moore,Spring 2029,Advanced Psychology
+2028,Melissa,Moore,Fall 2025,Topics in Philosophy
+2028,Melissa,Moore,Fall 2025,Intro to Literature
+2028,Melissa,Moore,Fall 2025,Special Topics in Statistics
+2028,Melissa,Moore,Fall 2022,Workshop in Medicine
+2022,Linda,Nguyen,Spring 2028,Fundamentals of Statistics
+2022,Linda,Nguyen,Spring 2029,Intro to Political Science
+2022,Linda,Nguyen,Spring 2026,Intro to Computer Science
+2022,Linda,Nguyen,Spring 2030,Intro to Philosophy
+2023,Christopher,Jones,Fall 2025,Topics in Psychology
+2023,Christopher,Jones,Spring 2025,Intro to Music
+2023,Christopher,Jones,Spring 2030,Intro to Philosophy
+2026,Joshua,Jackson,Spring 2028,Topics in Statistics
+2026,Joshua,Jackson,Spring 2027,Fundamentals of Physics
+2026,Joshua,Jackson,Spring 2024,Intro to Physics
+2026,Joshua,Jackson,Fall 2030,Fundamentals of History
+2026,Joshua,Jackson,Spring 2030,Advanced Physics
+2026,Joshua,Jackson,Fall 2022,Intro to Biology
+2030,Ashley,Anderson,Spring 2030,Intro to Philosophy
+2030,Ashley,Anderson,Fall 2022,Intro to Business
+2030,Ashley,Anderson,Spring 2025,Intro to Music
+2030,Ashley,Anderson,Fall 2023,Topics in Sociology
+2026,Melissa,Flores,Fall 2030,Fundamentals of History
+2026,Melissa,Flores,Spring 2025,Seminar on Engineering
+2026,Melissa,Flores,Fall 2025,Topics in Mathematics
+2023,Patricia,Williams,Fall 2028,Intro to Law
+2023,Patricia,Williams,Fall 2024,Intro to Chemistry
+2023,Patricia,Williams,Fall 2030,Fundamentals of History
+2023,Patricia,Williams,Fall 2030,Special Topics in Economics
+2030,John,Smith,Spring 2029,Topics in Political Science
+2030,John,Smith,Spring 2030,Advanced Physics
+2030,John,Smith,Spring 2030,Intro to Philosophy
+2024,Linda,Walker,Fall 2022,Intro to Business
+2024,Linda,Walker,Spring 2024,Workshop in Literature
+2024,Linda,Walker,Fall 2025,Special Topics in Sociology
+2023,Mark,Green,Fall 2023,Topics in Sociology
+2023,Mark,Green,Fall 2023,Fundamentals of Business
+2023,Mark,Green,Spring 2027,Topics in Law
+2028,Amanda,Scott,Fall 2029,Fundamentals of Political Science
+2028,Amanda,Scott,Fall 2022,Intro to Biology
+2028,Amanda,Scott,Spring 2023,Special Topics in Philosophy
+2028,Amanda,Scott,Spring 2030,Intro to Philosophy
+2028,Amanda,Scott,Spring 2024,Topics in Economics
+2028,Amanda,Scott,Spring 2025,Seminar on Engineering
+2024,Betty,Perez,Spring 2024,Fundamentals of Law
+2024,Betty,Perez,Fall 2022,Fundamentals of Medicine
+2024,Betty,Perez,Spring 2022,Intro to Psychology
+2030,Melissa,Davis,Fall 2024,Advanced Medicine
+2030,Melissa,Davis,Fall 2024,Intro to Chemistry
+2030,Melissa,Davis,Fall 2022,Topics in Chemistry
+2030,Melissa,Davis,Spring 2022,Advanced Engineering
+2030,Melissa,Davis,Spring 2024,Intro to Engineering
+2030,Melissa,Davis,Fall 2025,Seminar on Literature
+2027,Donald,Thomas,Spring 2025,Intro to Music
+2027,Donald,Thomas,Fall 2022,Fundamentals of Medicine
+2027,Donald,Thomas,Fall 2025,Topics in Business
+2027,Donald,Thomas,Spring 2029,Topics in Computer Science
+2029,Kimberly,Brown,Spring 2029,Fundamentals of Art
+2029,Kimberly,Brown,Fall 2025,Topics in Mathematics
+2029,Kimberly,Brown,Fall 2028,Topics in Music
+2029,Kimberly,Brown,Spring 2030,Intro to Philosophy
+2029,Emily,Ramirez,Fall 2023,Intro to Statistics
+2029,Emily,Ramirez,Fall 2022,Workshop in Medicine
+2029,Emily,Ramirez,Fall 2030,Seminar on Literature
+2029,Emily,Ramirez,Spring 2026,Topics in Art
+2029,Emily,Ramirez,Fall 2025,Special Topics in Statistics
+2024,Robert,Lopez,Fall 2026,Advanced Biology
+2024,Robert,Lopez,Spring 2030,Fundamentals of Computer Science
+2024,Robert,Lopez,Fall 2022,Topics in Chemistry
+2024,Robert,Lopez,Spring 2029,Topics in Political Science
+2030,Ashley,Miller,Spring 2026,Topics in Art
+2030,Ashley,Miller,Fall 2028,Advanced Environmental Science
+2030,Ashley,Miller,Fall 2022,Advanced Economics
+2030,Ashley,Miller,Fall 2025,Intro to Literature
+2030,Ashley,Miller,Fall 2024,Intro to Chemistry
+2028,Mark,Rodriguez,Fall 2023,Advanced Chemistry
+2028,Mark,Rodriguez,Spring 2030,Workshop in Art
+2028,Mark,Rodriguez,Spring 2026,Topics in Art
+2028,Mark,Rodriguez,Fall 2025,Topics in Mathematics
+2028,Mark,Rodriguez,Spring 2022,Intro to Psychology
+2022,Melissa,Rivera,Fall 2030,Fundamentals of Psychology
+2022,Melissa,Rivera,Spring 2030,Advanced Physics
+2022,Melissa,Rivera,Fall 2024,Intro to Chemistry
+2022,Melissa,Rivera,Fall 2022,Topics in Chemistry
+2022,Melissa,Rivera,Spring 2028,Topics in History
+2027,Carol,Miller,Fall 2029,Fundamentals of Political Science
+2027,Carol,Miller,Fall 2022,Fundamentals of Medicine
+2027,Carol,Miller,Fall 2022,Advanced Literature
+2027,Carol,Miller,Spring 2023,Special Topics in Philosophy
+2022,Jessica,Allen,Fall 2022,Intro to Business
+2022,Jessica,Allen,Spring 2022,Intro to Psychology
+2022,Jessica,Allen,Spring 2030,Advanced Physics
+2022,Jessica,Allen,Fall 2030,Seminar on Engineering
+2022,Jessica,Allen,Fall 2028,Advanced Environmental Science
+2030,Margaret,Wright,Spring 2029,Topics in Political Science
+2030,Margaret,Wright,Spring 2026,Special Topics in Medicine
+2030,Margaret,Wright,Fall 2024,Intro to Medicine
+2030,Margaret,Wright,Spring 2029,Special Topics in Psychology
+2030,Margaret,Wright,Spring 2030,Topics in Medicine
+2030,Margaret,Wright,Spring 2023,Advanced Political Science
+2025,Betty,Rivera,Fall 2024,Intro to Medicine
+2025,Betty,Rivera,Spring 2028,Intro to Art
+2025,Betty,Rivera,Fall 2027,Advanced Music
+2023,Steven,Moore,Fall 2026,Advanced Biology
+2023,Steven,Moore,Fall 2028,Intro to Law
+2023,Steven,Moore,Spring 2028,Intro to Art
+2023,Steven,Moore,Spring 2024,Seminar on Computer Science
+2026,Carol,Harris,Spring 2030,Advanced Physics
+2026,Carol,Harris,Fall 2028,Fundamentals of Music
+2026,Carol,Harris,Fall 2030,Seminar on Engineering
+2026,Carol,Harris,Fall 2024,Advanced Medicine
+2024,Kenneth,Wilson,Fall 2028,Topics in Music
+2024,Kenneth,Wilson,Spring 2022,Advanced Art
+2024,Kenneth,Wilson,Fall 2022,Special Topics in Medicine
+2024,Kenneth,Wilson,Fall 2023,Topics in Environmental Science
+2022,Margaret,Miller,Spring 2027,Topics in Law
+2022,Margaret,Miller,Fall 2023,Topics in Environmental Science
+2022,Margaret,Miller,Spring 2024,Topics in Economics
+2022,Margaret,Miller,Spring 2026,Topics in Art
+2022,Margaret,Miller,Fall 2022,Advanced Literature
+2028,Deborah,Anderson,Fall 2025,Intro to Literature
+2028,Deborah,Anderson,Fall 2022,Advanced Literature
+2028,Deborah,Anderson,Spring 2027,Topics in Law
+2028,Carol,Allen,Spring 2030,Advanced Physics
+2028,Carol,Allen,Fall 2030,Fundamentals of History
+2028,Carol,Allen,Fall 2028,Fundamentals of Music
+2028,Carol,Allen,Fall 2025,Intro to Literature
+2028,Carol,Allen,Spring 2022,Advanced Art
+2024,Linda,Adams,Spring 2024,Fundamentals of Law
+2024,Linda,Adams,Fall 2026,Advanced Computer Science
+2024,Linda,Adams,Fall 2023,Topics in Environmental Science
+2024,Linda,Adams,Spring 2029,Special Topics in Psychology
+2024,Linda,Adams,Fall 2029,Fundamentals of Political Science
+2024,Linda,Adams,Spring 2023,Special Topics in Philosophy
+2023,Sandra,Thomas,Fall 2022,Advanced Literature
+2023,Sandra,Thomas,Fall 2022,Special Topics in Medicine
+2023,Sandra,Thomas,Spring 2030,Intro to Philosophy
+2023,Sandra,Thomas,Spring 2024,Intro to Physics
+2023,Sandra,Thomas,Spring 2022,Advanced Law
+2023,Sandra,Thomas,Fall 2026,Advanced Computer Science
+2026,Anthony,Thompson,Spring 2030,Advanced Physics
+2026,Anthony,Thompson,Spring 2027,Advanced Sociology
+2026,Anthony,Thompson,Spring 2029,Fundamentals of Biology
+2026,Anthony,Thompson,Fall 2022,Intro to Economics
+2026,Christopher,Garcia,Fall 2022,Advanced Economics
+2026,Christopher,Garcia,Spring 2023,Advanced Political Science
+2026,Christopher,Garcia,Fall 2028,Fundamentals of Chemistry
+2026,Christopher,Garcia,Spring 2022,Advanced Law
+2026,Christopher,Garcia,Spring 2028,Topics in History
+2026,Christopher,Garcia,Fall 2025,Special Topics in Statistics
+2029,Lisa,Jones,Spring 2022,Advanced Engineering
+2029,Lisa,Jones,Fall 2023,Seminar on Medicine
+2029,Lisa,Jones,Fall 2029,Advanced Statistics
+2025,Kenneth,Hall,Fall 2026,Special Topics in Philosophy
+2025,Kenneth,Hall,Fall 2030,Special Topics in Economics
+2025,Kenneth,Hall,Fall 2029,Advanced Mathematics
+2025,Kenneth,Hall,Spring 2029,Fundamentals of Art
+2029,Jennifer,King,Spring 2026,Intro to Mathematics
+2029,Jennifer,King,Spring 2024,Fundamentals of Law
+2029,Jennifer,King,Fall 2028,Intro to Law
+2024,Anthony,Nelson,Spring 2030,Intro to Philosophy
+2024,Anthony,Nelson,Spring 2024,Seminar on Computer Science
+2024,Anthony,Nelson,Spring 2027,Advanced Philosophy
+2024,Anthony,Nelson,Spring 2029,Fundamentals of Art
+2024,Anthony,Nelson,Spring 2024,Fundamentals of Law
+2024,Paul,Perez,Fall 2025,Topics in Philosophy
+2024,Paul,Perez,Spring 2024,Topics in Economics
+2024,Paul,Perez,Spring 2027,Workshop in Engineering
+2024,Paul,Perez,Fall 2028,Fundamentals of Chemistry
+2024,Paul,Perez,Fall 2027,Advanced Music
+2024,Paul,Perez,Fall 2025,Fundamentals of Engineering
+2029,James,Baker,Fall 2024,Advanced Medicine
+2029,James,Baker,Fall 2029,Advanced Statistics
+2029,James,Baker,Fall 2022,Advanced Literature
+2029,James,Baker,Fall 2026,Special Topics in Philosophy
+2029,James,Baker,Fall 2029,Advanced Mathematics
+2029,Patricia,Robinson,Spring 2029,Intro to Political Science
+2029,Patricia,Robinson,Fall 2025,Special Topics in Statistics
+2029,Patricia,Robinson,Spring 2025,Intro to Music
+2029,Patricia,Robinson,Fall 2023,Topics in Environmental Science
+2029,Patricia,Robinson,Fall 2022,Special Topics in Medicine
+2027,Jennifer,Lee,Fall 2028,Intro to Law
+2027,Jennifer,Lee,Fall 2022,Advanced Literature
+2027,Jennifer,Lee,Fall 2028,Fundamentals of Economics
+2027,Jennifer,Lee,Spring 2024,Seminar on Computer Science
+2029,David,Flores,Fall 2025,Topics in Business
+2029,David,Flores,Fall 2027,Advanced Music
+2029,David,Flores,Fall 2029,Fundamentals of Political Science
+2029,David,Flores,Fall 2030,Seminar on Literature
+2029,David,Flores,Spring 2023,Advanced Political Science
+2030,Steven,Anderson,Fall 2028,Fundamentals of Economics
+2030,Steven,Anderson,Spring 2027,Fundamentals of Literature
+2030,Steven,Anderson,Spring 2030,Intro to Philosophy
+2030,Steven,Anderson,Fall 2030,Fundamentals of History
+2027,Brian,Mitchell,Fall 2030,Fundamentals of History
+2027,Brian,Mitchell,Fall 2026,Advanced Biology
+2027,Brian,Mitchell,Fall 2024,Intro to Chemistry
+2027,Brian,Mitchell,Fall 2023,Topics in Environmental Science
+2030,Brian,Sanchez,Spring 2023,Advanced Political Science
+2030,Brian,Sanchez,Fall 2025,Topics in Mathematics
+2030,Brian,Sanchez,Fall 2030,Seminar on Engineering
+2030,Brian,Sanchez,Fall 2022,Topics in Chemistry
+2030,Brian,Sanchez,Spring 2024,Fundamentals of Law
+2030,Andrew,Hill,Spring 2023,Topics in Literature
+2030,Andrew,Hill,Fall 2022,Workshop in Medicine
+2030,Andrew,Hill,Spring 2022,Fundamentals of Mathematics
+2030,Andrew,Hill,Spring 2029,Advanced History
+2029,Barbara,Martin,Fall 2025,Topics in Business
+2029,Barbara,Martin,Fall 2022,Advanced Literature
+2029,Barbara,Martin,Spring 2022,Intro to Psychology
+2029,Barbara,Martin,Spring 2027,Advanced Sociology
+2029,Barbara,Martin,Spring 2030,Workshop in Art
+2022,Charles,Wright,Fall 2023,Topics in Sociology
+2022,Charles,Wright,Spring 2027,Topics in Law
+2022,Charles,Wright,Spring 2029,Advanced History
+2027,Ashley,Walker,Spring 2023,Intro to History
+2027,Ashley,Walker,Fall 2027,Advanced Music
+2027,Ashley,Walker,Fall 2025,Topics in Mathematics
+2027,Ashley,Walker,Spring 2029,Topics in Computer Science
+2027,Ashley,Walker,Fall 2026,Advanced Biology
+2027,Ashley,Walker,Spring 2029,Fundamentals of Biology
+2029,Daniel,Thomas,Spring 2029,Intro to Political Science
+2029,Daniel,Thomas,Spring 2023,Advanced Political Science
+2029,Daniel,Thomas,Spring 2022,Fundamentals of Mathematics
+2023,Kevin,Jones,Spring 2022,Intro to Environmental Science
+2023,Kevin,Jones,Spring 2025,Topics in Biology
+2023,Kevin,Jones,Fall 2028,Fundamentals of Music
+2023,Kevin,Jones,Fall 2025,Seminar on Literature
+2026,Donald,Wilson,Fall 2022,Intro to Business
+2026,Donald,Wilson,Fall 2028,Fundamentals of Music
+2026,Donald,Wilson,Spring 2030,Advanced Physics
+2026,Donald,Wilson,Fall 2030,Fundamentals of Psychology
+2026,Donald,Wilson,Fall 2027,Advanced Music
+2022,James,Jackson,Fall 2022,Advanced Literature
+2022,James,Jackson,Spring 2023,Topics in Literature
+2022,James,Jackson,Spring 2024,Seminar on Computer Science
+2028,Michael,Allen,Spring 2030,Intro to Philosophy
+2028,Michael,Allen,Fall 2025,Special Topics in Sociology
+2028,Michael,Allen,Fall 2025,Topics in Psychology
+2028,Michael,Allen,Spring 2027,Fundamentals of Literature
+2027,Charles,Rodriguez,Fall 2028,Intro to Law
+2027,Charles,Rodriguez,Spring 2030,Topics in Medicine
+2027,Charles,Rodriguez,Fall 2025,Topics in Mathematics
+2027,Charles,Rodriguez,Fall 2022,Fundamentals of Medicine
+2027,Charles,Rodriguez,Spring 2029,Topics in Computer Science
+2028,Amanda,King,Spring 2022,Advanced Art
+2028,Amanda,King,Spring 2024,Topics in Physics
+2028,Amanda,King,Spring 2027,Topics in Law
+2029,Linda,Nguyen,Fall 2024,Intro to Chemistry
+2029,Linda,Nguyen,Spring 2027,Fundamentals of Literature
+2029,Linda,Nguyen,Spring 2030,Workshop in Art
+2029,Linda,Nguyen,Fall 2030,Seminar on Engineering
+2027,Mark,Allen,Fall 2025,Fundamentals of Environmental Science
+2027,Mark,Allen,Spring 2029,Special Topics in Psychology
+2027,Mark,Allen,Spring 2030,Intro to Philosophy
+2027,Mark,Allen,Fall 2030,Fundamentals of History
+2027,Mark,Allen,Spring 2024,Topics in Physics
+2027,Michael,Williams,Spring 2022,Advanced Law
+2027,Michael,Williams,Spring 2028,Topics in Statistics
+2027,Michael,Williams,Fall 2022,Intro to Biology
+2027,Michael,Williams,Fall 2026,Advanced Biology
+2028,Michael,Baker,Spring 2030,Advanced Business
+2028,Michael,Baker,Spring 2025,Intro to Music
+2028,Michael,Baker,Spring 2029,Topics in Computer Science
+2028,Michael,Baker,Fall 2023,Intro to Statistics
+2025,Charles,Allen,Spring 2029,Fundamentals of Biology
+2025,Charles,Allen,Spring 2022,Fundamentals of Mathematics
+2025,Charles,Allen,Fall 2022,Topics in Chemistry
+2025,Charles,Allen,Spring 2027,Topics in Law
+2025,Charles,Allen,Fall 2022,Fundamentals of Medicine
+2025,Charles,Allen,Fall 2028,Topics in Music
+2024,Kimberly,Martinez,Spring 2030,Intro to Philosophy
+2024,Kimberly,Martinez,Spring 2029,Topics in Political Science
+2024,Kimberly,Martinez,Spring 2027,Intro to Sociology
+2024,Kimberly,Martinez,Spring 2025,Topics in Biology
+2024,Kimberly,Martinez,Spring 2030,Workshop in Art
+2024,Barbara,Smith,Fall 2023,Advanced Chemistry
+2024,Barbara,Smith,Fall 2022,Intro to Biology
+2024,Barbara,Smith,Fall 2022,Advanced Literature
+2024,Barbara,Smith,Spring 2022,Advanced Law
+2023,Christopher,Sanchez,Fall 2022,Intro to Economics
+2023,Christopher,Sanchez,Spring 2030,Intro to Philosophy
+2023,Christopher,Sanchez,Spring 2029,Topics in Political Science
+2023,Christopher,Sanchez,Spring 2029,Fundamentals of Art
+2029,Margaret,Smith,Spring 2025,Intro to Music
+2029,Margaret,Smith,Fall 2023,Advanced Chemistry
+2029,Margaret,Smith,Fall 2030,Seminar on Engineering
+2029,Margaret,Smith,Spring 2029,Special Topics in Psychology
+2029,Margaret,Smith,Fall 2022,Advanced Economics
+2029,Margaret,Smith,Fall 2025,Special Topics in Sociology
+2030,Michael,Nelson,Fall 2030,Seminar on Engineering
+2030,Michael,Nelson,Spring 2029,Advanced Psychology
+2030,Michael,Nelson,Fall 2027,Advanced Music
+2030,Michael,Nelson,Fall 2030,Seminar on Literature
+2025,Steven,Gonzalez,Fall 2026,Advanced Computer Science
+2025,Steven,Gonzalez,Fall 2025,Intro to Literature
+2025,Steven,Gonzalez,Spring 2026,Intro to Computer Science
+2025,Steven,Gonzalez,Fall 2025,Fundamentals of Engineering
+2028,Mark,Rivera,Fall 2022,Advanced Literature
+2028,Mark,Rivera,Fall 2024,Intro to Medicine
+2028,Mark,Rivera,Spring 2030,Topics in Medicine
+2028,Mark,Rivera,Spring 2029,Special Topics in Psychology
+2028,Mark,Rivera,Fall 2027,Seminar on Philosophy
+2028,Mark,Rivera,Fall 2025,Topics in Philosophy
+2028,Mark,Moore,Fall 2030,Seminar on Engineering
+2028,Mark,Moore,Spring 2030,Advanced Business
+2028,Mark,Moore,Fall 2028,Fundamentals of Chemistry
+2028,Mark,Moore,Spring 2030,Fundamentals of Computer Science
+2023,Patricia,Perez,Spring 2022,Advanced Law
+2023,Patricia,Perez,Spring 2029,Fundamentals of Art
+2023,Patricia,Perez,Fall 2025,Fundamentals of Engineering
+2023,Patricia,Perez,Spring 2022,Intro to Psychology
+2022,Nancy,Jackson,Spring 2022,Advanced Law
+2022,Nancy,Jackson,Spring 2025,Topics in Biology
+2022,Nancy,Jackson,Fall 2026,Advanced Computer Science
+2028,Barbara,Clark,Fall 2025,Fundamentals of Engineering
+2028,Barbara,Clark,Fall 2025,Intro to Literature
+2028,Barbara,Clark,Spring 2024,Intro to Physics
+2028,Barbara,Clark,Spring 2026,Intro to Computer Science
+2028,Barbara,Clark,Fall 2028,Advanced Environmental Science
+2028,Barbara,Clark,Spring 2023,Topics in Literature
+2029,Sandra,Harris,Spring 2024,Workshop in Literature
+2029,Sandra,Harris,Fall 2026,Special Topics in Philosophy
+2029,Sandra,Harris,Fall 2025,Fundamentals of Engineering
+2029,Sandra,Harris,Fall 2022,Intro to Business
+2024,William,Mitchell,Spring 2026,Special Topics in Medicine
+2024,William,Mitchell,Spring 2024,Fundamentals of Law
+2024,William,Mitchell,Spring 2030,Advanced Physics
+2024,William,Mitchell,Fall 2026,Advanced Computer Science
+2024,William,Mitchell,Fall 2027,Advanced Music
+2023,Elizabeth,Robinson,Spring 2030,Advanced Business
+2023,Elizabeth,Robinson,Fall 2022,Topics in Chemistry
+2023,Elizabeth,Robinson,Spring 2022,Intro to Psychology
+2023,Elizabeth,Robinson,Spring 2028,Topics in Statistics
+2022,Carol,Mitchell,Fall 2029,Advanced Mathematics
+2022,Carol,Mitchell,Fall 2022,Advanced Literature
+2022,Carol,Mitchell,Spring 2030,Fundamentals of Computer Science
+2022,Carol,Mitchell,Spring 2029,Topics in Political Science
+2022,Carol,Mitchell,Fall 2030,Fundamentals of History
+2029,Amanda,Sanchez,Fall 2022,Advanced Literature
+2029,Amanda,Sanchez,Spring 2027,Advanced Philosophy
+2029,Amanda,Sanchez,Spring 2024,Intro to Engineering
+2022,Paul,Rodriguez,Spring 2029,Advanced History
+2022,Paul,Rodriguez,Fall 2022,Fundamentals of Medicine
+2022,Paul,Rodriguez,Spring 2028,Topics in History
+2022,Paul,Rodriguez,Spring 2027,Topics in Law
+2022,Paul,Rodriguez,Fall 2022,Special Topics in Medicine
+2022,Paul,Rodriguez,Fall 2030,Fundamentals of History
+2030,Betty,Nguyen,Spring 2023,Topics in Literature
+2030,Betty,Nguyen,Spring 2027,Fundamentals of Physics
+2030,Betty,Nguyen,Spring 2026,Topics in Art
+2025,Mary,Wilson,Fall 2030,Fundamentals of History
+2025,Mary,Wilson,Fall 2026,Advanced Computer Science
+2025,Mary,Wilson,Spring 2030,Advanced Business
+2029,Michael,Nelson,Spring 2029,Fundamentals of Art
+2029,Michael,Nelson,Spring 2026,Intro to Computer Science
+2029,Michael,Nelson,Fall 2023,Seminar on Medicine
+2026,Brian,Smith,Spring 2030,Advanced Physics
+2026,Brian,Smith,Spring 2030,Workshop in Art
+2026,Brian,Smith,Spring 2024,Topics in Economics
+2025,Charles,Hernandez,Spring 2027,Advanced Sociology
+2025,Charles,Hernandez,Fall 2025,Special Topics in Sociology
+2025,Charles,Hernandez,Spring 2027,Topics in Law
+2026,Joseph,Mitchell,Fall 2028,Topics in Engineering
+2026,Joseph,Mitchell,Fall 2028,Fundamentals of Music
+2026,Joseph,Mitchell,Spring 2029,Topics in Political Science
+2026,Joseph,Mitchell,Spring 2030,Workshop in Art
+2026,Joseph,Mitchell,Fall 2023,Fundamentals of Business
+2026,Christopher,Wilson,Fall 2025,Topics in Psychology
+2026,Christopher,Wilson,Spring 2025,Intro to Music
+2026,Christopher,Wilson,Spring 2027,Fundamentals of Physics
+2026,Christopher,Wilson,Fall 2030,Seminar on Literature
+2026,Christopher,Wilson,Fall 2026,Advanced Computer Science
+2026,Christopher,Wilson,Spring 2029,Special Topics in Psychology
+2025,Lisa,Brown,Fall 2023,Intro to Statistics
+2025,Lisa,Brown,Fall 2027,Advanced Music
+2025,Lisa,Brown,Spring 2027,Advanced Philosophy
+2025,Lisa,Brown,Fall 2027,Fundamentals of Philosophy
+2024,Jessica,Johnson,Fall 2022,Intro to Business
+2024,Jessica,Johnson,Fall 2027,Advanced Music
+2024,Jessica,Johnson,Spring 2024,Intro to Physics
+2024,Jessica,Johnson,Fall 2027,Fundamentals of Philosophy
+2024,Jessica,Johnson,Spring 2027,Workshop in Engineering
+2026,Andrew,Sanchez,Spring 2024,Intro to Engineering
+2026,Andrew,Sanchez,Spring 2027,Advanced Sociology
+2026,Andrew,Sanchez,Fall 2030,Seminar on Literature
+2027,Lisa,Thompson,Spring 2029,Fundamentals of Art
+2027,Lisa,Thompson,Fall 2026,Special Topics in Philosophy
+2027,Lisa,Thompson,Spring 2030,Advanced Physics
+2027,Lisa,Thompson,Fall 2023,Topics in Environmental Science
+2027,Lisa,Thompson,Spring 2029,Advanced History
+2027,Lisa,Thompson,Fall 2030,Fundamentals of History
+2030,Kimberly,Young,Spring 2027,Topics in Law
+2030,Kimberly,Young,Spring 2022,Advanced Art
+2030,Kimberly,Young,Spring 2026,Intro to Mathematics
+2024,Patricia,Johnson,Spring 2029,Special Topics in Psychology
+2024,Patricia,Johnson,Spring 2025,Intro to Music
+2024,Patricia,Johnson,Spring 2023,Intro to History
+2024,Patricia,Johnson,Spring 2029,Topics in Computer Science
+2024,Patricia,Johnson,Spring 2024,Workshop in Literature
+2024,Patricia,Johnson,Spring 2022,Advanced Engineering
+2030,David,Rodriguez,Fall 2028,Special Topics in Environmental Science
+2030,David,Rodriguez,Fall 2030,Special Topics in Economics
+2030,David,Rodriguez,Spring 2027,Intro to Sociology
+2023,Michelle,Perez,Fall 2030,Fundamentals of History
+2023,Michelle,Perez,Fall 2024,Intro to Medicine
+2023,Michelle,Perez,Spring 2027,Workshop in Engineering
+2023,Michelle,Perez,Spring 2022,Advanced Law
+2023,Michelle,Perez,Fall 2025,Seminar on Literature
+2023,Michelle,Perez,Spring 2027,Advanced Sociology
+2022,Christopher,White,Spring 2029,Fundamentals of Art
+2022,Christopher,White,Fall 2030,Special Topics in Economics
+2022,Christopher,White,Spring 2030,Fundamentals of Computer Science
+2022,Christopher,White,Spring 2025,Intro to Music
+2026,Michelle,Campbell,Fall 2026,Advanced Biology
+2026,Michelle,Campbell,Fall 2022,Intro to Economics
+2026,Michelle,Campbell,Spring 2023,Topics in Literature
+2023,Deborah,Hernandez,Fall 2022,Advanced Economics
+2023,Deborah,Hernandez,Fall 2022,Intro to Economics
+2023,Deborah,Hernandez,Spring 2027,Workshop in Engineering
+2030,Sandra,Walker,Fall 2028,Topics in Engineering
+2030,Sandra,Walker,Spring 2024,Intro to Physics
+2030,Sandra,Walker,Fall 2030,Fundamentals of Psychology
+2030,Sandra,Walker,Spring 2027,Workshop in Engineering
+2025,Betty,Martin,Fall 2022,Intro to Economics
+2025,Betty,Martin,Fall 2023,Fundamentals of Business
+2025,Betty,Martin,Spring 2024,Workshop in Literature
+2022,Kevin,Perez,Fall 2025,Fundamentals of Environmental Science
+2022,Kevin,Perez,Fall 2026,Special Topics in Philosophy
+2022,Kevin,Perez,Fall 2028,Topics in Engineering
+2022,Kevin,Perez,Fall 2022,Topics in Chemistry
+2025,Michael,Nguyen,Fall 2023,Intro to Statistics
+2025,Michael,Nguyen,Spring 2022,Intro to Environmental Science
+2025,Michael,Nguyen,Fall 2028,Fundamentals of Economics
+2025,Michael,Nguyen,Spring 2029,Advanced History
+2025,Michael,Nguyen,Fall 2029,Fundamentals of Political Science
+2028,Melissa,Johnson,Fall 2025,Intro to Literature
+2028,Melissa,Johnson,Spring 2029,Advanced Psychology
+2028,Melissa,Johnson,Spring 2022,Advanced Engineering
+2028,Melissa,Johnson,Fall 2026,Special Topics in Philosophy
+2028,Melissa,Johnson,Spring 2026,Intro to Mathematics
+2024,Nancy,Wright,Spring 2026,Intro to Mathematics
+2024,Nancy,Wright,Fall 2030,Fundamentals of Psychology
+2024,Nancy,Wright,Spring 2026,Topics in Art
+2024,Nancy,Wright,Fall 2029,Advanced Mathematics
+2024,Nancy,Wright,Fall 2028,Fundamentals of Economics
+2024,Mary,Smith,Spring 2023,Intro to History
+2024,Mary,Smith,Fall 2022,Topics in Chemistry
+2024,Mary,Smith,Fall 2028,Special Topics in Environmental Science
+2024,Mary,Smith,Fall 2025,Fundamentals of Engineering
+2030,Daniel,Lee,Fall 2025,Seminar on Literature
+2030,Daniel,Lee,Fall 2025,Fundamentals of Engineering
+2030,Daniel,Lee,Fall 2027,Fundamentals of Sociology
+2030,Daniel,Nelson,Spring 2028,Fundamentals of Statistics
+2030,Daniel,Nelson,Spring 2022,Advanced Engineering
+2030,Daniel,Nelson,Spring 2024,Intro to Engineering
+2029,Richard,Hall,Fall 2025,Seminar on Literature
+2029,Richard,Hall,Spring 2030,Advanced Business
+2029,Richard,Hall,Spring 2024,Intro to Engineering
+2029,Richard,Hall,Fall 2022,Advanced Economics
+2023,Betty,Garcia,Fall 2028,Special Topics in Environmental Science
+2023,Betty,Garcia,Spring 2022,Intro to Psychology
+2023,Betty,Garcia,Fall 2023,Seminar on Medicine
+2024,Linda,Jackson,Fall 2029,Fundamentals of Political Science
+2024,Linda,Jackson,Spring 2029,Intro to Political Science
+2024,Linda,Jackson,Fall 2023,Seminar on Medicine
+2024,Linda,Jackson,Fall 2030,Seminar on Engineering
+2027,Barbara,Wilson,Fall 2022,Intro to Economics
+2027,Barbara,Wilson,Fall 2022,Intro to Biology
+2027,Barbara,Wilson,Spring 2029,Fundamentals of Biology
+2027,Barbara,Wilson,Spring 2030,Advanced Physics
+2027,Barbara,Wilson,Fall 2025,Special Topics in Sociology
+2027,Barbara,Wilson,Spring 2022,Advanced Engineering
+2028,Joseph,Moore,Fall 2030,Fundamentals of Psychology
+2028,Joseph,Moore,Spring 2028,Intro to Art
+2028,Joseph,Moore,Spring 2029,Fundamentals of Biology
+2028,Joseph,Moore,Spring 2030,Advanced Business
+2028,Joseph,Moore,Spring 2024,Fundamentals of Law
+2030,Richard,Williams,Spring 2024,Fundamentals of Law
+2030,Richard,Williams,Fall 2027,Fundamentals of Philosophy
+2030,Richard,Williams,Fall 2025,Fundamentals of Environmental Science
+2030,Richard,Williams,Spring 2025,Topics in Biology
+2030,Richard,Williams,Spring 2029,Advanced History
+2030,Richard,Williams,Fall 2025,Intro to Literature
+2029,Charles,Thomas,Fall 2028,Topics in Music
+2029,Charles,Thomas,Spring 2024,Workshop in Literature
+2029,Charles,Thomas,Fall 2030,Fundamentals of History
+2029,Charles,Thomas,Spring 2022,Advanced Law
+2030,Amanda,Adams,Spring 2027,Fundamentals of Literature
+2030,Amanda,Adams,Spring 2023,Topics in Literature
+2030,Amanda,Adams,Fall 2022,Intro to Economics
+2030,Amanda,Adams,Fall 2022,Fundamentals of Medicine
+2026,Carol,Allen,Fall 2026,Special Topics in Philosophy
+2026,Carol,Allen,Fall 2030,Seminar on Literature
+2026,Carol,Allen,Spring 2024,Fundamentals of Law
+2025,Brian,Baker,Fall 2027,Advanced Music
+2025,Brian,Baker,Spring 2025,Topics in Biology
+2025,Brian,Baker,Fall 2025,Special Topics in Sociology
+2025,Brian,Baker,Fall 2024,Advanced Medicine
+2023,Elizabeth,Martinez,Spring 2028,Topics in History
+2023,Elizabeth,Martinez,Spring 2029,Special Topics in Psychology
+2023,Elizabeth,Martinez,Spring 2027,Advanced Philosophy
+2023,Elizabeth,Martinez,Fall 2030,Seminar on Literature
+2023,Elizabeth,Martinez,Fall 2028,Intro to Law
+2029,Daniel,Adams,Spring 2028,Topics in Statistics
+2029,Daniel,Adams,Spring 2027,Intro to Sociology
+2029,Daniel,Adams,Spring 2022,Advanced Law
+2029,Daniel,Adams,Spring 2023,Topics in Literature
+2027,Ashley,Baker,Spring 2022,Advanced Engineering
+2027,Ashley,Baker,Spring 2027,Advanced Philosophy
+2027,Ashley,Baker,Spring 2026,Special Topics in Medicine
+2027,Ashley,Baker,Fall 2029,Advanced Mathematics
+2027,Ashley,Baker,Fall 2025,Intro to Literature
+2025,John,Flores,Fall 2022,Fundamentals of Medicine
+2025,John,Flores,Spring 2028,Intro to Art
+2025,John,Flores,Fall 2025,Special Topics in Statistics
+2025,John,Flores,Fall 2030,Fundamentals of Psychology
+2025,John,Flores,Fall 2025,Topics in Business
+2025,John,Flores,Fall 2025,Seminar on Literature
+2024,Matthew,Hall,Fall 2028,Advanced Environmental Science
+2024,Matthew,Hall,Spring 2028,Fundamentals of Statistics
+2024,Matthew,Hall,Fall 2030,Fundamentals of Psychology
+2025,Patricia,Jones,Spring 2026,Intro to Mathematics
+2025,Patricia,Jones,Spring 2029,Fundamentals of Biology
+2025,Patricia,Jones,Spring 2027,Advanced Sociology
+2025,Patricia,Jones,Fall 2022,Special Topics in Medicine
+2025,Patricia,Jones,Fall 2029,Advanced Mathematics
+2026,Robert,Davis,Spring 2024,Topics in Economics
+2026,Robert,Davis,Fall 2028,Special Topics in Environmental Science
+2026,Robert,Davis,Fall 2025,Intro to Literature
+2029,Matthew,Hill,Fall 2027,Fundamentals of Sociology
+2029,Matthew,Hill,Spring 2024,Workshop in Literature
+2029,Matthew,Hill,Spring 2024,Intro to Physics
+2029,Matthew,Hill,Fall 2028,Fundamentals of Music
+2029,Matthew,Hill,Fall 2025,Topics in Philosophy
+2029,Matthew,Hill,Spring 2027,Fundamentals of Physics
+2026,Sandra,Lee,Spring 2022,Advanced Law
+2026,Sandra,Lee,Spring 2024,Intro to Physics
+2026,Sandra,Lee,Fall 2026,Special Topics in Philosophy
+2026,Sandra,Lee,Spring 2025,Seminar on Engineering
+2028,Karen,Rodriguez,Fall 2023,Advanced Chemistry
+2028,Karen,Rodriguez,Fall 2027,Seminar on Philosophy
+2028,Karen,Rodriguez,Fall 2028,Advanced Environmental Science
+2028,Karen,Rodriguez,Fall 2022,Fundamentals of Medicine
+2028,Karen,Rodriguez,Spring 2030,Workshop in Art
+2028,Karen,Rodriguez,Fall 2026,Special Topics in Philosophy
+2026,Thomas,Garcia,Spring 2022,Advanced Engineering
+2026,Thomas,Garcia,Spring 2027,Intro to Sociology
+2026,Thomas,Garcia,Spring 2025,Topics in Biology
+2026,Thomas,Garcia,Fall 2022,Intro to Business
+2026,Thomas,Garcia,Spring 2023,Advanced Political Science
+2027,Kenneth,Clark,Fall 2024,Intro to Chemistry
+2027,Kenneth,Clark,Fall 2023,Intro to Statistics
+2027,Kenneth,Clark,Spring 2024,Topics in Economics
+2027,Kenneth,Clark,Spring 2026,Intro to Mathematics
+2027,Kenneth,Clark,Spring 2029,Fundamentals of Biology
+2027,Kenneth,Clark,Fall 2027,Fundamentals of Philosophy
+2026,Anthony,Gonzalez,Spring 2023,Advanced Political Science
+2026,Anthony,Gonzalez,Spring 2026,Topics in Art
+2026,Anthony,Gonzalez,Spring 2028,Topics in History
+2026,Anthony,Gonzalez,Fall 2022,Intro to Economics
+2026,Anthony,Gonzalez,Fall 2029,Advanced Mathematics
+2030,Paul,Lopez,Spring 2027,Fundamentals of Physics
+2030,Paul,Lopez,Fall 2028,Advanced Environmental Science
+2030,Paul,Lopez,Fall 2024,Advanced Medicine
+2030,Paul,Lopez,Fall 2026,Advanced Computer Science
+2023,George,Walker,Fall 2022,Special Topics in Medicine
+2023,George,Walker,Fall 2030,Seminar on Engineering
+2023,George,Walker,Fall 2024,Intro to Chemistry
+2023,George,Walker,Fall 2027,Seminar on Philosophy
+2023,George,Walker,Fall 2025,Fundamentals of Environmental Science
+2022,Kevin,Nguyen,Spring 2027,Topics in Law
+2022,Kevin,Nguyen,Fall 2029,Advanced Mathematics
+2022,Kevin,Nguyen,Fall 2022,Workshop in Medicine
+2030,Donald,Taylor,Fall 2023,Intro to Statistics
+2030,Donald,Taylor,Fall 2024,Advanced Medicine
+2030,Donald,Taylor,Spring 2022,Advanced Law
+2030,Donald,Taylor,Fall 2027,Seminar on Philosophy
+2028,Daniel,Jones,Spring 2023,Intro to History
+2028,Daniel,Jones,Fall 2022,Workshop in Medicine
+2028,Daniel,Jones,Fall 2022,Advanced Literature
+2028,Daniel,Jones,Spring 2022,Advanced Engineering
+2030,David,Adams,Fall 2025,Topics in Mathematics
+2030,David,Adams,Fall 2025,Topics in Philosophy
+2030,David,Adams,Fall 2028,Topics in Music
+2026,Richard,Garcia,Spring 2022,Intro to Psychology
+2026,Richard,Garcia,Spring 2025,Intro to Music
+2026,Richard,Garcia,Spring 2026,Topics in Art
+2026,Richard,Garcia,Fall 2024,Advanced Medicine
+2026,Richard,Garcia,Fall 2030,Fundamentals of History
+2028,Nancy,Miller,Fall 2024,Intro to Medicine
+2028,Nancy,Miller,Spring 2027,Workshop in Engineering
+2028,Nancy,Miller,Spring 2029,Fundamentals of Art
+2028,Nancy,Miller,Spring 2022,Intro to Environmental Science
+2028,Nancy,Miller,Fall 2028,Fundamentals of Chemistry
+2028,Nancy,Miller,Spring 2026,Intro to Mathematics
+2030,Amanda,Rivera,Fall 2025,Fundamentals of Environmental Science
+2030,Amanda,Rivera,Fall 2028,Advanced Environmental Science
+2030,Amanda,Rivera,Spring 2028,Topics in Statistics
+2025,Kimberly,Thompson,Fall 2023,Fundamentals of Business
+2025,Kimberly,Thompson,Fall 2026,Advanced Biology
+2025,Kimberly,Thompson,Spring 2026,Intro to Mathematics
+2024,Richard,Flores,Fall 2025,Fundamentals of Environmental Science
+2024,Richard,Flores,Spring 2025,Topics in Biology
+2024,Richard,Flores,Fall 2030,Fundamentals of History
+2024,Richard,Flores,Spring 2024,Topics in Physics
+2024,Richard,Flores,Fall 2027,Advanced Music
+2028,Sarah,Thompson,Spring 2024,Intro to Engineering
+2028,Sarah,Thompson,Spring 2026,Intro to Mathematics
+2028,Sarah,Thompson,Spring 2026,Special Topics in Medicine
+2028,Sarah,Thompson,Spring 2024,Seminar on Computer Science
+2023,Daniel,Mitchell,Fall 2028,Special Topics in Environmental Science
+2023,Daniel,Mitchell,Spring 2025,Seminar on Engineering
+2023,Daniel,Mitchell,Fall 2028,Fundamentals of Chemistry
+2023,Daniel,Mitchell,Fall 2027,Fundamentals of Sociology
+2030,Dorothy,Lewis,Spring 2027,Advanced Philosophy
+2030,Dorothy,Lewis,Fall 2026,Advanced Computer Science
+2030,Dorothy,Lewis,Fall 2022,Intro to Economics
+2030,Dorothy,Lewis,Spring 2023,Special Topics in Philosophy
+2030,Dorothy,Lewis,Spring 2030,Topics in Medicine
+2030,Dorothy,Lewis,Spring 2027,Workshop in Engineering
+2022,James,Miller,Spring 2026,Intro to Mathematics
+2022,James,Miller,Spring 2023,Advanced Political Science
+2022,James,Miller,Fall 2027,Fundamentals of Sociology
+2022,James,Miller,Spring 2022,Advanced Law
+2022,James,Miller,Fall 2028,Topics in Engineering
+2026,Elizabeth,Rodriguez,Spring 2022,Intro to Psychology
+2026,Elizabeth,Rodriguez,Fall 2025,Topics in Business
+2026,Elizabeth,Rodriguez,Fall 2028,Topics in Music
+2026,Elizabeth,Rodriguez,Fall 2025,Intro to Literature
+2026,Elizabeth,Rodriguez,Fall 2023,Topics in Sociology
+2026,Elizabeth,Rodriguez,Fall 2025,Topics in Mathematics
+2024,Elizabeth,Martinez,Spring 2028,Topics in Statistics
+2024,Elizabeth,Martinez,Fall 2022,Advanced Economics
+2024,Elizabeth,Martinez,Spring 2022,Fundamentals of Mathematics
+2025,Mark,Sanchez,Spring 2027,Topics in Law
+2025,Mark,Sanchez,Fall 2027,Fundamentals of Philosophy
+2025,Mark,Sanchez,Spring 2024,Topics in Economics
+2025,Mark,Sanchez,Fall 2028,Advanced Environmental Science
+2023,Kimberly,Lopez,Spring 2022,Intro to Environmental Science
+2023,Kimberly,Lopez,Spring 2027,Advanced Sociology
+2023,Kimberly,Lopez,Fall 2025,Topics in Business
+2023,Kimberly,Lopez,Spring 2025,Topics in Biology
+2023,Kimberly,Lopez,Fall 2029,Advanced Statistics
+2030,John,Nguyen,Spring 2028,Fundamentals of Statistics
+2030,John,Nguyen,Fall 2022,Intro to Biology
+2030,John,Nguyen,Spring 2022,Advanced Engineering
+2030,John,Nguyen,Fall 2028,Topics in Engineering
+2030,James,Anderson,Spring 2030,Topics in Medicine
+2030,James,Anderson,Fall 2022,Intro to Business
+2030,James,Anderson,Fall 2028,Special Topics in Environmental Science
+2028,Matthew,Baker,Spring 2026,Intro to Mathematics
+2028,Matthew,Baker,Spring 2024,Topics in Physics
+2028,Matthew,Baker,Spring 2026,Special Topics in Medicine
+2028,Matthew,Baker,Spring 2028,Topics in Statistics
+2028,Matthew,Baker,Fall 2030,Special Topics in Economics
+2025,Patricia,Thomas,Spring 2029,Fundamentals of Art
+2025,Patricia,Thomas,Fall 2022,Intro to Economics
+2025,Patricia,Thomas,Spring 2024,Fundamentals of Law
+2025,Patricia,Thomas,Fall 2029,Fundamentals of Political Science
+2025,Patricia,Thomas,Fall 2024,Intro to Chemistry
+2029,Mark,Adams,Fall 2028,Topics in Music
+2029,Mark,Adams,Spring 2029,Special Topics in Psychology
+2029,Mark,Adams,Fall 2030,Special Topics in Economics
+2029,Mark,Adams,Fall 2022,Topics in Chemistry
+2029,Mark,Adams,Spring 2030,Workshop in Art
+2029,Mark,Adams,Fall 2026,Advanced Biology
+2022,Betty,Jones,Fall 2022,Intro to Business
+2022,Betty,Jones,Fall 2027,Seminar on Philosophy
+2022,Betty,Jones,Fall 2024,Advanced Medicine
+2022,Betty,Jones,Fall 2025,Special Topics in Sociology
+2022,Betty,Jones,Fall 2022,Intro to Economics
+2022,Mary,Garcia,Spring 2023,Topics in Literature
+2022,Mary,Garcia,Spring 2029,Topics in Political Science
+2022,Mary,Garcia,Fall 2027,Fundamentals of Philosophy
+2022,Mary,Garcia,Spring 2028,Fundamentals of Statistics
+2028,Joseph,King,Fall 2025,Seminar on Literature
+2028,Joseph,King,Spring 2030,Topics in Medicine
+2028,Joseph,King,Spring 2027,Advanced Philosophy
+2028,Joseph,King,Fall 2030,Seminar on Literature
+2026,Christopher,Lee,Fall 2024,Intro to Chemistry
+2026,Christopher,Lee,Spring 2024,Fundamentals of Law
+2026,Christopher,Lee,Spring 2026,Intro to Computer Science
+2026,Christopher,Lee,Spring 2028,Fundamentals of Statistics
+2026,Christopher,Lee,Spring 2025,Intro to Music
+2026,Christopher,Lee,Spring 2029,Intro to Political Science
+2028,Paul,Hernandez,Fall 2023,Topics in Sociology
+2028,Paul,Hernandez,Spring 2024,Seminar on Computer Science
+2028,Paul,Hernandez,Fall 2025,Topics in Philosophy
+2028,Paul,Hernandez,Fall 2025,Intro to Literature
+2030,Anthony,Moore,Fall 2027,Fundamentals of Philosophy
+2030,Anthony,Moore,Spring 2025,Intro to Music
+2030,Anthony,Moore,Spring 2030,Advanced Business
+2030,Anthony,Moore,Fall 2023,Intro to Statistics
+2030,Anthony,Moore,Spring 2022,Advanced Law
+2029,Paul,Adams,Spring 2027,Advanced Sociology
+2029,Paul,Adams,Spring 2022,Intro to Psychology
+2029,Paul,Adams,Spring 2030,Fundamentals of Computer Science
+2029,Paul,Adams,Spring 2027,Workshop in Engineering
+2022,Ashley,Young,Fall 2028,Fundamentals of Music
+2022,Ashley,Young,Spring 2023,Topics in Literature
+2022,Ashley,Young,Fall 2025,Topics in Psychology
+2022,Ashley,Young,Fall 2025,Seminar on Literature
+2028,Carol,Hall,Fall 2027,Fundamentals of Sociology
+2028,Carol,Hall,Spring 2028,Fundamentals of Statistics
+2028,Carol,Hall,Fall 2028,Special Topics in Environmental Science
+2028,Carol,Hall,Spring 2028,Topics in History
+2028,Carol,Hall,Fall 2024,Advanced Medicine
+2027,Deborah,Lee,Spring 2029,Special Topics in Psychology
+2027,Deborah,Lee,Fall 2022,Topics in Chemistry
+2027,Deborah,Lee,Spring 2027,Topics in Law
+2027,Deborah,Lee,Spring 2029,Fundamentals of Biology
+2027,Deborah,Lee,Spring 2028,Fundamentals of Statistics
+2029,Christopher,Campbell,Fall 2028,Advanced Environmental Science
+2029,Christopher,Campbell,Fall 2025,Special Topics in Statistics
+2029,Christopher,Campbell,Spring 2028,Fundamentals of Statistics
+2029,Christopher,Campbell,Spring 2026,Special Topics in Medicine
+2029,Christopher,Campbell,Spring 2023,Advanced Political Science
+2022,Melissa,Hall,Fall 2024,Intro to Medicine
+2022,Melissa,Hall,Fall 2023,Topics in Environmental Science
+2022,Melissa,Hall,Fall 2030,Seminar on Literature
+2029,Matthew,Anderson,Spring 2022,Intro to Environmental Science
+2029,Matthew,Anderson,Fall 2030,Fundamentals of History
+2029,Matthew,Anderson,Fall 2025,Topics in Mathematics
+2029,Matthew,Anderson,Fall 2025,Fundamentals of Engineering
+2029,Matthew,Anderson,Fall 2026,Special Topics in Philosophy
+2029,Matthew,Anderson,Spring 2022,Fundamentals of Mathematics
+2030,David,Williams,Fall 2023,Seminar on Medicine
+2030,David,Williams,Fall 2029,Fundamentals of Political Science
+2030,David,Williams,Fall 2022,Topics in Chemistry
+2030,David,Williams,Spring 2028,Topics in History
+2023,Patricia,Robinson,Fall 2029,Advanced Statistics
+2023,Patricia,Robinson,Fall 2023,Topics in Environmental Science
+2023,Patricia,Robinson,Fall 2025,Topics in Mathematics
+2025,James,Hill,Fall 2022,Workshop in Medicine
+2025,James,Hill,Fall 2023,Seminar on Medicine
+2025,James,Hill,Spring 2024,Topics in Economics
+2022,Betty,Jackson,Spring 2022,Advanced Engineering
+2022,Betty,Jackson,Spring 2027,Fundamentals of Physics
+2022,Betty,Jackson,Fall 2030,Seminar on Engineering
+2022,Betty,Jackson,Spring 2030,Advanced Business
+2029,Brian,Thomas,Spring 2022,Advanced Law
+2029,Brian,Thomas,Fall 2025,Special Topics in Sociology
+2029,Brian,Thomas,Spring 2024,Fundamentals of Law
+2029,Brian,Thomas,Spring 2030,Topics in Medicine
+2029,Brian,Thomas,Spring 2024,Intro to Engineering
+2026,Betty,Moore,Fall 2025,Topics in Business
+2026,Betty,Moore,Fall 2025,Seminar on Literature
+2026,Betty,Moore,Fall 2030,Fundamentals of History
+2026,Betty,Moore,Spring 2025,Seminar on Engineering
+2026,Betty,Moore,Fall 2024,Intro to Medicine
+2025,Betty,Miller,Fall 2022,Intro to Economics
+2025,Betty,Miller,Spring 2025,Topics in Biology
+2025,Betty,Miller,Fall 2030,Fundamentals of Psychology
+2025,Betty,Miller,Fall 2023,Seminar on Medicine
+2025,Betty,Miller,Fall 2022,Intro to Biology
+2025,Betty,Miller,Fall 2025,Fundamentals of Engineering
+2029,Amanda,Martinez,Fall 2027,Advanced Music
+2029,Amanda,Martinez,Fall 2030,Fundamentals of History
+2029,Amanda,Martinez,Fall 2030,Special Topics in Economics
+2029,Amanda,Martinez,Spring 2030,Intro to Philosophy
+2029,Amanda,Martinez,Spring 2029,Topics in Computer Science
+2029,Amanda,Martinez,Spring 2027,Advanced Sociology
+2029,Patricia,Lee,Spring 2025,Intro to Music
+2029,Patricia,Lee,Fall 2029,Fundamentals of Political Science
+2029,Patricia,Lee,Spring 2028,Fundamentals of Statistics
+2029,Patricia,Lee,Fall 2022,Advanced Economics
+2029,Patricia,Lee,Fall 2024,Intro to Medicine
+2029,Patricia,Lee,Spring 2026,Intro to Mathematics
+2025,Robert,Moore,Fall 2028,Fundamentals of Music
+2025,Robert,Moore,Fall 2025,Topics in Philosophy
+2025,Robert,Moore,Spring 2030,Advanced Physics
+2024,Jessica,King,Spring 2028,Intro to Art
+2024,Jessica,King,Fall 2025,Topics in Mathematics
+2024,Jessica,King,Spring 2023,Special Topics in Philosophy
+2024,Jessica,King,Fall 2029,Advanced Mathematics
+2024,Jessica,King,Fall 2028,Fundamentals of Music
+2024,Jessica,King,Fall 2025,Topics in Philosophy
+2027,James,Wilson,Spring 2023,Intro to History
+2027,James,Wilson,Spring 2030,Topics in Medicine
+2027,James,Wilson,Fall 2028,Fundamentals of Chemistry
+2027,James,Wilson,Spring 2028,Fundamentals of Statistics
+2027,James,Wilson,Fall 2028,Advanced Environmental Science
+2027,James,Wilson,Spring 2022,Advanced Law
+2026,Deborah,Thompson,Fall 2023,Intro to Statistics
+2026,Deborah,Thompson,Spring 2029,Advanced History
+2026,Deborah,Thompson,Spring 2024,Seminar on Computer Science
+2026,Deborah,Thompson,Fall 2023,Advanced Chemistry
+2026,Deborah,Thompson,Spring 2030,Intro to Philosophy
+2024,Emily,Jones,Fall 2028,Fundamentals of Chemistry
+2024,Emily,Jones,Spring 2022,Advanced Engineering
+2024,Emily,Jones,Spring 2022,Fundamentals of Mathematics
+2024,Emily,Jones,Spring 2029,Intro to Political Science
+2024,Emily,Jones,Fall 2025,Topics in Philosophy
+2027,Karen,Scott,Fall 2025,Topics in Psychology
+2027,Karen,Scott,Fall 2025,Topics in Philosophy
+2027,Karen,Scott,Fall 2022,Intro to Biology
+2027,Mary,Jackson,Spring 2030,Topics in Medicine
+2027,Mary,Jackson,Spring 2027,Workshop in Engineering
+2027,Mary,Jackson,Spring 2028,Topics in History
+2027,Mary,Jackson,Fall 2022,Intro to Economics
+2027,Mary,Jackson,Spring 2027,Intro to Sociology
+2029,Ashley,Garcia,Spring 2023,Advanced Political Science
+2029,Ashley,Garcia,Spring 2023,Special Topics in Philosophy
+2029,Ashley,Garcia,Spring 2024,Intro to Physics
+2029,Ashley,Garcia,Fall 2025,Fundamentals of Engineering
+2028,Brian,Ramirez,Fall 2023,Topics in Environmental Science
+2028,Brian,Ramirez,Fall 2025,Topics in Business
+2028,Brian,Ramirez,Spring 2030,Intro to Philosophy
+2028,Brian,Ramirez,Spring 2029,Advanced Psychology
+2028,Brian,Ramirez,Fall 2023,Fundamentals of Business
+2025,Matthew,Lewis,Spring 2024,Intro to Physics
+2025,Matthew,Lewis,Spring 2028,Intro to Art
+2025,Matthew,Lewis,Spring 2030,Topics in Medicine
+2026,Andrew,Martinez,Spring 2022,Fundamentals of Mathematics
+2026,Andrew,Martinez,Fall 2027,Fundamentals of Sociology
+2026,Andrew,Martinez,Spring 2023,Special Topics in Philosophy
+2026,Andrew,Martinez,Fall 2028,Fundamentals of Economics
+2026,Andrew,Martinez,Spring 2030,Advanced Physics
+2022,Lisa,Green,Fall 2025,Intro to Literature
+2022,Lisa,Green,Spring 2027,Intro to Sociology
+2022,Lisa,Green,Fall 2025,Topics in Business
+2022,Lisa,Green,Fall 2030,Seminar on Literature
+2022,Lisa,Green,Fall 2025,Fundamentals of Engineering
+2028,Charles,Flores,Spring 2030,Advanced Business
+2028,Charles,Flores,Spring 2029,Topics in Computer Science
+2028,Charles,Flores,Fall 2023,Advanced Chemistry
+2028,Charles,Flores,Spring 2030,Topics in Medicine
+2028,Charles,Flores,Fall 2023,Seminar on Medicine
+2028,Charles,Flores,Spring 2030,Workshop in Art
+2022,Daniel,Flores,Fall 2030,Fundamentals of Psychology
+2022,Daniel,Flores,Fall 2027,Advanced Music
+2022,Daniel,Flores,Spring 2029,Fundamentals of Art
+2022,Daniel,Flores,Spring 2022,Advanced Art
+2022,Daniel,Flores,Spring 2024,Intro to Physics
+2022,Daniel,Flores,Spring 2028,Topics in History
+2024,Michelle,Miller,Spring 2029,Topics in Computer Science
+2024,Michelle,Miller,Spring 2029,Topics in Political Science
+2024,Michelle,Miller,Fall 2023,Fundamentals of Business
+2024,Michelle,Miller,Fall 2024,Advanced Medicine
+2024,Michelle,Miller,Spring 2027,Intro to Sociology
+2024,Michelle,Miller,Spring 2022,Intro to Environmental Science
+2024,Joseph,Wilson,Fall 2028,Fundamentals of Chemistry
+2024,Joseph,Wilson,Fall 2028,Topics in Music
+2024,Joseph,Wilson,Fall 2025,Topics in Business
+2024,Joseph,Wilson,Spring 2024,Fundamentals of Law
+2024,Joseph,Wilson,Spring 2029,Advanced History
+2024,Joseph,Wilson,Fall 2022,Workshop in Medicine
+2029,Brian,Hill,Spring 2029,Topics in Political Science
+2029,Brian,Hill,Fall 2022,Fundamentals of Medicine
+2029,Brian,Hill,Fall 2029,Advanced Mathematics
+2029,Brian,Hill,Spring 2030,Intro to Philosophy
+2029,Brian,Hill,Spring 2029,Topics in Computer Science
+2029,Brian,Hill,Fall 2023,Topics in Sociology
+2025,Jennifer,Miller,Spring 2027,Topics in Law
+2025,Jennifer,Miller,Spring 2028,Topics in Statistics
+2025,Jennifer,Miller,Spring 2023,Topics in Literature
+2029,Matthew,Rivera,Spring 2030,Advanced Business
+2029,Matthew,Rivera,Fall 2026,Advanced Biology
+2029,Matthew,Rivera,Fall 2027,Fundamentals of Philosophy
+2029,Matthew,Rivera,Fall 2026,Advanced Computer Science
+2029,Matthew,Rivera,Fall 2030,Special Topics in Economics
+2029,Matthew,Rivera,Spring 2022,Fundamentals of Mathematics
+2025,Deborah,Young,Spring 2029,Advanced History
+2025,Deborah,Young,Fall 2025,Fundamentals of Engineering
+2025,Deborah,Young,Fall 2022,Fundamentals of Medicine
+2025,Deborah,Young,Fall 2025,Topics in Psychology
+2025,Deborah,Young,Spring 2026,Intro to Computer Science
+2030,Thomas,Martin,Fall 2027,Advanced Music
+2030,Thomas,Martin,Fall 2028,Fundamentals of Economics
+2030,Thomas,Martin,Spring 2029,Topics in Political Science
+2030,Thomas,Martin,Fall 2025,Topics in Philosophy
+2030,Thomas,Martin,Fall 2028,Advanced Environmental Science
+2023,Michael,Smith,Fall 2025,Topics in Business
+2023,Michael,Smith,Fall 2030,Special Topics in Economics
+2023,Michael,Smith,Fall 2023,Seminar on Medicine
+2023,Michael,Smith,Fall 2025,Special Topics in Statistics
+2023,Michael,Smith,Fall 2025,Topics in Psychology
+2023,Michael,Smith,Spring 2023,Advanced Political Science
+2022,Paul,Jones,Spring 2022,Advanced Engineering
+2022,Paul,Jones,Fall 2025,Fundamentals of Environmental Science
+2022,Paul,Jones,Spring 2025,Topics in Biology
+2022,Robert,Brown,Spring 2023,Special Topics in Philosophy
+2022,Robert,Brown,Spring 2023,Intro to History
+2022,Robert,Brown,Fall 2025,Fundamentals of Engineering
+2022,George,Hernandez,Fall 2026,Advanced Biology
+2022,George,Hernandez,Fall 2022,Intro to Economics
+2022,George,Hernandez,Spring 2030,Workshop in Art
+2022,George,Hernandez,Fall 2022,Advanced Literature
+2022,George,Hernandez,Fall 2027,Seminar on Philosophy
+2022,George,Hernandez,Fall 2025,Fundamentals of Environmental Science
+2026,Robert,Young,Spring 2024,Workshop in Literature
+2026,Robert,Young,Spring 2029,Fundamentals of Art
+2026,Robert,Young,Fall 2026,Special Topics in Philosophy
+2026,Robert,Young,Fall 2025,Intro to Literature
+2026,Robert,Young,Fall 2025,Special Topics in Statistics
+2026,Robert,Young,Fall 2028,Fundamentals of Music
+2022,Donna,Mitchell,Fall 2024,Intro to Chemistry
+2022,Donna,Mitchell,Fall 2030,Seminar on Engineering
+2022,Donna,Mitchell,Spring 2027,Intro to Sociology
+2022,Donna,Mitchell,Spring 2024,Intro to Physics
+2029,Amanda,Perez,Spring 2030,Workshop in Art
+2029,Amanda,Perez,Fall 2025,Topics in Philosophy
+2029,Amanda,Perez,Spring 2026,Intro to Mathematics
+2025,George,Davis,Fall 2027,Fundamentals of Philosophy
+2025,George,Davis,Fall 2025,Special Topics in Statistics
+2025,George,Davis,Fall 2022,Intro to Business
+2025,George,Davis,Fall 2024,Intro to Chemistry
+2025,George,Davis,Fall 2023,Fundamentals of Business
+2025,George,Davis,Spring 2029,Fundamentals of Art
+2028,Mark,Sanchez,Spring 2029,Intro to Political Science
+2028,Mark,Sanchez,Spring 2030,Advanced Physics
+2028,Mark,Sanchez,Fall 2025,Topics in Business
+2030,William,Johnson,Spring 2026,Topics in Art
+2030,William,Johnson,Fall 2025,Special Topics in Sociology
+2030,William,Johnson,Fall 2025,Topics in Business
+2030,William,Johnson,Spring 2024,Workshop in Literature
+2030,William,Johnson,Fall 2023,Seminar on Medicine
+2027,Emily,Thomas,Fall 2030,Fundamentals of History
+2027,Emily,Thomas,Spring 2026,Topics in Art
+2027,Emily,Thomas,Spring 2022,Advanced Art
+2027,Emily,Thomas,Fall 2027,Fundamentals of Sociology
+2025,Steven,Thomas,Fall 2028,Advanced Environmental Science
+2025,Steven,Thomas,Spring 2024,Topics in Physics
+2025,Steven,Thomas,Spring 2030,Topics in Medicine
+2029,Edward,Adams,Fall 2022,Intro to Economics
+2029,Edward,Adams,Fall 2028,Fundamentals of Economics
+2029,Edward,Adams,Fall 2024,Intro to Medicine
+2028,Daniel,Johnson,Fall 2029,Advanced Mathematics
+2028,Daniel,Johnson,Spring 2030,Workshop in Art
+2028,Daniel,Johnson,Spring 2028,Topics in History
+2025,Charles,Taylor,Spring 2023,Special Topics in Philosophy
+2025,Charles,Taylor,Spring 2029,Fundamentals of Art
+2025,Charles,Taylor,Fall 2025,Fundamentals of Engineering
+2025,Charles,Taylor,Spring 2024,Intro to Engineering
+2025,Charles,Taylor,Spring 2026,Intro to Mathematics
+2025,Kimberly,Brown,Fall 2023,Fundamentals of Business
+2025,Kimberly,Brown,Spring 2023,Intro to History
+2025,Kimberly,Brown,Fall 2028,Fundamentals of Music
+2025,Kimberly,Brown,Fall 2028,Topics in Music
+2027,Barbara,Scott,Fall 2030,Fundamentals of Psychology
+2027,Barbara,Scott,Spring 2024,Fundamentals of Law
+2027,Barbara,Scott,Spring 2022,Intro to Environmental Science
+2027,Barbara,Scott,Spring 2022,Advanced Engineering
+2027,Barbara,Scott,Fall 2022,Intro to Biology
+2024,Amanda,Ramirez,Fall 2030,Fundamentals of History
+2024,Amanda,Ramirez,Fall 2025,Topics in Philosophy
+2024,Amanda,Ramirez,Spring 2022,Advanced Art
+2024,Amanda,Ramirez,Spring 2028,Fundamentals of Statistics
+2024,Amanda,Ramirez,Fall 2025,Topics in Psychology
+2029,Kevin,Taylor,Spring 2027,Advanced Philosophy
+2029,Kevin,Taylor,Spring 2023,Advanced Political Science
+2029,Kevin,Taylor,Fall 2025,Special Topics in Sociology
+2029,Kevin,Taylor,Fall 2026,Advanced Biology
+2029,Kevin,Taylor,Fall 2022,Advanced Economics
+2029,Kevin,Taylor,Spring 2029,Fundamentals of Art
+2029,Amanda,Brown,Fall 2026,Advanced Biology
+2029,Amanda,Brown,Fall 2023,Intro to Statistics
+2029,Amanda,Brown,Fall 2027,Fundamentals of Sociology
+2029,Amanda,Brown,Fall 2030,Fundamentals of Psychology
+2029,Amanda,Brown,Fall 2028,Topics in Engineering
+2026,Matthew,Miller,Fall 2023,Advanced Chemistry
+2026,Matthew,Miller,Spring 2029,Special Topics in Psychology
+2026,Matthew,Miller,Fall 2030,Seminar on Engineering
+2026,Matthew,Miller,Fall 2028,Advanced Environmental Science
+2026,Matthew,Miller,Fall 2026,Special Topics in Philosophy
+2026,Matthew,Miller,Spring 2029,Advanced Psychology

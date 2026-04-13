@@ -1,0 +1,110 @@
+{
+    "classes": [
+        {
+            "id": "@@mountain.name@@",
+            "class": "Mountain",
+            "prefix": "mondial"
+        },
+        {
+            "id": "@@mountain.name@@",
+            "class": "Volcano",
+            "name": "Volcano1",
+            "subClassOf": [
+                "Mountain"
+            ],
+            "condition": [
+                "mountain.type = 'volcano'"
+            ],
+            "prefix": "mondial"
+        },
+        {
+            "id": "@@mountain.name@@",
+            "class": "Volcano",
+            "name": "Volcano2",
+            "subClassOf": [
+                "Mountain"
+            ],
+            "condition": [
+                "mountain.type = 'volcanic'"
+            ],
+            "prefix": "mondial"
+        },
+        {
+            "id": "@@mountain.mountains@@",
+            "class": "MountainRange",
+            "prefix": "mondial"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "inMountains",
+            "belongsToClass": "Mountain",
+            "refersToClass": "MountainRange"
+        },
+        {
+            "property": "locatedIn",
+            "belongsToClass": "Mountain",
+            "refersToClassMap": "CountryFull",
+            "join": [
+                "geo_mountain.mountain = mountain.name",
+                "geo_mountain.country = country.code"
+            ]
+        },
+        {
+            "property": "locatedIn",
+            "belongsToClass": "Mountain",
+            "refersToClass": "Province",
+            "join": [
+                "geo_mountain.mountain = mountain.name",
+                "geo_mountain.province = province.name"
+            ]
+        },
+        {
+            "property": "locatedOnIsland",
+            "belongsToClass": "Mountain",
+            "refersToClass": "Island",
+            "join": [
+                "mountain.name = mountainonisland.mountain",
+                "mountainonisland.island = island.name"
+            ]
+        }
+    ],
+    "data_properties": [
+        {
+            "property": "type",
+            "belongsToClass": "Mountain",
+            "type": "string",
+            "column": "mountain.type"
+        },
+        {
+            "property": "name",
+            "belongsToClass": "MountainRange",
+            "type": "string",
+            "column": "mountain.mountains"
+        },
+        {
+            "property": "name",
+            "belongsToClass": "Mountain",
+            "type": "string",
+            "column": "mountain.name"
+        },
+        {
+            "property": "latitude",
+            "belongsToClass": "Mountain",
+            "type": "decimal",
+            "column": "mountain.latitude"
+        },
+        {
+            "property": "longitude",
+            "belongsToClass": "Mountain",
+            "type": "decimal",
+            "column": "mountain.longitude"
+        },
+        {
+            "property": "elevation",
+            "belongsToClass": "Mountain",
+            "type": "decimal",
+            "column": "mountain.elevation"
+        }
+    ]
+}

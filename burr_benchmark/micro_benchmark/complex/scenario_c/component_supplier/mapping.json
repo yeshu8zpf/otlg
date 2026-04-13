@@ -1,0 +1,128 @@
+{
+    "classes": [
+        {
+            "id": "supplier/@@supplier.id@@",
+            "class": "Supplier",
+            "name": "Supplier"
+        },
+        {
+            "id": "component/@@component.id@@",
+            "class": "Component"
+        },
+        {
+            "id": "Automotive",
+            "class": "Industry",
+            "name": "IndustryAutomotive"
+        },
+        {
+            "id": "Electronics",
+            "class": "Industry",
+            "name": "IndustryElectronics"
+        },
+        {
+            "id": "Construction",
+            "class": "Industry",
+            "name": "IndustryConstruction"
+        },
+        {
+            "id": "Food",
+            "class": "Industry",
+            "name": "IndustryFood"
+        },
+        {
+            "id": "Medical",
+            "class": "Industry",
+            "name": "IndustryMedical"
+        },
+        {
+            "id": "Aerospace",
+            "class": "Industry",
+            "name": "IndustryAerospace"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "supplies",
+            "belongsToClassMap": "Supplier",
+            "refersToClass": "Component",
+            "join": [
+                "component_supplier.supplier_id = supplier.id",
+                "component_supplier.component_id = component.id"
+            ]
+        },
+        {
+            "property": "relevant_for",
+            "belongsToClass": "Component",
+            "refersToClassMap": "IndustryAutomotive",
+            "condition": "component.relevant_for_automotive_industry = 'True'"
+        },
+        {
+            "property": "relevant_for",
+            "belongsToClass": "Component",
+            "refersToClassMap": "IndustryElectronics",
+            "condition": "component.relevant_for_electronics_industry = 'True'"
+        },
+        {
+            "property": "relevant_for",
+            "belongsToClass": "Component",
+            "refersToClassMap": "IndustryConstruction",
+            "condition": "component.relevant_for_construction_industry = 'True'"
+        },
+        {
+            "property": "relevant_for",
+            "belongsToClass": "Component",
+            "refersToClassMap": "IndustryFood",
+            "condition": "component.relevant_for_food_industry = 'True'"
+        },
+        {
+            "property": "relevant_for",
+            "belongsToClass": "Component",
+            "refersToClassMap": "IndustryMedical",
+            "condition": "component.relevant_for_medical_industry = 'True'"
+        },
+        {
+            "property": "relevant_for",
+            "belongsToClass": "Component",
+            "refersToClassMap": "IndustryAerospace",
+            "condition": "component.relevant_for_aerospace_industry = 'True'"
+        }
+    ],
+    "data_properties": [
+        {
+            "property": "name",
+            "belongsToClass": "Component",
+            "type": "string",
+            "column": "component.name"
+        },
+        {
+            "property": "name",
+            "belongsToClassMap": "Supplier",
+            "type": "string",
+            "column": "supplier.name"
+        },
+        {
+            "property": "street",
+            "belongsToClassMap": "Supplier",
+            "type": "string",
+            "sqlExpression": "split_part(supplier.address, ',', 1)"
+        },
+        {
+            "property": "city",
+            "belongsToClassMap": "Supplier",
+            "type": "string",
+            "sqlExpression": "split_part(supplier.address, ',', 2)"
+        },
+        {
+            "property": "state",
+            "belongsToClassMap": "Supplier",
+            "type": "string",
+            "sqlExpression": "split_part(supplier.address, ',', 3)"
+        },
+        {
+            "property": "country",
+            "belongsToClassMap": "Supplier",
+            "type": "string",
+            "sqlExpression": "split_part(supplier.address, ',', 4)"
+        }
+    ]
+}

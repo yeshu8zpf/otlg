@@ -1,0 +1,38 @@
+{
+    "classes": [
+        {
+            "id": "@@BPM.FP_Object_Type@@",
+            "class": "BusinessProcessType",
+            "prefix": "RBA",
+            "name": "BusinessProcessType_Main"
+        },
+        {
+            "id": "@@BPM.Business_Process_Type@@",
+            "prefix": "RBA",
+            "name": "BusinessProcessType_0",
+            "class": "BusinessProcessType"
+        },
+        {
+            "id": "@@BPM.Business_Process_Type_1@@",
+            "name": "BusinessProcessType_1",
+            "class": "BusinessProcessType",
+            "prefix": "RBA"
+        },
+        {
+            "id": "@@BPM.Business_Process_Type_2@@",
+            "class": "BusinessProcessType",
+            "name": "BusinessProcessType_2",
+            "prefix": "RBA"
+        }
+    ],
+    "object_properties": [
+    ],
+    "data_properties": [
+        {
+            "property": "Name",
+            "belongsToClassMap": "BusinessProcessType_Main",
+            "type": "string",
+            "column": "BPM.FP_Object_Type"
+        }
+    ]
+}

@@ -1,0 +1,44 @@
+{
+    "classes": [
+        {
+            "id": "hotel/@@hotel.id@@",
+            "class": "Hotel",
+            "name": "Hotel"
+        },
+        {
+            "id": "room/@@room.hotel_id@@/@@room.room_number@@",
+            "class": "Room",
+            "name": "Room"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "rooms",
+            "belongsToClassMap": "Hotel",
+            "refersToClassMap": "Room",
+            "join": [
+                "hotel.id = room.hotel_id"
+            ]
+        }
+    ],
+    "data_properties": [
+        {
+            "property": "name",
+            "belongsToClassMap": "Hotel",
+            "type": "string",
+            "column": "hotel.name"
+        },
+        {
+            "property": "room_number",
+            "belongsToClassMap": "Room",
+            "type": "string",
+            "column": "room.room_number"
+        },
+        {
+            "property": "bed_number",
+            "belongsToClassMap": "Room",
+            "type": "integer",
+            "column": "room.bed_number"
+        }
+    ]
+}

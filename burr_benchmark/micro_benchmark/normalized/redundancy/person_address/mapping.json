@@ -1,0 +1,114 @@
+{
+    "classes": [
+        {
+            "id": "person/@@person.id@@",
+            "class": "Person",
+            "name": "Person"
+        },
+        {
+            "id": "department/@@person.department_id@@",
+            "class": "Department",
+            "name": "Department1"
+        },
+        {
+            "id": "department/@@cost_center.department_id@@",
+            "class": "Department",
+            "name": "Department2"
+        },
+        {
+            "id": "location/@@person.address_id@@",
+            "class": "Location",
+            "name": "Location"
+        },
+        {
+            "id": "cost_center/@@cost_center.id@@",
+            "class": "CostCenter",
+            "name": "CostCenter"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "worksIn",
+            "belongsToClassMap": "Person",
+            "refersToClassMap": "Department1"
+        },
+        {
+            "property": "belongs_to",
+            "belongsToClassMap": "CostCenter",
+            "refersToClassMap": "Department2"
+        },
+        {
+            "property": "livesIn",
+            "belongsToClassMap": "Person",
+            "refersToClassMap": "Location"
+        }
+    ],
+    "data_properties": [
+        {
+            "property": "first_name",
+            "belongsToClassMap": "Person",
+            "type": "string",
+            "column": "person.first_name"
+        },
+        {
+            "property": "last_name",
+            "belongsToClassMap": "Person",
+            "type": "string",
+            "column": "person.last_name"
+        },
+        {
+            "property": "email",
+            "belongsToClassMap": "Person",
+            "type": "string",
+            "column": "person.email"
+        },
+        {
+            "property": "name",
+            "belongsToClassMap": "Department1",
+            "type": "string",
+            "column": "person.department"
+        }, 
+        {
+            "property": "name",
+            "belongsToClassMap": "Department2",
+            "type": "string",
+            "column": "cost_center.department"
+        }, 
+        {
+            "property": "name",
+            "belongsToClassMap": "CostCenter",
+            "type": "string",
+            "column": "cost_center.name"
+        },
+        {
+            "property": "street",
+            "belongsToClassMap": "Person",
+            "type": "string",
+            "column": "person.street"
+        },
+        {
+            "property": "house_number",
+            "belongsToClassMap": "Person",
+            "type": "string",
+            "column": "person.house_number"
+        },
+        {
+            "property": "zip_code",
+            "belongsToClassMap": "Location",
+            "type": "string",
+            "column": "person.zip"
+        },
+        {
+            "property": "name",
+            "belongsToClassMap": "Location",
+            "type": "string",
+            "column": "person.city"
+        },
+        {
+            "property": "state",
+            "belongsToClassMap": "Location",
+            "type": "string",
+            "column": "person.state"
+        }
+    ]
+}

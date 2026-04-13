@@ -1,0 +1,20 @@
+{
+    "classes": [
+        {
+            "id": "@@SCM.Line_Item_Type@@",
+            "prefix": "SCM",
+            "class": "SolutionArchitectureComponentType",
+            "name": "SolutionArchitectureComponentTypeMap"
+        }
+    ],
+    "object_properties": [
+    ],
+    "data_properties": [
+        {
+            "property": "Name",
+            "belongsToClassMap": "SolutionArchitectureComponentTypeMap",
+            "type": "string",
+            "column": "SCM.Line_Item_Type"
+        }
+    ]
+}

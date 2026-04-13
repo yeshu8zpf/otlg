@@ -1,0 +1,51 @@
+{
+    "classes": [
+        {
+            "id": "product/@@product.id@@",
+            "class": "Product",
+            "name": "Product"
+        },
+        {
+            "id": "client/@@client.id@@",
+            "class": "Client",
+            "name": "Client"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "orders",
+            "belongsToClassMap": "Client",
+            "refersToClassMap": "Product",
+            "join": [
+                "client.id = orders.client_id",
+                "product.id = orders.product_id"
+            ]
+        }
+    ],
+    "data_properties": [
+        {
+            "property": "name",
+            "belongsToClassMap": "Client",
+            "type": "string",
+            "column": "client.name"
+        },
+        {
+            "property": "address",
+            "belongsToClassMap": "Client",
+            "type": "string",
+            "column": "client.address"
+        },
+        {
+            "property": "name",
+            "belongsToClassMap": "Product",
+            "type": "string",
+            "column": "product.name"
+        },
+        {
+            "property": "price",
+            "belongsToClassMap": "Product",
+            "type": "integer",
+            "column": "product.price"
+        }
+    ]
+}

@@ -1,0 +1,24 @@
+{
+    "classes": [
+        {
+            "id": "person/@@person.id@@",
+            "class": "Person"
+        },
+        {
+            "id": "conference/@@conference.id@@",
+            "class": "Conference"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "enable_virtual_meeting",
+            "belongsToClass": "Person",
+            "refersToClass": "Conference",
+            "join": [
+                "person.id = enable_virtual_meeting.pid",
+                "conference.id = enable_virtual_meeting.cid"
+            ]
+        }
+    ],
+    "data_properties": []
+}

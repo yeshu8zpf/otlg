@@ -1,0 +1,29 @@
+{
+    "classes": [
+        {
+            "id": "person/@@person.id@@",
+            "class": "Person"
+        }
+    ],
+    "object_properties": [],
+    "data_properties": [
+        {
+            "property": "name",
+            "belongsToClass": "Person",
+            "type": "string",
+            "column": "person.name"
+        },
+        {
+            "property": "address",
+            "belongsToClass": "Person",
+            "type": "string",
+            "column": "person.address"
+        },
+        {
+            "property": "phone_number",
+            "belongsToClass": "Person",
+            "type": "integer",
+            "column": "person.phone"
+        }
+    ]
+}

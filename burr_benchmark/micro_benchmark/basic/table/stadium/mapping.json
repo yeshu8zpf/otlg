@@ -1,0 +1,10 @@
+{
+    "classes": [
+        {
+            "id": "stadium/@@stadium.id@@",
+            "class": "Stadium"
+        }
+    ],
+    "object_properties": [],
+    "data_properties": []
+}

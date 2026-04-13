@@ -1,0 +1,63 @@
+{
+    "classes": [
+        {
+            "id": "person/@@person_organization.person_id@@",
+            "class": "Person"
+        },
+        {
+            "id": "organization/@@person_organization.organization_id@@",
+            "class": "Organization"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "worksFor",
+            "belongsToClass": "Person",
+            "refersToClass": "Organization"
+        }
+    ],
+    "data_properties": [
+        {
+            "property": "name",
+            "belongsToClass": "Person",
+            "type": "string",
+            "column": "person_organization.person_name"
+        },
+        {
+            "property": "address",
+            "belongsToClass": "Person",
+            "type": "string",
+            "column": "person_organization.person_address"
+        },
+        {
+            "property": "phone_number",
+            "belongsToClass": "Person",
+            "type": "integer",
+            "column": "person_organization.person_phone_number"
+        },
+        {
+            "property": "role",
+            "belongsToClass": "Person",
+            "type": "string",
+            "column": "person_organization.person_role"
+        },
+        {
+            "property": "name",
+            "belongsToClass": "Organization",
+            "type": "string",
+            "column": "person_organization.organization_name"
+        },
+        {
+            "property": "address",
+            "belongsToClass": "Organization",
+            "type": "string",
+            "column": "person_organization.organization_address"
+        },
+        {
+            "property": "phone_number",
+            "belongsToClass": "Organization",
+            "type": "string",
+            "column": "person_organization.organization_phone_number"
+        }
+    ]
+}

@@ -1,0 +1,38 @@
+{
+    "classes": [
+        {
+            "id": "person/@@person.id@@",
+            "class": "Person",
+            "name": "Person"
+        },
+        {
+            "id": "person/@@marriage.spouse_id@@",
+            "class": "Person",
+            "name": "Spouse"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "married_to",
+            "belongsToClassMap": "Person",
+            "refersToClassMap": "Spouse",
+            "join": [
+                "person.id = marriage.pers_id"
+            ]
+        }
+    ],
+    "data_properties": [
+        {
+            "property": "name",
+            "belongsToClassMap": "Person",
+            "type": "string",
+            "column": "person.name"
+        },
+        {
+            "property": "sex",
+            "belongsToClassMap": "Person",
+            "type": "string",
+            "column": "person.sex"
+        }
+    ]
+}

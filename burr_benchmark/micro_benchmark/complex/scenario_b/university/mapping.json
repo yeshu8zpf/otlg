@@ -1,0 +1,135 @@
+{
+    "classes": [
+        {
+            "id": "student/@@student.first_name@@_@@student.last_name@@_@@student.planned_graduation_year@@",
+            "class": "Student"
+        },
+        {
+            "id": "course/@@course.semester@@_@@course.course_name@@",
+            "class": "Course",
+            "name": "Course"
+        },
+        {
+            "id": "instructor/@@instructor.first_name@@_@@instructor.last_name@@",
+            "class": "Instructor",
+            "name": "Instructor"
+        },
+        {
+            "id": "department/@@department.department_name@@",
+            "class": "Department",
+            "name": "Department"
+        },
+        {
+            "id": "assignment/@@teaching_assignment.semester@@_@@teaching_assignment.course_name@@_@@teaching_assignment.instructor_first_name@@_@@teaching_assignment.instructor_last_name@@",
+            "class": "TeachingAssignment"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "enrolled_in",
+            "belongsToClass": "Student",
+            "refersToClass": "Course",
+            "join": [
+                "student.planned_graduation_year = enrollment.planned_graduation_year",
+                "student.first_name = enrollment.first_name",
+                "student.last_name = enrollment.last_name",
+                "course.semester = enrollment.semester",
+                "course.course_name = enrollment.course_name"
+            ]
+        },
+        {
+            "property": "assigned_to",
+            "belongsToClass": "Instructor",
+            "refersToClass": "TeachingAssignment",
+            "join": [
+                "teaching_assignment.instructor_first_name = instructor.first_name",
+                "teaching_assignment.instructor_last_name = instructor.last_name"
+            ]
+        },
+        {
+            "property": "assigned_to",
+            "belongsToClass": "TeachingAssignment",
+            "refersToClass": "Course",
+            "join": [
+                "teaching_assignment.semester = course.semester",
+                "teaching_assignment.course_name = course.course_name"
+            ]
+        },
+        {
+            "property": "belongs_to",
+            "belongsToClass": "Department",
+            "refersToClass": "Instructor",
+            "join": [
+                "instructor.department_name = department.department_name"
+            ]
+        }
+    ],
+    "data_properties": [
+        {
+            "property": "credits",
+            "belongsToClass": "Course",
+            "type": "integer",
+            "column": "course.credits"
+        },
+        {
+            "property": "name",
+            "belongsToClassMap": "Course",
+            "type": "string",
+            "column": "course.course_name"
+        },
+        {
+            "property": "semester",
+            "belongsToClassMap": "Course",
+            "type": "string",
+            "column": "course.semester"
+        },
+        {
+            "property": "department_name",
+            "belongsToClassMap": "Department",
+            "type": "string",
+            "column": "department.department_name"
+        },
+        {
+            "property": "building",
+            "belongsToClassMap": "Department",
+            "type": "string",
+            "column": "department.building"
+        },
+        {
+            "property": "first_name",
+            "belongsToClass": "Instructor",
+            "type": "string",
+            "column": "instructor.first_name"
+        },
+        {
+            "property": "last_name",
+            "belongsToClass": "Instructor",
+            "type": "string",
+            "column": "instructor.last_name"
+        },
+        {
+            "property": "planned_graduation_year",
+            "belongsToClass": "Student",
+            "type": "integer",
+            "column": "student.planned_graduation_year"
+        },
+        {
+            "property": "first_name",
+            "belongsToClass": "Student",
+            "type": "string",
+            "column": "student.first_name"
+        },
+        {
+            "property": "last_name",
+            "belongsToClass": "Student",
+            "type": "string",
+            "column": "student.last_name"
+        },
+        {
+            "property": "assigned_date",
+            "belongsToClassMap": "TeachingAssignment",
+            "type": "date",
+            "column": "teaching_assignment.assigned_date"
+        }
+    ]
+}

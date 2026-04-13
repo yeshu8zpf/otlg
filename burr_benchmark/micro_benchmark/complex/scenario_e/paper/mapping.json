@@ -1,0 +1,92 @@
+{
+    "classes": [
+        {
+            "id": "person/@@person.pid@@",
+            "class": "Person",
+            "name": "PersonMap"
+        },
+        {
+            "id": "author/@@person.pid@@",
+            "class": "Author",
+            "name": "Author",
+            "condition": [
+                "person.type = 'author'"
+            ],
+            "subClassOf": [
+                "Person"
+            ]
+        },
+        {
+            "id": "reviewer/@@person.pid@@",
+            "class": "Reviewer",
+            "name": "Reviewer",
+            "condition": [
+                "person.type = 'reviewer'"
+            ],
+            "subClassOf": [
+                "Person"
+            ]
+        },
+        {
+            "id": "paper/@@paper.paper_id@@",
+            "class": "Paper",
+            "name": "Paper"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "written_by",
+            "belongsToClassMap": "Paper",
+            "refersToClassMap": "Author",
+            "join": [
+                "paper.author_id = person.pid"
+            ]
+        },
+        {
+            "property": "reviewed_by",
+            "belongsToClassMap": "Paper",
+            "refersToClassMap": "Reviewer",
+            "join": [
+                "paper.reviewer_id = person.pid"
+            ]
+        }
+    ],
+    "data_properties": [
+        {
+            "property": "name",
+            "belongsToClassMap": "PersonMap",
+            "type": "string",
+            "column": "person.name"
+        },
+        {
+            "property": "email",
+            "belongsToClass": "Author",
+            "type": "string",
+            "column": "person.email"
+        },
+        {
+            "property": "area",
+            "belongsToClass": "Reviewer",
+            "type": "string",
+            "column": "person.area"
+        },
+        {
+            "property": "title",
+            "belongsToClass": "Paper",
+            "type": "string",
+            "column": "paper.title"
+        },
+        {
+            "property": "abstract",
+            "belongsToClass": "Paper",
+            "type": "text",
+            "column": "paper.abstract"
+        },
+        {
+            "property": "year",
+            "belongsToClass": "Paper",
+            "type": "integer",
+            "column": "paper.year"
+        }
+    ]
+}

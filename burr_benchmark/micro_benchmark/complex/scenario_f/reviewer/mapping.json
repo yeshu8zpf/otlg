@@ -1,0 +1,110 @@
+{
+    "classes": [
+        {
+            "id": "person/@@person.pid@@",
+            "class": "Person",
+            "name": "PersonMap"
+        },
+        {
+            "id": "author/@@author.aid@@",
+            "class": "Author",
+            "name": "Author",
+            "subClassOf": [
+                "Person"
+            ]
+        },
+        {
+            "id": "reviewer/@@reviewer.rid@@",
+            "class": "Reviewer",
+            "name": "Reviewer",
+            "subClassOf": [
+                "Person"
+            ]
+        },
+        {
+            "id": "editorialreviewer/@@reviewer.rid@@",
+            "class": "EditorialReviewer",
+            "name": "EditorialReviewer",
+            "condition": [
+                "reviewer.type = 'editorial'"
+            ],
+            "subClassOf": [
+                "Reviewer"
+            ]
+        },
+        {
+            "id": "academicereviewer/@@reviewer.rid@@",
+            "class": "AcademicReviewer",
+            "name": "AcademicReviewer",
+            "condition": [
+                "reviewer.type = 'academic'"
+            ],
+            "subClassOf": [
+                "Reviewer"
+            ]
+        },
+        {
+            "id": "industryreviewer/@@reviewer.rid@@",
+            "class": "IndustryReviewer",
+            "name": "IndustryReviewer",
+            "condition": [
+                "reviewer.type = 'industry'"
+            ],
+            "subClassOf": [
+                "Reviewer"
+            ]
+        }
+
+    ],
+    "object_properties": [],
+    "data_properties": [
+        {
+            "property": "name",
+            "belongsToClassMap": "PersonMap",
+            "type": "string",
+            "column": "person.name"
+        },
+        {
+            "property": "name",
+            "belongsToClassMap": "Author",
+            "type": "string",
+            "column": "author.name"
+        },
+        {
+            "property": "name",
+            "belongsToClassMap": "Reviewer",
+            "type": "string",
+            "column": "reviewer.name"
+        },
+        {
+            "property": "email",
+            "belongsToClassMap": "Author",
+            "type": "string",
+            "column": "author.email"
+        },
+        {
+            "property": "area",
+            "belongsToClassMap": "Reviewer",
+            "type": "string",
+            "column": "reviewer.area"
+        },
+        {
+            "property": "editorial_role",
+            "belongsToClassMap": "EditorialReviewer",
+            "type": "string",
+            "column": "reviewer.editorial_role"
+        }, 
+        {
+            "property": "institution_affiliation",
+            "belongsToClassMap": "AcademicReviewer",
+            "type": "string",
+            "column": "reviewer.institution_affiliation"
+        },
+        {
+            "property": "reputation_score",
+            "belongsToClassMap": "IndustryReviewer",
+            "type": "integer",
+            "column": "reviewer.reputation_score"
+        }
+    ]
+}

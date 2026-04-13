@@ -1,0 +1,31 @@
+{
+    "classes": [
+        {
+            "id": "@@IND.Industry_ID@@",
+            "prefix": "RBA",
+            "class": "Industry"
+        }
+    ],
+    "object_properties": [
+    ],
+    "data_properties": [
+        {
+            "property": "Identifier",
+            "belongsToClass": "Industry",
+            "type": "string",
+            "column": "IND.Industry_ID"
+        },
+        {
+            "property": "Name",
+            "belongsToClass": "Industry",
+            "type": "string",
+            "column": "IND.Industry_Name"
+        },
+        {
+            "property": "Description",
+            "belongsToClass": "Industry",
+            "type": "string",
+            "column": "IND.Industry_Name"
+        }
+    ]
+}

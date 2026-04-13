@@ -1,0 +1,101 @@
+id,name,contains_caffeine,contains_sugar,contains_alcohol,contains_dairy,contains_gluten,contains_nuts
+1,Vanilla Espresso,False,True,False,False,False,False
+2,Caramel Espresso,False,True,False,False,False,False
+3,Hazelnut Espresso,False,True,False,False,False,True
+4,Pumpkin Spice Espresso,False,True,False,False,False,False
+5,Espresso,False,True,False,False,False,False
+6,Vanilla Latte,False,True,False,True,False,False
+7,Caramel Latte,False,True,False,True,False,False
+8,Hazelnut Latte,False,True,False,True,False,True
+9,Pumpkin Spice Latte,False,True,False,True,False,False
+10,Latte,False,True,False,True,False,False
+11,Vanilla Cappuccino,True,True,False,True,False,False
+12,Caramel Cappuccino,True,True,False,True,False,False
+13,Hazelnut Cappuccino,True,True,False,True,False,True
+14,Pumpkin Spice Cappuccino,True,True,False,True,False,False
+15,Cappuccino,True,True,False,True,False,False
+16,Vanilla Americano,False,True,False,False,False,False
+17,Caramel Americano,False,True,False,False,False,False
+18,Hazelnut Americano,False,True,False,False,False,True
+19,Pumpkin Spice Americano,False,True,False,False,False,False
+20,Americano,False,True,False,False,False,False
+21,Vanilla Mocha,False,True,False,False,False,False
+22,Caramel Mocha,False,True,False,False,False,False
+23,Hazelnut Mocha,False,True,False,False,False,True
+24,Pumpkin Spice Mocha,False,True,False,False,False,False
+25,Mocha,False,True,False,False,False,False
+26,Vanilla Flat White,False,True,False,False,False,False
+27,Caramel Flat White,False,True,False,False,False,False
+28,Hazelnut Flat White,False,True,False,False,False,True
+29,Pumpkin Spice Flat White,False,True,False,False,False,False
+30,Flat White,False,True,False,False,False,False
+31,Green Tea,True,True,False,False,False,False
+32,Black Tea,True,True,False,False,False,False
+33,Earl Grey,True,True,False,False,False,False
+34,Chamomile Tea,True,True,False,False,False,False
+35,Oolong Tea,True,True,False,False,False,False
+36,Matcha Tea,True,True,False,False,False,False
+37,Cola,True,True,False,False,False,False
+38,Ginger Ale,False,True,False,False,False,False
+39,Root Beer,False,True,False,False,False,False
+40,Orange Soda,False,True,False,False,False,False
+41,Lemon-Lime Soda,False,True,False,False,False,False
+42,Orange Juice,False,True,False,False,False,False
+43,Apple Juice,False,True,False,False,False,False
+44,Cranberry Juice,False,True,False,False,False,False
+45,Grape Juice,False,True,False,False,False,False
+46,Pineapple Juice,False,True,False,False,False,False
+47,Pale Ale,False,True,True,False,False,False
+48,Stout,False,True,True,False,False,False
+49,Lager,False,True,True,False,False,False
+50,IPA,False,True,True,False,False,False
+51,Porter,False,True,True,False,False,False
+52,Red Wine,False,True,True,False,False,False
+53,White Wine,False,True,True,False,False,False
+54,Rosé,False,True,True,False,False,False
+55,Sparkling Wine,False,True,True,False,False,False
+56,Mojito,False,True,True,False,False,False
+57,Margarita,False,True,True,False,False,False
+58,Old Fashioned,False,True,True,False,False,False
+59,Martini,False,True,True,False,False,False
+60,Cosmopolitan,False,True,True,False,False,False
+61,Strawberry Smoothie,True,True,False,True,False,False
+62,Mango Smoothie,True,True,False,True,False,False
+63,Banana Smoothie,True,True,False,True,False,False
+64,Chocolate Milkshake,True,True,False,True,False,False
+65,Vanilla Milkshake,True,True,False,True,False,False
+66,Strawberry Milkshake,True,True,False,True,False,False
+67,Still Water,False,False,False,False,False,False
+68,Sparkling Water,False,False,False,False,False,False
+69,Vanilla Espresso Special,False,True,False,False,False,False
+70,Caramel Espresso Special,False,True,False,False,False,False
+71,Hazelnut Espresso Special,False,True,False,False,False,True
+72,Pumpkin Spice Espresso Special,False,True,False,False,False,False
+73,Espresso Special,False,True,False,False,False,False
+74,Vanilla Latte Special,False,True,False,True,False,False
+75,Caramel Latte Special,False,True,False,True,False,False
+76,Hazelnut Latte Special,False,True,False,True,False,True
+77,Pumpkin Spice Latte Special,False,True,False,True,False,False
+78,Latte Special,False,True,False,True,False,False
+79,Vanilla Cappuccino Special,True,True,False,True,False,False
+80,Caramel Cappuccino Special,True,True,False,True,False,False
+81,Hazelnut Cappuccino Special,True,True,False,True,False,True
+82,Pumpkin Spice Cappuccino Special,True,True,False,True,False,False
+83,Cappuccino Special,True,True,False,True,False,False
+84,Vanilla Americano Special,False,True,False,False,False,False
+85,Caramel Americano Special,False,True,False,False,False,False
+86,Hazelnut Americano Special,False,True,False,False,False,True
+87,Pumpkin Spice Americano Special,False,True,False,False,False,False
+88,Americano Special,False,True,False,False,False,False
+89,Vanilla Mocha Special,False,True,False,False,False,False
+90,Caramel Mocha Special,False,True,False,False,False,False
+91,Hazelnut Mocha Special,False,True,False,False,False,True
+92,Pumpkin Spice Mocha Special,False,True,False,False,False,False
+93,Mocha Special,False,True,False,False,False,False
+94,Vanilla Flat White Special,False,True,False,False,False,False
+95,Caramel Flat White Special,False,True,False,False,False,False
+96,Hazelnut Flat White Special,False,True,False,False,False,True
+97,Pumpkin Spice Flat White Special,False,True,False,False,False,False
+98,Flat White Special,False,True,False,False,False,False
+99,Green Tea Special,True,True,False,False,False,False
+100,Black Tea Special,True,True,False,False,False,False

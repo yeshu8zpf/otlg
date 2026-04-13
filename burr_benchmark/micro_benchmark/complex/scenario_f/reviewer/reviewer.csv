@@ -1,0 +1,501 @@
+rid,name,area,type,editorial_role,institution_affiliation,reputation_score
+1,Skyler Martinez,Philosophy,editorial,Managing Editor,,
+2,Riley Lewis,Astrophysics,industry,,,89
+3,Hayden Roberts,Sociology,industry,,,61
+4,Kendall Young,Quantum Computing,industry,,,52
+5,Alex Lewis,Philosophy,industry,,,74
+6,Cameron Zimmerman,Climate Science,editorial,Associate Editor,,
+7,Cameron Zimmerman,Machine Learning,industry,,,31
+8,Robin Davis,Art History,academic,,Stanford University,
+9,Avery Garcia,Neuroscience,academic,,ETH Zurich,
+10,Blake Smith,Climate Science,academic,,University of Cambridge,
+11,Hayden Young,Economics,editorial,Section Editor,,
+12,Quinn Martinez,Climate Science,editorial,Section Editor,,
+13,Robin White,Art History,editorial,Section Editor,,
+14,Drew Evans,Machine Learning,industry,,,91
+15,Taylor White,Machine Learning,industry,,,90
+16,Quinn Martinez,Machine Learning,academic,,Harvard University,
+17,Jamie Zimmerman,Machine Learning,academic,,Imperial College London,
+18,Quinn Nelson,Astrophysics,academic,,University of Cambridge,
+19,Quinn Young,Neuroscience,academic,,University of Cambridge,
+20,Riley Davis,Climate Science,academic,,ETH Zurich,
+21,Kendall Walker,Genetics,industry,,,42
+22,Skyler Davis,Machine Learning,industry,,,61
+23,Hayden Brown,Climate Science,industry,,,94
+24,Taylor Taylor,Neuroscience,academic,,Harvard University,
+25,Peyton Garcia,Quantum Computing,editorial,Editor-in-Chief,,
+26,Taylor Taylor,Machine Learning,editorial,Associate Editor,,
+27,Casey Thomas,Climate Science,industry,,,73
+28,Riley Davis,Environmental Science,academic,,ETH Zurich,
+29,Alex Anderson,Quantum Computing,editorial,Managing Editor,,
+30,Morgan Jackson,Bioinformatics,academic,,University of Oxford,
+31,Riley Taylor,Genetics,editorial,Section Editor,,
+32,Jordan Perez,Bioinformatics,industry,,,4
+33,Jamie Davis,Sociology,industry,,,45
+34,Morgan Brown,Astrophysics,editorial,Associate Editor,,
+35,Drew Harris,Genetics,editorial,Section Editor,,
+36,Emerson Harris,Philosophy,editorial,Managing Editor,,
+37,Hayden Clark,Neuroscience,editorial,Associate Editor,,
+38,Riley Young,Astrophysics,industry,,,33
+39,Drew Evans,Quantum Computing,academic,,ETH Zurich,
+40,Skyler Roberts,Quantum Computing,industry,,,21
+41,Casey Lewis,Machine Learning,academic,,University of Oxford,
+42,Casey Anderson,Genetics,editorial,Section Editor,,
+43,Logan Roberts,Astrophysics,academic,,Massachusetts Institute of Technology,
+44,Quinn Anderson,Machine Learning,editorial,Section Editor,,
+45,Peyton Thomas,Quantum Computing,industry,,,29
+46,Reese Garcia,Quantum Computing,editorial,Editor-in-Chief,,
+47,Hayden Evans,Sociology,editorial,Associate Editor,,
+48,Hayden Anderson,Genetics,editorial,Associate Editor,,
+49,Riley Taylor,Astrophysics,academic,,Caltech,
+50,Logan Garcia,Genetics,editorial,Section Editor,,
+51,Kendall Martinez,Economics,academic,,ETH Zurich,
+52,Quinn Taylor,Genetics,academic,,ETH Zurich,
+53,Hayden Harris,Climate Science,industry,,,17
+54,Emerson Smith,Machine Learning,editorial,Editor-in-Chief,,
+55,Blake Perez,Astrophysics,editorial,Editor-in-Chief,,
+56,Blake Anderson,Philosophy,academic,,Massachusetts Institute of Technology,
+57,Blake Taylor,Astrophysics,academic,,University of Oxford,
+58,Alex Garcia,Quantum Computing,industry,,,96
+59,Morgan Thomas,Sociology,editorial,Section Editor,,
+60,Riley Smith,Astrophysics,editorial,Associate Editor,,
+61,Drew Lewis,Genetics,academic,,Massachusetts Institute of Technology,
+62,Blake Roberts,Sociology,editorial,Associate Editor,,
+63,Riley Nelson,Bioinformatics,editorial,Managing Editor,,
+64,Riley Taylor,Environmental Science,industry,,,42
+65,Cameron Roberts,Philosophy,academic,,Stanford University,
+66,Peyton Walker,Economics,industry,,,28
+67,Blake White,Economics,academic,,Harvard University,
+68,Alex Smith,Sociology,industry,,,36
+69,Riley Brown,Economics,academic,,Stanford University,
+70,Skyler Jackson,Sociology,industry,,,36
+71,Drew Taylor,Sociology,academic,,University of Chicago,
+72,Riley Smith,Environmental Science,academic,,University of Chicago,
+73,Robin Evans,Climate Science,academic,,Caltech,
+74,Taylor Lewis,Climate Science,academic,,University of Cambridge,
+75,Blake Young,Economics,editorial,Editor-in-Chief,,
+76,Hayden Garcia,Philosophy,editorial,Editor-in-Chief,,
+77,Quinn Martinez,Philosophy,academic,,Caltech,
+78,Reese Harris,Neuroscience,academic,,Harvard University,
+79,Casey Roberts,Art History,industry,,,98
+80,Emerson Roberts,Environmental Science,academic,,Caltech,
+81,Casey Walker,Astrophysics,academic,,Princeton University,
+82,Riley Garcia,Machine Learning,industry,,,13
+83,Jordan Nelson,Quantum Computing,editorial,Managing Editor,,
+84,Jamie Evans,Philosophy,editorial,Associate Editor,,
+85,Jordan Anderson,Astrophysics,editorial,Editor-in-Chief,,
+86,Robin Zimmerman,Bioinformatics,academic,,University of Oxford,
+87,Casey Garcia,Art History,editorial,Managing Editor,,
+88,Robin Harris,Astrophysics,editorial,Section Editor,,
+89,Morgan Walker,Art History,editorial,Section Editor,,
+90,Morgan Jackson,Environmental Science,editorial,Section Editor,,
+91,Riley Thomas,Sociology,editorial,Managing Editor,,
+92,Quinn Anderson,Art History,industry,,,51
+93,Casey Walker,Bioinformatics,academic,,Stanford University,
+94,Casey Lewis,Genetics,academic,,University of Oxford,
+95,Taylor Martinez,Economics,academic,,Harvard University,
+96,Riley Young,Philosophy,industry,,,30
+97,Alex Thomas,Astrophysics,editorial,Associate Editor,,
+98,Casey Roberts,Machine Learning,academic,,Imperial College London,
+99,Jordan Garcia,Sociology,industry,,,70
+100,Hayden Taylor,Climate Science,industry,,,49
+101,Peyton Roberts,Art History,editorial,Editor-in-Chief,,
+102,Jordan Roberts,Economics,academic,,Stanford University,
+103,Skyler Zimmerman,Environmental Science,editorial,Associate Editor,,
+104,Cameron Martinez,Neuroscience,editorial,Associate Editor,,
+105,Emerson Lewis,Philosophy,academic,,Caltech,
+106,Hayden Garcia,Climate Science,academic,,University of Cambridge,
+107,Blake Martinez,Genetics,industry,,,88
+108,Emerson Walker,Genetics,academic,,ETH Zurich,
+109,Emerson Taylor,Genetics,academic,,Stanford University,
+110,Robin Roberts,Philosophy,industry,,,48
+111,Emerson Anderson,Sociology,editorial,Managing Editor,,
+112,Reese Perez,Environmental Science,editorial,Section Editor,,
+113,Morgan Martinez,Environmental Science,academic,,ETH Zurich,
+114,Jamie Thomas,Art History,academic,,Princeton University,
+115,Avery Lewis,Sociology,editorial,Editor-in-Chief,,
+116,Drew Smith,Neuroscience,academic,,ETH Zurich,
+117,Avery Young,Art History,industry,,,18
+118,Jamie Nelson,Astrophysics,editorial,Section Editor,,
+119,Alex Brown,Philosophy,academic,,Princeton University,
+120,Kendall Roberts,Astrophysics,editorial,Editor-in-Chief,,
+121,Hayden Thomas,Astrophysics,editorial,Editor-in-Chief,,
+122,Taylor Taylor,Machine Learning,editorial,Managing Editor,,
+123,Cameron Thomas,Genetics,academic,,Stanford University,
+124,Casey Zimmerman,Climate Science,editorial,Editor-in-Chief,,
+125,Emerson Young,Economics,industry,,,3
+126,Peyton Young,Genetics,academic,,University of Oxford,
+127,Peyton Thomas,Neuroscience,academic,,Imperial College London,
+128,Taylor Lewis,Astrophysics,industry,,,94
+129,Avery Brown,Neuroscience,editorial,Associate Editor,,
+130,Taylor Roberts,Machine Learning,industry,,,95
+131,Jamie Zimmerman,Philosophy,editorial,Associate Editor,,
+132,Blake Evans,Sociology,academic,,University of Cambridge,
+133,Cameron Taylor,Genetics,industry,,,58
+134,Logan Brown,Genetics,editorial,Associate Editor,,
+135,Jordan Harris,Astrophysics,editorial,Managing Editor,,
+136,Jamie Lewis,Environmental Science,academic,,Princeton University,
+137,Avery Evans,Genetics,industry,,,12
+138,Robin Walker,Machine Learning,editorial,Editor-in-Chief,,
+139,Casey Lewis,Quantum Computing,academic,,Massachusetts Institute of Technology,
+140,Logan White,Bioinformatics,industry,,,47
+141,Reese Martinez,Economics,industry,,,76
+142,Skyler Nelson,Astrophysics,industry,,,67
+143,Casey Garcia,Philosophy,editorial,Managing Editor,,
+144,Riley Smith,Quantum Computing,industry,,,14
+145,Emerson Lewis,Neuroscience,academic,,Caltech,
+146,Drew Jackson,Neuroscience,editorial,Associate Editor,,
+147,Jordan Jackson,Sociology,academic,,ETH Zurich,
+148,Kendall Garcia,Art History,academic,,University of Chicago,
+149,Skyler Young,Art History,academic,,University of Chicago,
+150,Kendall Harris,Genetics,industry,,,80
+151,Morgan Jackson,Environmental Science,academic,,Stanford University,
+152,Jamie Smith,Quantum Computing,academic,,ETH Zurich,
+153,Alex Young,Sociology,academic,,University of Chicago,
+154,Peyton Jackson,Sociology,editorial,Managing Editor,,
+155,Skyler Walker,Climate Science,editorial,Managing Editor,,
+156,Quinn Martinez,Bioinformatics,academic,,Massachusetts Institute of Technology,
+157,Reese Harris,Genetics,industry,,,5
+158,Reese Clark,Sociology,industry,,,37
+159,Peyton Evans,Environmental Science,industry,,,33
+160,Morgan Young,Bioinformatics,industry,,,53
+161,Robin Evans,Genetics,editorial,Associate Editor,,
+162,Hayden Taylor,Quantum Computing,academic,,University of Chicago,
+163,Alex Thomas,Climate Science,industry,,,77
+164,Logan White,Sociology,editorial,Editor-in-Chief,,
+165,Jamie Martinez,Bioinformatics,industry,,,56
+166,Alex Zimmerman,Bioinformatics,industry,,,69
+167,Skyler Smith,Machine Learning,editorial,Managing Editor,,
+168,Jordan Thomas,Climate Science,industry,,,28
+169,Riley Nelson,Genetics,editorial,Section Editor,,
+170,Casey Brown,Philosophy,editorial,Managing Editor,,
+171,Quinn Nelson,Astrophysics,industry,,,77
+172,Emerson Lewis,Philosophy,industry,,,49
+173,Avery Harris,Sociology,industry,,,91
+174,Logan Young,Economics,editorial,Associate Editor,,
+175,Quinn Brown,Philosophy,academic,,Princeton University,
+176,Emerson White,Sociology,editorial,Managing Editor,,
+177,Morgan Evans,Bioinformatics,industry,,,60
+178,Skyler Lewis,Sociology,editorial,Section Editor,,
+179,Jordan Lewis,Genetics,academic,,Stanford University,
+180,Robin White,Climate Science,academic,,Princeton University,
+181,Kendall Harris,Economics,academic,,ETH Zurich,
+182,Jordan Roberts,Philosophy,industry,,,93
+183,Jamie White,Machine Learning,academic,,Massachusetts Institute of Technology,
+184,Jamie Smith,Economics,academic,,Stanford University,
+185,Skyler Walker,Quantum Computing,academic,,University of Chicago,
+186,Quinn Brown,Philosophy,industry,,,89
+187,Emerson Roberts,Sociology,academic,,Massachusetts Institute of Technology,
+188,Taylor Brown,Neuroscience,industry,,,99
+189,Cameron Perez,Economics,academic,,ETH Zurich,
+190,Morgan Zimmerman,Neuroscience,academic,,Imperial College London,
+191,Avery Nelson,Bioinformatics,editorial,Managing Editor,,
+192,Emerson Harris,Quantum Computing,industry,,,79
+193,Peyton Nelson,Neuroscience,editorial,Associate Editor,,
+194,Kendall Garcia,Economics,editorial,Section Editor,,
+195,Emerson Perez,Quantum Computing,editorial,Associate Editor,,
+196,Peyton Evans,Genetics,editorial,Section Editor,,
+197,Emerson Nelson,Neuroscience,editorial,Managing Editor,,
+198,Blake Anderson,Machine Learning,editorial,Section Editor,,
+199,Hayden Lewis,Sociology,academic,,Stanford University,
+200,Blake Anderson,Genetics,academic,,ETH Zurich,
+201,Alex Walker,Quantum Computing,editorial,Managing Editor,,
+202,Riley Anderson,Environmental Science,academic,,University of Chicago,
+203,Alex Zimmerman,Philosophy,academic,,Stanford University,
+204,Morgan Brown,Sociology,academic,,University of Chicago,
+205,Emerson Harris,Bioinformatics,industry,,,93
+206,Blake Thomas,Quantum Computing,editorial,Managing Editor,,
+207,Morgan Smith,Philosophy,academic,,University of Oxford,
+208,Drew Harris,Sociology,industry,,,42
+209,Emerson Evans,Art History,industry,,,31
+210,Taylor Harris,Genetics,editorial,Section Editor,,
+211,Avery Taylor,Climate Science,editorial,Managing Editor,,
+212,Reese Smith,Neuroscience,editorial,Section Editor,,
+213,Morgan White,Economics,editorial,Managing Editor,,
+214,Cameron Thomas,Climate Science,editorial,Associate Editor,,
+215,Drew Roberts,Machine Learning,editorial,Associate Editor,,
+216,Logan Martinez,Art History,industry,,,35
+217,Riley Anderson,Climate Science,industry,,,64
+218,Drew Young,Neuroscience,industry,,,79
+219,Drew White,Climate Science,editorial,Associate Editor,,
+220,Riley Davis,Climate Science,industry,,,56
+221,Hayden Nelson,Philosophy,editorial,Editor-in-Chief,,
+222,Morgan Young,Sociology,editorial,Section Editor,,
+223,Morgan Clark,Astrophysics,editorial,Editor-in-Chief,,
+224,Jamie Anderson,Philosophy,academic,,University of Cambridge,
+225,Blake Walker,Economics,editorial,Associate Editor,,
+226,Alex Walker,Art History,editorial,Managing Editor,,
+227,Reese Anderson,Astrophysics,editorial,Managing Editor,,
+228,Kendall Roberts,Genetics,academic,,Harvard University,
+229,Jordan Harris,Bioinformatics,industry,,,66
+230,Jordan Roberts,Art History,academic,,University of Cambridge,
+231,Hayden Martinez,Environmental Science,editorial,Associate Editor,,
+232,Kendall Anderson,Machine Learning,editorial,Section Editor,,
+233,Jordan Garcia,Sociology,academic,,Stanford University,
+234,Hayden Martinez,Sociology,editorial,Section Editor,,
+235,Alex Walker,Philosophy,editorial,Managing Editor,,
+236,Avery Zimmerman,Climate Science,editorial,Section Editor,,
+237,Avery White,Climate Science,editorial,Associate Editor,,
+238,Logan Young,Climate Science,academic,,Harvard University,
+239,Reese Smith,Environmental Science,editorial,Managing Editor,,
+240,Taylor Thomas,Art History,editorial,Managing Editor,,
+241,Skyler Garcia,Economics,academic,,University of Chicago,
+242,Casey Harris,Art History,industry,,,68
+243,Quinn Martinez,Climate Science,academic,,Harvard University,
+244,Alex Taylor,Machine Learning,editorial,Editor-in-Chief,,
+245,Avery Thomas,Bioinformatics,academic,,University of Cambridge,
+246,Morgan Jackson,Bioinformatics,academic,,University of Chicago,
+247,Blake Lewis,Environmental Science,industry,,,81
+248,Peyton Anderson,Philosophy,academic,,Stanford University,
+249,Taylor Jackson,Genetics,industry,,,86
+250,Logan Evans,Machine Learning,editorial,Associate Editor,,
+251,Emerson White,Climate Science,editorial,Editor-in-Chief,,
+252,Jamie Perez,Philosophy,academic,,University of Chicago,
+253,Drew Young,Economics,industry,,,54
+254,Blake Roberts,Climate Science,academic,,Imperial College London,
+255,Kendall Roberts,Economics,industry,,,32
+256,Morgan Young,Bioinformatics,editorial,Section Editor,,
+257,Taylor Garcia,Neuroscience,industry,,,56
+258,Cameron Anderson,Philosophy,editorial,Associate Editor,,
+259,Quinn Roberts,Bioinformatics,industry,,,89
+260,Cameron Garcia,Genetics,academic,,University of Cambridge,
+261,Kendall Davis,Astrophysics,editorial,Managing Editor,,
+262,Taylor Garcia,Philosophy,industry,,,51
+263,Morgan Taylor,Astrophysics,academic,,University of Chicago,
+264,Reese Evans,Environmental Science,editorial,Associate Editor,,
+265,Peyton Martinez,Environmental Science,industry,,,10
+266,Hayden Davis,Bioinformatics,industry,,,50
+267,Reese Jackson,Art History,academic,,Stanford University,
+268,Peyton Taylor,Astrophysics,industry,,,91
+269,Skyler White,Philosophy,industry,,,5
+270,Logan Roberts,Philosophy,academic,,University of Chicago,
+271,Quinn Smith,Sociology,editorial,Managing Editor,,
+272,Jamie Nelson,Economics,academic,,Imperial College London,
+273,Reese Martinez,Neuroscience,academic,,Stanford University,
+274,Morgan Martinez,Climate Science,industry,,,50
+275,Quinn Jackson,Art History,academic,,Harvard University,
+276,Reese Harris,Sociology,editorial,Managing Editor,,
+277,Alex Garcia,Neuroscience,industry,,,74
+278,Riley Jackson,Genetics,industry,,,1
+279,Drew Zimmerman,Economics,academic,,ETH Zurich,
+280,Cameron Jackson,Machine Learning,industry,,,16
+281,Kendall Taylor,Environmental Science,industry,,,3
+282,Robin Perez,Philosophy,academic,,Princeton University,
+283,Taylor Nelson,Philosophy,editorial,Editor-in-Chief,,
+284,Drew Jackson,Astrophysics,academic,,University of Chicago,
+285,Skyler Perez,Astrophysics,academic,,University of Cambridge,
+286,Jamie Thomas,Economics,industry,,,27
+287,Kendall Young,Economics,academic,,University of Cambridge,
+288,Peyton Clark,Climate Science,academic,,Princeton University,
+289,Emerson Anderson,Climate Science,industry,,,59
+290,Taylor Smith,Astrophysics,industry,,,13
+291,Casey Taylor,Art History,industry,,,63
+292,Casey Roberts,Art History,editorial,Associate Editor,,
+293,Jamie Harris,Climate Science,academic,,Princeton University,
+294,Jordan Anderson,Genetics,industry,,,70
+295,Quinn Roberts,Sociology,editorial,Editor-in-Chief,,
+296,Reese Thomas,Genetics,industry,,,21
+297,Kendall Harris,Astrophysics,academic,,University of Oxford,
+298,Quinn Anderson,Philosophy,industry,,,44
+299,Casey Anderson,Machine Learning,editorial,Section Editor,,
+300,Jamie Anderson,Art History,industry,,,8
+301,Alex Smith,Bioinformatics,academic,,Caltech,
+302,Taylor Evans,Sociology,industry,,,64
+303,Morgan Young,Economics,academic,,Stanford University,
+304,Jamie Harris,Quantum Computing,industry,,,33
+305,Hayden Davis,Quantum Computing,industry,,,37
+306,Robin Davis,Neuroscience,editorial,Associate Editor,,
+307,Casey Clark,Climate Science,editorial,Editor-in-Chief,,
+308,Casey Taylor,Machine Learning,industry,,,66
+309,Reese Roberts,Environmental Science,editorial,Managing Editor,,
+310,Jordan Jackson,Environmental Science,academic,,Harvard University,
+311,Cameron Davis,Economics,academic,,University of Cambridge,
+312,Cameron White,Machine Learning,academic,,University of Chicago,
+313,Reese Young,Bioinformatics,academic,,Imperial College London,
+314,Reese White,Art History,academic,,Massachusetts Institute of Technology,
+315,Robin Walker,Quantum Computing,editorial,Managing Editor,,
+316,Jamie Thomas,Philosophy,academic,,Princeton University,
+317,Drew Nelson,Astrophysics,editorial,Editor-in-Chief,,
+318,Reese Anderson,Astrophysics,industry,,,53
+319,Robin Clark,Environmental Science,academic,,Princeton University,
+320,Riley Garcia,Climate Science,academic,,University of Cambridge,
+321,Morgan Martinez,Neuroscience,academic,,Harvard University,
+322,Reese Garcia,Bioinformatics,academic,,Imperial College London,
+323,Alex Evans,Philosophy,academic,,University of Oxford,
+324,Hayden Nelson,Quantum Computing,editorial,Editor-in-Chief,,
+325,Emerson Zimmerman,Astrophysics,industry,,,3
+326,Emerson Smith,Astrophysics,industry,,,71
+327,Cameron Perez,Machine Learning,academic,,ETH Zurich,
+328,Jamie Walker,Philosophy,academic,,University of Oxford,
+329,Blake White,Climate Science,academic,,Harvard University,
+330,Emerson Young,Genetics,industry,,,47
+331,Kendall Garcia,Climate Science,industry,,,62
+332,Robin Anderson,Sociology,academic,,University of Cambridge,
+333,Logan White,Neuroscience,editorial,Managing Editor,,
+334,Jamie Smith,Economics,industry,,,11
+335,Riley Jackson,Philosophy,academic,,ETH Zurich,
+336,Riley Evans,Bioinformatics,industry,,,61
+337,Cameron Nelson,Philosophy,academic,,ETH Zurich,
+338,Alex Clark,Art History,academic,,Princeton University,
+339,Quinn Roberts,Environmental Science,academic,,Harvard University,
+340,Reese Taylor,Genetics,editorial,Editor-in-Chief,,
+341,Reese Perez,Economics,industry,,,29
+342,Drew Roberts,Machine Learning,academic,,ETH Zurich,
+343,Morgan White,Environmental Science,editorial,Associate Editor,,
+344,Cameron Harris,Genetics,editorial,Managing Editor,,
+345,Blake Smith,Bioinformatics,industry,,,13
+346,Quinn Thomas,Bioinformatics,academic,,Harvard University,
+347,Blake Anderson,Art History,industry,,,45
+348,Casey Taylor,Machine Learning,editorial,Associate Editor,,
+349,Reese Nelson,Neuroscience,academic,,Massachusetts Institute of Technology,
+350,Morgan Zimmerman,Environmental Science,editorial,Managing Editor,,
+351,Robin Perez,Genetics,academic,,Princeton University,
+352,Emerson Lewis,Bioinformatics,industry,,,69
+353,Casey Brown,Sociology,editorial,Section Editor,,
+354,Reese Walker,Astrophysics,industry,,,52
+355,Casey Brown,Environmental Science,industry,,,32
+356,Alex Evans,Sociology,academic,,ETH Zurich,
+357,Robin Jackson,Art History,editorial,Managing Editor,,
+358,Riley Zimmerman,Climate Science,industry,,,61
+359,Blake Davis,Genetics,editorial,Managing Editor,,
+360,Avery Young,Genetics,editorial,Editor-in-Chief,,
+361,Jamie Roberts,Art History,industry,,,90
+362,Kendall Garcia,Climate Science,editorial,Associate Editor,,
+363,Taylor Martinez,Astrophysics,editorial,Managing Editor,,
+364,Reese Zimmerman,Economics,academic,,Princeton University,
+365,Drew Young,Art History,industry,,,15
+366,Skyler Garcia,Environmental Science,editorial,Associate Editor,,
+367,Quinn Nelson,Climate Science,academic,,Harvard University,
+368,Cameron Thomas,Art History,editorial,Section Editor,,
+369,Emerson Perez,Environmental Science,academic,,Stanford University,
+370,Emerson Jackson,Economics,academic,,ETH Zurich,
+371,Skyler Harris,Climate Science,editorial,Associate Editor,,
+372,Taylor Harris,Philosophy,industry,,,3
+373,Avery Evans,Philosophy,academic,,Massachusetts Institute of Technology,
+374,Blake Nelson,Genetics,academic,,Imperial College London,
+375,Logan Anderson,Environmental Science,editorial,Associate Editor,,
+376,Cameron Garcia,Environmental Science,editorial,Managing Editor,,
+377,Kendall Garcia,Quantum Computing,editorial,Section Editor,,
+378,Skyler Brown,Genetics,editorial,Managing Editor,,
+379,Hayden Davis,Genetics,editorial,Section Editor,,
+380,Avery Anderson,Economics,industry,,,27
+381,Kendall Lewis,Environmental Science,editorial,Managing Editor,,
+382,Drew Evans,Sociology,editorial,Managing Editor,,
+383,Avery Lewis,Bioinformatics,academic,,University of Oxford,
+384,Jamie Lewis,Art History,editorial,Associate Editor,,
+385,Robin Garcia,Neuroscience,editorial,Editor-in-Chief,,
+386,Hayden Martinez,Bioinformatics,academic,,ETH Zurich,
+387,Kendall Lewis,Sociology,industry,,,45
+388,Jamie Nelson,Economics,academic,,Stanford University,
+389,Casey Garcia,Machine Learning,industry,,,27
+390,Reese Nelson,Economics,industry,,,81
+391,Avery Walker,Environmental Science,academic,,University of Cambridge,
+392,Jamie Brown,Philosophy,academic,,Caltech,
+393,Robin Harris,Philosophy,editorial,Section Editor,,
+394,Morgan White,Art History,industry,,,21
+395,Drew Thomas,Environmental Science,industry,,,77
+396,Reese Taylor,Philosophy,editorial,Associate Editor,,
+397,Blake Taylor,Sociology,editorial,Associate Editor,,
+398,Riley Evans,Neuroscience,industry,,,58
+399,Hayden Roberts,Philosophy,industry,,,22
+400,Drew White,Astrophysics,industry,,,17
+401,Blake Smith,Art History,industry,,,47
+402,Logan Clark,Art History,academic,,ETH Zurich,
+403,Reese Roberts,Astrophysics,editorial,Editor-in-Chief,,
+404,Taylor Davis,Environmental Science,editorial,Section Editor,,
+405,Emerson Martinez,Quantum Computing,academic,,Caltech,
+406,Jordan Lewis,Machine Learning,academic,,Massachusetts Institute of Technology,
+407,Hayden Anderson,Astrophysics,academic,,ETH Zurich,
+408,Hayden White,Quantum Computing,editorial,Editor-in-Chief,,
+409,Taylor Lewis,Philosophy,industry,,,72
+410,Quinn Garcia,Economics,editorial,Associate Editor,,
+411,Emerson Thomas,Quantum Computing,industry,,,36
+412,Taylor Nelson,Climate Science,editorial,Associate Editor,,
+413,Kendall Harris,Environmental Science,industry,,,8
+414,Casey Garcia,Quantum Computing,academic,,University of Cambridge,
+415,Skyler Harris,Bioinformatics,industry,,,63
+416,Avery Garcia,Genetics,industry,,,93
+417,Logan White,Quantum Computing,industry,,,2
+418,Reese Smith,Machine Learning,academic,,University of Chicago,
+419,Blake Martinez,Environmental Science,editorial,Editor-in-Chief,,
+420,Hayden Lewis,Climate Science,editorial,Managing Editor,,
+421,Riley Clark,Quantum Computing,industry,,,29
+422,Reese Martinez,Art History,editorial,Managing Editor,,
+423,Peyton Clark,Economics,editorial,Section Editor,,
+424,Emerson Perez,Astrophysics,academic,,Imperial College London,
+425,Casey Smith,Astrophysics,editorial,Editor-in-Chief,,
+426,Reese Nelson,Machine Learning,editorial,Managing Editor,,
+427,Logan Evans,Genetics,industry,,,94
+428,Robin Harris,Philosophy,academic,,Caltech,
+429,Taylor Lewis,Machine Learning,academic,,Caltech,
+430,Blake Evans,Climate Science,academic,,University of Oxford,
+431,Avery White,Neuroscience,industry,,,96
+432,Jordan Young,Neuroscience,editorial,Managing Editor,,
+433,Avery Clark,Philosophy,editorial,Associate Editor,,
+434,Drew Young,Bioinformatics,academic,,University of Cambridge,
+435,Reese White,Philosophy,industry,,,64
+436,Logan Nelson,Machine Learning,industry,,,81
+437,Peyton Jackson,Genetics,industry,,,22
+438,Logan Jackson,Genetics,industry,,,37
+439,Emerson Roberts,Bioinformatics,academic,,Princeton University,
+440,Logan Garcia,Climate Science,editorial,Associate Editor,,
+441,Drew Davis,Bioinformatics,editorial,Section Editor,,
+442,Kendall Brown,Astrophysics,academic,,Princeton University,
+443,Emerson Lewis,Bioinformatics,industry,,,90
+444,Morgan Nelson,Quantum Computing,industry,,,29
+445,Logan Smith,Machine Learning,editorial,Section Editor,,
+446,Peyton Young,Astrophysics,industry,,,2
+447,Hayden Perez,Sociology,academic,,Harvard University,
+448,Robin Taylor,Neuroscience,editorial,Section Editor,,
+449,Avery Anderson,Philosophy,editorial,Managing Editor,,
+450,Casey Anderson,Climate Science,industry,,,93
+451,Casey Young,Astrophysics,industry,,,56
+452,Logan White,Economics,editorial,Section Editor,,
+453,Skyler Nelson,Quantum Computing,academic,,Harvard University,
+454,Alex Walker,Genetics,industry,,,55
+455,Morgan Anderson,Sociology,academic,,University of Oxford,
+456,Peyton Taylor,Genetics,academic,,Imperial College London,
+457,Jamie Lewis,Machine Learning,industry,,,58
+458,Blake Harris,Economics,industry,,,45
+459,Emerson Brown,Environmental Science,academic,,Stanford University,
+460,Reese Harris,Sociology,industry,,,81
+461,Skyler Davis,Environmental Science,academic,,Princeton University,
+462,Logan Thomas,Machine Learning,editorial,Associate Editor,,
+463,Riley Smith,Astrophysics,editorial,Managing Editor,,
+464,Jamie Walker,Machine Learning,industry,,,61
+465,Robin Young,Genetics,academic,,University of Oxford,
+466,Taylor Walker,Bioinformatics,editorial,Associate Editor,,
+467,Alex Roberts,Astrophysics,industry,,,100
+468,Avery White,Bioinformatics,industry,,,67
+469,Blake Brown,Bioinformatics,industry,,,34
+470,Kendall Harris,Bioinformatics,academic,,Stanford University,
+471,Robin Zimmerman,Climate Science,industry,,,97
+472,Jamie Roberts,Philosophy,industry,,,40
+473,Blake White,Quantum Computing,academic,,Caltech,
+474,Kendall Brown,Bioinformatics,academic,,Imperial College London,
+475,Blake Garcia,Environmental Science,academic,,University of Cambridge,
+476,Hayden White,Machine Learning,editorial,Managing Editor,,
+477,Hayden Roberts,Climate Science,editorial,Managing Editor,,
+478,Avery Taylor,Art History,editorial,Editor-in-Chief,,
+479,Cameron Roberts,Economics,editorial,Editor-in-Chief,,
+480,Morgan Zimmerman,Astrophysics,academic,,Harvard University,
+481,Reese Davis,Machine Learning,industry,,,41
+482,Robin Smith,Astrophysics,academic,,Imperial College London,
+483,Cameron Clark,Quantum Computing,editorial,Editor-in-Chief,,
+484,Blake Evans,Climate Science,industry,,,72
+485,Peyton Anderson,Astrophysics,industry,,,47
+486,Peyton Garcia,Quantum Computing,academic,,Imperial College London,
+487,Kendall Lewis,Climate Science,academic,,Massachusetts Institute of Technology,
+488,Reese Evans,Machine Learning,industry,,,28
+489,Kendall Evans,Climate Science,industry,,,79
+490,Blake Davis,Bioinformatics,editorial,Section Editor,,
+491,Skyler Zimmerman,Climate Science,editorial,Associate Editor,,
+492,Blake Perez,Neuroscience,editorial,Editor-in-Chief,,
+493,Drew Jackson,Environmental Science,editorial,Associate Editor,,
+494,Reese Roberts,Astrophysics,editorial,Editor-in-Chief,,
+495,Hayden Jackson,Quantum Computing,editorial,Associate Editor,,
+496,Morgan Nelson,Climate Science,editorial,Managing Editor,,
+497,Alex Lewis,Climate Science,editorial,Editor-in-Chief,,
+498,Robin White,Art History,academic,,Imperial College London,
+499,Casey Zimmerman,Economics,academic,,University of Cambridge,
+500,Morgan Walker,Bioinformatics,academic,,Caltech,

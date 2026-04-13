@@ -1,0 +1,61 @@
+{
+    "classes": [
+        {
+            "id": "@@BCM.Master_ID_Domain@@",
+            "prefix": "RBA",
+            "class": "EnterpriseDomain",
+            "name": "EnterpriseDomain"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "hasComponent",
+            "belongsToClass": "EnterpriseDomain",
+            "refersToClassMap": "BusinessCapabilityFromDomain"
+        },
+        {
+            "property": "hasGranularity",
+            "belongsToClassMap": "EnterpriseDomainLevel_1_BCM",
+            "refersToClassMap": "EnterpriseDomain",
+            "condition": ["BCM.Master_ID_Domain = 'D4'"]
+        },
+        {
+            "property": "hasGranularity",
+            "belongsToClassMap": "EnterpriseDomainLevel_2_BCM",
+            "refersToClassMap": "EnterpriseDomain",
+            "condition": ["BCM.Master_ID_Domain = 'D2'"]
+        },
+        {
+            "property": "hasGranularity",
+            "belongsToClassMap": "EnterpriseDomainLevel_3_BCM",
+            "refersToClassMap": "EnterpriseDomain",
+            "condition": ["BCM.Master_ID_Domain = 'D1'"]
+        },
+        {
+            "property": "hasGranularity",
+            "belongsToClassMap": "EnterpriseDomainLevel_4_BCM",
+            "refersToClassMap": "EnterpriseDomain",
+            "condition": ["BCM.Master_ID_Domain = 'D3'"]
+        }
+    ],
+    "data_properties": [
+        {
+            "property": "Identifier",
+            "belongsToClass": "EnterpriseDomain",
+            "type": "string",
+            "column": "BCM.Master_ID_Domain"
+        },
+        {
+            "property": "Name",
+            "belongsToClass": "EnterpriseDomain",
+            "type": "string",
+            "column": "BCM.Enterprise_Domain"
+        },
+        {
+            "property": "SequenceID",
+            "belongsToClass": "EnterpriseDomain",
+            "type": "string",
+            "column": "BCM.Enterprise_Domain_Seq_ID"
+        }
+    ]
+}

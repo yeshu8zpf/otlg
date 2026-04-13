@@ -1,0 +1,65 @@
+{
+    "classes": [
+        {
+            "id": "book/@@book.isbn@@",
+            "class": "Book",
+            "name": "BookA"
+        },
+        {
+            "id": "book/@@book_2.isbn@@",
+            "class": "Book",
+            "name": "BookB"
+        }
+    ],
+    "object_properties": [],
+    "data_properties": [
+        {
+            "property": "name",
+            "belongsToClassMap": "BookA",
+            "type": "string",
+            "column": "book.name"
+        },
+        {
+            "property": "publicationYear",
+            "belongsToClassMap": "BookA",
+            "type": "integer",
+            "column": "book.publication_year"
+        },
+        {
+            "property": "copiesAvailable",
+            "belongsToClassMap": "BookA",
+            "type": "integer",
+            "column": "book.copies_available"
+        },
+        {
+            "property": "isbn",
+            "belongsToClassMap": "BookA",
+            "type": "string",
+            "column": "book.isbn"
+        },
+        {
+            "property": "name",
+            "belongsToClassMap": "BookB",
+            "type": "string",
+            "column": "book_2.name"
+        },
+        {
+            "property": "publicationYear",
+            "belongsToClassMap": "BookB",
+            "type": "integer",
+            "column": "book_2.publication_year"
+        },
+        {
+            "property": "copiesAvailable",
+            "belongsToClassMap": "BookB",
+            "type": "integer",
+            "column": "book_2.copies_available"
+        },
+        {
+            "property": "isbn",
+            "belongsToClassMap": "BookB",
+            "type": "string",
+            "column": "book_2.isbn"
+        }
+    ]
+}

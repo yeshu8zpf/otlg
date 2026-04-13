@@ -1,0 +1,13 @@
+{
+    "relation_prefix": "npd",
+    "prefixes": [
+        {
+            "prefix": "npd",
+            "uri": "/npd/"
+        },
+        {
+            "prefix": "base",
+            "uri": "/base/"
+        }
+    ]
+}

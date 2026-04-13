@@ -1,0 +1,102 @@
+{
+    "classes": [
+        {
+            "id": "@@SCM.Object_ID_SC@@",
+            "prefix": "SCM",
+            "class": "SolutionCapability",
+            "name": "SolutionCapability_SCM"
+        },
+        {
+            "id": "@@Whitespaces.Object_ID_SC@@",
+            "prefix": "SCM",
+            "class": "SolutionCapability",
+            "name": "SolutionCapability_Whitespaces"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "isMemberOf",
+            "belongsToClassMap": "SolutionCapability_SCM",
+            "refersToClass": "Industry",
+            "condition": ["SCM.BC_Relevant_for_Cross_Industry = 'Relevant'", "Ind.Industry_ID = 'Ind026'"]
+        },
+        {
+            "property": "isMemberOf",
+            "belongsToClassMap": "SolutionCapability_SCM",
+            "refersToClass": "Industry",
+            "condition": ["SCM.BC_Relevant_for_Retail_Industry = 'Relevant'", "Ind.Industry_ID = 'Ind001'"]
+        },
+        {
+            "property": "isMemberOf",
+            "belongsToClassMap": "SolutionCapability_SCM",
+            "refersToClass": "Industry",
+            "condition": ["SCM.BC_Relevant_for_Autmotive_Industry = 'Relevant'", "Ind.Industry_ID = 'Ind006'"]
+        },
+        {
+            "property": "isMemberOf",
+            "belongsToClassMap": "SolutionCapability_SCM",
+            "refersToClass": "Industry",
+            "condition": ["SCM.BC_Relevant_for_Professional_Services_Industry = 'Relevant'", "Ind.Industry_ID = 'Ind022'"]
+        },
+        {
+            "property": "isMemberOf",
+            "belongsToClassMap": "SolutionCapability_SCM",
+            "refersToClassMap": "SolutionArchitecture_Cloud",
+            "condition": ["SCM.Solution_Capability_Reference_Architecture_Cloud = 'TRUE'"] 
+        },
+        {
+            "property": "isMemberOf",
+            "belongsToClassMap": "SolutionCapability_SCM",
+            "refersToClassMap": "SolutionArchitecture_Hybrid",
+            "condition": ["SCM.Solution_Capability_Reference_Architecture_Hybrid = 'TRUE'"] 
+        },
+        {
+            "property": "isMemberOf",
+            "belongsToClassMap": "SolutionCapability_Whitespaces",
+            "refersToClassMap": "SolutionArchitecture_Hybrid",
+            "condition": ["Whitespaces.Reference_Architecture_Hybrid_1 = 'TRUE'"]
+        },
+        {
+            "property": "isMemberOf",
+            "belongsToClassMap": "SolutionCapability_Whitespaces",
+            "refersToClassMap": "SolutionArchitecture_Cloud",
+            "condition": ["Whitespaces.Reference_Architecture_Cloud_1 = 'TRUE'"]
+        },
+        {
+            "property": "deployedBy",
+            "belongsToClassMap": "SolutionCapability_SCM",
+            "refersToClassMap": "SolutionArchitectureComponentMap"
+        },
+        {
+            "property": "isMemberOf",
+            "belongsToClassMap": "SolutionCapability_SCM",
+            "refersToClassMap": "EnterpriseDomainLevel_5_SCM"
+        }
+    ],
+    "data_properties": [
+        {
+            "property": "Identifier",
+            "belongsToClassMap": "SolutionCapability_SCM",
+            "type": "string",
+            "column": "SCM.Object_ID_SC"
+        },
+        {
+            "property": "Identifier",
+            "belongsToClassMap": "SolutionCapability_Whitespaces",
+            "type": "string",
+            "column": "Whitespaces.Object_ID_SC"
+        },
+        {
+            "property": "Name",
+            "belongsToClassMap": "SolutionCapability_SCM",
+            "type": "string",
+            "column": "SCM.Solution_Capability"
+        },
+        {
+            "property": "Name",
+            "belongsToClassMap": "SolutionCapability_Whitespaces",
+            "type": "string",
+            "column": "Whitespaces.Solution_Capability"
+        }
+    ]
+}

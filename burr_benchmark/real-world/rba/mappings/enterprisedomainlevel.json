@@ -1,0 +1,69 @@
+{
+    "classes": [
+        {
+            "id": "@@BCM.Enterprise_Domain@@-L1",
+            "prefix": "RBA",
+            "class": "EnterpriseDomainLevel",
+            "name": "EnterpriseDomainLevel_1_BCM"
+        },
+        {
+            "id": "@@BCM.Enterprise_Domain@@-L2",
+            "prefix": "RBA",
+            "class": "EnterpriseDomainLevel",
+            "name": "EnterpriseDomainLevel_2_BCM"
+        },
+        {
+            "id": "@@BCM.Enterprise_Domain@@-L3",
+            "prefix": "RBA",
+            "class": "EnterpriseDomainLevel",
+            "name": "EnterpriseDomainLevel_3_BCM"
+        },
+        {
+            "id": "@@BCM.Enterprise_Domain@@-L4",
+            "prefix": "RBA",
+            "class": "EnterpriseDomainLevel",
+            "name": "EnterpriseDomainLevel_4_BCM"
+        },
+        {
+            "id": "@@BCM.Enterprise_Domain@@-SC",
+            "prefix": "RBA",
+            "class": "EnterpriseDomainLevel",
+            "name": "EnterpriseDomainLevel_5_BCM"
+        },
+        {
+            "id": "@@SCM.Enterprise_Domain@@-L1",
+            "prefix": "SCM",
+            "class": "EnterpriseDomainLevel",
+            "name": "EnterpriseDomainLevel_1_SCM"
+        },
+        {
+            "id": "@@SCM.Enterprise_Domain@@-L2",
+            "prefix": "SCM",
+            "class": "EnterpriseDomainLevel",
+            "name": "EnterpriseDomainLevel_2_SCM"
+        },
+        {
+            "id": "@@SCM.Enterprise_Domain@@-L3",
+            "prefix": "SCM",
+            "class": "EnterpriseDomainLevel",
+            "name": "EnterpriseDomainLevel_3_SCM"
+        },
+        {
+            "id": "@@SCM.Enterprise_Domain@@-L4",
+            "prefix": "SCM",
+            "class": "EnterpriseDomainLevel",
+            "name": "EnterpriseDomainLevel_4_SCM"
+        },
+        {
+            "id": "@@SCM.Enterprise_Domain@@-SC",
+            "prefix": "SCM",
+            "class": "EnterpriseDomainLevel",
+            "name": "EnterpriseDomainLevel_5_SCM"
+        }
+    ],
+    "object_properties": [
+    ],
+    "data_properties": [
+        
+    ]
+}

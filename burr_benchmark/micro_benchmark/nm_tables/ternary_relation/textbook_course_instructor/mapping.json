@@ -1,0 +1,78 @@
+{
+    "classes": [
+        {
+            "id": "textbook/@@textbook.id@@",
+            "class": "Textbook",
+            "name": "Textbook"
+        },
+        {
+            "id": "instructor/@@instructor.id@@",
+            "class": "Instructor",
+            "name": "Instructor"
+        },
+        {
+            "id": "course/@@course.id@@",
+            "class": "Course",
+            "name": "Course"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "uses",
+            "belongsToClassMap": "Textbook",
+            "refersToClassMap": "Course",
+            "join": [
+                "textbook.id = textbook_course_instructor.tid",
+                "course.id = textbook_course_instructor.cid"
+            ]
+        },
+        {
+            "property": "prefers",
+            "belongsToClassMap": "Instructor",
+            "refersToClassMap": "Textbook",
+            "join": [
+                "instructor.id = textbook_course_instructor.iid",
+                "textbook.id = textbook_course_instructor.tid"
+            ]
+        },
+        {
+            "property": "teaches",
+            "belongsToClassMap": "Instructor",
+            "refersToClassMap": "Course",
+            "join": [
+                "instructor.id = textbook_course_instructor.iid",
+                "course.id = textbook_course_instructor.cid"
+            ]
+        }
+    ],
+    "data_properties": [
+        {
+            "property": "name",
+            "belongsToClassMap": "Textbook",
+            "column": "textbook.title"
+        },
+        {
+            "property": "name",
+            "belongsToClassMap": "Instructor",
+            "column": "instructor.name"
+        },
+        {
+            "property": "name",
+            "belongsToClassMap": "Course",
+            "column": "course.name",
+            "type": "string"
+        },
+        {
+            "property": "credits",
+            "belongsToClassMap": "Course",
+            "column": "course.credits",
+            "type": "integer"
+        }, 
+        {
+            "property": "max_students",
+            "belongsToClassMap": "Course",
+            "column": "course.max_students",
+            "type": "integer"
+        }
+    ]
+}

@@ -1,0 +1,58 @@
+{
+    "classes": [
+        {
+            "id": "@@sea.name@@",
+            "class": "Sea",
+            "prefix": "mondial"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "locatedIn",
+            "belongsToClass": "Sea",
+            "refersToClassMap": "CountryFull",
+            "join": [
+                "geo_sea.sea = sea.name",
+                "geo_sea.country = country.code"
+            ]
+        },
+        {
+            "property": "locatedIn",
+            "belongsToClass": "Sea",
+            "refersToClass": "Province",
+            "join": [
+                "geo_sea.sea = sea.name",
+                "geo_sea.province = province.name"
+            ]
+        },
+        {
+            "property": "mergesWith",
+            "belongsToClass": "Sea",
+            "refersToClass": "Sea",
+            "join": [
+                "mergeswith.sea1 = sea.name",
+                "mergeswith.sea2 = sea.name"
+            ]
+        }
+    ],
+    "data_properties": [
+        {
+            "property": "name",
+            "belongsToClass": "Sea",
+            "type": "string",
+            "column": "sea.name"
+        },
+        {
+            "property": "area",
+            "belongsToClass": "Sea",
+            "type": "decimal",
+            "column": "sea.area"
+        },
+        {
+            "property": "depth",
+            "belongsToClass": "Sea",
+            "type": "decimal",
+            "column": "sea.depth"
+        }
+    ]
+}

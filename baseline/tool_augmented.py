@@ -501,8 +501,12 @@ def extract_json_object(text: str) -> Dict[str, Any]:
 
     raise ValueError(f"Failed to parse JSON object from model output:\n{text[:3000]}")
 
+import json
+import time
+import httpx
+from typing import Any, Dict, Optional, Tuple
 
-def call_llm_json(
+def call_llm_json_stream(
     prompt: str,
     model: str = "gpt-5.4-mini",
     api_url: str = "https://www.aiapikey.net/v1/chat/completions",
@@ -521,9 +525,10 @@ def call_llm_json(
         "model": model,
         "messages": [
             {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "user", "content": prompt[:2000]},
+            {"role": "user", "content": prompt},
         ],
         "temperature": 0.0,
+        "stream": True,
     }
 
     timeout_cfg = httpx.Timeout(
@@ -546,33 +551,56 @@ def call_llm_json(
 
     for attempt in range(1, max_retries + 1):
         attempt_meta: Dict[str, Any] = {"attempt": attempt, "status": "started"}
+        chunks = []
+
         try:
             with httpx.Client(trust_env=False, http2=False, timeout=timeout_cfg) as client:
-                r = client.post(api_url, headers=headers, json=payload)
+                with client.stream("POST", api_url, headers=headers, json=payload) as r:
+                    attempt_meta["status_code"] = r.status_code
+                    attempt_meta["response_headers"] = dict(r.headers)
 
-            attempt_meta["status_code"] = r.status_code
-            attempt_meta["response_headers"] = dict(r.headers)
+                    if r.status_code != 200:
+                        text = r.read().decode("utf-8", errors="replace")
+                        attempt_meta["status"] = "http_error"
+                        attempt_meta["response_text_preview"] = text[:5000]
+                        llm_meta["attempts"].append(attempt_meta)
 
-            if r.status_code != 200:
-                attempt_meta["status"] = "http_error"
-                attempt_meta["response_text_preview"] = r.text[:5000]
-                llm_meta["attempts"].append(attempt_meta)
-                if r.status_code in retryable_statuses and attempt < max_retries:
-                    time.sleep(retry_backoff_base ** (attempt - 1))
-                    continue
-                raise RuntimeError(f"LLM request failed with status {r.status_code}\nResponse: {r.text}")
+                        if r.status_code in retryable_statuses and attempt < max_retries:
+                            time.sleep(retry_backoff_base ** (attempt - 1))
+                            continue
 
-            data = r.json()
-            attempt_meta["response_json_preview"] = json.dumps(data, ensure_ascii=False)[:5000]
-            text = data["choices"][0]["message"]["content"]
-            attempt_meta["raw_content_preview"] = str(text)[:5000]
+                        raise RuntimeError(
+                            f"LLM request failed with status {r.status_code}\nResponse: {text}"
+                        )
+
+                    for line in r.iter_lines():
+                        if not line:
+                            continue
+                        if line == "data: [DONE]":
+                            break
+                        if not line.startswith("data: "):
+                            continue
+
+                        data = json.loads(line[6:])
+                        choices = data.get("choices", [])
+                        if not choices:
+                            continue
+
+                        delta = choices[0].get("delta", {})
+                        content = delta.get("content")
+                        if content:
+                            chunks.append(content)
+
+            text = "".join(chunks)
+            attempt_meta["raw_content_preview"] = text[:5000]
             model_json = extract_json_object(text)
 
             attempt_meta["status"] = "ok"
             llm_meta["attempts"].append(attempt_meta)
-            llm_meta["status_code"] = r.status_code
-            llm_meta["response_headers"] = dict(r.headers)
-            llm_meta["raw_content_preview"] = str(text)[:5000]
+            llm_meta["status_code"] = 200
+            llm_meta["response_headers"] = attempt_meta.get("response_headers", {})
+            llm_meta["raw_content_preview"] = text[:5000]
+
             return model_json, llm_meta
 
         except (httpx.ReadTimeout, httpx.ConnectTimeout, httpx.WriteTimeout, httpx.PoolTimeout) as e:
@@ -580,7 +608,9 @@ def call_llm_json(
             attempt_meta["status"] = "timeout"
             attempt_meta["error_type"] = type(e).__name__
             attempt_meta["error_message"] = str(e)
+            attempt_meta["partial_content_preview"] = "".join(chunks)[:5000]
             llm_meta["attempts"].append(attempt_meta)
+
             if attempt < max_retries:
                 time.sleep(retry_backoff_base ** (attempt - 1))
                 continue
@@ -590,7 +620,9 @@ def call_llm_json(
             attempt_meta["status"] = "httpx_error"
             attempt_meta["error_type"] = type(e).__name__
             attempt_meta["error_message"] = str(e)
+            attempt_meta["partial_content_preview"] = "".join(chunks)[:5000]
             llm_meta["attempts"].append(attempt_meta)
+
             if attempt < max_retries:
                 time.sleep(retry_backoff_base ** (attempt - 1))
                 continue
@@ -600,6 +632,7 @@ def call_llm_json(
             attempt_meta["status"] = "other_error"
             attempt_meta["error_type"] = type(e).__name__
             attempt_meta["error_message"] = str(e)
+            attempt_meta["partial_content_preview"] = "".join(chunks)[:5000]
             llm_meta["attempts"].append(attempt_meta)
             raise
 
@@ -607,8 +640,6 @@ def call_llm_json(
         f"LLM request failed after {max_retries} attempts. "
         f"Last error: {type(last_exc).__name__}: {last_exc}"
     ) from last_exc
-
-
 # ============================================================
 # Tool selection / compression
 # ============================================================
@@ -684,6 +715,7 @@ def build_tool_context(
             [h.to_dict() for h in hypothesis_store.items.values()],
             max_items=20,
         )
+        ctx["revision_guidance"] = hypothesis_store.build_revision_guidance(max_items=15)
     return ctx
 
 
@@ -693,7 +725,7 @@ def build_tool_context(
 
 def run_tool_augmented_baseline(
     scenario_dir: Path,
-    model: str = "gpt-5.4-mini",
+    model: str = "gpt-5.4-nano",
     api_url: str = "https://www.aiapikey.net/v1/chat/completions",
     max_rows_per_table: int = 3,
     timeout: float = 300.0,
@@ -757,7 +789,7 @@ def run_tool_augmented_baseline(
         include_tool_context=include_tool_context,
     )
 
-    raw_model_json, llm_meta = call_llm_json(
+    raw_model_json, llm_meta = call_llm_json_stream(
         prompt=prompt,
         model=model,
         api_url=api_url,
@@ -768,9 +800,14 @@ def run_tool_augmented_baseline(
     draft = OntologyDraft.from_dict(normalized_model_json, already_normalized=True)
 
     lite_verification = None
+    verification_feedback = None
+
     if "mapping_verifier_lite" in enabled_tools:
         lite_verifier = MappingVerifierLite()
         lite_verification = lite_verifier.verify_draft_dict(draft.to_dict())
+
+        if store is not None and lite_verification is not None:
+            verification_feedback = store.resolve_from_verifier_report(lite_verification)
 
     burr_mapping = draft.to_burr_mapping()
     validate_ok, validate_errors = draft.validate()
@@ -797,6 +834,7 @@ def run_tool_augmented_baseline(
             "errors": validate_errors,
         },
         "lite_verification": lite_verification,
+        "verification_feedback": verification_feedback,
         "tool_context_summary": {
             "schema_summary": schema_profile.get("stats", {}) if schema_profile else {},
             "hypothesis_summary": store.summary() if store else {},
@@ -812,6 +850,7 @@ def run_tool_augmented_baseline(
         "hypotheses": store.to_dict() if store else None,
         "tool_context": tool_context,
         "prompt": prompt,
+        "verification_feedback": verification_feedback,
     }
 
     return draft, burr_mapping, meta, raw_model_json, tool_artifacts
@@ -825,23 +864,22 @@ def main() -> None:
     parser = argparse.ArgumentParser(
         description="Tool-augmented ontology learning orchestrator with selectable tools and prompt sections."
     )
-    parser.add_argument("--scenario-dir", type=str, default="../burr/real-world/mondial")
+    parser.add_argument("--scenario-dir", type=str, default="burr_benchmark/real-world/mondial") # burr_benchmark/micro_benchmark/nm_tables/composite_keys/university_1
     parser.add_argument("--schema-path", type=str, default=None)
     parser.add_argument("--fk-mode", type=str, default="auto", choices=["auto", "fk", "no_fk"])
     parser.add_argument("--model", type=str, default="gpt-5.4-nano")
     parser.add_argument("--api-url", type=str, default="https://www.aiapikey.net/v1/chat/completions")
     parser.add_argument("--max-rows-per-table", type=int, default=3)
     parser.add_argument("--timeout", type=float, default=300.0)
-    parser.add_argument("--out-dir", type=str, default="outputs/tool_augmented_tt2")
+    parser.add_argument("--out-dir", type=str, default="outputs/tool_augmented")
     parser.add_argument("--run-burr-compare", action="store_true")
-    parser.add_argument("--burr-root", type=str, default=str((PROJECT_ROOT / "../burr").resolve()))
     parser.add_argument("--meta-path", type=str, default=None)
     parser.add_argument("--database-name", type=str, default=None)
 
     parser.add_argument(
         "--enabled-tools",
         type=str,
-        default="schema_profiler",
+        default="",
         help="Comma-separated from: schema_profiler,instance_profiler,pattern_detector,mapping_verifier_lite",
     )
     parser.add_argument("--include-schema-sql", action="store_true")

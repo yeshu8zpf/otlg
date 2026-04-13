@@ -1,0 +1,84 @@
+{
+    "classes": [
+        {
+            "id": "beverage/@@beverage.id@@",
+            "class": "Beverage"
+        },
+        {
+            "id": "Caffeine",
+            "class": "Ingredient",
+            "name": "IngredientCaffeine"
+        },
+        {
+            "id": "Sugar",
+            "class": "Ingredient",
+            "name": "IngredientSugar"
+        },
+        {
+            "id": "Alcohol",
+            "class": "Ingredient",
+            "name": "IngredientAlcohol"
+        },
+        {
+            "id": "Dairy",
+            "class": "Ingredient",
+            "name": "IngredientDairy"
+        },
+        {
+            "id": "Gluten",
+            "class": "Ingredient",
+            "name": "IngredientGluten"
+        },
+        {
+            "id": "Nuts",
+            "class": "Ingredient",
+            "name": "IngredientNuts"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "contains",
+            "belongsToClass": "Beverage",
+            "refersToClassMap": "IngredientAlcohol",
+            "condition": "beverage.contains_alcohol = True"
+        },
+        {
+            "property": "contains",
+            "belongsToClass": "Beverage",
+            "refersToClassMap": "IngredientCaffeine",
+            "condition": "beverage.contains_caffeine = 'True'"
+        },
+        {
+            "property": "contains",
+            "belongsToClass": "Beverage",
+            "refersToClassMap": "IngredientSugar",
+            "condition": "beverage.contains_sugar = 'True'"
+        },
+        {
+            "property": "contains",
+            "belongsToClass": "Beverage",
+            "refersToClassMap": "IngredientDairy",
+            "condition": "beverage.contains_dairy = 'True'"
+        },
+        {
+            "property": "contains",
+            "belongsToClass": "Beverage",
+            "refersToClassMap": "IngredientGluten",
+            "condition": "beverage.contains_gluten = 'True'"
+        },
+        {
+            "property": "contains",
+            "belongsToClass": "Beverage",
+            "refersToClassMap": "IngredientNuts",
+            "condition": "beverage.contains_nuts = 'True'"
+        }
+    ],
+    "data_properties": [
+        {
+            "property": "name",
+            "belongsToClass": "Beverage",
+            "type": "string",
+            "column": "beverage.name"
+        }
+    ]
+}

@@ -1,0 +1,501 @@
+id,name,price
+1,Smartphone Premium,914
+2,Desk Lamp Deluxe,616
+3,Speaker Eco,14
+4,Desk Lamp Ultra,295
+5,Headphones Premium,114
+6,Router Max,384
+7,Mouse Ultra,478
+8,Backpack Mini,696
+9,Tablet Classic,999
+10,Mouse Premium,407
+11,Microphone Eco,611
+12,Backpack Plus,370
+13,Smartwatch Premium,186
+14,Keyboard Premium,614
+15,Headphones,147
+16,Mouse Lite,254
+17,Keyboard Lite,197
+18,Printer Max,533
+19,Router Eco,620
+20,Coffee Maker Premium,402
+21,Speaker Max,508
+22,Router,963
+23,Book Classic,180
+24,Tablet Mini,153
+25,Book Plus,872
+26,Smartwatch Premium,64
+27,Printer Pro,506
+28,Coffee Maker Ultra,844
+29,Router Classic,527
+30,Tablet Eco,711
+31,Tablet Eco,737
+32,Smartwatch Deluxe,181
+33,Headphones Premium,41
+34,Office Chair Mini,43
+35,Monitor Ultra,560
+36,Keyboard Max,809
+37,Smartwatch Premium,770
+38,Tablet Classic,533
+39,Backpack Premium,126
+40,Monitor Classic,853
+41,Printer Classic,852
+42,Laptop Deluxe,569
+43,Desk Lamp Eco,114
+44,Office Chair Mini,905
+45,Laptop Deluxe,279
+46,Printer Lite,459
+47,Backpack Ultra,224
+48,Charger Plus,891
+49,Microphone,448
+50,Book Premium,152
+51,Desk Lamp Ultra,834
+52,Laptop Premium,369
+53,Router Mini,621
+54,Router Max,341
+55,Keyboard Mini,596
+56,Monitor Classic,931
+57,Backpack Max,995
+58,Speaker Pro,293
+59,Coffee Maker Max,265
+60,Coffee Maker Plus,858
+61,Office Chair,412
+62,Tablet Max,601
+63,Monitor,434
+64,Router Deluxe,87
+65,Headphones Eco,537
+66,Monitor Plus,475
+67,Tablet Plus,605
+68,Smartphone Lite,758
+69,Smartwatch,690
+70,Printer Lite,824
+71,Router Eco,233
+72,Speaker Ultra,516
+73,Monitor Plus,858
+74,Keyboard Plus,570
+75,Charger Max,589
+76,Tablet Plus,925
+77,Laptop Pro,111
+78,Smartwatch Pro,137
+79,Book Deluxe,477
+80,Smartphone Eco,217
+81,Coffee Maker,319
+82,Book Mini,105
+83,Printer Mini,94
+84,Printer,935
+85,Book Pro,415
+86,Keyboard Ultra,449
+87,Headphones Lite,11
+88,Desk Lamp Deluxe,89
+89,Coffee Maker Premium,241
+90,Camera,465
+91,Smartphone Pro,722
+92,Mouse Lite,890
+93,Speaker Max,499
+94,Headphones Ultra,402
+95,Headphones Lite,115
+96,Mouse Plus,912
+97,Keyboard Max,401
+98,Coffee Maker,703
+99,Coffee Maker Lite,553
+100,Charger Pro,634
+101,Book Deluxe,369
+102,Desk Lamp,776
+103,Coffee Maker Eco,640
+104,Smartwatch Ultra,98
+105,Backpack Max,780
+106,Backpack Premium,757
+107,Router Plus,996
+108,Speaker Plus,820
+109,Coffee Maker Ultra,293
+110,Headphones Ultra,576
+111,Microphone Premium,748
+112,Microphone Mini,807
+113,Smartphone,906
+114,Keyboard Ultra,540
+115,Microphone Classic,203
+116,Router Mini,671
+117,Laptop Ultra,516
+118,Router Lite,256
+119,Tablet,618
+120,Headphones Classic,920
+121,Smartphone Plus,966
+122,Mouse Max,406
+123,Charger Eco,384
+124,Router,186
+125,Tablet Lite,27
+126,Charger Lite,24
+127,Monitor Ultra,50
+128,Laptop Eco,528
+129,Keyboard,739
+130,Camera Eco,443
+131,Router Lite,665
+132,Router Classic,640
+133,Coffee Maker Mini,95
+134,Keyboard Lite,533
+135,Desk Lamp Max,559
+136,Mouse Eco,610
+137,Headphones Mini,725
+138,Speaker Ultra,69
+139,Office Chair Lite,956
+140,Speaker Lite,474
+141,Microphone Premium,66
+142,Keyboard,769
+143,Book Lite,22
+144,Coffee Maker Pro,177
+145,Tablet Plus,545
+146,Camera Mini,180
+147,Printer Max,777
+148,Monitor Lite,799
+149,Smartphone Plus,836
+150,Speaker Mini,546
+151,Headphones Mini,739
+152,Charger,88
+153,Tablet Deluxe,533
+154,Printer Pro,521
+155,Charger Max,386
+156,Book Mini,801
+157,Backpack Premium,700
+158,Backpack Ultra,768
+159,Camera Pro,55
+160,Smartphone Ultra,57
+161,Tablet Plus,402
+162,Coffee Maker Max,963
+163,Laptop Classic,832
+164,Speaker Ultra,339
+165,Office Chair Eco,947
+166,Mouse Mini,855
+167,Headphones Premium,391
+168,Backpack Classic,699
+169,Laptop Max,238
+170,Camera Pro,986
+171,Router Lite,908
+172,Smartwatch Mini,802
+173,Keyboard Plus,98
+174,Router Deluxe,18
+175,Printer Ultra,308
+176,Charger Mini,767
+177,Microphone Ultra,485
+178,Printer Premium,515
+179,Desk Lamp Classic,788
+180,Office Chair Max,16
+181,Speaker Pro,248
+182,Router Plus,661
+183,Smartphone Plus,11
+184,Router Mini,116
+185,Desk Lamp Classic,253
+186,Speaker Deluxe,994
+187,Laptop Max,738
+188,Monitor Lite,54
+189,Office Chair Classic,432
+190,Printer Deluxe,775
+191,Headphones Premium,107
+192,Camera Max,662
+193,Router Lite,616
+194,Charger Pro,455
+195,Coffee Maker Ultra,308
+196,Monitor Plus,958
+197,Router Plus,335
+198,Smartwatch Mini,249
+199,Headphones Ultra,149
+200,Charger Lite,169
+201,Backpack Max,470
+202,Smartwatch Plus,426
+203,Backpack Classic,376
+204,Desk Lamp Deluxe,325
+205,Smartwatch Mini,882
+206,Backpack Lite,171
+207,Keyboard Premium,51
+208,Desk Lamp Plus,161
+209,Headphones Ultra,374
+210,Router Classic,60
+211,Keyboard Mini,849
+212,Book Pro,984
+213,Router Deluxe,579
+214,Router Ultra,106
+215,Smartwatch Lite,833
+216,Coffee Maker Lite,22
+217,Laptop Ultra,143
+218,Desk Lamp Eco,391
+219,Headphones Premium,610
+220,Monitor Lite,32
+221,Headphones Ultra,934
+222,Smartwatch Max,104
+223,Mouse Lite,53
+224,Smartwatch Pro,182
+225,Charger Eco,851
+226,Router Deluxe,40
+227,Router,446
+228,Book Plus,229
+229,Book Mini,296
+230,Smartwatch Max,45
+231,Microphone Premium,641
+232,Office Chair,312
+233,Tablet Eco,913
+234,Router Deluxe,72
+235,Headphones Mini,402
+236,Coffee Maker Eco,214
+237,Camera Ultra,655
+238,Router Pro,401
+239,Printer Deluxe,567
+240,Tablet Plus,944
+241,Charger Classic,339
+242,Router Mini,194
+243,Smartphone Plus,621
+244,Office Chair Pro,927
+245,Monitor Pro,838
+246,Tablet Classic,376
+247,Charger Ultra,173
+248,Backpack Ultra,682
+249,Office Chair Mini,556
+250,Laptop Ultra,599
+251,Router Plus,967
+252,Book Max,252
+253,Charger Plus,835
+254,Printer Premium,38
+255,Printer Premium,587
+256,Coffee Maker Premium,981
+257,Desk Lamp Deluxe,565
+258,Keyboard Max,512
+259,Laptop Lite,67
+260,Office Chair Premium,234
+261,Smartphone Classic,499
+262,Smartphone Plus,949
+263,Microphone Ultra,835
+264,Coffee Maker Plus,744
+265,Book Plus,70
+266,Smartphone Max,610
+267,Coffee Maker Lite,876
+268,Camera Plus,993
+269,Headphones Plus,731
+270,Router Premium,113
+271,Mouse Mini,340
+272,Coffee Maker Max,759
+273,Speaker,993
+274,Tablet,334
+275,Book Classic,720
+276,Microphone Plus,238
+277,Charger Max,397
+278,Keyboard Mini,140
+279,Book Pro,981
+280,Charger Eco,881
+281,Charger Pro,196
+282,Microphone Plus,953
+283,Microphone Ultra,664
+284,Charger Lite,969
+285,Tablet Max,349
+286,Headphones Ultra,365
+287,Mouse Max,661
+288,Headphones,664
+289,Mouse Deluxe,21
+290,Monitor Ultra,265
+291,Headphones Plus,272
+292,Backpack Pro,59
+293,Router Deluxe,760
+294,Speaker Max,915
+295,Speaker Deluxe,912
+296,Router Plus,569
+297,Router Lite,858
+298,Tablet Premium,676
+299,Office Chair Max,472
+300,Headphones Pro,311
+301,Smartphone Plus,277
+302,Backpack Lite,360
+303,Book Eco,174
+304,Headphones Classic,974
+305,Headphones Plus,618
+306,Microphone Deluxe,731
+307,Smartphone Eco,975
+308,Book Premium,921
+309,Speaker Max,64
+310,Backpack Plus,220
+311,Desk Lamp Eco,723
+312,Router Classic,281
+313,Keyboard Mini,253
+314,Backpack Pro,412
+315,Charger Classic,870
+316,Tablet Max,65
+317,Printer Pro,447
+318,Headphones Mini,853
+319,Microphone Deluxe,214
+320,Backpack Pro,221
+321,Book,308
+322,Headphones Deluxe,874
+323,Backpack Mini,813
+324,Router Deluxe,510
+325,Monitor Lite,667
+326,Router Eco,199
+327,Printer Eco,388
+328,Book Deluxe,55
+329,Monitor Deluxe,486
+330,Monitor Ultra,867
+331,Monitor Premium,73
+332,Coffee Maker,109
+333,Headphones,362
+334,Router Eco,784
+335,Charger Ultra,576
+336,Laptop Eco,848
+337,Camera Eco,998
+338,Router,897
+339,Tablet Premium,912
+340,Office Chair Deluxe,316
+341,Headphones Eco,934
+342,Laptop Classic,594
+343,Camera Premium,703
+344,Microphone Max,133
+345,Smartwatch Max,981
+346,Book Ultra,837
+347,Desk Lamp Max,53
+348,Speaker Lite,709
+349,Speaker Ultra,852
+350,Coffee Maker Premium,274
+351,Mouse Lite,99
+352,Router Classic,416
+353,Router Plus,887
+354,Monitor Classic,479
+355,Smartphone Premium,611
+356,Camera Eco,125
+357,Speaker Max,161
+358,Charger Premium,606
+359,Backpack Lite,586
+360,Backpack Mini,898
+361,Router Plus,908
+362,Speaker Mini,402
+363,Tablet Premium,633
+364,Tablet Pro,186
+365,Monitor Eco,157
+366,Microphone Premium,707
+367,Router Pro,415
+368,Mouse Ultra,60
+369,Tablet Mini,928
+370,Printer Pro,355
+371,Keyboard Mini,297
+372,Tablet,110
+373,Office Chair Max,317
+374,Smartwatch Plus,285
+375,Speaker Premium,671
+376,Headphones Ultra,462
+377,Desk Lamp Eco,768
+378,Tablet Classic,898
+379,Printer Pro,537
+380,Book Lite,328
+381,Camera Eco,148
+382,Camera Premium,39
+383,Book Ultra,906
+384,Desk Lamp Pro,265
+385,Laptop Deluxe,61
+386,Printer Ultra,290
+387,Printer Deluxe,527
+388,Router,955
+389,Backpack,41
+390,Office Chair Plus,510
+391,Microphone Deluxe,191
+392,Tablet Premium,574
+393,Printer Plus,177
+394,Monitor Lite,301
+395,Smartphone Eco,60
+396,Book Premium,808
+397,Desk Lamp Ultra,672
+398,Office Chair,221
+399,Monitor,429
+400,Camera Pro,895
+401,Smartphone Deluxe,943
+402,Coffee Maker,187
+403,Microphone Pro,239
+404,Monitor Premium,834
+405,Keyboard,291
+406,Speaker Eco,882
+407,Printer Deluxe,268
+408,Desk Lamp Deluxe,319
+409,Camera Premium,416
+410,Charger Lite,17
+411,Camera,999
+412,Printer Classic,672
+413,Microphone Premium,299
+414,Keyboard,120
+415,Tablet Lite,354
+416,Monitor,342
+417,Monitor Mini,681
+418,Keyboard Ultra,163
+419,Camera Ultra,931
+420,Laptop Premium,423
+421,Mouse,153
+422,Smartphone,519
+423,Keyboard Mini,938
+424,Speaker Eco,407
+425,Laptop Premium,735
+426,Charger Ultra,361
+427,Office Chair,557
+428,Tablet,377
+429,Camera Mini,875
+430,Book,907
+431,Router Max,310
+432,Backpack Deluxe,141
+433,Monitor Classic,791
+434,Book,931
+435,Mouse,101
+436,Office Chair Plus,238
+437,Keyboard Eco,817
+438,Mouse Plus,276
+439,Charger Mini,484
+440,Backpack Deluxe,64
+441,Charger Premium,976
+442,Microphone Lite,493
+443,Desk Lamp Classic,132
+444,Router Classic,315
+445,Speaker Pro,901
+446,Coffee Maker Max,215
+447,Mouse Eco,593
+448,Smartwatch Max,333
+449,Book Lite,509
+450,Mouse,191
+451,Mouse,69
+452,Smartphone Deluxe,290
+453,Desk Lamp Max,600
+454,Book Deluxe,814
+455,Headphones Max,639
+456,Speaker,449
+457,Router Eco,998
+458,Tablet Eco,14
+459,Laptop Classic,214
+460,Printer Pro,923
+461,Mouse Classic,205
+462,Smartphone,14
+463,Office Chair Ultra,720
+464,Printer Mini,142
+465,Backpack Eco,525
+466,Charger Mini,181
+467,Headphones Pro,315
+468,Keyboard Deluxe,755
+469,Camera Premium,546
+470,Mouse Eco,919
+471,Coffee Maker Plus,933
+472,Tablet Plus,778
+473,Desk Lamp Max,980
+474,Router Pro,243
+475,Office Chair Max,226
+476,Smartphone Premium,526
+477,Book Lite,385
+478,Laptop Eco,907
+479,Monitor Classic,648
+480,Laptop Premium,59
+481,Backpack,866
+482,Smartphone Pro,716
+483,Backpack Eco,464
+484,Router Lite,570
+485,Monitor Deluxe,728
+486,Coffee Maker Ultra,721
+487,Smartphone Mini,440
+488,Backpack,542
+489,Monitor Premium,630
+490,Coffee Maker Eco,860
+491,Backpack Classic,746
+492,Microphone Lite,299
+493,Backpack Lite,519
+494,Desk Lamp Premium,214
+495,Monitor Classic,216
+496,Printer Eco,312
+497,Book Pro,571
+498,Tablet Ultra,714
+499,Tablet Plus,250
+500,Smartphone Pro,697

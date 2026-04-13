@@ -1,0 +1,44 @@
+{
+    "classes": [
+        {
+            "id": "person/@@person.id@@",
+            "class": "Person",
+            "name": "Person"
+        },
+        {
+            "id": "hobby/@@hobbies.name@@",
+            "class": "Hobby",
+            "name": "Hobby"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "has",
+            "belongsToClassMap": "Person",
+            "refersToClassMap": "Hobby",
+            "join": [
+                "person.id = hobbies.person_id"
+            ]
+        }
+    ],
+    "data_properties": [
+        {
+            "property": "name",
+            "belongsToClassMap": "Person",
+            "type": "string",
+            "column": "person.name"
+        },
+        {
+            "property": "name",
+            "belongsToClassMap": "Hobby",
+            "type": "string",
+            "column": "hobbies.name"
+        },
+        {
+            "property": "difficulty",
+            "belongsToClassMap": "Hobby",
+            "type": "string",
+            "column": "hobbies.difficulty"
+        }
+    ]
+}

@@ -1,0 +1,66 @@
+{
+    "classes": [
+        {
+            "id": "@@BPM.Business_Process_Sequence_1@@/@@BPM.Business_Process_1@@/@@BPM.Business_Process_ID_1@@",
+            "prefix": "RBA",
+            "class": "BusinessProcessSequence",
+            "name": "BusinessProcessSequence_1"
+        },
+        {
+            "id": "@@BPM.Business_Process_Sequence_2@@/@@BPM.Business_Process_2@@/@@BPM.Business_Process_ID_2@@",
+            "class": "BusinessProcessSequence",
+            "prefix": "RBA",
+            "name": "BusinessProcessSequence_2"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "references",
+            "belongsToClassMap": "BusinessProcessSequence_1",
+            "refersToClassMap": "BusinessProcess_1"
+        },
+        {
+            "property": "references",
+            "belongsToClassMap": "BusinessProcessSequence_2",
+            "refersToClassMap": "BusinessProcess_2"
+        }
+    ],
+    "data_properties": [
+        {
+            "property": "ID",
+            "belongsToClassMap": "BusinessProcessSequence_1",
+            "type": "string",
+            "column": "BPM.Business_Process_ID_1"
+        },
+        {
+            "property": "ID",
+            "belongsToClassMap": "BusinessProcessSequence_2",
+            "type": "string",
+            "column": "BPM.Business_Process_ID_2"
+        },
+        {
+            "property": "sequenceID",
+            "belongsToClassMap": "BusinessProcessSequence_1",
+            "type": "string",
+            "column": "BPM.Business_Process_Sequence_1"
+        },
+        {
+            "property": "sequenceID",
+            "belongsToClassMap": "BusinessProcessSequence_2",
+            "type": "string",
+            "column": "BPM.Business_Process_Sequence_2"
+        },
+        {
+            "property": "Name",
+            "belongsToClassMap": "BusinessProcessSequence_1",
+            "type": "string",
+            "column": "BPM.Business_Process_1"
+        },
+        {
+            "property": "Name",
+            "belongsToClassMap": "BusinessProcessSequence_2",
+            "type": "string",
+            "column": "BPM.Business_Process_2"
+        }
+    ]
+}

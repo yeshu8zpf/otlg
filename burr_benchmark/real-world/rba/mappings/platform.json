@@ -1,0 +1,25 @@
+{
+    "classes": [
+        {
+            "id": "@@SCM.Platform@@",
+            "prefix": "SCM",
+            "class": "Platform"
+        }
+    ],
+    "object_properties": [
+    ],
+    "data_properties": [
+        {
+            "property": "Identifier",
+            "belongsToClass": "Platform",
+            "type": "string",
+            "column": "SCM.Platform"
+        },
+        {
+            "property": "Name",
+            "belongsToClass": "Platform",
+            "type": "string",
+            "column": "SCM.Platform"
+        }
+    ]
+}

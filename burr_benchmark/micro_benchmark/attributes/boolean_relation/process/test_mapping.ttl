@@ -1,0 +1,46 @@
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix cmt: <http://cmt/> .
+@prefix map: <http://mapping/> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix rdfs: <http://rdfs/> .
+@prefix cmt: <http://cmt#> .
+
+map:database a d2rq:Database;
+	d2rq:jdbcDriver "org.postgresql.Driver";
+	d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/service__denormalized__boolean_relation";
+	d2rq:username "lukaslaskowski";
+	jdbc:keepAlive "3600";				# sends noop-query every 3600 seconds
+#	jdbc:keepAliveQuery "SELECT 1";		# optional custom noop-query
+	.
+
+map:Service a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#service/@@service.id@@";
+    d2rq:class cmt:Service;
+    .
+
+map:Industry_oil_and_gas a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+	d2rq:uriPattern "#industry/OilAndGas";
+    d2rq:class cmt:Industry;
+    .
+
+map:Industry_retail a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+	d2rq:uriPattern "#industry/retail";
+    d2rq:class cmt:Industry;
+    .
+
+map:relevant1 a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Service;
+	d2rq:refersToClassMap map:Industry_oil_and_gas;
+	d2rq:property rdfs:isMemberOf;
+	d2rq:condition "service.relevant_for_oil_and_gas = True";
+    .
+
+map:relevant_retail a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Service;
+	d2rq:refersToClassMap map:Industry_retail;
+	d2rq:property rdfs:isMemberOf;
+	d2rq:condition "service.relevant_for_retail = True";
+    .

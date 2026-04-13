@@ -1,0 +1,50 @@
+{
+    "classes": [
+        {
+            "id": "@@BAR.Business_Activity_Code@@",
+            "prefix": "BAR",
+            "class": "BusinessActivity",
+            "name": "BusinessActivity_BAR"
+        }
+    ],
+    "object_properties": [
+    ],
+    "data_properties": [
+        {
+            "property": "Identifier",
+            "belongsToClassMap": "BusinessActivity_BAR",
+            "type": "string",
+            "column": "BAR.Business_Activity_Code"
+        },
+        {
+            "property": "Name",
+            "belongsToClassMap": "BusinessActivity_BAR",
+            "type": "string",
+            "column": "BAR.Business_Activity"   
+        },
+        {
+            "property":"Description",
+            "belongsToClassMap": "BusinessActivity_BAR",
+            "type": "string",
+            "column": "BAR.Business_Activity_Description"
+        },
+        {
+            "property": "APQCReference",
+            "belongsToClassMap": "BusinessActivity_BAR",
+            "type": "string",
+            "column": "BAR.APQC_Reference"
+        },
+        {
+            "property": "Name",
+            "belongsToClassMap": "SolutionProcess_1",
+            "type": "string",
+            "column": "SPM.Solution_Process_1"
+        },
+        {
+            "property": "Name",
+            "belongsToClassMap": "SolutionProcess_2",
+            "type": "string",
+            "column": "SPM.Solution_Process_2"
+        }
+    ]
+}

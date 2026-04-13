@@ -1,0 +1,44 @@
+{
+    "classes": [
+        {
+            "id": "@@BCM.Object_Type@@",
+            "prefix": "BCM",
+            "class": "BusinessCapabilityType",
+            "name": "BusinessCapabilityTypeDomain"
+        },
+        {
+            "id": "@@BCM.Object_Type_2@@",
+            "prefix": "BCM",
+            "class": "BusinessCapabilityType",
+            "name": "BusinessCapabilityTypeArea"
+        },
+        {
+            "id": "@@BCM.Object_Type_3@@",
+            "prefix": "BCM",
+            "class": "BusinessCapabilityType",
+            "name": "BusinessCapabilityTypeCapability"
+        }
+    ],
+    "object_properties": [
+    ],
+    "data_properties": [
+        {
+            "property": "Name",
+            "belongsToClassMap": "BusinessCapabilityTypeDomain",
+            "type": "string",
+            "column": "BCM.Object_Type"
+        },
+        {
+            "property": "Name",
+            "belongsToClassMap": "BusinessCapabilityTypeArea",
+            "type": "string",
+            "column": "BCM.Object_Type_2"
+        },
+        {
+            "property": "Name",
+            "belongsToClassMap": "BusinessCapabilityTypeCapability",
+            "type": "string",
+            "column": "BCM.Object_Type_3"
+        }
+    ]
+}

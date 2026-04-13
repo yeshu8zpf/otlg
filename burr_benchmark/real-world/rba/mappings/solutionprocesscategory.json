@@ -1,0 +1,62 @@
+{
+    "classes": [
+        {
+            "id": "@@SPM.Type@@",
+            "prefix": "SPM",
+            "class": "SolutionProcessCategory",
+            "name": "SolutionProcessCategory_0"
+        },
+        {
+            "id": "@@SPM.Type_1@@",
+            "prefix": "SPM",
+            "class": "SolutionProcessCategory",
+            "name": "SolutionProcessCategory_1"
+        },
+        {
+            "id": "@@SPM.Type_2@@",
+            "prefix": "SPM",
+            "class": "SolutionProcessCategory",
+            "name": "SolutionProcessCategory_2"
+        }
+    ],
+    "object_properties": [
+    ],
+    "data_properties": [
+        {
+            "property": "Name",
+            "belongsToClassMap": "SolutionProcessCategory_0",
+            "type": "string",
+            "column": "SPM.Type",
+            "translateWith": "TypeConversion"
+        },
+        {
+            "property": "Name",
+            "belongsToClassMap": "SolutionProcessCategory_1",
+            "type": "string",
+            "column": "SPM.Type_1",
+            "translateWith": "TypeConversion"
+        },
+        {
+            "property": "Name",
+            "belongsToClassMap": "SolutionProcessCategory_2",
+            "type": "string",
+            "column": "SPM.Type_2",
+            "translateWith": "TypeConversion"
+        }
+    ],
+    "translation_tables": [
+        {
+            "name": "TypeConversion",
+            "translations": [
+                {
+                    "databaseValue": "G",
+                    "targetValue": "Generic"
+                },
+                {
+                    "databaseValue": "V",
+                    "targetValue": "Variant"
+                }
+            ]
+        }
+    ]
+}

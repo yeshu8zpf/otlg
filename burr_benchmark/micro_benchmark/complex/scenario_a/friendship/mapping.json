@@ -1,0 +1,134 @@
+{
+    "classes": [
+        {
+            "id": "person/@@friendship.person_id_a@@",
+            "class": "Person",
+            "name": "PersonA"
+        },
+        {
+            "id": "person/@@friendship.person_id_b@@",
+            "class": "Person",
+            "name": "PersonB"
+        },
+        {
+            "id": "interest/@@interests.interest@@",
+            "class": "Interest",
+            "name": "Interest"
+        },
+        {
+            "id": "friendship/@@friendship.person_id_a@@/@@friendship.person_id_b@@",
+            "class": "Friendship",
+            "name": "Friendship"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "has",
+            "belongsToClassMap": "PersonA",
+            "refersToClassMap": "Interest",
+            "join": [
+                "friendship.person_id_a = interests.person_id_a"
+            ]
+        },
+        {
+            "property": "has",
+            "belongsToClassMap": "PersonB",
+            "refersToClassMap": "Interest",
+            "join": [
+                "friendship.person_id_b = interests.person_id_b"
+            ]
+        },
+        {
+            "property": "is_friend",
+            "belongsToClassMap": "PersonA",
+            "refersToClassMap": "PersonB"
+        },
+        {
+            "property": "part_of",
+            "belongsToClassMap": "PersonA",
+            "refersToClassMap": "Friendship"
+        },
+        {
+            "property": "part_of",
+            "belongsToClassMap": "PersonB",
+            "refersToClassMap": "Friendship"
+        },
+        {
+            "property": "share",
+            "belongsToClassMap": "Friendship",
+            "refersToClassMap": "Interest",
+            "join": [
+                "friendship.person_id_a = interests.person_id_a",
+                "friendship.person_id_b = interests.person_id_b"
+            ]
+        }
+    ],
+    "data_properties": [
+        {
+            "property": "name",
+            "belongsToClassMap": "PersonA",
+            "type": "string",
+            "column": "friendship.name_a"
+        },
+        {
+            "property": "name",
+            "belongsToClassMap": "PersonB",
+            "type": "string",
+            "column": "friendship.name_b"
+        },
+        {
+            "property": "name",
+            "belongsToClassMap": "Interest",
+            "type": "string",
+            "column": "interests.interest"
+        }, 
+        {
+            "property": "street",
+            "belongsToClassMap": "PersonA",
+            "type": "string",
+            "sqlExpression": "split_part(friendship.address_a, ',', 1)"
+        },
+        {
+            "property": "city",
+            "belongsToClassMap": "PersonA",
+            "type": "string",
+            "sqlExpression": "split_part(friendship.address_a, ',', 2)"
+        },
+        {
+            "property": "state",
+            "belongsToClassMap": "PersonA",
+            "type": "string",
+            "sqlExpression": "split_part(friendship.address_a, ',', 3)"
+        },
+        {
+            "property": "country",
+            "belongsToClassMap": "PersonA",
+            "type": "string",
+            "sqlExpression": "split_part(friendship.address_a, ',', 4)"
+        },
+        {
+            "property": "street",
+            "belongsToClassMap": "PersonB",
+            "type": "string",
+            "sqlExpression": "split_part(friendship.address_b, ',', 1)"
+        },
+        {
+            "property": "city",
+            "belongsToClassMap": "PersonB",
+            "type": "string",
+            "sqlExpression": "split_part(friendship.address_b, ',', 2)"
+        },
+        {
+            "property": "state",
+            "belongsToClassMap": "PersonB",
+            "type": "string",
+            "sqlExpression": "split_part(friendship.address_b, ',', 3)"
+        },
+        {
+            "property": "country",
+            "belongsToClassMap": "PersonB",
+            "type": "string",
+            "sqlExpression": "split_part(friendship.address_b, ',', 4)"
+        }
+    ]
+}

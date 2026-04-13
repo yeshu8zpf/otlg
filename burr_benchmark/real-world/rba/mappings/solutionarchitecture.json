@@ -1,0 +1,23 @@
+{
+    "classes": [
+        {
+            "id": "Hybrid",
+            "prefix": "SCM",
+            "class": "SolutionArchitecture",
+            "name": "SolutionArchitecture_Hybrid",
+            "condition": ["SCM.Solution_Capability_Reference_Architecture_Hybrid = 'True'"]
+        },
+        {
+            "id": "Cloud",
+            "prefix": "SCM",
+            "class": "SolutionArchitecture",
+            "name": "SolutionArchitecture_Cloud",
+            "condition": ["SCM.Solution_Capability_Reference_Architecture_Cloud = 'True'"]
+        }
+    ],
+    "object_properties": [
+    ],
+    "data_properties": [
+       
+    ]
+}

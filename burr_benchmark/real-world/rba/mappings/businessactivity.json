@@ -1,0 +1,71 @@
+{
+    "classes": [
+        {   
+            "id": "@@BPM.Object_ID_Business_Activity@@",
+            "prefix": "RBA",
+            "class": "BusinessActivity",
+            "name": "BusinessActivity_BA"
+        },
+        {
+            "id": "@@BPM.Based_On_3@@",
+            "namespace": "RBA",
+            "prefix": "RBA",
+            "class": "BusinessActivity",
+            "name": "BusinessActivity_BasedOn"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "references",
+            "prefix": "RBA",
+            "belongsToClassMap": "BusinessActivity_BA",
+            "refersToClassMap": "BusinessActivity_BAR",
+            "join": ["BPM.Reference_To_BAR_ID = BAR.Business_Activity_Code"]
+        },
+        {
+            "property": "references",
+            "prefix": "RBA",
+            "belongsToClassMap": "BusinessActivity_BA",
+            "refersToClassMap": "BusinessProcess_fp"
+        },
+        {
+            "property": "hasImplementation",
+            "prefix": "RBA",
+            "belongsToClassMap": "BusinessActivity_BA",
+            "refersToClassMap": "SolutionActivity",
+            "join": ["BPM.Object_ID_Business_Activity = SPM.BA_in_SP_Reference_to_RBA"]
+        },
+        {
+            "property": "hasVariant",
+            "prefix": "RBA",
+            "belongsToClassMap": "BusinessActivity_BasedOn",
+            "refersToClassMap": "BusinessActivity_BA"
+        }
+    ],
+    "data_properties": [
+        {
+            "property": "Identifier",
+            "belongsToClassMap": "BusinessActivity_BA",
+            "type": "string",
+            "column": "BPM.Object_ID_Business_Activity"
+        },
+        {
+            "property": "Description",
+            "belongsToClassMap": "BusinessActivity_BA",
+            "type": "string",
+            "column": "BPM.Description"
+        },
+        {
+            "property": "Name",
+            "belongsToClassMap": "BusinessActivity_BA",
+            "type": "string",
+            "column": "BPM.Business_Activity"
+        },
+        {
+            "property": "SequenceID",
+            "belongsToClassMap": "BusinessActivity_BA",
+            "type": "string",
+            "column": "BPM.BA_Sequence"
+        }
+    ]
+}

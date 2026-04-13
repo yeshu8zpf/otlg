@@ -1,0 +1,168 @@
+{
+    "classes": [
+        {
+            "id": "@@BCM.Business_Domain@@/@@BCM.Master_ID_BD@@",
+            "prefix": "BCM",
+            "class": "BusinessCapability",
+            "name": "BusinessCapabilityFromDomain"
+        },
+        {
+            "id": "@@BCM.Business_Area@@/@@BCM.Master_ID_BArea@@",
+            "prefix": "BCM",
+            "class": "BusinessCapability",
+            "name": "BusinessCapabilityFromArea"
+        },
+        {
+            "id": "@@BCM.Business_Capability@@/@@BCM.Master_ID_BC@@",
+            "prefix": "BCM",
+            "class": "BusinessCapability",
+            "name": "BusinessCapabilityFromCapability"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "isPrerequisiteOf",
+            "belongsToClassMap": "BusinessCapabilityFromCapability",
+            "refersToClassMap": "BusinessActivity_BA",
+            "join": ["BCM.Master_ID_BC = BPM.Master_ID_BC"]
+        },
+        {
+            "property": "isMemberOf",
+            "belongsToClassMap": "BusinessCapabilityFromCapability",
+            "refersToClass": "Industry",
+            "condition": ["BCM.BC_Relevant_for_Cross_Industry = 'Relevant'", "Ind.Industry_ID = 'Ind026'"]
+        },
+        {
+            "property": "isMemberOf",
+            "belongsToClassMap": "BusinessCapabilityFromCapability",
+            "refersToClass": "Industry",
+            "condition": ["BCM.BC_Relevant_for_Retail_Industry = 'Relevant'", "Ind.Industry_ID = 'Ind001'"]
+        },
+        {
+            "property": "isMemberOf",
+            "belongsToClassMap": "BusinessCapabilityFromCapability",
+            "refersToClass": "Industry",
+            "condition": ["BCM.BC_Relevant_for_Autmotive_Industry = 'Relevant'", "Ind.Industry_ID = 'Ind006'"]
+        },
+        {
+            "property": "isMemberOf",
+            "belongsToClassMap": "BusinessCapabilityFromCapability",
+            "refersToClass": "Industry",
+            "condition": ["BCM.BC_Relevant_for_Professional_Services_Industry = 'Relevant'", "Ind.Industry_ID = 'Ind022'"]
+        },
+        {
+            "property": "isMemberOf",
+            "belongsToClassMap": "BusinessCapabilityFromDomain",
+            "refersToClass": "BusinessCapabilityTypeDomain"
+        },
+        {
+            "property": "isMemberOf",
+            "belongsToClassMap": "BusinessCapabilityFromArea",
+            "refersToClass": "BusinessCapabilityTypeArea"
+        },
+        {
+            "property": "isMemberOf",
+            "belongsToClassMap": "BusinessCapabilityFromCapability",
+            "refersToClass": "BusinessCapabilityTypeCapability"
+        },
+        {
+            "property": "hasComponent",
+            "belongsToClassMap": "BusinessCapabilityFromDomain",
+            "refersToClassMap": "BusinessCapabilityFromArea"
+        },
+        {
+            "property": "hasComponent",
+            "belongsToClassMap": "BusinessCapabilityFromArea",
+            "refersToClassMap": "BusinessCapabilityFromCapability"
+        },
+        {
+            "property": "hasImplementation",
+            "belongsToClassMap": "BusinessCapabilityFromCapability",
+            "refersToClassMap": "SolutionCapability_SCM",
+            "join": ["BCM.Master_ID_BC = SCM.Master_ID_BC"]
+        },
+        {
+            "property": "hasImplementation",
+            "belongsToClassMap": "BusinessCapabilityFromCapability",
+            "refersToClassMap": "SolutionCapability_Whitespaces",
+            "join": ["BCM.Master_ID_BC = Whitespaces.Master_ID_BC"]
+        },
+        {
+            "property": "isMemberOf",
+            "belongsToClassMap": "BusinessCapabilityFromDomain",
+            "refersToClassMap": "EnterpriseDomainLevel_2_BCM"
+        },
+        {
+            "property": "isMemberOf",
+            "belongsToClassMap": "BusinessCapabilityFromArea",
+            "refersToClassMap": "EnterpriseDomainLevel_3_BCM"
+        },
+        {
+            "property": "isMemberOf",
+            "belongsToClassMap": "BusinessCapabilityFromCapability",
+            "refersToClassMap": "EnterpriseDomainLevel_4_BCM"
+        }
+    ],
+    "data_properties": [
+        {
+            "property": "Identifier",
+            "belongsToClassMap": "BusinessCapabilityFromDomain",
+            "type": "string",
+            "column": "BCM.Master_ID_BD"
+        },
+        {
+            "property": "Name",
+            "belongsToClassMap": "BusinessCapabilityFromDomain",
+            "type": "string",
+            "column": "BCM.Business_Domain"
+        },
+        {
+            "property": "SequenceID",
+            "belongsToClassMap": "BusinessCapabilityFromDomain",
+            "type": "string",
+            "column": "BCM.Business_Domain_Seq_ID"
+        },
+        {
+            "property": "Identifier",
+            "belongsToClassMap": "BusinessCapabilityFromArea",
+            "type": "string",
+            "column": "BCM.Master_ID_BArea"
+        },
+        {
+            "property": "Name",
+            "belongsToClassMap": "BusinessCapabilityFromArea",
+            "type": "string",
+            "column": "BCM.Business_Area"
+        },
+        {
+            "property": "SequenceID",
+            "belongsToClassMap": "BusinessCapabilityFromArea",
+            "type": "string",
+            "column": "BCM.BArea_Seq_ID"
+        },
+        {
+            "property": "Identifier",
+            "belongsToClassMap": "BusinessCapabilityFromCapability",
+            "type": "string",
+            "column": "BCM.Master_ID_BC"
+        },
+        {
+            "property": "Name",
+            "belongsToClassMap": "BusinessCapabilityFromCapability",
+            "type": "string",
+            "column": "BCM.Business_Capability"
+        },
+        {
+            "property": "SequenceID",
+            "belongsToClassMap": "BusinessCapabilityFromCapability",
+            "type": "string",
+            "column": "BCM.BC_Seq_ID"
+        },
+        {
+            "property": "Description",
+            "belongsToClassMap": "BusinessCapabilityFromCapability",
+            "type": "string",
+            "column": "BCM.Business_Capability_Description"
+        }
+    ]
+}

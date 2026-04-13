@@ -1,0 +1,45 @@
+{
+    "classes": [
+        {
+            "id": "software/@@software.id@@",
+            "class": "Software"
+        },
+        {
+            "id": "Windows",
+            "class": "OperatingSystem",
+            "name": "OperatingSystemWindows"
+        },
+        {
+            "id": "MacOS",
+            "class": "OperatingSystem",
+            "name": "OperatingSystemMacOS"
+        },
+        {
+            "id": "Linux",
+            "class": "OperatingSystem",
+            "name": "OperatingSystemLinux"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "operates_on",
+            "belongsToClass": "Software",
+            "refersToClassMap": "OperatingSystemWindows",
+            "condition": "software.supports_windows = 'True'"
+        },
+        {
+            "property": "operates_on",
+            "belongsToClass": "Software",
+            "refersToClassMap": "OperatingSystemMacOS",
+            "condition": "software.supports_macos = 'True'"
+        },
+        {
+            "property": "operates_on",
+            "belongsToClass": "Software",
+            "refersToClassMap": "OperatingSystemLinux",
+            "condition": "software.supports_linux = 'True'"
+        }
+    ],
+    "data_properties": [
+    ]
+}

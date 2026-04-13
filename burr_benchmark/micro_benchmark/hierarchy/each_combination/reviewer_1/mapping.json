@@ -1,0 +1,109 @@
+{
+    "classes": [
+        {
+            "id": "person/@@person.pid@@",
+            "class": "Person"
+        },
+        {
+            "id": "person/@@person.pid@@",
+            "class": "Author",
+            "name": "Author1",
+            "join": [
+                "person.pid = author.pid"
+            ],
+            "subClassOf": [
+                "Person"
+            ]
+        },
+        {
+            "id": "person/@@person.pid@@",
+            "class": "Author",
+            "name": "Author2",
+            "join": [
+                "person.pid = author_reviewer.pid"
+            ],
+            "subClassOf": [
+                "Person"
+            ]
+        },
+        {
+            "id": "person/@@person.pid@@",
+            "class": "Reviewer",
+            "name": "Reviewer1",
+            "join": [
+                "person.pid = reviewer.pid"
+            ],
+            "subClassOf": [
+                "Person"
+            ]
+        },
+        {
+            "id": "person/@@person.pid@@",
+            "class": "Reviewer",
+            "name": "Reviewer2",
+            "join": [
+                "person.pid = author_reviewer.pid"
+            ],
+            "subClassOf": [
+                "Person"
+            ]
+        }
+    ],
+    "object_properties": [],
+    "data_properties": [
+        {
+            "property": "name",
+            "belongsToClass": "Person",
+            "type": "string",
+            "column": "person.name"
+        },
+        {
+            "property": "email",
+            "belongsToClassMap": "Author1",
+            "type": "string",
+            "column": "author.email"
+        },
+        {
+            "property": "name",
+            "belongsToClassMap": "Author1",
+            "type": "string",
+            "column": "person.name"
+        },
+        {
+            "property": "name",
+            "belongsToClassMap": "Reviewer1",
+            "type": "string",
+            "column": "person.name"
+        },
+        {
+            "property": "area",
+            "belongsToClassMap": "Reviewer1",
+            "type": "string",
+            "column": "reviewer.area"
+        },
+        {
+            "property": "name",
+            "belongsToClassMap": "Author2",
+            "type": "string",
+            "column": "person.name"
+        },
+        {
+            "property": "email",
+            "belongsToClassMap": "Author2",
+            "type": "string",
+            "column": "author_reviewer.email"
+        },
+        {
+            "property": "name",
+            "belongsToClassMap": "Reviewer2",
+            "type": "string",
+            "column": "person.name"
+        },
+        {
+            "property": "area",
+            "belongsToClassMap": "Reviewer2",
+            "type": "string",
+            "column": "author_reviewer.area"
+        }
+    ]
+}

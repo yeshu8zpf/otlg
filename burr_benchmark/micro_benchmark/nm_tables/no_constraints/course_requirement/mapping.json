@@ -1,0 +1,37 @@
+{
+    "classes": [
+        {
+            "id": "course/@@course.id@@",
+            "class": "Course"
+        },
+        {
+            "id": "requirement/@@requirement.id@@",
+            "class": "Requirement"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "has_requirement",
+            "belongsToClass": "Course",
+            "refersToClass": "Requirement",
+            "join": [
+                "course.id = course_requirement.course_id",
+                "requirement.id = course_requirement.requirement_id"
+            ]
+        }
+    ],
+    "data_properties": [
+        {
+            "property": "name",
+            "belongsToClass": "Course",
+            "type": "string",
+            "column": "course.name"
+        },
+        {
+            "property": "name",
+            "belongsToClass": "Requirement",
+            "type": "string",
+            "column": "requirement.name"
+        }
+    ]
+}

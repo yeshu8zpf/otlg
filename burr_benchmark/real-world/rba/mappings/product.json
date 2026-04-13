@@ -1,0 +1,35 @@
+{
+    "classes": [
+        {
+            "id": "@@SCM.PPMS_Product_ID@@",
+            "class": "Product",
+            "prefix": "SCM"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "isMemberOf",
+            "belongsToClass": "Product",
+            "refersToClass": "DeploymentType"
+        },
+        {
+            "property": "isMemberOf",
+            "belongsToClass": "Product",
+            "refersToClass": "Platform"
+        }
+    ],
+    "data_properties": [
+        {
+            "property": "Identifier",
+            "belongsToClass": "Product",
+            "type": "string",
+            "column": "SCM.PPMS_Product_ID"
+        },
+        {
+            "property": "Name",
+            "belongsToClass": "Product",
+            "type": "string",
+            "column": "SCM.PPMS_Product_Name"
+        }
+    ]
+}

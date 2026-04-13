@@ -1,0 +1,101 @@
+{
+    "classes": [
+        {
+            "id": "person/@@person.id@@",
+            "class": "Person",
+            "name": "Person"
+        },
+        {
+            "id": "department@@department.id@@",
+            "class": "Department",
+            "name": "Department"
+        },
+        {
+            "id": "location/@@location.zip@@",
+            "class": "Location",
+            "name": "Location"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "worksIn",
+            "belongsToClassMap": "Person",
+            "refersToClassMap": "Department",
+            "join": [
+                "person_department.person_id = person.id",
+                "person_department.department_id = department.id"
+            ]
+        },
+        {
+            "property": "livesIn",
+            "belongsToClassMap": "Person",
+            "refersToClassMap": "Location",
+            "join": [
+                "person.address_id = address.id",
+                "address.zip = location.zip"
+            ]
+        }
+    ],
+    "data_properties": [
+        {
+            "property": "first_name",
+            "belongsToClassMap": "Person",
+            "type": "string",
+            "column": "person.first_name"
+        },
+        {
+            "property": "last_name",
+            "belongsToClassMap": "Person",
+            "type": "string",
+            "column": "person.last_name"
+        },
+        {
+            "property": "email",
+            "belongsToClassMap": "Person",
+            "type": "string",
+            "column": "person.email"
+        },
+        {
+            "property": "name",
+            "belongsToClassMap": "Department",
+            "type": "string",
+            "column": "department.name"
+        }, 
+        {
+            "property": "street",
+            "belongsToClassMap": "Person",
+            "type": "string",
+            "column": "address.street",
+            "join": [
+                "person.address_id = address.id"
+            ]
+        },
+        {
+            "property": "house_number",
+            "belongsToClassMap": "Person",
+            "type": "string",
+            "column": "address.house_number",
+            "join": [
+                "person.address_id = address.id"
+            ]
+        },
+        {
+            "property": "zip_code",
+            "belongsToClassMap": "Location",
+            "type": "string",
+            "column": "location.zip"
+        },
+        {
+            "property": "city",
+            "belongsToClassMap": "Location",
+            "type": "string",
+            "column": "location.city"
+        },
+        {
+            "property": "state",
+            "belongsToClassMap": "Location",
+            "type": "string",
+            "column": "location.state"
+        }
+    ]
+}

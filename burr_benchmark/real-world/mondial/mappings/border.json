@@ -1,0 +1,35 @@
+{
+    "classes": [
+        {
+            "id": "/@@borders.country1@@/@@borders.country2@@",
+            "class": "Border",
+            "prefix": "mondial"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "isBorderOf",
+            "belongsToClass": "Border",
+            "refersToClassMap": "CountryFull",
+            "join": [
+                "borders.country1 = country.code"
+            ]
+        },
+        {
+            "property": "isBorderOf",
+            "belongsToClass": "Border",
+            "refersToClassMap": "CountryFull",
+            "join": [
+                "borders.country2 = country.code"
+            ]
+        }
+    ],
+    "data_properties": [
+        {
+            "property": "length",
+            "belongsToClass": "Border",
+            "type": "decimal",
+            "column": "borders.length"
+        }
+    ]
+}

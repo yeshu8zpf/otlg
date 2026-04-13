@@ -1,0 +1,501 @@
+id,name,credits,max_students
+1,Seminar: Cybersecurity,6,133
+2,Foundations of Ethics in Technology,5,165
+3,Applied Operating Systems,3,73
+4,Principles of Economics,3,60
+5,Advanced Chemistry,3,60
+6,Intro to Environmental Science,6,94
+7,Intro to Finance,5,136
+8,Intro to Microeconomics II,5,180
+9,Applied Electrical Engineering  (Lab),4,128
+10,Intro to Cloud Computing II,4,88
+11,Seminar: Calculus I,3,62
+12,Seminar: Sociology,5,132
+13,Intro to Numerical Methods  (Project),5,123
+14,Foundations of Human-Computer Interaction,6,132
+15,Intro to Digital Signal Processing I,6,102
+16,Applied Marketing I,3,78
+17,Principles of DevOps,3,88
+18,Applied Databases  (Lab),4,140
+19,Applied Control Systems,5,66
+20,Applied Materials Science  (Project),6,43
+21,Topics in Law,5,102
+22,Principles of Artificial Intelligence  (Lab),4,104
+23,Topics in Macroeconomics,5,122
+24,Seminar: Architecture,3,136
+25,Intro to History,5,49
+26,Seminar: Geography  (Lab),3,158
+27,Topics in Environmental Science I,4,152
+28,Foundations of Game Design  (Lab),6,180
+29,Topics in Architecture I,4,88
+30,Applied Linear Algebra,6,144
+31,Intro to Data Structures  (Project),4,60
+32,Foundations of Distributed Systems I,6,43
+33,Advanced Statistics,3,59
+34,Topics in Public Finance,5,126
+35,Seminar: Software Engineering,4,136
+36,Applied Calculus,4,173
+37,Applied Urban Planning II,3,90
+38,Seminar: Environmental Science,5,20
+39,Foundations of International Relations,6,58
+40,Topics in Cloud Computing,5,105
+41,Applied Architecture,6,136
+42,Foundations of Biology  (Project),4,166
+43,Topics in Finance  (Lab),6,31
+44,Foundations of Urban Planning,6,118
+45,Principles of Control Systems II,6,29
+46,Advanced Human-Computer Interaction,5,45
+47,Seminar: Discrete Mathematics I,6,23
+48,Principles of Calculus,4,39
+49,Topics in Marketing,6,40
+50,Seminar: Political Science  (Lab),6,101
+51,Principles of Public Finance  (Lab),6,158
+52,Intro to Game Design I,4,93
+53,Advanced Urban Planning I,6,45
+54,Seminar: Robotics  (Project),3,133
+55,Advanced Macroeconomics,3,31
+56,Foundations of Operating Systems,5,115
+57,Topics in Calculus II,6,164
+58,Principles of Chemistry II,4,40
+59,Applied Linguistics,4,147
+60,Applied Calculus II,6,85
+61,Topics in Marketing  (Project),3,139
+62,Foundations of Microeconomics,4,38
+63,Topics in Law,5,128
+64,Principles of Marketing,5,70
+65,Topics in Software Engineering I,4,117
+66,Applied Law,5,95
+67,Intro to Electrical Engineering,5,22
+68,Applied Microeconomics  (Lab),3,175
+69,Principles of Computer Graphics  (Lab),5,78
+70,Applied Law II,4,178
+71,Foundations of Microeconomics  (Lab),4,180
+72,Intro to Robotics  (Project),3,99
+73,Seminar: Discrete Mathematics I,5,53
+74,Intro to Psychology,6,64
+75,Advanced Linear Algebra  (Lab),5,155
+76,Applied Philosophy  (Lab),4,85
+77,Seminar: Software Engineering  (Lab),5,106
+78,Seminar: Statistics,3,56
+79,Seminar: Finance  (Lab),6,162
+80,Foundations of Machine Learning  (Lab),6,23
+81,Foundations of Cloud Computing I,6,114
+82,Principles of Urban Planning  (Project),5,169
+83,Topics in Robotics,3,79
+84,Topics in Data Structures,5,176
+85,Advanced Control Systems I,6,97
+86,Principles of Environmental Science I,4,31
+87,Intro to Sociology,3,44
+88,Advanced Cloud Computing II,6,136
+89,Foundations of Electrical Engineering  (Project),6,170
+90,Principles of International Relations II,6,45
+91,Seminar: Computer Graphics,6,91
+92,Intro to Macroeconomics,4,133
+93,Topics in Accounting  (Lab),5,45
+94,Principles of Art History,5,35
+95,Topics in Philosophy II,3,136
+96,Intro to Electrical Engineering II,3,32
+97,Seminar: Political Science II,4,164
+98,Advanced Computer Networks  (Lab),4,170
+99,Advanced Finance,4,172
+100,Intro to Philosophy  (Lab),4,53
+101,Applied Marketing  (Lab),4,48
+102,Principles of Data Structures II,3,111
+103,Seminar: Accounting,5,24
+104,Advanced Marketing I,4,127
+105,Applied Statistics  (Project),3,141
+106,Topics in Art History,3,135
+107,Applied Finance,3,153
+108,Foundations of Numerical Methods  (Project),3,35
+109,Topics in Geography,3,145
+110,Principles of Discrete Mathematics I,3,102
+111,Applied Calculus I,4,90
+112,Applied Robotics,5,117
+113,Applied Cybersecurity,6,149
+114,Applied Materials Science I,3,161
+115,Principles of Economics,6,78
+116,Topics in Political Science  (Lab),6,122
+117,Topics in International Relations I,5,129
+118,Foundations of Electrical Engineering,5,59
+119,Principles of Software Engineering I,3,41
+120,Intro to Materials Science I,5,53
+121,Applied Operating Systems,5,51
+122,Topics in Law  (Lab),6,33
+123,Foundations of Digital Signal Processing,5,46
+124,Applied Human-Computer Interaction II,4,143
+125,Advanced Artificial Intelligence,5,49
+126,Seminar: Philosophy,4,129
+127,Seminar: Distributed Systems  (Lab),3,175
+128,Principles of Macroeconomics,3,66
+129,Foundations of Macroeconomics  (Lab),5,106
+130,Foundations of Algorithms II,4,164
+131,Principles of Geography I,4,27
+132,Intro to Urban Planning,4,116
+133,Topics in Numerical Methods,4,114
+134,Foundations of International Relations,3,33
+135,Advanced Physics  (Lab),3,40
+136,Foundations of Discrete Mathematics  (Project),6,144
+137,Applied Discrete Mathematics,5,75
+138,Seminar: Human-Computer Interaction I,5,130
+139,Intro to Psychology  (Project),6,154
+140,Principles of Sociology I,4,121
+141,Applied Operating Systems I,4,97
+142,Advanced Linear Algebra  (Lab),5,94
+143,Foundations of Statistics I,6,130
+144,Advanced Linear Algebra,4,148
+145,Applied Electrical Engineering  (Lab),5,38
+146,Topics in Urban Planning I,6,24
+147,Topics in Computer Networks  (Lab),5,167
+148,Topics in DevOps,6,94
+149,Intro to Geography I,5,63
+150,Seminar: Game Design,5,42
+151,Topics in Artificial Intelligence II,6,170
+152,Topics in Cybersecurity I,6,99
+153,Principles of Political Science II,5,63
+154,Intro to Human-Computer Interaction  (Project),3,155
+155,Applied Biology  (Lab),5,109
+156,Principles of Control Systems  (Lab),4,80
+157,Intro to Calculus,4,64
+158,Applied Calculus  (Lab),3,65
+159,Seminar: Robotics,6,164
+160,Seminar: Ethics in Technology,5,180
+161,Foundations of Calculus,3,140
+162,Topics in Robotics,5,171
+163,Intro to Law,3,99
+164,Topics in Discrete Mathematics I,3,114
+165,Seminar: Psychology I,3,177
+166,Applied Human-Computer Interaction,6,168
+167,Applied Urban Planning I,6,166
+168,Principles of Biology,6,148
+169,Advanced Operating Systems,3,107
+170,Principles of Machine Learning,4,30
+171,Advanced Public Finance,6,154
+172,Applied Game Design II,5,115
+173,Foundations of Linguistics,5,173
+174,Intro to Robotics  (Project),5,36
+175,Foundations of Artificial Intelligence,6,92
+176,Foundations of International Relations  (Lab),4,105
+177,Intro to Ethics in Technology  (Project),4,109
+178,Foundations of Control Systems  (Project),6,53
+179,Applied Public Finance I,5,163
+180,Topics in Control Systems  (Lab),5,52
+181,Principles of Macroeconomics  (Lab),3,128
+182,Applied Art History I,5,99
+183,Advanced Economics,6,69
+184,Advanced Linear Algebra II,3,95
+185,Seminar: Artificial Intelligence,3,106
+186,Seminar: Game Design II,6,59
+187,Advanced Chemistry  (Lab),4,132
+188,Intro to Environmental Science,4,133
+189,Applied Psychology  (Lab),6,79
+190,Applied Accounting,6,69
+191,Foundations of Microeconomics,6,138
+192,Seminar: Psychology  (Lab),6,148
+193,Applied Environmental Science II,4,174
+194,Advanced Marketing I,6,115
+195,Applied Artificial Intelligence  (Project),3,92
+196,Intro to Architecture II,5,135
+197,Applied Calculus  (Lab),6,43
+198,Advanced Discrete Mathematics,3,126
+199,Intro to Geography,5,80
+200,Topics in Machine Learning,4,27
+201,Foundations of Artificial Intelligence  (Lab),5,57
+202,Advanced Databases,6,55
+203,Seminar: Public Finance,6,177
+204,Intro to Machine Learning I,5,75
+205,Seminar: Calculus,6,48
+206,Seminar: Psychology II,5,51
+207,Intro to Accounting,6,36
+208,Intro to Computer Graphics,3,151
+209,Applied Accounting  (Project),4,94
+210,Topics in Algorithms,5,81
+211,Applied Environmental Science II,3,154
+212,Foundations of Computer Networks,3,119
+213,Seminar: Software Engineering I,6,115
+214,Foundations of Urban Planning I,5,37
+215,Foundations of Accounting  (Project),3,168
+216,Principles of Architecture,4,31
+217,Foundations of Cloud Computing,4,138
+218,Principles of Software Engineering  (Project),4,54
+219,Intro to Public Finance  (Lab),6,29
+220,Foundations of Biology I,4,30
+221,Foundations of Sociology,6,159
+222,Topics in Marketing I,4,93
+223,Foundations of Operating Systems  (Lab),5,89
+224,Intro to Art History,6,132
+225,Topics in Political Science II,6,147
+226,Foundations of Cybersecurity,3,128
+227,Intro to Materials Science,4,159
+228,Foundations of History I,3,103
+229,Principles of Psychology,6,174
+230,Principles of Materials Science II,6,109
+231,Topics in Databases  (Project),5,177
+232,Topics in Philosophy  (Project),3,39
+233,Principles of Robotics,5,151
+234,Seminar: Urban Planning  (Project),4,27
+235,Advanced Digital Signal Processing  (Project),6,28
+236,Advanced Computer Networks II,5,112
+237,Topics in DevOps I,4,135
+238,Foundations of Art History,3,166
+239,Advanced Cybersecurity,6,100
+240,Principles of Philosophy II,3,26
+241,Principles of Chemistry,6,163
+242,Intro to Marketing  (Lab),5,134
+243,Advanced Game Design,6,71
+244,Intro to Linear Algebra  (Lab),3,135
+245,Advanced Public Finance,3,101
+246,Principles of Law  (Project),3,160
+247,Applied Psychology,4,64
+248,Seminar: Art History,4,51
+249,Advanced Linear Algebra II,6,26
+250,Foundations of Distributed Systems,5,139
+251,Seminar: Distributed Systems II,3,36
+252,Foundations of Geography  (Project),6,154
+253,Topics in Environmental Science  (Lab),3,52
+254,Foundations of Control Systems I,6,139
+255,Principles of Cybersecurity,4,161
+256,Principles of Ethics in Technology II,4,130
+257,Applied Operating Systems  (Lab),3,152
+258,Advanced Sociology II,4,102
+259,Principles of Finance,5,40
+260,Foundations of Biology  (Project),5,52
+261,Principles of Sociology,3,148
+262,Principles of Physics,4,63
+263,Principles of Game Design  (Project),5,164
+264,Intro to Data Structures I,3,167
+265,Foundations of Control Systems II,6,178
+266,Principles of Data Structures,5,97
+267,Topics in Accounting  (Lab),6,96
+268,Topics in Computer Networks  (Project),3,60
+269,Topics in Environmental Science,6,72
+270,Foundations of Digital Signal Processing II,5,101
+271,Principles of Law,4,114
+272,Applied Distributed Systems I,5,81
+273,Topics in Statistics,6,83
+274,Advanced Artificial Intelligence I,5,118
+275,Seminar: Game Design,4,60
+276,Seminar: History,5,68
+277,Seminar: Physics,6,147
+278,Foundations of Computer Graphics I,3,120
+279,Applied Numerical Methods II,4,169
+280,Foundations of Operating Systems I,5,146
+281,Applied Control Systems  (Project),6,93
+282,Applied Algorithms  (Lab),3,130
+283,Advanced Marketing  (Project),5,123
+284,Foundations of Databases,3,165
+285,Applied Biology,5,38
+286,Topics in Human-Computer Interaction,5,179
+287,Principles of Game Design I,4,44
+288,Topics in Art History  (Lab),5,162
+289,Foundations of Architecture II,4,174
+290,Applied Geography,3,31
+291,Intro to Linear Algebra  (Project),5,141
+292,Applied Numerical Methods II,4,103
+293,Applied History II,6,177
+294,Principles of Sociology,5,149
+295,Seminar: Human-Computer Interaction,6,164
+296,Foundations of Software Engineering  (Lab),3,114
+297,Foundations of Microeconomics I,6,169
+298,Foundations of International Relations  (Lab),3,172
+299,Topics in Marketing  (Project),4,33
+300,Applied Software Engineering II,6,57
+301,Seminar: Microeconomics II,3,166
+302,Principles of Statistics II,3,132
+303,Foundations of Environmental Science II,6,72
+304,Topics in Human-Computer Interaction  (Lab),6,35
+305,Principles of Linear Algebra,4,163
+306,Foundations of Electrical Engineering,6,100
+307,Advanced Numerical Methods,5,159
+308,Foundations of Microeconomics  (Lab),5,176
+309,Topics in Biology II,5,162
+310,Foundations of Finance,5,73
+311,Principles of Public Finance,5,142
+312,Foundations of Distributed Systems  (Lab),5,93
+313,Intro to DevOps  (Project),6,121
+314,Seminar: Law  (Lab),4,94
+315,Intro to Psychology  (Project),3,108
+316,Topics in Control Systems,6,74
+317,Advanced Cloud Computing,5,55
+318,Intro to Game Design  (Project),4,82
+319,Intro to Electrical Engineering,4,79
+320,Intro to Artificial Intelligence,5,140
+321,Intro to Microeconomics  (Lab),4,21
+322,Applied Physics,6,142
+323,Principles of Biology  (Lab),5,102
+324,Foundations of Control Systems I,3,166
+325,Advanced Cloud Computing  (Project),3,64
+326,Topics in Chemistry I,6,146
+327,Advanced Urban Planning  (Lab),5,29
+328,Intro to Sociology,3,105
+329,Foundations of Numerical Methods  (Project),6,54
+330,Seminar: Human-Computer Interaction,5,69
+331,Seminar: Statistics,4,137
+332,Principles of Marketing  (Project),4,23
+333,Principles of Political Science  (Lab),5,165
+334,Principles of Architecture II,4,176
+335,Seminar: Robotics,6,151
+336,Foundations of Machine Learning,3,67
+337,Advanced Software Engineering,4,21
+338,Foundations of Linguistics II,6,88
+339,Foundations of Sociology,3,86
+340,Principles of Art History  (Project),4,35
+341,Principles of Statistics,5,60
+342,Topics in Microeconomics,5,50
+343,Principles of Psychology,4,76
+344,Advanced Software Engineering II,6,175
+345,Foundations of Environmental Science  (Project),6,157
+346,Seminar: Electrical Engineering  (Lab),4,83
+347,Principles of Architecture,3,154
+348,Topics in Cybersecurity  (Project),5,39
+349,Applied Statistics I,4,166
+350,Applied Calculus II,5,153
+351,Topics in Statistics  (Project),4,169
+352,Topics in Machine Learning,6,34
+353,Topics in Linear Algebra,6,136
+354,Applied Operating Systems,6,98
+355,Principles of Data Structures,5,20
+356,Principles of Economics,3,31
+357,Topics in Law  (Project),3,158
+358,Intro to Computer Networks,3,93
+359,Topics in Chemistry  (Lab),4,127
+360,Foundations of Linguistics,6,116
+361,Intro to Microeconomics  (Project),4,109
+362,Intro to Chemistry,6,155
+363,Advanced International Relations II,3,25
+364,Foundations of Numerical Methods  (Project),6,156
+365,Topics in Finance II,6,108
+366,Advanced Philosophy II,3,28
+367,Seminar: Electrical Engineering,3,81
+368,Advanced Computer Networks I,3,134
+369,Applied Microeconomics  (Project),3,82
+370,Principles of Databases,6,79
+371,Applied Economics  (Lab),3,55
+372,Applied Psychology II,5,167
+373,Applied Microeconomics  (Lab),5,80
+374,Foundations of Calculus  (Project),4,125
+375,Foundations of Philosophy I,4,180
+376,Principles of Materials Science,6,32
+377,Foundations of Control Systems  (Project),6,154
+378,Foundations of Macroeconomics,6,58
+379,Foundations of Linguistics II,6,81
+380,Seminar: Finance,4,138
+381,Intro to Distributed Systems,6,162
+382,Applied Linear Algebra,4,85
+383,Advanced Political Science  (Project),3,135
+384,Seminar: Art History I,4,33
+385,Foundations of Linguistics  (Project),3,38
+386,Advanced Architecture,4,142
+387,Advanced Political Science,3,74
+388,Advanced Urban Planning I,6,82
+389,Principles of Digital Signal Processing  (Project),4,121
+390,Advanced Distributed Systems,5,117
+391,Topics in Cloud Computing  (Project),5,98
+392,Foundations of Art History,6,139
+393,Intro to International Relations,5,72
+394,Foundations of History,3,164
+395,Seminar: Finance  (Project),4,24
+396,Foundations of Distributed Systems,6,95
+397,Advanced Biology,4,117
+398,Applied Accounting,5,85
+399,Seminar: Computer Graphics  (Project),6,137
+400,Advanced International Relations  (Lab),5,63
+401,Advanced International Relations,6,67
+402,Applied Control Systems I,3,39
+403,Seminar: Electrical Engineering I,3,125
+404,Advanced Robotics II,3,58
+405,Intro to Economics,6,115
+406,Intro to Game Design  (Project),6,144
+407,Intro to Algorithms,6,23
+408,Intro to Cybersecurity  (Project),5,157
+409,Foundations of Data Structures,6,65
+410,Intro to Artificial Intelligence,4,81
+411,Advanced Game Design,5,110
+412,Foundations of Geography I,5,123
+413,Topics in DevOps II,4,96
+414,Principles of Machine Learning  (Project),3,43
+415,Topics in Linguistics,6,34
+416,Principles of Algorithms  (Project),4,41
+417,Topics in Materials Science  (Project),5,164
+418,Seminar: Artificial Intelligence,3,78
+419,Advanced Macroeconomics,6,89
+420,Intro to Computer Networks  (Project),5,159
+421,Applied Electrical Engineering I,4,100
+422,Intro to Economics,4,121
+423,Intro to Sociology II,4,165
+424,Seminar: Linguistics  (Project),5,118
+425,Seminar: Urban Planning II,3,148
+426,Principles of Law I,3,131
+427,Advanced Computer Networks,6,103
+428,Intro to Robotics,6,145
+429,Advanced Law,6,130
+430,Advanced Microeconomics,6,41
+431,Seminar: Game Design,4,38
+432,Intro to Philosophy II,6,59
+433,Principles of Linguistics,5,47
+434,Intro to Algorithms,6,112
+435,Seminar: Philosophy I,4,42
+436,Advanced Materials Science,6,46
+437,Intro to Machine Learning,3,172
+438,Applied History  (Lab),6,23
+439,Foundations of Environmental Science,3,163
+440,Advanced DevOps,4,117
+441,Advanced Linear Algebra,5,88
+442,Topics in Calculus I,4,131
+443,Foundations of Environmental Science,6,39
+444,Foundations of Marketing II,6,172
+445,Applied Biology,3,54
+446,Foundations of Algorithms,5,178
+447,Topics in Political Science,5,130
+448,Seminar: Control Systems,4,96
+449,Foundations of Digital Signal Processing  (Project),4,142
+450,Foundations of Chemistry,5,94
+451,Principles of Macroeconomics  (Project),6,167
+452,Seminar: Accounting,6,91
+453,Seminar: Geography,3,164
+454,Advanced Ethics in Technology,4,160
+455,Intro to International Relations,4,132
+456,Seminar: Psychology  (Lab),3,124
+457,Principles of Computer Graphics II,5,81
+458,Foundations of Electrical Engineering II,6,116
+459,Intro to Discrete Mathematics,6,169
+460,Topics in Cloud Computing,6,159
+461,Intro to Art History  (Project),3,47
+462,Seminar: Accounting  (Project),5,62
+463,Principles of Game Design I,6,104
+464,Seminar: Materials Science I,3,45
+465,Foundations of Finance,4,134
+466,Foundations of Geography,4,108
+467,Intro to Software Engineering I,5,126
+468,Intro to Statistics  (Lab),4,109
+469,Foundations of Political Science,4,153
+470,Topics in Law,3,132
+471,Principles of Macroeconomics,5,37
+472,Foundations of Databases  (Lab),3,25
+473,Seminar: Political Science  (Project),3,62
+474,Principles of Accounting,4,161
+475,Advanced Political Science,6,138
+476,Advanced Geography  (Project),4,67
+477,Principles of Electrical Engineering,6,27
+478,Principles of Game Design II,6,171
+479,Topics in Linguistics I,4,72
+480,Foundations of Architecture  (Project),3,167
+481,Intro to Cloud Computing II,5,103
+482,Advanced Numerical Methods I,5,145
+483,Applied Robotics,6,176
+484,Topics in Ethics in Technology I,5,110
+485,Seminar: Numerical Methods,4,96
+486,Applied Ethics in Technology I,4,100
+487,Intro to Accounting,3,66
+488,Foundations of Macroeconomics II,6,127
+489,Applied Linear Algebra,6,128
+490,Advanced Computer Graphics  (Project),4,162
+491,Advanced Computer Graphics,4,67
+492,Foundations of Discrete Mathematics,3,111
+493,Intro to Computer Graphics II,4,118
+494,Applied Human-Computer Interaction  (Project),6,124
+495,Principles of Computer Graphics,6,145
+496,Advanced Machine Learning,3,76
+497,Foundations of Databases,4,157
+498,Foundations of Physics  (Lab),6,164
+499,Principles of Computer Graphics,3,166
+500,Intro to Philosophy  (Lab),5,158

@@ -1,0 +1,10 @@
+{
+    "classes": [
+        {
+            "id": "shop/@@shop.id@@",
+            "class": "Shop"
+        }
+    ],
+    "object_properties": [],
+    "data_properties": []
+}

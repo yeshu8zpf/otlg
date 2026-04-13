@@ -1,0 +1,55 @@
+{
+    "classes": [
+        {
+            "id": "author_@@author.aid@@",
+            "class": "Person",
+            "name": "AuthorPerson"
+        },
+        {
+            "id": "reviewer_@@reviewer.rid@@",
+            "class": "Person",
+            "name": "ReviewerPerson"
+        },
+        {
+            "id": "author_@@author.aid@@",
+            "class": "Author",
+            "subClassOf": [
+                "Person"
+            ]
+        },
+        {
+            "id": "reviewer_@@reviewer.rid@@",
+            "class": "Reviewer",
+            "subClassOf": [
+                "Person"
+            ]
+        }
+    ],
+    "object_properties": [],
+    "data_properties": [
+        {
+            "property": "name",
+            "belongsToClassMap": "AuthorPerson",
+            "type": "string",
+            "column": "author.name"
+        },
+        {
+            "property": "name",
+            "belongsToClassMap": "ReviewerPerson",
+            "type": "string",
+            "column": "reviewer.name"
+        },
+        {
+            "property": "email",
+            "belongsToClass": "Author",
+            "type": "string",
+            "column": "author.email"
+        },
+        {
+            "property": "area",
+            "belongsToClass": "Reviewer",
+            "type": "string",
+            "column": "reviewer.area"
+        }
+    ]
+}

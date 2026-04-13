@@ -1,0 +1,33 @@
+{
+    "relation_prefix": "sap",
+    "prefixes": [
+        {
+            "prefix": "rba",
+            "uri": "/SAP/RBA/BPM/"
+        },
+        {
+            "prefix": "scm",
+            "uri": "/SAP/RSA/SCM/"
+        },
+        {
+            "prefix": "spm",
+            "uri": "/SAP/RSA/SPM/"
+        },
+        {
+            "prefix": "bar",
+            "uri": "/SAP/RBA/BAR/"
+        },
+        {
+            "prefix": "bcm",
+            "uri": "/SAP/RBA/BCM/"
+        },
+        {
+            "prefix": "sap",
+            "uri": "/SAP/"
+        },
+        {
+            "prefix": "base",
+            "uri": "/base/"
+        }
+    ]  
+}
