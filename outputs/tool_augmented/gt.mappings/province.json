@@ -1,0 +1,71 @@
+{
+    "classes": [
+        {
+            "id": "@@Province.Country@@/@@Province.Name@@",
+            "class": "Province",
+            "prefix": "mondial"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "hasCity",
+            "belongsToClass": "Province",
+            "refersToClass": "City",
+            "join": [
+                "city.province = province.name",
+                "city.country = province.country"
+            ],
+            "inverseOf": "cityIn"
+        },
+        {
+            "property": "capital",
+            "belongsToClass": "Province",
+            "refersToClass": "City",
+            "join": [
+                "province.capital = city.name",
+                "province.country = city.country",
+                "province.capprov = city.name"
+            ]
+        }
+    ],
+    "data_properties": [
+        {
+            "property": "name",
+            "belongsToClass": "Province",
+            "type": "string",
+            "column": "Province.Name"
+        },
+        {
+            "property": "area",
+            "belongsToClass": "Province",
+            "type": "decimal",
+            "column": "Province.Area"
+        },
+        {
+            "property": "population",
+            "belongsToClass": "Province",
+            "type": "integer",
+            "column": "Province.Population"
+        },
+        {
+            "property": "othername",
+            "belongsToClass": "Province",
+            "type": "string",
+            "column": "provinceothername.othername",
+            "join": [
+                "province.name = provinceothername.province",
+                "province.country = provinceothername.country"
+            ]
+        },
+        {
+            "property": "localname",
+            "belongsToClass": "Province",
+            "type": "string",
+            "column": "provincelocalname.localname",
+            "join": [
+                "province.name = provincelocalname.province",
+                "province.country = provincelocalname.country"
+            ]
+        }
+    ]
+}

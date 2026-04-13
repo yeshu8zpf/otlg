@@ -1,0 +1,50 @@
+{
+    "classes": [
+        {
+            "id": "@@river.name@@",
+            "class": "Estuary",
+            "prefix": "mondial"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "locatedIn",
+            "belongsToClass": "Estuary",
+            "refersToClassMap": "CountryFull",
+            "join": [
+                "geo_estuary.river = river.name",
+                "geo_estuary.country = country.code"
+            ]
+        },
+        {
+            "property": "locatedIn",
+            "belongsToClass": "Estuary",
+            "refersToClass": "Province",
+            "join": [
+                "geo_estuary.river = river.name",
+                "geo_estuary.province = province.name",
+                "geo_estuary.country = province.country"
+                ]
+        }
+    ],
+    "data_properties": [
+        {
+            "property": "elevation",
+            "belongsToClass": "Estuary",
+            "type": "decimal",
+            "column": "river.estuaryelevation"
+        },
+        {
+            "property": "latitude",
+            "belongsToClass": "Estuary",
+            "type": "decimal",
+            "column": "river.estuarylatitude"
+        },
+        {
+            "property": "longitude",
+            "belongsToClass": "Estuary",
+            "type": "decimal",
+            "column": "river.estuarylongitude"
+        }
+    ]
+}

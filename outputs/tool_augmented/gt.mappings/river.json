@@ -1,0 +1,105 @@
+{
+    "classes": [
+        {
+            "id": "@@river.name@@",
+            "class": "River",
+            "name": "River1",
+            "prefix": "mondial"
+        },
+        {
+            "id": "@@river.river@@",
+            "class": "River",
+            "name": "River2",
+            "prefix": "mondial"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "locatedIn",
+            "belongsToClassMap": "River1",
+            "refersToClassMap": "CountryFull",
+            "join": [
+                "geo_river.river = river.name",
+                "geo_river.country = country.code"
+            ]
+        },
+        {
+            "property": "locatedIn",
+            "belongsToClassMap": "River1",
+            "refersToClass": "Province",
+            "join": [
+                "geo_river.river = river.name",
+                "geo_river.province = province.name"
+            ]
+        },
+        {
+            "property": "flowsThrough",
+            "belongsToClassMap": "River1",
+            "refersToClass": "Lake",
+            "join": [
+                "riverthrough.lake = lake.name",
+                "riverthrough.river = river.name"
+            ]
+        },
+        {
+            "property": "flowsInto",
+            "belongsToClassMap": "River1",
+            "refersToClassMap": "River2"
+        },
+        {
+            "property": "flowsInto",
+            "belongsToClassMap": "River1",
+            "refersToClass": "Sea",
+            "join": [
+                "river.sea = sea.name"
+            ]
+        },
+        {
+            "property": "flowsInto",
+            "belongsToClassMap": "River1",
+            "refersToClass": "Lake",
+            "join": [
+                "river.lake = lake.name"
+            ]
+        },
+        {
+            "property": "hasSource",
+            "belongsToClassMap": "River1",
+            "refersToClass": "Source"
+        },
+        {
+            "property": "hasEstuary",
+            "belongsToClassMap": "River1",
+            "refersToClass": "Estuary"
+        },
+        {
+            "property": "locatedOnIsland",
+            "belongsToClass": "River1",
+            "refersToClassMap": "Island",
+            "join": [
+                "river.name = riveronisland.river",
+                "riveronisland.island = island.name"
+            ]
+        }
+    ],
+    "data_properties": [
+        {
+            "property": "name",
+            "belongsToClassMap": "River1",
+            "type": "string",
+            "column": "river.name"
+        },
+        {
+            "property": "area",
+            "belongsToClassMap": "River1",
+            "type": "decimal",
+            "column": "river.area"
+        },
+        {
+            "property": "length",
+            "belongsToClassMap": "River1",
+            "type": "decimal",
+            "column": "river.length"
+        }
+    ]
+}

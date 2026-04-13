@@ -1,0 +1,53 @@
+{
+    "classes": [
+        {
+            "id": "@@ethnicgroup.name@@",
+            "class": "EthnicGroup",
+            "prefix": "mondial"
+        },
+        {
+            "id": "@@ethnicgroup.name@@/@@ethnicgroup.country@@",
+            "class": "EthnicProportion",
+            "prefix": "mondial"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "ethnicInfo",
+            "belongsToClass": "EthnicProportion",
+            "refersToClassMap": "CountryFull",
+            "join": [
+                "country.code = ethnicgroup.country"
+            ]
+        },
+        {
+            "property": "onEthnicGroup",
+            "belongsToClass": "EthnicProportion",
+            "refersToClass": "EthnicGroup",
+            "inverseOf": "liveInInfo"
+        },
+        {
+            "property": "belongToEthnicGroup",
+            "inverseOf": "liveInCountry",
+            "belongsToClassMap": "CountryFull",
+            "refersToClass": "EthnicGroup",
+            "join": [
+                "country.code = ethnicgroup.country"
+            ]
+        }
+    ],
+    "data_properties": [
+        {
+            "property": "name",
+            "belongsToClass": "EthnicGroup",
+            "type": "string",
+            "column": "ethnicgroup.name"
+        },
+        {
+            "property": "percentage",
+            "belongsToClass": "EthnicProportion",
+            "type": "decimal",
+            "column": "ethnicgroup.percentage"
+        }
+    ]
+}

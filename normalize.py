@@ -1,19 +1,41 @@
 from __future__ import annotations
 
-from dataclasses import asdict
-from typing import Any, Dict, List, Optional, Tuple
 import copy
 import json
 import re
+from dataclasses import dataclass, field
+from typing import Any, Dict, List, Optional, Tuple
 
 
 # ============================================================
-# Normalization report
+# Collector
 # ============================================================
 
+
+@dataclass
+class NormalizationIssue:
+    level: str
+    code: str
+    message: str
+    path: Optional[str] = None
+    payload: Dict[str, Any] = field(default_factory=dict)
+
+    def to_dict(self) -> Dict[str, Any]:
+        out = {
+            "level": self.level,
+            "code": self.code,
+            "message": self.message,
+        }
+        if self.path is not None:
+            out["path"] = self.path
+        if self.payload:
+            out["payload"] = self.payload
+        return out
+
+
+@dataclass
 class NormalizationCollector:
-    def __init__(self) -> None:
-        self.messages: List[Dict[str, Any]] = []
+    issues: List[NormalizationIssue] = field(default_factory=list)
 
     def add(
         self,
@@ -23,41 +45,35 @@ class NormalizationCollector:
         path: Optional[str] = None,
         **payload: Any,
     ) -> None:
-        self.messages.append(
-            {
-                "level": level,
-                "code": code,
-                "message": message,
-                "path": path,
-                "payload": payload,
-            }
+        self.issues.append(
+            NormalizationIssue(
+                level=level,
+                code=code,
+                message=message,
+                path=path,
+                payload=payload,
+            )
         )
 
-    def summary(self) -> Dict[str, Any]:
-        by_level: Dict[str, int] = {}
-        by_code: Dict[str, int] = {}
-        for m in self.messages:
-            by_level[m["level"]] = by_level.get(m["level"], 0) + 1
-            by_code[m["code"]] = by_code.get(m["code"], 0) + 1
+    def report(self) -> Dict[str, Any]:
+        num_errors = sum(1 for x in self.issues if x.level == "error")
+        num_warnings = sum(1 for x in self.issues if x.level == "warning")
+        num_infos = sum(1 for x in self.issues if x.level == "info")
         return {
-            "ok": not any(m["level"] == "error" for m in self.messages),
-            "num_messages": len(self.messages),
-            "by_level": by_level,
-            "by_code": by_code,
-            "messages": self.messages,
+            "num_errors": num_errors,
+            "num_warnings": num_warnings,
+            "num_infos": num_infos,
+            "issues": [x.to_dict() for x in self.issues],
         }
 
 
 # ============================================================
-# General helpers
+# Generic helpers
 # ============================================================
-
-QUALIFIED_COL_RE = re.compile(r"^([A-Za-z_][A-Za-z0-9_]*)\.([A-Za-z_][A-Za-z0-9_]*)$")
-JOIN_RE = re.compile(r"^\s*(\S+)\s*(=|!=|<>|>=|<=|>|<)\s*(\S+)\s*$")
 
 
 def _safe_dict(x: Any) -> Dict[str, Any]:
-    return dict(x) if isinstance(x, dict) else {}
+    return x if isinstance(x, dict) else {}
 
 
 def _safe_list(x: Any) -> List[Any]:
@@ -68,473 +84,374 @@ def _safe_list(x: Any) -> List[Any]:
     return [x]
 
 
-def _dedup_keep_order(items: List[Any]) -> List[Any]:
-    seen = set()
-    out = []
-    for x in items:
-        key = json.dumps(x, ensure_ascii=False, sort_keys=True) if isinstance(x, (dict, list)) else str(x)
-        if key not in seen:
-            seen.add(key)
-            out.append(x)
-    return out
+def _as_dict(x: Any) -> Dict[str, Any]:
+    return x if isinstance(x, dict) else {}
 
 
-def parse_qualified_column(s: str) -> Optional[Tuple[str, str]]:
-    m = QUALIFIED_COL_RE.match((s or "").strip())
-    if not m:
-        return None
-    return m.group(1), m.group(2)
-
-
-def _normalize_class_id(x: str) -> str:
-    x = str(x or "").strip()
-    if not x:
-        return "Class:UNKNOWN"
-    if x.startswith("Class:"):
+def _as_list(x: Any) -> List[Any]:
+    if x is None:
+        return []
+    if isinstance(x, list):
         return x
-    return f"Class:{x}"
+    return [x]
 
 
-def _normalize_data_property_id(domain_class: str, label: str) -> str:
-    d = _normalize_class_id(domain_class).replace("Class:", "")
-    label = str(label or "").strip() or "UNKNOWN"
-    if label.startswith("DataProperty:"):
-        return label
-    return f"DataProperty:{d}.{label}"
+def _coerce_confidence(x: Any) -> Optional[float]:
+    if x is None or x == "":
+        return None
+    try:
+        v = float(x)
+        if v < 0:
+            return 0.0
+        if v > 1:
+            return 1.0
+        return v
+    except Exception:
+        return None
 
 
-def _normalize_object_property_id(domain_class: str, label: str) -> str:
-    d = _normalize_class_id(domain_class).replace("Class:", "")
-    label = str(label or "").strip() or "UNKNOWN"
-    if label.startswith("ObjectProperty:"):
-        return label
-    return f"ObjectProperty:{d}.{label}"
+def _normalize_ws(s: Any) -> str:
+    return re.sub(r"\s+", " ", str(s or "")).strip()
 
 
-def _normalize_xsd_type(x: Any) -> str:
-    s = str(x or "").strip()
+def _normalize_identifier(s: Any) -> str:
+    s = _normalize_ws(s)
+    return s
+
+
+def _strip_prefix_if_present(text: str, prefix: str) -> str:
+    if text.startswith(prefix):
+        return text[len(prefix):]
+    return text
+
+
+def _normalize_class_id(x: Any) -> str:
+    s = _normalize_identifier(x)
+    if not s:
+        return ""
+    if s.startswith("Class:"):
+        return s
+    return f"Class:{s}"
+
+
+def _normalize_property_id(x: Any, kind: str) -> str:
+    s = _normalize_identifier(x)
+    if not s:
+        return ""
+    wanted = f"{kind}:"
+    if s.startswith(wanted):
+        return s
+    if ":" in s:
+        return s
+    return f"{kind}:{s}"
+
+
+def _normalize_range_type(x: Any) -> str:
+    s = _normalize_ws(x)
     if not s:
         return "string"
+    low = s.lower()
+    if low in {"str", "string", "text", "varchar", "character varying"}:
+        return "string"
+    if low in {"int", "integer", "bigint", "smallint"}:
+        return "integer"
+    if low in {"float", "double", "real", "numeric", "decimal"}:
+        return "decimal"
+    if low in {"bool", "boolean"}:
+        return "boolean"
+    if low in {"date"}:
+        return "date"
+    if low in {"datetime", "timestamp"}:
+        return "datetime"
+    return s
 
-    s_low = s.lower()
-    if s_low.startswith("xsd:"):
-        s_low = s_low.split(":", 1)[1]
-
-    mapping = {
-        "string": "string",
-        "text": "string",
-        "str": "string",
-        "integer": "integer",
-        "int": "integer",
-        "long": "integer",
-        "float": "float",
-        "double": "float",
-        "decimal": "float",
-        "bool": "boolean",
-        "boolean": "boolean",
-        "date": "date",
-        "datetime": "datetime",
-        "timestamp": "datetime",
-        "literal": "string",
-    }
-    return mapping.get(s_low, s_low)
-
-
-def _extract_identifier_columns_from_template(template: str) -> List[str]:
-    template = str(template or "")
-    cols: List[str] = []
-
-    # Burr @@table.col@@
-    start = 0
-    while True:
-        i = template.find("@@", start)
-        if i == -1:
-            break
-        j = template.find("@@", i + 2)
-        if j == -1:
-            break
-        cols.append(template[i + 2:j].strip())
-        start = j + 2
-
-    # Python style {table.col}
-    cols.extend(re.findall(r"\{([A-Za-z_][A-Za-z0-9_]*\.[A-Za-z_][A-Za-z0-9_]*)\}", template))
-
-    # Looser fallback for {id} / {hotel_id} if from_tables known later
-    return _dedup_keep_order([c for c in cols if c])
-
-
-def _normalize_join_string(s: str) -> List[str]:
-    s = str(s or "").strip()
-    if not s:
-        return []
-    m = JOIN_RE.match(s)
-    if m:
-        return [m.group(1), m.group(2), m.group(3)]
-    toks = s.split()
-    return toks if toks else []
-
-
-def _normalize_join_object(j: Dict[str, Any]) -> List[str]:
-    j = _safe_dict(j)
-    cond = str(j.get("join_condition", "")).strip()
-    if cond:
-        return _normalize_join_string(cond)
-
-    left = j.get("left")
-    op = j.get("op", "=")
-    right = j.get("right")
-    if left and right:
-        return [str(left).strip(), str(op).strip(), str(right).strip()]
-
-    return []
-
-
-def _normalize_join_any(x: Any) -> List[str]:
-    if isinstance(x, str):
-        return _normalize_join_string(x)
-    if isinstance(x, list):
-        toks = [str(t).strip() for t in x if str(t).strip()]
-        if len(toks) == 1:
-            return _normalize_join_string(toks[0])
-        return toks
-    if isinstance(x, dict):
-        return _normalize_join_object(x)
-    return []
-
-
-def _normalize_join_list(x: Any) -> List[List[str]]:
-    out: List[List[str]] = []
-    for item in _safe_list(x):
-        j = _normalize_join_any(item)
-        if j:
-            out.append(j)
-    return out
-
-
-def _label_to_prop_fragment(label: str) -> str:
-    s = str(label or "").strip()
-    if not s:
-        return "UNKNOWN"
-    return s.replace(" ", "_")
-
-
-def _pick_first_present(d: Dict[str, Any], keys: List[str]) -> Tuple[Any, Optional[str]]:
-    for k in keys:
-        if k in d and d[k] is not None:
-            return d[k], k
-    return None, None
-
-
-# ============================================================
-# Canonical key alias tables
-# ============================================================
-
-CLASS_ALIASES = {
-    "id": ["id", "class_id"],
-    "label": ["label", "name", "class", "class_name", "concept"],
-    "description": ["description", "comment", "definition"],
-    "source_tables": ["source_tables", "tables", "from_tables"],
-    "status": ["status"],
-    "confidence": ["confidence", "score", "probability"],
-}
-
-DATA_PROPERTY_ALIASES = {
-    "id": ["id", "data_property_id", "property_id"],
-    "label": ["label", "property", "name"],
-    "domain_class": ["domain_class", "domain", "belongsToClassMap", "applies_to_class", "from_class"],
-    "range_type": ["range_type", "range", "type", "datatype"],
-    "source_columns": ["source_columns", "columns"],
-    "status": ["status"],
-    "confidence": ["confidence", "score", "probability"],
-    "description": ["description", "comment", "definition"],
-}
-
-OBJECT_PROPERTY_ALIASES = {
-    "id": ["id", "object_property_id", "property_id"],
-    "label": ["label", "property", "name"],
-    "domain_class": ["domain_class", "domain", "belongsToClassMap", "from_class"],
-    "range_class": ["range_class", "range", "refersToClassMap", "to_class"],
-    "join_paths": ["join_paths", "joins", "join"],
-    "status": ["status"],
-    "confidence": ["confidence", "score", "probability"],
-    "description": ["description", "comment", "definition"],
-}
-
-CLASS_MAPPING_ALIASES = {
-    "class_id": ["class_id", "id", "class", "label", "name"],
-    "instance_id_template": ["instance_id_template", "uri_template", "instance_uri_template", "id_template"],
-    "from_tables": ["from_tables", "tables"],
-    "where": ["where", "conditions", "filters"],
-    "joins": ["joins", "join", "join_paths"],
-    "identifier_columns": ["identifier_columns", "id_columns", "key_columns"],
-}
-
-DATA_PROPERTY_MAPPING_ALIASES = {
-    "property_id": ["property_id", "data_property_id", "id"],
-    "from_class": ["from_class", "applies_to_class", "domain_class", "belongsToClassMap"],
-    "column": ["column"],
-    "source_columns": ["source_columns", "columns"],
-    "source_table": ["source_table"],
-    "value_template": ["value_template"],
-}
-
-OBJECT_PROPERTY_MAPPING_ALIASES = {
-    "property_id": ["property_id", "object_property_id", "id"],
-    "from_class": ["from_class", "domain_class", "belongsToClassMap"],
-    "to_class": ["to_class", "range_class", "refersToClassMap"],
-    "joins": ["joins", "join", "join_paths"],
-    "from_tables": ["from_tables", "tables"],
-    "source_identifier_columns": ["source_identifier_columns"],
-    "target_identifier_columns": ["target_identifier_columns"],
-    "where": ["where", "conditions", "filters"],
-}
-
-
-# ============================================================
-# Canonicalization helpers
-# ============================================================
-
-def _canonicalize_by_aliases(
-    x: Dict[str, Any],
-    aliases: Dict[str, List[str]],
-    collector: NormalizationCollector,
-    path: str,
-) -> Dict[str, Any]:
-    x = _safe_dict(x)
-    out: Dict[str, Any] = {}
-    used_keys = set()
-
-    for canonical_key, alias_list in aliases.items():
-        value, chosen = _pick_first_present(x, alias_list)
-        if chosen is not None:
-            out[canonical_key] = value
-            used_keys.add(chosen)
-            if chosen != canonical_key:
-                collector.add(
-                    "info",
-                    "FIELD_ALIAS_CANONICALIZED",
-                    f"Canonicalized field '{chosen}' to '{canonical_key}'.",
-                    path=path,
-                    from_key=chosen,
-                    to_key=canonical_key,
-                )
-
-    extras = {k: v for k, v in x.items() if k not in used_keys}
-    if extras:
-        out["extras"] = extras
-        collector.add(
-            "info",
-            "EXTRA_FIELDS_PRESERVED",
-            "Preserved non-canonical fields in extras.",
-            path=path,
-            extra_keys=sorted(extras.keys()),
-        )
-
-    return out
-
-
-# ============================================================
-# Per-section robust normalization
-# ============================================================
-
-def _normalize_class_entry(
-    x: Dict[str, Any],
-    collector: NormalizationCollector,
-    path: str,
-) -> Dict[str, Any]:
-    out = _canonicalize_by_aliases(x, CLASS_ALIASES, collector, path)
-
-    label = str(out.get("label") or "UNKNOWN").strip()
-    out["label"] = label
-    out["id"] = _normalize_class_id(out.get("id") or label)
-    out["source_tables"] = [str(t).strip() for t in _safe_list(out.get("source_tables")) if str(t).strip()]
-    out["status"] = str(out.get("status") or "accepted")
-    if "confidence" in out and out["confidence"] is not None:
-        try:
-            out["confidence"] = float(out["confidence"])
-        except Exception:
-            collector.add("warning", "BAD_CONFIDENCE", "Failed to cast class confidence to float.", path=path, value=out["confidence"])
-            out["confidence"] = None
-    return out
-
-
-def _normalize_data_property_entry(
-    x: Dict[str, Any],
-    collector: NormalizationCollector,
-    path: str,
-) -> Dict[str, Any]:
-    out = _canonicalize_by_aliases(x, DATA_PROPERTY_ALIASES, collector, path)
-
-    label = str(out.get("label") or "UNKNOWN").strip()
-    domain_class = _normalize_class_id(out.get("domain_class") or "UNKNOWN")
-    range_type = _normalize_xsd_type(out.get("range_type"))
-
-    out["label"] = label
-    out["domain_class"] = domain_class
-    out["range_type"] = range_type
-    out["source_columns"] = [str(c).strip() for c in _safe_list(out.get("source_columns")) if str(c).strip()]
-    out["status"] = str(out.get("status") or "accepted")
-    out["id"] = out.get("id") or _normalize_data_property_id(domain_class, _label_to_prop_fragment(label))
-
-    if "confidence" in out and out["confidence"] is not None:
-        try:
-            out["confidence"] = float(out["confidence"])
-        except Exception:
-            collector.add("warning", "BAD_CONFIDENCE", "Failed to cast data property confidence to float.", path=path, value=out["confidence"])
-            out["confidence"] = None
-
-    return out
-
-
-def _normalize_object_property_entry(
-    x: Dict[str, Any],
-    collector: NormalizationCollector,
-    path: str,
-) -> Dict[str, Any]:
-    out = _canonicalize_by_aliases(x, OBJECT_PROPERTY_ALIASES, collector, path)
-
-    label = str(out.get("label") or "UNKNOWN").strip()
-    domain_class = _normalize_class_id(out.get("domain_class") or "UNKNOWN")
-    range_class = _normalize_class_id(out.get("range_class") or "UNKNOWN")
-
-    out["label"] = label
-    out["domain_class"] = domain_class
-    out["range_class"] = range_class
-    out["join_paths"] = _normalize_join_list(out.get("join_paths"))
-    out["status"] = str(out.get("status") or "accepted")
-    out["reified"] = bool(out.get("reified", False))
-    out["id"] = out.get("id") or _normalize_object_property_id(domain_class, _label_to_prop_fragment(label))
-
-    if "confidence" in out and out["confidence"] is not None:
-        try:
-            out["confidence"] = float(out["confidence"])
-        except Exception:
-            collector.add("warning", "BAD_CONFIDENCE", "Failed to cast object property confidence to float.", path=path, value=out["confidence"])
-            out["confidence"] = None
-
-    return out
-
-
-def _normalize_class_mapping_entry(
-    x: Dict[str, Any],
-    collector: NormalizationCollector,
-    path: str,
-) -> Dict[str, Any]:
-    out = _canonicalize_by_aliases(x, CLASS_MAPPING_ALIASES, collector, path)
-
-    class_id_raw = out.get("class_id")
-    instance_id_template = str(out.get("instance_id_template") or "").strip()
-
-    if class_id_raw:
-        if str(class_id_raw).startswith("Class:"):
-            out["class_id"] = class_id_raw
-        else:
-            # here class_id may be label-like
-            out["class_id"] = _normalize_class_id(class_id_raw)
-    else:
-        out["class_id"] = "Class:UNKNOWN"
-        collector.add("warning", "CLASS_MAPPING_CLASS_ID_UNKNOWN", "Could not infer class_id.", path=path)
-
-    out["instance_id_template"] = instance_id_template
-    out["from_tables"] = [str(t).strip() for t in _safe_list(out.get("from_tables")) if str(t).strip()]
-    out["where"] = [str(w).strip() for w in _safe_list(out.get("where")) if str(w).strip()]
-    out["joins"] = _normalize_join_list(out.get("joins"))
-
-    identifier_columns = [str(c).strip() for c in _safe_list(out.get("identifier_columns")) if str(c).strip()]
-    if not identifier_columns and instance_id_template:
-        identifier_columns = _extract_identifier_columns_from_template(instance_id_template)
-        if identifier_columns:
-            collector.add(
-                "info",
-                "IDENTIFIER_COLUMNS_INFERRED_FROM_TEMPLATE",
-                "Inferred identifier_columns from instance_id_template.",
-                path=path,
-                identifier_columns=identifier_columns,
-            )
-
-    # fallback for {id} / {room_number} style templates if from_tables has exactly one table
-    if not identifier_columns and instance_id_template and len(out["from_tables"]) == 1:
-        table = out["from_tables"][0]
-        bare = re.findall(r"\{([A-Za-z_][A-Za-z0-9_]*)\}", instance_id_template)
-        if bare:
-            identifier_columns = [f"{table}.{b}" for b in bare]
-            collector.add(
-                "warning",
-                "IDENTIFIER_COLUMNS_WEAKLY_INFERRED",
-                "Weakly inferred identifier_columns from bare template placeholders and single from_table.",
-                path=path,
-                identifier_columns=identifier_columns,
-            )
-
-    out["identifier_columns"] = identifier_columns
-    return out
-
-
-def _normalize_data_property_mapping_entry(
-    x: Dict[str, Any],
-    collector: NormalizationCollector,
-    path: str,
-) -> Dict[str, Any]:
-    out = _canonicalize_by_aliases(x, DATA_PROPERTY_MAPPING_ALIASES, collector, path)
-
-    property_id = out.get("property_id") or "DataProperty:UNKNOWN.UNKNOWN"
-    from_class = _normalize_class_id(out.get("from_class") or "UNKNOWN")
-
-    column = str(out.get("column") or "").strip()
-    source_columns = [str(c).strip() for c in _safe_list(out.get("source_columns")) if str(c).strip()]
-    source_table = str(out.get("source_table") or "").strip()
-
-    if not column and source_columns:
-        column = source_columns[0]
-        collector.add("info", "COLUMN_FROM_SOURCE_COLUMNS", "Filled column from source_columns[0].", path=path, column=column)
-
-    if not column and source_table and out.get("value_template"):
-        bare = re.findall(r"\{([A-Za-z_][A-Za-z0-9_]*)\}", str(out["value_template"]))
-        if len(bare) == 1:
-            column = f"{source_table}.{bare[0]}"
-            collector.add(
-                "warning",
-                "COLUMN_WEAKLY_INFERRED",
-                "Weakly inferred column from source_table + value_template.",
-                path=path,
-                column=column,
-            )
-
-    out["property_id"] = property_id
-    out["from_class"] = from_class
-    out["column"] = column
-    return out
-
-
-def _normalize_object_property_mapping_entry(
-    x: Dict[str, Any],
-    collector: NormalizationCollector,
-    path: str,
-) -> Dict[str, Any]:
-    out = _canonicalize_by_aliases(x, OBJECT_PROPERTY_MAPPING_ALIASES, collector, path)
-
-    out["property_id"] = out.get("property_id") or "ObjectProperty:UNKNOWN.UNKNOWN"
-    out["from_class"] = _normalize_class_id(out.get("from_class") or "UNKNOWN")
-    out["to_class"] = _normalize_class_id(out.get("to_class") or "UNKNOWN")
-    out["joins"] = _normalize_join_list(out.get("joins"))
-    out["from_tables"] = [str(t).strip() for t in _safe_list(out.get("from_tables")) if str(t).strip()]
-    out["source_identifier_columns"] = [str(c).strip() for c in _safe_list(out.get("source_identifier_columns")) if str(c).strip()]
-    out["target_identifier_columns"] = [str(c).strip() for c in _safe_list(out.get("target_identifier_columns")) if str(c).strip()]
-    out["where"] = [str(w).strip() for w in _safe_list(out.get("where")) if str(w).strip()]
-    return out
-
-
-# ============================================================
-# Cross-layer backfilling
-# ============================================================
 
 def _build_index_by_id(items: List[Dict[str, Any]]) -> Dict[str, Dict[str, Any]]:
-    out = {}
+    out: Dict[str, Dict[str, Any]] = {}
     for x in items:
         xid = x.get("id")
         if xid:
-            out[xid] = x
+            out[str(xid)] = x
     return out
+
+
+def _find_root_payload(obj: Dict[str, Any], collector: NormalizationCollector) -> Dict[str, Any]:
+    if not isinstance(obj, dict):
+        collector.add(
+            "warning",
+            "ROOT_NOT_DICT",
+            "Root payload is not a dict; coercing to empty dict.",
+        )
+        return {}
+
+    direct_signal_keys = {
+        "classes",
+        "data_properties",
+        "object_properties",
+        "subclass_relations",
+        "class_mappings",
+        "data_property_mappings",
+        "object_property_mappings",
+    }
+    if any(k in obj for k in direct_signal_keys):
+        return obj
+
+    for container_key in ["ontology", "draft", "output", "result", "payload", "data"]:
+        inner = obj.get(container_key)
+        if isinstance(inner, dict) and any(k in inner for k in direct_signal_keys):
+            collector.add(
+                "info",
+                "ROOT_UNWRAPPED",
+                f"Unwrapped nested payload from '{container_key}'.",
+                path=container_key,
+            )
+            return inner
+
+    return obj
+
+
+# ============================================================
+# Canonicalizers
+# ============================================================
+
+
+def _canonicalize_class(x: Any) -> Dict[str, Any]:
+    d = _as_dict(x)
+    cid_raw = d.get("id") or d.get("class_id") or d.get("name") or d.get("label")
+    cid = _normalize_class_id(cid_raw)
+    label = d.get("label") or _strip_prefix_if_present(cid, "Class:")
+
+    source_tables = [_normalize_identifier(t) for t in _as_list(d.get("source_tables") or d.get("from_tables")) if _normalize_identifier(t)]
+    identifier_columns = [_normalize_identifier(c) for c in _as_list(d.get("identifier_columns")) if _normalize_identifier(c)]
+
+    out: Dict[str, Any] = {
+        "id": cid,
+        "label": _normalize_ws(label),
+        "source_tables": list(dict.fromkeys(source_tables)),
+        "identifier_columns": list(dict.fromkeys(identifier_columns)),
+        "instance_id_template": _normalize_ws(d.get("instance_id_template") or d.get("uri_template") or ""),
+        "status": _normalize_ws(d.get("status") or "proposed") or "proposed",
+        "confidence": _coerce_confidence(d.get("confidence")),
+    }
+    if d.get("description"):
+        out["description"] = d.get("description")
+
+    extras = {k: v for k, v in d.items() if k not in {
+        "id", "class_id", "name", "label", "source_tables", "from_tables",
+        "identifier_columns", "instance_id_template", "uri_template", "status",
+        "confidence", "description",
+    }}
+    if extras:
+        out["extras"] = extras
+    return out
+
+
+def _canonicalize_data_property(x: Any) -> Dict[str, Any]:
+    d = _as_dict(x)
+    pid_raw = d.get("id") or d.get("data_property_id") or d.get("property_id") or d.get("name") or d.get("label")
+    pid = _normalize_property_id(pid_raw, "DataProperty")
+    label = d.get("label") or _strip_prefix_if_present(pid, "DataProperty:")
+
+    domain = d.get("domain_class") or d.get("domain") or d.get("applies_to_class") or d.get("from_class")
+    range_type = d.get("range_type") or d.get("range") or d.get("datatype") or d.get("type")
+    source_columns = [
+        _normalize_identifier(c)
+        for c in _as_list(d.get("source_columns") or d.get("columns"))
+        if _normalize_identifier(c)
+    ]
+    if d.get("column"):
+        c = _normalize_identifier(d.get("column"))
+        if c:
+            source_columns.append(c)
+
+    out: Dict[str, Any] = {
+        "id": pid,
+        "label": _normalize_ws(label),
+        "domain_class": _normalize_class_id(domain) if domain else "",
+        "range_type": _normalize_range_type(range_type),
+        "source_columns": list(dict.fromkeys(source_columns)),
+        "status": _normalize_ws(d.get("status") or "proposed") or "proposed",
+        "confidence": _coerce_confidence(d.get("confidence")),
+    }
+    if d.get("description"):
+        out["description"] = d.get("description")
+
+    extras = {k: v for k, v in d.items() if k not in {
+        "id", "data_property_id", "property_id", "name", "label",
+        "domain_class", "domain", "applies_to_class", "from_class",
+        "range_type", "range", "datatype", "type",
+        "source_columns", "columns", "column",
+        "status", "confidence", "description",
+    }}
+    if extras:
+        out["extras"] = extras
+    return out
+
+
+def _canonicalize_object_property(x: Any) -> Dict[str, Any]:
+    d = _as_dict(x)
+    pid_raw = d.get("id") or d.get("object_property_id") or d.get("property_id") or d.get("name") or d.get("label")
+    pid = _normalize_property_id(pid_raw, "ObjectProperty")
+    label = d.get("label") or _strip_prefix_if_present(pid, "ObjectProperty:")
+
+    domain = d.get("domain_class") or d.get("domain") or d.get("from_class")
+    range_class = d.get("range_class") or d.get("range") or d.get("to_class") or d.get("target_class")
+    join_paths = _as_list(d.get("join_paths") or d.get("joins"))
+
+    out: Dict[str, Any] = {
+        "id": pid,
+        "label": _normalize_ws(label),
+        "domain_class": _normalize_class_id(domain) if domain else "",
+        "range_class": _normalize_class_id(range_class) if range_class else "",
+        "join_paths": join_paths,
+        "status": _normalize_ws(d.get("status") or "proposed") or "proposed",
+        "confidence": _coerce_confidence(d.get("confidence")),
+    }
+    if d.get("description"):
+        out["description"] = d.get("description")
+
+    extras = {k: v for k, v in d.items() if k not in {
+        "id", "object_property_id", "property_id", "name", "label",
+        "domain_class", "domain", "from_class",
+        "range_class", "range", "to_class", "target_class",
+        "join_paths", "joins",
+        "status", "confidence", "description",
+    }}
+    if extras:
+        out["extras"] = extras
+    return out
+
+
+def _canonicalize_subclass_relation(x: Any) -> Dict[str, Any]:
+    d = _as_dict(x)
+
+    child = (
+        d.get("child_class")
+        or d.get("child")
+        or d.get("subclass")
+        or d.get("sub_class")
+        or d.get("source_class")
+        or d.get("source")
+        or d.get("from_class")
+        or d.get("child_class_id")
+    )
+    parent = (
+        d.get("parent_class")
+        or d.get("parent")
+        or d.get("superclass")
+        or d.get("super_class")
+        or d.get("target_class")
+        or d.get("target")
+        or d.get("to_class")
+        or d.get("parent_class_id")
+    )
+
+    child = _normalize_class_id(child) if child else ""
+    parent = _normalize_class_id(parent) if parent else ""
+
+    rid = (
+        d.get("id")
+        or d.get("relation_id")
+        or d.get("subclass_relation_id")
+        or (f"SubclassRelation:{child}->{parent}" if child and parent else "")
+    )
+
+    out: Dict[str, Any] = {
+        "id": _normalize_identifier(rid),
+        "child_class": child,
+        "parent_class": parent,
+        "status": _normalize_ws(d.get("status") or "proposed") or "proposed",
+        "confidence": _coerce_confidence(d.get("confidence")),
+    }
+    if d.get("description"):
+        out["description"] = d.get("description")
+
+    extras = {k: v for k, v in d.items() if k not in {
+        "id", "relation_id", "subclass_relation_id",
+        "child_class", "child", "subclass", "sub_class", "source_class", "source", "from_class", "child_class_id",
+        "parent_class", "parent", "superclass", "super_class", "target_class", "target", "to_class", "parent_class_id",
+        "status", "confidence", "description",
+    }}
+    if extras:
+        out["extras"] = extras
+    return out
+
+
+def _canonicalize_class_mapping(x: Any) -> Dict[str, Any]:
+    d = _as_dict(x)
+    class_id = _normalize_class_id(d.get("class_id") or d.get("class") or d.get("applies_to_class") or d.get("from_class"))
+    from_tables = [_normalize_identifier(t) for t in _as_list(d.get("from_tables") or d.get("source_tables")) if _normalize_identifier(t)]
+    identifier_columns = [_normalize_identifier(c) for c in _as_list(d.get("identifier_columns")) if _normalize_identifier(c)]
+
+    out = {
+        "class_id": class_id,
+        "from_tables": list(dict.fromkeys(from_tables)),
+        "identifier_columns": list(dict.fromkeys(identifier_columns)),
+        "instance_id_template": _normalize_ws(d.get("instance_id_template") or d.get("uri_template") or ""),
+        "status": _normalize_ws(d.get("status") or "proposed") or "proposed",
+        "confidence": _coerce_confidence(d.get("confidence")),
+    }
+    extras = {k: v for k, v in d.items() if k not in {
+        "class_id", "class", "applies_to_class", "from_class", "from_tables", "source_tables",
+        "identifier_columns", "instance_id_template", "uri_template", "status", "confidence",
+    }}
+    if extras:
+        out["extras"] = extras
+    return out
+
+
+def _canonicalize_data_property_mapping(x: Any) -> Dict[str, Any]:
+    d = _as_dict(x)
+    property_id = _normalize_property_id(d.get("property_id") or d.get("data_property_id") or d.get("id") or d.get("label"), "DataProperty")
+    source_columns = [_normalize_identifier(c) for c in _as_list(d.get("source_columns") or d.get("columns")) if _normalize_identifier(c)]
+    column = _normalize_identifier(d.get("column"))
+    if column and column not in source_columns:
+        source_columns.append(column)
+
+    out = {
+        "property_id": property_id,
+        "from_class": _normalize_class_id(d.get("from_class") or d.get("applies_to_class") or d.get("domain") or d.get("domain_class")) if (d.get("from_class") or d.get("applies_to_class") or d.get("domain") or d.get("domain_class")) else "",
+        "source_table": _normalize_identifier(d.get("source_table") or d.get("table") or ""),
+        "source_columns": list(dict.fromkeys(source_columns)),
+        "column": column,
+        "status": _normalize_ws(d.get("status") or "proposed") or "proposed",
+        "confidence": _coerce_confidence(d.get("confidence")),
+    }
+    extras = {k: v for k, v in d.items() if k not in {
+        "property_id", "data_property_id", "id", "label", "from_class", "applies_to_class", "domain", "domain_class",
+        "source_table", "table", "source_columns", "columns", "column", "status", "confidence",
+    }}
+    if extras:
+        out["extras"] = extras
+    return out
+
+
+def _canonicalize_object_property_mapping(x: Any) -> Dict[str, Any]:
+    d = _as_dict(x)
+    property_id = _normalize_property_id(d.get("property_id") or d.get("object_property_id") or d.get("id") or d.get("label"), "ObjectProperty")
+
+    out = {
+        "property_id": property_id,
+        "from_class": _normalize_class_id(d.get("from_class") or d.get("domain") or d.get("domain_class")) if (d.get("from_class") or d.get("domain") or d.get("domain_class")) else "",
+        "to_class": _normalize_class_id(d.get("to_class") or d.get("range") or d.get("range_class") or d.get("target_class")) if (d.get("to_class") or d.get("range") or d.get("range_class") or d.get("target_class")) else "",
+        "joins": _as_list(d.get("joins") or d.get("join_paths")),
+        "status": _normalize_ws(d.get("status") or "proposed") or "proposed",
+        "confidence": _coerce_confidence(d.get("confidence")),
+    }
+    extras = {k: v for k, v in d.items() if k not in {
+        "property_id", "object_property_id", "id", "label",
+        "from_class", "domain", "domain_class",
+        "to_class", "range", "range_class", "target_class",
+        "joins", "join_paths", "status", "confidence",
+    }}
+    if extras:
+        out["extras"] = extras
+    return out
+
+
+# ============================================================
+# Backfill / repair
+# ============================================================
 
 
 def _backfill_from_mappings(
@@ -555,45 +472,29 @@ def _backfill_from_mappings(
     dp_idx = _build_index_by_id(data_properties)
     op_idx = _build_index_by_id(object_properties)
 
-    # --------------------------------------------------------
-    # 1) Backfill class mappings from classes if missing
-    # --------------------------------------------------------
     if not class_mappings:
         for c in classes:
             source_tables = c.get("source_tables") or []
             if not source_tables:
                 continue
-
             cid = c.get("id")
             if not cid:
                 continue
-
-            from_tables = [str(t).strip() for t in source_tables if str(t).strip()]
             identifier_columns = [str(x).strip() for x in (c.get("identifier_columns") or []) if str(x).strip()]
-
             class_mappings.append(
                 {
                     "class_id": cid,
-                    "from_tables": from_tables,
+                    "from_tables": list(source_tables),
                     "identifier_columns": identifier_columns,
                     "instance_id_template": c.get("instance_id_template") or (
-                        "{"
-                        + (identifier_columns[0] if identifier_columns else f"{from_tables[0]}.id")
-                        + "}"
+                        "{" + (identifier_columns[0] if identifier_columns else f"{source_tables[0]}.id") + "}"
                     ),
                     "status": c.get("status", "proposed"),
                     "confidence": c.get("confidence", 0.5),
                 }
             )
-            collector.add(
-                "info",
-                "CLASS_MAPPING_SYNTHESIZED_FROM_CLASS",
-                "Synthesized class mapping from class definition.",
-                path=f"class_mappings[{cid}]",
-                class_id=cid,
-            )
+            collector.add("info", "CLASS_MAPPING_SYNTHESIZED_FROM_CLASS", "Synthesized class mapping from class definition.", path=f"class_mappings[{cid}]", class_id=cid)
 
-    # Repair existing classes from class mappings
     for m in class_mappings:
         cid = m.get("class_id")
         if not cid:
@@ -607,53 +508,25 @@ def _backfill_from_mappings(
 
         if (not c.get("source_tables")) and mapped_tables:
             c["source_tables"] = mapped_tables
-            collector.add(
-                "info",
-                "CLASS_SOURCE_TABLES_BACKFILLED_FROM_MAPPING",
-                "Backfilled source_tables from class_mapping.",
-                path=f"classes[{cid}]",
-                class_id=cid,
-                source_tables=mapped_tables,
-            )
-
+            collector.add("info", "CLASS_SOURCE_TABLES_BACKFILLED_FROM_MAPPING", "Backfilled source_tables from class_mapping.", path=f"classes[{cid}]", class_id=cid, source_tables=mapped_tables)
         if (not c.get("identifier_columns")) and mapped_ids:
             c["identifier_columns"] = mapped_ids
-            collector.add(
-                "info",
-                "CLASS_IDENTIFIER_COLUMNS_BACKFILLED",
-                "Backfilled identifier_columns from class_mapping.",
-                path=f"classes[{cid}]",
-                class_id=cid,
-                identifier_columns=mapped_ids,
-            )
-
+            collector.add("info", "CLASS_IDENTIFIER_COLUMNS_BACKFILLED", "Backfilled identifier_columns from class_mapping.", path=f"classes[{cid}]", class_id=cid, identifier_columns=mapped_ids)
         if (not c.get("instance_id_template")) and m.get("instance_id_template"):
             c["instance_id_template"] = m["instance_id_template"]
-            collector.add(
-                "info",
-                "CLASS_INSTANCE_TEMPLATE_BACKFILLED",
-                "Backfilled instance_id_template from class_mapping.",
-                path=f"classes[{cid}]",
-                class_id=cid,
-                instance_id_template=m["instance_id_template"],
-            )
+            collector.add("info", "CLASS_INSTANCE_TEMPLATE_BACKFILLED", "Backfilled instance_id_template from class_mapping.", path=f"classes[{cid}]", class_id=cid)
 
-    # --------------------------------------------------------
-    # 2) Backfill data property mappings from data properties if missing
-    # --------------------------------------------------------
     if not data_property_mappings:
         for p in data_properties:
             pid = p.get("id")
             if not pid:
                 continue
-
             source_columns = [str(c).strip() for c in (p.get("source_columns") or []) if str(c).strip()]
             source_table = ""
             if source_columns:
                 first = source_columns[0]
                 if "." in first:
                     source_table = first.split(".", 1)[0]
-
             data_property_mappings.append(
                 {
                     "property_id": pid,
@@ -665,20 +538,12 @@ def _backfill_from_mappings(
                     "confidence": p.get("confidence", 0.5),
                 }
             )
-            collector.add(
-                "info",
-                "DATA_PROPERTY_MAPPING_SYNTHESIZED_FROM_PROPERTY",
-                "Synthesized data_property_mapping from data property definition.",
-                path=f"data_property_mappings[{pid}]",
-                property_id=pid,
-            )
+            collector.add("info", "DATA_PROPERTY_MAPPING_SYNTHESIZED_FROM_PROPERTY", "Synthesized data_property_mapping from data property definition.", path=f"data_property_mappings[{pid}]", property_id=pid)
 
-    # Repair existing data properties from mappings
     for m in data_property_mappings:
         pid = m.get("property_id")
         if not pid:
             continue
-
         p = dp_idx.get(pid)
         mapped_cols = [str(c).strip() for c in (m.get("source_columns") or []) if str(c).strip()]
         if m.get("column"):
@@ -702,52 +567,25 @@ def _backfill_from_mappings(
                 }
             )
             dp_idx[pid] = data_properties[-1]
-            collector.add(
-                "info",
-                "DATA_PROPERTY_SYNTHESIZED_FROM_MAPPING",
-                "Synthesized data property from data_property_mapping.",
-                path=f"data_properties[{pid}]",
-                property_id=pid,
-            )
+            collector.add("info", "DATA_PROPERTY_SYNTHESIZED_FROM_MAPPING", "Synthesized data property from data_property_mapping.", path=f"data_properties[{pid}]", property_id=pid)
             continue
 
         if (not p.get("source_columns")) and mapped_cols:
             p["source_columns"] = mapped_cols
-            collector.add(
-                "info",
-                "DATA_PROPERTY_SOURCE_COLUMNS_BACKFILLED",
-                "Backfilled source_columns from data_property_mapping.",
-                path=f"data_properties[{pid}]",
-                property_id=pid,
-                source_columns=mapped_cols,
-            )
-
+            collector.add("info", "DATA_PROPERTY_SOURCE_COLUMNS_BACKFILLED", "Backfilled source_columns from data_property_mapping.", path=f"data_properties[{pid}]", property_id=pid, source_columns=mapped_cols)
         if (not p.get("domain_class") or p.get("domain_class") == "Class:UNKNOWN") and m.get("from_class"):
             p["domain_class"] = m["from_class"]
-            collector.add(
-                "info",
-                "DATA_PROPERTY_DOMAIN_BACKFILLED",
-                "Backfilled domain_class from data_property_mapping.",
-                path=f"data_properties[{pid}]",
-                property_id=pid,
-                domain_class=p["domain_class"],
-            )
-
+            collector.add("info", "DATA_PROPERTY_DOMAIN_BACKFILLED", "Backfilled domain_class from data_property_mapping.", path=f"data_properties[{pid}]", property_id=pid, domain_class=p["domain_class"])
         if (not p.get("status")) and m.get("status"):
             p["status"] = m["status"]
-
         if p.get("confidence") is None and m.get("confidence") is not None:
             p["confidence"] = m["confidence"]
 
-    # --------------------------------------------------------
-    # 3) Backfill object property mappings from object properties if missing
-    # --------------------------------------------------------
     if not object_property_mappings:
         for p in object_properties:
             pid = p.get("id")
             if not pid:
                 continue
-
             joins = p.get("join_paths") or []
             object_property_mappings.append(
                 {
@@ -759,20 +597,12 @@ def _backfill_from_mappings(
                     "confidence": p.get("confidence", 0.5),
                 }
             )
-            collector.add(
-                "info",
-                "OBJECT_PROPERTY_MAPPING_SYNTHESIZED_FROM_PROPERTY",
-                "Synthesized object_property_mapping from object property definition.",
-                path=f"object_property_mappings[{pid}]",
-                property_id=pid,
-            )
+            collector.add("info", "OBJECT_PROPERTY_MAPPING_SYNTHESIZED_FROM_PROPERTY", "Synthesized object_property_mapping from object property definition.", path=f"object_property_mappings[{pid}]", property_id=pid)
 
-    # Repair existing object properties from mappings
     for m in object_property_mappings:
         pid = m.get("property_id")
         if not pid:
             continue
-
         p = op_idx.get(pid)
         joins = m.get("joins") or []
 
@@ -780,7 +610,6 @@ def _backfill_from_mappings(
             inferred_domain = m.get("from_class") or "Class:UNKNOWN"
             inferred_range = m.get("to_class") or "Class:UNKNOWN"
             inferred_label = pid.split(":", 1)[-1] if ":" in str(pid) else str(pid)
-
             object_properties.append(
                 {
                     "id": pid,
@@ -793,48 +622,20 @@ def _backfill_from_mappings(
                 }
             )
             op_idx[pid] = object_properties[-1]
-            collector.add(
-                "info",
-                "OBJECT_PROPERTY_SYNTHESIZED_FROM_MAPPING",
-                "Synthesized object property from object_property_mapping.",
-                path=f"object_properties[{pid}]",
-                property_id=pid,
-            )
+            collector.add("info", "OBJECT_PROPERTY_SYNTHESIZED_FROM_MAPPING", "Synthesized object property from object_property_mapping.", path=f"object_properties[{pid}]", property_id=pid)
             continue
 
         if (not p.get("join_paths")) and joins:
             p["join_paths"] = joins
-            collector.add(
-                "info",
-                "OBJECT_PROPERTY_JOINS_BACKFILLED",
-                "Backfilled join_paths from object_property_mapping.",
-                path=f"object_properties[{pid}]",
-                property_id=pid,
-            )
-
+            collector.add("info", "OBJECT_PROPERTY_JOINS_BACKFILLED", "Backfilled join_paths from object_property_mapping.", path=f"object_properties[{pid}]", property_id=pid)
         if (not p.get("domain_class") or p.get("domain_class") == "Class:UNKNOWN") and m.get("from_class"):
             p["domain_class"] = m["from_class"]
-            collector.add(
-                "info",
-                "OBJECT_PROPERTY_DOMAIN_BACKFILLED",
-                "Backfilled domain_class from object_property_mapping.",
-                path=f"object_properties[{pid}]",
-                property_id=pid,
-            )
-
+            collector.add("info", "OBJECT_PROPERTY_DOMAIN_BACKFILLED", "Backfilled domain_class from object_property_mapping.", path=f"object_properties[{pid}]", property_id=pid)
         if (not p.get("range_class") or p.get("range_class") == "Class:UNKNOWN") and m.get("to_class"):
             p["range_class"] = m["to_class"]
-            collector.add(
-                "info",
-                "OBJECT_PROPERTY_RANGE_BACKFILLED",
-                "Backfilled range_class from object_property_mapping.",
-                path=f"object_properties[{pid}]",
-                property_id=pid,
-            )
-
+            collector.add("info", "OBJECT_PROPERTY_RANGE_BACKFILLED", "Backfilled range_class from object_property_mapping.", path=f"object_properties[{pid}]", property_id=pid)
         if (not p.get("status")) and m.get("status"):
             p["status"] = m["status"]
-
         if p.get("confidence") is None and m.get("confidence") is not None:
             p["confidence"] = m["confidence"]
 
@@ -844,19 +645,50 @@ def _backfill_from_mappings(
     canonical["class_mappings"] = class_mappings
     canonical["data_property_mappings"] = data_property_mappings
     canonical["object_property_mappings"] = object_property_mappings
-
     return canonical
 
 
 # ============================================================
-# Public robust normalization API
+# Contract check
 # ============================================================
 
-def normalize_model_output_robust(obj: Dict[str, Any]) -> Dict[str, Any]:
-    collector = NormalizationCollector()
-    root = copy.deepcopy(_safe_dict(obj))
 
-    top_level_defaults = {
+def _assert_canonical_shape(canonical: Dict[str, Any], collector: NormalizationCollector) -> None:
+    required_top = {
+        "classes",
+        "data_properties",
+        "object_properties",
+        "subclass_relations",
+        "class_mappings",
+        "data_property_mappings",
+        "object_property_mappings",
+        "diagnostics",
+    }
+    for k in required_top:
+        if k not in canonical:
+            collector.add("error", "MISSING_TOP_LEVEL_KEY", f"Missing canonical top-level key: {k}", key=k)
+
+    for i, rel in enumerate(canonical.get("subclass_relations", [])):
+        if not rel.get("id") or not rel.get("child_class") or not rel.get("parent_class"):
+            collector.add(
+                "error",
+                "BAD_SUBCLASS_RELATION",
+                "Canonical subclass relation missing required fields.",
+                path=f"subclass_relations[{i}]",
+                relation=rel,
+            )
+
+
+# ============================================================
+# Public entrypoint
+# ============================================================
+
+
+def normalize_model_output_robust(model_output: Dict[str, Any]) -> Dict[str, Any]:
+    collector = NormalizationCollector()
+    root = _find_root_payload(model_output, collector)
+
+    canonical: Dict[str, Any] = {
         "classes": [],
         "data_properties": [],
         "object_properties": [],
@@ -865,58 +697,66 @@ def normalize_model_output_robust(obj: Dict[str, Any]) -> Dict[str, Any]:
         "data_property_mappings": [],
         "object_property_mappings": [],
         "diagnostics": {},
-        "extras": {},
     }
 
-    for k, default in top_level_defaults.items():
-        if k not in root or root[k] is None:
-            root[k] = copy.deepcopy(default)
-            collector.add("info", "TOP_LEVEL_DEFAULT_INSERTED", f"Inserted missing top-level key '{k}'.", path=k)
+    for i, x in enumerate(_as_list(root.get("classes"))):
+        c = _canonicalize_class(x)
+        if not c["id"]:
+            collector.add("warning", "CLASS_MISSING_ID", "Dropped class without usable id.", path=f"classes[{i}]", raw=x)
+            continue
+        canonical["classes"].append(c)
 
-    canonical = {
-        "classes": [],
-        "data_properties": [],
-        "object_properties": [],
-        "subclass_relations": _safe_list(root.get("subclass_relations")),
-        "class_mappings": [],
-        "data_property_mappings": [],
-        "object_property_mappings": [],
-        "diagnostics": _safe_dict(root.get("diagnostics")),
-        "extras": _safe_dict(root.get("extras")),
-    }
+    for i, x in enumerate(_as_list(root.get("data_properties") or root.get("datatype_properties"))):
+        p = _canonicalize_data_property(x)
+        if not p["id"]:
+            collector.add("warning", "DATA_PROPERTY_MISSING_ID", "Dropped data property without usable id.", path=f"data_properties[{i}]", raw=x)
+            continue
+        canonical["data_properties"].append(p)
 
-    for i, x in enumerate(_safe_list(root.get("classes"))):
-        canonical["classes"].append(_normalize_class_entry(x, collector, f"classes[{i}]"))
+    for i, x in enumerate(_as_list(root.get("object_properties"))):
+        p = _canonicalize_object_property(x)
+        if not p["id"]:
+            collector.add("warning", "OBJECT_PROPERTY_MISSING_ID", "Dropped object property without usable id.", path=f"object_properties[{i}]", raw=x)
+            continue
+        canonical["object_properties"].append(p)
 
-    for i, x in enumerate(_safe_list(root.get("data_properties"))):
-        canonical["data_properties"].append(_normalize_data_property_entry(x, collector, f"data_properties[{i}]"))
+    for i, rel in enumerate(_as_list(root.get("subclass_relations"))):
+        canon_rel = _canonicalize_subclass_relation(rel)
+        if not canon_rel["child_class"] or not canon_rel["parent_class"]:
+            collector.add(
+                "warning",
+                "SUBCLASS_RELATION_INCOMPLETE",
+                "Dropped incomplete subclass relation after canonicalization.",
+                path=f"subclass_relations[{i}]",
+                raw=rel,
+                canonical=canon_rel,
+            )
+            continue
+        canonical["subclass_relations"].append(canon_rel)
 
-    for i, x in enumerate(_safe_list(root.get("object_properties"))):
-        canonical["object_properties"].append(_normalize_object_property_entry(x, collector, f"object_properties[{i}]"))
+    for i, x in enumerate(_as_list(root.get("class_mappings"))):
+        m = _canonicalize_class_mapping(x)
+        if not m["class_id"]:
+            collector.add("warning", "CLASS_MAPPING_MISSING_CLASS_ID", "Dropped class mapping without class_id.", path=f"class_mappings[{i}]", raw=x)
+            continue
+        canonical["class_mappings"].append(m)
 
-    for i, x in enumerate(_safe_list(root.get("class_mappings"))):
-        canonical["class_mappings"].append(_normalize_class_mapping_entry(x, collector, f"class_mappings[{i}]"))
+    for i, x in enumerate(_as_list(root.get("data_property_mappings"))):
+        m = _canonicalize_data_property_mapping(x)
+        if not m["property_id"]:
+            collector.add("warning", "DATA_PROPERTY_MAPPING_MISSING_PROPERTY_ID", "Dropped data property mapping without property_id.", path=f"data_property_mappings[{i}]", raw=x)
+            continue
+        canonical["data_property_mappings"].append(m)
 
-    for i, x in enumerate(_safe_list(root.get("data_property_mappings"))):
-        canonical["data_property_mappings"].append(_normalize_data_property_mapping_entry(x, collector, f"data_property_mappings[{i}]"))
+    for i, x in enumerate(_as_list(root.get("object_property_mappings"))):
+        m = _canonicalize_object_property_mapping(x)
+        if not m["property_id"]:
+            collector.add("warning", "OBJECT_PROPERTY_MAPPING_MISSING_PROPERTY_ID", "Dropped object property mapping without property_id.", path=f"object_property_mappings[{i}]", raw=x)
+            continue
+        canonical["object_property_mappings"].append(m)
 
-    for i, x in enumerate(_safe_list(root.get("object_property_mappings"))):
-        canonical["object_property_mappings"].append(_normalize_object_property_mapping_entry(x, collector, f"object_property_mappings[{i}]"))
-
+    canonical["diagnostics"] = _safe_dict(root.get("diagnostics"))
     canonical = _backfill_from_mappings(canonical, collector)
-
-    # preserve unknown top-level keys
-    known_top_level = set(top_level_defaults.keys())
-    extra_top_level = {k: v for k, v in root.items() if k not in known_top_level}
-    if extra_top_level:
-        canonical["extras"]["unknown_top_level_keys"] = extra_top_level
-        collector.add(
-            "info",
-            "UNKNOWN_TOP_LEVEL_KEYS_PRESERVED",
-            "Preserved unknown top-level keys in extras.unknown_top_level_keys.",
-            path="root",
-            keys=sorted(extra_top_level.keys()),
-        )
-
-    canonical["extras"]["normalization_report"] = collector.summary()
+    _assert_canonical_shape(canonical, collector)
+    canonical["normalization_report"] = collector.report()
     return canonical

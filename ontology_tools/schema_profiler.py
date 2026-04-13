@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-from dataclasses import dataclass, field, asdict
-from typing import Any, Dict, List, Optional
+from dataclasses import dataclass, field
+from typing import Any, Dict, List, Optional, Tuple
 
 from .common import (
     ALTER_TABLE_FK_RE,
@@ -12,21 +12,25 @@ from .common import (
 )
 
 
+# ============================================================
+# Data structures
+# ============================================================
+
+
 @dataclass
 class ColumnProfile:
     name: str
-    raw_type: str = ""
-    nullable: Optional[bool] = None
-    is_primary_key_part: bool = False
-    is_foreign_key_part: bool = False
-    references: Optional[Dict[str, Any]] = None
+    sql_type: str
+    is_nullable: bool = True
+    is_primary_key: bool = False
+    raw_sql: str = ""
 
 
 @dataclass
 class ForeignKeyProfile:
     columns: List[str]
-    ref_table: str
-    ref_columns: List[str]
+    referenced_table: str
+    referenced_columns: List[str]
 
 
 @dataclass
@@ -39,17 +43,63 @@ class TableProfile:
     raw_sql_body: str = ""
 
 
+# ============================================================
+# Profiler
+# ============================================================
+
+
 class SchemaProfiler:
+    """
+    Extracts lightweight structural information from schema SQL.
+
+    Output shape:
+    {
+      "tables": {
+        table_name: {
+          "name": ...,
+          "columns": [...],
+          "primary_key": [...],
+          "foreign_keys": [...],
+          "unique_constraints": [...],
+          "raw_sql_body": ...
+        }
+      },
+      "join_graph": {
+        table_name: [
+          {
+            "to_table": ...,
+            "from_columns": [...],
+            "to_columns": [...],
+            "joins": [["a.x", "=", "b.y"], ...]
+          }
+        ]
+      },
+      "stats": {
+        "num_tables": ...,
+        "num_columns": ...,
+        "num_foreign_keys": ...
+      }
+    }
+    """
+
+    # --------------------------------------------------------
+    # Internal parsing helpers
+    # --------------------------------------------------------
+
     def _split_body_items(self, body: str) -> List[str]:
-        items = []
-        current = []
+        """
+        Split CREATE TABLE body by top-level commas only.
+        Handles nested parentheses in types/constraints.
+        """
+        items: List[str] = []
+        current: List[str] = []
         depth = 0
 
         for ch in body:
             if ch == "(":
                 depth += 1
             elif ch == ")":
-                depth -= 1
+                depth = max(0, depth - 1)
 
             if ch == "," and depth == 0:
                 item = "".join(current).strip()
@@ -74,6 +124,7 @@ class SchemaProfiler:
             or upper.startswith("FOREIGN KEY")
             or upper.startswith("UNIQUE")
             or upper.startswith("CONSTRAINT")
+            or upper.startswith("CHECK")
         ):
             return None
 
@@ -107,8 +158,28 @@ class SchemaProfiler:
             referenced_columns=ref_cols,
         )
 
-    def _parse_alter_table_fks(self, schema_sql: str) -> List[tuple[str, ForeignKeyProfile]]:
-        out: List[tuple[str, ForeignKeyProfile]] = []
+    def _parse_unique_constraint(self, item: str) -> Optional[List[str]]:
+        text = item.strip()
+        upper = text.upper()
+
+        if upper.startswith("UNIQUE"):
+            start = text.find("(")
+            end = text.rfind(")")
+            if start != -1 and end != -1 and end > start:
+                return split_sql_columns(text[start + 1 : end])
+
+        if upper.startswith("CONSTRAINT") and "UNIQUE" in upper:
+            unique_pos = upper.find("UNIQUE")
+            sub = text[unique_pos:]
+            start = sub.find("(")
+            end = sub.rfind(")")
+            if start != -1 and end != -1 and end > start:
+                return split_sql_columns(sub[start + 1 : end])
+
+        return None
+
+    def _parse_alter_table_fks(self, schema_sql: str) -> List[Tuple[str, ForeignKeyProfile]]:
+        out: List[Tuple[str, ForeignKeyProfile]] = []
         for m in ALTER_TABLE_FK_RE.finditer(schema_sql or ""):
             table = m.group("table")
             cols = split_sql_columns(m.group("cols"))
@@ -142,10 +213,27 @@ class SchemaProfiler:
             out.append(fk)
         return out
 
+    def _dedup_unique_constraints(self, constraints: List[List[str]]) -> List[List[str]]:
+        seen = set()
+        out: List[List[str]] = []
+        for cols in constraints:
+            key = tuple(cols)
+            if key in seen:
+                continue
+            seen.add(key)
+            out.append(cols)
+        return out
+
+    # --------------------------------------------------------
+    # Public API
+    # --------------------------------------------------------
+
     def profile(self, schema_sql: str) -> Dict[str, Any]:
         tables: Dict[str, TableProfile] = {}
 
-        # First pass: CREATE TABLE blocks
+        # --------------------------------------------
+        # Pass 1: parse CREATE TABLE blocks
+        # --------------------------------------------
         for table_name, body in CREATE_TABLE_RE.findall(schema_sql or ""):
             tp = TableProfile(
                 name=table_name,
@@ -160,12 +248,12 @@ class SchemaProfiler:
                     tp.columns.append(col)
 
                     upper = item.upper()
-                    if col.is_primary_key:
-                        if col.name not in tp.primary_key:
-                            tp.primary_key.append(col.name)
+                    if col.is_primary_key and col.name not in tp.primary_key:
+                        tp.primary_key.append(col.name)
 
-                    if "UNIQUE" in upper and col.name not in tp.primary_key:
-                        tp.unique_constraints.append([col.name])
+                    unique_cols = self._parse_unique_constraint(item)
+                    if unique_cols:
+                        tp.unique_constraints.append(unique_cols)
 
                 fk = self._parse_inline_fk_from_item(item)
                 if fk is not None:
@@ -177,20 +265,28 @@ class SchemaProfiler:
 
             tables[table_name] = tp
 
-        # Second pass: ALTER TABLE ... FOREIGN KEY ...
+        # --------------------------------------------
+        # Pass 2: parse ALTER TABLE ... FOREIGN KEY ...
+        # --------------------------------------------
         for table_name, fk in self._parse_alter_table_fks(schema_sql or ""):
             if table_name not in tables:
                 tables[table_name] = TableProfile(name=table_name)
             tables[table_name].foreign_keys.append(fk)
 
-        # Deduplicate FKs
+        # --------------------------------------------
+        # Dedup and normalize
+        # --------------------------------------------
         for tp in tables.values():
             tp.foreign_keys = self._dedup_foreign_keys(tp.foreign_keys)
+            tp.unique_constraints = self._dedup_unique_constraints(tp.unique_constraints)
 
+        # --------------------------------------------
         # Build join graph
+        # --------------------------------------------
         join_graph: Dict[str, List[Dict[str, Any]]] = {}
         for table_name, tp in tables.items():
             edges: List[Dict[str, Any]] = []
+
             for fk in tp.foreign_keys:
                 pairs = list(zip(fk.columns, fk.referenced_columns))
                 joins = [
@@ -200,13 +296,17 @@ class SchemaProfiler:
                 edges.append(
                     {
                         "to_table": fk.referenced_table,
-                        "from_columns": fk.columns,
-                        "to_columns": fk.referenced_columns,
+                        "from_columns": list(fk.columns),
+                        "to_columns": list(fk.referenced_columns),
                         "joins": joins,
                     }
                 )
+
             join_graph[table_name] = edges
 
+        # --------------------------------------------
+        # Stats
+        # --------------------------------------------
         num_columns = sum(len(tp.columns) for tp in tables.values())
         num_foreign_keys = sum(len(tp.foreign_keys) for tp in tables.values())
 
@@ -224,16 +324,16 @@ class SchemaProfiler:
                         }
                         for c in tp.columns
                     ],
-                    "primary_key": tp.primary_key,
+                    "primary_key": list(tp.primary_key),
                     "foreign_keys": [
                         {
-                            "columns": fk.columns,
+                            "columns": list(fk.columns),
                             "referenced_table": fk.referenced_table,
-                            "referenced_columns": fk.referenced_columns,
+                            "referenced_columns": list(fk.referenced_columns),
                         }
                         for fk in tp.foreign_keys
                     ],
-                    "unique_constraints": tp.unique_constraints,
+                    "unique_constraints": [list(x) for x in tp.unique_constraints],
                     "raw_sql_body": tp.raw_sql_body,
                 }
                 for name, tp in tables.items()

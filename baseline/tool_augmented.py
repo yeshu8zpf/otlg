@@ -1,4 +1,3 @@
-
 from __future__ import annotations
 
 import argparse
@@ -75,10 +74,13 @@ def write_text(path: Path, text: str) -> None:
     path.write_text(text, encoding="utf-8")
 
 
-def maybe_copy(path: Path, dst: Path) -> None:
-    if path.exists() and path.is_file():
+def maybe_copy(path: Path | str, dst: Path) -> None:
+    if not path:
+        return
+    src = Path(path)
+    if src.exists() and src.is_file():
         dst.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(path, dst)
+        shutil.copy2(src, dst)
 
 
 def classify_sql_file(path: Path) -> str:
@@ -212,7 +214,11 @@ def compact_table_definitions(
 def clean_schema_sql_for_prompt(schema_sql_text: str) -> str:
     text = schema_sql_text or ""
     text = re.sub(r"(?m)^\s*\\.*?$", "", text)
-    text = re.sub(r"(?im)^\s*(DROP DATABASE|CREATE DATABASE|SELECT pg_terminate_backend|SET\s+default_.*?).*$", "", text)
+    text = re.sub(
+        r"(?im)^\s*(DROP DATABASE|CREATE DATABASE|SELECT pg_terminate_backend|SET\s+default_.*?).*$",
+        "",
+        text,
+    )
     text = re.sub(r"(?is)INSERT\s+INTO\s+.*?;\s*", "", text)
     text = re.sub(r"\n{3,}", "\n\n", text).strip()
     return text
@@ -239,13 +245,10 @@ def safe_exception_payload(e: Exception) -> Dict[str, Any]:
 
 
 # ============================================================
-# GT helpers (robust to Burr micro_benchmark and real-world)
+# GT helpers
 # ============================================================
 
 def resolve_gt_artifacts_for_scenario(scenario_dir: Path) -> Dict[str, Any]:
-    """
-    Returns a JSON-serializable summary of GT artifacts for a Burr scenario.
-    """
     direct_mapping = scenario_dir / "mapping.json"
     mappings_dir = scenario_dir / "mappings"
     meta_json = scenario_dir / "meta.json"
@@ -260,7 +263,7 @@ def resolve_gt_artifacts_for_scenario(scenario_dir: Path) -> Dict[str, Any]:
 
     if direct_mapping.exists() and direct_mapping.is_file():
         extras: List[str] = []
-        for name in ["mapping.ttl", "test_mapping.ttl"]:
+        for name in ["mapping.ttl", "test_mapping.ttl", "groundtruth.ttl", "map_d2rq.ttl"]:
             p = scenario_dir / name
             if p.exists() and p.is_file():
                 extras.append(str(p))
@@ -291,16 +294,18 @@ def copy_gt_artifacts_for_scenario(scenario_dir: Path, out_dir: Path) -> Dict[st
         maybe_copy(gt_info["mapping_json"], dst)
         copied.append(str(dst))
         for p in gt_info["extra_files"]:
-            dst_extra = out_dir / f"gt.{p.name}"
-            maybe_copy(p, dst_extra)
+            p_path = Path(p)
+            dst_extra = out_dir / f"gt.{p_path.name}"
+            maybe_copy(p_path, dst_extra)
             copied.append(str(dst_extra))
 
     elif gt_info["kind"] == "mapping_dir":
         dst_dir = out_dir / "gt.mappings"
         dst_dir.mkdir(parents=True, exist_ok=True)
         for p in gt_info["extra_files"]:
-            dst = dst_dir / p.name
-            maybe_copy(p, dst)
+            p_path = Path(p)
+            dst = dst_dir / p_path.name
+            maybe_copy(p_path, dst)
             copied.append(str(dst))
 
     if gt_info["meta_json"] is not None:
@@ -496,15 +501,11 @@ def extract_json_object(text: str) -> Dict[str, Any]:
     start = text.find("{")
     end = text.rfind("}")
     if start != -1 and end != -1 and end > start:
-        snippet = text[start:end + 1]
+        snippet = text[start : end + 1]
         return json.loads(snippet)
 
     raise ValueError(f"Failed to parse JSON object from model output:\n{text[:3000]}")
 
-import json
-import time
-import httpx
-from typing import Any, Dict, Optional, Tuple
 
 def call_llm_json_stream(
     prompt: str,
@@ -551,7 +552,7 @@ def call_llm_json_stream(
 
     for attempt in range(1, max_retries + 1):
         attempt_meta: Dict[str, Any] = {"attempt": attempt, "status": "started"}
-        chunks = []
+        chunks: List[str] = []
 
         try:
             with httpx.Client(trust_env=False, http2=False, timeout=timeout_cfg) as client:
@@ -640,6 +641,8 @@ def call_llm_json_stream(
         f"LLM request failed after {max_retries} attempts. "
         f"Last error: {type(last_exc).__name__}: {last_exc}"
     ) from last_exc
+
+
 # ============================================================
 # Tool selection / compression
 # ============================================================
@@ -660,10 +663,13 @@ def parse_enabled_tools(raw: str) -> Set[str]:
     return items
 
 
-def compress_hypotheses_for_prompt(hypotheses: List[Dict[str, Any]], max_items: int = 20) -> List[Dict[str, Any]]:
+def compress_hypotheses_for_prompt(
+    hypotheses: List[Dict[str, Any]],
+    max_items: int = 20,
+) -> List[Dict[str, Any]]:
     ranked = sorted(
         hypotheses,
-        key=lambda x: (float(x.get("confidence", 0.0)), x.get("kind", "")),
+        key=lambda x: (float(x.get("confidence", 0.0) or 0.0), x.get("kind", "")),
         reverse=True,
     )
     out = []
@@ -674,7 +680,7 @@ def compress_hypotheses_for_prompt(hypotheses: List[Dict[str, Any]], max_items: 
                 "statement": h.get("statement"),
                 "confidence": h.get("confidence"),
                 "payload": h.get("payload", {}),
-                "evidence": h.get("evidence", [])[:3],
+                "evidence": (h.get("evidence", []) or [])[:3],
             }
         )
     return out
@@ -687,9 +693,11 @@ def build_tool_context(
     enabled_tools: Set[str],
 ) -> Dict[str, Any]:
     ctx: Dict[str, Any] = {"enabled_tools": sorted(enabled_tools)}
+
     if schema_profile is not None:
         ctx["schema_summary"] = schema_profile.get("stats", {})
         ctx["join_graph"] = schema_profile.get("join_graph", {})
+
     if instance_profile is not None:
         ctx["instance_summary"] = {
             "tables": {
@@ -700,27 +708,39 @@ def build_tool_context(
                             "guessed_type": cp.get("guessed_type"),
                             "is_boolean_like": cp.get("is_boolean_like"),
                             "distinct_ratio": cp.get("distinct_ratio"),
-                            "sample_values": cp.get("sample_values", [])[:5],
+                            "sample_values": (cp.get("sample_values", []) or [])[:5],
                         }
-                        for c, cp in prof.get("columns", {}).items()
+                        for c, cp in (prof.get("columns", {}) or {}).items()
                     },
                 }
-                for t, prof in instance_profile.get("tables", {}).items()
+                for t, prof in (instance_profile.get("tables", {}) or {}).items()
             },
-            "cross_table_value_overlap": instance_profile.get("cross_table_value_overlap", [])[:15],
+            "cross_table_value_overlap": (instance_profile.get("cross_table_value_overlap", []) or [])[:15],
         }
+
     if hypothesis_store is not None:
+        items = [h.to_dict() for h in hypothesis_store.items.values()]
         ctx["hypothesis_summary"] = hypothesis_store.summary()
-        ctx["hypotheses"] = compress_hypotheses_for_prompt(
-            [h.to_dict() for h in hypothesis_store.items.values()],
-            max_items=20,
-        )
+        ctx["hypotheses"] = compress_hypotheses_for_prompt(items, max_items=20)
         ctx["revision_guidance"] = hypothesis_store.build_revision_guidance(max_items=15)
+
     return ctx
 
 
 # ============================================================
-# Core
+# Validation / verifier serialization helpers
+# ============================================================
+
+def build_validation_payload(ok: bool, errors: List[str]) -> Dict[str, Any]:
+    return {
+        "ok": ok,
+        "num_errors": len(errors),
+        "errors": list(errors),
+    }
+
+
+# ============================================================
+# Core runner
 # ============================================================
 
 def run_tool_augmented_baseline(
@@ -736,7 +756,16 @@ def run_tool_augmented_baseline(
     include_table_defs: bool = True,
     include_sample_rows: bool = False,
     include_tool_context: bool = True,
-) -> Tuple[OntologyDraft, Dict[str, Any], Dict[str, Any], Dict[str, Any], Dict[str, Any]]:
+    fail_fast_on_invalid_draft: bool = False,
+) -> Tuple[
+    OntologyDraft,
+    Dict[str, Any],
+    Dict[str, Any],
+    Dict[str, Any],
+    Dict[str, Any],
+    Dict[str, Any],
+    Dict[str, Any],
+]:
     if enabled_tools is None:
         enabled_tools = {"schema_profiler"}
 
@@ -748,12 +777,20 @@ def run_tool_augmented_baseline(
     schema_sql_text = read_text(schema_path)
     table_defs = extract_table_definitions(schema_sql_text)
 
-    need_sample_rows = include_sample_rows or "instance_profiler" in enabled_tools or "pattern_detector" in enabled_tools
-    sample_rows = load_sample_rows_from_csv(
-        scenario_dir=scenario_dir,
-        schema_sql_text=schema_sql_text,
-        max_rows_per_table=max_rows_per_table,
-    ) if need_sample_rows else {}
+    need_sample_rows = (
+        include_sample_rows
+        or "instance_profiler" in enabled_tools
+        or "pattern_detector" in enabled_tools
+    )
+    sample_rows = (
+        load_sample_rows_from_csv(
+            scenario_dir=scenario_dir,
+            schema_sql_text=schema_sql_text,
+            max_rows_per_table=max_rows_per_table,
+        )
+        if need_sample_rows
+        else {}
+    )
 
     schema_profile: Optional[Dict[str, Any]] = None
     instance_profile: Optional[Dict[str, Any]] = None
@@ -770,6 +807,7 @@ def run_tool_augmented_baseline(
             schema_profile = SchemaProfiler().profile(schema_sql_text)
         if instance_profile is None:
             instance_profile = InstanceProfiler().profile(sample_rows)
+
         hypotheses = PatternDetector().detect(schema_profile, instance_profile)
         store = HypothesisStore()
         for h in hypotheses:
@@ -797,20 +835,43 @@ def run_tool_augmented_baseline(
     )
 
     normalized_model_json = normalize_model_output_robust(raw_model_json)
+
     draft = OntologyDraft.from_dict(normalized_model_json, already_normalized=True)
+
+    validate_ok, validate_errors = draft.validate()
+    validation_payload = build_validation_payload(validate_ok, validate_errors)
 
     lite_verification = None
     verification_feedback = None
+    verifier_payload: Dict[str, Any] = {}
 
     if "mapping_verifier_lite" in enabled_tools:
         lite_verifier = MappingVerifierLite()
         lite_verification = lite_verifier.verify_draft_dict(draft.to_dict())
+        verifier_payload = lite_verification
 
         if store is not None and lite_verification is not None:
             verification_feedback = store.resolve_from_verifier_report(lite_verification)
+    else:
+        verifier_payload = {
+            "ok": True,
+            "num_errors": 0,
+            "num_warnings": 0,
+            "num_infos": 0,
+            "issues": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "disabled": True,
+        }
+
+    if fail_fast_on_invalid_draft and not validate_ok:
+        raise RuntimeError(
+            "Draft validation failed and fail_fast_on_invalid_draft=True. "
+            f"num_errors={len(validate_errors)}"
+        )
 
     burr_mapping = draft.to_burr_mapping()
-    validate_ok, validate_errors = draft.validate()
 
     meta = {
         "scenario_dir": str(scenario_dir),
@@ -828,20 +889,36 @@ def run_tool_augmented_baseline(
         },
         "raw_model_top_level_counts": summarize_top_level_counts(raw_model_json),
         "normalized_top_level_counts": summarize_top_level_counts(normalized_model_json),
-        "draft_validation": {
-            "ok": validate_ok,
-            "num_errors": len(validate_errors),
-            "errors": validate_errors,
+        "draft_top_level_counts": summarize_top_level_counts(draft.to_dict()),
+        "mapping_top_level_counts": summarize_top_level_counts(
+            {
+                "classes": burr_mapping.get("classes", []),
+                "data_properties": burr_mapping.get("data_properties", []),
+                "object_properties": burr_mapping.get("object_properties", []),
+                "subclass_relations": [],
+                "class_mappings": [],
+                "data_property_mappings": [],
+                "object_property_mappings": [],
+            }
+        ),
+        "draft_validation": validation_payload,
+        "lite_verification_summary": {
+            "ok": verifier_payload.get("ok"),
+            "num_errors": verifier_payload.get("num_errors", 0),
+            "num_warnings": verifier_payload.get("num_warnings", 0),
+            "num_infos": verifier_payload.get("num_infos", 0),
         },
-        "lite_verification": lite_verification,
         "verification_feedback": verification_feedback,
         "tool_context_summary": {
             "schema_summary": schema_profile.get("stats", {}) if schema_profile else {},
             "hypothesis_summary": store.summary() if store else {},
-            "num_cross_table_value_overlap": len(instance_profile.get("cross_table_value_overlap", [])) if instance_profile else 0,
+            "num_cross_table_value_overlap": len(
+                (instance_profile.get("cross_table_value_overlap", []) if instance_profile else [])
+            ),
         },
         "llm_meta": llm_meta,
         "normalization_report": draft.normalization_report(),
+        "fail_fast_on_invalid_draft": fail_fast_on_invalid_draft,
     }
 
     tool_artifacts = {
@@ -853,7 +930,16 @@ def run_tool_augmented_baseline(
         "verification_feedback": verification_feedback,
     }
 
-    return draft, burr_mapping, meta, raw_model_json, tool_artifacts
+    return (
+        draft,
+        burr_mapping,
+        meta,
+        raw_model_json,
+        normalized_model_json,
+        validation_payload,
+        verifier_payload,
+        tool_artifacts,
+    )
 
 
 # ============================================================
@@ -862,9 +948,13 @@ def run_tool_augmented_baseline(
 
 def main() -> None:
     parser = argparse.ArgumentParser(
-        description="Tool-augmented ontology learning orchestrator with selectable tools and prompt sections."
+        description="Tool-augmented ontology learning orchestrator with layered outputs."
     )
-    parser.add_argument("--scenario-dir", type=str, default="burr_benchmark/real-world/mondial") # burr_benchmark/micro_benchmark/nm_tables/composite_keys/university_1
+    parser.add_argument(
+        "--scenario-dir",
+        type=str,
+        default="burr_benchmark/real-world/mondial",
+    )
     parser.add_argument("--schema-path", type=str, default=None)
     parser.add_argument("--fk-mode", type=str, default="auto", choices=["auto", "fk", "no_fk"])
     parser.add_argument("--model", type=str, default="gpt-5.4-nano")
@@ -879,15 +969,19 @@ def main() -> None:
     parser.add_argument(
         "--enabled-tools",
         type=str,
-        default="",
+        default="schema_profiler",
         help="Comma-separated from: schema_profiler,instance_profiler,pattern_detector,mapping_verifier_lite",
     )
     parser.add_argument("--include-schema-sql", action="store_true")
     parser.add_argument("--include-sample-rows", action="store_true")
     parser.add_argument("--include-tool-context", action="store_true")
     parser.add_argument("--copy-gt-artifacts", action="store_true")
-    parser.set_defaults(run_burr_compare=True)
+    parser.add_argument("--fail-fast-on-invalid-draft", action="store_true")
 
+    parser.set_defaults(run_burr_compare=True,
+                        include_sample_rows=False,
+                        include_schema_sql=False,
+                        copy_gt_artifacts=True)
     args = parser.parse_args()
 
     scenario_dir = Path(args.scenario_dir).resolve()
@@ -903,7 +997,16 @@ def main() -> None:
     include_tool_context = True if not args.include_tool_context else True
 
     try:
-        draft, burr_mapping, meta, raw_model_json, tool_artifacts = run_tool_augmented_baseline(
+        (
+            draft,
+            burr_mapping,
+            meta,
+            raw_model_json,
+            normalized_model_json,
+            validation_payload,
+            verifier_payload,
+            tool_artifacts,
+        ) = run_tool_augmented_baseline(
             scenario_dir=scenario_dir,
             schema_path=schema_path,
             fk_mode=args.fk_mode,
@@ -916,6 +1019,7 @@ def main() -> None:
             include_table_defs=include_table_defs,
             include_sample_rows=include_sample_rows,
             include_tool_context=include_tool_context,
+            fail_fast_on_invalid_draft=bool(args.fail_fast_on_invalid_draft),
         )
     except Exception as e:
         fail_meta = {
@@ -930,11 +1034,12 @@ def main() -> None:
         write_json(out_dir / "failed.meta.json", fail_meta)
         raise
 
-    normalized = normalize_model_output_robust(raw_model_json)
-
+    # Layered outputs
     write_json(out_dir / "raw_model.json", raw_model_json)
-    write_json(out_dir / "normalized.json", normalized)
+    write_json(out_dir / "normalized.json", normalized_model_json)
     write_json(out_dir / "draft.json", draft.to_dict())
+    write_json(out_dir / "validation.json", validation_payload)
+    write_json(out_dir / "verifier.json", verifier_payload)
     write_json(out_dir / "mapping.json", burr_mapping)
 
     if args.copy_gt_artifacts:
@@ -971,20 +1076,24 @@ def main() -> None:
     print(f"[OK] raw model: {out_dir / 'raw_model.json'}")
     print(f"[OK] normalized: {out_dir / 'normalized.json'}")
     print(f"[OK] draft: {out_dir / 'draft.json'}")
+    print(f"[OK] validation: {out_dir / 'validation.json'}")
+    print(f"[OK] verifier: {out_dir / 'verifier.json'}")
     print(f"[OK] mapping: {out_dir / 'mapping.json'}")
     print(f"[OK] meta: {out_dir / 'meta.json'}")
     print(f"[OK] tool context: {out_dir / 'tool_context.json'}")
     print(f"[OK] prompt: {out_dir / 'prompt.md'}")
-    if (out_dir / 'schema_profile.json').exists():
+
+    if (out_dir / "schema_profile.json").exists():
         print(f"[OK] schema profile: {out_dir / 'schema_profile.json'}")
-    if (out_dir / 'instance_profile.json').exists():
+    if (out_dir / "instance_profile.json").exists():
         print(f"[OK] instance profile: {out_dir / 'instance_profile.json'}")
-    if (out_dir / 'hypotheses.json').exists():
+    if (out_dir / "hypotheses.json").exists():
         print(f"[OK] hypotheses: {out_dir / 'hypotheses.json'}")
+
     if args.run_burr_compare:
-        if (out_dir / 'compare.json').exists():
+        if (out_dir / "compare.json").exists():
             print(f"[OK] compare: {out_dir / 'compare.json'}")
-        elif (out_dir / 'compare_error.json').exists():
+        elif (out_dir / "compare_error.json").exists():
             print(f"[WARN] compare failed: {out_dir / 'compare_error.json'}")
 
 

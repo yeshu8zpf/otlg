@@ -17,16 +17,12 @@ IDENT_RE = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*$")
 QUALIFIED_COL_RE = re.compile(r"^([A-Za-z_][A-Za-z0-9_]*)\.([A-Za-z_][A-Za-z0-9_]*)$")
 
 
-
 def _to_burr_safe_property_name(label: str) -> str:
     s = str(label or "").strip()
     if not s:
         return "UNKNOWN"
-    # spaces -> underscore
     s = re.sub(r"\s+", "_", s)
-    # remove characters unsafe for Burr/D2RQ local names
     s = re.sub(r"[^A-Za-z0-9_]", "_", s)
-    # collapse repeated underscores
     s = re.sub(r"_+", "_", s).strip("_")
     return s or "UNKNOWN"
 
@@ -79,31 +75,6 @@ def _split_kwargs(cls, data: Dict[str, Any]) -> Tuple[Dict[str, Any], Dict[str, 
     return known, extra
 
 
-def _build_dataclass(cls, data: Dict[str, Any]):
-    known, extra = _split_kwargs(cls, data)
-    try:
-        obj = cls(**known)
-    except TypeError as e:
-        payload = {
-            "target_class": cls.__name__,
-            "known": known,
-            "all_data": data,
-            "missing_or_bad_fields_hint": str(e),
-        }
-        raise TypeError(
-            f"Failed to build {cls.__name__}: {json.dumps(payload, ensure_ascii=False, default=str)}"
-        ) from e
-
-    existing_extras = _safe_dict(data.get("extras"))
-    if hasattr(obj, "extras"):
-        obj.extras = {**existing_extras, **extra}
-    return obj
-
-
-# ============================================================
-# ID / template helpers
-# ============================================================
-
 def _normalize_class_id(label: str) -> str:
     label = _as_str(label).strip()
     if not label:
@@ -149,7 +120,6 @@ def _extract_identifier_columns(template: str) -> List[str]:
     cols.extend(
         re.findall(r"\{([A-Za-z_][A-Za-z0-9_]*\.[A-Za-z_][A-Za-z0-9_]*)\}", template)
     )
-
     return _dedup_keep_order([c for c in cols if c])
 
 
@@ -167,18 +137,12 @@ def _infer_tables_from_template(template: str) -> List[str]:
         guess = _as_str(template).split("/", 1)[0].strip()
         if guess and IDENT_RE.match(guess):
             tables.append(guess)
-
     return tables
 
 
 def _normalize_join(join_value: Any) -> List[str]:
     """
-    Normalize a join condition into token form:
-      ["table1.col1", "=", "table2.col2"]
-
-    Tolerates:
-      - already-tokenized list
-      - single string like 'a.id = b.a_id'
+    Normalize a join condition into token form: ["table1.col1", "=", "table2.col2"]
     """
     if isinstance(join_value, list):
         tokens = [str(x).strip() for x in join_value if str(x).strip()]
@@ -188,11 +152,9 @@ def _normalize_join(join_value: Any) -> List[str]:
         text = join_value.strip()
         if not text:
             return []
-
         m = re.match(r"^\s*(\S+)\s*(=|!=|<>|>=|<=|>|<)\s*(\S+)\s*$", text)
         if m:
             return [m.group(1), m.group(2), m.group(3)]
-
         tokens = text.split()
         return [t for t in tokens if t]
 
@@ -206,6 +168,20 @@ def _join_to_burr_string(join_tokens: List[str]) -> str:
 def _label_from_class_id(class_id: str) -> str:
     cid = _normalize_class_id(class_id)
     return cid.replace("Class:", "")
+
+
+def _coerce_float01(x: Any) -> Optional[float]:
+    if x is None or x == "":
+        return None
+    try:
+        v = float(x)
+        if v < 0:
+            return 0.0
+        if v > 1:
+            return 1.0
+        return v
+    except Exception:
+        return None
 
 
 # ============================================================
@@ -241,40 +217,43 @@ class NormalizationReport:
 
 
 def get_normalization_report(obj: Dict[str, Any]) -> NormalizationReport:
-    """
-    Read normalization report from normalize_model_output_robust(obj).
-    """
-    normalized = normalize_model_output_robust(obj)
-    report_obj = _safe_dict(_safe_dict(normalized.get("extras")).get("normalization_report"))
-
-    report = NormalizationReport(ok=bool(report_obj.get("ok", True)))
-    report.stats = _safe_dict(report_obj.get("stats"))
-    for msg in _as_list(report_obj.get("messages")):
-        msg = _safe_dict(msg)
-        report.messages.append(
+    raw = _safe_dict(obj.get("normalization_report"))
+    issues = []
+    for x in _as_list(raw.get("issues")):
+        d = _safe_dict(x)
+        issues.append(
             NormalizationMessage(
-                level=str(msg.get("level", "info")),
-                code=str(msg.get("code", "UNKNOWN")),
-                message=str(msg.get("message", "")),
-                path=msg.get("path"),
-                payload=_safe_dict(msg.get("payload")),
+                level=_as_str(d.get("level")) or "info",
+                code=_as_str(d.get("code")) or "UNKNOWN",
+                message=_as_str(d.get("message")),
+                path=d.get("path"),
+                payload=_safe_dict(d.get("payload")),
             )
         )
-    return report
+
+    stats = {
+        "num_errors": raw.get("num_errors", 0),
+        "num_warnings": raw.get("num_warnings", 0),
+        "num_infos": raw.get("num_infos", 0),
+    }
+    ok = stats["num_errors"] == 0
+    return NormalizationReport(ok=ok, messages=issues, stats=stats)
 
 
 # ============================================================
-# Core ontology structures
+# Dataclasses
 # ============================================================
 
 @dataclass
 class ClassDef:
     id: str
     label: str
-    description: Optional[str] = None
     source_tables: List[str] = field(default_factory=list)
-    status: str = "accepted"
+    identifier_columns: List[str] = field(default_factory=list)
+    instance_id_template: str = ""
+    status: str = "proposed"
     confidence: Optional[float] = None
+    description: str = ""
     extras: Dict[str, Any] = field(default_factory=dict)
 
 
@@ -285,8 +264,9 @@ class DataPropertyDef:
     domain_class: str
     range_type: str = "string"
     source_columns: List[str] = field(default_factory=list)
-    status: str = "accepted"
+    status: str = "proposed"
     confidence: Optional[float] = None
+    description: str = ""
     extras: Dict[str, Any] = field(default_factory=dict)
 
 
@@ -297,9 +277,9 @@ class ObjectPropertyDef:
     domain_class: str
     range_class: str
     join_paths: List[List[str]] = field(default_factory=list)
-    reified: bool = False
-    status: str = "accepted"
+    status: str = "proposed"
     confidence: Optional[float] = None
+    description: str = ""
     extras: Dict[str, Any] = field(default_factory=dict)
 
 
@@ -308,106 +288,143 @@ class SubclassRelation:
     id: str
     child_class: str
     parent_class: str
-    evidence: Dict[str, Any] = field(default_factory=dict)
-    status: str = "accepted"
+    status: str = "proposed"
     confidence: Optional[float] = None
+    description: str = ""
     extras: Dict[str, Any] = field(default_factory=dict)
 
-
-# ============================================================
-# Mapping layer
-# ============================================================
 
 @dataclass
 class ClassMapping:
     class_id: str
-    instance_id_template: str
     from_tables: List[str] = field(default_factory=list)
-    where: List[str] = field(default_factory=list)
-    joins: List[List[str]] = field(default_factory=list)
     identifier_columns: List[str] = field(default_factory=list)
+    instance_id_template: str = ""
+    status: str = "proposed"
+    confidence: Optional[float] = None
     extras: Dict[str, Any] = field(default_factory=dict)
 
 
 @dataclass
 class DataPropertyMapping:
     property_id: str
-    from_class: str
-    column: str
+    from_class: str = ""
+    source_table: str = ""
+    column: str = ""
+    source_columns: List[str] = field(default_factory=list)
+    status: str = "proposed"
+    confidence: Optional[float] = None
     extras: Dict[str, Any] = field(default_factory=dict)
 
 
 @dataclass
 class ObjectPropertyMapping:
     property_id: str
-    from_class: str
-    to_class: str
+    from_class: str = ""
+    to_class: str = ""
     joins: List[List[str]] = field(default_factory=list)
-    where: List[str] = field(default_factory=list)
-    extras: Dict[str, Any] = field(default_factory=dict)
-
-
-# ============================================================
-# Higher-level diagnostics
-# ============================================================
-
-@dataclass
-class Hypothesis:
-    id: str
-    kind: str
-    statement: str
+    status: str = "proposed"
     confidence: Optional[float] = None
-    evidence: Dict[str, Any] = field(default_factory=dict)
-    missing_evidence: List[str] = field(default_factory=list)
-    source_tools: List[str] = field(default_factory=list)
-    status: str = "open"
-    extras: Dict[str, Any] = field(default_factory=dict)
-
-
-@dataclass
-class Conflict:
-    id: str
-    left: str
-    right: str
-    reason: str
-    severity: str = "medium"
-    extras: Dict[str, Any] = field(default_factory=dict)
-
-
-@dataclass
-class ToolTrace:
-    tool_name: str
-    input_summary: Dict[str, Any] = field(default_factory=dict)
-    output_summary: Dict[str, Any] = field(default_factory=dict)
-    rationale: Optional[str] = None
-    extras: Dict[str, Any] = field(default_factory=dict)
-
-
-@dataclass
-class Diagnostics:
-    hypotheses: List[Hypothesis] = field(default_factory=list)
-    conflicts: List[Conflict] = field(default_factory=list)
-    tool_traces: List[ToolTrace] = field(default_factory=list)
-    confidence: Dict[str, float] = field(default_factory=dict)
     extras: Dict[str, Any] = field(default_factory=dict)
 
 
 # ============================================================
-# Top-level draft
+# Defensive builder
 # ============================================================
 
-KNOWN_TOP_LEVEL_KEYS = {
-    "classes",
-    "data_properties",
-    "object_properties",
-    "subclass_relations",
-    "class_mappings",
-    "data_property_mappings",
-    "object_property_mappings",
-    "diagnostics",
-    "extras",
-}
+def _build_dataclass(cls, data: Dict[str, Any]):
+    known, extra = _split_kwargs(cls, data)
 
+    # Defensive alias repair for schema drift
+    if cls.__name__ == "SubclassRelation":
+        if "child_class" not in known:
+            child = (
+                data.get("child_class")
+                or data.get("child")
+                or data.get("subclass")
+                or data.get("sub_class")
+                or data.get("source_class")
+                or data.get("source")
+                or data.get("from_class")
+                or data.get("child_class_id")
+            )
+            if child:
+                known["child_class"] = _normalize_class_id(child)
+
+        if "parent_class" not in known:
+            parent = (
+                data.get("parent_class")
+                or data.get("parent")
+                or data.get("superclass")
+                or data.get("super_class")
+                or data.get("target_class")
+                or data.get("target")
+                or data.get("to_class")
+                or data.get("parent_class_id")
+            )
+            if parent:
+                known["parent_class"] = _normalize_class_id(parent)
+
+        if "id" not in known:
+            child = known.get("child_class", "")
+            parent = known.get("parent_class", "")
+            if child and parent:
+                known["id"] = f"SubclassRelation:{child}->{parent}"
+
+    if cls.__name__ == "DataPropertyDef":
+        if "domain_class" not in known:
+            domain = data.get("domain_class") or data.get("domain") or data.get("from_class") or data.get("applies_to_class")
+            if domain:
+                known["domain_class"] = _normalize_class_id(domain)
+        if "id" not in known:
+            label = data.get("label") or data.get("name") or data.get("property_id") or data.get("data_property_id")
+            domain = known.get("domain_class", "Class:UNKNOWN")
+            if label:
+                known["id"] = _normalize_data_property_id(domain, str(label))
+        if "range_type" not in known:
+            rt = data.get("range_type") or data.get("range") or data.get("datatype") or data.get("type")
+            known["range_type"] = _as_str(rt) or "string"
+
+    if cls.__name__ == "ObjectPropertyDef":
+        if "domain_class" not in known:
+            domain = data.get("domain_class") or data.get("domain") or data.get("from_class")
+            if domain:
+                known["domain_class"] = _normalize_class_id(domain)
+        if "range_class" not in known:
+            r = data.get("range_class") or data.get("range") or data.get("to_class") or data.get("target_class")
+            if r:
+                known["range_class"] = _normalize_class_id(r)
+        if "id" not in known:
+            label = data.get("label") or data.get("name") or data.get("property_id") or data.get("object_property_id")
+            domain = known.get("domain_class", "Class:UNKNOWN")
+            if label:
+                known["id"] = _normalize_object_property_id(domain, str(label))
+        if "join_paths" not in known:
+            joins = data.get("join_paths") or data.get("joins") or []
+            known["join_paths"] = [_normalize_join(j) for j in _as_list(joins)]
+
+    try:
+        obj = cls(**known)
+    except TypeError as e:
+        payload = {
+            "target_class": cls.__name__,
+            "known": known,
+            "all_data": data,
+            "missing_or_bad_fields_hint": str(e),
+        }
+        raise TypeError(
+            f"Failed to build {cls.__name__}: {json.dumps(payload, ensure_ascii=False, default=str)}"
+        ) from e
+
+    existing_extras = _safe_dict(data.get("extras"))
+    if hasattr(obj, "extras"):
+        obj.extras = {**existing_extras, **extra}
+    return obj
+
+
+# ============================================================
+# Main Draft object
+# ============================================================
 
 @dataclass
 class OntologyDraft:
@@ -420,94 +437,270 @@ class OntologyDraft:
     data_property_mappings: List[DataPropertyMapping] = field(default_factory=list)
     object_property_mappings: List[ObjectPropertyMapping] = field(default_factory=list)
 
-    diagnostics: Diagnostics = field(default_factory=Diagnostics)
+    diagnostics: Dict[str, Any] = field(default_factory=dict)
+    normalization_report_obj: Optional[NormalizationReport] = None
     extras: Dict[str, Any] = field(default_factory=dict)
 
     # --------------------------------------------------------
-    # Index helpers
+    # Constructors
     # --------------------------------------------------------
+
+    @classmethod
+    def from_dict(
+        cls,
+        payload: Dict[str, Any],
+        already_normalized: bool = False,
+    ) -> "OntologyDraft":
+        normalized = copy.deepcopy(payload)
+        if not already_normalized:
+            normalized = normalize_model_output_robust(payload)
+
+        report = get_normalization_report(normalized)
+
+        draft = cls(
+            classes=[_build_dataclass(ClassDef, x) for x in _as_list(normalized.get("classes"))],
+            data_properties=[_build_dataclass(DataPropertyDef, x) for x in _as_list(normalized.get("data_properties"))],
+            object_properties=[_build_dataclass(ObjectPropertyDef, x) for x in _as_list(normalized.get("object_properties"))],
+            subclass_relations=[_build_dataclass(SubclassRelation, x) for x in _as_list(normalized.get("subclass_relations"))],
+            class_mappings=[_build_dataclass(ClassMapping, x) for x in _as_list(normalized.get("class_mappings"))],
+            data_property_mappings=[_build_dataclass(DataPropertyMapping, x) for x in _as_list(normalized.get("data_property_mappings"))],
+            object_property_mappings=[_build_dataclass(ObjectPropertyMapping, x) for x in _as_list(normalized.get("object_property_mappings"))],
+            diagnostics=_safe_dict(normalized.get("diagnostics")),
+            normalization_report_obj=report,
+            extras={
+                k: v
+                for k, v in normalized.items()
+                if k not in {
+                    "classes",
+                    "data_properties",
+                    "object_properties",
+                    "subclass_relations",
+                    "class_mappings",
+                    "data_property_mappings",
+                    "object_property_mappings",
+                    "diagnostics",
+                    "normalization_report",
+                }
+            },
+        )
+
+        draft._repair_internal_consistency()
+        return draft
+
+    # --------------------------------------------------------
+    # Serialization
+    # --------------------------------------------------------
+
+    def normalization_report(self) -> Dict[str, Any]:
+        if self.normalization_report_obj is None:
+            return {}
+        return self.normalization_report_obj.summary()
+
+    def to_dict(self) -> Dict[str, Any]:
+        out = {
+            "classes": [asdict(x) for x in self.classes],
+            "data_properties": [asdict(x) for x in self.data_properties],
+            "object_properties": [asdict(x) for x in self.object_properties],
+            "subclass_relations": [asdict(x) for x in self.subclass_relations],
+            "class_mappings": [asdict(x) for x in self.class_mappings],
+            "data_property_mappings": [asdict(x) for x in self.data_property_mappings],
+            "object_property_mappings": [asdict(x) for x in self.object_property_mappings],
+            "diagnostics": copy.deepcopy(self.diagnostics),
+            "normalization_report": self.normalization_report(),
+        }
+        if self.extras:
+            out["extras"] = copy.deepcopy(self.extras)
+        return out
+
+    # --------------------------------------------------------
+    # Indexes
+    # --------------------------------------------------------
+
     def class_index(self) -> Dict[str, ClassDef]:
-        return {c.id: c for c in self.classes}
+        return {x.id: x for x in self.classes if x.id}
 
     def data_property_index(self) -> Dict[str, DataPropertyDef]:
-        return {p.id: p for p in self.data_properties}
+        return {x.id: x for x in self.data_properties if x.id}
 
     def object_property_index(self) -> Dict[str, ObjectPropertyDef]:
-        return {p.id: p for p in self.object_properties}
+        return {x.id: x for x in self.object_properties if x.id}
 
     def class_mapping_index(self) -> Dict[str, ClassMapping]:
-        return {m.class_id: m for m in self.class_mappings}
+        return {x.class_id: x for x in self.class_mappings if x.class_id}
 
     def data_property_mapping_index(self) -> Dict[str, DataPropertyMapping]:
-        return {m.property_id: m for m in self.data_property_mappings}
+        return {x.property_id: x for x in self.data_property_mappings if x.property_id}
 
     def object_property_mapping_index(self) -> Dict[str, ObjectPropertyMapping]:
-        return {m.property_id: m for m in self.object_property_mappings}
+        return {x.property_id: x for x in self.object_property_mappings if x.property_id}
 
     # --------------------------------------------------------
-    # Debug / trace helpers
+    # Internal repair
     # --------------------------------------------------------
-    def normalization_report(self) -> Dict[str, Any]:
-        return _safe_dict(self.extras.get("normalization_report"))
 
-    def normalization_messages(
-        self,
-        level: Optional[str] = None,
-        code: Optional[str] = None,
-    ) -> List[Dict[str, Any]]:
-        messages = _as_list(self.normalization_report().get("messages"))
-        out = []
-        for m in messages:
-            md = _safe_dict(m)
-            if level is not None and md.get("level") != level:
-                continue
-            if code is not None and md.get("code") != code:
-                continue
-            out.append(md)
-        return out
+    def _repair_internal_consistency(self) -> None:
+        class_idx = self.class_index()
+        cm_idx = self.class_mapping_index()
+        dpm_idx = self.data_property_mapping_index()
+        opm_idx = self.object_property_mapping_index()
 
-    def root_cause_summary(self) -> Dict[str, Any]:
-        ok, validation_errors = self.validate()
-        nr = self.normalization_report()
-        return {
-            "normalization_summary": {
-                "ok": nr.get("ok", True),
-                "num_messages": len(_as_list(nr.get("messages"))),
-                "by_level": self._count_by_key(_as_list(nr.get("messages")), "level"),
-                "by_code": self._count_by_key(_as_list(nr.get("messages")), "code"),
-            },
-            "validation_ok": ok,
-            "validation_num_errors": len(validation_errors),
-            "validation_errors": validation_errors,
-        }
+        for c in self.classes:
+            if not c.source_tables:
+                cm = cm_idx.get(c.id)
+                if cm and cm.from_tables:
+                    c.source_tables = list(cm.from_tables)
+            if not c.identifier_columns:
+                cm = cm_idx.get(c.id)
+                if cm and cm.identifier_columns:
+                    c.identifier_columns = list(cm.identifier_columns)
+            if not c.instance_id_template:
+                cm = cm_idx.get(c.id)
+                if cm and cm.instance_id_template:
+                    c.instance_id_template = cm.instance_id_template
+            if not c.source_tables and c.instance_id_template:
+                c.source_tables = _infer_tables_from_template(c.instance_id_template)
+            if not c.identifier_columns and c.instance_id_template:
+                c.identifier_columns = _extract_identifier_columns(c.instance_id_template)
 
-    @staticmethod
-    def _count_by_key(items: List[Dict[str, Any]], key: str) -> Dict[str, int]:
-        out: Dict[str, int] = {}
-        for x in items:
-            k = str(_safe_dict(x).get(key, "UNKNOWN"))
-            out[k] = out.get(k, 0) + 1
-        return out
+        for p in self.data_properties:
+            p.domain_class = _normalize_class_id(p.domain_class)
+            if not p.id:
+                p.id = _normalize_data_property_id(p.domain_class, p.label)
+
+            dm = dpm_idx.get(p.id)
+            if dm:
+                if not dm.from_class:
+                    dm.from_class = p.domain_class
+                if not p.source_columns:
+                    cols = []
+                    if dm.column:
+                        cols.append(dm.column)
+                    cols.extend(dm.source_columns or [])
+                    p.source_columns = _dedup_keep_order([c for c in cols if c])
+                if not p.domain_class and dm.from_class:
+                    p.domain_class = _normalize_class_id(dm.from_class)
+
+        for p in self.object_properties:
+            p.domain_class = _normalize_class_id(p.domain_class)
+            p.range_class = _normalize_class_id(p.range_class)
+            if not p.id:
+                p.id = _normalize_object_property_id(p.domain_class, p.label)
+
+            om = opm_idx.get(p.id)
+            if om:
+                if not om.from_class:
+                    om.from_class = p.domain_class
+                if not om.to_class:
+                    om.to_class = p.range_class
+                if not p.join_paths and om.joins:
+                    p.join_paths = [list(j) for j in om.joins]
+
+        # Ensure mappings point to normalized class ids
+        for m in self.class_mappings:
+            m.class_id = _normalize_class_id(m.class_id)
+        for m in self.data_property_mappings:
+            if m.from_class:
+                m.from_class = _normalize_class_id(m.from_class)
+        for m in self.object_property_mappings:
+            if m.from_class:
+                m.from_class = _normalize_class_id(m.from_class)
+            if m.to_class:
+                m.to_class = _normalize_class_id(m.to_class)
+
+        # Normalize subclass relation ids / targets
+        for rel in self.subclass_relations:
+            rel.child_class = _normalize_class_id(rel.child_class)
+            rel.parent_class = _normalize_class_id(rel.parent_class)
+            if not rel.id and rel.child_class and rel.parent_class:
+                rel.id = f"SubclassRelation:{rel.child_class}->{rel.parent_class}"
+
+        # Optional: synthesize minimal class mappings if absent
+        if not self.class_mappings:
+            for c in self.classes:
+                if c.source_tables or c.instance_id_template:
+                    self.class_mappings.append(
+                        ClassMapping(
+                            class_id=c.id,
+                            from_tables=list(c.source_tables or _infer_tables_from_template(c.instance_id_template)),
+                            identifier_columns=list(c.identifier_columns or _extract_identifier_columns(c.instance_id_template)),
+                            instance_id_template=c.instance_id_template or "",
+                            status=c.status or "proposed",
+                            confidence=c.confidence,
+                        )
+                    )
 
     # --------------------------------------------------------
-    # Validation
+    # Shared effective closure helpers
     # --------------------------------------------------------
+
     def _is_exportable_status(self, status: Optional[str]) -> bool:
         s = str(status or "").strip().lower()
         if not s:
             return True
         return s not in {"rejected", "invalid", "discarded", "dropped"}
 
+    def _effective_class_tables(self, c: ClassDef, cm: Optional[ClassMapping]) -> List[str]:
+        out = list(c.source_tables or [])
+        if cm is not None:
+            out.extend(cm.from_tables or [])
+            if not out and cm.instance_id_template:
+                out.extend(_infer_tables_from_template(cm.instance_id_template))
+        if not out and c.instance_id_template:
+            out.extend(_infer_tables_from_template(c.instance_id_template))
+        return _dedup_keep_order([x for x in out if x])
+
+    def _effective_identifier_columns(self, c: ClassDef, cm: Optional[ClassMapping]) -> List[str]:
+        out = list(c.identifier_columns or [])
+        if cm is not None:
+            out.extend(cm.identifier_columns or [])
+            if not out and cm.instance_id_template:
+                out.extend(_extract_identifier_columns(cm.instance_id_template))
+        if not out and c.instance_id_template:
+            out.extend(_extract_identifier_columns(c.instance_id_template))
+        return _dedup_keep_order([x for x in out if x])
+
+    def _effective_instance_id_template(self, c: ClassDef, cm: Optional[ClassMapping]) -> str:
+        if cm is not None and cm.instance_id_template:
+            return cm.instance_id_template
+        return c.instance_id_template or ""
+
+    def _effective_data_property_columns(
+        self,
+        p: DataPropertyDef,
+        dm: Optional[DataPropertyMapping],
+    ) -> List[str]:
+        out = list(p.source_columns or [])
+        if dm is not None:
+            if dm.column:
+                out.append(dm.column)
+            out.extend(dm.source_columns or [])
+        return _dedup_keep_order([x for x in out if x])
+
+    def _effective_object_property_joins(
+        self,
+        p: ObjectPropertyDef,
+        om: Optional[ObjectPropertyMapping],
+    ) -> List[List[str]]:
+        if p.join_paths:
+            return [list(_normalize_join(j)) for j in p.join_paths if _normalize_join(j)]
+        if om is not None and om.joins:
+            return [list(_normalize_join(j)) for j in om.joins if _normalize_join(j)]
+        return []
+
+    # --------------------------------------------------------
+    # Validation
+    # --------------------------------------------------------
+
     def validate(self) -> Tuple[bool, List[str]]:
         errors: List[str] = []
 
         class_idx = self.class_index()
-        dp_idx = self.data_property_index()
-        op_idx = self.object_property_index()
+        data_prop_idx = self.data_property_index()
+        object_prop_idx = self.object_property_index()
 
         class_ids = set(class_idx.keys())
-        data_prop_ids = set(dp_idx.keys())
-        object_prop_ids = set(op_idx.keys())
+        data_prop_ids = set(data_prop_idx.keys())
+        object_prop_ids = set(object_prop_idx.keys())
 
         if len(class_ids) != len(self.classes):
             errors.append("Duplicate class ids found.")
@@ -520,89 +713,65 @@ class OntologyDraft:
         dp_map_idx = self.data_property_mapping_index()
         op_map_idx = self.object_property_mapping_index()
 
-        # Classes
         for c in self.classes:
             if self._is_exportable_status(c.status):
                 cm = class_map_idx.get(c.id)
                 if cm is None:
                     errors.append(f"Class {c.id} has no class mapping.")
                 else:
-                    cm_from_tables = getattr(cm, "from_tables", None) or []
-                    cm_instance_id_template = getattr(cm, "instance_id_template", None)
-
-                    effective_tables = list(dict.fromkeys((c.source_tables or []) + cm_from_tables))
+                    effective_tables = self._effective_class_tables(c, cm)
                     if not effective_tables:
                         errors.append(
                             f"Class {c.id} has neither source_tables nor class_mapping.from_tables."
                         )
-                    if not cm_instance_id_template:
+                    effective_template = self._effective_instance_id_template(c, cm)
+                    if not effective_template:
                         errors.append(f"Class mapping for {c.id} has no instance_id_template.")
 
-        # Data properties
         for p in self.data_properties:
             if p.domain_class not in class_ids:
                 errors.append(f"Data property {p.id} references unknown domain class {p.domain_class}.")
 
-            dm = dp_map_idx.get(p.id)
             if self._is_exportable_status(p.status):
+                dm = dp_map_idx.get(p.id)
                 if dm is None:
                     errors.append(f"Data property {p.id} has no data_property_mapping.")
                 else:
-                    effective_cols = list(p.source_columns or [])
-
-                    dm_column = getattr(dm, "column", None)
-                    if dm_column:
-                        effective_cols.append(dm_column)
-
-                    dm_source_columns = getattr(dm, "source_columns", None)
-                    if dm_source_columns:
-                        effective_cols.extend(dm_source_columns)
-
-                    effective_cols = [c for c in dict.fromkeys(effective_cols) if c]
-
+                    effective_cols = self._effective_data_property_columns(p, dm)
                     if not effective_cols:
                         errors.append(
                             f"Data property {p.id} has neither source_columns nor a usable data_property_mapping column."
                         )
-
-                    dm_from_class = getattr(dm, "from_class", None)
-                    if dm_from_class and p.domain_class and dm_from_class != p.domain_class:
+                    if dm.from_class and p.domain_class and dm.from_class != p.domain_class:
                         errors.append(
-                            f"Data property {p.id} domain mismatch: property={p.domain_class}, mapping={dm_from_class}."
+                            f"Data property {p.id} domain mismatch: property={p.domain_class}, mapping={dm.from_class}."
                         )
 
-        # Object properties
         for p in self.object_properties:
             if p.domain_class not in class_ids:
                 errors.append(f"Object property {p.id} references unknown domain class {p.domain_class}.")
             if p.range_class not in class_ids:
                 errors.append(f"Object property {p.id} references unknown range class {p.range_class}.")
 
-            om = op_map_idx.get(p.id)
             if self._is_exportable_status(p.status):
+                om = op_map_idx.get(p.id)
                 if om is None:
                     errors.append(f"Object property {p.id} has no object_property_mapping.")
                 else:
-                    om_joins = getattr(om, "joins", None) or []
-                    effective_joins = (p.join_paths or []) or om_joins
+                    effective_joins = self._effective_object_property_joins(p, om)
                     if not effective_joins:
                         errors.append(
                             f"Object property {p.id} has neither join_paths nor object_property_mapping.joins."
                         )
-
-                    om_from_class = getattr(om, "from_class", None)
-                    om_to_class = getattr(om, "to_class", None)
-
-                    if om_from_class and p.domain_class and om_from_class != p.domain_class:
+                    if om.from_class and p.domain_class and om.from_class != p.domain_class:
                         errors.append(
-                            f"Object property {p.id} domain mismatch: property={p.domain_class}, mapping={om_from_class}."
+                            f"Object property {p.id} domain mismatch: property={p.domain_class}, mapping={om.from_class}."
                         )
-                    if om_to_class and p.range_class and om_to_class != p.range_class:
+                    if om.to_class and p.range_class and om.to_class != p.range_class:
                         errors.append(
-                            f"Object property {p.id} range mismatch: property={p.range_class}, mapping={om_to_class}."
+                            f"Object property {p.id} range mismatch: property={p.range_class}, mapping={om.to_class}."
                         )
 
-        # Subclass relations
         for rel in self.subclass_relations:
             if rel.child_class not in class_ids:
                 errors.append(f"Subclass relation references unknown child class {rel.child_class}.")
@@ -610,76 +779,10 @@ class OntologyDraft:
                 errors.append(f"Subclass relation references unknown parent class {rel.parent_class}.")
 
         return len(errors) == 0, errors
-    # --------------------------------------------------------
-    # Serialization
-    # --------------------------------------------------------
-    def to_dict(self) -> Dict[str, Any]:
-        return asdict(self)
-
-    def to_json(self, indent: int = 2) -> str:
-        return json.dumps(self.to_dict(), indent=indent, ensure_ascii=False)
-
-    @classmethod
-    def from_dict(
-        cls,
-        obj: Dict[str, Any],
-        *,
-        already_normalized: bool = False,
-    ) -> "OntologyDraft":
-        normalized = copy.deepcopy(obj) if already_normalized else normalize_model_output_robust(obj)
-        diagnostics_obj = _safe_dict(normalized.get("diagnostics"))
-
-        draft = cls(
-            classes=[_build_dataclass(ClassDef, x) for x in _as_list(normalized.get("classes"))],
-            data_properties=[_build_dataclass(DataPropertyDef, x) for x in _as_list(normalized.get("data_properties"))],
-            object_properties=[_build_dataclass(ObjectPropertyDef, x) for x in _as_list(normalized.get("object_properties"))],
-            subclass_relations=[_build_dataclass(SubclassRelation, x) for x in _as_list(normalized.get("subclass_relations"))],
-
-            class_mappings=[_build_dataclass(ClassMapping, x) for x in _as_list(normalized.get("class_mappings"))],
-            data_property_mappings=[_build_dataclass(DataPropertyMapping, x) for x in _as_list(normalized.get("data_property_mappings"))],
-            object_property_mappings=[_build_dataclass(ObjectPropertyMapping, x) for x in _as_list(normalized.get("object_property_mappings"))],
-
-            diagnostics=Diagnostics(
-                hypotheses=[_build_dataclass(Hypothesis, x) for x in _as_list(diagnostics_obj.get("hypotheses"))],
-                conflicts=[_build_dataclass(Conflict, x) for x in _as_list(diagnostics_obj.get("conflicts"))],
-                tool_traces=[_build_dataclass(ToolTrace, x) for x in _as_list(diagnostics_obj.get("tool_traces"))],
-                confidence=_safe_dict(diagnostics_obj.get("confidence")),
-                extras={
-                    **_safe_dict(diagnostics_obj.get("extras")),
-                    **{k: v for k, v in diagnostics_obj.items() if k not in _field_names(Diagnostics)}
-                },
-            ),
-            extras={
-                **_safe_dict(normalized.get("extras")),
-                **{k: v for k, v in normalized.items() if k not in KNOWN_TOP_LEVEL_KEYS}
-            },
-        )
-
-        return draft
-
-    @classmethod
-    def from_json(
-        cls,
-        text: str,
-        *,
-        already_normalized: bool = False,
-    ) -> "OntologyDraft":
-        return cls.from_dict(json.loads(text), already_normalized=already_normalized)
-
-    @classmethod
-    def from_burr_mapping(cls, burr_mapping: Dict[str, Any]) -> "OntologyDraft":
-        return cls.from_dict(
-            {
-                "classes": burr_mapping.get("classes", []),
-                "data_properties": burr_mapping.get("data_properties", []),
-                "object_properties": burr_mapping.get("object_properties", []),
-            }
-        )
 
     # --------------------------------------------------------
-    # Conversion back to Burr mapping
+    # Export
     # --------------------------------------------------------
-
 
     def to_burr_mapping(self) -> Dict[str, Any]:
         class_map_idx = self.class_mapping_index()
@@ -700,11 +803,13 @@ class OntologyDraft:
             cm = class_map_idx.get(c.id)
             if cm is None:
                 continue
-            if not cm.instance_id_template:
+
+            effective_template = self._effective_instance_id_template(c, cm)
+            if not effective_template:
                 continue
 
             item = {
-                "id": cm.instance_id_template,
+                "id": effective_template,
                 "class": c.label,
                 "name": c.label,
             }
@@ -721,7 +826,7 @@ class OntologyDraft:
             if om is None:
                 continue
 
-            joins = om.joins or p.join_paths or []
+            joins = self._effective_object_property_joins(p, om)
             if not joins:
                 continue
 
@@ -744,155 +849,17 @@ class OntologyDraft:
             if dm is None:
                 continue
 
-            effective_column = getattr(dm, "column", None)
-            if not effective_column:
-                dm_source_columns = getattr(dm, "source_columns", None) or []
-                if dm_source_columns:
-                    effective_column = dm_source_columns[0]
-                elif p.source_columns:
-                    effective_column = p.source_columns[0]
-
-            if not effective_column:
+            effective_cols = self._effective_data_property_columns(p, dm)
+            if not effective_cols:
                 continue
 
             item = {
                 "property": _to_burr_safe_property_name(p.label),
                 "belongsToClassMap": _label_from_class_id(dm.from_class or p.domain_class),
-                "column": effective_column,
+                "column": effective_cols[0],
             }
             if p.extras:
                 item.update(p.extras)
             out["data_properties"].append(item)
 
         return out
-
-    # --------------------------------------------------------
-    # Optional convenience constructors
-    # --------------------------------------------------------
-    def add_class(
-        self,
-        label: str,
-        instance_id_template: str,
-        source_tables: Optional[List[str]] = None,
-        description: Optional[str] = None,
-        confidence: Optional[float] = None,
-        where: Optional[List[str]] = None,
-        joins: Optional[List[List[str]]] = None,
-        identifier_columns: Optional[List[str]] = None,
-        extras: Optional[Dict[str, Any]] = None,
-    ) -> str:
-        class_id = _normalize_class_id(label)
-
-        if source_tables is None:
-            source_tables = _infer_tables_from_template(instance_id_template)
-        if identifier_columns is None:
-            identifier_columns = _extract_identifier_columns(instance_id_template)
-
-        if class_id not in self.class_index():
-            self.classes.append(
-                ClassDef(
-                    id=class_id,
-                    label=label,
-                    description=description,
-                    source_tables=source_tables or [],
-                    status="accepted",
-                    confidence=confidence,
-                    extras=extras or {},
-                )
-            )
-
-        if class_id not in self.class_mapping_index():
-            self.class_mappings.append(
-                ClassMapping(
-                    class_id=class_id,
-                    instance_id_template=instance_id_template,
-                    from_tables=source_tables or [],
-                    where=where or [],
-                    joins=joins or [],
-                    identifier_columns=identifier_columns or [],
-                    extras={},
-                )
-            )
-
-        return class_id
-
-    def add_data_property(
-        self,
-        domain_class: str,
-        label: str,
-        column: str,
-        range_type: str = "string",
-        confidence: Optional[float] = None,
-        extras: Optional[Dict[str, Any]] = None,
-    ) -> str:
-        domain_class = _normalize_class_id(domain_class)
-        property_id = _normalize_data_property_id(domain_class, label)
-
-        if property_id not in self.data_property_index():
-            self.data_properties.append(
-                DataPropertyDef(
-                    id=property_id,
-                    label=label,
-                    domain_class=domain_class,
-                    range_type=range_type,
-                    source_columns=[column] if column else [],
-                    status="accepted",
-                    confidence=confidence,
-                    extras=extras or {},
-                )
-            )
-
-        if property_id not in self.data_property_mapping_index():
-            self.data_property_mappings.append(
-                DataPropertyMapping(
-                    property_id=property_id,
-                    from_class=domain_class,
-                    column=column,
-                    extras={},
-                )
-            )
-
-        return property_id
-
-    def add_object_property(
-        self,
-        domain_class: str,
-        label: str,
-        range_class: str,
-        joins: List[List[str]],
-        confidence: Optional[float] = None,
-        reified: bool = False,
-        extras: Optional[Dict[str, Any]] = None,
-    ) -> str:
-        domain_class = _normalize_class_id(domain_class)
-        range_class = _normalize_class_id(range_class)
-        property_id = _normalize_object_property_id(domain_class, label)
-
-        if property_id not in self.object_property_index():
-            self.object_properties.append(
-                ObjectPropertyDef(
-                    id=property_id,
-                    label=label,
-                    domain_class=domain_class,
-                    range_class=range_class,
-                    join_paths=joins or [],
-                    reified=reified,
-                    status="accepted",
-                    confidence=confidence,
-                    extras=extras or {},
-                )
-            )
-
-        if property_id not in self.object_property_mapping_index():
-            self.object_property_mappings.append(
-                ObjectPropertyMapping(
-                    property_id=property_id,
-                    from_class=domain_class,
-                    to_class=range_class,
-                    joins=joins or [],
-                    where=[],
-                    extras={},
-                )
-            )
-
-        return property_id

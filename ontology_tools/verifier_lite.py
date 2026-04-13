@@ -5,14 +5,14 @@ from typing import Any, Dict, List, Optional
 
 class MappingVerifierLite:
     """
-    Lightweight verifier operating on canonical draft dicts
-    produced by OntologyDraft.to_dict().
+    Lightweight verifier over canonical draft dicts.
 
     Design goals:
-    - cheap / dependency-light
-    - aligned with current OntologyDraft schema
-    - verify effective consistency, not only local field presence
-    - produce structured diagnostics for later feedback loops
+    - cheap
+    - dependency-light
+    - aligned with current normalize -> draft schema
+    - check effective closure instead of only local field presence
+    - produce structured issues for future feedback loops
     """
 
     def _issue(self, level: str, code: str, message: str, **context: Any) -> Dict[str, Any]:
@@ -31,11 +31,7 @@ class MappingVerifierLite:
                 out[str(xid)] = x
         return out
 
-    def _index_by_key(
-        self,
-        items: List[Dict[str, Any]],
-        key: str,
-    ) -> Dict[str, Dict[str, Any]]:
+    def _index_by_key(self, items: List[Dict[str, Any]], key: str) -> Dict[str, Dict[str, Any]]:
         out: Dict[str, Dict[str, Any]] = {}
         for x in items or []:
             k = x.get(key)
@@ -56,6 +52,7 @@ class MappingVerifierLite:
             s = str(x).strip()
             if s:
                 out.append(s)
+        # stable dedup
         return list(dict.fromkeys(out))
 
     def _status_is_exportable(self, status: Optional[str]) -> bool:
@@ -63,6 +60,63 @@ class MappingVerifierLite:
         if not s:
             return True
         return s not in {"rejected", "invalid", "discarded", "dropped"}
+
+    def _effective_class_tables(
+        self,
+        c: Dict[str, Any],
+        cm: Optional[Dict[str, Any]],
+    ) -> List[str]:
+        out = []
+        out.extend(self._non_empty_strings(c.get("source_tables")))
+        if cm is not None:
+            out.extend(self._non_empty_strings(cm.get("from_tables")))
+        return list(dict.fromkeys(out))
+
+    def _effective_identifier_columns(
+        self,
+        c: Dict[str, Any],
+        cm: Optional[Dict[str, Any]],
+    ) -> List[str]:
+        out = []
+        out.extend(self._non_empty_strings(c.get("identifier_columns")))
+        if cm is not None:
+            out.extend(self._non_empty_strings(cm.get("identifier_columns")))
+        return list(dict.fromkeys(out))
+
+    def _effective_instance_template(
+        self,
+        c: Dict[str, Any],
+        cm: Optional[Dict[str, Any]],
+    ) -> str:
+        if cm is not None and str(cm.get("instance_id_template") or "").strip():
+            return str(cm.get("instance_id_template")).strip()
+        return str(c.get("instance_id_template") or "").strip()
+
+    def _effective_data_property_columns(
+        self,
+        p: Dict[str, Any],
+        dm: Optional[Dict[str, Any]],
+    ) -> List[str]:
+        out = []
+        out.extend(self._non_empty_strings(p.get("source_columns")))
+        if dm is not None:
+            out.extend(self._non_empty_strings(dm.get("source_columns")))
+            column = str(dm.get("column") or "").strip()
+            if column:
+                out.append(column)
+        return list(dict.fromkeys(out))
+
+    def _effective_object_property_joins(
+        self,
+        p: Dict[str, Any],
+        om: Optional[Dict[str, Any]],
+    ) -> List[Any]:
+        property_joins = self._norm_list(p.get("join_paths"))
+        if property_joins:
+            return property_joins
+        if om is not None:
+            return self._norm_list(om.get("joins"))
+        return []
 
     def verify_draft_dict(self, draft: Dict[str, Any]) -> Dict[str, Any]:
         issues: List[Dict[str, Any]] = []
@@ -84,7 +138,7 @@ class MappingVerifierLite:
         opm_idx = self._index_by_key(object_property_mappings, "property_id")
 
         # ----------------------------------------------------
-        # Duplicate IDs
+        # Duplicates
         # ----------------------------------------------------
         if len(class_idx) != len(classes):
             issues.append(self._issue("error", "DUPLICATE_CLASS_ID", "Duplicate class ids detected."))
@@ -94,7 +148,7 @@ class MappingVerifierLite:
             issues.append(self._issue("error", "DUPLICATE_OBJECT_PROPERTY_ID", "Duplicate object property ids detected."))
 
         # ----------------------------------------------------
-        # Classes and class mappings
+        # Classes
         # ----------------------------------------------------
         for c in classes:
             cid = str(c.get("id") or "").strip()
@@ -102,9 +156,8 @@ class MappingVerifierLite:
                 issues.append(self._issue("error", "CLASS_MISSING_ID", "Class missing id.", item=c))
                 continue
 
-            cm = cm_idx.get(cid)
-            source_tables = self._non_empty_strings(c.get("source_tables"))
             exportable = self._status_is_exportable(c.get("status"))
+            cm = cm_idx.get(cid)
 
             if exportable and cm is None:
                 issues.append(
@@ -115,30 +168,44 @@ class MappingVerifierLite:
                         class_id=cid,
                     )
                 )
+                continue
 
-            if cm is not None:
-                mapped_tables = self._non_empty_strings(cm.get("from_tables"))
-                if not source_tables and not mapped_tables:
-                    issues.append(
-                        self._issue(
-                            "error",
-                            "CLASS_NO_SOURCE_TABLES",
-                            "Class has neither source_tables nor class_mapping.from_tables.",
-                            class_id=cid,
-                        )
+            effective_tables = self._effective_class_tables(c, cm)
+            effective_identifier_columns = self._effective_identifier_columns(c, cm)
+            effective_instance_template = self._effective_instance_template(c, cm)
+
+            if exportable and not effective_tables:
+                issues.append(
+                    self._issue(
+                        "error",
+                        "CLASS_NO_SOURCE_TABLES",
+                        "Class has neither source_tables nor class_mapping.from_tables.",
+                        class_id=cid,
                     )
-                if not str(cm.get("instance_id_template") or "").strip():
-                    issues.append(
-                        self._issue(
-                            "error",
-                            "CLASS_MAPPING_NO_INSTANCE_TEMPLATE",
-                            "class_mapping missing instance_id_template.",
-                            class_id=cid,
-                        )
+                )
+
+            if exportable and not effective_instance_template:
+                issues.append(
+                    self._issue(
+                        "error",
+                        "CLASS_MAPPING_NO_INSTANCE_TEMPLATE",
+                        "Class has no effective instance_id_template.",
+                        class_id=cid,
                     )
+                )
+
+            if exportable and not effective_identifier_columns:
+                issues.append(
+                    self._issue(
+                        "warning",
+                        "CLASS_NO_IDENTIFIER_COLUMNS",
+                        "Class has no effective identifier_columns.",
+                        class_id=cid,
+                    )
+                )
 
         # ----------------------------------------------------
-        # Data properties and mappings
+        # Data properties
         # ----------------------------------------------------
         for p in data_properties:
             pid = str(p.get("id") or "").strip()
@@ -146,6 +213,7 @@ class MappingVerifierLite:
                 issues.append(self._issue("error", "DATA_PROPERTY_MISSING_ID", "Data property missing id.", item=p))
                 continue
 
+            exportable = self._status_is_exportable(p.get("status"))
             domain_class = str(p.get("domain_class") or "").strip()
             if domain_class and domain_class not in class_idx:
                 issues.append(
@@ -159,8 +227,6 @@ class MappingVerifierLite:
                 )
 
             dm = dpm_idx.get(pid)
-            exportable = self._status_is_exportable(p.get("status"))
-
             if exportable and dm is None:
                 issues.append(
                     self._issue(
@@ -172,14 +238,7 @@ class MappingVerifierLite:
                 )
                 continue
 
-            property_cols = self._non_empty_strings(p.get("source_columns"))
-            mapping_cols = []
-            if dm is not None:
-                mapping_cols.extend(self._non_empty_strings(dm.get("source_columns")))
-                if str(dm.get("column") or "").strip():
-                    mapping_cols.append(str(dm["column"]).strip())
-
-            effective_cols = list(dict.fromkeys(property_cols + mapping_cols))
+            effective_cols = self._effective_data_property_columns(p, dm)
             if exportable and not effective_cols:
                 issues.append(
                     self._issue(
@@ -205,7 +264,7 @@ class MappingVerifierLite:
                     )
 
                 source_table = str(dm.get("source_table") or "").strip()
-                if not source_table and not effective_cols:
+                if exportable and not source_table and not effective_cols:
                     issues.append(
                         self._issue(
                             "warning",
@@ -215,8 +274,19 @@ class MappingVerifierLite:
                         )
                     )
 
+                if exportable and effective_cols and not source_table:
+                    issues.append(
+                        self._issue(
+                            "info",
+                            "DATA_PROPERTY_MAPPING_SOURCE_TABLE_MISSING",
+                            "Data property has effective columns but source_table is empty.",
+                            property_id=pid,
+                            effective_columns=effective_cols,
+                        )
+                    )
+
         # ----------------------------------------------------
-        # Object properties and mappings
+        # Object properties
         # ----------------------------------------------------
         for p in object_properties:
             pid = str(p.get("id") or "").strip()
@@ -224,6 +294,7 @@ class MappingVerifierLite:
                 issues.append(self._issue("error", "OBJECT_PROPERTY_MISSING_ID", "Object property missing id.", item=p))
                 continue
 
+            exportable = self._status_is_exportable(p.get("status"))
             domain_class = str(p.get("domain_class") or "").strip()
             range_class = str(p.get("range_class") or "").strip()
 
@@ -249,8 +320,6 @@ class MappingVerifierLite:
                 )
 
             om = opm_idx.get(pid)
-            exportable = self._status_is_exportable(p.get("status"))
-
             if exportable and om is None:
                 issues.append(
                     self._issue(
@@ -262,10 +331,7 @@ class MappingVerifierLite:
                 )
                 continue
 
-            property_joins = self._norm_list(p.get("join_paths"))
-            mapping_joins = self._norm_list(om.get("joins") if om is not None else [])
-            effective_joins = property_joins or mapping_joins
-
+            effective_joins = self._effective_object_property_joins(p, om)
             if exportable and not effective_joins:
                 issues.append(
                     self._issue(
@@ -280,7 +346,7 @@ class MappingVerifierLite:
                 from_class = str(om.get("from_class") or "").strip()
                 to_class = str(om.get("to_class") or "").strip()
 
-                if domain_class and from_class and domain_class != from_class:
+                if from_class and domain_class and from_class != domain_class:
                     issues.append(
                         self._issue(
                             "warning",
@@ -291,7 +357,8 @@ class MappingVerifierLite:
                             from_class=from_class,
                         )
                     )
-                if range_class and to_class and range_class != to_class:
+
+                if to_class and range_class and to_class != range_class:
                     issues.append(
                         self._issue(
                             "warning",
@@ -303,28 +370,110 @@ class MappingVerifierLite:
                         )
                     )
 
+                if exportable and effective_joins and (not from_class or not to_class):
+                    issues.append(
+                        self._issue(
+                            "warning",
+                            "OBJECT_PROPERTY_MAPPING_CLASS_ENDPOINTS_WEAK",
+                            "Object property has joins but object_property_mapping lacks from_class or to_class.",
+                            property_id=pid,
+                            from_class=from_class,
+                            to_class=to_class,
+                        )
+                    )
+
         # ----------------------------------------------------
         # Subclass relations
         # ----------------------------------------------------
         for rel in subclass_relations:
+            rid = str(rel.get("id") or "").strip()
             child = str(rel.get("child_class") or "").strip()
             parent = str(rel.get("parent_class") or "").strip()
-            if child and child not in class_idx:
+
+            if not rid:
+                issues.append(
+                    self._issue(
+                        "warning",
+                        "SUBCLASS_RELATION_MISSING_ID",
+                        "Subclass relation missing id.",
+                        relation=rel,
+                    )
+                )
+            if not child:
+                issues.append(
+                    self._issue(
+                        "error",
+                        "SUBCLASS_RELATION_MISSING_CHILD",
+                        "Subclass relation missing child_class.",
+                        relation_id=rid,
+                        relation=rel,
+                    )
+                )
+            elif child not in class_idx:
                 issues.append(
                     self._issue(
                         "error",
                         "SUBCLASS_UNKNOWN_CHILD",
                         "Subclass relation references unknown child class.",
+                        relation_id=rid,
                         child_class=child,
                     )
                 )
-            if parent and parent not in class_idx:
+
+            if not parent:
+                issues.append(
+                    self._issue(
+                        "error",
+                        "SUBCLASS_RELATION_MISSING_PARENT",
+                        "Subclass relation missing parent_class.",
+                        relation_id=rid,
+                        relation=rel,
+                    )
+                )
+            elif parent not in class_idx:
                 issues.append(
                     self._issue(
                         "error",
                         "SUBCLASS_UNKNOWN_PARENT",
                         "Subclass relation references unknown parent class.",
+                        relation_id=rid,
                         parent_class=parent,
+                    )
+                )
+
+        # ----------------------------------------------------
+        # Cross checks: mappings that point nowhere
+        # ----------------------------------------------------
+        for class_id in cm_idx:
+            if class_id not in class_idx:
+                issues.append(
+                    self._issue(
+                        "warning",
+                        "ORPHAN_CLASS_MAPPING",
+                        "class_mapping points to missing class.",
+                        class_id=class_id,
+                    )
+                )
+
+        for property_id in dpm_idx:
+            if property_id not in dp_idx:
+                issues.append(
+                    self._issue(
+                        "warning",
+                        "ORPHAN_DATA_PROPERTY_MAPPING",
+                        "data_property_mapping points to missing data property.",
+                        property_id=property_id,
+                    )
+                )
+
+        for property_id in opm_idx:
+            if property_id not in op_idx:
+                issues.append(
+                    self._issue(
+                        "warning",
+                        "ORPHAN_OBJECT_PROPERTY_MAPPING",
+                        "object_property_mapping points to missing object property.",
+                        property_id=property_id,
                     )
                 )
 

@@ -1,0 +1,89 @@
+{
+    "classes": [
+        {
+            "id": "@@countrypops.country@@/@@countrypops.year@@",
+            "class": "PopulationCount",
+            "name": "PopulationCountCountry",
+            "prefix": "mondial"
+        },
+        {
+            "id": "@@provpops.country@@/@@provpops.province@@/@@provpops.year@@",
+            "class": "PopulationCount",
+            "name": "PopulationCountProvince",
+            "prefix": "mondial"
+        },
+        {
+            "id": "@@citypops.country@@/@@citypops.province@@/@@citypops.city@@/@@citypops.year@@",
+            "class": "PopulationCount",
+            "name": "PopulationCountCity",
+            "prefix": "mondial"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "hadPopulation",
+            "belongsToClassMap": "CountryFull",
+            "refersToClassMap": "PopulationCountCountry",
+            "join": [
+                "country.code = countrypops.country"
+            ]
+        },
+        {
+            "property": "hadPopulation",
+            "belongsToClass": "Province",
+            "refersToClassMap": "PopulationCountProvince",
+            "join": [
+                "province.name = provpops.province",
+                "province.country = provpops.country"
+            ]
+        },
+        {
+            "property": "hadPopulation",
+            "belongsToClass": "City",
+            "refersToClassMap": "PopulationCountCity",
+            "join": [
+                "city.name = citypops.city",
+                "city.province = citypops.province",
+                "city.country = citypops.country"
+            ]
+        }
+    ],
+    "data_properties": [
+        {
+            "property": "year",
+            "belongsToClassMap": "PopulationCountCountry",
+            "type": "integer",
+            "column": "countrypops.year"
+        },
+        {
+            "property": "value",
+            "belongsToClassMap": "PopulationCountCountry",
+            "type": "integer",
+            "column": "countrypops.population"
+        },
+        {
+            "property": "year",
+            "belongsToClassMap": "PopulationCountProvince",
+            "type": "integer",
+            "column": "provpops.year"
+        },
+        {
+            "property": "value",
+            "belongsToClassMap": "PopulationCountProvince",
+            "type": "integer",
+            "column": "provpops.population"
+        },
+        {
+            "property": "year",
+            "belongsToClassMap": "PopulationCountCity",
+            "type": "integer",
+            "column": "citypops.year"
+        },
+        {
+            "property": "value",
+            "belongsToClassMap": "PopulationCountCity",
+            "type": "integer",
+            "column": "citypops.population"
+        }
+    ]
+}
