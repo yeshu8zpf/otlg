@@ -3,7 +3,6 @@ from __future__ import annotations
 import re
 from typing import Any, List, Optional, Tuple
 
-
 CREATE_TABLE_RE = re.compile(
     r"CREATE\s+TABLE\s+([A-Za-z_][A-Za-z0-9_]*)\s*\((.*?)\);",
     re.IGNORECASE | re.DOTALL,
@@ -12,6 +11,17 @@ CREATE_TABLE_RE = re.compile(
 FK_INLINE_RE = re.compile(
     r"FOREIGN\s+KEY\s*\((.*?)\)\s*REFERENCES\s+([A-Za-z_][A-Za-z0-9_]*)\s*\((.*?)\)",
     re.IGNORECASE | re.DOTALL,
+)
+
+ALTER_TABLE_FK_RE = re.compile(
+    r"""
+    ALTER\s+TABLE\s+(?:ONLY\s+)?(?P<table>[A-Za-z_][A-Za-z0-9_]*)
+    .*?
+    FOREIGN\s+KEY\s*\((?P<cols>[^)]*)\)
+    \s+REFERENCES\s+(?P<ref_table>[A-Za-z_][A-Za-z0-9_]*)
+    \s*\((?P<ref_cols>[^)]*)\)
+    """,
+    re.IGNORECASE | re.DOTALL | re.VERBOSE,
 )
 
 PRIMARY_KEY_RE = re.compile(

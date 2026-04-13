@@ -16,6 +16,8 @@ from normalize import normalize_model_output_robust
 IDENT_RE = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*$")
 QUALIFIED_COL_RE = re.compile(r"^([A-Za-z_][A-Za-z0-9_]*)\.([A-Za-z_][A-Za-z0-9_]*)$")
 
+
+
 def _to_burr_safe_property_name(label: str) -> str:
     s = str(label or "").strip()
     if not s:
@@ -490,12 +492,22 @@ class OntologyDraft:
     # --------------------------------------------------------
     # Validation
     # --------------------------------------------------------
+    def _is_exportable_status(self, status: Optional[str]) -> bool:
+        s = str(status or "").strip().lower()
+        if not s:
+            return True
+        return s not in {"rejected", "invalid", "discarded", "dropped"}
+
     def validate(self) -> Tuple[bool, List[str]]:
         errors: List[str] = []
 
-        class_ids = set(self.class_index().keys())
-        data_prop_ids = set(self.data_property_index().keys())
-        object_prop_ids = set(self.object_property_index().keys())
+        class_idx = self.class_index()
+        dp_idx = self.data_property_index()
+        op_idx = self.object_property_index()
+
+        class_ids = set(class_idx.keys())
+        data_prop_ids = set(dp_idx.keys())
+        object_prop_ids = set(op_idx.keys())
 
         if len(class_ids) != len(self.classes):
             errors.append("Duplicate class ids found.")
@@ -504,83 +516,100 @@ class OntologyDraft:
         if len(object_prop_ids) != len(self.object_properties):
             errors.append("Duplicate object property ids found.")
 
-        for c in self.classes:
-            if not c.id:
-                errors.append("Class with empty id found.")
-            if not c.label:
-                errors.append(f"Class {c.id} has empty label.")
+        class_map_idx = self.class_mapping_index()
+        dp_map_idx = self.data_property_mapping_index()
+        op_map_idx = self.object_property_mapping_index()
 
+        # Classes
+        for c in self.classes:
+            if self._is_exportable_status(c.status):
+                cm = class_map_idx.get(c.id)
+                if cm is None:
+                    errors.append(f"Class {c.id} has no class mapping.")
+                else:
+                    cm_from_tables = getattr(cm, "from_tables", None) or []
+                    cm_instance_id_template = getattr(cm, "instance_id_template", None)
+
+                    effective_tables = list(dict.fromkeys((c.source_tables or []) + cm_from_tables))
+                    if not effective_tables:
+                        errors.append(
+                            f"Class {c.id} has neither source_tables nor class_mapping.from_tables."
+                        )
+                    if not cm_instance_id_template:
+                        errors.append(f"Class mapping for {c.id} has no instance_id_template.")
+
+        # Data properties
         for p in self.data_properties:
             if p.domain_class not in class_ids:
                 errors.append(f"Data property {p.id} references unknown domain class {p.domain_class}.")
-            if not p.source_columns:
-                errors.append(f"Data property {p.id} has no source_columns.")
 
+            dm = dp_map_idx.get(p.id)
+            if self._is_exportable_status(p.status):
+                if dm is None:
+                    errors.append(f"Data property {p.id} has no data_property_mapping.")
+                else:
+                    effective_cols = list(p.source_columns or [])
+
+                    dm_column = getattr(dm, "column", None)
+                    if dm_column:
+                        effective_cols.append(dm_column)
+
+                    dm_source_columns = getattr(dm, "source_columns", None)
+                    if dm_source_columns:
+                        effective_cols.extend(dm_source_columns)
+
+                    effective_cols = [c for c in dict.fromkeys(effective_cols) if c]
+
+                    if not effective_cols:
+                        errors.append(
+                            f"Data property {p.id} has neither source_columns nor a usable data_property_mapping column."
+                        )
+
+                    dm_from_class = getattr(dm, "from_class", None)
+                    if dm_from_class and p.domain_class and dm_from_class != p.domain_class:
+                        errors.append(
+                            f"Data property {p.id} domain mismatch: property={p.domain_class}, mapping={dm_from_class}."
+                        )
+
+        # Object properties
         for p in self.object_properties:
             if p.domain_class not in class_ids:
                 errors.append(f"Object property {p.id} references unknown domain class {p.domain_class}.")
             if p.range_class not in class_ids:
                 errors.append(f"Object property {p.id} references unknown range class {p.range_class}.")
-            if not p.join_paths:
-                errors.append(f"Object property {p.id} has no join_paths.")
 
-        for s in self.subclass_relations:
-            if s.child_class not in class_ids:
-                errors.append(f"Subclass relation {s.id} references unknown child class {s.child_class}.")
-            if s.parent_class not in class_ids:
-                errors.append(f"Subclass relation {s.id} references unknown parent class {s.parent_class}.")
-            if s.child_class == s.parent_class:
-                errors.append(f"Subclass relation {s.id} has identical child and parent class.")
+            om = op_map_idx.get(p.id)
+            if self._is_exportable_status(p.status):
+                if om is None:
+                    errors.append(f"Object property {p.id} has no object_property_mapping.")
+                else:
+                    om_joins = getattr(om, "joins", None) or []
+                    effective_joins = (p.join_paths or []) or om_joins
+                    if not effective_joins:
+                        errors.append(
+                            f"Object property {p.id} has neither join_paths nor object_property_mapping.joins."
+                        )
 
-        class_mapping_ids = set(self.class_mapping_index().keys())
-        for c in self.classes:
-            if c.status == "accepted" and c.id not in class_mapping_ids:
-                errors.append(f"Accepted class {c.id} has no class mapping.")
+                    om_from_class = getattr(om, "from_class", None)
+                    om_to_class = getattr(om, "to_class", None)
 
-        dp_mapping_ids = set(self.data_property_mapping_index().keys())
-        for p in self.data_properties:
-            if p.status == "accepted" and p.id not in dp_mapping_ids:
-                errors.append(f"Accepted data property {p.id} has no data property mapping.")
+                    if om_from_class and p.domain_class and om_from_class != p.domain_class:
+                        errors.append(
+                            f"Object property {p.id} domain mismatch: property={p.domain_class}, mapping={om_from_class}."
+                        )
+                    if om_to_class and p.range_class and om_to_class != p.range_class:
+                        errors.append(
+                            f"Object property {p.id} range mismatch: property={p.range_class}, mapping={om_to_class}."
+                        )
 
-        op_mapping_ids = set(self.object_property_mapping_index().keys())
-        for p in self.object_properties:
-            if p.status == "accepted" and p.id not in op_mapping_ids:
-                errors.append(f"Accepted object property {p.id} has no object property mapping.")
-
-        for m in self.class_mappings:
-            if m.class_id not in class_ids:
-                errors.append(f"Class mapping references unknown class {m.class_id}.")
-            if not m.instance_id_template:
-                errors.append(f"Class mapping for {m.class_id} has empty instance_id_template.")
-            if not m.from_tables:
-                errors.append(f"Class mapping for {m.class_id} has no from_tables.")
-            if not m.identifier_columns:
-                errors.append(f"Class mapping for {m.class_id} has no identifier_columns.")
-
-        for m in self.data_property_mappings:
-            if m.property_id not in data_prop_ids:
-                errors.append(f"Data property mapping references unknown property {m.property_id}.")
-            if m.from_class not in class_ids:
-                errors.append(f"Data property mapping {m.property_id} references unknown class {m.from_class}.")
-            if not m.column:
-                errors.append(f"Data property mapping {m.property_id} has empty column.")
-
-        for m in self.object_property_mappings:
-            if m.property_id not in object_prop_ids:
-                errors.append(f"Object property mapping references unknown property {m.property_id}.")
-            if m.from_class not in class_ids:
-                errors.append(f"Object property mapping {m.property_id} references unknown from_class {m.from_class}.")
-            if m.to_class not in class_ids:
-                errors.append(f"Object property mapping {m.property_id} references unknown to_class {m.to_class}.")
-            if not m.joins:
-                errors.append(f"Object property mapping {m.property_id} has no joins.")
-
-        overlap = data_prop_ids.intersection(object_prop_ids)
-        if overlap:
-            errors.append(f"Property ids overlap between data and object properties: {sorted(overlap)}")
+        # Subclass relations
+        for rel in self.subclass_relations:
+            if rel.child_class not in class_ids:
+                errors.append(f"Subclass relation references unknown child class {rel.child_class}.")
+            if rel.parent_class not in class_ids:
+                errors.append(f"Subclass relation references unknown parent class {rel.parent_class}.")
 
         return len(errors) == 0, errors
-
     # --------------------------------------------------------
     # Serialization
     # --------------------------------------------------------
@@ -650,6 +679,8 @@ class OntologyDraft:
     # --------------------------------------------------------
     # Conversion back to Burr mapping
     # --------------------------------------------------------
+
+
     def to_burr_mapping(self) -> Dict[str, Any]:
         class_map_idx = self.class_mapping_index()
         dp_map_idx = self.data_property_mapping_index()
@@ -661,11 +692,15 @@ class OntologyDraft:
             "data_properties": [],
         }
 
+        # Classes
         for c in self.classes:
-            if c.status != "accepted":
+            if not self._is_exportable_status(c.status):
                 continue
+
             cm = class_map_idx.get(c.id)
             if cm is None:
+                continue
+            if not cm.instance_id_template:
                 continue
 
             item = {
@@ -677,35 +712,53 @@ class OntologyDraft:
                 item.update(c.extras)
             out["classes"].append(item)
 
+        # Object properties
         for p in self.object_properties:
-            if p.status != "accepted":
+            if not self._is_exportable_status(p.status):
                 continue
+
             om = op_map_idx.get(p.id)
             if om is None:
                 continue
 
+            joins = om.joins or p.join_paths or []
+            if not joins:
+                continue
+
             item = {
                 "property": _to_burr_safe_property_name(p.label),
-                "belongsToClassMap": _label_from_class_id(om.from_class),
-                "refersToClassMap": _label_from_class_id(om.to_class),
-                "join": [_join_to_burr_string(j) for j in om.joins],
+                "belongsToClassMap": _label_from_class_id(om.from_class or p.domain_class),
+                "refersToClassMap": _label_from_class_id(om.to_class or p.range_class),
+                "join": [_join_to_burr_string(j) for j in joins],
             }
             if p.extras:
                 item.update(p.extras)
             out["object_properties"].append(item)
 
+        # Data properties
         for p in self.data_properties:
-            if p.status != "accepted":
+            if not self._is_exportable_status(p.status):
                 continue
+
             dm = dp_map_idx.get(p.id)
             if dm is None:
                 continue
 
+            effective_column = getattr(dm, "column", None)
+            if not effective_column:
+                dm_source_columns = getattr(dm, "source_columns", None) or []
+                if dm_source_columns:
+                    effective_column = dm_source_columns[0]
+                elif p.source_columns:
+                    effective_column = p.source_columns[0]
+
+            if not effective_column:
+                continue
+
             item = {
                 "property": _to_burr_safe_property_name(p.label),
-                "belongsToClassMap": _label_from_class_id(dm.from_class),
-                "type": p.range_type,
-                "column": dm.column,
+                "belongsToClassMap": _label_from_class_id(dm.from_class or p.domain_class),
+                "column": effective_column,
             }
             if p.extras:
                 item.update(p.extras)

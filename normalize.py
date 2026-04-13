@@ -546,6 +546,7 @@ def _backfill_from_mappings(
     classes = canonical["classes"]
     data_properties = canonical["data_properties"]
     object_properties = canonical["object_properties"]
+
     class_mappings = canonical["class_mappings"]
     data_property_mappings = canonical["data_property_mappings"]
     object_property_mappings = canonical["object_property_mappings"]
@@ -554,137 +555,295 @@ def _backfill_from_mappings(
     dp_idx = _build_index_by_id(data_properties)
     op_idx = _build_index_by_id(object_properties)
 
-    # Backfill data property mappings from data properties if missing
+    # --------------------------------------------------------
+    # 1) Backfill class mappings from classes if missing
+    # --------------------------------------------------------
+    if not class_mappings:
+        for c in classes:
+            source_tables = c.get("source_tables") or []
+            if not source_tables:
+                continue
+
+            cid = c.get("id")
+            if not cid:
+                continue
+
+            from_tables = [str(t).strip() for t in source_tables if str(t).strip()]
+            identifier_columns = [str(x).strip() for x in (c.get("identifier_columns") or []) if str(x).strip()]
+
+            class_mappings.append(
+                {
+                    "class_id": cid,
+                    "from_tables": from_tables,
+                    "identifier_columns": identifier_columns,
+                    "instance_id_template": c.get("instance_id_template") or (
+                        "{"
+                        + (identifier_columns[0] if identifier_columns else f"{from_tables[0]}.id")
+                        + "}"
+                    ),
+                    "status": c.get("status", "proposed"),
+                    "confidence": c.get("confidence", 0.5),
+                }
+            )
+            collector.add(
+                "info",
+                "CLASS_MAPPING_SYNTHESIZED_FROM_CLASS",
+                "Synthesized class mapping from class definition.",
+                path=f"class_mappings[{cid}]",
+                class_id=cid,
+            )
+
+    # Repair existing classes from class mappings
+    for m in class_mappings:
+        cid = m.get("class_id")
+        if not cid:
+            continue
+        c = class_idx.get(cid)
+        if c is None:
+            continue
+
+        mapped_tables = [str(t).strip() for t in (m.get("from_tables") or []) if str(t).strip()]
+        mapped_ids = [str(x).strip() for x in (m.get("identifier_columns") or []) if str(x).strip()]
+
+        if (not c.get("source_tables")) and mapped_tables:
+            c["source_tables"] = mapped_tables
+            collector.add(
+                "info",
+                "CLASS_SOURCE_TABLES_BACKFILLED_FROM_MAPPING",
+                "Backfilled source_tables from class_mapping.",
+                path=f"classes[{cid}]",
+                class_id=cid,
+                source_tables=mapped_tables,
+            )
+
+        if (not c.get("identifier_columns")) and mapped_ids:
+            c["identifier_columns"] = mapped_ids
+            collector.add(
+                "info",
+                "CLASS_IDENTIFIER_COLUMNS_BACKFILLED",
+                "Backfilled identifier_columns from class_mapping.",
+                path=f"classes[{cid}]",
+                class_id=cid,
+                identifier_columns=mapped_ids,
+            )
+
+        if (not c.get("instance_id_template")) and m.get("instance_id_template"):
+            c["instance_id_template"] = m["instance_id_template"]
+            collector.add(
+                "info",
+                "CLASS_INSTANCE_TEMPLATE_BACKFILLED",
+                "Backfilled instance_id_template from class_mapping.",
+                path=f"classes[{cid}]",
+                class_id=cid,
+                instance_id_template=m["instance_id_template"],
+            )
+
+    # --------------------------------------------------------
+    # 2) Backfill data property mappings from data properties if missing
+    # --------------------------------------------------------
     if not data_property_mappings:
         for p in data_properties:
-            source_columns = p.get("source_columns") or []
+            pid = p.get("id")
+            if not pid:
+                continue
+
+            source_columns = [str(c).strip() for c in (p.get("source_columns") or []) if str(c).strip()]
+            source_table = ""
             if source_columns:
-                data_property_mappings.append(
-                    {
-                        "property_id": p["id"],
-                        "from_class": p["domain_class"],
-                        "column": source_columns[0],
-                    }
-                )
-                collector.add(
-                    "info",
-                    "DATA_PROPERTY_MAPPING_SYNTHESIZED",
-                    "Synthesized data_property_mapping from data_property.",
-                    path=f"data_properties[{p['id']}]",
-                    property_id=p["id"],
-                )
+                first = source_columns[0]
+                if "." in first:
+                    source_table = first.split(".", 1)[0]
 
-    # Backfill object property mappings from object properties if missing
-    if not object_property_mappings:
-        for p in object_properties:
-            if p.get("join_paths"):
-                object_property_mappings.append(
-                    {
-                        "property_id": p["id"],
-                        "from_class": p["domain_class"],
-                        "to_class": p["range_class"],
-                        "joins": p["join_paths"],
-                    }
-                )
-                collector.add(
-                    "info",
-                    "OBJECT_PROPERTY_MAPPING_SYNTHESIZED",
-                    "Synthesized object_property_mapping from object_property.",
-                    path=f"object_properties[{p['id']}]",
-                    property_id=p["id"],
-                )
-
-    # Backfill data property definitions from mappings if badly underspecified
-    for m in data_property_mappings:
-        pid = m.get("property_id")
-        if not pid:
-            continue
-        if pid not in dp_idx:
-            label = pid.split(".", 1)[1] if "." in pid else pid
-            label = label.replace("DataProperty:", "")
-            dp = {
-                "id": pid,
-                "label": label,
-                "domain_class": m.get("from_class", "Class:UNKNOWN"),
-                "range_type": "string",
-                "source_columns": [m["column"]] if m.get("column") else [],
-                "status": "accepted",
-                "extras": {"synthesized_from_mapping": True},
-            }
-            data_properties.append(dp)
-            dp_idx[pid] = dp
+            data_property_mappings.append(
+                {
+                    "property_id": pid,
+                    "from_class": p.get("domain_class"),
+                    "source_table": source_table,
+                    "source_columns": source_columns,
+                    "column": source_columns[0] if source_columns else "",
+                    "status": p.get("status", "proposed"),
+                    "confidence": p.get("confidence", 0.5),
+                }
+            )
             collector.add(
-                "warning",
-                "DATA_PROPERTY_SYNTHESIZED_FROM_MAPPING",
-                "Synthesized data property definition from mapping.",
+                "info",
+                "DATA_PROPERTY_MAPPING_SYNTHESIZED_FROM_PROPERTY",
+                "Synthesized data_property_mapping from data property definition.",
                 path=f"data_property_mappings[{pid}]",
                 property_id=pid,
             )
 
-    # Backfill object property definitions from mappings or repair missing fields
+    # Repair existing data properties from mappings
+    for m in data_property_mappings:
+        pid = m.get("property_id")
+        if not pid:
+            continue
+
+        p = dp_idx.get(pid)
+        mapped_cols = [str(c).strip() for c in (m.get("source_columns") or []) if str(c).strip()]
+        if m.get("column"):
+            col = str(m.get("column")).strip()
+            if col:
+                mapped_cols.append(col)
+        mapped_cols = list(dict.fromkeys(mapped_cols))
+
+        if p is None:
+            inferred_domain = m.get("from_class") or "Class:UNKNOWN"
+            inferred_label = pid.split(":", 1)[-1] if ":" in str(pid) else str(pid)
+            data_properties.append(
+                {
+                    "id": pid,
+                    "label": inferred_label,
+                    "domain_class": inferred_domain,
+                    "range_type": "string",
+                    "source_columns": mapped_cols,
+                    "status": m.get("status", "proposed"),
+                    "confidence": m.get("confidence", 0.5),
+                }
+            )
+            dp_idx[pid] = data_properties[-1]
+            collector.add(
+                "info",
+                "DATA_PROPERTY_SYNTHESIZED_FROM_MAPPING",
+                "Synthesized data property from data_property_mapping.",
+                path=f"data_properties[{pid}]",
+                property_id=pid,
+            )
+            continue
+
+        if (not p.get("source_columns")) and mapped_cols:
+            p["source_columns"] = mapped_cols
+            collector.add(
+                "info",
+                "DATA_PROPERTY_SOURCE_COLUMNS_BACKFILLED",
+                "Backfilled source_columns from data_property_mapping.",
+                path=f"data_properties[{pid}]",
+                property_id=pid,
+                source_columns=mapped_cols,
+            )
+
+        if (not p.get("domain_class") or p.get("domain_class") == "Class:UNKNOWN") and m.get("from_class"):
+            p["domain_class"] = m["from_class"]
+            collector.add(
+                "info",
+                "DATA_PROPERTY_DOMAIN_BACKFILLED",
+                "Backfilled domain_class from data_property_mapping.",
+                path=f"data_properties[{pid}]",
+                property_id=pid,
+                domain_class=p["domain_class"],
+            )
+
+        if (not p.get("status")) and m.get("status"):
+            p["status"] = m["status"]
+
+        if p.get("confidence") is None and m.get("confidence") is not None:
+            p["confidence"] = m["confidence"]
+
+    # --------------------------------------------------------
+    # 3) Backfill object property mappings from object properties if missing
+    # --------------------------------------------------------
+    if not object_property_mappings:
+        for p in object_properties:
+            pid = p.get("id")
+            if not pid:
+                continue
+
+            joins = p.get("join_paths") or []
+            object_property_mappings.append(
+                {
+                    "property_id": pid,
+                    "from_class": p.get("domain_class"),
+                    "to_class": p.get("range_class"),
+                    "joins": joins,
+                    "status": p.get("status", "proposed"),
+                    "confidence": p.get("confidence", 0.5),
+                }
+            )
+            collector.add(
+                "info",
+                "OBJECT_PROPERTY_MAPPING_SYNTHESIZED_FROM_PROPERTY",
+                "Synthesized object_property_mapping from object property definition.",
+                path=f"object_property_mappings[{pid}]",
+                property_id=pid,
+            )
+
+    # Repair existing object properties from mappings
     for m in object_property_mappings:
         pid = m.get("property_id")
         if not pid:
             continue
 
-        if pid not in op_idx:
-            label = pid.split(".", 1)[1] if "." in pid else pid
-            label = label.replace("ObjectProperty:", "")
-            op = {
-                "id": pid,
-                "label": label,
-                "domain_class": m.get("from_class", "Class:UNKNOWN"),
-                "range_class": m.get("to_class", "Class:UNKNOWN"),
-                "join_paths": m.get("joins", []),
-                "status": "accepted",
-                "reified": False,
-                "extras": {"synthesized_from_mapping": True},
-            }
-            object_properties.append(op)
-            op_idx[pid] = op
-            collector.add(
-                "warning",
-                "OBJECT_PROPERTY_SYNTHESIZED_FROM_MAPPING",
-                "Synthesized object property definition from mapping.",
-                path=f"object_property_mappings[{pid}]",
-                property_id=pid,
-            )
-        else:
-            op = op_idx[pid]
-            if (not op.get("range_class") or op.get("range_class") == "Class:UNKNOWN") and m.get("to_class"):
-                op["range_class"] = m["to_class"]
-                collector.add(
-                    "info",
-                    "OBJECT_PROPERTY_RANGE_BACKFILLED",
-                    "Backfilled range_class from object_property_mapping.",
-                    path=f"object_properties[{pid}]",
-                    property_id=pid,
-                    range_class=op["range_class"],
-                )
-            if (not op.get("join_paths")) and m.get("joins"):
-                op["join_paths"] = m["joins"]
-                collector.add(
-                    "info",
-                    "OBJECT_PROPERTY_JOINS_BACKFILLED",
-                    "Backfilled join_paths from object_property_mapping.",
-                    path=f"object_properties[{pid}]",
-                    property_id=pid,
-                )
+        p = op_idx.get(pid)
+        joins = m.get("joins") or []
 
-    # Backfill class source_tables from class mappings
-    class_map_idx = {m.get("class_id"): m for m in class_mappings if m.get("class_id")}
-    for c in classes:
-        cm = class_map_idx.get(c["id"])
-        if cm and (not c.get("source_tables")) and cm.get("from_tables"):
-            c["source_tables"] = cm["from_tables"]
+        if p is None:
+            inferred_domain = m.get("from_class") or "Class:UNKNOWN"
+            inferred_range = m.get("to_class") or "Class:UNKNOWN"
+            inferred_label = pid.split(":", 1)[-1] if ":" in str(pid) else str(pid)
+
+            object_properties.append(
+                {
+                    "id": pid,
+                    "label": inferred_label,
+                    "domain_class": inferred_domain,
+                    "range_class": inferred_range,
+                    "join_paths": joins,
+                    "status": m.get("status", "proposed"),
+                    "confidence": m.get("confidence", 0.5),
+                }
+            )
+            op_idx[pid] = object_properties[-1]
             collector.add(
                 "info",
-                "CLASS_SOURCE_TABLES_BACKFILLED",
-                "Backfilled class.source_tables from class_mapping.from_tables.",
-                path=f"classes[{c['id']}]",
-                class_id=c["id"],
-                source_tables=c["source_tables"],
+                "OBJECT_PROPERTY_SYNTHESIZED_FROM_MAPPING",
+                "Synthesized object property from object_property_mapping.",
+                path=f"object_properties[{pid}]",
+                property_id=pid,
             )
+            continue
+
+        if (not p.get("join_paths")) and joins:
+            p["join_paths"] = joins
+            collector.add(
+                "info",
+                "OBJECT_PROPERTY_JOINS_BACKFILLED",
+                "Backfilled join_paths from object_property_mapping.",
+                path=f"object_properties[{pid}]",
+                property_id=pid,
+            )
+
+        if (not p.get("domain_class") or p.get("domain_class") == "Class:UNKNOWN") and m.get("from_class"):
+            p["domain_class"] = m["from_class"]
+            collector.add(
+                "info",
+                "OBJECT_PROPERTY_DOMAIN_BACKFILLED",
+                "Backfilled domain_class from object_property_mapping.",
+                path=f"object_properties[{pid}]",
+                property_id=pid,
+            )
+
+        if (not p.get("range_class") or p.get("range_class") == "Class:UNKNOWN") and m.get("to_class"):
+            p["range_class"] = m["to_class"]
+            collector.add(
+                "info",
+                "OBJECT_PROPERTY_RANGE_BACKFILLED",
+                "Backfilled range_class from object_property_mapping.",
+                path=f"object_properties[{pid}]",
+                property_id=pid,
+            )
+
+        if (not p.get("status")) and m.get("status"):
+            p["status"] = m["status"]
+
+        if p.get("confidence") is None and m.get("confidence") is not None:
+            p["confidence"] = m["confidence"]
+
+    canonical["classes"] = classes
+    canonical["data_properties"] = data_properties
+    canonical["object_properties"] = object_properties
+    canonical["class_mappings"] = class_mappings
+    canonical["data_property_mappings"] = data_property_mappings
+    canonical["object_property_mappings"] = object_property_mappings
 
     return canonical
 

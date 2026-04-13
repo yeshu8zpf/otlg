@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
 
 
 class MappingVerifierLite:
@@ -8,10 +8,11 @@ class MappingVerifierLite:
     Lightweight verifier operating on canonical draft dicts
     produced by OntologyDraft.to_dict().
 
-    Goal:
-    - stay cheap / dependency-light
-    - align with current OntologyDraft schema
-    - return structured diagnostics for later feedback loops
+    Design goals:
+    - cheap / dependency-light
+    - aligned with current OntologyDraft schema
+    - verify effective consistency, not only local field presence
+    - produce structured diagnostics for later feedback loops
     """
 
     def _issue(self, level: str, code: str, message: str, **context: Any) -> Dict[str, Any]:
@@ -25,120 +26,43 @@ class MappingVerifierLite:
     def _index_by_id(self, items: List[Dict[str, Any]]) -> Dict[str, Dict[str, Any]]:
         out: Dict[str, Dict[str, Any]] = {}
         for x in items or []:
-            if isinstance(x, dict) and x.get("id"):
-                out[x["id"]] = x
+            xid = x.get("id")
+            if xid:
+                out[str(xid)] = x
         return out
 
-    def verify_class_mapping(self, class_mapping: Dict[str, Any]) -> List[Dict[str, Any]]:
-        issues: List[Dict[str, Any]] = []
+    def _index_by_key(
+        self,
+        items: List[Dict[str, Any]],
+        key: str,
+    ) -> Dict[str, Dict[str, Any]]:
+        out: Dict[str, Dict[str, Any]] = {}
+        for x in items or []:
+            k = x.get(key)
+            if k:
+                out[str(k)] = x
+        return out
 
-        class_id = class_mapping.get("class_id")
-        if not class_id:
-            issues.append(self._issue("error", "CLASS_MAPPING_MISSING_CLASS_ID", "class_mapping missing class_id"))
+    def _norm_list(self, value: Any) -> List[Any]:
+        if value is None:
+            return []
+        if isinstance(value, list):
+            return value
+        return [value]
 
-        if not class_mapping.get("instance_id_template"):
-            issues.append(
-                self._issue(
-                    "error",
-                    "CLASS_MAPPING_MISSING_INSTANCE_ID_TEMPLATE",
-                    "class_mapping missing instance_id_template",
-                    class_id=class_id,
-                )
-            )
+    def _non_empty_strings(self, xs: Any) -> List[str]:
+        out: List[str] = []
+        for x in self._norm_list(xs):
+            s = str(x).strip()
+            if s:
+                out.append(s)
+        return list(dict.fromkeys(out))
 
-        if not class_mapping.get("from_tables"):
-            issues.append(
-                self._issue(
-                    "error",
-                    "CLASS_MAPPING_MISSING_FROM_TABLES",
-                    "class_mapping missing from_tables",
-                    class_id=class_id,
-                )
-            )
-
-        if not class_mapping.get("identifier_columns"):
-            issues.append(
-                self._issue(
-                    "error",
-                    "CLASS_MAPPING_MISSING_IDENTIFIER_COLUMNS",
-                    "class_mapping missing identifier_columns",
-                    class_id=class_id,
-                )
-            )
-
-        return issues
-
-    def verify_data_property_mapping(self, m: Dict[str, Any]) -> List[Dict[str, Any]]:
-        issues: List[Dict[str, Any]] = []
-
-        property_id = m.get("property_id")
-        if not property_id:
-            issues.append(
-                self._issue("error", "DATA_PROPERTY_MAPPING_MISSING_PROPERTY_ID", "data_property_mapping missing property_id")
-            )
-
-        if not m.get("from_class"):
-            issues.append(
-                self._issue(
-                    "error",
-                    "DATA_PROPERTY_MAPPING_MISSING_FROM_CLASS",
-                    "data_property_mapping missing from_class",
-                    property_id=property_id,
-                )
-            )
-
-        if not m.get("column"):
-            issues.append(
-                self._issue(
-                    "error",
-                    "DATA_PROPERTY_MAPPING_MISSING_COLUMN",
-                    "data_property_mapping missing column",
-                    property_id=property_id,
-                )
-            )
-
-        return issues
-
-    def verify_object_property_mapping(self, m: Dict[str, Any]) -> List[Dict[str, Any]]:
-        issues: List[Dict[str, Any]] = []
-
-        property_id = m.get("property_id")
-        if not property_id:
-            issues.append(
-                self._issue("error", "OBJECT_PROPERTY_MAPPING_MISSING_PROPERTY_ID", "object_property_mapping missing property_id")
-            )
-
-        if not m.get("from_class"):
-            issues.append(
-                self._issue(
-                    "error",
-                    "OBJECT_PROPERTY_MAPPING_MISSING_FROM_CLASS",
-                    "object_property_mapping missing from_class",
-                    property_id=property_id,
-                )
-            )
-
-        if not m.get("to_class"):
-            issues.append(
-                self._issue(
-                    "error",
-                    "OBJECT_PROPERTY_MAPPING_MISSING_TO_CLASS",
-                    "object_property_mapping missing to_class",
-                    property_id=property_id,
-                )
-            )
-
-        if not m.get("joins"):
-            issues.append(
-                self._issue(
-                    "error",
-                    "OBJECT_PROPERTY_MAPPING_MISSING_JOINS",
-                    "object_property_mapping missing joins",
-                    property_id=property_id,
-                )
-            )
-
-        return issues
+    def _status_is_exportable(self, status: Optional[str]) -> bool:
+        s = str(status or "").strip().lower()
+        if not s:
+            return True
+        return s not in {"rejected", "invalid", "discarded", "dropped"}
 
     def verify_draft_dict(self, draft: Dict[str, Any]) -> Dict[str, Any]:
         issues: List[Dict[str, Any]] = []
@@ -146,218 +70,261 @@ class MappingVerifierLite:
         classes = draft.get("classes", []) or []
         data_properties = draft.get("data_properties", []) or []
         object_properties = draft.get("object_properties", []) or []
-
+        subclass_relations = draft.get("subclass_relations", []) or []
         class_mappings = draft.get("class_mappings", []) or []
         data_property_mappings = draft.get("data_property_mappings", []) or []
         object_property_mappings = draft.get("object_property_mappings", []) or []
 
         class_idx = self._index_by_id(classes)
-        data_prop_idx = self._index_by_id(data_properties)
-        object_prop_idx = self._index_by_id(object_properties)
+        dp_idx = self._index_by_id(data_properties)
+        op_idx = self._index_by_id(object_properties)
 
-        class_mapping_idx = {
-            m["class_id"]: m for m in class_mappings
-            if isinstance(m, dict) and m.get("class_id")
-        }
-        data_property_mapping_idx = {
-            m["property_id"]: m for m in data_property_mappings
-            if isinstance(m, dict) and m.get("property_id")
-        }
-        object_property_mapping_idx = {
-            m["property_id"]: m for m in object_property_mappings
-            if isinstance(m, dict) and m.get("property_id")
-        }
+        cm_idx = self._index_by_key(class_mappings, "class_id")
+        dpm_idx = self._index_by_key(data_property_mappings, "property_id")
+        opm_idx = self._index_by_key(object_property_mappings, "property_id")
 
-        # 1) Class mappings
-        for cm in class_mappings:
-            if not isinstance(cm, dict):
-                issues.append(self._issue("error", "CLASS_MAPPING_NOT_DICT", "class_mapping item is not a dict"))
+        # ----------------------------------------------------
+        # Duplicate IDs
+        # ----------------------------------------------------
+        if len(class_idx) != len(classes):
+            issues.append(self._issue("error", "DUPLICATE_CLASS_ID", "Duplicate class ids detected."))
+        if len(dp_idx) != len(data_properties):
+            issues.append(self._issue("error", "DUPLICATE_DATA_PROPERTY_ID", "Duplicate data property ids detected."))
+        if len(op_idx) != len(object_properties):
+            issues.append(self._issue("error", "DUPLICATE_OBJECT_PROPERTY_ID", "Duplicate object property ids detected."))
+
+        # ----------------------------------------------------
+        # Classes and class mappings
+        # ----------------------------------------------------
+        for c in classes:
+            cid = str(c.get("id") or "").strip()
+            if not cid:
+                issues.append(self._issue("error", "CLASS_MISSING_ID", "Class missing id.", item=c))
                 continue
 
-            issues.extend(self.verify_class_mapping(cm))
+            cm = cm_idx.get(cid)
+            source_tables = self._non_empty_strings(c.get("source_tables"))
+            exportable = self._status_is_exportable(c.get("status"))
 
-            class_id = cm.get("class_id")
-            if class_id and class_id not in class_idx:
+            if exportable and cm is None:
                 issues.append(
                     self._issue(
                         "error",
-                        "CLASS_MAPPING_UNKNOWN_CLASS",
-                        f"class_mapping references unknown class {class_id}",
-                        class_id=class_id,
+                        "CLASS_MISSING_MAPPING",
+                        "Exportable class has no class_mapping.",
+                        class_id=cid,
                     )
                 )
 
-        # 2) Data property mappings
-        for dm in data_property_mappings:
-            if not isinstance(dm, dict):
-                issues.append(self._issue("error", "DATA_PROPERTY_MAPPING_NOT_DICT", "data_property_mapping item is not a dict"))
-                continue
-
-            issues.extend(self.verify_data_property_mapping(dm))
-
-            property_id = dm.get("property_id")
-            from_class = dm.get("from_class")
-
-            if property_id and property_id not in data_prop_idx:
-                issues.append(
-                    self._issue(
-                        "error",
-                        "DATA_PROPERTY_MAPPING_UNKNOWN_PROPERTY",
-                        f"data_property_mapping references unknown property {property_id}",
-                        property_id=property_id,
-                    )
-                )
-                continue
-
-            if from_class and from_class not in class_idx:
-                issues.append(
-                    self._issue(
-                        "error",
-                        "DATA_PROPERTY_MAPPING_UNKNOWN_CLASS",
-                        f"data_property_mapping references unknown class {from_class}",
-                        property_id=property_id,
-                        from_class=from_class,
-                    )
-                )
-
-            prop = data_prop_idx.get(property_id)
-            if prop is not None:
-                domain_class = prop.get("domain_class")
-                if domain_class and from_class and domain_class != from_class:
+            if cm is not None:
+                mapped_tables = self._non_empty_strings(cm.get("from_tables"))
+                if not source_tables and not mapped_tables:
                     issues.append(
                         self._issue(
                             "error",
-                            "DATA_PROPERTY_DOMAIN_MISMATCH",
-                            f"data_property_mapping {property_id} uses from_class={from_class}, but property domain is {domain_class}",
-                            property_id=property_id,
-                            mapping_from_class=from_class,
-                            property_domain=domain_class,
+                            "CLASS_NO_SOURCE_TABLES",
+                            "Class has neither source_tables nor class_mapping.from_tables.",
+                            class_id=cid,
                         )
                     )
-
-        # 3) Object property mappings
-        for om in object_property_mappings:
-            if not isinstance(om, dict):
-                issues.append(self._issue("error", "OBJECT_PROPERTY_MAPPING_NOT_DICT", "object_property_mapping item is not a dict"))
-                continue
-
-            issues.extend(self.verify_object_property_mapping(om))
-
-            property_id = om.get("property_id")
-            from_class = om.get("from_class")
-            to_class = om.get("to_class")
-
-            if property_id and property_id not in object_prop_idx:
-                issues.append(
-                    self._issue(
-                        "error",
-                        "OBJECT_PROPERTY_MAPPING_UNKNOWN_PROPERTY",
-                        f"object_property_mapping references unknown property {property_id}",
-                        property_id=property_id,
-                    )
-                )
-                continue
-
-            if from_class and from_class not in class_idx:
-                issues.append(
-                    self._issue(
-                        "error",
-                        "OBJECT_PROPERTY_MAPPING_UNKNOWN_FROM_CLASS",
-                        f"object_property_mapping references unknown from_class {from_class}",
-                        property_id=property_id,
-                        from_class=from_class,
-                    )
-                )
-
-            if to_class and to_class not in class_idx:
-                issues.append(
-                    self._issue(
-                        "error",
-                        "OBJECT_PROPERTY_MAPPING_UNKNOWN_TO_CLASS",
-                        f"object_property_mapping references unknown to_class {to_class}",
-                        property_id=property_id,
-                        to_class=to_class,
-                    )
-                )
-
-            prop = object_prop_idx.get(property_id)
-            if prop is not None:
-                domain_class = prop.get("domain_class")
-                range_class = prop.get("range_class")
-
-                if domain_class and from_class and domain_class != from_class:
+                if not str(cm.get("instance_id_template") or "").strip():
                     issues.append(
                         self._issue(
                             "error",
-                            "OBJECT_PROPERTY_DOMAIN_MISMATCH",
-                            f"object_property_mapping {property_id} uses from_class={from_class}, but property domain is {domain_class}",
-                            property_id=property_id,
-                            mapping_from_class=from_class,
-                            property_domain=domain_class,
+                            "CLASS_MAPPING_NO_INSTANCE_TEMPLATE",
+                            "class_mapping missing instance_id_template.",
+                            class_id=cid,
                         )
                     )
 
-                if range_class and to_class and range_class != to_class:
-                    issues.append(
-                        self._issue(
-                            "error",
-                            "OBJECT_PROPERTY_RANGE_MISMATCH",
-                            f"object_property_mapping {property_id} uses to_class={to_class}, but property range is {range_class}",
-                            property_id=property_id,
-                            mapping_to_class=to_class,
-                            property_range=range_class,
-                        )
-                    )
+        # ----------------------------------------------------
+        # Data properties and mappings
+        # ----------------------------------------------------
+        for p in data_properties:
+            pid = str(p.get("id") or "").strip()
+            if not pid:
+                issues.append(self._issue("error", "DATA_PROPERTY_MISSING_ID", "Data property missing id.", item=p))
+                continue
 
-                declared_join_paths = prop.get("join_paths") or []
-                mapped_joins = om.get("joins") or []
-                if declared_join_paths and mapped_joins and declared_join_paths != mapped_joins:
+            domain_class = str(p.get("domain_class") or "").strip()
+            if domain_class and domain_class not in class_idx:
+                issues.append(
+                    self._issue(
+                        "error",
+                        "DATA_PROPERTY_UNKNOWN_DOMAIN",
+                        "Data property references unknown domain class.",
+                        property_id=pid,
+                        domain_class=domain_class,
+                    )
+                )
+
+            dm = dpm_idx.get(pid)
+            exportable = self._status_is_exportable(p.get("status"))
+
+            if exportable and dm is None:
+                issues.append(
+                    self._issue(
+                        "error",
+                        "DATA_PROPERTY_MISSING_MAPPING",
+                        "Exportable data property has no data_property_mapping.",
+                        property_id=pid,
+                    )
+                )
+                continue
+
+            property_cols = self._non_empty_strings(p.get("source_columns"))
+            mapping_cols = []
+            if dm is not None:
+                mapping_cols.extend(self._non_empty_strings(dm.get("source_columns")))
+                if str(dm.get("column") or "").strip():
+                    mapping_cols.append(str(dm["column"]).strip())
+
+            effective_cols = list(dict.fromkeys(property_cols + mapping_cols))
+            if exportable and not effective_cols:
+                issues.append(
+                    self._issue(
+                        "error",
+                        "DATA_PROPERTY_NO_EFFECTIVE_SOURCE_COLUMNS",
+                        "Data property has neither source_columns nor usable data_property_mapping columns.",
+                        property_id=pid,
+                    )
+                )
+
+            if dm is not None:
+                from_class = str(dm.get("from_class") or "").strip()
+                if from_class and domain_class and from_class != domain_class:
                     issues.append(
                         self._issue(
                             "warning",
-                            "OBJECT_PROPERTY_JOIN_PATH_MISMATCH",
-                            f"object_property_mapping {property_id} joins differ from object_property.join_paths",
-                            property_id=property_id,
+                            "DATA_PROPERTY_DOMAIN_MISMATCH",
+                            "domain_class and data_property_mapping.from_class disagree.",
+                            property_id=pid,
+                            domain_class=domain_class,
+                            from_class=from_class,
                         )
                     )
 
-        # 4) Accepted ontology elements should be mapped
-        for c in classes:
-            if not isinstance(c, dict):
-                continue
-            if c.get("status", "accepted") == "accepted" and c.get("id") not in class_mapping_idx:
-                issues.append(
-                    self._issue(
-                        "error",
-                        "MISSING_CLASS_MAPPING",
-                        f"accepted class {c.get('id')} has no class mapping",
-                        class_id=c.get("id"),
+                source_table = str(dm.get("source_table") or "").strip()
+                if not source_table and not effective_cols:
+                    issues.append(
+                        self._issue(
+                            "warning",
+                            "DATA_PROPERTY_MAPPING_WEAK_GROUNDING",
+                            "Data property mapping has weak grounding: no source_table and no effective source columns.",
+                            property_id=pid,
+                        )
                     )
-                )
 
-        for p in data_properties:
-            if not isinstance(p, dict):
-                continue
-            if p.get("status", "accepted") == "accepted" and p.get("id") not in data_property_mapping_idx:
-                issues.append(
-                    self._issue(
-                        "error",
-                        "MISSING_DATA_PROPERTY_MAPPING",
-                        f"accepted data property {p.get('id')} has no data property mapping",
-                        property_id=p.get("id"),
-                    )
-                )
-
+        # ----------------------------------------------------
+        # Object properties and mappings
+        # ----------------------------------------------------
         for p in object_properties:
-            if not isinstance(p, dict):
+            pid = str(p.get("id") or "").strip()
+            if not pid:
+                issues.append(self._issue("error", "OBJECT_PROPERTY_MISSING_ID", "Object property missing id.", item=p))
                 continue
-            if p.get("status", "accepted") == "accepted" and p.get("id") not in object_property_mapping_idx:
+
+            domain_class = str(p.get("domain_class") or "").strip()
+            range_class = str(p.get("range_class") or "").strip()
+
+            if domain_class and domain_class not in class_idx:
                 issues.append(
                     self._issue(
                         "error",
-                        "MISSING_OBJECT_PROPERTY_MAPPING",
-                        f"accepted object property {p.get('id')} has no object property mapping",
-                        property_id=p.get("id"),
+                        "OBJECT_PROPERTY_UNKNOWN_DOMAIN",
+                        "Object property references unknown domain class.",
+                        property_id=pid,
+                        domain_class=domain_class,
+                    )
+                )
+            if range_class and range_class not in class_idx:
+                issues.append(
+                    self._issue(
+                        "error",
+                        "OBJECT_PROPERTY_UNKNOWN_RANGE",
+                        "Object property references unknown range class.",
+                        property_id=pid,
+                        range_class=range_class,
+                    )
+                )
+
+            om = opm_idx.get(pid)
+            exportable = self._status_is_exportable(p.get("status"))
+
+            if exportable and om is None:
+                issues.append(
+                    self._issue(
+                        "error",
+                        "OBJECT_PROPERTY_MISSING_MAPPING",
+                        "Exportable object property has no object_property_mapping.",
+                        property_id=pid,
+                    )
+                )
+                continue
+
+            property_joins = self._norm_list(p.get("join_paths"))
+            mapping_joins = self._norm_list(om.get("joins") if om is not None else [])
+            effective_joins = property_joins or mapping_joins
+
+            if exportable and not effective_joins:
+                issues.append(
+                    self._issue(
+                        "error",
+                        "OBJECT_PROPERTY_NO_EFFECTIVE_JOINS",
+                        "Object property has neither join_paths nor object_property_mapping.joins.",
+                        property_id=pid,
+                    )
+                )
+
+            if om is not None:
+                from_class = str(om.get("from_class") or "").strip()
+                to_class = str(om.get("to_class") or "").strip()
+
+                if domain_class and from_class and domain_class != from_class:
+                    issues.append(
+                        self._issue(
+                            "warning",
+                            "OBJECT_PROPERTY_DOMAIN_MISMATCH",
+                            "domain_class and object_property_mapping.from_class disagree.",
+                            property_id=pid,
+                            domain_class=domain_class,
+                            from_class=from_class,
+                        )
+                    )
+                if range_class and to_class and range_class != to_class:
+                    issues.append(
+                        self._issue(
+                            "warning",
+                            "OBJECT_PROPERTY_RANGE_MISMATCH",
+                            "range_class and object_property_mapping.to_class disagree.",
+                            property_id=pid,
+                            range_class=range_class,
+                            to_class=to_class,
+                        )
+                    )
+
+        # ----------------------------------------------------
+        # Subclass relations
+        # ----------------------------------------------------
+        for rel in subclass_relations:
+            child = str(rel.get("child_class") or "").strip()
+            parent = str(rel.get("parent_class") or "").strip()
+            if child and child not in class_idx:
+                issues.append(
+                    self._issue(
+                        "error",
+                        "SUBCLASS_UNKNOWN_CHILD",
+                        "Subclass relation references unknown child class.",
+                        child_class=child,
+                    )
+                )
+            if parent and parent not in class_idx:
+                issues.append(
+                    self._issue(
+                        "error",
+                        "SUBCLASS_UNKNOWN_PARENT",
+                        "Subclass relation references unknown parent class.",
+                        parent_class=parent,
                     )
                 )
 
@@ -370,6 +337,7 @@ class MappingVerifierLite:
             "num_errors": len(errors),
             "num_warnings": len(warnings),
             "num_infos": len(infos),
+            "issues": issues,
             "errors": errors,
             "warnings": warnings,
             "infos": infos,
