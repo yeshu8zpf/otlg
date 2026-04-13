@@ -1,0 +1,17 @@
+{
+  "scenario_dir": "/root/ontology/burr_benchmark/real-world/mondial",
+  "schema_path": null,
+  "fk_mode": "auto",
+  "model": "gpt-5.4-nano",
+  "api_url": "https://www.aiapikey.net/v1/chat/completions",
+  "enabled_tools": [
+    "mapping_verifier_lite",
+    "pattern_detector",
+    "schema_profiler"
+  ],
+  "error": {
+    "type": "NameError",
+    "message": "name 'call_llm_json' is not defined",
+    "traceback": "Traceback (most recent call last):\n  File \"/root/ontology/baseline/tool_augmented.py\", line 906, in main\n    draft, burr_mapping, meta, raw_model_json, tool_artifacts = run_tool_augmented_baseline(\n                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/ontology/baseline/tool_augmented.py\", line 792, in run_tool_augmented_baseline\n    raw_model_json, llm_meta = call_llm_json(\n                               ^^^^^^^^^^^^^\nNameError: name 'call_llm_json' is not defined\n"
+  }
+}

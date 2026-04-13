@@ -1,0 +1,5900 @@
+{
+  "scenario_dir": "/root/ontology/burr_benchmark/real-world/mondial",
+  "schema_path": "/root/ontology/burr_benchmark/real-world/mondial/schema_pg_fks.sql",
+  "fk_mode": "auto",
+  "model": "gpt-5.4-nano",
+  "api_url": "https://www.aiapikey.net/v1/chat/completions",
+  "prompt_chars": 18720,
+  "enabled_tools": [
+    "mapping_verifier_lite",
+    "pattern_detector",
+    "schema_profiler"
+  ],
+  "prompt_includes": {
+    "schema_sql": false,
+    "table_defs": true,
+    "sample_rows": false,
+    "tool_context": true
+  },
+  "raw_model_top_level_counts": {
+    "num_classes": 29,
+    "num_data_properties": 49,
+    "num_object_properties": 39,
+    "num_subclass_relations": 0,
+    "num_class_mappings": 29,
+    "num_data_property_mappings": 49,
+    "num_object_property_mappings": 38
+  },
+  "normalized_top_level_counts": {
+    "num_classes": 29,
+    "num_data_properties": 49,
+    "num_object_properties": 39,
+    "num_subclass_relations": 0,
+    "num_class_mappings": 29,
+    "num_data_property_mappings": 49,
+    "num_object_property_mappings": 38
+  },
+  "draft_validation": {
+    "ok": false,
+    "num_errors": 49,
+    "errors": [
+      "Data property countryName has no source_columns.",
+      "Data property countryArea has no source_columns.",
+      "Data property countryPopulation has no source_columns.",
+      "Data property provincePopulation has no source_columns.",
+      "Data property provinceArea has no source_columns.",
+      "Data property cityPopulation has no source_columns.",
+      "Data property cityLatitude has no source_columns.",
+      "Data property cityLongitude has no source_columns.",
+      "Data property cityElevation has no source_columns.",
+      "Data property continentArea has no source_columns.",
+      "Data property organizationName has no source_columns.",
+      "Data property organizationEstablished has no source_columns.",
+      "Data property gdp has no source_columns.",
+      "Data property agricultureShare has no source_columns.",
+      "Data property serviceShare has no source_columns.",
+      "Data property industryShare has no source_columns.",
+      "Data property inflationRate has no source_columns.",
+      "Data property unemploymentRate has no source_columns.",
+      "Data property independenceDate has no source_columns.",
+      "Data property wasDependentOnName has no source_columns.",
+      "Data property governmentType has no source_columns.",
+      "Data property populationGrowth has no source_columns.",
+      "Data property infantMortality has no source_columns.",
+      "Data property observationYear has no source_columns.",
+      "Data property observedPopulation has no source_columns.",
+      "Data property provinceObservationYear has no source_columns.",
+      "Data property provinceObservedPopulation has no source_columns.",
+      "Data property cityObservationYear has no source_columns.",
+      "Data property cityObservedPopulation has no source_columns.",
+      "Data property localNameText has no source_columns.",
+      "Data property otherNameText has no source_columns.",
+      "Data property provinceLocalNameText has no source_columns.",
+      "Data property provinceOtherNameText has no source_columns.",
+      "Data property cityLocalNameText has no source_columns.",
+      "Data property cityOtherNameText has no source_columns.",
+      "Data property religionNameText has no source_columns.",
+      "Data property religionSharePercentage has no source_columns.",
+      "Data property ethnicGroupNameText has no source_columns.",
+      "Data property ethnicGroupSharePercentage has no source_columns.",
+      "Data property spokenPercentage has no source_columns.",
+      "Data property borderLength has no source_columns.",
+      "Data property inclusionPercentage has no source_columns.",
+      "Data property riverLength has no source_columns.",
+      "Data property lakeArea has no source_columns.",
+      "Data property mountainElevation has no source_columns.",
+      "Data property desertArea has no source_columns.",
+      "Data property islandArea has no source_columns.",
+      "Data property seaArea has no source_columns.",
+      "Data property languageName has no source_columns."
+    ]
+  },
+  "lite_verification": {
+    "ok": true,
+    "num_errors": 0,
+    "num_warnings": 0,
+    "num_infos": 0,
+    "errors": [],
+    "warnings": [],
+    "infos": []
+  },
+  "verification_feedback": {
+    "num_attached": 0,
+    "num_revision_hints": 0
+  },
+  "tool_context_summary": {
+    "schema_summary": {
+      "num_tables": 46,
+      "num_foreign_keys": 0,
+      "num_composite_primary_keys": 30
+    },
+    "hypothesis_summary": {
+      "num_hypotheses": 46,
+      "by_kind": {
+        "ClassHypothesis": 46
+      },
+      "by_status": {
+        "proposed": 46
+      }
+    },
+    "num_cross_table_value_overlap": 0
+  },
+  "llm_meta": {
+    "model": "gpt-5.4-nano",
+    "api_url": "https://www.aiapikey.net/v1/chat/completions",
+    "timeout": 300.0,
+    "max_retries": 3,
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "ok",
+        "status_code": 200,
+        "response_headers": {
+          "date": "Mon, 13 Apr 2026 02:16:21 GMT",
+          "content-type": "text/event-stream",
+          "transfer-encoding": "chunked",
+          "connection": "keep-alive",
+          "server": "cloudflare",
+          "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+          "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=wEeZ4LjytvTIPPYW0zcpi1rcNm7l1MoorA%2B857FQZFVpgeGF5C0UCANKHDdVOfYR1MLllRbq59op3kM6JHCCDIN%2FoX0Uiy0qQ8si0fYBSmJ85rg1qw0oAICQMalZJkMsEp%2Fv\"}]}",
+          "cache-control": "no-cache",
+          "x-new-api-version": "v0.12.2",
+          "x-oneapi-request-id": "20260413021615197961319gjh6YYv7",
+          "cf-cache-status": "DYNAMIC",
+          "cf-ray": "9eb6f7b61fa7f9e6-SIN",
+          "alt-svc": "h3=\":443\"; ma=86400"
+        },
+        "raw_content_preview": "{\n  \"classes\": [\n    {\n      \"id\": \"Country\",\n      \"label\": \"Country\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.98,\n      \"description\": \"Sovereign country identified by database code.\"\n    },\n    {\n      \"id\": \"Province\",\n      \"label\": \"Province\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.96,\n      \"description\": \"First-level administrative division within a country.\"\n    },\n    {\n      \"id\": \"City\",\n      \"label\": \"City\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.96,\n      \"description\": \"City identified relative to province and country.\"\n    },\n    {\n      \"id\": \"Continent\",\n      \"label\": \"Continent\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.95\n    },\n    {\n      \"id\": \"Organization\",\n      \"label\": \"Organization\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.94\n    },\n    {\n      \"id\": \"Language\",\n      \"label\": \"Language\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.95\n    },\n    {\n      \"id\": \"Sea\",\n      \"label\": \"Sea\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.94\n    },\n    {\n      \"id\": \"River\",\n      \"label\": \"River\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.95\n    },\n    {\n      \"id\": \"Lake\",\n      \"label\": \"Lake\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.95\n    },\n    {\n      \"id\": \"Mountain\",\n      \"label\": \"Mountain\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.95\n    },\n    {\n      \"id\": \"Desert\",\n      \"label\": \"Desert\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.94\n    },\n    {\n      \"id\": \"Island\",\n      \"label\": \"Island\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.95\n    },\n    {\n      \"id\": \"Economy\",\n      \"label\": \"Economy\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.9,\n      \"description\": \"Country-level economic indicators.\"\n    },\n    {\n      \"id\": \"Politics\",\n      \"label\": \"Politics\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.9,\n      \"description\": \"Country-level political characteristics.\"\n    },\n    {\n      \"id\": \"PopulationStatistics\",\n      \"label\": \"Population Statistics\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.9,\n      \"description\": \"Country-level demographic indicators.\"\n    },\n    {\n      \"id\": \"CountryPopulationObservation\",\n      \"label\": \"Country Population Observation\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.93\n    },\n    {\n      \"id\": \"ProvincePopulationObservation\",\n      \"label\": \"Province Population Observation\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.93\n    },\n    {\n      \"id\": \"CityPopulationObservation\",\n      \"label\": \"City Population Observation\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.93\n    },\n    {\n      \"id\": \"CountryLocalName\",\n      \"label\": \"Country Local Name\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.9\n    },\n    {\n      \"id\": \"CountryOtherName\",\n      \"label\": \"Country Other Name\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.9\n    },\n    {\n      \"id\": \"ProvinceLocalName\",\n      \"label\": \"Province Local Name\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.9\n    },\n    {\n      \"id\": \"ProvinceOtherName\",\n      \"label\": \"Province Other Name\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.9\n    },\n    {\n      \"id\": \"CityLocalName\",\n      \"label\": \"City Local Name\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.9\n    },\n    {\n      \"id\": \"CityOtherName\",\n      \"label\": \"City Other Name\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.9\n    },\n    {\n      \"id\": \"CountryReligionShare\",\n      \"label\": \"Country Religion Share\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.92,\n      \"description\": \"Reified country-religion percentage statement.\"\n    },\n    {\n      \"id\": \"CountryEthnicGroupShare\",\n      \"label\": \"Country Ethnic Group Share\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.92,\n      \"description\": \"Reified country-ethnic-group percentage statement.\"\n    },\n    {\n      \"id\": \"SpokenLanguageUsage\",\n      \"label\": \"Spoken Language Usage\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.94,\n      \"description\": \"Reified country-language percentage statement.\"\n    },\n    {\n      \"id\": \"Border\",\n      \"label\": \"Border\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.92,\n      \"description\": \"Border segment between two countries with a length attribute.\"\n    },\n    {\n      \"id\": \"CountryContinentInclusion\",\n      \"label\": \"Country Continent Inclusion\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.92,\n      \"description\": \"Reified membership of a country in a continent with percentage.\"\n    }\n  ],\n  \"data_properties\": [\n    {\n      \"id\": \"countryName\",\n      \"label\": \"country name\",\n      \"domain\": \"Country\",\n      \"range\": \"xsd:string\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.95\n    },\n    {\n      \"id\": \"countryArea\",\n      \"label\": \"country area\",\n      \"domain\": \"Country\",\n      \"range\": \"xsd:decimal\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.94\n    },\n    {\n      \"id\": \"countryPopulation\",\n      \"label\": \"country population\",\n      \""
+      }
+    ],
+    "status_code": 200,
+    "response_headers": {
+      "date": "Mon, 13 Apr 2026 02:16:21 GMT",
+      "content-type": "text/event-stream",
+      "transfer-encoding": "chunked",
+      "connection": "keep-alive",
+      "server": "cloudflare",
+      "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+      "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=wEeZ4LjytvTIPPYW0zcpi1rcNm7l1MoorA%2B857FQZFVpgeGF5C0UCANKHDdVOfYR1MLllRbq59op3kM6JHCCDIN%2FoX0Uiy0qQ8si0fYBSmJ85rg1qw0oAICQMalZJkMsEp%2Fv\"}]}",
+      "cache-control": "no-cache",
+      "x-new-api-version": "v0.12.2",
+      "x-oneapi-request-id": "20260413021615197961319gjh6YYv7",
+      "cf-cache-status": "DYNAMIC",
+      "cf-ray": "9eb6f7b61fa7f9e6-SIN",
+      "alt-svc": "h3=\":443\"; ma=86400"
+    },
+    "raw_content_preview": "{\n  \"classes\": [\n    {\n      \"id\": \"Country\",\n      \"label\": \"Country\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.98,\n      \"description\": \"Sovereign country identified by database code.\"\n    },\n    {\n      \"id\": \"Province\",\n      \"label\": \"Province\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.96,\n      \"description\": \"First-level administrative division within a country.\"\n    },\n    {\n      \"id\": \"City\",\n      \"label\": \"City\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.96,\n      \"description\": \"City identified relative to province and country.\"\n    },\n    {\n      \"id\": \"Continent\",\n      \"label\": \"Continent\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.95\n    },\n    {\n      \"id\": \"Organization\",\n      \"label\": \"Organization\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.94\n    },\n    {\n      \"id\": \"Language\",\n      \"label\": \"Language\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.95\n    },\n    {\n      \"id\": \"Sea\",\n      \"label\": \"Sea\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.94\n    },\n    {\n      \"id\": \"River\",\n      \"label\": \"River\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.95\n    },\n    {\n      \"id\": \"Lake\",\n      \"label\": \"Lake\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.95\n    },\n    {\n      \"id\": \"Mountain\",\n      \"label\": \"Mountain\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.95\n    },\n    {\n      \"id\": \"Desert\",\n      \"label\": \"Desert\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.94\n    },\n    {\n      \"id\": \"Island\",\n      \"label\": \"Island\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.95\n    },\n    {\n      \"id\": \"Economy\",\n      \"label\": \"Economy\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.9,\n      \"description\": \"Country-level economic indicators.\"\n    },\n    {\n      \"id\": \"Politics\",\n      \"label\": \"Politics\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.9,\n      \"description\": \"Country-level political characteristics.\"\n    },\n    {\n      \"id\": \"PopulationStatistics\",\n      \"label\": \"Population Statistics\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.9,\n      \"description\": \"Country-level demographic indicators.\"\n    },\n    {\n      \"id\": \"CountryPopulationObservation\",\n      \"label\": \"Country Population Observation\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.93\n    },\n    {\n      \"id\": \"ProvincePopulationObservation\",\n      \"label\": \"Province Population Observation\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.93\n    },\n    {\n      \"id\": \"CityPopulationObservation\",\n      \"label\": \"City Population Observation\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.93\n    },\n    {\n      \"id\": \"CountryLocalName\",\n      \"label\": \"Country Local Name\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.9\n    },\n    {\n      \"id\": \"CountryOtherName\",\n      \"label\": \"Country Other Name\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.9\n    },\n    {\n      \"id\": \"ProvinceLocalName\",\n      \"label\": \"Province Local Name\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.9\n    },\n    {\n      \"id\": \"ProvinceOtherName\",\n      \"label\": \"Province Other Name\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.9\n    },\n    {\n      \"id\": \"CityLocalName\",\n      \"label\": \"City Local Name\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.9\n    },\n    {\n      \"id\": \"CityOtherName\",\n      \"label\": \"City Other Name\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.9\n    },\n    {\n      \"id\": \"CountryReligionShare\",\n      \"label\": \"Country Religion Share\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.92,\n      \"description\": \"Reified country-religion percentage statement.\"\n    },\n    {\n      \"id\": \"CountryEthnicGroupShare\",\n      \"label\": \"Country Ethnic Group Share\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.92,\n      \"description\": \"Reified country-ethnic-group percentage statement.\"\n    },\n    {\n      \"id\": \"SpokenLanguageUsage\",\n      \"label\": \"Spoken Language Usage\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.94,\n      \"description\": \"Reified country-language percentage statement.\"\n    },\n    {\n      \"id\": \"Border\",\n      \"label\": \"Border\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.92,\n      \"description\": \"Border segment between two countries with a length attribute.\"\n    },\n    {\n      \"id\": \"CountryContinentInclusion\",\n      \"label\": \"Country Continent Inclusion\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.92,\n      \"description\": \"Reified membership of a country in a continent with percentage.\"\n    }\n  ],\n  \"data_properties\": [\n    {\n      \"id\": \"countryName\",\n      \"label\": \"country name\",\n      \"domain\": \"Country\",\n      \"range\": \"xsd:string\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.95\n    },\n    {\n      \"id\": \"countryArea\",\n      \"label\": \"country area\",\n      \"domain\": \"Country\",\n      \"range\": \"xsd:decimal\",\n      \"status\": \"proposed\",\n      \"confidence\": 0.94\n    },\n    {\n      \"id\": \"countryPopulation\",\n      \"label\": \"country population\",\n      \""
+  },
+  "normalization_report": {
+    "ok": true,
+    "num_messages": 545,
+    "by_level": {
+      "info": 545
+    },
+    "by_code": {
+      "TOP_LEVEL_DEFAULT_INSERTED": 1,
+      "FIELD_ALIAS_CANONICALIZED": 350,
+      "EXTRA_FIELDS_PRESERVED": 116,
+      "COLUMN_FROM_SOURCE_COLUMNS": 49,
+      "CLASS_SOURCE_TABLES_BACKFILLED": 29
+    },
+    "messages": [
+      {
+        "level": "info",
+        "code": "TOP_LEVEL_DEFAULT_INSERTED",
+        "message": "Inserted missing top-level key 'extras'.",
+        "path": "extras",
+        "payload": {}
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "data_properties[0]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_type'.",
+        "path": "data_properties[0]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_type"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "data_properties[1]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_type'.",
+        "path": "data_properties[1]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_type"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "data_properties[2]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_type'.",
+        "path": "data_properties[2]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_type"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "data_properties[3]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_type'.",
+        "path": "data_properties[3]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_type"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "data_properties[4]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_type'.",
+        "path": "data_properties[4]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_type"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "data_properties[5]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_type'.",
+        "path": "data_properties[5]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_type"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "data_properties[6]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_type'.",
+        "path": "data_properties[6]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_type"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "data_properties[7]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_type'.",
+        "path": "data_properties[7]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_type"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "data_properties[8]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_type'.",
+        "path": "data_properties[8]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_type"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "data_properties[9]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_type'.",
+        "path": "data_properties[9]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_type"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "data_properties[10]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_type'.",
+        "path": "data_properties[10]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_type"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "data_properties[11]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_type'.",
+        "path": "data_properties[11]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_type"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "data_properties[12]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_type'.",
+        "path": "data_properties[12]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_type"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "data_properties[13]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_type'.",
+        "path": "data_properties[13]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_type"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "data_properties[14]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_type'.",
+        "path": "data_properties[14]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_type"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "data_properties[15]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_type'.",
+        "path": "data_properties[15]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_type"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "data_properties[16]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_type'.",
+        "path": "data_properties[16]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_type"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "data_properties[17]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_type'.",
+        "path": "data_properties[17]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_type"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "data_properties[18]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_type'.",
+        "path": "data_properties[18]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_type"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "data_properties[19]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_type'.",
+        "path": "data_properties[19]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_type"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "data_properties[20]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_type'.",
+        "path": "data_properties[20]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_type"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "data_properties[21]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_type'.",
+        "path": "data_properties[21]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_type"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "data_properties[22]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_type'.",
+        "path": "data_properties[22]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_type"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "data_properties[23]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_type'.",
+        "path": "data_properties[23]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_type"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "data_properties[24]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_type'.",
+        "path": "data_properties[24]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_type"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "data_properties[25]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_type'.",
+        "path": "data_properties[25]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_type"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "data_properties[26]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_type'.",
+        "path": "data_properties[26]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_type"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "data_properties[27]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_type'.",
+        "path": "data_properties[27]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_type"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "data_properties[28]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_type'.",
+        "path": "data_properties[28]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_type"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "data_properties[29]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_type'.",
+        "path": "data_properties[29]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_type"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "data_properties[30]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_type'.",
+        "path": "data_properties[30]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_type"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "data_properties[31]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_type'.",
+        "path": "data_properties[31]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_type"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "data_properties[32]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_type'.",
+        "path": "data_properties[32]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_type"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "data_properties[33]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_type'.",
+        "path": "data_properties[33]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_type"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "data_properties[34]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_type'.",
+        "path": "data_properties[34]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_type"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "data_properties[35]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_type'.",
+        "path": "data_properties[35]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_type"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "data_properties[36]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_type'.",
+        "path": "data_properties[36]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_type"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "data_properties[37]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_type'.",
+        "path": "data_properties[37]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_type"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "data_properties[38]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_type'.",
+        "path": "data_properties[38]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_type"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "data_properties[39]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_type'.",
+        "path": "data_properties[39]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_type"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "data_properties[40]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_type'.",
+        "path": "data_properties[40]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_type"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "data_properties[41]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_type'.",
+        "path": "data_properties[41]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_type"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "data_properties[42]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_type'.",
+        "path": "data_properties[42]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_type"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "data_properties[43]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_type'.",
+        "path": "data_properties[43]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_type"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "data_properties[44]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_type'.",
+        "path": "data_properties[44]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_type"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "data_properties[45]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_type'.",
+        "path": "data_properties[45]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_type"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "data_properties[46]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_type'.",
+        "path": "data_properties[46]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_type"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "data_properties[47]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_type'.",
+        "path": "data_properties[47]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_type"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "data_properties[48]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_type'.",
+        "path": "data_properties[48]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_type"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "object_properties[0]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_class'.",
+        "path": "object_properties[0]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "object_properties[1]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_class'.",
+        "path": "object_properties[1]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "object_properties[2]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_class'.",
+        "path": "object_properties[2]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "object_properties[3]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_class'.",
+        "path": "object_properties[3]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "object_properties[4]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_class'.",
+        "path": "object_properties[4]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "object_properties[5]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_class'.",
+        "path": "object_properties[5]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "object_properties[6]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_class'.",
+        "path": "object_properties[6]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "object_properties[7]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_class'.",
+        "path": "object_properties[7]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "object_properties[8]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_class'.",
+        "path": "object_properties[8]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "object_properties[9]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_class'.",
+        "path": "object_properties[9]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "object_properties[10]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_class'.",
+        "path": "object_properties[10]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "object_properties[11]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_class'.",
+        "path": "object_properties[11]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "object_properties[12]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_class'.",
+        "path": "object_properties[12]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "object_properties[13]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_class'.",
+        "path": "object_properties[13]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "object_properties[14]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_class'.",
+        "path": "object_properties[14]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "object_properties[15]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_class'.",
+        "path": "object_properties[15]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "object_properties[16]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_class'.",
+        "path": "object_properties[16]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "object_properties[17]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_class'.",
+        "path": "object_properties[17]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "object_properties[18]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_class'.",
+        "path": "object_properties[18]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "object_properties[19]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_class'.",
+        "path": "object_properties[19]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "object_properties[20]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_class'.",
+        "path": "object_properties[20]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "object_properties[21]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_class'.",
+        "path": "object_properties[21]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "object_properties[22]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_class'.",
+        "path": "object_properties[22]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "object_properties[23]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_class'.",
+        "path": "object_properties[23]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "object_properties[24]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_class'.",
+        "path": "object_properties[24]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "object_properties[25]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_class'.",
+        "path": "object_properties[25]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "object_properties[26]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_class'.",
+        "path": "object_properties[26]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "object_properties[27]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_class'.",
+        "path": "object_properties[27]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "object_properties[28]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_class'.",
+        "path": "object_properties[28]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "object_properties[29]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_class'.",
+        "path": "object_properties[29]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "object_properties[30]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_class'.",
+        "path": "object_properties[30]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "object_properties[31]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_class'.",
+        "path": "object_properties[31]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "object_properties[32]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_class'.",
+        "path": "object_properties[32]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "object_properties[33]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_class'.",
+        "path": "object_properties[33]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "object_properties[34]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_class'.",
+        "path": "object_properties[34]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "object_properties[35]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_class'.",
+        "path": "object_properties[35]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "object_properties[36]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_class'.",
+        "path": "object_properties[36]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "object_properties[37]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_class'.",
+        "path": "object_properties[37]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'domain' to 'domain_class'.",
+        "path": "object_properties[38]",
+        "payload": {
+          "from_key": "domain",
+          "to_key": "domain_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'range' to 'range_class'.",
+        "path": "object_properties[38]",
+        "payload": {
+          "from_key": "range",
+          "to_key": "range_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "class_mappings[0]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "class_mappings[1]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "class_mappings[2]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "class_mappings[3]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "class_mappings[4]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "class_mappings[5]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "class_mappings[6]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "class_mappings[7]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "class_mappings[8]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "class_mappings[9]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "class_mappings[10]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "class_mappings[11]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "class_mappings[12]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "class_mappings[13]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "class_mappings[14]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "class_mappings[15]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "class_mappings[16]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "class_mappings[17]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "class_mappings[18]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "class_mappings[19]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "class_mappings[20]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "class_mappings[21]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "class_mappings[22]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "class_mappings[23]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "class_mappings[24]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "class_mappings[25]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "class_mappings[26]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "class_mappings[27]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "class_mappings[28]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'data_property_id' to 'property_id'.",
+        "path": "data_property_mappings[0]",
+        "payload": {
+          "from_key": "data_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'applies_to_class' to 'from_class'.",
+        "path": "data_property_mappings[0]",
+        "payload": {
+          "from_key": "applies_to_class",
+          "to_key": "from_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "data_property_mappings[0]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "COLUMN_FROM_SOURCE_COLUMNS",
+        "message": "Filled column from source_columns[0].",
+        "path": "data_property_mappings[0]",
+        "payload": {
+          "column": "Name"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'data_property_id' to 'property_id'.",
+        "path": "data_property_mappings[1]",
+        "payload": {
+          "from_key": "data_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'applies_to_class' to 'from_class'.",
+        "path": "data_property_mappings[1]",
+        "payload": {
+          "from_key": "applies_to_class",
+          "to_key": "from_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "data_property_mappings[1]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "COLUMN_FROM_SOURCE_COLUMNS",
+        "message": "Filled column from source_columns[0].",
+        "path": "data_property_mappings[1]",
+        "payload": {
+          "column": "Area"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'data_property_id' to 'property_id'.",
+        "path": "data_property_mappings[2]",
+        "payload": {
+          "from_key": "data_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'applies_to_class' to 'from_class'.",
+        "path": "data_property_mappings[2]",
+        "payload": {
+          "from_key": "applies_to_class",
+          "to_key": "from_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "data_property_mappings[2]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "COLUMN_FROM_SOURCE_COLUMNS",
+        "message": "Filled column from source_columns[0].",
+        "path": "data_property_mappings[2]",
+        "payload": {
+          "column": "Population"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'data_property_id' to 'property_id'.",
+        "path": "data_property_mappings[3]",
+        "payload": {
+          "from_key": "data_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'applies_to_class' to 'from_class'.",
+        "path": "data_property_mappings[3]",
+        "payload": {
+          "from_key": "applies_to_class",
+          "to_key": "from_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "data_property_mappings[3]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "COLUMN_FROM_SOURCE_COLUMNS",
+        "message": "Filled column from source_columns[0].",
+        "path": "data_property_mappings[3]",
+        "payload": {
+          "column": "Population"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'data_property_id' to 'property_id'.",
+        "path": "data_property_mappings[4]",
+        "payload": {
+          "from_key": "data_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'applies_to_class' to 'from_class'.",
+        "path": "data_property_mappings[4]",
+        "payload": {
+          "from_key": "applies_to_class",
+          "to_key": "from_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "data_property_mappings[4]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "COLUMN_FROM_SOURCE_COLUMNS",
+        "message": "Filled column from source_columns[0].",
+        "path": "data_property_mappings[4]",
+        "payload": {
+          "column": "Area"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'data_property_id' to 'property_id'.",
+        "path": "data_property_mappings[5]",
+        "payload": {
+          "from_key": "data_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'applies_to_class' to 'from_class'.",
+        "path": "data_property_mappings[5]",
+        "payload": {
+          "from_key": "applies_to_class",
+          "to_key": "from_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "data_property_mappings[5]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "COLUMN_FROM_SOURCE_COLUMNS",
+        "message": "Filled column from source_columns[0].",
+        "path": "data_property_mappings[5]",
+        "payload": {
+          "column": "Population"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'data_property_id' to 'property_id'.",
+        "path": "data_property_mappings[6]",
+        "payload": {
+          "from_key": "data_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'applies_to_class' to 'from_class'.",
+        "path": "data_property_mappings[6]",
+        "payload": {
+          "from_key": "applies_to_class",
+          "to_key": "from_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "data_property_mappings[6]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "COLUMN_FROM_SOURCE_COLUMNS",
+        "message": "Filled column from source_columns[0].",
+        "path": "data_property_mappings[6]",
+        "payload": {
+          "column": "Latitude"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'data_property_id' to 'property_id'.",
+        "path": "data_property_mappings[7]",
+        "payload": {
+          "from_key": "data_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'applies_to_class' to 'from_class'.",
+        "path": "data_property_mappings[7]",
+        "payload": {
+          "from_key": "applies_to_class",
+          "to_key": "from_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "data_property_mappings[7]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "COLUMN_FROM_SOURCE_COLUMNS",
+        "message": "Filled column from source_columns[0].",
+        "path": "data_property_mappings[7]",
+        "payload": {
+          "column": "Longitude"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'data_property_id' to 'property_id'.",
+        "path": "data_property_mappings[8]",
+        "payload": {
+          "from_key": "data_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'applies_to_class' to 'from_class'.",
+        "path": "data_property_mappings[8]",
+        "payload": {
+          "from_key": "applies_to_class",
+          "to_key": "from_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "data_property_mappings[8]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "COLUMN_FROM_SOURCE_COLUMNS",
+        "message": "Filled column from source_columns[0].",
+        "path": "data_property_mappings[8]",
+        "payload": {
+          "column": "Elevation"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'data_property_id' to 'property_id'.",
+        "path": "data_property_mappings[9]",
+        "payload": {
+          "from_key": "data_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'applies_to_class' to 'from_class'.",
+        "path": "data_property_mappings[9]",
+        "payload": {
+          "from_key": "applies_to_class",
+          "to_key": "from_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "data_property_mappings[9]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "COLUMN_FROM_SOURCE_COLUMNS",
+        "message": "Filled column from source_columns[0].",
+        "path": "data_property_mappings[9]",
+        "payload": {
+          "column": "Area"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'data_property_id' to 'property_id'.",
+        "path": "data_property_mappings[10]",
+        "payload": {
+          "from_key": "data_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'applies_to_class' to 'from_class'.",
+        "path": "data_property_mappings[10]",
+        "payload": {
+          "from_key": "applies_to_class",
+          "to_key": "from_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "data_property_mappings[10]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "COLUMN_FROM_SOURCE_COLUMNS",
+        "message": "Filled column from source_columns[0].",
+        "path": "data_property_mappings[10]",
+        "payload": {
+          "column": "Name"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'data_property_id' to 'property_id'.",
+        "path": "data_property_mappings[11]",
+        "payload": {
+          "from_key": "data_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'applies_to_class' to 'from_class'.",
+        "path": "data_property_mappings[11]",
+        "payload": {
+          "from_key": "applies_to_class",
+          "to_key": "from_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "data_property_mappings[11]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "COLUMN_FROM_SOURCE_COLUMNS",
+        "message": "Filled column from source_columns[0].",
+        "path": "data_property_mappings[11]",
+        "payload": {
+          "column": "Established"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'data_property_id' to 'property_id'.",
+        "path": "data_property_mappings[12]",
+        "payload": {
+          "from_key": "data_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'applies_to_class' to 'from_class'.",
+        "path": "data_property_mappings[12]",
+        "payload": {
+          "from_key": "applies_to_class",
+          "to_key": "from_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "data_property_mappings[12]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "COLUMN_FROM_SOURCE_COLUMNS",
+        "message": "Filled column from source_columns[0].",
+        "path": "data_property_mappings[12]",
+        "payload": {
+          "column": "GDP"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'data_property_id' to 'property_id'.",
+        "path": "data_property_mappings[13]",
+        "payload": {
+          "from_key": "data_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'applies_to_class' to 'from_class'.",
+        "path": "data_property_mappings[13]",
+        "payload": {
+          "from_key": "applies_to_class",
+          "to_key": "from_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "data_property_mappings[13]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "COLUMN_FROM_SOURCE_COLUMNS",
+        "message": "Filled column from source_columns[0].",
+        "path": "data_property_mappings[13]",
+        "payload": {
+          "column": "Agriculture"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'data_property_id' to 'property_id'.",
+        "path": "data_property_mappings[14]",
+        "payload": {
+          "from_key": "data_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'applies_to_class' to 'from_class'.",
+        "path": "data_property_mappings[14]",
+        "payload": {
+          "from_key": "applies_to_class",
+          "to_key": "from_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "data_property_mappings[14]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "COLUMN_FROM_SOURCE_COLUMNS",
+        "message": "Filled column from source_columns[0].",
+        "path": "data_property_mappings[14]",
+        "payload": {
+          "column": "Service"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'data_property_id' to 'property_id'.",
+        "path": "data_property_mappings[15]",
+        "payload": {
+          "from_key": "data_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'applies_to_class' to 'from_class'.",
+        "path": "data_property_mappings[15]",
+        "payload": {
+          "from_key": "applies_to_class",
+          "to_key": "from_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "data_property_mappings[15]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "COLUMN_FROM_SOURCE_COLUMNS",
+        "message": "Filled column from source_columns[0].",
+        "path": "data_property_mappings[15]",
+        "payload": {
+          "column": "Industry"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'data_property_id' to 'property_id'.",
+        "path": "data_property_mappings[16]",
+        "payload": {
+          "from_key": "data_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'applies_to_class' to 'from_class'.",
+        "path": "data_property_mappings[16]",
+        "payload": {
+          "from_key": "applies_to_class",
+          "to_key": "from_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "data_property_mappings[16]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "COLUMN_FROM_SOURCE_COLUMNS",
+        "message": "Filled column from source_columns[0].",
+        "path": "data_property_mappings[16]",
+        "payload": {
+          "column": "Inflation"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'data_property_id' to 'property_id'.",
+        "path": "data_property_mappings[17]",
+        "payload": {
+          "from_key": "data_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'applies_to_class' to 'from_class'.",
+        "path": "data_property_mappings[17]",
+        "payload": {
+          "from_key": "applies_to_class",
+          "to_key": "from_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "data_property_mappings[17]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "COLUMN_FROM_SOURCE_COLUMNS",
+        "message": "Filled column from source_columns[0].",
+        "path": "data_property_mappings[17]",
+        "payload": {
+          "column": "Unemployment"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'data_property_id' to 'property_id'.",
+        "path": "data_property_mappings[18]",
+        "payload": {
+          "from_key": "data_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'applies_to_class' to 'from_class'.",
+        "path": "data_property_mappings[18]",
+        "payload": {
+          "from_key": "applies_to_class",
+          "to_key": "from_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "data_property_mappings[18]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "COLUMN_FROM_SOURCE_COLUMNS",
+        "message": "Filled column from source_columns[0].",
+        "path": "data_property_mappings[18]",
+        "payload": {
+          "column": "Independence"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'data_property_id' to 'property_id'.",
+        "path": "data_property_mappings[19]",
+        "payload": {
+          "from_key": "data_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'applies_to_class' to 'from_class'.",
+        "path": "data_property_mappings[19]",
+        "payload": {
+          "from_key": "applies_to_class",
+          "to_key": "from_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "data_property_mappings[19]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "COLUMN_FROM_SOURCE_COLUMNS",
+        "message": "Filled column from source_columns[0].",
+        "path": "data_property_mappings[19]",
+        "payload": {
+          "column": "WasDependent"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'data_property_id' to 'property_id'.",
+        "path": "data_property_mappings[20]",
+        "payload": {
+          "from_key": "data_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'applies_to_class' to 'from_class'.",
+        "path": "data_property_mappings[20]",
+        "payload": {
+          "from_key": "applies_to_class",
+          "to_key": "from_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "data_property_mappings[20]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "COLUMN_FROM_SOURCE_COLUMNS",
+        "message": "Filled column from source_columns[0].",
+        "path": "data_property_mappings[20]",
+        "payload": {
+          "column": "Government"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'data_property_id' to 'property_id'.",
+        "path": "data_property_mappings[21]",
+        "payload": {
+          "from_key": "data_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'applies_to_class' to 'from_class'.",
+        "path": "data_property_mappings[21]",
+        "payload": {
+          "from_key": "applies_to_class",
+          "to_key": "from_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "data_property_mappings[21]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "COLUMN_FROM_SOURCE_COLUMNS",
+        "message": "Filled column from source_columns[0].",
+        "path": "data_property_mappings[21]",
+        "payload": {
+          "column": "Population_Growth"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'data_property_id' to 'property_id'.",
+        "path": "data_property_mappings[22]",
+        "payload": {
+          "from_key": "data_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'applies_to_class' to 'from_class'.",
+        "path": "data_property_mappings[22]",
+        "payload": {
+          "from_key": "applies_to_class",
+          "to_key": "from_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "data_property_mappings[22]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "COLUMN_FROM_SOURCE_COLUMNS",
+        "message": "Filled column from source_columns[0].",
+        "path": "data_property_mappings[22]",
+        "payload": {
+          "column": "Infant_Mortality"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'data_property_id' to 'property_id'.",
+        "path": "data_property_mappings[23]",
+        "payload": {
+          "from_key": "data_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'applies_to_class' to 'from_class'.",
+        "path": "data_property_mappings[23]",
+        "payload": {
+          "from_key": "applies_to_class",
+          "to_key": "from_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "data_property_mappings[23]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "COLUMN_FROM_SOURCE_COLUMNS",
+        "message": "Filled column from source_columns[0].",
+        "path": "data_property_mappings[23]",
+        "payload": {
+          "column": "Year"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'data_property_id' to 'property_id'.",
+        "path": "data_property_mappings[24]",
+        "payload": {
+          "from_key": "data_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'applies_to_class' to 'from_class'.",
+        "path": "data_property_mappings[24]",
+        "payload": {
+          "from_key": "applies_to_class",
+          "to_key": "from_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "data_property_mappings[24]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "COLUMN_FROM_SOURCE_COLUMNS",
+        "message": "Filled column from source_columns[0].",
+        "path": "data_property_mappings[24]",
+        "payload": {
+          "column": "Population"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'data_property_id' to 'property_id'.",
+        "path": "data_property_mappings[25]",
+        "payload": {
+          "from_key": "data_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'applies_to_class' to 'from_class'.",
+        "path": "data_property_mappings[25]",
+        "payload": {
+          "from_key": "applies_to_class",
+          "to_key": "from_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "data_property_mappings[25]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "COLUMN_FROM_SOURCE_COLUMNS",
+        "message": "Filled column from source_columns[0].",
+        "path": "data_property_mappings[25]",
+        "payload": {
+          "column": "Year"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'data_property_id' to 'property_id'.",
+        "path": "data_property_mappings[26]",
+        "payload": {
+          "from_key": "data_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'applies_to_class' to 'from_class'.",
+        "path": "data_property_mappings[26]",
+        "payload": {
+          "from_key": "applies_to_class",
+          "to_key": "from_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "data_property_mappings[26]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "COLUMN_FROM_SOURCE_COLUMNS",
+        "message": "Filled column from source_columns[0].",
+        "path": "data_property_mappings[26]",
+        "payload": {
+          "column": "Population"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'data_property_id' to 'property_id'.",
+        "path": "data_property_mappings[27]",
+        "payload": {
+          "from_key": "data_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'applies_to_class' to 'from_class'.",
+        "path": "data_property_mappings[27]",
+        "payload": {
+          "from_key": "applies_to_class",
+          "to_key": "from_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "data_property_mappings[27]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "COLUMN_FROM_SOURCE_COLUMNS",
+        "message": "Filled column from source_columns[0].",
+        "path": "data_property_mappings[27]",
+        "payload": {
+          "column": "Year"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'data_property_id' to 'property_id'.",
+        "path": "data_property_mappings[28]",
+        "payload": {
+          "from_key": "data_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'applies_to_class' to 'from_class'.",
+        "path": "data_property_mappings[28]",
+        "payload": {
+          "from_key": "applies_to_class",
+          "to_key": "from_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "data_property_mappings[28]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "COLUMN_FROM_SOURCE_COLUMNS",
+        "message": "Filled column from source_columns[0].",
+        "path": "data_property_mappings[28]",
+        "payload": {
+          "column": "Population"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'data_property_id' to 'property_id'.",
+        "path": "data_property_mappings[29]",
+        "payload": {
+          "from_key": "data_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'applies_to_class' to 'from_class'.",
+        "path": "data_property_mappings[29]",
+        "payload": {
+          "from_key": "applies_to_class",
+          "to_key": "from_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "data_property_mappings[29]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "COLUMN_FROM_SOURCE_COLUMNS",
+        "message": "Filled column from source_columns[0].",
+        "path": "data_property_mappings[29]",
+        "payload": {
+          "column": "localname"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'data_property_id' to 'property_id'.",
+        "path": "data_property_mappings[30]",
+        "payload": {
+          "from_key": "data_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'applies_to_class' to 'from_class'.",
+        "path": "data_property_mappings[30]",
+        "payload": {
+          "from_key": "applies_to_class",
+          "to_key": "from_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "data_property_mappings[30]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "COLUMN_FROM_SOURCE_COLUMNS",
+        "message": "Filled column from source_columns[0].",
+        "path": "data_property_mappings[30]",
+        "payload": {
+          "column": "othername"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'data_property_id' to 'property_id'.",
+        "path": "data_property_mappings[31]",
+        "payload": {
+          "from_key": "data_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'applies_to_class' to 'from_class'.",
+        "path": "data_property_mappings[31]",
+        "payload": {
+          "from_key": "applies_to_class",
+          "to_key": "from_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "data_property_mappings[31]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "COLUMN_FROM_SOURCE_COLUMNS",
+        "message": "Filled column from source_columns[0].",
+        "path": "data_property_mappings[31]",
+        "payload": {
+          "column": "localname"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'data_property_id' to 'property_id'.",
+        "path": "data_property_mappings[32]",
+        "payload": {
+          "from_key": "data_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'applies_to_class' to 'from_class'.",
+        "path": "data_property_mappings[32]",
+        "payload": {
+          "from_key": "applies_to_class",
+          "to_key": "from_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "data_property_mappings[32]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "COLUMN_FROM_SOURCE_COLUMNS",
+        "message": "Filled column from source_columns[0].",
+        "path": "data_property_mappings[32]",
+        "payload": {
+          "column": "othername"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'data_property_id' to 'property_id'.",
+        "path": "data_property_mappings[33]",
+        "payload": {
+          "from_key": "data_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'applies_to_class' to 'from_class'.",
+        "path": "data_property_mappings[33]",
+        "payload": {
+          "from_key": "applies_to_class",
+          "to_key": "from_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "data_property_mappings[33]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "COLUMN_FROM_SOURCE_COLUMNS",
+        "message": "Filled column from source_columns[0].",
+        "path": "data_property_mappings[33]",
+        "payload": {
+          "column": "localname"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'data_property_id' to 'property_id'.",
+        "path": "data_property_mappings[34]",
+        "payload": {
+          "from_key": "data_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'applies_to_class' to 'from_class'.",
+        "path": "data_property_mappings[34]",
+        "payload": {
+          "from_key": "applies_to_class",
+          "to_key": "from_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "data_property_mappings[34]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "COLUMN_FROM_SOURCE_COLUMNS",
+        "message": "Filled column from source_columns[0].",
+        "path": "data_property_mappings[34]",
+        "payload": {
+          "column": "othername"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'data_property_id' to 'property_id'.",
+        "path": "data_property_mappings[35]",
+        "payload": {
+          "from_key": "data_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'applies_to_class' to 'from_class'.",
+        "path": "data_property_mappings[35]",
+        "payload": {
+          "from_key": "applies_to_class",
+          "to_key": "from_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "data_property_mappings[35]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "COLUMN_FROM_SOURCE_COLUMNS",
+        "message": "Filled column from source_columns[0].",
+        "path": "data_property_mappings[35]",
+        "payload": {
+          "column": "Name"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'data_property_id' to 'property_id'.",
+        "path": "data_property_mappings[36]",
+        "payload": {
+          "from_key": "data_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'applies_to_class' to 'from_class'.",
+        "path": "data_property_mappings[36]",
+        "payload": {
+          "from_key": "applies_to_class",
+          "to_key": "from_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "data_property_mappings[36]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "COLUMN_FROM_SOURCE_COLUMNS",
+        "message": "Filled column from source_columns[0].",
+        "path": "data_property_mappings[36]",
+        "payload": {
+          "column": "Percentage"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'data_property_id' to 'property_id'.",
+        "path": "data_property_mappings[37]",
+        "payload": {
+          "from_key": "data_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'applies_to_class' to 'from_class'.",
+        "path": "data_property_mappings[37]",
+        "payload": {
+          "from_key": "applies_to_class",
+          "to_key": "from_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "data_property_mappings[37]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "COLUMN_FROM_SOURCE_COLUMNS",
+        "message": "Filled column from source_columns[0].",
+        "path": "data_property_mappings[37]",
+        "payload": {
+          "column": "Name"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'data_property_id' to 'property_id'.",
+        "path": "data_property_mappings[38]",
+        "payload": {
+          "from_key": "data_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'applies_to_class' to 'from_class'.",
+        "path": "data_property_mappings[38]",
+        "payload": {
+          "from_key": "applies_to_class",
+          "to_key": "from_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "data_property_mappings[38]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "COLUMN_FROM_SOURCE_COLUMNS",
+        "message": "Filled column from source_columns[0].",
+        "path": "data_property_mappings[38]",
+        "payload": {
+          "column": "Percentage"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'data_property_id' to 'property_id'.",
+        "path": "data_property_mappings[39]",
+        "payload": {
+          "from_key": "data_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'applies_to_class' to 'from_class'.",
+        "path": "data_property_mappings[39]",
+        "payload": {
+          "from_key": "applies_to_class",
+          "to_key": "from_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "data_property_mappings[39]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "COLUMN_FROM_SOURCE_COLUMNS",
+        "message": "Filled column from source_columns[0].",
+        "path": "data_property_mappings[39]",
+        "payload": {
+          "column": "Percentage"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'data_property_id' to 'property_id'.",
+        "path": "data_property_mappings[40]",
+        "payload": {
+          "from_key": "data_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'applies_to_class' to 'from_class'.",
+        "path": "data_property_mappings[40]",
+        "payload": {
+          "from_key": "applies_to_class",
+          "to_key": "from_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "data_property_mappings[40]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "COLUMN_FROM_SOURCE_COLUMNS",
+        "message": "Filled column from source_columns[0].",
+        "path": "data_property_mappings[40]",
+        "payload": {
+          "column": "Length"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'data_property_id' to 'property_id'.",
+        "path": "data_property_mappings[41]",
+        "payload": {
+          "from_key": "data_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'applies_to_class' to 'from_class'.",
+        "path": "data_property_mappings[41]",
+        "payload": {
+          "from_key": "applies_to_class",
+          "to_key": "from_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "data_property_mappings[41]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "COLUMN_FROM_SOURCE_COLUMNS",
+        "message": "Filled column from source_columns[0].",
+        "path": "data_property_mappings[41]",
+        "payload": {
+          "column": "Percentage"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'data_property_id' to 'property_id'.",
+        "path": "data_property_mappings[42]",
+        "payload": {
+          "from_key": "data_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'applies_to_class' to 'from_class'.",
+        "path": "data_property_mappings[42]",
+        "payload": {
+          "from_key": "applies_to_class",
+          "to_key": "from_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "data_property_mappings[42]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "COLUMN_FROM_SOURCE_COLUMNS",
+        "message": "Filled column from source_columns[0].",
+        "path": "data_property_mappings[42]",
+        "payload": {
+          "column": "Length"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'data_property_id' to 'property_id'.",
+        "path": "data_property_mappings[43]",
+        "payload": {
+          "from_key": "data_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'applies_to_class' to 'from_class'.",
+        "path": "data_property_mappings[43]",
+        "payload": {
+          "from_key": "applies_to_class",
+          "to_key": "from_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "data_property_mappings[43]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "COLUMN_FROM_SOURCE_COLUMNS",
+        "message": "Filled column from source_columns[0].",
+        "path": "data_property_mappings[43]",
+        "payload": {
+          "column": "Area"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'data_property_id' to 'property_id'.",
+        "path": "data_property_mappings[44]",
+        "payload": {
+          "from_key": "data_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'applies_to_class' to 'from_class'.",
+        "path": "data_property_mappings[44]",
+        "payload": {
+          "from_key": "applies_to_class",
+          "to_key": "from_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "data_property_mappings[44]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "COLUMN_FROM_SOURCE_COLUMNS",
+        "message": "Filled column from source_columns[0].",
+        "path": "data_property_mappings[44]",
+        "payload": {
+          "column": "Elevation"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'data_property_id' to 'property_id'.",
+        "path": "data_property_mappings[45]",
+        "payload": {
+          "from_key": "data_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'applies_to_class' to 'from_class'.",
+        "path": "data_property_mappings[45]",
+        "payload": {
+          "from_key": "applies_to_class",
+          "to_key": "from_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "data_property_mappings[45]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "COLUMN_FROM_SOURCE_COLUMNS",
+        "message": "Filled column from source_columns[0].",
+        "path": "data_property_mappings[45]",
+        "payload": {
+          "column": "Area"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'data_property_id' to 'property_id'.",
+        "path": "data_property_mappings[46]",
+        "payload": {
+          "from_key": "data_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'applies_to_class' to 'from_class'.",
+        "path": "data_property_mappings[46]",
+        "payload": {
+          "from_key": "applies_to_class",
+          "to_key": "from_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "data_property_mappings[46]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "COLUMN_FROM_SOURCE_COLUMNS",
+        "message": "Filled column from source_columns[0].",
+        "path": "data_property_mappings[46]",
+        "payload": {
+          "column": "Area"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'data_property_id' to 'property_id'.",
+        "path": "data_property_mappings[47]",
+        "payload": {
+          "from_key": "data_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'applies_to_class' to 'from_class'.",
+        "path": "data_property_mappings[47]",
+        "payload": {
+          "from_key": "applies_to_class",
+          "to_key": "from_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "data_property_mappings[47]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "COLUMN_FROM_SOURCE_COLUMNS",
+        "message": "Filled column from source_columns[0].",
+        "path": "data_property_mappings[47]",
+        "payload": {
+          "column": "Area"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'data_property_id' to 'property_id'.",
+        "path": "data_property_mappings[48]",
+        "payload": {
+          "from_key": "data_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'applies_to_class' to 'from_class'.",
+        "path": "data_property_mappings[48]",
+        "payload": {
+          "from_key": "applies_to_class",
+          "to_key": "from_class"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "data_property_mappings[48]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "COLUMN_FROM_SOURCE_COLUMNS",
+        "message": "Filled column from source_columns[0].",
+        "path": "data_property_mappings[48]",
+        "payload": {
+          "column": "Name"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'object_property_id' to 'property_id'.",
+        "path": "object_property_mappings[0]",
+        "payload": {
+          "from_key": "object_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'join_paths' to 'joins'.",
+        "path": "object_property_mappings[0]",
+        "payload": {
+          "from_key": "join_paths",
+          "to_key": "joins"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "object_property_mappings[0]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'object_property_id' to 'property_id'.",
+        "path": "object_property_mappings[1]",
+        "payload": {
+          "from_key": "object_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'join_paths' to 'joins'.",
+        "path": "object_property_mappings[1]",
+        "payload": {
+          "from_key": "join_paths",
+          "to_key": "joins"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "object_property_mappings[1]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'object_property_id' to 'property_id'.",
+        "path": "object_property_mappings[2]",
+        "payload": {
+          "from_key": "object_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'join_paths' to 'joins'.",
+        "path": "object_property_mappings[2]",
+        "payload": {
+          "from_key": "join_paths",
+          "to_key": "joins"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "object_property_mappings[2]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'object_property_id' to 'property_id'.",
+        "path": "object_property_mappings[3]",
+        "payload": {
+          "from_key": "object_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'join_paths' to 'joins'.",
+        "path": "object_property_mappings[3]",
+        "payload": {
+          "from_key": "join_paths",
+          "to_key": "joins"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "object_property_mappings[3]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'object_property_id' to 'property_id'.",
+        "path": "object_property_mappings[4]",
+        "payload": {
+          "from_key": "object_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'join_paths' to 'joins'.",
+        "path": "object_property_mappings[4]",
+        "payload": {
+          "from_key": "join_paths",
+          "to_key": "joins"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "object_property_mappings[4]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'object_property_id' to 'property_id'.",
+        "path": "object_property_mappings[5]",
+        "payload": {
+          "from_key": "object_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'join_paths' to 'joins'.",
+        "path": "object_property_mappings[5]",
+        "payload": {
+          "from_key": "join_paths",
+          "to_key": "joins"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "object_property_mappings[5]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'object_property_id' to 'property_id'.",
+        "path": "object_property_mappings[6]",
+        "payload": {
+          "from_key": "object_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'join_paths' to 'joins'.",
+        "path": "object_property_mappings[6]",
+        "payload": {
+          "from_key": "join_paths",
+          "to_key": "joins"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "object_property_mappings[6]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'object_property_id' to 'property_id'.",
+        "path": "object_property_mappings[7]",
+        "payload": {
+          "from_key": "object_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'join_paths' to 'joins'.",
+        "path": "object_property_mappings[7]",
+        "payload": {
+          "from_key": "join_paths",
+          "to_key": "joins"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "object_property_mappings[7]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'object_property_id' to 'property_id'.",
+        "path": "object_property_mappings[8]",
+        "payload": {
+          "from_key": "object_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'join_paths' to 'joins'.",
+        "path": "object_property_mappings[8]",
+        "payload": {
+          "from_key": "join_paths",
+          "to_key": "joins"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "object_property_mappings[8]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'object_property_id' to 'property_id'.",
+        "path": "object_property_mappings[9]",
+        "payload": {
+          "from_key": "object_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'join_paths' to 'joins'.",
+        "path": "object_property_mappings[9]",
+        "payload": {
+          "from_key": "join_paths",
+          "to_key": "joins"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "object_property_mappings[9]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'object_property_id' to 'property_id'.",
+        "path": "object_property_mappings[10]",
+        "payload": {
+          "from_key": "object_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'join_paths' to 'joins'.",
+        "path": "object_property_mappings[10]",
+        "payload": {
+          "from_key": "join_paths",
+          "to_key": "joins"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "object_property_mappings[10]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'object_property_id' to 'property_id'.",
+        "path": "object_property_mappings[11]",
+        "payload": {
+          "from_key": "object_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'join_paths' to 'joins'.",
+        "path": "object_property_mappings[11]",
+        "payload": {
+          "from_key": "join_paths",
+          "to_key": "joins"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "object_property_mappings[11]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'object_property_id' to 'property_id'.",
+        "path": "object_property_mappings[12]",
+        "payload": {
+          "from_key": "object_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'join_paths' to 'joins'.",
+        "path": "object_property_mappings[12]",
+        "payload": {
+          "from_key": "join_paths",
+          "to_key": "joins"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "object_property_mappings[12]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'object_property_id' to 'property_id'.",
+        "path": "object_property_mappings[13]",
+        "payload": {
+          "from_key": "object_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'join_paths' to 'joins'.",
+        "path": "object_property_mappings[13]",
+        "payload": {
+          "from_key": "join_paths",
+          "to_key": "joins"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "object_property_mappings[13]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'object_property_id' to 'property_id'.",
+        "path": "object_property_mappings[14]",
+        "payload": {
+          "from_key": "object_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'join_paths' to 'joins'.",
+        "path": "object_property_mappings[14]",
+        "payload": {
+          "from_key": "join_paths",
+          "to_key": "joins"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "object_property_mappings[14]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'object_property_id' to 'property_id'.",
+        "path": "object_property_mappings[15]",
+        "payload": {
+          "from_key": "object_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'join_paths' to 'joins'.",
+        "path": "object_property_mappings[15]",
+        "payload": {
+          "from_key": "join_paths",
+          "to_key": "joins"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "object_property_mappings[15]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'object_property_id' to 'property_id'.",
+        "path": "object_property_mappings[16]",
+        "payload": {
+          "from_key": "object_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'join_paths' to 'joins'.",
+        "path": "object_property_mappings[16]",
+        "payload": {
+          "from_key": "join_paths",
+          "to_key": "joins"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "object_property_mappings[16]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'object_property_id' to 'property_id'.",
+        "path": "object_property_mappings[17]",
+        "payload": {
+          "from_key": "object_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'join_paths' to 'joins'.",
+        "path": "object_property_mappings[17]",
+        "payload": {
+          "from_key": "join_paths",
+          "to_key": "joins"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "object_property_mappings[17]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'object_property_id' to 'property_id'.",
+        "path": "object_property_mappings[18]",
+        "payload": {
+          "from_key": "object_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'join_paths' to 'joins'.",
+        "path": "object_property_mappings[18]",
+        "payload": {
+          "from_key": "join_paths",
+          "to_key": "joins"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "object_property_mappings[18]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'object_property_id' to 'property_id'.",
+        "path": "object_property_mappings[19]",
+        "payload": {
+          "from_key": "object_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'join_paths' to 'joins'.",
+        "path": "object_property_mappings[19]",
+        "payload": {
+          "from_key": "join_paths",
+          "to_key": "joins"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "object_property_mappings[19]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'object_property_id' to 'property_id'.",
+        "path": "object_property_mappings[20]",
+        "payload": {
+          "from_key": "object_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'join_paths' to 'joins'.",
+        "path": "object_property_mappings[20]",
+        "payload": {
+          "from_key": "join_paths",
+          "to_key": "joins"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "object_property_mappings[20]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'object_property_id' to 'property_id'.",
+        "path": "object_property_mappings[21]",
+        "payload": {
+          "from_key": "object_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'join_paths' to 'joins'.",
+        "path": "object_property_mappings[21]",
+        "payload": {
+          "from_key": "join_paths",
+          "to_key": "joins"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "object_property_mappings[21]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'object_property_id' to 'property_id'.",
+        "path": "object_property_mappings[22]",
+        "payload": {
+          "from_key": "object_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'join_paths' to 'joins'.",
+        "path": "object_property_mappings[22]",
+        "payload": {
+          "from_key": "join_paths",
+          "to_key": "joins"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "object_property_mappings[22]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'object_property_id' to 'property_id'.",
+        "path": "object_property_mappings[23]",
+        "payload": {
+          "from_key": "object_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'join_paths' to 'joins'.",
+        "path": "object_property_mappings[23]",
+        "payload": {
+          "from_key": "join_paths",
+          "to_key": "joins"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "object_property_mappings[23]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'object_property_id' to 'property_id'.",
+        "path": "object_property_mappings[24]",
+        "payload": {
+          "from_key": "object_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'join_paths' to 'joins'.",
+        "path": "object_property_mappings[24]",
+        "payload": {
+          "from_key": "join_paths",
+          "to_key": "joins"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "object_property_mappings[24]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'object_property_id' to 'property_id'.",
+        "path": "object_property_mappings[25]",
+        "payload": {
+          "from_key": "object_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'join_paths' to 'joins'.",
+        "path": "object_property_mappings[25]",
+        "payload": {
+          "from_key": "join_paths",
+          "to_key": "joins"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "object_property_mappings[25]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'object_property_id' to 'property_id'.",
+        "path": "object_property_mappings[26]",
+        "payload": {
+          "from_key": "object_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'join_paths' to 'joins'.",
+        "path": "object_property_mappings[26]",
+        "payload": {
+          "from_key": "join_paths",
+          "to_key": "joins"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "object_property_mappings[26]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'object_property_id' to 'property_id'.",
+        "path": "object_property_mappings[27]",
+        "payload": {
+          "from_key": "object_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'join_paths' to 'joins'.",
+        "path": "object_property_mappings[27]",
+        "payload": {
+          "from_key": "join_paths",
+          "to_key": "joins"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "object_property_mappings[27]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'object_property_id' to 'property_id'.",
+        "path": "object_property_mappings[28]",
+        "payload": {
+          "from_key": "object_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'join_paths' to 'joins'.",
+        "path": "object_property_mappings[28]",
+        "payload": {
+          "from_key": "join_paths",
+          "to_key": "joins"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "object_property_mappings[28]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'object_property_id' to 'property_id'.",
+        "path": "object_property_mappings[29]",
+        "payload": {
+          "from_key": "object_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'join_paths' to 'joins'.",
+        "path": "object_property_mappings[29]",
+        "payload": {
+          "from_key": "join_paths",
+          "to_key": "joins"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "object_property_mappings[29]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'object_property_id' to 'property_id'.",
+        "path": "object_property_mappings[30]",
+        "payload": {
+          "from_key": "object_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'join_paths' to 'joins'.",
+        "path": "object_property_mappings[30]",
+        "payload": {
+          "from_key": "join_paths",
+          "to_key": "joins"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "object_property_mappings[30]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'object_property_id' to 'property_id'.",
+        "path": "object_property_mappings[31]",
+        "payload": {
+          "from_key": "object_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'join_paths' to 'joins'.",
+        "path": "object_property_mappings[31]",
+        "payload": {
+          "from_key": "join_paths",
+          "to_key": "joins"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "object_property_mappings[31]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'object_property_id' to 'property_id'.",
+        "path": "object_property_mappings[32]",
+        "payload": {
+          "from_key": "object_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'join_paths' to 'joins'.",
+        "path": "object_property_mappings[32]",
+        "payload": {
+          "from_key": "join_paths",
+          "to_key": "joins"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "object_property_mappings[32]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'object_property_id' to 'property_id'.",
+        "path": "object_property_mappings[33]",
+        "payload": {
+          "from_key": "object_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'join_paths' to 'joins'.",
+        "path": "object_property_mappings[33]",
+        "payload": {
+          "from_key": "join_paths",
+          "to_key": "joins"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "object_property_mappings[33]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'object_property_id' to 'property_id'.",
+        "path": "object_property_mappings[34]",
+        "payload": {
+          "from_key": "object_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'join_paths' to 'joins'.",
+        "path": "object_property_mappings[34]",
+        "payload": {
+          "from_key": "join_paths",
+          "to_key": "joins"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "object_property_mappings[34]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'object_property_id' to 'property_id'.",
+        "path": "object_property_mappings[35]",
+        "payload": {
+          "from_key": "object_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'join_paths' to 'joins'.",
+        "path": "object_property_mappings[35]",
+        "payload": {
+          "from_key": "join_paths",
+          "to_key": "joins"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "object_property_mappings[35]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'object_property_id' to 'property_id'.",
+        "path": "object_property_mappings[36]",
+        "payload": {
+          "from_key": "object_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'join_paths' to 'joins'.",
+        "path": "object_property_mappings[36]",
+        "payload": {
+          "from_key": "join_paths",
+          "to_key": "joins"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "object_property_mappings[36]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'object_property_id' to 'property_id'.",
+        "path": "object_property_mappings[37]",
+        "payload": {
+          "from_key": "object_property_id",
+          "to_key": "property_id"
+        }
+      },
+      {
+        "level": "info",
+        "code": "FIELD_ALIAS_CANONICALIZED",
+        "message": "Canonicalized field 'join_paths' to 'joins'.",
+        "path": "object_property_mappings[37]",
+        "payload": {
+          "from_key": "join_paths",
+          "to_key": "joins"
+        }
+      },
+      {
+        "level": "info",
+        "code": "EXTRA_FIELDS_PRESERVED",
+        "message": "Preserved non-canonical fields in extras.",
+        "path": "object_property_mappings[37]",
+        "payload": {
+          "extra_keys": [
+            "confidence",
+            "status"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "CLASS_SOURCE_TABLES_BACKFILLED",
+        "message": "Backfilled class.source_tables from class_mapping.from_tables.",
+        "path": "classes[Class:Country]",
+        "payload": {
+          "class_id": "Class:Country",
+          "source_tables": [
+            "Country"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "CLASS_SOURCE_TABLES_BACKFILLED",
+        "message": "Backfilled class.source_tables from class_mapping.from_tables.",
+        "path": "classes[Class:Province]",
+        "payload": {
+          "class_id": "Class:Province",
+          "source_tables": [
+            "Province"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "CLASS_SOURCE_TABLES_BACKFILLED",
+        "message": "Backfilled class.source_tables from class_mapping.from_tables.",
+        "path": "classes[Class:City]",
+        "payload": {
+          "class_id": "Class:City",
+          "source_tables": [
+            "City"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "CLASS_SOURCE_TABLES_BACKFILLED",
+        "message": "Backfilled class.source_tables from class_mapping.from_tables.",
+        "path": "classes[Class:Continent]",
+        "payload": {
+          "class_id": "Class:Continent",
+          "source_tables": [
+            "Continent"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "CLASS_SOURCE_TABLES_BACKFILLED",
+        "message": "Backfilled class.source_tables from class_mapping.from_tables.",
+        "path": "classes[Class:Organization]",
+        "payload": {
+          "class_id": "Class:Organization",
+          "source_tables": [
+            "Organization"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "CLASS_SOURCE_TABLES_BACKFILLED",
+        "message": "Backfilled class.source_tables from class_mapping.from_tables.",
+        "path": "classes[Class:Language]",
+        "payload": {
+          "class_id": "Class:Language",
+          "source_tables": [
+            "Language"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "CLASS_SOURCE_TABLES_BACKFILLED",
+        "message": "Backfilled class.source_tables from class_mapping.from_tables.",
+        "path": "classes[Class:Sea]",
+        "payload": {
+          "class_id": "Class:Sea",
+          "source_tables": [
+            "Sea"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "CLASS_SOURCE_TABLES_BACKFILLED",
+        "message": "Backfilled class.source_tables from class_mapping.from_tables.",
+        "path": "classes[Class:River]",
+        "payload": {
+          "class_id": "Class:River",
+          "source_tables": [
+            "River"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "CLASS_SOURCE_TABLES_BACKFILLED",
+        "message": "Backfilled class.source_tables from class_mapping.from_tables.",
+        "path": "classes[Class:Lake]",
+        "payload": {
+          "class_id": "Class:Lake",
+          "source_tables": [
+            "Lake"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "CLASS_SOURCE_TABLES_BACKFILLED",
+        "message": "Backfilled class.source_tables from class_mapping.from_tables.",
+        "path": "classes[Class:Mountain]",
+        "payload": {
+          "class_id": "Class:Mountain",
+          "source_tables": [
+            "Mountain"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "CLASS_SOURCE_TABLES_BACKFILLED",
+        "message": "Backfilled class.source_tables from class_mapping.from_tables.",
+        "path": "classes[Class:Desert]",
+        "payload": {
+          "class_id": "Class:Desert",
+          "source_tables": [
+            "Desert"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "CLASS_SOURCE_TABLES_BACKFILLED",
+        "message": "Backfilled class.source_tables from class_mapping.from_tables.",
+        "path": "classes[Class:Island]",
+        "payload": {
+          "class_id": "Class:Island",
+          "source_tables": [
+            "Island"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "CLASS_SOURCE_TABLES_BACKFILLED",
+        "message": "Backfilled class.source_tables from class_mapping.from_tables.",
+        "path": "classes[Class:Economy]",
+        "payload": {
+          "class_id": "Class:Economy",
+          "source_tables": [
+            "Economy"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "CLASS_SOURCE_TABLES_BACKFILLED",
+        "message": "Backfilled class.source_tables from class_mapping.from_tables.",
+        "path": "classes[Class:Politics]",
+        "payload": {
+          "class_id": "Class:Politics",
+          "source_tables": [
+            "Politics"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "CLASS_SOURCE_TABLES_BACKFILLED",
+        "message": "Backfilled class.source_tables from class_mapping.from_tables.",
+        "path": "classes[Class:PopulationStatistics]",
+        "payload": {
+          "class_id": "Class:PopulationStatistics",
+          "source_tables": [
+            "Population"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "CLASS_SOURCE_TABLES_BACKFILLED",
+        "message": "Backfilled class.source_tables from class_mapping.from_tables.",
+        "path": "classes[Class:CountryPopulationObservation]",
+        "payload": {
+          "class_id": "Class:CountryPopulationObservation",
+          "source_tables": [
+            "Countrypops"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "CLASS_SOURCE_TABLES_BACKFILLED",
+        "message": "Backfilled class.source_tables from class_mapping.from_tables.",
+        "path": "classes[Class:ProvincePopulationObservation]",
+        "payload": {
+          "class_id": "Class:ProvincePopulationObservation",
+          "source_tables": [
+            "Provpops"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "CLASS_SOURCE_TABLES_BACKFILLED",
+        "message": "Backfilled class.source_tables from class_mapping.from_tables.",
+        "path": "classes[Class:CityPopulationObservation]",
+        "payload": {
+          "class_id": "Class:CityPopulationObservation",
+          "source_tables": [
+            "Citypops"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "CLASS_SOURCE_TABLES_BACKFILLED",
+        "message": "Backfilled class.source_tables from class_mapping.from_tables.",
+        "path": "classes[Class:CountryLocalName]",
+        "payload": {
+          "class_id": "Class:CountryLocalName",
+          "source_tables": [
+            "Countrylocalname"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "CLASS_SOURCE_TABLES_BACKFILLED",
+        "message": "Backfilled class.source_tables from class_mapping.from_tables.",
+        "path": "classes[Class:CountryOtherName]",
+        "payload": {
+          "class_id": "Class:CountryOtherName",
+          "source_tables": [
+            "Countryothername"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "CLASS_SOURCE_TABLES_BACKFILLED",
+        "message": "Backfilled class.source_tables from class_mapping.from_tables.",
+        "path": "classes[Class:ProvinceLocalName]",
+        "payload": {
+          "class_id": "Class:ProvinceLocalName",
+          "source_tables": [
+            "Provincelocalname"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "CLASS_SOURCE_TABLES_BACKFILLED",
+        "message": "Backfilled class.source_tables from class_mapping.from_tables.",
+        "path": "classes[Class:ProvinceOtherName]",
+        "payload": {
+          "class_id": "Class:ProvinceOtherName",
+          "source_tables": [
+            "Provinceothername"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "CLASS_SOURCE_TABLES_BACKFILLED",
+        "message": "Backfilled class.source_tables from class_mapping.from_tables.",
+        "path": "classes[Class:CityLocalName]",
+        "payload": {
+          "class_id": "Class:CityLocalName",
+          "source_tables": [
+            "Citylocalname"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "CLASS_SOURCE_TABLES_BACKFILLED",
+        "message": "Backfilled class.source_tables from class_mapping.from_tables.",
+        "path": "classes[Class:CityOtherName]",
+        "payload": {
+          "class_id": "Class:CityOtherName",
+          "source_tables": [
+            "Cityothername"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "CLASS_SOURCE_TABLES_BACKFILLED",
+        "message": "Backfilled class.source_tables from class_mapping.from_tables.",
+        "path": "classes[Class:CountryReligionShare]",
+        "payload": {
+          "class_id": "Class:CountryReligionShare",
+          "source_tables": [
+            "Religion"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "CLASS_SOURCE_TABLES_BACKFILLED",
+        "message": "Backfilled class.source_tables from class_mapping.from_tables.",
+        "path": "classes[Class:CountryEthnicGroupShare]",
+        "payload": {
+          "class_id": "Class:CountryEthnicGroupShare",
+          "source_tables": [
+            "EthnicGroup"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "CLASS_SOURCE_TABLES_BACKFILLED",
+        "message": "Backfilled class.source_tables from class_mapping.from_tables.",
+        "path": "classes[Class:SpokenLanguageUsage]",
+        "payload": {
+          "class_id": "Class:SpokenLanguageUsage",
+          "source_tables": [
+            "Spoken"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "CLASS_SOURCE_TABLES_BACKFILLED",
+        "message": "Backfilled class.source_tables from class_mapping.from_tables.",
+        "path": "classes[Class:Border]",
+        "payload": {
+          "class_id": "Class:Border",
+          "source_tables": [
+            "borders"
+          ]
+        }
+      },
+      {
+        "level": "info",
+        "code": "CLASS_SOURCE_TABLES_BACKFILLED",
+        "message": "Backfilled class.source_tables from class_mapping.from_tables.",
+        "path": "classes[Class:CountryContinentInclusion]",
+        "payload": {
+          "class_id": "Class:CountryContinentInclusion",
+          "source_tables": [
+            "encompasses"
+          ]
+        }
+      }
+    ]
+  },
+  "gt_artifacts": {
+    "kind": "mapping_dir",
+    "mapping_json": null,
+    "mappings_dir": "/root/ontology/burr_benchmark/real-world/mondial/mappings",
+    "meta_json": null,
+    "extra_files": [
+      "/root/ontology/burr_benchmark/real-world/mondial/mappings/border.json",
+      "/root/ontology/burr_benchmark/real-world/mondial/mappings/city.json",
+      "/root/ontology/burr_benchmark/real-world/mondial/mappings/continent.json",
+      "/root/ontology/burr_benchmark/real-world/mondial/mappings/country.json",
+      "/root/ontology/burr_benchmark/real-world/mondial/mappings/desert.json",
+      "/root/ontology/burr_benchmark/real-world/mondial/mappings/encompassed.json",
+      "/root/ontology/burr_benchmark/real-world/mondial/mappings/estuary.json",
+      "/root/ontology/burr_benchmark/real-world/mondial/mappings/ethnicgroup.json",
+      "/root/ontology/burr_benchmark/real-world/mondial/mappings/island.json",
+      "/root/ontology/burr_benchmark/real-world/mondial/mappings/lake.json",
+      "/root/ontology/burr_benchmark/real-world/mondial/mappings/language.json",
+      "/root/ontology/burr_benchmark/real-world/mondial/mappings/meta.json",
+      "/root/ontology/burr_benchmark/real-world/mondial/mappings/mountain.json",
+      "/root/ontology/burr_benchmark/real-world/mondial/mappings/organization.json",
+      "/root/ontology/burr_benchmark/real-world/mondial/mappings/populationcount.json",
+      "/root/ontology/burr_benchmark/real-world/mondial/mappings/province.json",
+      "/root/ontology/burr_benchmark/real-world/mondial/mappings/religion.json",
+      "/root/ontology/burr_benchmark/real-world/mondial/mappings/river.json",
+      "/root/ontology/burr_benchmark/real-world/mondial/mappings/sea.json",
+      "/root/ontology/burr_benchmark/real-world/mondial/mappings/source.json"
+    ]
+  }
+}
