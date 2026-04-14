@@ -5,6 +5,7 @@ import json
 import sys
 from pathlib import Path
 from typing import Any, Dict, List, Optional
+from canonical_compare import build_canonical_details
 
 # ============================================================
 # Path setup
@@ -329,15 +330,183 @@ def load_gt_mapping_as_d2rq(
 # ============================================================
 # Compare
 # ============================================================
+from collections import Counter
+
+
+def _safe_obj_repr(obj: Any) -> str:
+    """
+    Stable debug string for compare details.
+    Prefer str(obj); fall back to repr(obj).
+    """
+    try:
+        s = str(obj)
+        if s:
+            return s
+    except Exception:
+        pass
+    try:
+        return repr(obj)
+    except Exception:
+        return f"<unreprable {type(obj).__name__}>"
+
+
+def _set_eq_strategy(items: List[Any], *, name_based: bool) -> None:
+    """
+    Burr mapping objects support set_eq_strategy(name_based=...).
+    This mutates their equality/hash semantics for comparison.
+    """
+    for x in items:
+        if hasattr(x, "set_eq_strategy"):
+            x.set_eq_strategy(name_based=name_based)
+
+
+def _bag_diff(
+    reference_items: List[Any],
+    learned_items: List[Any],
+    *,
+    name_based: bool,
+) -> Dict[str, Any]:
+    """
+    Bag-based diff, aligned with Burr mapping-based metric logic.
+    Keeps multiplicity via Counter.
+    """
+    reference_items = list(reference_items or [])
+    learned_items = list(learned_items or [])
+
+    _set_eq_strategy(reference_items, name_based=name_based)
+    _set_eq_strategy(learned_items, name_based=name_based)
+
+    ref_counter = Counter(reference_items)
+    pred_counter = Counter(learned_items)
+
+    matched: List[str] = []
+    missing: List[str] = []
+    extra: List[str] = []
+
+    all_keys = list(set(ref_counter.keys()) | set(pred_counter.keys()))
+    for k in all_keys:
+        ref_n = ref_counter.get(k, 0)
+        pred_n = pred_counter.get(k, 0)
+        common = min(ref_n, pred_n)
+
+        matched.extend([_safe_obj_repr(k)] * common)
+        if ref_n > pred_n:
+            missing.extend([_safe_obj_repr(k)] * (ref_n - pred_n))
+        if pred_n > ref_n:
+            extra.extend([_safe_obj_repr(k)] * (pred_n - ref_n))
+
+    return {
+        "num_reference": sum(ref_counter.values()),
+        "num_prediction": sum(pred_counter.values()),
+        "num_matched": len(matched),
+        "num_missing_in_prediction": len(missing),
+        "num_extra_in_prediction": len(extra),
+        "matched": matched,
+        "missing_in_prediction": missing,
+        "extra_in_prediction": extra,
+        "matched_counts": _count_strings(matched),
+        "missing_in_prediction_counts": _count_strings(missing),
+        "extra_in_prediction_counts": _count_strings(extra),
+    }
+
+
+def _set_diff(
+    reference_items: List[Any],
+    learned_items: List[Any],
+    *,
+    name_based: bool,
+) -> Dict[str, Any]:
+    """
+    Set-based diff, aligned with Burr name-based metric logic.
+    """
+    reference_items = list(reference_items or [])
+    learned_items = list(learned_items or [])
+
+    _set_eq_strategy(reference_items, name_based=name_based)
+    _set_eq_strategy(learned_items, name_based=name_based)
+
+    ref_set = set(reference_items)
+    pred_set = set(learned_items)
+
+    matched = [_safe_obj_repr(x) for x in (ref_set & pred_set)]
+    missing = [_safe_obj_repr(x) for x in (ref_set - pred_set)]
+    extra = [_safe_obj_repr(x) for x in (pred_set - ref_set)]
+
+    matched.sort()
+    missing.sort()
+    extra.sort()
+
+    return {
+        "num_reference": len(ref_set),
+        "num_prediction": len(pred_set),
+        "num_matched": len(matched),
+        "num_missing_in_prediction": len(missing),
+        "num_extra_in_prediction": len(extra),
+        "matched": matched,
+        "missing_in_prediction": missing,
+        "extra_in_prediction": extra,
+        "matched_counts": _count_strings(matched),
+        "missing_in_prediction_counts": _count_strings(missing),
+        "extra_in_prediction_counts": _count_strings(extra),
+    }
+
+def _count_strings(items: List[str]) -> List[Dict[str, Any]]:
+    c = Counter(items)
+    return [
+        {"item": k, "count": v}
+        for k, v in sorted(c.items(), key=lambda kv: (-kv[1], kv[0]))
+    ]
+
+def build_detailed_compare(reference_mapping: Any, learned_mapping: Any) -> Dict[str, Any]:
+    """
+    Return fine-grained TP/FP/FN-style details for:
+    - mapping_based (bag semantics)
+    - name_based (set semantics)
+
+    Categories:
+    - classes
+    - relations
+    - attributes
+    """
+    ref_classes = list(reference_mapping.get_classes())
+    ref_relations = list(reference_mapping.get_relations())
+    ref_attributes = list(reference_mapping.get_attributes())
+
+    pred_classes = list(learned_mapping.get_classes())
+    pred_relations = list(learned_mapping.get_relations())
+    pred_attributes = list(learned_mapping.get_attributes())
+
+    return {
+        "mapping_based": {
+            "classes": _bag_diff(ref_classes, pred_classes, name_based=False),
+            "relations": _bag_diff(ref_relations, pred_relations, name_based=False),
+            "attributes": _bag_diff(ref_attributes, pred_attributes, name_based=False),
+        },
+        "name_based": {
+            "classes": _set_diff(ref_classes, pred_classes, name_based=True),
+            "relations": _set_diff(ref_relations, pred_relations, name_based=True),
+            "attributes": _set_diff(ref_attributes, pred_attributes, name_based=True),
+        },
+    }
+
 
 def compare_mappings(learned_mapping, reference_mapping) -> Dict[str, Any]:
     """
-    Your repo does not have Comparator class.
-    It uses burr_evaluator.metrics.caclulate_metrics.calculate_metrics(reference, learned).
+    Return:
+    - original Burr metrics/details
+    - canonical, representation-normalized compare
     """
     _, _, calculate_metrics = _import_local_burr_modules()
+
     metrics = calculate_metrics(reference_mapping, learned_mapping)
-    return {"metrics": metrics}
+    details = build_detailed_compare(reference_mapping, learned_mapping)
+    canonical_compare = build_canonical_details(reference_mapping, learned_mapping)
+
+    return {
+        "metrics": metrics,
+        "details": details,
+        "canonical_compare": canonical_compare,
+    }
 
 
 def run_compare(

@@ -26,6 +26,95 @@ def _to_burr_safe_property_name(label: str) -> str:
     s = re.sub(r"_+", "_", s).strip("_")
     return s or "UNKNOWN"
 
+def _to_burr_safe_classmap_name(label: str) -> str:
+    """
+    Make a Turtle/D2RQ-safe class map name.
+    Examples:
+      "Ethnic Group" -> "EthnicGroup"
+      "Country Population Record" -> "CountryPopulationRecord"
+      "GDP" -> "GDP"
+    """
+    s = str(label or "").strip()
+    if not s:
+        return "UNKNOWN"
+
+    # Split on non-alnum boundaries, then CamelCase-join.
+    parts = re.split(r"[^A-Za-z0-9]+", s)
+    parts = [p for p in parts if p]
+    if not parts:
+        return "UNKNOWN"
+
+    return "".join(p[:1].upper() + p[1:] for p in parts)
+
+
+def _ensure_qualified_column(column: str, source_table: str = "") -> str:
+    """
+    Ensure a column is in 'table.column' form when possible.
+    If already qualified, keep it unchanged.
+    If unqualified and source_table is available, prefix it.
+    """
+    col = _as_str(column).strip()
+    tbl = _as_str(source_table).strip()
+
+    if not col:
+        return ""
+
+    if parse_qualified_column(col) is not None:
+        return col
+
+    if tbl and IDENT_RE.match(tbl):
+        return f"{tbl}.{col}"
+
+    return col
+
+
+def _ensure_burr_template(template: str, fallback_table: str = "", fallback_identifier_columns: Optional[List[str]] = None) -> str:
+    """
+    Convert/repair instance_id_template into a form Burr can consume.
+    Preferred token form: @@table.column@@
+
+    Supported inputs:
+    - @@table.column@@
+    - {table.column}
+    - table/@@table.id@@
+    - plain table.column (will wrap)
+    """
+    text = _as_str(template).strip()
+    fallback_identifier_columns = fallback_identifier_columns or []
+
+    if not text and fallback_identifier_columns:
+        col = _ensure_qualified_column(fallback_identifier_columns[0], fallback_table)
+        if parse_qualified_column(col):
+            return f"@@{col}@@"
+
+    if not text:
+        return ""
+
+    # Already contains Burr token(s)
+    if "@@" in text:
+        return text
+
+    # Replace {table.column} -> @@table.column@@
+    def repl(m):
+        inner = m.group(1).strip()
+        inner = _ensure_qualified_column(inner, fallback_table)
+        return f"@@{inner}@@"
+
+    text = re.sub(r"\{([A-Za-z_][A-Za-z0-9_]*\.[A-Za-z_][A-Za-z0-9_]*)\}", repl, text)
+
+    if "@@" in text:
+        return text
+
+    # Plain qualified column -> wrap
+    if parse_qualified_column(text):
+        return f"@@{text}@@"
+
+    # If it looks like an unqualified column and we have fallback table
+    maybe = _ensure_qualified_column(text, fallback_table)
+    if parse_qualified_column(maybe):
+        return f"@@{maybe}@@"
+
+    return text
 
 def parse_qualified_column(s: str) -> Optional[Tuple[str, str]]:
     s = (s or "").strip()
@@ -167,7 +256,8 @@ def _join_to_burr_string(join_tokens: List[str]) -> str:
 
 def _label_from_class_id(class_id: str) -> str:
     cid = _normalize_class_id(class_id)
-    return cid.replace("Class:", "")
+    raw = cid.replace("Class:", "")
+    return _to_burr_safe_classmap_name(raw)
 
 
 def _coerce_float01(x: Any) -> Optional[float]:
@@ -804,14 +894,25 @@ class OntologyDraft:
             if cm is None:
                 continue
 
+            effective_tables = self._effective_class_tables(c, cm)
+            effective_identifier_columns = self._effective_identifier_columns(c, cm)
             effective_template = self._effective_instance_id_template(c, cm)
-            if not effective_template:
+
+            fallback_table = effective_tables[0] if effective_tables else ""
+            repaired_template = _ensure_burr_template(
+                effective_template,
+                fallback_table=fallback_table,
+                fallback_identifier_columns=effective_identifier_columns,
+            )
+            if not repaired_template:
                 continue
 
+            safe_class_name = _to_burr_safe_classmap_name(c.label)
+
             item = {
-                "id": effective_template,
-                "class": c.label,
-                "name": c.label,
+                "id": repaired_template,
+                "class": safe_class_name,
+                "name": safe_class_name,
             }
             if c.extras:
                 item.update(c.extras)
@@ -830,11 +931,22 @@ class OntologyDraft:
             if not joins:
                 continue
 
+            repaired_joins = []
+            for j in joins:
+                norm = _normalize_join(j)
+                if len(norm) >= 3:
+                    lhs = norm[0]
+                    op = norm[1]
+                    rhs = norm[2]
+                    repaired_joins.append([lhs, op, rhs])
+                else:
+                    repaired_joins.append(norm)
+
             item = {
                 "property": _to_burr_safe_property_name(p.label),
                 "belongsToClassMap": _label_from_class_id(om.from_class or p.domain_class),
                 "refersToClassMap": _label_from_class_id(om.to_class or p.range_class),
-                "join": [_join_to_burr_string(j) for j in joins],
+                "join": [_join_to_burr_string(j) for j in repaired_joins],
             }
             if p.extras:
                 item.update(p.extras)
@@ -853,10 +965,17 @@ class OntologyDraft:
             if not effective_cols:
                 continue
 
+            source_table = _as_str(dm.source_table).strip()
+            repaired_cols = [_ensure_qualified_column(col, source_table) for col in effective_cols]
+            repaired_cols = [c for c in repaired_cols if c]
+
+            if not repaired_cols:
+                continue
+
             item = {
                 "property": _to_burr_safe_property_name(p.label),
                 "belongsToClassMap": _label_from_class_id(dm.from_class or p.domain_class),
-                "column": effective_cols[0],
+                "column": repaired_cols[0],
             }
             if p.extras:
                 item.update(p.extras)
