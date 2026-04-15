@@ -1,0 +1,13 @@
+{
+    "relation_prefix": "iswc",
+    "prefixes": [
+        {
+            "prefix": "iswc",
+            "uri": "/iswc/"
+        },
+        {
+            "prefix": "base",
+            "uri": "/base/"
+        }
+    ]
+}

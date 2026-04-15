@@ -1,0 +1,140 @@
+{
+  "enabled_tools": [
+    "schema_profiler"
+  ],
+  "schema_summary": {
+    "num_tables": 9,
+    "num_columns": 56,
+    "num_foreign_keys": 7
+  },
+  "join_graph": {
+    "conferences": [],
+    "organizations": [
+      {
+        "to_table": "organizations",
+        "from_columns": [
+          "Belongsto"
+        ],
+        "to_columns": [
+          "OrgID"
+        ],
+        "joins": [
+          [
+            "organizations.Belongsto",
+            "=",
+            "organizations.OrgID"
+          ]
+        ]
+      }
+    ],
+    "papers": [
+      {
+        "to_table": "conferences",
+        "from_columns": [
+          "Conference"
+        ],
+        "to_columns": [
+          "ConfID"
+        ],
+        "joins": [
+          [
+            "papers.Conference",
+            "=",
+            "conferences.ConfID"
+          ]
+        ]
+      }
+    ],
+    "persons": [],
+    "rel_paper_topic": [
+      {
+        "to_table": "papers",
+        "from_columns": [
+          "PaperID"
+        ],
+        "to_columns": [
+          "PaperID"
+        ],
+        "joins": [
+          [
+            "rel_paper_topic.PaperID",
+            "=",
+            "papers.PaperID"
+          ]
+        ]
+      }
+    ],
+    "rel_person_organization": [
+      {
+        "to_table": "persons",
+        "from_columns": [
+          "PersonID"
+        ],
+        "to_columns": [
+          "PerID"
+        ],
+        "joins": [
+          [
+            "rel_person_organization.PersonID",
+            "=",
+            "persons.PerID"
+          ]
+        ]
+      }
+    ],
+    "rel_person_paper": [
+      {
+        "to_table": "persons",
+        "from_columns": [
+          "PersonID"
+        ],
+        "to_columns": [
+          "PerID"
+        ],
+        "joins": [
+          [
+            "rel_person_paper.PersonID",
+            "=",
+            "persons.PerID"
+          ]
+        ]
+      }
+    ],
+    "rel_person_topic": [
+      {
+        "to_table": "persons",
+        "from_columns": [
+          "PersonID"
+        ],
+        "to_columns": [
+          "PerID"
+        ],
+        "joins": [
+          [
+            "rel_person_topic.PersonID",
+            "=",
+            "persons.PerID"
+          ]
+        ]
+      }
+    ],
+    "topics": [
+      {
+        "to_table": "topics",
+        "from_columns": [
+          "ParentID"
+        ],
+        "to_columns": [
+          "TopicID"
+        ],
+        "joins": [
+          [
+            "topics.ParentID",
+            "=",
+            "topics.TopicID"
+          ]
+        ]
+      }
+    ]
+  }
+}

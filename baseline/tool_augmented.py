@@ -370,11 +370,13 @@ Return a JSON object with the following top-level keys:
   - status
   - confidence
   - description (optional)
-- For data_properties, use fields:
-  - id
-  - label
-  - domain
-  - range
+- For data_property_mappings, use fields:
+  - data_property_id
+  - source_table
+  - source_columns
+  - applies_to_class
+  - join_paths
+  - value_template
   - status
   - confidence
 - For object_properties, use fields:
@@ -426,6 +428,8 @@ Do not output join_paths as objects or free-form strings.
 - If a connector table has meaningful extra attributes, consider reification.
 - Do not invent domain properties unsupported by schema or samples.
 - When tool-derived evidence is present, treat it as strong structural guidance.
+- For data properties sourced from auxiliary/value tables, include join_paths that connect the owner class instance to the value table.
+
 
 Return JSON only.
 """
@@ -940,8 +944,95 @@ def run_tool_augmented_baseline(
         verifier_payload,
         tool_artifacts,
     )
+# ============================================================
+# load file
+# ============================================================
+
+def load_json_if_exists(path: Path) -> Optional[Any]:
+    if path.exists() and path.is_file():
+        return read_json(path)
+    return None
 
 
+def try_load_cached_run(out_dir: Path) -> Optional[Tuple[
+    OntologyDraft,
+    Dict[str, Any],
+    Dict[str, Any],
+    Dict[str, Any],
+    Dict[str, Any],
+    Dict[str, Any],
+    Dict[str, Any],
+    Dict[str, Any],
+]]:
+    """
+    Try to load a fully materialized previous run from out_dir.
+    Return the same tuple shape as run_tool_augmented_baseline(...) if successful.
+    Otherwise return None.
+    """
+    raw_model_path = out_dir / "raw_model.json"
+    normalized_path = out_dir / "normalized.json"
+    draft_path = out_dir / "draft.json"
+    validation_path = out_dir / "validation.json"
+    verifier_path = out_dir / "verifier.json"
+    mapping_path = out_dir / "mapping.json"
+    meta_path = out_dir / "meta.json"
+
+    required = [
+        raw_model_path,
+        normalized_path,
+        draft_path,
+        validation_path,
+        verifier_path,
+        mapping_path,
+        meta_path,
+    ]
+    if not all(p.exists() and p.is_file() for p in required):
+        return None
+
+    raw_model_json = read_json(raw_model_path)
+    normalized_model_json = read_json(normalized_path)
+    draft_json = read_json(draft_path)
+    validation_payload = read_json(validation_path)
+    verifier_payload = read_json(verifier_path)
+    burr_mapping = read_json(mapping_path)
+    meta = read_json(meta_path)
+
+    if not isinstance(raw_model_json, dict):
+        return None
+    if not isinstance(normalized_model_json, dict):
+        return None
+    if not isinstance(draft_json, dict):
+        return None
+    if not isinstance(validation_payload, dict):
+        return None
+    if not isinstance(verifier_payload, dict):
+        return None
+    if not isinstance(burr_mapping, dict):
+        return None
+    if not isinstance(meta, dict):
+        return None
+
+    draft = OntologyDraft.from_dict(draft_json, already_normalized=True)
+
+    tool_artifacts = {
+        "schema_profile": load_json_if_exists(out_dir / "schema_profile.json"),
+        "instance_profile": load_json_if_exists(out_dir / "instance_profile.json"),
+        "hypotheses": load_json_if_exists(out_dir / "hypotheses.json"),
+        "tool_context": load_json_if_exists(out_dir / "tool_context.json") or {},
+        "prompt": read_text(out_dir / "prompt.md") if (out_dir / "prompt.md").exists() else "",
+        "verification_feedback": meta.get("verification_feedback"),
+    }
+
+    return (
+        draft,
+        burr_mapping,
+        meta,
+        raw_model_json,
+        normalized_model_json,
+        validation_payload,
+        verifier_payload,
+        tool_artifacts,
+    )
 # ============================================================
 # CLI
 # ============================================================
@@ -953,15 +1044,15 @@ def main() -> None:
     parser.add_argument(
         "--scenario-dir",
         type=str,
-        default="burr_benchmark/real-world/mondial",
+        default="burr_benchmark/real-world/iswc",
     )
     parser.add_argument("--schema-path", type=str, default=None)
-    parser.add_argument("--fk-mode", type=str, default="auto", choices=["auto", "fk", "no_fk"])
+    parser.add_argument("--fk-mode", type=str, default="fk", choices=["auto", "fk", "no_fk"])
     parser.add_argument("--model", type=str, default="gpt-5.4-nano")
     parser.add_argument("--api-url", type=str, default="https://www.aiapikey.net/v1/chat/completions")
     parser.add_argument("--max-rows-per-table", type=int, default=3)
     parser.add_argument("--timeout", type=float, default=300.0)
-    parser.add_argument("--out-dir", type=str, default="outputs/tool_augmented")
+    parser.add_argument("--out-dir", type=str, default="outputs/iswc")
     parser.add_argument("--run-burr-compare", action="store_true")
     parser.add_argument("--meta-path", type=str, default=None)
     parser.add_argument("--database-name", type=str, default=None)
@@ -996,7 +1087,9 @@ def main() -> None:
     include_sample_rows = bool(args.include_sample_rows)
     include_tool_context = True if not args.include_tool_context else True
 
-    try:
+    cached = try_load_cached_run(out_dir)
+
+    if cached is not None:
         (
             draft,
             burr_mapping,
@@ -1006,33 +1099,46 @@ def main() -> None:
             validation_payload,
             verifier_payload,
             tool_artifacts,
-        ) = run_tool_augmented_baseline(
-            scenario_dir=scenario_dir,
-            schema_path=schema_path,
-            fk_mode=args.fk_mode,
-            model=args.model,
-            api_url=args.api_url,
-            max_rows_per_table=args.max_rows_per_table,
-            timeout=args.timeout,
-            enabled_tools=enabled_tools,
-            include_schema_sql=include_schema_sql,
-            include_table_defs=include_table_defs,
-            include_sample_rows=include_sample_rows,
-            include_tool_context=include_tool_context,
-            fail_fast_on_invalid_draft=bool(args.fail_fast_on_invalid_draft),
-        )
-    except Exception as e:
-        fail_meta = {
-            "scenario_dir": str(scenario_dir),
-            "schema_path": str(schema_path) if schema_path else None,
-            "fk_mode": args.fk_mode,
-            "model": args.model,
-            "api_url": args.api_url,
-            "enabled_tools": sorted(enabled_tools),
-            "error": safe_exception_payload(e),
-        }
-        write_json(out_dir / "failed.meta.json", fail_meta)
-        raise
+        ) = cached
+        print(f"[CACHE HIT] Reusing existing outputs from {out_dir}")
+    else:
+        try:
+            (
+                draft,
+                burr_mapping,
+                meta,
+                raw_model_json,
+                normalized_model_json,
+                validation_payload,
+                verifier_payload,
+                tool_artifacts,
+            ) = run_tool_augmented_baseline(
+                scenario_dir=scenario_dir,
+                schema_path=schema_path,
+                fk_mode=args.fk_mode,
+                model=args.model,
+                api_url=args.api_url,
+                max_rows_per_table=args.max_rows_per_table,
+                timeout=args.timeout,
+                enabled_tools=enabled_tools,
+                include_schema_sql=include_schema_sql,
+                include_table_defs=include_table_defs,
+                include_sample_rows=include_sample_rows,
+                include_tool_context=include_tool_context,
+                fail_fast_on_invalid_draft=bool(args.fail_fast_on_invalid_draft),
+            )
+        except Exception as e:
+            fail_meta = {
+                "scenario_dir": str(scenario_dir),
+                "schema_path": str(schema_path) if schema_path else None,
+                "fk_mode": args.fk_mode,
+                "model": args.model,
+                "api_url": args.api_url,
+                "enabled_tools": sorted(enabled_tools),
+                "error": safe_exception_payload(e),
+            }
+            write_json(out_dir / "failed.meta.json", fail_meta)
+            raise
 
     # Layered outputs
     write_json(out_dir / "raw_model.json", raw_model_json)
@@ -1061,12 +1167,17 @@ def main() -> None:
 
     if args.run_burr_compare:
         try:
+            compare_output_json = out_dir / args.output_json
+            compare_artifacts_dir = out_dir / "compare_artifacts"
+
             compare_result = run_compare(
                 scenario_dir=scenario_dir,
                 pred_mapping_path=out_dir / "mapping.json",
                 gt_mapping_path=None,
                 meta_path=Path(args.meta_path).resolve() if args.meta_path else None,
                 database_name=args.database_name or scenario_dir.name,
+                output_json=compare_output_json,
+                artifacts_dir=compare_artifacts_dir,
             )
             write_json(out_dir / "compare.json", compare_result)
         except Exception as e:

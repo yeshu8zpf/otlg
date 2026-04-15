@@ -1,0 +1,250 @@
+{
+  "classes": [
+    {
+      "id": "conference/{ConfID}",
+      "class": "Conference",
+      "name": "Conference"
+    },
+    {
+      "id": "organization/{OrgID}",
+      "class": "Organization",
+      "name": "Organization"
+    },
+    {
+      "id": "paper/{PaperID}",
+      "class": "Paper",
+      "name": "Paper"
+    },
+    {
+      "id": "person/{PerID}",
+      "class": "Person",
+      "name": "Person"
+    },
+    {
+      "id": "topic/{TopicID}",
+      "class": "Topic",
+      "name": "Topic"
+    },
+    {
+      "id": "paper-topic-relation/{PaperID}-{TopicID}",
+      "class": "PaperTopicRelation",
+      "name": "PaperTopicRelation"
+    }
+  ],
+  "object_properties": [
+    {
+      "property": "paper_presented_at_conference",
+      "belongsToClassMap": "Paper",
+      "refersToClassMap": "Conference",
+      "join": [
+        "papers.Conference = conferences.ConfID"
+      ]
+    },
+    {
+      "property": "organization_part_of_organization",
+      "belongsToClassMap": "Organization",
+      "refersToClassMap": "Organization",
+      "join": [
+        "organizations.Belongsto = organizations.OrgID"
+      ]
+    },
+    {
+      "property": "person_affiliated_with_organization",
+      "belongsToClassMap": "Person",
+      "refersToClassMap": "Organization",
+      "join": [
+        "persons.PerID = rel_person_organization.PersonID",
+        "rel_person_organization.OrganizationID = organizations.OrgID"
+      ]
+    },
+    {
+      "property": "person_author_of_paper",
+      "belongsToClassMap": "Person",
+      "refersToClassMap": "Paper",
+      "join": [
+        "persons.PerID = rel_person_paper.PersonID",
+        "rel_person_paper.PaperID = papers.PaperID"
+      ]
+    },
+    {
+      "property": "person_interested_in_topic",
+      "belongsToClassMap": "Person",
+      "refersToClassMap": "Topic",
+      "join": [
+        "persons.PerID = rel_person_topic.PersonID",
+        "rel_person_topic.TopicID = topics.TopicID"
+      ]
+    },
+    {
+      "property": "topic_broader_topic",
+      "belongsToClassMap": "Topic",
+      "refersToClassMap": "Topic",
+      "join": [
+        "topics.ParentID = topics.TopicID"
+      ]
+    },
+    {
+      "property": "paper_topic_relation_paper",
+      "belongsToClassMap": "PaperTopicRelation",
+      "refersToClassMap": "Paper",
+      "join": [
+        "rel_paper_topic.PaperID = papers.PaperID"
+      ]
+    },
+    {
+      "property": "paper_topic_relation_topic",
+      "belongsToClassMap": "PaperTopicRelation",
+      "refersToClassMap": "Topic",
+      "join": [
+        "rel_paper_topic.TopicID = topics.TopicID"
+      ]
+    }
+  ],
+  "data_properties": [
+    {
+      "property": "conference_name",
+      "belongsToClassMap": "Conference",
+      "column": "conferences.Name"
+    },
+    {
+      "property": "conference_URI",
+      "belongsToClassMap": "Conference",
+      "column": "conferences.URI"
+    },
+    {
+      "property": "conference_date_text",
+      "belongsToClassMap": "Conference",
+      "column": "conferences.Date"
+    },
+    {
+      "property": "conference_location",
+      "belongsToClassMap": "Conference",
+      "column": "conferences.Location"
+    },
+    {
+      "property": "conference_timestamp",
+      "belongsToClassMap": "Conference",
+      "column": "conferences.Datum"
+    },
+    {
+      "property": "organization_type",
+      "belongsToClassMap": "Organization",
+      "column": "organizations.Type"
+    },
+    {
+      "property": "organization_name",
+      "belongsToClassMap": "Organization",
+      "column": "organizations.Name"
+    },
+    {
+      "property": "organization_address",
+      "belongsToClassMap": "Organization",
+      "column": "organizations.Address"
+    },
+    {
+      "property": "organization_location",
+      "belongsToClassMap": "Organization",
+      "column": "organizations.Location"
+    },
+    {
+      "property": "organization_postcode",
+      "belongsToClassMap": "Organization",
+      "column": "organizations.Postcode"
+    },
+    {
+      "property": "organization_country",
+      "belongsToClassMap": "Organization",
+      "column": "organizations.Country"
+    },
+    {
+      "property": "organization_URI",
+      "belongsToClassMap": "Organization",
+      "column": "organizations.URI"
+    },
+    {
+      "property": "organization_homepage",
+      "belongsToClassMap": "Organization",
+      "column": "organizations.Homepage"
+    },
+    {
+      "property": "paper_title",
+      "belongsToClassMap": "Paper",
+      "column": "papers.Title"
+    },
+    {
+      "property": "paper_abstract",
+      "belongsToClassMap": "Paper",
+      "column": "papers.Abstract"
+    },
+    {
+      "property": "paper_URI",
+      "belongsToClassMap": "Paper",
+      "column": "papers.URI"
+    },
+    {
+      "property": "paper_year",
+      "belongsToClassMap": "Paper",
+      "column": "papers.Year"
+    },
+    {
+      "property": "person_type",
+      "belongsToClassMap": "Person",
+      "column": "persons.Type"
+    },
+    {
+      "property": "person_first_name",
+      "belongsToClassMap": "Person",
+      "column": "persons.FirstName"
+    },
+    {
+      "property": "person_last_name",
+      "belongsToClassMap": "Person",
+      "column": "persons.LastName"
+    },
+    {
+      "property": "person_address",
+      "belongsToClassMap": "Person",
+      "column": "persons.Address"
+    },
+    {
+      "property": "person_email",
+      "belongsToClassMap": "Person",
+      "column": "persons.Email"
+    },
+    {
+      "property": "person_homepage",
+      "belongsToClassMap": "Person",
+      "column": "persons.Homepage"
+    },
+    {
+      "property": "person_phone",
+      "belongsToClassMap": "Person",
+      "column": "persons.Phone"
+    },
+    {
+      "property": "person_URI",
+      "belongsToClassMap": "Person",
+      "column": "persons.URI"
+    },
+    {
+      "property": "person_photo",
+      "belongsToClassMap": "Person",
+      "column": "persons.Photo"
+    },
+    {
+      "property": "topic_name",
+      "belongsToClassMap": "Topic",
+      "column": "topics.TopicName"
+    },
+    {
+      "property": "topic_URI",
+      "belongsToClassMap": "Topic",
+      "column": "topics.URI"
+    },
+    {
+      "property": "paper_topic_relation_type",
+      "belongsToClassMap": "PaperTopicRelation",
+      "column": "rel_paper_topic.RelationType"
+    }
+  ]
+}

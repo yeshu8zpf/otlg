@@ -1,0 +1,1012 @@
+{
+  "classes": [
+    {
+      "id": "Conference",
+      "label": "Conference",
+      "status": "confirmed",
+      "confidence": 0.98,
+      "description": "Conference or event record derived from the conferences table."
+    },
+    {
+      "id": "Organization",
+      "label": "Organization",
+      "status": "confirmed",
+      "confidence": 0.95,
+      "description": "Organization record derived from the organizations table."
+    },
+    {
+      "id": "Paper",
+      "label": "Paper",
+      "status": "confirmed",
+      "confidence": 0.98,
+      "description": "Scholarly paper derived from the papers table."
+    },
+    {
+      "id": "Person",
+      "label": "Person",
+      "status": "confirmed",
+      "confidence": 0.98,
+      "description": "Person derived from the persons table."
+    },
+    {
+      "id": "Topic",
+      "label": "Topic",
+      "status": "confirmed",
+      "confidence": 0.97,
+      "description": "Topic or subject category derived from the topics table."
+    },
+    {
+      "id": "PaperTopicRelation",
+      "label": "Paper Topic Relation",
+      "status": "tentative",
+      "confidence": 0.72,
+      "description": "Reified relation between a paper and a topic because rel_paper_topic contains an extra attribute RelationType."
+    }
+  ],
+  "data_properties": [
+    {
+      "id": "conferenceName",
+      "label": "conference name",
+      "status": "confirmed",
+      "confidence": 0.99
+    },
+    {
+      "id": "conferenceURI",
+      "label": "conference URI",
+      "status": "confirmed",
+      "confidence": 0.97
+    },
+    {
+      "id": "conferenceDateText",
+      "label": "conference date text",
+      "status": "confirmed",
+      "confidence": 0.9
+    },
+    {
+      "id": "conferenceLocation",
+      "label": "conference location",
+      "status": "confirmed",
+      "confidence": 0.95
+    },
+    {
+      "id": "conferenceTimestamp",
+      "label": "conference timestamp",
+      "status": "confirmed",
+      "confidence": 0.86
+    },
+    {
+      "id": "organizationType",
+      "label": "organization type",
+      "status": "tentative",
+      "confidence": 0.72
+    },
+    {
+      "id": "organizationName",
+      "label": "organization name",
+      "status": "confirmed",
+      "confidence": 0.99
+    },
+    {
+      "id": "organizationAddress",
+      "label": "organization address",
+      "status": "confirmed",
+      "confidence": 0.94
+    },
+    {
+      "id": "organizationLocation",
+      "label": "organization location",
+      "status": "confirmed",
+      "confidence": 0.92
+    },
+    {
+      "id": "organizationPostcode",
+      "label": "organization postcode",
+      "status": "confirmed",
+      "confidence": 0.92
+    },
+    {
+      "id": "organizationCountry",
+      "label": "organization country",
+      "status": "confirmed",
+      "confidence": 0.95
+    },
+    {
+      "id": "organizationURI",
+      "label": "organization URI",
+      "status": "confirmed",
+      "confidence": 0.96
+    },
+    {
+      "id": "organizationHomepage",
+      "label": "organization homepage",
+      "status": "confirmed",
+      "confidence": 0.96
+    },
+    {
+      "id": "paperTitle",
+      "label": "paper title",
+      "status": "confirmed",
+      "confidence": 0.99
+    },
+    {
+      "id": "paperAbstract",
+      "label": "paper abstract",
+      "status": "confirmed",
+      "confidence": 0.98
+    },
+    {
+      "id": "paperURI",
+      "label": "paper URI",
+      "status": "confirmed",
+      "confidence": 0.97
+    },
+    {
+      "id": "paperYear",
+      "label": "paper year",
+      "status": "confirmed",
+      "confidence": 0.98
+    },
+    {
+      "id": "personType",
+      "label": "person type",
+      "status": "tentative",
+      "confidence": 0.76
+    },
+    {
+      "id": "personFirstName",
+      "label": "person first name",
+      "status": "confirmed",
+      "confidence": 0.99
+    },
+    {
+      "id": "personLastName",
+      "label": "person last name",
+      "status": "confirmed",
+      "confidence": 0.99
+    },
+    {
+      "id": "personAddress",
+      "label": "person address",
+      "status": "confirmed",
+      "confidence": 0.93
+    },
+    {
+      "id": "personEmail",
+      "label": "person email",
+      "status": "confirmed",
+      "confidence": 0.98
+    },
+    {
+      "id": "personHomepage",
+      "label": "person homepage",
+      "status": "confirmed",
+      "confidence": 0.96
+    },
+    {
+      "id": "personPhone",
+      "label": "person phone",
+      "status": "confirmed",
+      "confidence": 0.95
+    },
+    {
+      "id": "personURI",
+      "label": "person URI",
+      "status": "confirmed",
+      "confidence": 0.97
+    },
+    {
+      "id": "personPhoto",
+      "label": "person photo",
+      "status": "confirmed",
+      "confidence": 0.96
+    },
+    {
+      "id": "topicName",
+      "label": "topic name",
+      "status": "confirmed",
+      "confidence": 0.99
+    },
+    {
+      "id": "topicURI",
+      "label": "topic URI",
+      "status": "confirmed",
+      "confidence": 0.97
+    },
+    {
+      "id": "paperTopicRelationType",
+      "label": "paper topic relation type",
+      "status": "tentative",
+      "confidence": 0.74
+    }
+  ],
+  "object_properties": [
+    {
+      "id": "paperPresentedAtConference",
+      "label": "paper presented at conference",
+      "domain": "Paper",
+      "range": "Conference",
+      "join_paths": [
+        [
+          "papers.Conference",
+          "=",
+          "conferences.ConfID"
+        ]
+      ],
+      "status": "confirmed",
+      "confidence": 0.97
+    },
+    {
+      "id": "organizationPartOfOrganization",
+      "label": "organization part of organization",
+      "domain": "Organization",
+      "range": "Organization",
+      "join_paths": [
+        [
+          "organizations.Belongsto",
+          "=",
+          "organizations.OrgID"
+        ]
+      ],
+      "status": "confirmed",
+      "confidence": 0.91
+    },
+    {
+      "id": "personAffiliatedWithOrganization",
+      "label": "person affiliated with organization",
+      "domain": "Person",
+      "range": "Organization",
+      "join_paths": [
+        [
+          "persons.PerID",
+          "=",
+          "rel_person_organization.PersonID"
+        ],
+        [
+          "rel_person_organization.OrganizationID",
+          "=",
+          "organizations.OrgID"
+        ]
+      ],
+      "status": "confirmed",
+      "confidence": 0.95
+    },
+    {
+      "id": "personAuthorOfPaper",
+      "label": "person author of paper",
+      "domain": "Person",
+      "range": "Paper",
+      "join_paths": [
+        [
+          "persons.PerID",
+          "=",
+          "rel_person_paper.PersonID"
+        ],
+        [
+          "rel_person_paper.PaperID",
+          "=",
+          "papers.PaperID"
+        ]
+      ],
+      "status": "tentative",
+      "confidence": 0.83
+    },
+    {
+      "id": "personInterestedInTopic",
+      "label": "person interested in topic",
+      "domain": "Person",
+      "range": "Topic",
+      "join_paths": [
+        [
+          "persons.PerID",
+          "=",
+          "rel_person_topic.PersonID"
+        ],
+        [
+          "rel_person_topic.TopicID",
+          "=",
+          "topics.TopicID"
+        ]
+      ],
+      "status": "tentative",
+      "confidence": 0.82
+    },
+    {
+      "id": "topicBroaderTopic",
+      "label": "topic broader topic",
+      "domain": "Topic",
+      "range": "Topic",
+      "join_paths": [
+        [
+          "topics.ParentID",
+          "=",
+          "topics.TopicID"
+        ]
+      ],
+      "status": "confirmed",
+      "confidence": 0.93
+    },
+    {
+      "id": "paperTopicRelationPaper",
+      "label": "paper topic relation paper",
+      "domain": "PaperTopicRelation",
+      "range": "Paper",
+      "join_paths": [
+        [
+          "rel_paper_topic.PaperID",
+          "=",
+          "papers.PaperID"
+        ]
+      ],
+      "status": "confirmed",
+      "confidence": 0.96
+    },
+    {
+      "id": "paperTopicRelationTopic",
+      "label": "paper topic relation topic",
+      "domain": "PaperTopicRelation",
+      "range": "Topic",
+      "join_paths": [
+        [
+          "rel_paper_topic.TopicID",
+          "=",
+          "topics.TopicID"
+        ]
+      ],
+      "status": "tentative",
+      "confidence": 0.88
+    }
+  ],
+  "subclass_relations": [],
+  "class_mappings": [
+    {
+      "class_id": "Conference",
+      "instance_id_template": "conference/{ConfID}",
+      "from_tables": [
+        "conferences"
+      ],
+      "identifier_columns": [
+        "ConfID"
+      ],
+      "status": "confirmed",
+      "confidence": 0.99
+    },
+    {
+      "class_id": "Organization",
+      "instance_id_template": "organization/{OrgID}",
+      "from_tables": [
+        "organizations"
+      ],
+      "identifier_columns": [
+        "OrgID"
+      ],
+      "status": "confirmed",
+      "confidence": 0.99
+    },
+    {
+      "class_id": "Paper",
+      "instance_id_template": "paper/{PaperID}",
+      "from_tables": [
+        "papers"
+      ],
+      "identifier_columns": [
+        "PaperID"
+      ],
+      "status": "confirmed",
+      "confidence": 0.99
+    },
+    {
+      "class_id": "Person",
+      "instance_id_template": "person/{PerID}",
+      "from_tables": [
+        "persons"
+      ],
+      "identifier_columns": [
+        "PerID"
+      ],
+      "status": "confirmed",
+      "confidence": 0.99
+    },
+    {
+      "class_id": "Topic",
+      "instance_id_template": "topic/{TopicID}",
+      "from_tables": [
+        "topics"
+      ],
+      "identifier_columns": [
+        "TopicID"
+      ],
+      "status": "confirmed",
+      "confidence": 0.99
+    },
+    {
+      "class_id": "PaperTopicRelation",
+      "instance_id_template": "paper-topic-relation/{PaperID}-{TopicID}",
+      "from_tables": [
+        "rel_paper_topic"
+      ],
+      "identifier_columns": [
+        "PaperID",
+        "TopicID"
+      ],
+      "status": "tentative",
+      "confidence": 0.75
+    }
+  ],
+  "data_property_mappings": [
+    {
+      "data_property_id": "conferenceName",
+      "source_table": "conferences",
+      "source_columns": [
+        "Name"
+      ],
+      "applies_to_class": "Conference",
+      "join_paths": [],
+      "value_template": "{Name}",
+      "status": "confirmed",
+      "confidence": 0.99
+    },
+    {
+      "data_property_id": "conferenceURI",
+      "source_table": "conferences",
+      "source_columns": [
+        "URI"
+      ],
+      "applies_to_class": "Conference",
+      "join_paths": [],
+      "value_template": "{URI}",
+      "status": "confirmed",
+      "confidence": 0.97
+    },
+    {
+      "data_property_id": "conferenceDateText",
+      "source_table": "conferences",
+      "source_columns": [
+        "Date"
+      ],
+      "applies_to_class": "Conference",
+      "join_paths": [],
+      "value_template": "{Date}",
+      "status": "confirmed",
+      "confidence": 0.9
+    },
+    {
+      "data_property_id": "conferenceLocation",
+      "source_table": "conferences",
+      "source_columns": [
+        "Location"
+      ],
+      "applies_to_class": "Conference",
+      "join_paths": [],
+      "value_template": "{Location}",
+      "status": "confirmed",
+      "confidence": 0.95
+    },
+    {
+      "data_property_id": "conferenceTimestamp",
+      "source_table": "conferences",
+      "source_columns": [
+        "Datum"
+      ],
+      "applies_to_class": "Conference",
+      "join_paths": [],
+      "value_template": "{Datum}",
+      "status": "confirmed",
+      "confidence": 0.86
+    },
+    {
+      "data_property_id": "organizationType",
+      "source_table": "organizations",
+      "source_columns": [
+        "Type"
+      ],
+      "applies_to_class": "Organization",
+      "join_paths": [],
+      "value_template": "{Type}",
+      "status": "tentative",
+      "confidence": 0.72
+    },
+    {
+      "data_property_id": "organizationName",
+      "source_table": "organizations",
+      "source_columns": [
+        "Name"
+      ],
+      "applies_to_class": "Organization",
+      "join_paths": [],
+      "value_template": "{Name}",
+      "status": "confirmed",
+      "confidence": 0.99
+    },
+    {
+      "data_property_id": "organizationAddress",
+      "source_table": "organizations",
+      "source_columns": [
+        "Address"
+      ],
+      "applies_to_class": "Organization",
+      "join_paths": [],
+      "value_template": "{Address}",
+      "status": "confirmed",
+      "confidence": 0.94
+    },
+    {
+      "data_property_id": "organizationLocation",
+      "source_table": "organizations",
+      "source_columns": [
+        "Location"
+      ],
+      "applies_to_class": "Organization",
+      "join_paths": [],
+      "value_template": "{Location}",
+      "status": "confirmed",
+      "confidence": 0.92
+    },
+    {
+      "data_property_id": "organizationPostcode",
+      "source_table": "organizations",
+      "source_columns": [
+        "Postcode"
+      ],
+      "applies_to_class": "Organization",
+      "join_paths": [],
+      "value_template": "{Postcode}",
+      "status": "confirmed",
+      "confidence": 0.92
+    },
+    {
+      "data_property_id": "organizationCountry",
+      "source_table": "organizations",
+      "source_columns": [
+        "Country"
+      ],
+      "applies_to_class": "Organization",
+      "join_paths": [],
+      "value_template": "{Country}",
+      "status": "confirmed",
+      "confidence": 0.95
+    },
+    {
+      "data_property_id": "organizationURI",
+      "source_table": "organizations",
+      "source_columns": [
+        "URI"
+      ],
+      "applies_to_class": "Organization",
+      "join_paths": [],
+      "value_template": "{URI}",
+      "status": "confirmed",
+      "confidence": 0.96
+    },
+    {
+      "data_property_id": "organizationHomepage",
+      "source_table": "organizations",
+      "source_columns": [
+        "Homepage"
+      ],
+      "applies_to_class": "Organization",
+      "join_paths": [],
+      "value_template": "{Homepage}",
+      "status": "confirmed",
+      "confidence": 0.96
+    },
+    {
+      "data_property_id": "paperTitle",
+      "source_table": "papers",
+      "source_columns": [
+        "Title"
+      ],
+      "applies_to_class": "Paper",
+      "join_paths": [],
+      "value_template": "{Title}",
+      "status": "confirmed",
+      "confidence": 0.99
+    },
+    {
+      "data_property_id": "paperAbstract",
+      "source_table": "papers",
+      "source_columns": [
+        "Abstract"
+      ],
+      "applies_to_class": "Paper",
+      "join_paths": [],
+      "value_template": "{Abstract}",
+      "status": "confirmed",
+      "confidence": 0.98
+    },
+    {
+      "data_property_id": "paperURI",
+      "source_table": "papers",
+      "source_columns": [
+        "URI"
+      ],
+      "applies_to_class": "Paper",
+      "join_paths": [],
+      "value_template": "{URI}",
+      "status": "confirmed",
+      "confidence": 0.97
+    },
+    {
+      "data_property_id": "paperYear",
+      "source_table": "papers",
+      "source_columns": [
+        "Year"
+      ],
+      "applies_to_class": "Paper",
+      "join_paths": [],
+      "value_template": "{Year}",
+      "status": "confirmed",
+      "confidence": 0.98
+    },
+    {
+      "data_property_id": "personType",
+      "source_table": "persons",
+      "source_columns": [
+        "Type"
+      ],
+      "applies_to_class": "Person",
+      "join_paths": [],
+      "value_template": "{Type}",
+      "status": "tentative",
+      "confidence": 0.76
+    },
+    {
+      "data_property_id": "personFirstName",
+      "source_table": "persons",
+      "source_columns": [
+        "FirstName"
+      ],
+      "applies_to_class": "Person",
+      "join_paths": [],
+      "value_template": "{FirstName}",
+      "status": "confirmed",
+      "confidence": 0.99
+    },
+    {
+      "data_property_id": "personLastName",
+      "source_table": "persons",
+      "source_columns": [
+        "LastName"
+      ],
+      "applies_to_class": "Person",
+      "join_paths": [],
+      "value_template": "{LastName}",
+      "status": "confirmed",
+      "confidence": 0.99
+    },
+    {
+      "data_property_id": "personAddress",
+      "source_table": "persons",
+      "source_columns": [
+        "Address"
+      ],
+      "applies_to_class": "Person",
+      "join_paths": [],
+      "value_template": "{Address}",
+      "status": "confirmed",
+      "confidence": 0.93
+    },
+    {
+      "data_property_id": "personEmail",
+      "source_table": "persons",
+      "source_columns": [
+        "Email"
+      ],
+      "applies_to_class": "Person",
+      "join_paths": [],
+      "value_template": "{Email}",
+      "status": "confirmed",
+      "confidence": 0.98
+    },
+    {
+      "data_property_id": "personHomepage",
+      "source_table": "persons",
+      "source_columns": [
+        "Homepage"
+      ],
+      "applies_to_class": "Person",
+      "join_paths": [],
+      "value_template": "{Homepage}",
+      "status": "confirmed",
+      "confidence": 0.96
+    },
+    {
+      "data_property_id": "personPhone",
+      "source_table": "persons",
+      "source_columns": [
+        "Phone"
+      ],
+      "applies_to_class": "Person",
+      "join_paths": [],
+      "value_template": "{Phone}",
+      "status": "confirmed",
+      "confidence": 0.95
+    },
+    {
+      "data_property_id": "personURI",
+      "source_table": "persons",
+      "source_columns": [
+        "URI"
+      ],
+      "applies_to_class": "Person",
+      "join_paths": [],
+      "value_template": "{URI}",
+      "status": "confirmed",
+      "confidence": 0.97
+    },
+    {
+      "data_property_id": "personPhoto",
+      "source_table": "persons",
+      "source_columns": [
+        "Photo"
+      ],
+      "applies_to_class": "Person",
+      "join_paths": [],
+      "value_template": "{Photo}",
+      "status": "confirmed",
+      "confidence": 0.96
+    },
+    {
+      "data_property_id": "topicName",
+      "source_table": "topics",
+      "source_columns": [
+        "TopicName"
+      ],
+      "applies_to_class": "Topic",
+      "join_paths": [],
+      "value_template": "{TopicName}",
+      "status": "confirmed",
+      "confidence": 0.99
+    },
+    {
+      "data_property_id": "topicURI",
+      "source_table": "topics",
+      "source_columns": [
+        "URI"
+      ],
+      "applies_to_class": "Topic",
+      "join_paths": [],
+      "value_template": "{URI}",
+      "status": "confirmed",
+      "confidence": 0.97
+    },
+    {
+      "data_property_id": "paperTopicRelationType",
+      "source_table": "rel_paper_topic",
+      "source_columns": [
+        "RelationType"
+      ],
+      "applies_to_class": "PaperTopicRelation",
+      "join_paths": [],
+      "value_template": "{RelationType}",
+      "status": "tentative",
+      "confidence": 0.74
+    }
+  ],
+  "object_property_mappings": [
+    {
+      "object_property_id": "paperPresentedAtConference",
+      "from_class": "Paper",
+      "to_class": "Conference",
+      "from_tables": [
+        "papers",
+        "conferences"
+      ],
+      "join_paths": [
+        [
+          "papers.Conference",
+          "=",
+          "conferences.ConfID"
+        ]
+      ],
+      "source_identifier_columns": [
+        "PaperID"
+      ],
+      "target_identifier_columns": [
+        "ConfID"
+      ],
+      "status": "confirmed",
+      "confidence": 0.97
+    },
+    {
+      "object_property_id": "organizationPartOfOrganization",
+      "from_class": "Organization",
+      "to_class": "Organization",
+      "from_tables": [
+        "organizations"
+      ],
+      "join_paths": [
+        [
+          "organizations.Belongsto",
+          "=",
+          "organizations.OrgID"
+        ]
+      ],
+      "source_identifier_columns": [
+        "OrgID"
+      ],
+      "target_identifier_columns": [
+        "OrgID"
+      ],
+      "status": "confirmed",
+      "confidence": 0.91
+    },
+    {
+      "object_property_id": "personAffiliatedWithOrganization",
+      "from_class": "Person",
+      "to_class": "Organization",
+      "from_tables": [
+        "persons",
+        "rel_person_organization",
+        "organizations"
+      ],
+      "join_paths": [
+        [
+          "persons.PerID",
+          "=",
+          "rel_person_organization.PersonID"
+        ],
+        [
+          "rel_person_organization.OrganizationID",
+          "=",
+          "organizations.OrgID"
+        ]
+      ],
+      "source_identifier_columns": [
+        "PerID"
+      ],
+      "target_identifier_columns": [
+        "OrgID"
+      ],
+      "status": "confirmed",
+      "confidence": 0.95
+    },
+    {
+      "object_property_id": "personAuthorOfPaper",
+      "from_class": "Person",
+      "to_class": "Paper",
+      "from_tables": [
+        "persons",
+        "rel_person_paper",
+        "papers"
+      ],
+      "join_paths": [
+        [
+          "persons.PerID",
+          "=",
+          "rel_person_paper.PersonID"
+        ],
+        [
+          "rel_person_paper.PaperID",
+          "=",
+          "papers.PaperID"
+        ]
+      ],
+      "source_identifier_columns": [
+        "PerID"
+      ],
+      "target_identifier_columns": [
+        "PaperID"
+      ],
+      "status": "tentative",
+      "confidence": 0.83
+    },
+    {
+      "object_property_id": "personInterestedInTopic",
+      "from_class": "Person",
+      "to_class": "Topic",
+      "from_tables": [
+        "persons",
+        "rel_person_topic",
+        "topics"
+      ],
+      "join_paths": [
+        [
+          "persons.PerID",
+          "=",
+          "rel_person_topic.PersonID"
+        ],
+        [
+          "rel_person_topic.TopicID",
+          "=",
+          "topics.TopicID"
+        ]
+      ],
+      "source_identifier_columns": [
+        "PerID"
+      ],
+      "target_identifier_columns": [
+        "TopicID"
+      ],
+      "status": "tentative",
+      "confidence": 0.82
+    },
+    {
+      "object_property_id": "topicBroaderTopic",
+      "from_class": "Topic",
+      "to_class": "Topic",
+      "from_tables": [
+        "topics"
+      ],
+      "join_paths": [
+        [
+          "topics.ParentID",
+          "=",
+          "topics.TopicID"
+        ]
+      ],
+      "source_identifier_columns": [
+        "TopicID"
+      ],
+      "target_identifier_columns": [
+        "TopicID"
+      ],
+      "status": "confirmed",
+      "confidence": 0.93
+    },
+    {
+      "object_property_id": "paperTopicRelationPaper",
+      "from_class": "PaperTopicRelation",
+      "to_class": "Paper",
+      "from_tables": [
+        "rel_paper_topic",
+        "papers"
+      ],
+      "join_paths": [
+        [
+          "rel_paper_topic.PaperID",
+          "=",
+          "papers.PaperID"
+        ]
+      ],
+      "source_identifier_columns": [
+        "PaperID",
+        "TopicID"
+      ],
+      "target_identifier_columns": [
+        "PaperID"
+      ],
+      "status": "confirmed",
+      "confidence": 0.96
+    },
+    {
+      "object_property_id": "paperTopicRelationTopic",
+      "from_class": "PaperTopicRelation",
+      "to_class": "Topic",
+      "from_tables": [
+        "rel_paper_topic",
+        "topics"
+      ],
+      "join_paths": [
+        [
+          "rel_paper_topic.TopicID",
+          "=",
+          "topics.TopicID"
+        ]
+      ],
+      "source_identifier_columns": [
+        "PaperID",
+        "TopicID"
+      ],
+      "target_identifier_columns": [
+        "TopicID"
+      ],
+      "status": "tentative",
+      "confidence": 0.88
+    }
+  ],
+  "diagnostics": {
+    "assumptions": [
+      "rel_person_paper is treated as a person-to-paper relation and labeled as authorship based on table naming and publication context, but this semantic is not explicitly enforced by the schema.",
+      "rel_person_topic is treated as a person-to-topic relation indicating interest or association; exact semantics are not explicit in the schema.",
+      "rel_paper_topic is modeled as a reified class because it contains the extra attribute RelationType."
+    ],
+    "omissions": [
+      "papers.Publish was not mapped because no explicit foreign-key evidence or reliable semantic interpretation was available.",
+      "Type columns in persons and organizations were not converted into subclass axioms because values appear to be data-driven categories rather than stable schema-level entity types."
+    ],
+    "evidence_notes": [
+      "Tool-derived join evidence strongly supports papers.Conference -> conferences.ConfID, organizations.Belongsto -> organizations.OrgID, and topics.ParentID -> topics.TopicID.",
+      "Connector tables rel_person_organization, rel_person_paper, rel_person_topic, and rel_paper_topic required partial inference for missing second-side joins based on column naming and primary-key patterns."
+    ]
+  }
+}

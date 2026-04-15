@@ -4,7 +4,7 @@ import copy
 import json
 import re
 from dataclasses import dataclass, field
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional
 
 
 # ============================================================
@@ -210,6 +210,36 @@ def _find_root_payload(obj: Dict[str, Any], collector: NormalizationCollector) -
     return obj
 
 
+def _normalize_join(join_value: Any) -> List[str]:
+    """
+    Normalize a join condition into token form: ["table1.col1", "=", "table2.col2"]
+    """
+    if isinstance(join_value, list):
+        tokens = [str(x).strip() for x in join_value if str(x).strip()]
+        return tokens
+
+    if isinstance(join_value, str):
+        text = join_value.strip()
+        if not text:
+            return []
+        m = re.match(r"^\s*(\S+)\s*(=|!=|<>|>=|<=|>|<)\s*(\S+)\s*$", text)
+        if m:
+            return [m.group(1), m.group(2), m.group(3)]
+        tokens = text.split()
+        return [t for t in tokens if t]
+
+    return [str(join_value)]
+
+
+def _normalize_join_list(x: Any) -> List[List[str]]:
+    out: List[List[str]] = []
+    for j in _as_list(x):
+        norm = _normalize_join(j)
+        if norm:
+            out.append(norm)
+    return out
+
+
 # ============================================================
 # Canonicalizers
 # ============================================================
@@ -264,12 +294,15 @@ def _canonicalize_data_property(x: Any) -> Dict[str, Any]:
         if c:
             source_columns.append(c)
 
+    join_paths = _normalize_join_list(d.get("join_paths") or d.get("joins") or d.get("join"))
+
     out: Dict[str, Any] = {
         "id": pid,
         "label": _normalize_ws(label),
         "domain_class": _normalize_class_id(domain) if domain else "",
         "range_type": _normalize_range_type(range_type),
         "source_columns": list(dict.fromkeys(source_columns)),
+        "join_paths": join_paths,
         "status": _normalize_ws(d.get("status") or "proposed") or "proposed",
         "confidence": _coerce_confidence(d.get("confidence")),
     }
@@ -281,6 +314,7 @@ def _canonicalize_data_property(x: Any) -> Dict[str, Any]:
         "domain_class", "domain", "applies_to_class", "from_class",
         "range_type", "range", "datatype", "type",
         "source_columns", "columns", "column",
+        "join_paths", "joins", "join",
         "status", "confidence", "description",
     }}
     if extras:
@@ -296,7 +330,7 @@ def _canonicalize_object_property(x: Any) -> Dict[str, Any]:
 
     domain = d.get("domain_class") or d.get("domain") or d.get("from_class")
     range_class = d.get("range_class") or d.get("range") or d.get("to_class") or d.get("target_class")
-    join_paths = _as_list(d.get("join_paths") or d.get("joins"))
+    join_paths = _normalize_join_list(d.get("join_paths") or d.get("joins") or d.get("join"))
 
     out: Dict[str, Any] = {
         "id": pid,
@@ -314,7 +348,7 @@ def _canonicalize_object_property(x: Any) -> Dict[str, Any]:
         "id", "object_property_id", "property_id", "name", "label",
         "domain_class", "domain", "from_class",
         "range_class", "range", "to_class", "target_class",
-        "join_paths", "joins",
+        "join_paths", "joins", "join",
         "status", "confidence", "description",
     }}
     if extras:
@@ -408,18 +442,23 @@ def _canonicalize_data_property_mapping(x: Any) -> Dict[str, Any]:
     if column and column not in source_columns:
         source_columns.append(column)
 
+    joins = _normalize_join_list(d.get("joins") or d.get("join_paths") or d.get("join"))
+
     out = {
         "property_id": property_id,
         "from_class": _normalize_class_id(d.get("from_class") or d.get("applies_to_class") or d.get("domain") or d.get("domain_class")) if (d.get("from_class") or d.get("applies_to_class") or d.get("domain") or d.get("domain_class")) else "",
         "source_table": _normalize_identifier(d.get("source_table") or d.get("table") or ""),
         "source_columns": list(dict.fromkeys(source_columns)),
         "column": column,
+        "joins": joins,
         "status": _normalize_ws(d.get("status") or "proposed") or "proposed",
         "confidence": _coerce_confidence(d.get("confidence")),
     }
     extras = {k: v for k, v in d.items() if k not in {
         "property_id", "data_property_id", "id", "label", "from_class", "applies_to_class", "domain", "domain_class",
-        "source_table", "table", "source_columns", "columns", "column", "status", "confidence",
+        "source_table", "table", "source_columns", "columns", "column",
+        "joins", "join_paths", "join",
+        "status", "confidence",
     }}
     if extras:
         out["extras"] = extras
@@ -434,7 +473,7 @@ def _canonicalize_object_property_mapping(x: Any) -> Dict[str, Any]:
         "property_id": property_id,
         "from_class": _normalize_class_id(d.get("from_class") or d.get("domain") or d.get("domain_class")) if (d.get("from_class") or d.get("domain") or d.get("domain_class")) else "",
         "to_class": _normalize_class_id(d.get("to_class") or d.get("range") or d.get("range_class") or d.get("target_class")) if (d.get("to_class") or d.get("range") or d.get("range_class") or d.get("target_class")) else "",
-        "joins": _as_list(d.get("joins") or d.get("join_paths")),
+        "joins": _normalize_join_list(d.get("joins") or d.get("join_paths") or d.get("join")),
         "status": _normalize_ws(d.get("status") or "proposed") or "proposed",
         "confidence": _coerce_confidence(d.get("confidence")),
     }
@@ -442,7 +481,8 @@ def _canonicalize_object_property_mapping(x: Any) -> Dict[str, Any]:
         "property_id", "object_property_id", "id", "label",
         "from_class", "domain", "domain_class",
         "to_class", "range", "range_class", "target_class",
-        "joins", "join_paths", "status", "confidence",
+        "joins", "join_paths", "join",
+        "status", "confidence",
     }}
     if extras:
         out["extras"] = extras
@@ -534,6 +574,7 @@ def _backfill_from_mappings(
                     "source_table": source_table,
                     "source_columns": source_columns,
                     "column": source_columns[0] if source_columns else "",
+                    "joins": p.get("join_paths") or [],
                     "status": p.get("status", "proposed"),
                     "confidence": p.get("confidence", 0.5),
                 }
@@ -551,6 +592,7 @@ def _backfill_from_mappings(
             if col:
                 mapped_cols.append(col)
         mapped_cols = list(dict.fromkeys(mapped_cols))
+        mapped_joins = _normalize_join_list(m.get("joins") or m.get("join_paths") or m.get("join"))
 
         if p is None:
             inferred_domain = m.get("from_class") or "Class:UNKNOWN"
@@ -562,6 +604,7 @@ def _backfill_from_mappings(
                     "domain_class": inferred_domain,
                     "range_type": "string",
                     "source_columns": mapped_cols,
+                    "join_paths": mapped_joins,
                     "status": m.get("status", "proposed"),
                     "confidence": m.get("confidence", 0.5),
                 }
@@ -573,6 +616,9 @@ def _backfill_from_mappings(
         if (not p.get("source_columns")) and mapped_cols:
             p["source_columns"] = mapped_cols
             collector.add("info", "DATA_PROPERTY_SOURCE_COLUMNS_BACKFILLED", "Backfilled source_columns from data_property_mapping.", path=f"data_properties[{pid}]", property_id=pid, source_columns=mapped_cols)
+        if (not p.get("join_paths")) and mapped_joins:
+            p["join_paths"] = mapped_joins
+            collector.add("info", "DATA_PROPERTY_JOINS_BACKFILLED", "Backfilled join_paths from data_property_mapping.", path=f"data_properties[{pid}]", property_id=pid)
         if (not p.get("domain_class") or p.get("domain_class") == "Class:UNKNOWN") and m.get("from_class"):
             p["domain_class"] = m["from_class"]
             collector.add("info", "DATA_PROPERTY_DOMAIN_BACKFILLED", "Backfilled domain_class from data_property_mapping.", path=f"data_properties[{pid}]", property_id=pid, domain_class=p["domain_class"])
@@ -604,7 +650,7 @@ def _backfill_from_mappings(
         if not pid:
             continue
         p = op_idx.get(pid)
-        joins = m.get("joins") or []
+        joins = _normalize_join_list(m.get("joins") or m.get("join_paths") or m.get("join"))
 
         if p is None:
             inferred_domain = m.get("from_class") or "Class:UNKNOWN"
