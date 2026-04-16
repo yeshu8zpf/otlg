@@ -11,7 +11,10 @@ _PLACEHOLDER_RE = re.compile(r"@@\s*([A-Za-z0-9_]+)\.([A-Za-z0-9_]+)\s*@@")
 
 
 def _normalize_placeholder(text: str) -> str:
-    return _PLACEHOLDER_RE.sub(lambda m: f"@@{m.group(1).lower()}.{m.group(2).lower()}@@", text)
+    return _PLACEHOLDER_RE.sub(
+        lambda m: f"@@{m.group(1).lower()}.{m.group(2).lower()}@@",
+        text,
+    )
 
 
 def _normalize_string_fields(node: Any) -> Any:
@@ -30,32 +33,35 @@ def _ensure_list(value: Any) -> List[Any]:
     return value if isinstance(value, list) else [value]
 
 
-def _prediction_specific_rewrite(mapping: Dict[str, Any]) -> Tuple[Dict[str, Any], Dict[str, Any]]:
-    """Hook for prediction-side compare-view rewrite.
-
-    Conservative by default: only normalizes placeholder/casing and keeps structure.
-    You can extend this function with scenario-specific rules, e.g.:
-    - synthesize pattern-based attributes
-    - emit bNodeIdColumns for blank-node classes
-    - rewrite URI-valued columns to Burr-friendly entries supported by your local chain
+def _prediction_specific_rewrite(
+    mapping: Dict[str, Any],
+) -> Tuple[Dict[str, Any], Dict[str, Any]]:
+    """
+    Prediction-side compare-view rewrite.
+    Conservative by default: only normalize placeholder / casing.
+    Extend here with scenario-specific rewrites later.
     """
     out = copy.deepcopy(mapping)
     out = _normalize_string_fields(out)
-    debug = {
+
+    debug: Dict[str, Any] = {
         "kind": "prediction",
         "rewrites": [],
     }
     return out, debug
 
 
-def _gt_json_specific_rewrite(mapping: Dict[str, Any]) -> Tuple[Dict[str, Any], Dict[str, Any]]:
-    """Hook for GT JSON pre-processing.
-
+def _gt_json_specific_rewrite(
+    mapping: Dict[str, Any],
+) -> Tuple[Dict[str, Any], Dict[str, Any]]:
+    """
+    GT JSON pre-processing.
     Only use representation-preserving rewrites here.
     """
     out = copy.deepcopy(mapping)
     out = _normalize_string_fields(out)
-    debug = {
+
+    debug: Dict[str, Any] = {
         "kind": "gt_json",
         "rewrites": [],
     }

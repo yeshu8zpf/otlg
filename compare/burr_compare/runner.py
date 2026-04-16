@@ -1,245 +1,92 @@
 from __future__ import annotations
 
-import json
-import shutil
-import sys
-import types
-from dataclasses import dataclass
+import tempfile
 from pathlib import Path
-from typing import Any, Dict, Optional, Tuple
+from typing import Any, Dict
 
+from .burr_imports import import_burr_modules
 from .gt_resolution import (
     default_meta_path_for_scenario,
     infer_database_name,
     resolve_gt_ttl,
 )
+from .io_utils import read_json, write_json
+from .meta import ensure_burr_meta
+from .preprocess import preprocess_gt_json, preprocess_gt_ttl, preprocess_prediction_json
+from .types import CompareConfig
 
 
-@dataclass
-class CompareConfig:
-    project_root: Path
-    scenario_dir: Path
-    prediction_path: Path
-    output_path: Path
-    gt_path: Optional[Path] = None
-    gt_kind: str = "ttl"
-    meta_path: Optional[Path] = None
-    temp_dir: Optional[Path] = None
-
-
-def ensure_wandb_stub() -> None:
-    """
-    Burr evaluator imports wandb in some modules.
-    If wandb is unavailable, inject a minimal stub so we do not need
-    to modify Burr source code or install wandb just for local compare.
-    """
-    try:
-        import wandb  # noqa: F401
-        return
-    except ModuleNotFoundError:
-        pass
-
-    if "wandb" in sys.modules:
-        return
-
-    wandb_stub = types.ModuleType("wandb")
-
-    def _noop(*args, **kwargs):
-        return None
-
-    wandb_stub.init = _noop
-    wandb_stub.log = _noop
-    wandb_stub.finish = _noop
-    wandb_stub.login = _noop
-    wandb_stub.watch = _noop
-    wandb_stub.config = {}
-
-    sys.modules["wandb"] = wandb_stub
-
-
-def import_burr_modules(project_root: Path) -> Tuple[object, object, object]:
-    """
-    Import Burr evaluator modules from local project checkout.
-    Returns:
-        MappingParserClass, calculate_metrics function, CanonicalMapping class
-    """
-    project_root = Path(project_root).resolve()
-    if str(project_root) not in sys.path:
-        sys.path.insert(0, str(project_root))
-
-    ensure_wandb_stub()
-
-    from burr_evaluator.mapping_parser.mapping.MappingParser import MappingParser
-    from burr_evaluator.metrics.caclulate_metrics import calculate_metrics
-    from burr_evaluator.mapping_parser.mapping.Mapping import Mapping
-
-    return MappingParser, calculate_metrics, Mapping
-
-
-def read_json(path: Path) -> Any:
-    with open(path, "r", encoding="utf-8") as f:
-        return json.load(f)
-
-
-def write_json(path: Path, obj: Any) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with open(path, "w", encoding="utf-8") as f:
-        json.dump(obj, f, indent=2, ensure_ascii=False)
-
-
-def ensure_burr_meta(meta: Optional[Dict[str, Any]]) -> Dict[str, Any]:
-    meta = dict(meta or {})
-    meta.setdefault("database", "unknown")
-    meta.setdefault("concepts", [])
-    meta.setdefault("relations", [])
-    meta.setdefault("attributes", [])
-    return meta
-
-
-
-def preprocess_prediction_json(src: Path, dst: Path) -> Dict[str, Any]:
-    """
-    For now, prediction json is already in the expected format.
-    Copy it to a temp location so the pipeline is uniform.
-    """
-    obj = read_json(src)
-    write_json(dst, obj)
-    return {
-        "kind": "prediction_json",
-        "src": str(src),
-        "dst": str(dst),
-        "top_level_keys": list(obj.keys()) if isinstance(obj, dict) else None,
-    }
-
-
-def preprocess_gt_json(src: Path, dst: Path) -> Dict[str, Any]:
-    """
-    GT json has already been merged if needed outside this function.
-    Just copy it to temp.
-    """
-    obj = read_json(src)
-    write_json(dst, obj)
-    return {
-        "kind": "gt_json",
-        "src": str(src),
-        "dst": str(dst),
-        "top_level_keys": list(obj.keys()) if isinstance(obj, dict) else None,
-    }
-
-
-def preprocess_gt_ttl(src: Path, dst: Path) -> Dict[str, Any]:
-    dst.parent.mkdir(parents=True, exist_ok=True)
-    shutil.copy2(src, dst)
-    return {
-        "kind": "gt_ttl",
-        "src": str(src),
-        "dst": str(dst),
-    }
-
-
-def _normalize_metrics_output(raw_metrics: Any) -> Dict[str, Any]:
-    """
-    Burr's calculate_metrics may return either:
-      1) {
-           "mapping_based": {...},
-           "name_based": {...}
-         }
-      2) a single flat metric dict
-    Normalize to a predictable dict.
-    """
-    if isinstance(raw_metrics, dict):
-        if "mapping_based" in raw_metrics or "name_based" in raw_metrics:
-            out: Dict[str, Any] = {}
-            if "mapping_based" in raw_metrics:
-                out["mapping_based"] = raw_metrics["mapping_based"]
-            if "name_based" in raw_metrics:
-                out["name_based"] = raw_metrics["name_based"]
-            return out
-
-        return {"default": raw_metrics}
-
-    return {"default": raw_metrics}
+def _read_meta(meta_path: Path) -> Dict[str, Any]:
+    if not meta_path.exists():
+        return ensure_burr_meta(None)
+    return ensure_burr_meta(read_json(meta_path))
 
 
 def run_compare(config: CompareConfig) -> Dict[str, Any]:
-    project_root = Path(config.project_root).resolve()
-    scenario_dir = Path(config.scenario_dir).resolve()
-    prediction_path = Path(config.prediction_path).resolve()
-    output_path = Path(config.output_path).resolve()
+    JsonMapping, D2RQMapping, calculate_metrics = import_burr_modules(config.project_root)
 
-    if not prediction_path.exists():
-        raise FileNotFoundError(f"Prediction file not found: {prediction_path}")
-    if not scenario_dir.exists():
-        raise FileNotFoundError(f"Scenario dir not found: {scenario_dir}")
+    scenario_dir = config.scenario_dir
+    meta_path = config.meta_path or default_meta_path_for_scenario(scenario_dir)
+    meta = _read_meta(meta_path)
+    database_name = infer_database_name(scenario_dir)
 
-    meta_path = (
-        Path(config.meta_path).resolve()
-        if config.meta_path is not None
-        else default_meta_path_for_scenario(scenario_dir).resolve()
-    )
+    temp_root = config.temp_dir or Path(tempfile.mkdtemp(prefix="burr_preprocess_"))
+    temp_root.mkdir(parents=True, exist_ok=True)
 
-    temp_dir = (
-        Path(config.temp_dir).resolve()
-        if config.temp_dir is not None
-        else output_path.parent / f"{output_path.stem}_tmp"
-    )
-    temp_dir.mkdir(parents=True, exist_ok=True)
-
-    pred_preprocessed = temp_dir / "prediction.preprocessed.json"
-    gt_preprocessed = (
-        temp_dir / "gt.preprocessed.ttl"
-        if config.gt_kind == "ttl"
-        else temp_dir / "gt.preprocessed.json"
-    )
-
-    pred_meta = preprocess_prediction_json(prediction_path, pred_preprocessed)
+    pred_preprocessed = temp_root / "prediction_preprocessed.json"
+    pred_debug = preprocess_prediction_json(config.prediction_path, pred_preprocessed)
 
     if config.gt_kind == "ttl":
-        gt_src = (
-            Path(config.gt_path).resolve()
-            if config.gt_path is not None
-            else resolve_gt_ttl(scenario_dir)
-        )
-        gt_meta = preprocess_gt_ttl(gt_src, gt_preprocessed)
+        gt_original = resolve_gt_ttl(scenario_dir, config.gt_path)
+        gt_preprocessed = temp_root / "gt_preprocessed.ttl"
+        gt_debug = preprocess_gt_ttl(gt_original, gt_preprocessed)
+        gt_mapping = D2RQMapping(str(gt_preprocessed), database_name, meta)
+
     elif config.gt_kind == "json":
-        if config.gt_path is None:
-            raise ValueError("gt_path must be provided when gt_kind='json'")
-        gt_src = Path(config.gt_path).resolve()
-        if not gt_src.exists():
-            raise FileNotFoundError(f"GT json not found: {gt_src}")
-        gt_meta = preprocess_gt_json(gt_src, gt_preprocessed)
+        gt_original = config.gt_path
+        if gt_original is None:
+            raise ValueError("gt_path is required when gt_kind='json'")
+        gt_preprocessed = temp_root / "gt_preprocessed.json"
+        gt_debug = preprocess_gt_json(gt_original, gt_preprocessed)
+        gt_mapping = JsonMapping(read_json(gt_preprocessed), database_name, meta)
+
     else:
         raise ValueError(f"Unsupported gt_kind: {config.gt_kind}")
 
-    MappingParser, calculate_metrics, Mapping = import_burr_modules(project_root)
+    pred_mapping = JsonMapping(read_json(pred_preprocessed), database_name, meta)
 
-    meta = {}
-    if meta_path.exists():
-        try:
-            meta = read_json(meta_path)
-        except Exception:
-            meta = {}
-    meta = ensure_burr_meta(meta)
-    meta.setdefault("database", infer_database_name(scenario_dir))
-
-    gt_mapping = MappingParser.parse_from_file(str(gt_preprocessed), meta)
-    pred_mapping = MappingParser.parse_from_file(str(pred_preprocessed), meta)
-
-    raw_metrics = calculate_metrics(gt_mapping, pred_mapping)
-    metrics = _normalize_metrics_output(raw_metrics)
+    mapping_based = calculate_metrics(
+        gt_mapping,
+        pred_mapping,
+        equality_mode="mapping_based",
+    )
+    name_based = calculate_metrics(
+        gt_mapping,
+        pred_mapping,
+        equality_mode="name_based",
+    )
 
     result = {
+        "mode": "burr_original_after_preprocess",
         "scenario_dir": str(scenario_dir),
-        "prediction_path": str(prediction_path),
-        "gt_path": str(gt_src),
-        "gt_kind": config.gt_kind,
-        "meta_path": str(meta_path) if meta_path else None,
-        "preprocess": {
-            "prediction": pred_meta,
-            "gt": gt_meta,
+        "database_name": database_name,
+        "meta_path": str(meta_path),
+        "effective_meta": meta,
+        "gt_preprocess": {
+            "original_path": str(gt_original),
+            "preprocessed_path": str(gt_preprocessed),
+            **gt_debug,
         },
-        "metrics": metrics,
+        "prediction_preprocess": {
+            "original_path": str(config.prediction_path),
+            "preprocessed_path": str(pred_preprocessed),
+            **pred_debug,
+        },
+        "metrics": {
+            "mapping_based": mapping_based,
+            "name_based": name_based,
+        },
     }
 
-    write_json(output_path, result)
+    write_json(config.output_path, result)
     return result

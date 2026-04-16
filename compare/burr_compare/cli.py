@@ -3,25 +3,28 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
-from .runner import CompareConfig, run_compare
+from .runner import run_compare
+from .types import CompareConfig
 
 
 def build_parser() -> argparse.ArgumentParser:
-    p = argparse.ArgumentParser(description="Thin Burr wrapper with GT/pred preprocessing")
-    p.add_argument("--project-root", type=Path, default=Path("."))
-    p.add_argument("--scenario-dir", type=Path, required=True)
-    p.add_argument("--prediction-path", type=Path, required=True)
-    p.add_argument("--output-path", type=Path, required=True)
-    p.add_argument("--gt-path", type=Path, default=None)
-    p.add_argument("--gt-kind", choices=["ttl", "json"], default="ttl")
-    p.add_argument("--meta-path", type=Path, default=None)
-    p.add_argument("--temp-dir", type=Path, default=None)
-    return p
+    parser = argparse.ArgumentParser(description="Run Burr compare with pre-processing.")
+    parser.add_argument("--project-root", type=Path, required=True)
+    parser.add_argument("--scenario-dir", type=Path, required=True)
+    parser.add_argument("--prediction-path", type=Path, required=True)
+    parser.add_argument("--output-path", type=Path, required=True)
+    parser.add_argument("--gt-path", type=Path, default=None)
+    parser.add_argument("--gt-kind", choices=["ttl", "json"], default="ttl")
+    parser.add_argument("--meta-path", type=Path, default=None)
+    parser.add_argument("--temp-dir", type=Path, default=None)
+    return parser
 
 
 def main() -> None:
-    args = build_parser().parse_args()
-    cfg = CompareConfig(
+    parser = build_parser()
+    args = parser.parse_args()
+
+    config = CompareConfig(
         project_root=args.project_root,
         scenario_dir=args.scenario_dir,
         prediction_path=args.prediction_path,
@@ -31,4 +34,4 @@ def main() -> None:
         meta_path=args.meta_path,
         temp_dir=args.temp_dir,
     )
-    run_compare(cfg)
+    run_compare(config)
