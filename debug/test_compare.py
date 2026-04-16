@@ -9,7 +9,7 @@ if str(ROOT) not in sys.path:
 from compare.burr_compare import gt_resolution, runner
 
 pred_path = ROOT / "outputs" / "mondial" / "mapping.json"
-scenario_dir = ROOT / "burr_benchmark" / "real-world" / "mondial"
+scenario_dir = ROOT / "burr_benchmark" / "real-world" / "iswc"
 mappings_dir = scenario_dir / "mappings"
 merged_gt_path = ROOT / "debug" / "mondial_gt_merged.json"
 compare_out_path = ROOT / "debug" / "mondial_compare_result.json"

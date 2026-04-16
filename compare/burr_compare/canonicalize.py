@@ -3,11 +3,14 @@ from __future__ import annotations
 import copy
 import re
 from collections import Counter, defaultdict
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, Iterable, List, Optional, Tuple
 
 
 PLACEHOLDER_RE = re.compile(r"\{\s*([^{}]+?)\s*\}")
 ATAT_RE = re.compile(r"@@\s*([^.@/\s]+)\s*\.\s*([^.@/\s]+)\s*@@", re.IGNORECASE)
+DOT_IDENT_RE = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*\.[A-Za-z_][A-Za-z0-9_]*$")
+SPACE_RE = re.compile(r"\s+")
+
 URI_PATTERN_KEYS = {
     "uriPattern",
     "uri_pattern",
@@ -16,6 +19,28 @@ URI_PATTERN_KEYS = {
     "sql_uri_pattern",
     "pattern",
 }
+
+CLASS_LIST_KEYS = {
+    "bNodeIdColumns",
+    "join",
+    "condition",
+    "subClassOf",
+    "additionalClassDefinitionProperty",
+}
+
+PROPERTY_LIST_KEYS = {
+    "join",
+    "condition",
+    "column",
+    "columns",
+    "uriColumn",
+    "pattern",
+    "uriPattern",
+    "sqlExpression",
+    "translateWith",
+    "constantValue",
+}
+
 SQL_EXPR_KEYS = {
     "sql_condition",
     "sql_join",
@@ -30,6 +55,7 @@ SQL_EXPR_KEYS = {
     "join",
     "joinCondition",
     "join_condition",
+    "uriColumn",
 }
 
 
@@ -37,12 +63,26 @@ def norm_name(s: str) -> str:
     return re.sub(r"[^a-z0-9]+", "", str(s).lower())
 
 
+def _ensure_list(value: Any) -> List[Any]:
+    if value is None:
+        return []
+    if isinstance(value, list):
+        return value
+    if isinstance(value, tuple):
+        return list(value)
+    return [value]
+
+
 def split_table_column(expr: str) -> Optional[Tuple[str, str]]:
     expr = str(expr).strip().strip('"').strip("'").strip()
     if "." not in expr:
         return None
     left, right = expr.split(".", 1)
-    return left.strip().lower(), right.strip().lower()
+    left = left.strip().lower()
+    right = right.strip().lower()
+    if not left or not right:
+        return None
+    return left, right
 
 
 def parse_join_equality(join_expr: str) -> Optional[Tuple[Tuple[str, str], Tuple[str, str]]]:
@@ -59,7 +99,7 @@ def parse_join_equality(join_expr: str) -> Optional[Tuple[Tuple[str, str], Tuple
 def normalize_column_expr(expr: str) -> str:
     tc = split_table_column(expr)
     if tc is None:
-        return re.sub(r"\s+", " ", str(expr).strip()).lower()
+        return SPACE_RE.sub(" ", str(expr).strip()).lower()
     t, c = tc
     return f"{t}.{c}"
 
@@ -67,7 +107,7 @@ def normalize_column_expr(expr: str) -> str:
 def normalize_join_expr(expr: str) -> str:
     parsed = parse_join_equality(expr)
     if parsed is None:
-        return re.sub(r"\s+", " ", str(expr).strip()).lower()
+        return SPACE_RE.sub(" ", str(expr).strip()).lower()
     (lt, lc), (rt, rc) = parsed
     return f"{lt}.{lc} = {rt}.{rc}"
 
@@ -119,7 +159,7 @@ def normalize_uri_pattern(value: str, table_hint: Optional[str] = None) -> str:
 
     s = re.sub(r"\{\s*([^{}]+?)\s*\}", repl_brace, s)
 
-    s = re.sub(r"\s+", " ", s).strip()
+    s = SPACE_RE.sub(" ", s).strip()
     if s.startswith("/@@"):
         s = s[1:]
     return s.lower()
@@ -130,8 +170,28 @@ def normalize_sqlish_text(value: str, table_hint: Optional[str] = None) -> str:
     s = normalize_uri_pattern(s, table_hint=table_hint)
     s = re.sub(r"`([^`]+)`", r"\1", s)
     s = re.sub(r'"([^"]+)"', r"\1", s)
-    s = re.sub(r"\s+", " ", s).strip()
+    s = SPACE_RE.sub(" ", s).strip()
     return s.lower()
+
+
+def normalize_condition_expr(expr: str) -> str:
+    return normalize_sqlish_text(expr, table_hint=None)
+
+
+def normalize_translate_with(value: Any) -> Any:
+    if value is None:
+        return None
+    if isinstance(value, list):
+        return [str(v).strip() for v in value]
+    return str(value).strip()
+
+
+def normalize_constant_value(value: Any) -> Any:
+    if value is None:
+        return None
+    if isinstance(value, str):
+        return value.strip()
+    return value
 
 
 def collect_class_entries(mapping: Dict[str, Any]) -> Dict[str, Dict[str, Any]]:
@@ -175,17 +235,20 @@ def infer_base_tables_for_class(
     counter: Counter[str] = Counter()
 
     for dp in data_props_by_class.get(cls_name, []):
-        col = dp.get("column")
-        if isinstance(col, str):
-            tc = split_table_column(col)
-            if tc:
-                counter[tc[0]] += 1
+        for raw_col in _ensure_list(dp.get("column")):
+            if isinstance(raw_col, str):
+                tc = split_table_column(raw_col)
+                if tc:
+                    counter[tc[0]] += 1
+        for raw_col in _ensure_list(dp.get("uriColumn")):
+            if isinstance(raw_col, str):
+                tc = split_table_column(raw_col)
+                if tc:
+                    counter[tc[0]] += 1
 
     if not counter:
         for op in outgoing_obj_props.get(cls_name, []):
-            joins = op.get("join", [])
-            if not isinstance(joins, list):
-                joins = [joins] if joins else []
+            joins = _ensure_list(op.get("join"))
             for j in joins:
                 if not isinstance(j, str):
                     continue
@@ -226,11 +289,16 @@ def infer_columns_from_data_props(
 ) -> Dict[str, Tuple[str, str]]:
     candidates: List[Tuple[str, str]] = []
     for dp in data_props_by_class.get(cls_name, []):
-        col = dp.get("column")
-        if isinstance(col, str):
-            tc = split_table_column(col)
-            if tc:
-                candidates.append(tc)
+        for raw_col in _ensure_list(dp.get("column")):
+            if isinstance(raw_col, str):
+                tc = split_table_column(raw_col)
+                if tc:
+                    candidates.append(tc)
+        for raw_col in _ensure_list(dp.get("uriColumn")):
+            if isinstance(raw_col, str):
+                tc = split_table_column(raw_col)
+                if tc:
+                    candidates.append(tc)
 
     out: Dict[str, Tuple[str, str]] = {}
     for ph in placeholders:
@@ -250,12 +318,10 @@ def infer_columns_from_outgoing_object_props(
 
     for op in outgoing_obj_props.get(cls_name, []):
         target_cls = op.get("refersToClassMap") or op.get("refersToClass")
-        joins = op.get("join", [])
-        if not isinstance(joins, list):
-            joins = [joins] if joins else []
+        joins = _ensure_list(op.get("join"))
 
         for j in joins:
-            parsed = parse_join_equality(j)
+            parsed = parse_join_equality(j) if isinstance(j, str) else None
             if parsed is None:
                 continue
             left, right = parsed
@@ -323,12 +389,26 @@ def infer_class_canonical_columns(
 ) -> Optional[List[Tuple[str, str]]]:
     raw_id = cls_entry.get("id")
     cls_name = cls_entry.get("class") or cls_entry.get("name")
+
+    # 1) already canonical @@table.col@@
+    if isinstance(raw_id, str):
+        existing = parse_existing_uri_pattern(raw_id)
+        if existing:
+            return existing
+
+    # 2) blank-node classes: use bNodeIdColumns if present
+    bnode_cols = _ensure_list(cls_entry.get("bNodeIdColumns"))
+    parsed_bnode_cols: List[Tuple[str, str]] = []
+    for col in bnode_cols:
+        if isinstance(col, str):
+            tc = split_table_column(col)
+            if tc:
+                parsed_bnode_cols.append(tc)
+    if parsed_bnode_cols:
+        return parsed_bnode_cols
+
     if not isinstance(raw_id, str) or not isinstance(cls_name, str):
         return None
-
-    existing = parse_existing_uri_pattern(raw_id)
-    if existing:
-        return existing
 
     placeholders = extract_placeholders_from_template(raw_id)
     if not placeholders:
@@ -357,59 +437,187 @@ def infer_class_canonical_columns(
     return [resolved[ph] for ph in placeholders]
 
 
+def _normalize_field_value(key: str, value: Any, *, table_hint: Optional[str] = None) -> Any:
+    if value is None:
+        return None
+
+    if key in {"join"}:
+        vals = _ensure_list(value)
+        normed = [normalize_join_expr(v) for v in vals if isinstance(v, str)]
+        return normed
+
+    if key in {"condition"}:
+        vals = _ensure_list(value)
+        normed = [normalize_condition_expr(v) for v in vals if isinstance(v, str)]
+        return normed
+
+    if key in {"column", "uriColumn"}:
+        vals = _ensure_list(value)
+        normed = [normalize_column_expr(v) for v in vals if isinstance(v, str)]
+        return normed if isinstance(value, list) else (normed[0] if normed else value)
+
+    if key in {"pattern", "uriPattern", "id"}:
+        if isinstance(value, str):
+            return normalize_uri_pattern(value, table_hint=table_hint)
+        return value
+
+    if key in {"sqlExpression"}:
+        if isinstance(value, str):
+            return normalize_sqlish_text(value, table_hint=table_hint)
+        vals = _ensure_list(value)
+        return [normalize_sqlish_text(v, table_hint=table_hint) for v in vals if isinstance(v, str)]
+
+    if key in {"translateWith"}:
+        return normalize_translate_with(value)
+
+    if key in {"constantValue"}:
+        return normalize_constant_value(value)
+
+    if key in {"bNodeIdColumns"}:
+        vals = _ensure_list(value)
+        normed = [normalize_column_expr(v) for v in vals if isinstance(v, str)]
+        return normed
+
+    if key in {"subClassOf", "additionalClassDefinitionProperty"}:
+        vals = _ensure_list(value)
+        normed = [str(v).strip() for v in vals]
+        return normed
+
+    if key in {"property", "dynamicProperty", "datatype", "class", "name", "prefix", "mapping_id"}:
+        if isinstance(value, str):
+            return value.strip() if key not in {"prefix"} else value.strip().lower()
+        return value
+
+    return value
+
+
+def _normalize_class_entry(
+    cls: Dict[str, Any],
+    mapping: Dict[str, Any],
+    data_props_by_class: Dict[str, List[Dict[str, Any]]],
+    outgoing_obj_props: Dict[str, List[Dict[str, Any]]],
+    unresolved: List[Dict[str, Any]],
+) -> None:
+    cls_name = cls.get("class") or cls.get("name")
+
+    # Normalize raw fields first
+    for key in list(cls.keys()):
+        cls[key] = _normalize_field_value(key, cls[key], table_hint=None)
+
+    cols = infer_class_canonical_columns(
+        cls,
+        mapping,
+        data_props_by_class,
+        outgoing_obj_props,
+    )
+
+    if cols is None:
+        unresolved.append({
+            "class": cls.get("class"),
+            "original_id": cls.get("id"),
+        })
+        if isinstance(cls.get("id"), str):
+            cls["id"] = normalize_uri_pattern(cls["id"])
+    else:
+        cls["id"] = canonical_uri_pattern_from_columns(cols).lower()
+
+    # Keep bNodeIdColumns normalized if present
+    if "bNodeIdColumns" in cls:
+        cls["bNodeIdColumns"] = [
+            normalize_column_expr(v) for v in _ensure_list(cls["bNodeIdColumns"]) if isinstance(v, str)
+        ]
+
+    # Optional default prefix
+    if "prefix" in cls and isinstance(cls["prefix"], str):
+        cls["prefix"] = cls["prefix"].lower()
+
+
+def _normalize_property_entry(prop: Dict[str, Any]) -> None:
+    belongs = prop.get("belongsToClassMap") or prop.get("belongsToClass")
+    table_hint = None
+    if isinstance(belongs, str):
+        table_hint = belongs
+
+    for key in list(prop.keys()):
+        prop[key] = _normalize_field_value(key, prop[key], table_hint=table_hint)
+
+    # Burr parser does not directly consume uriColumn; to make compare-view use it,
+    # mirror uriColumn into column if column is absent.
+    if "uriColumn" in prop and "column" not in prop:
+        prop["column"] = prop["uriColumn"]
+
+    # If a field normalized to singleton list for join/condition but source was scalar,
+    # keep list form because Burr parser accepts list and compare becomes stabler.
+    if "join" in prop and isinstance(prop["join"], str):
+        prop["join"] = [prop["join"]]
+    if "condition" in prop and isinstance(prop["condition"], str):
+        prop["condition"] = [prop["condition"]]
+
+
 def canonicalize_json_mapping(mapping: Dict[str, Any]) -> Dict[str, Any]:
     """
     Canonicalize both GT and prediction JSON mappings into a unified,
     Burr-friendly representation before compare.
+
+    This function is intentionally compare-view oriented:
+    - preserves original semantics when possible
+    - normalizes IDs / joins / columns / patterns
+    - absorbs extra fields Burr can parse
+    - mirrors uriColumn -> column so Burr can still consume URI-valued attrs
+      without modifying Burr source
     """
     out = copy.deepcopy(mapping)
+
+    # Ensure top-level lists exist
+    out.setdefault("classes", [])
+    out.setdefault("data_properties", [])
+    out.setdefault("object_properties", [])
+    out.setdefault("translation_tables", [])
 
     data_props_by_class = collect_data_props_by_class(out)
     outgoing_obj_props, _ = collect_object_props_by_class(out)
 
     unresolved: List[Dict[str, Any]] = []
 
-    # Canonicalize class IDs into @@table.column@@/... form
     for cls in out.get("classes", []):
-        cols = infer_class_canonical_columns(
+        _normalize_class_entry(
             cls,
             out,
             data_props_by_class,
             outgoing_obj_props,
+            unresolved,
         )
-        if cols is None:
-            unresolved.append({
-                "class": cls.get("class"),
-                "original_id": cls.get("id"),
-            })
-            if isinstance(cls.get("id"), str):
-                cls["id"] = normalize_uri_pattern(cls["id"])
-            continue
 
-        cls["id"] = canonical_uri_pattern_from_columns(cols).lower()
-
-        if "prefix" in cls and isinstance(cls["prefix"], str):
-            cls["prefix"] = cls["prefix"].lower()
-        if "class" in cls and isinstance(cls["class"], str):
-            cls["class"] = cls["class"]
-        if "name" in cls and isinstance(cls["name"], str):
-            cls["name"] = cls["name"]
-
-    # Normalize object properties
-    for op in out.get("object_properties", []):
-        if isinstance(op.get("property"), str):
-            op["property"] = op["property"]
-        if isinstance(op.get("join"), list):
-            op["join"] = [normalize_join_expr(j) for j in op["join"] if isinstance(j, str)]
-        elif isinstance(op.get("join"), str):
-            op["join"] = [normalize_join_expr(op["join"])]
-
-    # Normalize data properties
     for dp in out.get("data_properties", []):
-        if isinstance(dp.get("column"), str):
-            dp["column"] = normalize_column_expr(dp["column"])
+        _normalize_property_entry(dp)
+
+    for op in out.get("object_properties", []):
+        _normalize_property_entry(op)
+
+    # Translation tables
+    for tt in out.get("translation_tables", []):
+        if isinstance(tt, dict):
+            if "name" in tt and isinstance(tt["name"], str):
+                tt["name"] = tt["name"].strip()
+            if "translations" in tt and isinstance(tt["translations"], list):
+                cleaned = []
+                for row in tt["translations"]:
+                    if isinstance(row, dict):
+                        cleaned.append(
+                            {
+                                k: (str(v).strip() if isinstance(v, str) else v)
+                                for k, v in row.items()
+                            }
+                        )
+                    else:
+                        cleaned.append(row)
+                tt["translations"] = cleaned
 
     out["_canonicalization_debug"] = {
         "unresolved_classes": unresolved,
+        "notes": {
+            "uriColumn_mirrored_to_column": True,
+            "bNodeIdColumns_used_for_class_identity": True,
+        },
     }
     return out
