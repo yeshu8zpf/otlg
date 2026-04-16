@@ -1,47 +1,38 @@
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Any, Dict
+from typing import Any, Dict, List, Tuple
 
-from rdflib import Graph, Literal
+from rdflib import Graph, Literal, URIRef
 from rdflib.namespace import Namespace
 
-D2RQ = Namespace("http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#")
+from ..canonicalize import normalize_uri_pattern
+from ..io_utils import write_text
 
 
 def preprocess_gt_ttl(src: Path, dst: Path) -> Dict[str, Any]:
-    """
-    Representation-preserving GT TTL pre-processing.
+    src = src.resolve()
+    dst.parent.mkdir(parents=True, exist_ok=True)
 
-    This intentionally avoids changing Burr semantics.
-    It only normalizes surface forms that have already proven useful,
-    especially uriPattern literal casing / placeholder formatting.
-    """
-    graph = Graph()
-    graph.parse(src)
+    d2rq = Namespace("http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#")
+    uri_pred = URIRef(str(d2rq.uriPattern))
 
-    num_uri_pattern_rewritten = 0
-    replacements = []
+    g = Graph()
+    g.parse(src.as_posix(), format="turtle")
 
-    for s, p, o in list(graph.triples((None, D2RQ.uriPattern, None))):
+    replacements: List[Dict[str, Any]] = []
+    to_replace: List[Tuple[Any, Any, Literal, Literal]] = []
+
+    for s, p, o in g.triples((None, uri_pred, None)):
         if not isinstance(o, Literal):
             continue
 
         old = str(o)
-        new = old
-
-        # Conservative normalization: keep semantics unchanged.
-        if "#University" in new:
-            new = new.replace("#University", "#university")
-        if "#Department" in new:
-            new = new.replace("#Department", "#department")
-        if "#Institute" in new:
-            new = new.replace("#Institute", "#institute")
+        new = normalize_uri_pattern(old, table_hint=None)
 
         if new != old:
-            graph.remove((s, p, o))
-            graph.add((s, p, Literal(new)))
-            num_uri_pattern_rewritten += 1
+            new_lit = Literal(new, lang=o.language, datatype=o.datatype)
+            to_replace.append((s, p, o, new_lit))
             replacements.append(
                 {
                     "subject": str(s),
@@ -51,13 +42,20 @@ def preprocess_gt_ttl(src: Path, dst: Path) -> Dict[str, Any]:
                 }
             )
 
-    dst.parent.mkdir(parents=True, exist_ok=True)
-    graph.serialize(destination=str(dst), format="turtle")
+    for s, p, old_o, new_o in to_replace:
+        g.remove((s, p, old_o))
+        g.add((s, p, new_o))
+
+    serialized = g.serialize(format="turtle")
+    if isinstance(serialized, bytes):
+        serialized = serialized.decode("utf-8")
+
+    write_text(dst, serialized)
 
     return {
         "kind": "single_ttl",
         "ttl_preprocess_debug": {
-            "num_uriPattern_rewritten": num_uri_pattern_rewritten,
+            "num_uriPattern_rewritten": len(replacements),
             "replacements": replacements,
         },
     }

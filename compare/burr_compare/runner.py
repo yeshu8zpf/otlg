@@ -31,7 +31,10 @@ def run_compare(config: CompareConfig) -> Dict[str, Any]:
     meta = _read_meta(meta_path)
     database_name = infer_database_name(scenario_dir)
 
-    temp_root = config.temp_dir or Path(tempfile.mkdtemp(prefix="burr_preprocess_"))
+    if config.temp_dir is not None:
+        temp_root = config.temp_dir
+    else:
+        temp_root = config.output_path.parent / f"{config.output_path.stem}_preprocessed"
     temp_root.mkdir(parents=True, exist_ok=True)
 
     pred_preprocessed = temp_root / "prediction_preprocessed.json"

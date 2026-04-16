@@ -1,0 +1,1330 @@
+{
+  "classes": [
+    {
+      "id": "@@borders.country1@@/@@borders.country2@@",
+      "class": "Border",
+      "prefix": "mondial"
+    },
+    {
+      "id": "@@city.country@@/@@city.province@@/@@city.name@@",
+      "class": "City",
+      "prefix": "mondial"
+    },
+    {
+      "id": "@@continent.name@@",
+      "class": "Continent",
+      "prefix": "mondial"
+    },
+    {
+      "id": "@@country.code@@",
+      "class": "Country",
+      "name": "CountryFull",
+      "prefix": "mondial"
+    },
+    {
+      "id": "@@politics.country@@",
+      "class": "Country",
+      "name": "CountryPolitics",
+      "prefix": "mondial"
+    },
+    {
+      "id": "@@politics.dependent@@",
+      "class": "Country",
+      "name": "CountryDependent",
+      "prefix": "mondial"
+    },
+    {
+      "id": "@@politics.wasdependent@@",
+      "class": "PoliticalBody",
+      "prefix": "mondial"
+    },
+    {
+      "id": "@@desert.name@@",
+      "class": "Desert",
+      "prefix": "mondial"
+    },
+    {
+      "id": "@@encompasses.continent@@/@@encompasses.country@@",
+      "class": "Encompassed",
+      "prefix": "mondial"
+    },
+    {
+      "id": "@@river.name@@",
+      "class": "Estuary",
+      "prefix": "mondial"
+    },
+    {
+      "id": "@@ethnicgroup.name@@",
+      "class": "EthnicGroup",
+      "prefix": "mondial"
+    },
+    {
+      "id": "@@ethnicgroup.name@@/@@ethnicgroup.country@@",
+      "class": "EthnicProportion",
+      "prefix": "mondial"
+    },
+    {
+      "id": "@@island.name@@",
+      "class": "Island",
+      "prefix": "mondial"
+    },
+    {
+      "id": "@@island.islands@@",
+      "class": "Archipelago",
+      "prefix": "mondial"
+    },
+    {
+      "id": "@@lake.name@@",
+      "class": "Lake",
+      "prefix": "mondial"
+    },
+    {
+      "id": "@@language.name@@",
+      "class": "Language",
+      "prefix": "mondial"
+    },
+    {
+      "id": "@@spoken.language@@/@@spoken.country@@",
+      "class": "SpokenBy",
+      "prefix": "mondial"
+    },
+    {
+      "id": "@@mountain.name@@",
+      "class": "Mountain",
+      "prefix": "mondial"
+    },
+    {
+      "id": "@@mountain.name@@",
+      "class": "Volcano",
+      "name": "Volcano1",
+      "subClassOf": [
+        "Mountain"
+      ],
+      "condition": [
+        "mountain.type = 'volcano'"
+      ],
+      "prefix": "mondial"
+    },
+    {
+      "id": "@@mountain.name@@",
+      "class": "Volcano",
+      "name": "Volcano2",
+      "subClassOf": [
+        "Mountain"
+      ],
+      "condition": [
+        "mountain.type = 'volcanic'"
+      ],
+      "prefix": "mondial"
+    },
+    {
+      "id": "@@mountain.mountains@@",
+      "class": "MountainRange",
+      "prefix": "mondial"
+    },
+    {
+      "id": "@@organization.abbreviation@@",
+      "class": "Organization",
+      "prefix": "mondial"
+    },
+    {
+      "id": "@@ismember.country@@/@@ismember.organization@@",
+      "class": "Membership",
+      "prefix": "mondial"
+    },
+    {
+      "id": "@@countrypops.country@@/@@countrypops.year@@",
+      "class": "PopulationCount",
+      "name": "PopulationCountCountry",
+      "prefix": "mondial"
+    },
+    {
+      "id": "@@provpops.country@@/@@provpops.province@@/@@provpops.year@@",
+      "class": "PopulationCount",
+      "name": "PopulationCountProvince",
+      "prefix": "mondial"
+    },
+    {
+      "id": "@@citypops.country@@/@@citypops.province@@/@@citypops.city@@/@@citypops.year@@",
+      "class": "PopulationCount",
+      "name": "PopulationCountCity",
+      "prefix": "mondial"
+    },
+    {
+      "id": "@@province.country@@/@@province.name@@",
+      "class": "Province",
+      "prefix": "mondial"
+    },
+    {
+      "id": "@@religion.name@@",
+      "class": "Religion",
+      "prefix": "mondial"
+    },
+    {
+      "id": "@@religion.name@@/@@religion.country@@",
+      "class": "BelievedBy",
+      "prefix": "mondial"
+    },
+    {
+      "id": "@@river.name@@",
+      "class": "River",
+      "name": "River1",
+      "prefix": "mondial"
+    },
+    {
+      "id": "@@river.river@@",
+      "class": "River",
+      "name": "River2",
+      "prefix": "mondial"
+    },
+    {
+      "id": "@@sea.name@@",
+      "class": "Sea",
+      "prefix": "mondial"
+    },
+    {
+      "id": "@@river.name@@",
+      "class": "Source",
+      "prefix": "mondial"
+    }
+  ],
+  "data_properties": [
+    {
+      "property": "length",
+      "belongsToClass": "Border",
+      "type": "decimal",
+      "column": "borders.length"
+    },
+    {
+      "property": "name",
+      "belongsToClass": "City",
+      "type": "string",
+      "column": "city.name"
+    },
+    {
+      "property": "population",
+      "belongsToClass": "City",
+      "type": "integer",
+      "column": "city.population"
+    },
+    {
+      "property": "longitude",
+      "belongsToClass": "City",
+      "type": "decimal",
+      "column": "city.longitude"
+    },
+    {
+      "property": "latitude",
+      "belongsToClass": "City",
+      "type": "decimal",
+      "column": "city.latitude"
+    },
+    {
+      "property": "elevation",
+      "belongsToClass": "City",
+      "type": "decimal",
+      "column": "city.elevation"
+    },
+    {
+      "property": "othername",
+      "belongsToClass": "City",
+      "type": "string",
+      "column": "cityothername.othername",
+      "join": [
+        "city.name = cityothername.city",
+        "city.province = cityothername.province",
+        "city.country = cityothername.country"
+      ]
+    },
+    {
+      "property": "localname",
+      "belongsToClass": "City",
+      "type": "string",
+      "column": "citylocalname.localname",
+      "join": [
+        "city.name = citylocalname.city",
+        "city.province = citylocalname.province",
+        "city.country = citylocalname.country"
+      ]
+    },
+    {
+      "property": "name",
+      "belongsToClass": "Continent",
+      "type": "string",
+      "column": "continent.name"
+    },
+    {
+      "property": "area",
+      "belongsToClass": "Continent",
+      "type": "decimal",
+      "column": "continent.area"
+    },
+    {
+      "property": "carCode",
+      "belongsToClassMap": "CountryFull",
+      "type": "string",
+      "column": "country.code"
+    },
+    {
+      "property": "name",
+      "belongsToClassMap": "CountryFull",
+      "type": "string",
+      "column": "country.name"
+    },
+    {
+      "property": "area",
+      "belongsToClassMap": "CountryFull",
+      "type": "decimal",
+      "column": "country.area"
+    },
+    {
+      "property": "population",
+      "belongsToClassMap": "CountryFull",
+      "type": "integer",
+      "column": "country.population"
+    },
+    {
+      "property": "gdpTotal",
+      "belongsToClassMap": "CountryFull",
+      "type": "decimal",
+      "column": "economy.gdp",
+      "join": [
+        "country.code = economy.country"
+      ]
+    },
+    {
+      "property": "gdpAgri",
+      "belongsToClassMap": "CountryFull",
+      "type": "decimal",
+      "column": "economy.agriculture",
+      "join": [
+        "country.code = economy.country"
+      ]
+    },
+    {
+      "property": "gdpInd",
+      "belongsToClassMap": "CountryFull",
+      "type": "decimal",
+      "column": "economy.industry",
+      "join": [
+        "country.code = economy.country"
+      ]
+    },
+    {
+      "property": "gdpServ",
+      "belongsToClassMap": "CountryFull",
+      "type": "decimal",
+      "column": "economy.service",
+      "join": [
+        "country.code = economy.country"
+      ]
+    },
+    {
+      "property": "inflation",
+      "belongsToClassMap": "CountryFull",
+      "type": "decimal",
+      "column": "economy.inflation",
+      "join": [
+        "country.code = economy.country"
+      ]
+    },
+    {
+      "property": "unemployment",
+      "belongsToClassMap": "CountryFull",
+      "type": "decimal",
+      "column": "economy.unemployment",
+      "join": [
+        "country.code = economy.country"
+      ]
+    },
+    {
+      "property": "populationGrowth",
+      "belongsToClassMap": "CountryFull",
+      "type": "decimal",
+      "column": "population.population_growth",
+      "join": [
+        "country.code = population.country"
+      ]
+    },
+    {
+      "property": "infantMortality",
+      "belongsToClassMap": "CountryFull",
+      "type": "decimal",
+      "column": "population.infant_mortality",
+      "join": [
+        "country.code = population.country"
+      ]
+    },
+    {
+      "property": "independenceDate",
+      "belongsToClassMap": "CountryFull",
+      "type": "date",
+      "column": "politics.independence",
+      "join": [
+        "country.code = politics.country"
+      ]
+    },
+    {
+      "property": "government",
+      "belongsToClassMap": "CountryFull",
+      "type": "string",
+      "column": "politics.government",
+      "join": [
+        "country.code = politics.country"
+      ]
+    },
+    {
+      "property": "othername",
+      "belongsToClassMap": "CountryFull",
+      "type": "string",
+      "column": "countryothername.othername",
+      "join": [
+        "country.code = countryothername.country"
+      ]
+    },
+    {
+      "property": "localname",
+      "belongsToClassMap": "CountryFull",
+      "type": "string",
+      "column": "countrylocalname.localname",
+      "join": [
+        "country.code = countrylocalname.country"
+      ]
+    },
+    {
+      "property": "name",
+      "belongsToClass": "Desert",
+      "type": "string",
+      "column": "desert.name"
+    },
+    {
+      "property": "latitude",
+      "belongsToClass": "Desert",
+      "type": "decimal",
+      "column": "desert.latitude"
+    },
+    {
+      "property": "longitude",
+      "belongsToClass": "Desert",
+      "type": "decimal",
+      "column": "desert.longitude"
+    },
+    {
+      "property": "area",
+      "belongsToClass": "Desert",
+      "type": "decimal",
+      "column": "desert.area"
+    },
+    {
+      "property": "percent",
+      "belongsToClass": "Encompassed",
+      "type": "decimal",
+      "column": "encompasses.percentage"
+    },
+    {
+      "property": "elevation",
+      "belongsToClass": "Estuary",
+      "type": "decimal",
+      "column": "river.estuaryelevation"
+    },
+    {
+      "property": "latitude",
+      "belongsToClass": "Estuary",
+      "type": "decimal",
+      "column": "river.estuarylatitude"
+    },
+    {
+      "property": "longitude",
+      "belongsToClass": "Estuary",
+      "type": "decimal",
+      "column": "river.estuarylongitude"
+    },
+    {
+      "property": "name",
+      "belongsToClass": "EthnicGroup",
+      "type": "string",
+      "column": "ethnicgroup.name"
+    },
+    {
+      "property": "percentage",
+      "belongsToClass": "EthnicProportion",
+      "type": "decimal",
+      "column": "ethnicgroup.percentage"
+    },
+    {
+      "property": "name",
+      "belongsToClass": "Island",
+      "type": "string",
+      "column": "island.name"
+    },
+    {
+      "property": "name",
+      "belongsToClass": "Archipelago",
+      "type": "string",
+      "column": "island.islands"
+    },
+    {
+      "property": "latitude",
+      "belongsToClass": "Island",
+      "type": "decimal",
+      "column": "island.latitude"
+    },
+    {
+      "property": "longitude",
+      "belongsToClass": "Island",
+      "type": "decimal",
+      "column": "island.longitude"
+    },
+    {
+      "property": "area",
+      "belongsToClass": "Island",
+      "type": "decimal",
+      "column": "island.area"
+    },
+    {
+      "property": "elevation",
+      "belongsToClass": "Island",
+      "type": "decimal",
+      "column": "island.elevation"
+    },
+    {
+      "property": "type",
+      "belongsToClass": "Island",
+      "type": "string",
+      "column": "island.type"
+    },
+    {
+      "property": "name",
+      "belongsToClass": "Lake",
+      "type": "string",
+      "column": "lake.name"
+    },
+    {
+      "property": "latitude",
+      "belongsToClass": "Lake",
+      "type": "decimal",
+      "column": "lake.latitude"
+    },
+    {
+      "property": "longitude",
+      "belongsToClass": "Lake",
+      "type": "decimal",
+      "column": "lake.longitude"
+    },
+    {
+      "property": "area",
+      "belongsToClass": "Lake",
+      "type": "decimal",
+      "column": "lake.area"
+    },
+    {
+      "property": "elevation",
+      "belongsToClass": "Lake",
+      "type": "decimal",
+      "column": "lake.elevation"
+    },
+    {
+      "property": "type",
+      "belongsToClass": "Lake",
+      "type": "string",
+      "column": "lake.type"
+    },
+    {
+      "property": "depth",
+      "belongsToClass": "Lake",
+      "type": "decimal",
+      "column": "lake.depth"
+    },
+    {
+      "property": "height",
+      "belongsToClass": "Lake",
+      "type": "decimal",
+      "column": "lake.height"
+    },
+    {
+      "property": "name",
+      "belongsToClass": "Language",
+      "type": "string",
+      "column": "language.name"
+    },
+    {
+      "property": "percentage",
+      "belongsToClass": "SpokenBy",
+      "type": "decimal",
+      "column": "spoken.percentage"
+    },
+    {
+      "property": "type",
+      "belongsToClass": "Mountain",
+      "type": "string",
+      "column": "mountain.type"
+    },
+    {
+      "property": "name",
+      "belongsToClass": "MountainRange",
+      "type": "string",
+      "column": "mountain.mountains"
+    },
+    {
+      "property": "name",
+      "belongsToClass": "Mountain",
+      "type": "string",
+      "column": "mountain.name"
+    },
+    {
+      "property": "latitude",
+      "belongsToClass": "Mountain",
+      "type": "decimal",
+      "column": "mountain.latitude"
+    },
+    {
+      "property": "longitude",
+      "belongsToClass": "Mountain",
+      "type": "decimal",
+      "column": "mountain.longitude"
+    },
+    {
+      "property": "elevation",
+      "belongsToClass": "Mountain",
+      "type": "decimal",
+      "column": "mountain.elevation"
+    },
+    {
+      "property": "name",
+      "belongsToClass": "Organization",
+      "type": "string",
+      "column": "organization.name"
+    },
+    {
+      "property": "abbrev",
+      "belongsToClass": "Organization",
+      "type": "string",
+      "column": "organization.abbreviation"
+    },
+    {
+      "property": "established",
+      "belongsToClass": "Organization",
+      "type": "date",
+      "column": "organization.established"
+    },
+    {
+      "property": "type",
+      "belongsToClass": "Membership",
+      "type": "string",
+      "column": "ismember.type"
+    },
+    {
+      "property": "year",
+      "belongsToClassMap": "PopulationCountCountry",
+      "type": "integer",
+      "column": "countrypops.year"
+    },
+    {
+      "property": "value",
+      "belongsToClassMap": "PopulationCountCountry",
+      "type": "integer",
+      "column": "countrypops.population"
+    },
+    {
+      "property": "year",
+      "belongsToClassMap": "PopulationCountProvince",
+      "type": "integer",
+      "column": "provpops.year"
+    },
+    {
+      "property": "value",
+      "belongsToClassMap": "PopulationCountProvince",
+      "type": "integer",
+      "column": "provpops.population"
+    },
+    {
+      "property": "year",
+      "belongsToClassMap": "PopulationCountCity",
+      "type": "integer",
+      "column": "citypops.year"
+    },
+    {
+      "property": "value",
+      "belongsToClassMap": "PopulationCountCity",
+      "type": "integer",
+      "column": "citypops.population"
+    },
+    {
+      "property": "name",
+      "belongsToClass": "Province",
+      "type": "string",
+      "column": "province.name"
+    },
+    {
+      "property": "area",
+      "belongsToClass": "Province",
+      "type": "decimal",
+      "column": "province.area"
+    },
+    {
+      "property": "population",
+      "belongsToClass": "Province",
+      "type": "integer",
+      "column": "province.population"
+    },
+    {
+      "property": "othername",
+      "belongsToClass": "Province",
+      "type": "string",
+      "column": "provinceothername.othername",
+      "join": [
+        "province.name = provinceothername.province",
+        "province.country = provinceothername.country"
+      ]
+    },
+    {
+      "property": "localname",
+      "belongsToClass": "Province",
+      "type": "string",
+      "column": "provincelocalname.localname",
+      "join": [
+        "province.name = provincelocalname.province",
+        "province.country = provincelocalname.country"
+      ]
+    },
+    {
+      "property": "name",
+      "belongsToClass": "Religion",
+      "type": "string",
+      "column": "religion.name"
+    },
+    {
+      "property": "percentage",
+      "belongsToClass": "BelievedBy",
+      "type": "decimal",
+      "column": "religion.percentage"
+    },
+    {
+      "property": "name",
+      "belongsToClassMap": "River1",
+      "type": "string",
+      "column": "river.name"
+    },
+    {
+      "property": "area",
+      "belongsToClassMap": "River1",
+      "type": "decimal",
+      "column": "river.area"
+    },
+    {
+      "property": "length",
+      "belongsToClassMap": "River1",
+      "type": "decimal",
+      "column": "river.length"
+    },
+    {
+      "property": "name",
+      "belongsToClass": "Sea",
+      "type": "string",
+      "column": "sea.name"
+    },
+    {
+      "property": "area",
+      "belongsToClass": "Sea",
+      "type": "decimal",
+      "column": "sea.area"
+    },
+    {
+      "property": "depth",
+      "belongsToClass": "Sea",
+      "type": "decimal",
+      "column": "sea.depth"
+    },
+    {
+      "property": "elevation",
+      "belongsToClass": "Source",
+      "type": "decimal",
+      "column": "river.sourceelevation"
+    },
+    {
+      "property": "latitude",
+      "belongsToClass": "Source",
+      "type": "decimal",
+      "column": "river.sourcelatitude"
+    },
+    {
+      "property": "longitude",
+      "belongsToClass": "Source",
+      "type": "decimal",
+      "column": "river.sourcelongitude"
+    }
+  ],
+  "object_properties": [
+    {
+      "property": "isBorderOf",
+      "belongsToClass": "Border",
+      "refersToClassMap": "CountryFull",
+      "join": [
+        "borders.country1 = country.code"
+      ]
+    },
+    {
+      "property": "isBorderOf",
+      "belongsToClass": "Border",
+      "refersToClassMap": "CountryFull",
+      "join": [
+        "borders.country2 = country.code"
+      ]
+    },
+    {
+      "property": "locatedAt",
+      "belongsToClass": "City",
+      "refersToClassMap": "River1",
+      "join": [
+        "city.name = located.city",
+        "city.province = located.province",
+        "city.country = located.country",
+        "river.name = located.river"
+      ]
+    },
+    {
+      "property": "locatedAt",
+      "belongsToClass": "City",
+      "refersToClass": "Lake",
+      "join": [
+        "city.name = located.city",
+        "city.province = located.province",
+        "city.country = located.country",
+        "lake.name = located.lake"
+      ]
+    },
+    {
+      "property": "locatedAt",
+      "belongsToClass": "City",
+      "refersToClass": "Sea",
+      "join": [
+        "city.name = located.city",
+        "city.province = located.province",
+        "city.country = located.country",
+        "sea.name = located.sea"
+      ]
+    },
+    {
+      "property": "locatedOnIsland",
+      "belongsToClass": "City",
+      "refersToClass": "Island",
+      "join": [
+        "city.name = locatedon.city",
+        "city.province = locatedon.province",
+        "city.country = locatedon.country",
+        "island.name = locatedon.island"
+      ]
+    },
+    {
+      "property": "wasDependentOf",
+      "belongsToClassMap": "CountryPolitics",
+      "refersToClass": "PoliticalBody"
+    },
+    {
+      "property": "dependentOf",
+      "belongsToClassMap": "CountryPolitics",
+      "refersToClassMap": "CountryDependent"
+    },
+    {
+      "property": "hasCity",
+      "belongsToClassMap": "CountryFull",
+      "refersToClass": "City",
+      "join": [
+        "city.country = country.code"
+      ],
+      "inverseOf": "cityIn"
+    },
+    {
+      "property": "hasProvince",
+      "belongsToClassMap": "CountryFull",
+      "refersToClass": "Province",
+      "join": [
+        "province.country = country.code"
+      ],
+      "inverseOf": "isProvinceOf"
+    },
+    {
+      "property": "capital",
+      "belongsToClassMap": "CountryFull",
+      "refersToClass": "City",
+      "join": [
+        "country.capital = city.name",
+        "country.code = city.country",
+        "city.province = country.province"
+      ],
+      "inverseOf": "isCapitalOf"
+    },
+    {
+      "property": "neighbor",
+      "belongsToClassMap": "CountryFull",
+      "refersToClassMap": "CountryFull",
+      "join": [
+        "borders.country1 = country.code",
+        "borders.country2 = country.code"
+      ]
+    },
+    {
+      "property": "locatedIn",
+      "belongsToClass": "Desert",
+      "refersToClassMap": "CountryFull",
+      "join": [
+        "geo_desert.desert = desert.name",
+        "geo_desert.country = country.code"
+      ]
+    },
+    {
+      "property": "locatedIn",
+      "belongsToClass": "Desert",
+      "refersToClass": "Province",
+      "join": [
+        "geo_desert.desert = desert.name",
+        "geo_desert.province = province.name"
+      ]
+    },
+    {
+      "property": "encompassedBy",
+      "belongsToClass": "Encompassed",
+      "refersToClass": "Continent",
+      "join": [
+        "encompasses.continent = continent.name"
+      ],
+      "inverseOf": "encompassesInfo"
+    },
+    {
+      "property": "encompassedArea",
+      "belongsToClass": "Encompassed",
+      "refersToClassMap": "CountryFull",
+      "join": [
+        "encompasses.country = country.code"
+      ],
+      "inverseOf": "encompassedByInfo"
+    },
+    {
+      "property": "encompassed",
+      "belongsToClassMap": "CountryFull",
+      "refersToClass": "Continent",
+      "join": [
+        "continent.name = encompasses.continent",
+        "country.code = encompasses.country"
+      ],
+      "inverseOf": "encompasses"
+    },
+    {
+      "property": "locatedIn",
+      "belongsToClass": "Estuary",
+      "refersToClassMap": "CountryFull",
+      "join": [
+        "geo_estuary.river = river.name",
+        "geo_estuary.country = country.code"
+      ]
+    },
+    {
+      "property": "locatedIn",
+      "belongsToClass": "Estuary",
+      "refersToClass": "Province",
+      "join": [
+        "geo_estuary.river = river.name",
+        "geo_estuary.province = province.name",
+        "geo_estuary.country = province.country"
+      ]
+    },
+    {
+      "property": "ethnicInfo",
+      "belongsToClass": "EthnicProportion",
+      "refersToClassMap": "CountryFull",
+      "join": [
+        "country.code = ethnicgroup.country"
+      ]
+    },
+    {
+      "property": "onEthnicGroup",
+      "belongsToClass": "EthnicProportion",
+      "refersToClass": "EthnicGroup",
+      "inverseOf": "liveInInfo"
+    },
+    {
+      "property": "belongToEthnicGroup",
+      "inverseOf": "liveInCountry",
+      "belongsToClassMap": "CountryFull",
+      "refersToClass": "EthnicGroup",
+      "join": [
+        "country.code = ethnicgroup.country"
+      ]
+    },
+    {
+      "property": "belongsToArchipelago",
+      "belongsToClass": "Island",
+      "refersToClass": "Archipelago"
+    },
+    {
+      "property": "locatedIn",
+      "belongsToClass": "Island",
+      "refersToClassMap": "CountryFull",
+      "join": [
+        "geo_island.island = island.name",
+        "geo_island.country = country.code"
+      ]
+    },
+    {
+      "property": "locatedIn",
+      "belongsToClass": "Island",
+      "refersToClass": "Province",
+      "join": [
+        "geo_island.island = island.name",
+        "geo_island.province = province.name"
+      ]
+    },
+    {
+      "property": "locatedInWater",
+      "belongsToClass": "Island",
+      "refersToClass": "Sea",
+      "join": [
+        "islandin.island = island.name",
+        "islandin.sea = sea.name"
+      ]
+    },
+    {
+      "property": "locatedInWater",
+      "belongsToClass": "Island",
+      "refersToClass": "Lake",
+      "join": [
+        "islandin.island = island.name",
+        "islandin.lake = lake.name"
+      ]
+    },
+    {
+      "property": "locatedInWater",
+      "belongsToClass": "Island",
+      "refersToClassMap": "River1",
+      "join": [
+        "islandin.island = island.name",
+        "islandin.river = river.name"
+      ]
+    },
+    {
+      "property": "locatedIn",
+      "belongsToClass": "Lake",
+      "refersToClassMap": "CountryFull",
+      "join": [
+        "geo_lake.lake = lake.name",
+        "geo_lake.country = country.code"
+      ]
+    },
+    {
+      "property": "locatedIn",
+      "belongsToClass": "Lake",
+      "refersToClass": "Province",
+      "join": [
+        "geo_lake.lake = lake.name",
+        "geo_lake.province = province.name"
+      ]
+    },
+    {
+      "property": "flowsInto",
+      "belongsToClass": "Lake",
+      "refersToClassMap": "River1",
+      "join": [
+        "lake.river = river.name"
+      ]
+    },
+    {
+      "property": "locatedOnIsland",
+      "belongsToClass": "Lake",
+      "refersToClass": "Island",
+      "join": [
+        "lake.name = lakeonisland.lake",
+        "lakeonisland.island = island.name"
+      ]
+    },
+    {
+      "property": "languageInfo-",
+      "inverseOf": "languageInfo",
+      "belongsToClass": "SpokenBy",
+      "refersToClassMap": "CountryFull",
+      "join": [
+        "country.code = spoken.country"
+      ]
+    },
+    {
+      "property": "onLanguage",
+      "belongsToClass": "SpokenBy",
+      "refersToClass": "Language",
+      "inverseOf": "spokenInInfo"
+    },
+    {
+      "property": "speakLanguage",
+      "inverseOf": "spokenInCountry",
+      "belongsToClassMap": "CountryFull",
+      "refersToClass": "Language",
+      "join": [
+        "country.code = spoken.country",
+        "language.name = spoken.language"
+      ]
+    },
+    {
+      "property": "inMountains",
+      "belongsToClass": "Mountain",
+      "refersToClass": "MountainRange"
+    },
+    {
+      "property": "locatedIn",
+      "belongsToClass": "Mountain",
+      "refersToClassMap": "CountryFull",
+      "join": [
+        "geo_mountain.mountain = mountain.name",
+        "geo_mountain.country = country.code"
+      ]
+    },
+    {
+      "property": "locatedIn",
+      "belongsToClass": "Mountain",
+      "refersToClass": "Province",
+      "join": [
+        "geo_mountain.mountain = mountain.name",
+        "geo_mountain.province = province.name"
+      ]
+    },
+    {
+      "property": "locatedOnIsland",
+      "belongsToClass": "Mountain",
+      "refersToClass": "Island",
+      "join": [
+        "mountain.name = mountainonisland.mountain",
+        "mountainonisland.island = island.name"
+      ]
+    },
+    {
+      "property": "ofMember",
+      "belongsToClass": "Membership",
+      "refersToClassMap": "CountryFull",
+      "join": [
+        "country.code = ismember.country"
+      ],
+      "inverseOf": "isInMembership"
+    },
+    {
+      "property": "inOrganization",
+      "belongsToClass": "Membership",
+      "refersToClass": "Organization",
+      "join": [
+        "organization.abbreviation = ismember.organization"
+      ],
+      "inverseOf": "hasMembership"
+    },
+    {
+      "property": "isMember",
+      "belongsToClassMap": "CountryFull",
+      "refersToClass": "Organization",
+      "join": [
+        "organization.abbreviation = ismember.organization",
+        "country.code = ismember.country"
+      ],
+      "inverseOf": "hasMember"
+    },
+    {
+      "property": "hasHeadq",
+      "belongsToClass": "Organization",
+      "refersToClass": "City",
+      "join": [
+        "organization.city = city.name",
+        "organization.country = city.country",
+        "organization.province = city.province"
+      ]
+    },
+    {
+      "property": "hadPopulation",
+      "belongsToClassMap": "CountryFull",
+      "refersToClassMap": "PopulationCountCountry",
+      "join": [
+        "country.code = countrypops.country"
+      ]
+    },
+    {
+      "property": "hadPopulation",
+      "belongsToClass": "Province",
+      "refersToClassMap": "PopulationCountProvince",
+      "join": [
+        "province.name = provpops.province",
+        "province.country = provpops.country"
+      ]
+    },
+    {
+      "property": "hadPopulation",
+      "belongsToClass": "City",
+      "refersToClassMap": "PopulationCountCity",
+      "join": [
+        "city.name = citypops.city",
+        "city.province = citypops.province",
+        "city.country = citypops.country"
+      ]
+    },
+    {
+      "property": "hasCity",
+      "belongsToClass": "Province",
+      "refersToClass": "City",
+      "join": [
+        "city.province = province.name",
+        "city.country = province.country"
+      ],
+      "inverseOf": "cityIn"
+    },
+    {
+      "property": "capital",
+      "belongsToClass": "Province",
+      "refersToClass": "City",
+      "join": [
+        "province.capital = city.name",
+        "province.country = city.country",
+        "province.capprov = city.name"
+      ]
+    },
+    {
+      "property": "religionInfo",
+      "belongsToClass": "BelievedBy",
+      "refersToClassMap": "CountryFull",
+      "join": [
+        "country.code = religion.country"
+      ]
+    },
+    {
+      "property": "onReligion",
+      "belongsToClass": "BelievedBy",
+      "refersToClass": "Religion",
+      "inverseOf": "followedInInfo"
+    },
+    {
+      "property": "believeInReligion",
+      "inverseOf": "believedInCountry",
+      "belongsToClassMap": "CountryFull",
+      "refersToClass": "Religion",
+      "join": [
+        "country.code = religion.country"
+      ]
+    },
+    {
+      "property": "locatedIn",
+      "belongsToClassMap": "River1",
+      "refersToClassMap": "CountryFull",
+      "join": [
+        "geo_river.river = river.name",
+        "geo_river.country = country.code"
+      ]
+    },
+    {
+      "property": "locatedIn",
+      "belongsToClassMap": "River1",
+      "refersToClass": "Province",
+      "join": [
+        "geo_river.river = river.name",
+        "geo_river.province = province.name"
+      ]
+    },
+    {
+      "property": "flowsThrough",
+      "belongsToClassMap": "River1",
+      "refersToClass": "Lake",
+      "join": [
+        "riverthrough.lake = lake.name",
+        "riverthrough.river = river.name"
+      ]
+    },
+    {
+      "property": "flowsInto",
+      "belongsToClassMap": "River1",
+      "refersToClassMap": "River2"
+    },
+    {
+      "property": "flowsInto",
+      "belongsToClassMap": "River1",
+      "refersToClass": "Sea",
+      "join": [
+        "river.sea = sea.name"
+      ]
+    },
+    {
+      "property": "flowsInto",
+      "belongsToClassMap": "River1",
+      "refersToClass": "Lake",
+      "join": [
+        "river.lake = lake.name"
+      ]
+    },
+    {
+      "property": "hasSource",
+      "belongsToClassMap": "River1",
+      "refersToClass": "Source"
+    },
+    {
+      "property": "hasEstuary",
+      "belongsToClassMap": "River1",
+      "refersToClass": "Estuary"
+    },
+    {
+      "property": "locatedOnIsland",
+      "belongsToClass": "River1",
+      "refersToClassMap": "Island",
+      "join": [
+        "river.name = riveronisland.river",
+        "riveronisland.island = island.name"
+      ]
+    },
+    {
+      "property": "locatedIn",
+      "belongsToClass": "Sea",
+      "refersToClassMap": "CountryFull",
+      "join": [
+        "geo_sea.sea = sea.name",
+        "geo_sea.country = country.code"
+      ]
+    },
+    {
+      "property": "locatedIn",
+      "belongsToClass": "Sea",
+      "refersToClass": "Province",
+      "join": [
+        "geo_sea.sea = sea.name",
+        "geo_sea.province = province.name"
+      ]
+    },
+    {
+      "property": "mergesWith",
+      "belongsToClass": "Sea",
+      "refersToClass": "Sea",
+      "join": [
+        "mergeswith.sea1 = sea.name",
+        "mergeswith.sea2 = sea.name"
+      ]
+    },
+    {
+      "property": "locatedIn",
+      "belongsToClass": "Source",
+      "refersToClassMap": "CountryFull",
+      "join": [
+        "geo_source.river = river.name",
+        "geo_source.country = country.code"
+      ]
+    },
+    {
+      "property": "locatedIn",
+      "belongsToClass": "Source",
+      "refersToClass": "Province",
+      "join": [
+        "geo_source.river = river.name",
+        "geo_source.province = province.name",
+        "geo_source.country = province.country"
+      ]
+    },
+    {
+      "property": "inMountains",
+      "belongsToClass": "Source",
+      "refersToClass": "MountainRange",
+      "join": [
+        "river.mountains = mountain.mountains"
+      ]
+    }
+  ],
+  "translation_tables": [],
+  "_canonicalization_debug": {
+    "unresolved_classes": []
+  }
+}
