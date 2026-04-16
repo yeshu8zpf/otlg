@@ -1,33 +1,48 @@
 from __future__ import annotations
 
+import json
 from pathlib import Path
-from typing import Optional
-
-
-def default_meta_path_for_scenario(scenario_dir: Path) -> Path:
-    return scenario_dir / "meta.json"
+from typing import Iterable, List, Optional
 
 
 def infer_database_name(scenario_dir: Path) -> str:
     return scenario_dir.name
 
 
-def resolve_gt_ttl(scenario_dir: Path, gt_path: Optional[Path] = None) -> Path:
-    if gt_path is not None:
-        if not gt_path.exists():
-            raise FileNotFoundError(f"GT TTL not found: {gt_path}")
-        return gt_path
+def default_meta_path_for_scenario(scenario_dir: Path) -> Path:
+    return scenario_dir / "meta.json"
 
-    candidates = [
-        scenario_dir / "groundtruth.ttl",
-        scenario_dir / "mapping.ttl",
-        scenario_dir / "test_mapping.ttl",
-    ]
-    for cand in candidates:
-        if cand.exists():
-            return cand
 
-    raise FileNotFoundError(
-        f"Could not find GT TTL under {scenario_dir}. "
-        f"Tried: {[str(x) for x in candidates]}"
-    )
+def find_ttl_candidates(scenario_dir: Path) -> List[Path]:
+    candidates: List[Path] = []
+    for name in ["groundtruth.ttl", "test_mapping.ttl", "mapping.ttl"]:
+        p = scenario_dir / name
+        if p.exists():
+            candidates.append(p)
+    return candidates
+
+
+def resolve_gt_ttl(scenario_dir: Path, explicit_gt: Optional[Path] = None) -> Path:
+    if explicit_gt is not None:
+        return explicit_gt
+
+    candidates = find_ttl_candidates(scenario_dir)
+    if not candidates:
+        raise FileNotFoundError(f"No GT TTL found under {scenario_dir}")
+    return candidates[0]
+
+
+def merge_mapping_json_files(paths: Iterable[Path]) -> dict:
+    merged = {
+        "classes": [],
+        "data_properties": [],
+        "object_properties": [],
+        "translation_tables": [],
+    }
+
+    for path in paths:
+        obj = json.loads(path.read_text(encoding="utf-8", errors="ignore"))
+        for key in merged:
+            merged[key].extend(obj.get(key, []))
+
+    return merged

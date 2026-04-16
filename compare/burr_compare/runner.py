@@ -12,6 +12,7 @@ from .gt_resolution import (
 )
 from .io_utils import read_json, write_json
 from .meta import ensure_burr_meta
+from .mismatch import build_mismatch_details
 from .preprocess import preprocess_gt_json, preprocess_gt_ttl, preprocess_prediction_json
 from .types import CompareConfig
 
@@ -55,16 +56,11 @@ def run_compare(config: CompareConfig) -> Dict[str, Any]:
 
     pred_mapping = JsonMapping(read_json(pred_preprocessed), database_name, meta)
 
-    mapping_based = calculate_metrics(
-        gt_mapping,
-        pred_mapping,
-        equality_mode="mapping_based",
-    )
-    name_based = calculate_metrics(
-        gt_mapping,
-        pred_mapping,
-        equality_mode="name_based",
-    )
+    # Burr original metrics API
+    metrics = calculate_metrics(gt_mapping, pred_mapping)
+
+    # Extra wrapper-side details, without modifying Burr code
+    mismatch_details = build_mismatch_details(gt_mapping, pred_mapping)
 
     result = {
         "mode": "burr_original_after_preprocess",
@@ -82,10 +78,8 @@ def run_compare(config: CompareConfig) -> Dict[str, Any]:
             "preprocessed_path": str(pred_preprocessed),
             **pred_debug,
         },
-        "metrics": {
-            "mapping_based": mapping_based,
-            "name_based": name_based,
-        },
+        "metrics": metrics,
+        "mismatch_details": mismatch_details,
     }
 
     write_json(config.output_path, result)
