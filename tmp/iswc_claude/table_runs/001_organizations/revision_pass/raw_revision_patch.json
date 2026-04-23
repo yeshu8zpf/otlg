@@ -1,0 +1,181 @@
+{
+  "work_unit": {
+    "table": "organizations",
+    "related_tables": []
+  },
+  "proposed_additions": {
+    "object_properties": [
+      {
+        "id": "ObjectProperty:belongsToOrganization",
+        "label": "belongs to organization",
+        "domain": "Class:Organization",
+        "range": "Class:Organization",
+        "description": "Hierarchical relationship indicating that this organization belongs to or is part of another organization.",
+        "status": "proposed",
+        "confidence": 0.7,
+        "source_tables": [
+          "organizations"
+        ],
+        "source_columns": [
+          "organizations.belongsto"
+        ]
+      }
+    ],
+    "class_mappings": [],
+    "object_property_mappings": [
+      {
+        "mapping_id": "belongsToOrganization_from_Belongsto",
+        "object_property_id": "ObjectProperty:belongsToOrganization",
+        "applies_to_class": "Class:Organization",
+        "source_table": "organizations",
+        "source_columns": [
+          "organizations.belongsto"
+        ],
+        "target_class": "Class:Organization",
+        "join_paths": [
+          {
+            "from_table": "organizations",
+            "from_column": "belongsto",
+            "to_table": "organizations",
+            "to_column": "orgid"
+          }
+        ],
+        "value_kind": "foreign_key",
+        "target_id_template": "organizations/@@organizations.belongsto@@",
+        "condition": [],
+        "status": "proposed",
+        "confidence": 0.7,
+        "description": "Self-referential relationship mapping Belongsto column to parent organization instance."
+      }
+    ]
+  },
+  "proposed_revisions": {
+    "classes": [
+      {
+        "target_id": "Class:Organization",
+        "updated_fields": {
+          "description": "A formal organization entity with type, contact information, hierarchical relationships, and web presence. Represents organizations that may be hierarchically related to other organizations."
+        }
+      }
+    ],
+    "data_properties": [
+      {
+        "target_id": "DataProperty:hasOrganizationType",
+        "updated_fields": {
+          "description": "The type or category of the organization (e.g., University, Company, Government, NGO). Semantics and standardization level require confirmation."
+        }
+      },
+      {
+        "target_id": "DataProperty:hasOrganizationURI",
+        "updated_fields": {
+          "description": "A URI identifier for the organization. May reference external linked data resources, internal identifiers, or organization web URIs; semantics require confirmation."
+        }
+      }
+    ],
+    "data_property_mappings": [],
+    "class_mappings": [
+      {
+        "target_id": "Organization_from_organizations",
+        "updated_fields": {
+          "condition": [],
+          "description": "Maps each row in organizations table to an Organization instance. Identity based on OrgID primary key. No row-selection condition applied; all rows represent valid organizations."
+        }
+      }
+    ]
+  },
+  "proposed_rejections": [],
+  "proposed_merges": [],
+  "decision_summary": [
+    {
+      "decision_type": "COLUMN-INSPECTION",
+      "target": "organizations.Belongsto",
+      "status": "accepted",
+      "confidence": 0.7,
+      "reason": "Column Belongsto (int, nullable) is semantically distinct from descriptive attributes. Lacks explicit FK constraint but column name and type strongly suggest self-referential hierarchical relationship to organizations.OrgID. Modeled as ObjectProperty:belongsToOrganization with self-referential join path. Conservative confidence (0.7) due to lack of explicit constraint; requires schema/value probe confirmation."
+    },
+    {
+      "decision_type": "CLASS-MAPPING-CONDITION",
+      "target": "Organization_from_organizations",
+      "status": "accepted",
+      "confidence": 0.95,
+      "reason": "No column in organizations table acts as a class-defining condition (e.g., type flag, status, publication state). Type column contains organization category/type values, not row-selection signals. All rows represent valid Organization instances. Condition remains empty."
+    },
+    {
+      "decision_type": "IDENTITY-STRATEGY",
+      "target": "Organization_from_organizations",
+      "status": "accepted",
+      "confidence": 0.95,
+      "reason": "OrgID is primary key (NOT NULL, int). Suitable for stable URI pattern identity. Template 'organizations/@@organizations.OrgID@@' is appropriate for global resource construction."
+    },
+    {
+      "decision_type": "ADDRESS-BUNDLE-MODELING",
+      "target": "organizations address/location/postcode/country",
+      "status": "accepted",
+      "confidence": 0.65,
+      "reason": "Address bundle (Address, Location, Postcode, Country) currently modeled as separate literal data properties. No dedicated Location or Address entity class detected in current scope. Conservative approach: retain as literals pending discovery of related entity tables. If Location/Address entities exist elsewhere, refactor to object properties in future revision."
+    },
+    {
+      "decision_type": "URI-COLUMN-SEMANTICS",
+      "target": "organizations.URI",
+      "status": "accepted",
+      "confidence": 0.5,
+      "reason": "URI column semantics unclear: may reference external linked data, internal identifiers, or web URIs. Retained as DataProperty:hasOrganizationURI with datatype xsd:anyURI (conservative literal modeling). Requires value sample probe to determine if refactoring to object property is justified."
+    },
+    {
+      "decision_type": "TYPE-COLUMN-STANDARDIZATION",
+      "target": "organizations.Type",
+      "status": "accepted",
+      "confidence": 0.5,
+      "reason": "Type column values unknown; unclear if standardized categories or free-text. Retained as ordinary data property. If standardized enumeration discovered, may warrant future subclass modeling or controlled vocabulary constraint."
+    }
+  ],
+  "remaining_ambiguities": [
+    {
+      "issue_type": "remaining_ambiguity",
+      "related_table": "organizations",
+      "description": "Belongsto column (int) appears to reference another organization entity via self-referential FK to OrgID, but lacks explicit foreign key constraint in schema. Modeled as ObjectProperty:belongsToOrganization with confidence 0.7. Requires schema evidence (explicit FK definition) and value sample confirmation."
+    },
+    {
+      "issue_type": "remaining_ambiguity",
+      "related_table": "organizations",
+      "description": "Address bundle (Address, Location, Postcode, Country) is modeled as separate literal properties. If a dedicated Location or Address entity class is discovered in related tables, these should be refactored to object properties. Current modeling is conservative pending discovery of related entities."
+    },
+    {
+      "issue_type": "remaining_ambiguity",
+      "related_table": "organizations",
+      "description": "URI column semantics unclear: does it reference external organization resources, internal identifiers, or linked data URIs? Current modeling as literal xsd:anyURI is conservative pending sample data inspection."
+    },
+    {
+      "issue_type": "remaining_ambiguity",
+      "related_table": "organizations",
+      "description": "Type column values unknown: unclear if it contains standardized organization types (e.g., 'University', 'Company', 'NGO') or free-text descriptions. Affects potential future classification or subclass modeling."
+    }
+  ],
+  "needs_probe": [
+    {
+      "probe_type": "schema_evidence",
+      "target": "organizations.belongsto",
+      "question": "Is there an explicit foreign key constraint on organizations.Belongsto? If so, does it reference organizations.OrgID (self-referential) or another table?"
+    },
+    {
+      "probe_type": "value_sample",
+      "target": "organizations.belongsto",
+      "question": "What are 3-5 sample values in the Belongsto column? Do they reference OrgID values from the same table (hierarchical parent), or do they reference a different entity type?"
+    },
+    {
+      "probe_type": "value_sample",
+      "target": "organizations.type",
+      "question": "What are 3-5 sample values in the Type column? Are they standardized categories (e.g., 'University', 'Company', 'Government', 'NGO') or free-text descriptions?"
+    },
+    {
+      "probe_type": "value_sample",
+      "target": "organizations.uri",
+      "question": "What are 3-5 sample values in the URI column? Do they reference external linked data resources, internal identifiers, or organization web URIs?"
+    },
+    {
+      "probe_type": "value_sample",
+      "target": "organizations.location",
+      "question": "What are 3-5 sample values in the Location column? Are they city names, venue names, region codes, or other location representations?"
+    }
+  ]
+}

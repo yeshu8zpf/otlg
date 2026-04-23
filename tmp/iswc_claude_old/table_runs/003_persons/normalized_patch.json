@@ -1,0 +1,452 @@
+{
+  "work_unit": {
+    "table": "persons",
+    "related_tables": []
+  },
+  "proposed_additions": {
+    "classes": [
+      {
+        "id": "Class:Person",
+        "label": "Person",
+        "description": "A person entity with contact information, web presence, and optional type classification.",
+        "status": "proposed",
+        "confidence": null,
+        "source_tables": [
+          "persons"
+        ],
+        "identifier_columns": [
+          "persons.perid"
+        ]
+      }
+    ],
+    "data_properties": [
+      {
+        "id": "DataProperty:hasPersonType",
+        "label": "has person type",
+        "domain": "Class:Person",
+        "datatype": "xsd:string",
+        "description": "Classification or role type of the person.",
+        "status": "proposed",
+        "confidence": null,
+        "source_tables": [
+          "persons"
+        ],
+        "source_columns": [
+          "persons.type"
+        ]
+      },
+      {
+        "id": "DataProperty:hasFirstName",
+        "label": "has first name",
+        "domain": "Class:Person",
+        "datatype": "xsd:string",
+        "description": "Given name of the person.",
+        "status": "proposed",
+        "confidence": null,
+        "source_tables": [
+          "persons"
+        ],
+        "source_columns": [
+          "persons.firstname"
+        ]
+      },
+      {
+        "id": "DataProperty:hasLastName",
+        "label": "has last name",
+        "domain": "Class:Person",
+        "datatype": "xsd:string",
+        "description": "Family name of the person.",
+        "status": "proposed",
+        "confidence": null,
+        "source_tables": [
+          "persons"
+        ],
+        "source_columns": [
+          "persons.lastname"
+        ]
+      },
+      {
+        "id": "DataProperty:hasAddress",
+        "label": "has address",
+        "domain": "Class:Person",
+        "datatype": "xsd:string",
+        "description": "Postal address of the person.",
+        "status": "proposed",
+        "confidence": null,
+        "source_tables": [
+          "persons"
+        ],
+        "source_columns": [
+          "persons.address"
+        ]
+      },
+      {
+        "id": "DataProperty:hasEmail",
+        "label": "has email",
+        "domain": "Class:Person",
+        "datatype": "xsd:string",
+        "description": "Email address of the person.",
+        "status": "proposed",
+        "confidence": null,
+        "source_tables": [
+          "persons"
+        ],
+        "source_columns": [
+          "persons.email"
+        ]
+      },
+      {
+        "id": "DataProperty:hasHomepage",
+        "label": "has homepage",
+        "domain": "Class:Person",
+        "datatype": "xsd:anyURI",
+        "description": "Web homepage URL of the person.",
+        "status": "proposed",
+        "confidence": null,
+        "source_tables": [
+          "persons"
+        ],
+        "source_columns": [
+          "persons.homepage"
+        ]
+      },
+      {
+        "id": "DataProperty:hasPhone",
+        "label": "has phone",
+        "domain": "Class:Person",
+        "datatype": "xsd:string",
+        "description": "Phone contact information for the person.",
+        "status": "proposed",
+        "confidence": null,
+        "source_tables": [
+          "persons"
+        ],
+        "source_columns": [
+          "persons.phone"
+        ]
+      },
+      {
+        "id": "DataProperty:hasURI",
+        "label": "has URI",
+        "domain": "Class:Person",
+        "datatype": "xsd:anyURI",
+        "description": "URI identifier or reference for the person.",
+        "status": "proposed",
+        "confidence": null,
+        "source_tables": [
+          "persons"
+        ],
+        "source_columns": [
+          "persons.uri"
+        ]
+      },
+      {
+        "id": "DataProperty:hasPhoto",
+        "label": "has photo",
+        "domain": "Class:Person",
+        "datatype": "xsd:anyURI",
+        "description": "URL or reference to a photo of the person.",
+        "status": "proposed",
+        "confidence": null,
+        "source_tables": [
+          "persons"
+        ],
+        "source_columns": [
+          "persons.photo"
+        ]
+      }
+    ],
+    "object_properties": [],
+    "subclass_relations": [],
+    "class_mappings": [
+      {
+        "mapping_id": "Person_from_persons",
+        "class_id": "Class:Person",
+        "from_tables": [
+          "persons"
+        ],
+        "identifier_kind": "uri_pattern",
+        "identifier_columns": [
+          "persons.perid"
+        ],
+        "instance_id_template": "persons/@@persons.PerID@@",
+        "bnode_id_columns": [],
+        "status": "proposed",
+        "confidence": null,
+        "description": ""
+      }
+    ],
+    "data_property_mappings": [
+      {
+        "mapping_id": "hasPersonType_from_Type",
+        "data_property_id": "DataProperty:hasPersonType",
+        "applies_to_class": "Class:Person",
+        "source_table": "persons",
+        "source_columns": [
+          "persons.type"
+        ],
+        "value_kind": "column",
+        "value_template": "",
+        "sql_expression": "",
+        "constant_value": "",
+        "datatype": "xsd:string",
+        "join_paths": [],
+        "condition": []
+      },
+      {
+        "mapping_id": "hasFirstName_from_FirstName",
+        "data_property_id": "DataProperty:hasFirstName",
+        "applies_to_class": "Class:Person",
+        "source_table": "persons",
+        "source_columns": [
+          "persons.firstname"
+        ],
+        "value_kind": "column",
+        "value_template": "",
+        "sql_expression": "",
+        "constant_value": "",
+        "datatype": "xsd:string",
+        "join_paths": [],
+        "condition": []
+      },
+      {
+        "mapping_id": "hasLastName_from_LastName",
+        "data_property_id": "DataProperty:hasLastName",
+        "applies_to_class": "Class:Person",
+        "source_table": "persons",
+        "source_columns": [
+          "persons.lastname"
+        ],
+        "value_kind": "column",
+        "value_template": "",
+        "sql_expression": "",
+        "constant_value": "",
+        "datatype": "xsd:string",
+        "join_paths": [],
+        "condition": []
+      },
+      {
+        "mapping_id": "hasAddress_from_Address",
+        "data_property_id": "DataProperty:hasAddress",
+        "applies_to_class": "Class:Person",
+        "source_table": "persons",
+        "source_columns": [
+          "persons.address"
+        ],
+        "value_kind": "column",
+        "value_template": "",
+        "sql_expression": "",
+        "constant_value": "",
+        "datatype": "xsd:string",
+        "join_paths": [],
+        "condition": []
+      },
+      {
+        "mapping_id": "hasEmail_from_Email",
+        "data_property_id": "DataProperty:hasEmail",
+        "applies_to_class": "Class:Person",
+        "source_table": "persons",
+        "source_columns": [
+          "persons.email"
+        ],
+        "value_kind": "column",
+        "value_template": "",
+        "sql_expression": "",
+        "constant_value": "",
+        "datatype": "xsd:string",
+        "join_paths": [],
+        "condition": []
+      },
+      {
+        "mapping_id": "hasHomepage_from_Homepage",
+        "data_property_id": "DataProperty:hasHomepage",
+        "applies_to_class": "Class:Person",
+        "source_table": "persons",
+        "source_columns": [
+          "persons.homepage"
+        ],
+        "value_kind": "column",
+        "value_template": "",
+        "sql_expression": "",
+        "constant_value": "",
+        "datatype": "xsd:anyURI",
+        "join_paths": [],
+        "condition": []
+      },
+      {
+        "mapping_id": "hasPhone_from_Phone",
+        "data_property_id": "DataProperty:hasPhone",
+        "applies_to_class": "Class:Person",
+        "source_table": "persons",
+        "source_columns": [
+          "persons.phone"
+        ],
+        "value_kind": "column",
+        "value_template": "",
+        "sql_expression": "",
+        "constant_value": "",
+        "datatype": "xsd:string",
+        "join_paths": [],
+        "condition": []
+      },
+      {
+        "mapping_id": "hasURI_from_URI",
+        "data_property_id": "DataProperty:hasURI",
+        "applies_to_class": "Class:Person",
+        "source_table": "persons",
+        "source_columns": [
+          "persons.uri"
+        ],
+        "value_kind": "column",
+        "value_template": "",
+        "sql_expression": "",
+        "constant_value": "",
+        "datatype": "xsd:anyURI",
+        "join_paths": [],
+        "condition": []
+      },
+      {
+        "mapping_id": "hasPhoto_from_Photo",
+        "data_property_id": "DataProperty:hasPhoto",
+        "applies_to_class": "Class:Person",
+        "source_table": "persons",
+        "source_columns": [
+          "persons.photo"
+        ],
+        "value_kind": "column",
+        "value_template": "",
+        "sql_expression": "",
+        "constant_value": "",
+        "datatype": "xsd:anyURI",
+        "join_paths": [],
+        "condition": []
+      }
+    ],
+    "object_property_mappings": []
+  },
+  "proposed_revisions": {
+    "classes": [],
+    "data_properties": [],
+    "object_properties": [],
+    "subclass_relations": [],
+    "class_mappings": [],
+    "data_property_mappings": [],
+    "object_property_mappings": []
+  },
+  "proposed_rejections": [],
+  "proposed_merges": [],
+  "decision_summary": [
+    {
+      "decision_type": "C-ENTITY",
+      "target": "Class:Person",
+      "status": "accepted",
+      "confidence": 0.95,
+      "reason": "persons table represents a stable entity with unique identifier (PerID) and multiple descriptive attributes. Semantically distinct from Organization and Conference entities already in the ontology."
+    },
+    {
+      "decision_type": "DP-LITERAL",
+      "target": "DataProperty:hasPersonType",
+      "status": "accepted",
+      "confidence": 0.9,
+      "reason": "Type column (varchar(50)) stores classification values; modeled as data property with xsd:string datatype."
+    },
+    {
+      "decision_type": "DP-LITERAL",
+      "target": "DataProperty:hasFirstName",
+      "status": "accepted",
+      "confidence": 0.95,
+      "reason": "FirstName column stores given name as string literal."
+    },
+    {
+      "decision_type": "DP-LITERAL",
+      "target": "DataProperty:hasLastName",
+      "status": "accepted",
+      "confidence": 0.95,
+      "reason": "LastName column stores family name as string literal."
+    },
+    {
+      "decision_type": "DP-LITERAL",
+      "target": "DataProperty:hasAddress",
+      "status": "accepted",
+      "confidence": 0.85,
+      "reason": "Address column (varchar(2000)) stores postal address as string literal. Not modeled as separate Address class instance because no independent identifier exists and no foreign key references from other tables."
+    },
+    {
+      "decision_type": "DP-LITERAL",
+      "target": "DataProperty:hasEmail",
+      "status": "accepted",
+      "confidence": 0.95,
+      "reason": "Email column stores email address as string literal."
+    },
+    {
+      "decision_type": "DP-URI",
+      "target": "DataProperty:hasHomepage",
+      "status": "accepted",
+      "confidence": 0.9,
+      "reason": "Homepage column (varchar(50)) stores URL; modeled as data property with xsd:anyURI datatype. No evidence of entity-to-entity relation."
+    },
+    {
+      "decision_type": "DP-LITERAL",
+      "target": "DataProperty:hasPhone",
+      "status": "accepted",
+      "confidence": 0.95,
+      "reason": "Phone column (varchar(200)) stores phone contact information as string literal."
+    },
+    {
+      "decision_type": "DP-URI",
+      "target": "DataProperty:hasURI",
+      "status": "accepted",
+      "confidence": 0.8,
+      "reason": "URI column (varchar(200)) stores URI reference; modeled as data property with xsd:anyURI datatype. Semantics unclear (external reference vs. internal identifier), but no evidence of entity-to-entity relation to existing ontology classes."
+    },
+    {
+      "decision_type": "DP-URI",
+      "target": "DataProperty:hasPhoto",
+      "status": "accepted",
+      "confidence": 0.85,
+      "reason": "Photo column (varchar(200)) stores URL or reference to photo; modeled as data property with xsd:anyURI datatype."
+    },
+    {
+      "decision_type": "NO-RELATION",
+      "target": "persons table",
+      "status": "accepted",
+      "confidence": 0.9,
+      "reason": "No foreign key columns detected in persons table. No direct entity-to-entity relations to Conference, Organization, or Paper classes can be established without additional join evidence."
+    }
+  ],
+  "remaining_ambiguities": [
+    "Type column semantics: unclear what classification values are used (e.g., author, reviewer, organizer, attendee). May require value sampling.",
+    "URI column semantics: unclear if it references external resources or serves as internal identifier. Modeled conservatively as data property.",
+    "Address column structure: stored as single varchar(2000) field; unclear if it contains structured subfields (street, city, postcode, country) or unstructured text.",
+    "Photo column format: unclear if it stores file paths, URLs, or other references.",
+    "Relationship to other entities: no foreign keys present; unclear if persons should be linked to organizations, conferences, or papers through future join tables."
+  ],
+  "needs_probe": [
+    {
+      "probe_type": "value_sample",
+      "target": "persons.type",
+      "question": "What are sample values in the Type column? What classification categories are used?"
+    },
+    {
+      "probe_type": "value_sample",
+      "target": "persons.uri",
+      "question": "Are URI values external references (e.g., http://...) or internal identifiers? What is the format?"
+    },
+    {
+      "probe_type": "value_sample",
+      "target": "persons.address",
+      "question": "Is the Address column structured (with delimiters) or unstructured text? What is the typical format?"
+    },
+    {
+      "probe_type": "value_sample",
+      "target": "persons.photo",
+      "question": "What format do Photo values take? Are they file paths, URLs, or other references?"
+    },
+    {
+      "probe_type": "schema_probe",
+      "target": "persons table",
+      "question": "Are there any foreign key constraints or join tables linking persons to organizations, conferences, or papers that are not yet visible in the schema?"
+    }
+  ],
+  "normalization_warnings": []
+}

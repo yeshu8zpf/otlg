@@ -1,0 +1,46 @@
+{
+  "model": "claude-haiku-4-5",
+  "api_url": "https://www.aiapikey.net/v1/chat/completions",
+  "timeout": 300.0,
+  "max_retries": 2,
+  "attempts": [
+    {
+      "attempt": 1,
+      "status": "ok",
+      "status_code": 200,
+      "response_headers": {
+        "date": "Wed, 22 Apr 2026 10:55:20 GMT",
+        "content-type": "text/event-stream",
+        "transfer-encoding": "chunked",
+        "connection": "keep-alive",
+        "server": "cloudflare",
+        "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+        "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=GXbTyHGF1ecyVQ7bMurW3nu7Jbd%2BclVgB8rAEjaS0RP4%2BgGV8s9IZwyKkIxcQ0QBpJQZNU3DZV8rkpKIyDq3T7ZNR2mT08nQ%2FwEvevC%2BXFjQ0zq8scmdxukOyuZHCMuYZFfQ\"}]}",
+        "cache-control": "no-cache",
+        "x-new-api-version": "v0.12.2",
+        "x-oneapi-request-id": "20260422105514522138982tnqsC3x7",
+        "cf-cache-status": "DYNAMIC",
+        "cf-ray": "9f041852ea84264b-NRT",
+        "alt-svc": "h3=\":443\"; ma=86400"
+      },
+      "raw_content_preview": "```json\n{\n  \"work_unit\": {\n    \"table\": \"rel_person_topic\",\n    \"related_tables\": []\n  },\n  \"proposed_additions\": {\n    \"classes\": [],\n    \"data_properties\": [],\n    \"object_properties\": [\n      {\n        \"id\": \"ObjectProperty:hasInterestInTopic\",\n        \"label\": \"has interest in topic\",\n        \"domain\": \"Class:Person\",\n        \"range\": \"Class:Topic\",\n        \"description\": \"Relation indicating a person's interest or expertise in a topic\"\n      }\n    ],\n    \"subclass_relations\": [],\n    \"class_mappings\": [],\n    \"data_property_mappings\": [],\n    \"object_property_mappings\": [\n      {\n        \"mapping_id\": \"hasInterestInTopic_from_rel_person_topic\",\n        \"object_property_id\": \"ObjectProperty:hasInterestInTopic\",\n        \"from_class\": \"Class:Person\",\n        \"to_class\": \"Class:Topic\",\n        \"from_tables\": [\n          \"rel_person_topic\"\n        ],\n        \"source_identifier_columns\": [\n          \"rel_person_topic.PersonID\"\n        ],\n        \"target_identifier_columns\": [\n          \"rel_person_topic.TopicID\"\n        ],\n        \"join_paths\": [],\n        \"condition\": [],\n        \"target_type\": \"entity\"\n      }\n    ]\n  },\n  \"proposed_revisions\": {\n    \"classes\": [],\n    \"data_properties\": [],\n    \"object_properties\": [],\n    \"subclass_relations\": [],\n    \"class_mappings\": [],\n    \"data_property_mappings\": [],\n    \"object_property_mappings\": []\n  },\n  \"proposed_rejections\": [],\n  \"proposed_merges\": [],\n  \"decision_summary\": [\n    {\n      \"decision_type\": \"OP-RELATION\",\n      \"target\": \"ObjectProperty:hasInterestInTopic\",\n      \"status\": \"accepted\",\n      \"confidence\": 0.90,\n      \"reason\": \"rel_person_topic is a junction table with PersonID and TopicID as composite primary key, establishing a many-to-many relation between Person and Topic entities. No foreign key constraints present, but semantic role is clear from naming and structure.\"\n    }\n  ],\n  \"remaining_ambiguities\": [\n    \"Directionality: hasInterestInTopic vs. isTopicOfInterestToPerson—current choice favors Person→Topic direction based on table naming convention.\"\n  ],\n  \"needs_probe\": []\n}\n```"
+    }
+  ],
+  "status_code": 200,
+  "response_headers": {
+    "date": "Wed, 22 Apr 2026 10:55:20 GMT",
+    "content-type": "text/event-stream",
+    "transfer-encoding": "chunked",
+    "connection": "keep-alive",
+    "server": "cloudflare",
+    "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+    "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=GXbTyHGF1ecyVQ7bMurW3nu7Jbd%2BclVgB8rAEjaS0RP4%2BgGV8s9IZwyKkIxcQ0QBpJQZNU3DZV8rkpKIyDq3T7ZNR2mT08nQ%2FwEvevC%2BXFjQ0zq8scmdxukOyuZHCMuYZFfQ\"}]}",
+    "cache-control": "no-cache",
+    "x-new-api-version": "v0.12.2",
+    "x-oneapi-request-id": "20260422105514522138982tnqsC3x7",
+    "cf-cache-status": "DYNAMIC",
+    "cf-ray": "9f041852ea84264b-NRT",
+    "alt-svc": "h3=\":443\"; ma=86400"
+  },
+  "raw_content_preview": "```json\n{\n  \"work_unit\": {\n    \"table\": \"rel_person_topic\",\n    \"related_tables\": []\n  },\n  \"proposed_additions\": {\n    \"classes\": [],\n    \"data_properties\": [],\n    \"object_properties\": [\n      {\n        \"id\": \"ObjectProperty:hasInterestInTopic\",\n        \"label\": \"has interest in topic\",\n        \"domain\": \"Class:Person\",\n        \"range\": \"Class:Topic\",\n        \"description\": \"Relation indicating a person's interest or expertise in a topic\"\n      }\n    ],\n    \"subclass_relations\": [],\n    \"class_mappings\": [],\n    \"data_property_mappings\": [],\n    \"object_property_mappings\": [\n      {\n        \"mapping_id\": \"hasInterestInTopic_from_rel_person_topic\",\n        \"object_property_id\": \"ObjectProperty:hasInterestInTopic\",\n        \"from_class\": \"Class:Person\",\n        \"to_class\": \"Class:Topic\",\n        \"from_tables\": [\n          \"rel_person_topic\"\n        ],\n        \"source_identifier_columns\": [\n          \"rel_person_topic.PersonID\"\n        ],\n        \"target_identifier_columns\": [\n          \"rel_person_topic.TopicID\"\n        ],\n        \"join_paths\": [],\n        \"condition\": [],\n        \"target_type\": \"entity\"\n      }\n    ]\n  },\n  \"proposed_revisions\": {\n    \"classes\": [],\n    \"data_properties\": [],\n    \"object_properties\": [],\n    \"subclass_relations\": [],\n    \"class_mappings\": [],\n    \"data_property_mappings\": [],\n    \"object_property_mappings\": []\n  },\n  \"proposed_rejections\": [],\n  \"proposed_merges\": [],\n  \"decision_summary\": [\n    {\n      \"decision_type\": \"OP-RELATION\",\n      \"target\": \"ObjectProperty:hasInterestInTopic\",\n      \"status\": \"accepted\",\n      \"confidence\": 0.90,\n      \"reason\": \"rel_person_topic is a junction table with PersonID and TopicID as composite primary key, establishing a many-to-many relation between Person and Topic entities. No foreign key constraints present, but semantic role is clear from naming and structure.\"\n    }\n  ],\n  \"remaining_ambiguities\": [\n    \"Directionality: hasInterestInTopic vs. isTopicOfInterestToPerson—current choice favors Person→Topic direction based on table naming convention.\"\n  ],\n  \"needs_probe\": []\n}\n```"
+}

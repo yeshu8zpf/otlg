@@ -7,12 +7,12 @@
         "conferences"
       ],
       "identifier_columns": [
-        "ConfID"
+        "conferences.ConfID"
       ],
-      "instance_id_template": "conference/{ConfID}",
-      "status": "confirmed",
-      "confidence": 0.98,
-      "description": "Conference or event record derived from the conferences table."
+      "instance_id_template": "conference/@@conferences.confid@@",
+      "status": "accepted",
+      "confidence": 0.97,
+      "description": "Conference or event described in the conferences table."
     },
     {
       "id": "Class:Organization",
@@ -21,12 +21,12 @@
         "organizations"
       ],
       "identifier_columns": [
-        "OrgID"
+        "organizations.OrgID"
       ],
-      "instance_id_template": "organization/{OrgID}",
-      "status": "confirmed",
-      "confidence": 0.95,
-      "description": "Organization record derived from the organizations table."
+      "instance_id_template": "organization/@@organizations.orgid@@",
+      "status": "accepted",
+      "confidence": 0.96,
+      "description": "Organization described in the organizations table."
     },
     {
       "id": "Class:Paper",
@@ -35,12 +35,12 @@
         "papers"
       ],
       "identifier_columns": [
-        "PaperID"
+        "papers.PaperID"
       ],
-      "instance_id_template": "paper/{PaperID}",
-      "status": "confirmed",
+      "instance_id_template": "paper/@@papers.paperid@@",
+      "status": "accepted",
       "confidence": 0.98,
-      "description": "Scholarly paper derived from the papers table."
+      "description": "Paper or publication described in the papers table."
     },
     {
       "id": "Class:Person",
@@ -49,12 +49,12 @@
         "persons"
       ],
       "identifier_columns": [
-        "PerID"
+        "persons.PerID"
       ],
-      "instance_id_template": "person/{PerID}",
-      "status": "confirmed",
+      "instance_id_template": "person/@@persons.perid@@",
+      "status": "accepted",
       "confidence": 0.98,
-      "description": "Person derived from the persons table."
+      "description": "Person described in the persons table."
     },
     {
       "id": "Class:Topic",
@@ -63,27 +63,60 @@
         "topics"
       ],
       "identifier_columns": [
-        "TopicID"
+        "topics.TopicID"
       ],
-      "instance_id_template": "topic/{TopicID}",
-      "status": "confirmed",
-      "confidence": 0.97,
-      "description": "Topic or subject category derived from the topics table."
+      "instance_id_template": "topic/@@topics.topicid@@",
+      "status": "accepted",
+      "confidence": 0.96,
+      "description": "Topic or subject concept described in the topics table."
     },
     {
-      "id": "Class:PaperTopicRelation",
-      "label": "Paper Topic Relation",
+      "id": "Class:FullProfessor",
+      "label": "Full Professor",
       "source_tables": [
-        "rel_paper_topic"
+        "persons"
       ],
       "identifier_columns": [
-        "PaperID",
-        "TopicID"
+        "persons.PerID"
       ],
-      "instance_id_template": "paper-topic-relation/{PaperID}-{TopicID}",
-      "status": "tentative",
-      "confidence": 0.72,
-      "description": "Reified relation between a paper and a topic because rel_paper_topic contains an extra attribute RelationType."
+      "instance_id_template": "person/@@persons.perid@@",
+      "status": "proposed",
+      "confidence": 0.73,
+      "description": "Subtype of Person derived from persons.Type = 'Full_Professor'.",
+      "condition": [
+        [
+          "persons.Type",
+          "=",
+          "'Full_Professor'"
+        ]
+      ],
+      "subclass_of": [
+        "Class:Person"
+      ]
+    },
+    {
+      "id": "Class:Researcher",
+      "label": "Researcher",
+      "source_tables": [
+        "persons"
+      ],
+      "identifier_columns": [
+        "persons.PerID"
+      ],
+      "instance_id_template": "person/@@persons.perid@@",
+      "status": "proposed",
+      "confidence": 0.76,
+      "description": "Subtype of Person derived from persons.Type = 'Researcher'.",
+      "condition": [
+        [
+          "persons.Type",
+          "=",
+          "'Researcher'"
+        ]
+      ],
+      "subclass_of": [
+        "Class:Person"
+      ]
     }
   ],
   "data_properties": [
@@ -91,349 +124,562 @@
       "id": "DataProperty:conferenceName",
       "label": "conference name",
       "domain_class": "Class:Conference",
-      "range_type": "string",
+      "range_type": "xsd:string",
       "source_columns": [
-        "Name"
+        "conferences.Name"
       ],
       "join_paths": [],
-      "status": "confirmed",
-      "confidence": 0.99
+      "status": "accepted",
+      "confidence": 0.98,
+      "datatype": "xsd:string"
     },
     {
       "id": "DataProperty:conferenceURI",
       "label": "conference URI",
       "domain_class": "Class:Conference",
-      "range_type": "string",
+      "range_type": "xsd:anyURI",
       "source_columns": [
-        "URI"
+        "conferences.URI"
       ],
       "join_paths": [],
-      "status": "confirmed",
-      "confidence": 0.97
+      "status": "accepted",
+      "confidence": 0.92,
+      "datatype": "xsd:anyURI",
+      "condition": [
+        [
+          "conferences.URI",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
     },
     {
       "id": "DataProperty:conferenceDateText",
       "label": "conference date text",
       "domain_class": "Class:Conference",
-      "range_type": "string",
+      "range_type": "xsd:string",
       "source_columns": [
-        "Date"
+        "conferences.Date"
       ],
       "join_paths": [],
-      "status": "confirmed",
-      "confidence": 0.9
+      "status": "accepted",
+      "confidence": 0.9,
+      "datatype": "xsd:string"
     },
     {
       "id": "DataProperty:conferenceLocation",
       "label": "conference location",
       "domain_class": "Class:Conference",
-      "range_type": "string",
+      "range_type": "xsd:string",
       "source_columns": [
-        "Location"
+        "conferences.Location"
       ],
       "join_paths": [],
-      "status": "confirmed",
-      "confidence": 0.95
+      "status": "accepted",
+      "confidence": 0.94,
+      "datatype": "xsd:string"
     },
     {
       "id": "DataProperty:conferenceTimestamp",
       "label": "conference timestamp",
       "domain_class": "Class:Conference",
-      "range_type": "string",
+      "range_type": "xsd:dateTime",
       "source_columns": [
-        "Datum"
+        "conferences.Datum"
       ],
       "join_paths": [],
-      "status": "confirmed",
-      "confidence": 0.86
+      "status": "accepted",
+      "confidence": 0.88,
+      "datatype": "xsd:dateTime",
+      "condition": [
+        [
+          "conferences.Datum",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
     },
     {
-      "id": "DataProperty:organizationType",
-      "label": "organization type",
+      "id": "DataProperty:organizationTypeLiteral",
+      "label": "organization type literal",
       "domain_class": "Class:Organization",
-      "range_type": "string",
+      "range_type": "xsd:string",
       "source_columns": [
-        "Type"
+        "organizations.Type"
       ],
       "join_paths": [],
-      "status": "tentative",
-      "confidence": 0.72
+      "status": "accepted",
+      "confidence": 0.78,
+      "datatype": "xsd:string",
+      "condition": [
+        [
+          "organizations.Type",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
     },
     {
       "id": "DataProperty:organizationName",
       "label": "organization name",
       "domain_class": "Class:Organization",
-      "range_type": "string",
+      "range_type": "xsd:string",
       "source_columns": [
-        "Name"
+        "organizations.Name"
       ],
       "join_paths": [],
-      "status": "confirmed",
-      "confidence": 0.99
+      "status": "accepted",
+      "confidence": 0.98,
+      "datatype": "xsd:string"
     },
     {
       "id": "DataProperty:organizationAddress",
       "label": "organization address",
       "domain_class": "Class:Organization",
-      "range_type": "string",
+      "range_type": "xsd:string",
       "source_columns": [
-        "Address"
+        "organizations.Address"
       ],
       "join_paths": [],
-      "status": "confirmed",
-      "confidence": 0.94
+      "status": "accepted",
+      "confidence": 0.93,
+      "datatype": "xsd:string",
+      "condition": [
+        [
+          "organizations.Address",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
     },
     {
       "id": "DataProperty:organizationLocation",
       "label": "organization location",
       "domain_class": "Class:Organization",
-      "range_type": "string",
+      "range_type": "xsd:string",
       "source_columns": [
-        "Location"
+        "organizations.Location"
       ],
       "join_paths": [],
-      "status": "confirmed",
-      "confidence": 0.92
+      "status": "accepted",
+      "confidence": 0.93,
+      "datatype": "xsd:string",
+      "condition": [
+        [
+          "organizations.Location",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
     },
     {
       "id": "DataProperty:organizationPostcode",
       "label": "organization postcode",
       "domain_class": "Class:Organization",
-      "range_type": "string",
+      "range_type": "xsd:string",
       "source_columns": [
-        "Postcode"
+        "organizations.Postcode"
       ],
       "join_paths": [],
-      "status": "confirmed",
-      "confidence": 0.92
+      "status": "accepted",
+      "confidence": 0.9,
+      "datatype": "xsd:string",
+      "condition": [
+        [
+          "organizations.Postcode",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
     },
     {
       "id": "DataProperty:organizationCountry",
       "label": "organization country",
       "domain_class": "Class:Organization",
-      "range_type": "string",
+      "range_type": "xsd:string",
       "source_columns": [
-        "Country"
+        "organizations.Country"
       ],
       "join_paths": [],
-      "status": "confirmed",
-      "confidence": 0.95
+      "status": "accepted",
+      "confidence": 0.94,
+      "datatype": "xsd:string",
+      "condition": [
+        [
+          "organizations.Country",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
     },
     {
       "id": "DataProperty:organizationURI",
       "label": "organization URI",
       "domain_class": "Class:Organization",
-      "range_type": "string",
+      "range_type": "xsd:anyURI",
       "source_columns": [
-        "URI"
+        "organizations.URI"
       ],
       "join_paths": [],
-      "status": "confirmed",
-      "confidence": 0.96
+      "status": "accepted",
+      "confidence": 0.92,
+      "datatype": "xsd:anyURI",
+      "condition": [
+        [
+          "organizations.URI",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
     },
     {
       "id": "DataProperty:organizationHomepage",
       "label": "organization homepage",
       "domain_class": "Class:Organization",
-      "range_type": "string",
+      "range_type": "xsd:anyURI",
       "source_columns": [
-        "Homepage"
+        "organizations.Homepage"
       ],
       "join_paths": [],
-      "status": "confirmed",
-      "confidence": 0.96
+      "status": "accepted",
+      "confidence": 0.93,
+      "datatype": "xsd:anyURI",
+      "condition": [
+        [
+          "organizations.Homepage",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
     },
     {
       "id": "DataProperty:paperTitle",
       "label": "paper title",
       "domain_class": "Class:Paper",
-      "range_type": "string",
+      "range_type": "xsd:string",
       "source_columns": [
-        "Title"
+        "papers.Title"
       ],
       "join_paths": [],
-      "status": "confirmed",
-      "confidence": 0.99
+      "status": "accepted",
+      "confidence": 0.99,
+      "datatype": "xsd:string"
     },
     {
       "id": "DataProperty:paperAbstract",
       "label": "paper abstract",
       "domain_class": "Class:Paper",
-      "range_type": "string",
+      "range_type": "xsd:string",
       "source_columns": [
-        "Abstract"
+        "papers.Abstract"
       ],
       "join_paths": [],
-      "status": "confirmed",
-      "confidence": 0.98
+      "status": "accepted",
+      "confidence": 0.98,
+      "datatype": "xsd:string",
+      "condition": [
+        [
+          "papers.Abstract",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
     },
     {
       "id": "DataProperty:paperURI",
       "label": "paper URI",
       "domain_class": "Class:Paper",
-      "range_type": "string",
+      "range_type": "xsd:anyURI",
       "source_columns": [
-        "URI"
+        "papers.URI"
       ],
       "join_paths": [],
-      "status": "confirmed",
-      "confidence": 0.97
+      "status": "accepted",
+      "confidence": 0.95,
+      "datatype": "xsd:anyURI",
+      "condition": [
+        [
+          "papers.URI",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
     },
     {
       "id": "DataProperty:paperYear",
       "label": "paper year",
       "domain_class": "Class:Paper",
-      "range_type": "string",
+      "range_type": "xsd:integer",
       "source_columns": [
-        "Year"
+        "papers.Year"
       ],
       "join_paths": [],
-      "status": "confirmed",
-      "confidence": 0.98
+      "status": "accepted",
+      "confidence": 0.97,
+      "datatype": "xsd:integer",
+      "condition": [
+        [
+          "papers.Year",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
     },
     {
-      "id": "DataProperty:personType",
-      "label": "person type",
-      "domain_class": "Class:Person",
-      "range_type": "string",
+      "id": "DataProperty:paperPublishFlag",
+      "label": "paper publish flag",
+      "domain_class": "Class:Paper",
+      "range_type": "xsd:integer",
       "source_columns": [
-        "Type"
+        "papers.Publish"
       ],
       "join_paths": [],
-      "status": "tentative",
-      "confidence": 0.76
+      "status": "proposed",
+      "confidence": 0.56,
+      "datatype": "xsd:integer",
+      "condition": [
+        [
+          "papers.Publish",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
+    },
+    {
+      "id": "DataProperty:personTypeLiteral",
+      "label": "person type literal",
+      "domain_class": "Class:Person",
+      "range_type": "xsd:string",
+      "source_columns": [
+        "persons.Type"
+      ],
+      "join_paths": [],
+      "status": "accepted",
+      "confidence": 0.8,
+      "datatype": "xsd:string",
+      "condition": [
+        [
+          "persons.Type",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
     },
     {
       "id": "DataProperty:personFirstName",
       "label": "person first name",
       "domain_class": "Class:Person",
-      "range_type": "string",
+      "range_type": "xsd:string",
       "source_columns": [
-        "FirstName"
+        "persons.FirstName"
       ],
       "join_paths": [],
-      "status": "confirmed",
-      "confidence": 0.99
+      "status": "accepted",
+      "confidence": 0.98,
+      "datatype": "xsd:string",
+      "condition": [
+        [
+          "persons.FirstName",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
     },
     {
       "id": "DataProperty:personLastName",
       "label": "person last name",
       "domain_class": "Class:Person",
-      "range_type": "string",
+      "range_type": "xsd:string",
       "source_columns": [
-        "LastName"
+        "persons.LastName"
       ],
       "join_paths": [],
-      "status": "confirmed",
-      "confidence": 0.99
+      "status": "accepted",
+      "confidence": 0.98,
+      "datatype": "xsd:string",
+      "condition": [
+        [
+          "persons.LastName",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
     },
     {
       "id": "DataProperty:personAddress",
       "label": "person address",
       "domain_class": "Class:Person",
-      "range_type": "string",
+      "range_type": "xsd:string",
       "source_columns": [
-        "Address"
+        "persons.Address"
       ],
       "join_paths": [],
-      "status": "confirmed",
-      "confidence": 0.93
+      "status": "accepted",
+      "confidence": 0.92,
+      "datatype": "xsd:string",
+      "condition": [
+        [
+          "persons.Address",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
     },
     {
       "id": "DataProperty:personEmail",
       "label": "person email",
       "domain_class": "Class:Person",
-      "range_type": "string",
+      "range_type": "xsd:string",
       "source_columns": [
-        "Email"
+        "persons.Email"
       ],
       "join_paths": [],
-      "status": "confirmed",
-      "confidence": 0.98
+      "status": "accepted",
+      "confidence": 0.97,
+      "datatype": "xsd:string",
+      "condition": [
+        [
+          "persons.Email",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
     },
     {
       "id": "DataProperty:personHomepage",
       "label": "person homepage",
       "domain_class": "Class:Person",
-      "range_type": "string",
+      "range_type": "xsd:anyURI",
       "source_columns": [
-        "Homepage"
+        "persons.Homepage"
       ],
       "join_paths": [],
-      "status": "confirmed",
-      "confidence": 0.96
+      "status": "accepted",
+      "confidence": 0.95,
+      "datatype": "xsd:anyURI",
+      "condition": [
+        [
+          "persons.Homepage",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
     },
     {
       "id": "DataProperty:personPhone",
       "label": "person phone",
       "domain_class": "Class:Person",
-      "range_type": "string",
+      "range_type": "xsd:string",
       "source_columns": [
-        "Phone"
+        "persons.Phone"
       ],
       "join_paths": [],
-      "status": "confirmed",
-      "confidence": 0.95
+      "status": "accepted",
+      "confidence": 0.93,
+      "datatype": "xsd:string",
+      "condition": [
+        [
+          "persons.Phone",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
     },
     {
       "id": "DataProperty:personURI",
       "label": "person URI",
       "domain_class": "Class:Person",
-      "range_type": "string",
+      "range_type": "xsd:anyURI",
       "source_columns": [
-        "URI"
+        "persons.URI"
       ],
       "join_paths": [],
-      "status": "confirmed",
-      "confidence": 0.97
+      "status": "accepted",
+      "confidence": 0.94,
+      "datatype": "xsd:anyURI",
+      "condition": [
+        [
+          "persons.URI",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
     },
     {
       "id": "DataProperty:personPhoto",
       "label": "person photo",
       "domain_class": "Class:Person",
-      "range_type": "string",
+      "range_type": "xsd:anyURI",
       "source_columns": [
-        "Photo"
+        "persons.Photo"
       ],
       "join_paths": [],
-      "status": "confirmed",
-      "confidence": 0.96
+      "status": "accepted",
+      "confidence": 0.93,
+      "datatype": "xsd:anyURI",
+      "condition": [
+        [
+          "persons.Photo",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
     },
     {
       "id": "DataProperty:topicName",
       "label": "topic name",
       "domain_class": "Class:Topic",
-      "range_type": "string",
+      "range_type": "xsd:string",
       "source_columns": [
-        "TopicName"
+        "topics.TopicName"
       ],
       "join_paths": [],
-      "status": "confirmed",
-      "confidence": 0.99
+      "status": "accepted",
+      "confidence": 0.98,
+      "datatype": "xsd:string"
     },
     {
       "id": "DataProperty:topicURI",
       "label": "topic URI",
       "domain_class": "Class:Topic",
-      "range_type": "string",
+      "range_type": "xsd:anyURI",
       "source_columns": [
-        "URI"
+        "topics.URI"
       ],
       "join_paths": [],
-      "status": "confirmed",
-      "confidence": 0.97
-    },
-    {
-      "id": "DataProperty:paperTopicRelationType",
-      "label": "paper topic relation type",
-      "domain_class": "Class:PaperTopicRelation",
-      "range_type": "string",
-      "source_columns": [
-        "RelationType"
-      ],
-      "join_paths": [],
-      "status": "tentative",
-      "confidence": 0.74
+      "status": "accepted",
+      "confidence": 0.93,
+      "datatype": "xsd:anyURI",
+      "condition": [
+        [
+          "topics.URI",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
     }
   ],
   "object_properties": [
@@ -449,12 +695,100 @@
           "conferences.ConfID"
         ]
       ],
-      "status": "confirmed",
+      "status": "accepted",
+      "confidence": 0.97,
+      "condition": [
+        [
+          "papers.Conference",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
+    },
+    {
+      "id": "ObjectProperty:paperHasTopic",
+      "label": "paper has topic",
+      "domain_class": "Class:Paper",
+      "range_class": "Class:Topic",
+      "join_paths": [
+        [
+          "rel_paper_topic.PaperID",
+          "=",
+          "papers.PaperID"
+        ],
+        [
+          "rel_paper_topic.TopicID",
+          "=",
+          "topics.TopicID"
+        ]
+      ],
+      "status": "accepted",
+      "confidence": 0.98
+    },
+    {
+      "id": "ObjectProperty:personAffiliatedWithOrganization",
+      "label": "person affiliated with organization",
+      "domain_class": "Class:Person",
+      "range_class": "Class:Organization",
+      "join_paths": [
+        [
+          "rel_person_organization.PersonID",
+          "=",
+          "persons.PerID"
+        ],
+        [
+          "rel_person_organization.OrganizationID",
+          "=",
+          "organizations.OrgID"
+        ]
+      ],
+      "status": "accepted",
+      "confidence": 0.98
+    },
+    {
+      "id": "ObjectProperty:personAuthorOfPaper",
+      "label": "person author of paper",
+      "domain_class": "Class:Person",
+      "range_class": "Class:Paper",
+      "join_paths": [
+        [
+          "rel_person_paper.PersonID",
+          "=",
+          "persons.PerID"
+        ],
+        [
+          "rel_person_paper.PaperID",
+          "=",
+          "papers.PaperID"
+        ]
+      ],
+      "status": "accepted",
       "confidence": 0.97
     },
     {
-      "id": "ObjectProperty:organizationPartOfOrganization",
-      "label": "organization part of organization",
+      "id": "ObjectProperty:personHasTopic",
+      "label": "person has topic",
+      "domain_class": "Class:Person",
+      "range_class": "Class:Topic",
+      "join_paths": [
+        [
+          "rel_person_topic.PersonID",
+          "=",
+          "persons.PerID"
+        ],
+        [
+          "rel_person_topic.TopicID",
+          "=",
+          "topics.TopicID"
+        ]
+      ],
+      "status": "accepted",
+      "confidence": 0.95
+    },
+    {
+      "id": "ObjectProperty:organizationBelongsToOrganization",
+      "label": "organization belongs to organization",
       "domain_class": "Class:Organization",
       "range_class": "Class:Organization",
       "join_paths": [
@@ -464,68 +798,16 @@
           "organizations.OrgID"
         ]
       ],
-      "status": "confirmed",
-      "confidence": 0.91
-    },
-    {
-      "id": "ObjectProperty:personAffiliatedWithOrganization",
-      "label": "person affiliated with organization",
-      "domain_class": "Class:Person",
-      "range_class": "Class:Organization",
-      "join_paths": [
+      "status": "accepted",
+      "confidence": 0.9,
+      "condition": [
         [
-          "persons.PerID",
-          "=",
-          "rel_person_organization.PersonID"
-        ],
-        [
-          "rel_person_organization.OrganizationID",
-          "=",
-          "organizations.OrgID"
+          "organizations.Belongsto",
+          "IS",
+          "NOT",
+          "NULL"
         ]
-      ],
-      "status": "confirmed",
-      "confidence": 0.95
-    },
-    {
-      "id": "ObjectProperty:personAuthorOfPaper",
-      "label": "person author of paper",
-      "domain_class": "Class:Person",
-      "range_class": "Class:Paper",
-      "join_paths": [
-        [
-          "persons.PerID",
-          "=",
-          "rel_person_paper.PersonID"
-        ],
-        [
-          "rel_person_paper.PaperID",
-          "=",
-          "papers.PaperID"
-        ]
-      ],
-      "status": "tentative",
-      "confidence": 0.83
-    },
-    {
-      "id": "ObjectProperty:personInterestedInTopic",
-      "label": "person interested in topic",
-      "domain_class": "Class:Person",
-      "range_class": "Class:Topic",
-      "join_paths": [
-        [
-          "persons.PerID",
-          "=",
-          "rel_person_topic.PersonID"
-        ],
-        [
-          "rel_person_topic.TopicID",
-          "=",
-          "topics.TopicID"
-        ]
-      ],
-      "status": "tentative",
-      "confidence": 0.82
+      ]
     },
     {
       "id": "ObjectProperty:topicBroaderTopic",
@@ -539,41 +821,34 @@
           "topics.TopicID"
         ]
       ],
-      "status": "confirmed",
-      "confidence": 0.93
-    },
-    {
-      "id": "ObjectProperty:paperTopicRelationPaper",
-      "label": "paper topic relation paper",
-      "domain_class": "Class:PaperTopicRelation",
-      "range_class": "Class:Paper",
-      "join_paths": [
+      "status": "accepted",
+      "confidence": 0.92,
+      "condition": [
         [
-          "rel_paper_topic.PaperID",
-          "=",
-          "papers.PaperID"
+          "topics.ParentID",
+          "IS",
+          "NOT",
+          "NULL"
         ]
-      ],
-      "status": "confirmed",
-      "confidence": 0.96
-    },
-    {
-      "id": "ObjectProperty:paperTopicRelationTopic",
-      "label": "paper topic relation topic",
-      "domain_class": "Class:PaperTopicRelation",
-      "range_class": "Class:Topic",
-      "join_paths": [
-        [
-          "rel_paper_topic.TopicID",
-          "=",
-          "topics.TopicID"
-        ]
-      ],
-      "status": "tentative",
-      "confidence": 0.88
+      ]
     }
   ],
-  "subclass_relations": [],
+  "subclass_relations": [
+    {
+      "id": "SubclassRelation:Class:FullProfessor->Class:Person",
+      "child_class": "Class:FullProfessor",
+      "parent_class": "Class:Person",
+      "status": "proposed",
+      "confidence": 0.73
+    },
+    {
+      "id": "SubclassRelation:Class:Researcher->Class:Person",
+      "child_class": "Class:Researcher",
+      "parent_class": "Class:Person",
+      "status": "proposed",
+      "confidence": 0.76
+    }
+  ],
   "class_mappings": [
     {
       "class_id": "Class:Conference",
@@ -581,11 +856,12 @@
         "conferences"
       ],
       "identifier_columns": [
-        "ConfID"
+        "conferences.ConfID"
       ],
-      "instance_id_template": "conference/{ConfID}",
-      "status": "confirmed",
-      "confidence": 0.99
+      "instance_id_template": "conference/@@conferences.confid@@",
+      "status": "accepted",
+      "confidence": 0.97,
+      "identifier_kind": "uri_pattern"
     },
     {
       "class_id": "Class:Organization",
@@ -593,11 +869,12 @@
         "organizations"
       ],
       "identifier_columns": [
-        "OrgID"
+        "organizations.OrgID"
       ],
-      "instance_id_template": "organization/{OrgID}",
-      "status": "confirmed",
-      "confidence": 0.99
+      "instance_id_template": "organization/@@organizations.orgid@@",
+      "status": "accepted",
+      "confidence": 0.96,
+      "identifier_kind": "uri_pattern"
     },
     {
       "class_id": "Class:Paper",
@@ -605,11 +882,12 @@
         "papers"
       ],
       "identifier_columns": [
-        "PaperID"
+        "papers.PaperID"
       ],
-      "instance_id_template": "paper/{PaperID}",
-      "status": "confirmed",
-      "confidence": 0.99
+      "instance_id_template": "paper/@@papers.paperid@@",
+      "status": "accepted",
+      "confidence": 0.98,
+      "identifier_kind": "uri_pattern"
     },
     {
       "class_id": "Class:Person",
@@ -617,11 +895,12 @@
         "persons"
       ],
       "identifier_columns": [
-        "PerID"
+        "persons.PerID"
       ],
-      "instance_id_template": "person/{PerID}",
-      "status": "confirmed",
-      "confidence": 0.99
+      "instance_id_template": "person/@@persons.perid@@",
+      "status": "accepted",
+      "confidence": 0.98,
+      "identifier_kind": "uri_pattern"
     },
     {
       "class_id": "Class:Topic",
@@ -629,24 +908,58 @@
         "topics"
       ],
       "identifier_columns": [
-        "TopicID"
+        "topics.TopicID"
       ],
-      "instance_id_template": "topic/{TopicID}",
-      "status": "confirmed",
-      "confidence": 0.99
+      "instance_id_template": "topic/@@topics.topicid@@",
+      "status": "accepted",
+      "confidence": 0.96,
+      "identifier_kind": "uri_pattern"
     },
     {
-      "class_id": "Class:PaperTopicRelation",
+      "class_id": "Class:FullProfessor",
       "from_tables": [
-        "rel_paper_topic"
+        "persons"
       ],
       "identifier_columns": [
-        "PaperID",
-        "TopicID"
+        "persons.PerID"
       ],
-      "instance_id_template": "paper-topic-relation/{PaperID}-{TopicID}",
-      "status": "tentative",
-      "confidence": 0.75
+      "instance_id_template": "person/@@persons.perid@@",
+      "status": "proposed",
+      "confidence": 0.73,
+      "identifier_kind": "uri_pattern",
+      "condition": [
+        [
+          "persons.Type",
+          "=",
+          "'Full_Professor'"
+        ]
+      ],
+      "subclass_of": [
+        "Class:Person"
+      ]
+    },
+    {
+      "class_id": "Class:Researcher",
+      "from_tables": [
+        "persons"
+      ],
+      "identifier_columns": [
+        "persons.PerID"
+      ],
+      "instance_id_template": "person/@@persons.perid@@",
+      "status": "proposed",
+      "confidence": 0.76,
+      "identifier_kind": "uri_pattern",
+      "condition": [
+        [
+          "persons.Type",
+          "=",
+          "'Researcher'"
+        ]
+      ],
+      "subclass_of": [
+        "Class:Person"
+      ]
     }
   ],
   "data_property_mappings": [
@@ -655,435 +968,590 @@
       "from_class": "Class:Conference",
       "source_table": "conferences",
       "source_columns": [
-        "Name"
+        "conferences.Name"
       ],
       "column": "",
       "joins": [],
-      "status": "confirmed",
-      "confidence": 0.99,
-      "extras": {
-        "value_template": "{Name}"
-      }
+      "status": "accepted",
+      "confidence": 0.98,
+      "value_kind": "column",
+      "datatype": "xsd:string"
     },
     {
       "property_id": "DataProperty:conferenceURI",
       "from_class": "Class:Conference",
       "source_table": "conferences",
       "source_columns": [
-        "URI"
+        "conferences.URI"
       ],
       "column": "",
       "joins": [],
-      "status": "confirmed",
-      "confidence": 0.97,
-      "extras": {
-        "value_template": "{URI}"
-      }
+      "status": "accepted",
+      "confidence": 0.92,
+      "value_kind": "uri_column",
+      "datatype": "xsd:anyURI",
+      "condition": [
+        [
+          "conferences.URI",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
     },
     {
       "property_id": "DataProperty:conferenceDateText",
       "from_class": "Class:Conference",
       "source_table": "conferences",
       "source_columns": [
-        "Date"
+        "conferences.Date"
       ],
       "column": "",
       "joins": [],
-      "status": "confirmed",
+      "status": "accepted",
       "confidence": 0.9,
-      "extras": {
-        "value_template": "{Date}"
-      }
+      "value_kind": "column",
+      "datatype": "xsd:string"
     },
     {
       "property_id": "DataProperty:conferenceLocation",
       "from_class": "Class:Conference",
       "source_table": "conferences",
       "source_columns": [
-        "Location"
+        "conferences.Location"
       ],
       "column": "",
       "joins": [],
-      "status": "confirmed",
-      "confidence": 0.95,
-      "extras": {
-        "value_template": "{Location}"
-      }
+      "status": "accepted",
+      "confidence": 0.94,
+      "value_kind": "column",
+      "datatype": "xsd:string"
     },
     {
       "property_id": "DataProperty:conferenceTimestamp",
       "from_class": "Class:Conference",
       "source_table": "conferences",
       "source_columns": [
-        "Datum"
+        "conferences.Datum"
       ],
       "column": "",
       "joins": [],
-      "status": "confirmed",
-      "confidence": 0.86,
-      "extras": {
-        "value_template": "{Datum}"
-      }
+      "status": "accepted",
+      "confidence": 0.88,
+      "value_kind": "column",
+      "datatype": "xsd:dateTime",
+      "condition": [
+        [
+          "conferences.Datum",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
     },
     {
-      "property_id": "DataProperty:organizationType",
+      "property_id": "DataProperty:organizationTypeLiteral",
       "from_class": "Class:Organization",
       "source_table": "organizations",
       "source_columns": [
-        "Type"
+        "organizations.Type"
       ],
       "column": "",
       "joins": [],
-      "status": "tentative",
-      "confidence": 0.72,
-      "extras": {
-        "value_template": "{Type}"
-      }
+      "status": "accepted",
+      "confidence": 0.78,
+      "value_kind": "column",
+      "datatype": "xsd:string",
+      "condition": [
+        [
+          "organizations.Type",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
     },
     {
       "property_id": "DataProperty:organizationName",
       "from_class": "Class:Organization",
       "source_table": "organizations",
       "source_columns": [
-        "Name"
+        "organizations.Name"
       ],
       "column": "",
       "joins": [],
-      "status": "confirmed",
-      "confidence": 0.99,
-      "extras": {
-        "value_template": "{Name}"
-      }
+      "status": "accepted",
+      "confidence": 0.98,
+      "value_kind": "column",
+      "datatype": "xsd:string"
     },
     {
       "property_id": "DataProperty:organizationAddress",
       "from_class": "Class:Organization",
       "source_table": "organizations",
       "source_columns": [
-        "Address"
+        "organizations.Address"
       ],
       "column": "",
       "joins": [],
-      "status": "confirmed",
-      "confidence": 0.94,
-      "extras": {
-        "value_template": "{Address}"
-      }
+      "status": "accepted",
+      "confidence": 0.93,
+      "value_kind": "column",
+      "datatype": "xsd:string",
+      "condition": [
+        [
+          "organizations.Address",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
     },
     {
       "property_id": "DataProperty:organizationLocation",
       "from_class": "Class:Organization",
       "source_table": "organizations",
       "source_columns": [
-        "Location"
+        "organizations.Location"
       ],
       "column": "",
       "joins": [],
-      "status": "confirmed",
-      "confidence": 0.92,
-      "extras": {
-        "value_template": "{Location}"
-      }
+      "status": "accepted",
+      "confidence": 0.93,
+      "value_kind": "column",
+      "datatype": "xsd:string",
+      "condition": [
+        [
+          "organizations.Location",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
     },
     {
       "property_id": "DataProperty:organizationPostcode",
       "from_class": "Class:Organization",
       "source_table": "organizations",
       "source_columns": [
-        "Postcode"
+        "organizations.Postcode"
       ],
       "column": "",
       "joins": [],
-      "status": "confirmed",
-      "confidence": 0.92,
-      "extras": {
-        "value_template": "{Postcode}"
-      }
+      "status": "accepted",
+      "confidence": 0.9,
+      "value_kind": "column",
+      "datatype": "xsd:string",
+      "condition": [
+        [
+          "organizations.Postcode",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
     },
     {
       "property_id": "DataProperty:organizationCountry",
       "from_class": "Class:Organization",
       "source_table": "organizations",
       "source_columns": [
-        "Country"
+        "organizations.Country"
       ],
       "column": "",
       "joins": [],
-      "status": "confirmed",
-      "confidence": 0.95,
-      "extras": {
-        "value_template": "{Country}"
-      }
+      "status": "accepted",
+      "confidence": 0.94,
+      "value_kind": "column",
+      "datatype": "xsd:string",
+      "condition": [
+        [
+          "organizations.Country",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
     },
     {
       "property_id": "DataProperty:organizationURI",
       "from_class": "Class:Organization",
       "source_table": "organizations",
       "source_columns": [
-        "URI"
+        "organizations.URI"
       ],
       "column": "",
       "joins": [],
-      "status": "confirmed",
-      "confidence": 0.96,
-      "extras": {
-        "value_template": "{URI}"
-      }
+      "status": "accepted",
+      "confidence": 0.92,
+      "value_kind": "uri_column",
+      "datatype": "xsd:anyURI",
+      "condition": [
+        [
+          "organizations.URI",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
     },
     {
       "property_id": "DataProperty:organizationHomepage",
       "from_class": "Class:Organization",
       "source_table": "organizations",
       "source_columns": [
-        "Homepage"
+        "organizations.Homepage"
       ],
       "column": "",
       "joins": [],
-      "status": "confirmed",
-      "confidence": 0.96,
-      "extras": {
-        "value_template": "{Homepage}"
-      }
+      "status": "accepted",
+      "confidence": 0.93,
+      "value_kind": "uri_column",
+      "datatype": "xsd:anyURI",
+      "condition": [
+        [
+          "organizations.Homepage",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
     },
     {
       "property_id": "DataProperty:paperTitle",
       "from_class": "Class:Paper",
       "source_table": "papers",
       "source_columns": [
-        "Title"
+        "papers.Title"
       ],
       "column": "",
       "joins": [],
-      "status": "confirmed",
+      "status": "accepted",
       "confidence": 0.99,
-      "extras": {
-        "value_template": "{Title}"
-      }
+      "value_kind": "column",
+      "datatype": "xsd:string"
     },
     {
       "property_id": "DataProperty:paperAbstract",
       "from_class": "Class:Paper",
       "source_table": "papers",
       "source_columns": [
-        "Abstract"
+        "papers.Abstract"
       ],
       "column": "",
       "joins": [],
-      "status": "confirmed",
+      "status": "accepted",
       "confidence": 0.98,
-      "extras": {
-        "value_template": "{Abstract}"
-      }
+      "value_kind": "column",
+      "datatype": "xsd:string",
+      "condition": [
+        [
+          "papers.Abstract",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
     },
     {
       "property_id": "DataProperty:paperURI",
       "from_class": "Class:Paper",
       "source_table": "papers",
       "source_columns": [
-        "URI"
+        "papers.URI"
       ],
       "column": "",
       "joins": [],
-      "status": "confirmed",
-      "confidence": 0.97,
-      "extras": {
-        "value_template": "{URI}"
-      }
+      "status": "accepted",
+      "confidence": 0.95,
+      "value_kind": "uri_column",
+      "datatype": "xsd:anyURI",
+      "condition": [
+        [
+          "papers.URI",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
     },
     {
       "property_id": "DataProperty:paperYear",
       "from_class": "Class:Paper",
       "source_table": "papers",
       "source_columns": [
-        "Year"
+        "papers.Year"
       ],
       "column": "",
       "joins": [],
-      "status": "confirmed",
-      "confidence": 0.98,
-      "extras": {
-        "value_template": "{Year}"
-      }
+      "status": "accepted",
+      "confidence": 0.97,
+      "value_kind": "column",
+      "datatype": "xsd:integer",
+      "condition": [
+        [
+          "papers.Year",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
     },
     {
-      "property_id": "DataProperty:personType",
+      "property_id": "DataProperty:paperPublishFlag",
+      "from_class": "Class:Paper",
+      "source_table": "papers",
+      "source_columns": [
+        "papers.Publish"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.56,
+      "value_kind": "column",
+      "datatype": "xsd:integer",
+      "condition": [
+        [
+          "papers.Publish",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
+    },
+    {
+      "property_id": "DataProperty:personTypeLiteral",
       "from_class": "Class:Person",
       "source_table": "persons",
       "source_columns": [
-        "Type"
+        "persons.Type"
       ],
       "column": "",
       "joins": [],
-      "status": "tentative",
-      "confidence": 0.76,
-      "extras": {
-        "value_template": "{Type}"
-      }
+      "status": "accepted",
+      "confidence": 0.8,
+      "value_kind": "column",
+      "datatype": "xsd:string",
+      "condition": [
+        [
+          "persons.Type",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
     },
     {
       "property_id": "DataProperty:personFirstName",
       "from_class": "Class:Person",
       "source_table": "persons",
       "source_columns": [
-        "FirstName"
+        "persons.FirstName"
       ],
       "column": "",
       "joins": [],
-      "status": "confirmed",
-      "confidence": 0.99,
-      "extras": {
-        "value_template": "{FirstName}"
-      }
+      "status": "accepted",
+      "confidence": 0.98,
+      "value_kind": "column",
+      "datatype": "xsd:string",
+      "condition": [
+        [
+          "persons.FirstName",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
     },
     {
       "property_id": "DataProperty:personLastName",
       "from_class": "Class:Person",
       "source_table": "persons",
       "source_columns": [
-        "LastName"
+        "persons.LastName"
       ],
       "column": "",
       "joins": [],
-      "status": "confirmed",
-      "confidence": 0.99,
-      "extras": {
-        "value_template": "{LastName}"
-      }
+      "status": "accepted",
+      "confidence": 0.98,
+      "value_kind": "column",
+      "datatype": "xsd:string",
+      "condition": [
+        [
+          "persons.LastName",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
     },
     {
       "property_id": "DataProperty:personAddress",
       "from_class": "Class:Person",
       "source_table": "persons",
       "source_columns": [
-        "Address"
+        "persons.Address"
       ],
       "column": "",
       "joins": [],
-      "status": "confirmed",
-      "confidence": 0.93,
-      "extras": {
-        "value_template": "{Address}"
-      }
+      "status": "accepted",
+      "confidence": 0.92,
+      "value_kind": "column",
+      "datatype": "xsd:string",
+      "condition": [
+        [
+          "persons.Address",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
     },
     {
       "property_id": "DataProperty:personEmail",
       "from_class": "Class:Person",
       "source_table": "persons",
       "source_columns": [
-        "Email"
+        "persons.Email"
       ],
       "column": "",
       "joins": [],
-      "status": "confirmed",
-      "confidence": 0.98,
-      "extras": {
-        "value_template": "{Email}"
-      }
+      "status": "accepted",
+      "confidence": 0.97,
+      "value_kind": "column",
+      "datatype": "xsd:string",
+      "condition": [
+        [
+          "persons.Email",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
     },
     {
       "property_id": "DataProperty:personHomepage",
       "from_class": "Class:Person",
       "source_table": "persons",
       "source_columns": [
-        "Homepage"
+        "persons.Homepage"
       ],
       "column": "",
       "joins": [],
-      "status": "confirmed",
-      "confidence": 0.96,
-      "extras": {
-        "value_template": "{Homepage}"
-      }
+      "status": "accepted",
+      "confidence": 0.95,
+      "value_kind": "uri_column",
+      "datatype": "xsd:anyURI",
+      "condition": [
+        [
+          "persons.Homepage",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
     },
     {
       "property_id": "DataProperty:personPhone",
       "from_class": "Class:Person",
       "source_table": "persons",
       "source_columns": [
-        "Phone"
+        "persons.Phone"
       ],
       "column": "",
       "joins": [],
-      "status": "confirmed",
-      "confidence": 0.95,
-      "extras": {
-        "value_template": "{Phone}"
-      }
+      "status": "accepted",
+      "confidence": 0.93,
+      "value_kind": "column",
+      "datatype": "xsd:string",
+      "condition": [
+        [
+          "persons.Phone",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
     },
     {
       "property_id": "DataProperty:personURI",
       "from_class": "Class:Person",
       "source_table": "persons",
       "source_columns": [
-        "URI"
+        "persons.URI"
       ],
       "column": "",
       "joins": [],
-      "status": "confirmed",
-      "confidence": 0.97,
-      "extras": {
-        "value_template": "{URI}"
-      }
+      "status": "accepted",
+      "confidence": 0.94,
+      "value_kind": "uri_column",
+      "datatype": "xsd:anyURI",
+      "condition": [
+        [
+          "persons.URI",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
     },
     {
       "property_id": "DataProperty:personPhoto",
       "from_class": "Class:Person",
       "source_table": "persons",
       "source_columns": [
-        "Photo"
+        "persons.Photo"
       ],
       "column": "",
       "joins": [],
-      "status": "confirmed",
-      "confidence": 0.96,
-      "extras": {
-        "value_template": "{Photo}"
-      }
+      "status": "accepted",
+      "confidence": 0.93,
+      "value_kind": "uri_column",
+      "datatype": "xsd:anyURI",
+      "condition": [
+        [
+          "persons.Photo",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
     },
     {
       "property_id": "DataProperty:topicName",
       "from_class": "Class:Topic",
       "source_table": "topics",
       "source_columns": [
-        "TopicName"
+        "topics.TopicName"
       ],
       "column": "",
       "joins": [],
-      "status": "confirmed",
-      "confidence": 0.99,
-      "extras": {
-        "value_template": "{TopicName}"
-      }
+      "status": "accepted",
+      "confidence": 0.98,
+      "value_kind": "column",
+      "datatype": "xsd:string"
     },
     {
       "property_id": "DataProperty:topicURI",
       "from_class": "Class:Topic",
       "source_table": "topics",
       "source_columns": [
-        "URI"
+        "topics.URI"
       ],
       "column": "",
       "joins": [],
-      "status": "confirmed",
-      "confidence": 0.97,
-      "extras": {
-        "value_template": "{URI}"
-      }
-    },
-    {
-      "property_id": "DataProperty:paperTopicRelationType",
-      "from_class": "Class:PaperTopicRelation",
-      "source_table": "rel_paper_topic",
-      "source_columns": [
-        "RelationType"
-      ],
-      "column": "",
-      "joins": [],
-      "status": "tentative",
-      "confidence": 0.74,
-      "extras": {
-        "value_template": "{RelationType}"
-      }
+      "status": "accepted",
+      "confidence": 0.93,
+      "value_kind": "uri_column",
+      "datatype": "xsd:anyURI",
+      "condition": [
+        [
+          "topics.URI",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
     }
   ],
   "object_property_mappings": [
@@ -1098,23 +1566,95 @@
           "conferences.ConfID"
         ]
       ],
-      "status": "confirmed",
+      "status": "accepted",
       "confidence": 0.97,
-      "extras": {
-        "from_tables": [
-          "papers",
-          "conferences"
-        ],
-        "source_identifier_columns": [
-          "PaperID"
-        ],
-        "target_identifier_columns": [
-          "ConfID"
+      "condition": [
+        [
+          "papers.Conference",
+          "IS",
+          "NOT",
+          "NULL"
         ]
-      }
+      ]
     },
     {
-      "property_id": "ObjectProperty:organizationPartOfOrganization",
+      "property_id": "ObjectProperty:paperHasTopic",
+      "from_class": "Class:Paper",
+      "to_class": "Class:Topic",
+      "joins": [
+        [
+          "rel_paper_topic.PaperID",
+          "=",
+          "papers.PaperID"
+        ],
+        [
+          "rel_paper_topic.TopicID",
+          "=",
+          "topics.TopicID"
+        ]
+      ],
+      "status": "accepted",
+      "confidence": 0.98
+    },
+    {
+      "property_id": "ObjectProperty:personAffiliatedWithOrganization",
+      "from_class": "Class:Person",
+      "to_class": "Class:Organization",
+      "joins": [
+        [
+          "rel_person_organization.PersonID",
+          "=",
+          "persons.PerID"
+        ],
+        [
+          "rel_person_organization.OrganizationID",
+          "=",
+          "organizations.OrgID"
+        ]
+      ],
+      "status": "accepted",
+      "confidence": 0.98
+    },
+    {
+      "property_id": "ObjectProperty:personAuthorOfPaper",
+      "from_class": "Class:Person",
+      "to_class": "Class:Paper",
+      "joins": [
+        [
+          "rel_person_paper.PersonID",
+          "=",
+          "persons.PerID"
+        ],
+        [
+          "rel_person_paper.PaperID",
+          "=",
+          "papers.PaperID"
+        ]
+      ],
+      "status": "accepted",
+      "confidence": 0.97
+    },
+    {
+      "property_id": "ObjectProperty:personHasTopic",
+      "from_class": "Class:Person",
+      "to_class": "Class:Topic",
+      "joins": [
+        [
+          "rel_person_topic.PersonID",
+          "=",
+          "persons.PerID"
+        ],
+        [
+          "rel_person_topic.TopicID",
+          "=",
+          "topics.TopicID"
+        ]
+      ],
+      "status": "accepted",
+      "confidence": 0.95
+    },
+    {
+      "property_id": "ObjectProperty:organizationBelongsToOrganization",
       "from_class": "Class:Organization",
       "to_class": "Class:Organization",
       "joins": [
@@ -1124,115 +1664,16 @@
           "organizations.OrgID"
         ]
       ],
-      "status": "confirmed",
-      "confidence": 0.91,
-      "extras": {
-        "from_tables": [
-          "organizations"
-        ],
-        "source_identifier_columns": [
-          "OrgID"
-        ],
-        "target_identifier_columns": [
-          "OrgID"
-        ]
-      }
-    },
-    {
-      "property_id": "ObjectProperty:personAffiliatedWithOrganization",
-      "from_class": "Class:Person",
-      "to_class": "Class:Organization",
-      "joins": [
+      "status": "accepted",
+      "confidence": 0.9,
+      "condition": [
         [
-          "persons.PerID",
-          "=",
-          "rel_person_organization.PersonID"
-        ],
-        [
-          "rel_person_organization.OrganizationID",
-          "=",
-          "organizations.OrgID"
+          "organizations.Belongsto",
+          "IS",
+          "NOT",
+          "NULL"
         ]
-      ],
-      "status": "confirmed",
-      "confidence": 0.95,
-      "extras": {
-        "from_tables": [
-          "persons",
-          "rel_person_organization",
-          "organizations"
-        ],
-        "source_identifier_columns": [
-          "PerID"
-        ],
-        "target_identifier_columns": [
-          "OrgID"
-        ]
-      }
-    },
-    {
-      "property_id": "ObjectProperty:personAuthorOfPaper",
-      "from_class": "Class:Person",
-      "to_class": "Class:Paper",
-      "joins": [
-        [
-          "persons.PerID",
-          "=",
-          "rel_person_paper.PersonID"
-        ],
-        [
-          "rel_person_paper.PaperID",
-          "=",
-          "papers.PaperID"
-        ]
-      ],
-      "status": "tentative",
-      "confidence": 0.83,
-      "extras": {
-        "from_tables": [
-          "persons",
-          "rel_person_paper",
-          "papers"
-        ],
-        "source_identifier_columns": [
-          "PerID"
-        ],
-        "target_identifier_columns": [
-          "PaperID"
-        ]
-      }
-    },
-    {
-      "property_id": "ObjectProperty:personInterestedInTopic",
-      "from_class": "Class:Person",
-      "to_class": "Class:Topic",
-      "joins": [
-        [
-          "persons.PerID",
-          "=",
-          "rel_person_topic.PersonID"
-        ],
-        [
-          "rel_person_topic.TopicID",
-          "=",
-          "topics.TopicID"
-        ]
-      ],
-      "status": "tentative",
-      "confidence": 0.82,
-      "extras": {
-        "from_tables": [
-          "persons",
-          "rel_person_topic",
-          "topics"
-        ],
-        "source_identifier_columns": [
-          "PerID"
-        ],
-        "target_identifier_columns": [
-          "TopicID"
-        ]
-      }
+      ]
     },
     {
       "property_id": "ObjectProperty:topicBroaderTopic",
@@ -1245,932 +1686,59 @@
           "topics.TopicID"
         ]
       ],
-      "status": "confirmed",
-      "confidence": 0.93,
-      "extras": {
-        "from_tables": [
-          "topics"
-        ],
-        "source_identifier_columns": [
-          "TopicID"
-        ],
-        "target_identifier_columns": [
-          "TopicID"
-        ]
-      }
-    },
-    {
-      "property_id": "ObjectProperty:paperTopicRelationPaper",
-      "from_class": "Class:PaperTopicRelation",
-      "to_class": "Class:Paper",
-      "joins": [
+      "status": "accepted",
+      "confidence": 0.92,
+      "condition": [
         [
-          "rel_paper_topic.PaperID",
-          "=",
-          "papers.PaperID"
+          "topics.ParentID",
+          "IS",
+          "NOT",
+          "NULL"
         ]
-      ],
-      "status": "confirmed",
-      "confidence": 0.96,
-      "extras": {
-        "from_tables": [
-          "rel_paper_topic",
-          "papers"
-        ],
-        "source_identifier_columns": [
-          "PaperID",
-          "TopicID"
-        ],
-        "target_identifier_columns": [
-          "PaperID"
-        ]
-      }
-    },
-    {
-      "property_id": "ObjectProperty:paperTopicRelationTopic",
-      "from_class": "Class:PaperTopicRelation",
-      "to_class": "Class:Topic",
-      "joins": [
-        [
-          "rel_paper_topic.TopicID",
-          "=",
-          "topics.TopicID"
-        ]
-      ],
-      "status": "tentative",
-      "confidence": 0.88,
-      "extras": {
-        "from_tables": [
-          "rel_paper_topic",
-          "topics"
-        ],
-        "source_identifier_columns": [
-          "PaperID",
-          "TopicID"
-        ],
-        "target_identifier_columns": [
-          "TopicID"
-        ]
-      }
+      ]
     }
   ],
   "diagnostics": {
+    "summary": "Core entities are well supported by base tables: Conference, Organization, Paper, Person, and Topic. Connector tables are modeled as object properties rather than standalone classes because they primarily consist of foreign keys. Self-references in organizations and topics are modeled as hierarchical object properties.",
     "assumptions": [
-      "rel_person_paper is treated as a person-to-paper relation and labeled as authorship based on table naming and publication context, but this semantic is not explicitly enforced by the schema.",
-      "rel_person_topic is treated as a person-to-topic relation indicating interest or association; exact semantics are not explicit in the schema.",
-      "rel_paper_topic is modeled as a reified class because it contains the extra attribute RelationType."
+      "rel_person_paper represents authorship or person-paper association; modeled conservatively as personAuthorOfPaper.",
+      "rel_person_organization represents affiliation or membership; modeled conservatively as personAffiliatedWithOrganization.",
+      "rel_person_topic and rel_paper_topic represent topical association.",
+      "persons.Type contains role-like subtype labels; only observed/explicitly evidenced values Full_Professor and Researcher are proposed as subclasses.",
+      "organizations.Type is retained as a literal because subtype vocabulary is not sufficiently evidenced.",
+      "papers.Publish is ambiguous and therefore retained only as a low-confidence literal flag."
     ],
-    "omissions": [
-      "papers.Publish was not mapped because no explicit foreign-key evidence or reliable semantic interpretation was available.",
-      "Type columns in persons and organizations were not converted into subclass axioms because values appear to be data-driven categories rather than stable schema-level entity types."
+    "omissions_and_cautions": [
+      "No inverse object properties were added, following the conservative modeling guidance.",
+      "rel_paper_topic.RelationType was not modeled because its code semantics are not documented in the schema.",
+      "Existing URI columns are nullable and do not appear consistently stable enough to use as the sole subject identifier; primary-key-based URI patterns were used for class instances instead.",
+      "conference Date is stored as varchar and was therefore modeled as text; Datum was modeled separately as xsd:dateTime.",
+      "Tool-derived join evidence was partial for some connector tables, but explicit SQL foreign keys were used where present."
     ],
-    "evidence_notes": [
-      "Tool-derived join evidence strongly supports papers.Conference -> conferences.ConfID, organizations.Belongsto -> organizations.OrgID, and topics.ParentID -> topics.TopicID.",
-      "Connector tables rel_person_organization, rel_person_paper, rel_person_topic, and rel_paper_topic required partial inference for missing second-side joins based on column naming and primary-key patterns."
-    ]
+    "coverage": {
+      "tables_modeled_as_classes": [
+        "conferences",
+        "organizations",
+        "papers",
+        "persons",
+        "topics"
+      ],
+      "tables_modeled_as_relationships": [
+        "rel_paper_topic",
+        "rel_person_organization",
+        "rel_person_paper",
+        "rel_person_topic"
+      ],
+      "self_referential_relationships": [
+        "organizations.Belongsto -> organizations.OrgID",
+        "topics.ParentID -> topics.TopicID"
+      ]
+    }
   },
   "normalization_report": {
     "num_errors": 0,
     "num_warnings": 0,
-    "num_infos": 76,
-    "issues": [
-      {
-        "level": "info",
-        "code": "CLASS_SOURCE_TABLES_BACKFILLED_FROM_MAPPING",
-        "message": "Backfilled source_tables from class_mapping.",
-        "path": "classes[Class:Conference]",
-        "payload": {
-          "class_id": "Class:Conference",
-          "source_tables": [
-            "conferences"
-          ]
-        }
-      },
-      {
-        "level": "info",
-        "code": "CLASS_IDENTIFIER_COLUMNS_BACKFILLED",
-        "message": "Backfilled identifier_columns from class_mapping.",
-        "path": "classes[Class:Conference]",
-        "payload": {
-          "class_id": "Class:Conference",
-          "identifier_columns": [
-            "ConfID"
-          ]
-        }
-      },
-      {
-        "level": "info",
-        "code": "CLASS_INSTANCE_TEMPLATE_BACKFILLED",
-        "message": "Backfilled instance_id_template from class_mapping.",
-        "path": "classes[Class:Conference]",
-        "payload": {
-          "class_id": "Class:Conference"
-        }
-      },
-      {
-        "level": "info",
-        "code": "CLASS_SOURCE_TABLES_BACKFILLED_FROM_MAPPING",
-        "message": "Backfilled source_tables from class_mapping.",
-        "path": "classes[Class:Organization]",
-        "payload": {
-          "class_id": "Class:Organization",
-          "source_tables": [
-            "organizations"
-          ]
-        }
-      },
-      {
-        "level": "info",
-        "code": "CLASS_IDENTIFIER_COLUMNS_BACKFILLED",
-        "message": "Backfilled identifier_columns from class_mapping.",
-        "path": "classes[Class:Organization]",
-        "payload": {
-          "class_id": "Class:Organization",
-          "identifier_columns": [
-            "OrgID"
-          ]
-        }
-      },
-      {
-        "level": "info",
-        "code": "CLASS_INSTANCE_TEMPLATE_BACKFILLED",
-        "message": "Backfilled instance_id_template from class_mapping.",
-        "path": "classes[Class:Organization]",
-        "payload": {
-          "class_id": "Class:Organization"
-        }
-      },
-      {
-        "level": "info",
-        "code": "CLASS_SOURCE_TABLES_BACKFILLED_FROM_MAPPING",
-        "message": "Backfilled source_tables from class_mapping.",
-        "path": "classes[Class:Paper]",
-        "payload": {
-          "class_id": "Class:Paper",
-          "source_tables": [
-            "papers"
-          ]
-        }
-      },
-      {
-        "level": "info",
-        "code": "CLASS_IDENTIFIER_COLUMNS_BACKFILLED",
-        "message": "Backfilled identifier_columns from class_mapping.",
-        "path": "classes[Class:Paper]",
-        "payload": {
-          "class_id": "Class:Paper",
-          "identifier_columns": [
-            "PaperID"
-          ]
-        }
-      },
-      {
-        "level": "info",
-        "code": "CLASS_INSTANCE_TEMPLATE_BACKFILLED",
-        "message": "Backfilled instance_id_template from class_mapping.",
-        "path": "classes[Class:Paper]",
-        "payload": {
-          "class_id": "Class:Paper"
-        }
-      },
-      {
-        "level": "info",
-        "code": "CLASS_SOURCE_TABLES_BACKFILLED_FROM_MAPPING",
-        "message": "Backfilled source_tables from class_mapping.",
-        "path": "classes[Class:Person]",
-        "payload": {
-          "class_id": "Class:Person",
-          "source_tables": [
-            "persons"
-          ]
-        }
-      },
-      {
-        "level": "info",
-        "code": "CLASS_IDENTIFIER_COLUMNS_BACKFILLED",
-        "message": "Backfilled identifier_columns from class_mapping.",
-        "path": "classes[Class:Person]",
-        "payload": {
-          "class_id": "Class:Person",
-          "identifier_columns": [
-            "PerID"
-          ]
-        }
-      },
-      {
-        "level": "info",
-        "code": "CLASS_INSTANCE_TEMPLATE_BACKFILLED",
-        "message": "Backfilled instance_id_template from class_mapping.",
-        "path": "classes[Class:Person]",
-        "payload": {
-          "class_id": "Class:Person"
-        }
-      },
-      {
-        "level": "info",
-        "code": "CLASS_SOURCE_TABLES_BACKFILLED_FROM_MAPPING",
-        "message": "Backfilled source_tables from class_mapping.",
-        "path": "classes[Class:Topic]",
-        "payload": {
-          "class_id": "Class:Topic",
-          "source_tables": [
-            "topics"
-          ]
-        }
-      },
-      {
-        "level": "info",
-        "code": "CLASS_IDENTIFIER_COLUMNS_BACKFILLED",
-        "message": "Backfilled identifier_columns from class_mapping.",
-        "path": "classes[Class:Topic]",
-        "payload": {
-          "class_id": "Class:Topic",
-          "identifier_columns": [
-            "TopicID"
-          ]
-        }
-      },
-      {
-        "level": "info",
-        "code": "CLASS_INSTANCE_TEMPLATE_BACKFILLED",
-        "message": "Backfilled instance_id_template from class_mapping.",
-        "path": "classes[Class:Topic]",
-        "payload": {
-          "class_id": "Class:Topic"
-        }
-      },
-      {
-        "level": "info",
-        "code": "CLASS_SOURCE_TABLES_BACKFILLED_FROM_MAPPING",
-        "message": "Backfilled source_tables from class_mapping.",
-        "path": "classes[Class:PaperTopicRelation]",
-        "payload": {
-          "class_id": "Class:PaperTopicRelation",
-          "source_tables": [
-            "rel_paper_topic"
-          ]
-        }
-      },
-      {
-        "level": "info",
-        "code": "CLASS_IDENTIFIER_COLUMNS_BACKFILLED",
-        "message": "Backfilled identifier_columns from class_mapping.",
-        "path": "classes[Class:PaperTopicRelation]",
-        "payload": {
-          "class_id": "Class:PaperTopicRelation",
-          "identifier_columns": [
-            "PaperID",
-            "TopicID"
-          ]
-        }
-      },
-      {
-        "level": "info",
-        "code": "CLASS_INSTANCE_TEMPLATE_BACKFILLED",
-        "message": "Backfilled instance_id_template from class_mapping.",
-        "path": "classes[Class:PaperTopicRelation]",
-        "payload": {
-          "class_id": "Class:PaperTopicRelation"
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_SOURCE_COLUMNS_BACKFILLED",
-        "message": "Backfilled source_columns from data_property_mapping.",
-        "path": "data_properties[DataProperty:conferenceName]",
-        "payload": {
-          "property_id": "DataProperty:conferenceName",
-          "source_columns": [
-            "Name"
-          ]
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_DOMAIN_BACKFILLED",
-        "message": "Backfilled domain_class from data_property_mapping.",
-        "path": "data_properties[DataProperty:conferenceName]",
-        "payload": {
-          "property_id": "DataProperty:conferenceName",
-          "domain_class": "Class:Conference"
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_SOURCE_COLUMNS_BACKFILLED",
-        "message": "Backfilled source_columns from data_property_mapping.",
-        "path": "data_properties[DataProperty:conferenceURI]",
-        "payload": {
-          "property_id": "DataProperty:conferenceURI",
-          "source_columns": [
-            "URI"
-          ]
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_DOMAIN_BACKFILLED",
-        "message": "Backfilled domain_class from data_property_mapping.",
-        "path": "data_properties[DataProperty:conferenceURI]",
-        "payload": {
-          "property_id": "DataProperty:conferenceURI",
-          "domain_class": "Class:Conference"
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_SOURCE_COLUMNS_BACKFILLED",
-        "message": "Backfilled source_columns from data_property_mapping.",
-        "path": "data_properties[DataProperty:conferenceDateText]",
-        "payload": {
-          "property_id": "DataProperty:conferenceDateText",
-          "source_columns": [
-            "Date"
-          ]
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_DOMAIN_BACKFILLED",
-        "message": "Backfilled domain_class from data_property_mapping.",
-        "path": "data_properties[DataProperty:conferenceDateText]",
-        "payload": {
-          "property_id": "DataProperty:conferenceDateText",
-          "domain_class": "Class:Conference"
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_SOURCE_COLUMNS_BACKFILLED",
-        "message": "Backfilled source_columns from data_property_mapping.",
-        "path": "data_properties[DataProperty:conferenceLocation]",
-        "payload": {
-          "property_id": "DataProperty:conferenceLocation",
-          "source_columns": [
-            "Location"
-          ]
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_DOMAIN_BACKFILLED",
-        "message": "Backfilled domain_class from data_property_mapping.",
-        "path": "data_properties[DataProperty:conferenceLocation]",
-        "payload": {
-          "property_id": "DataProperty:conferenceLocation",
-          "domain_class": "Class:Conference"
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_SOURCE_COLUMNS_BACKFILLED",
-        "message": "Backfilled source_columns from data_property_mapping.",
-        "path": "data_properties[DataProperty:conferenceTimestamp]",
-        "payload": {
-          "property_id": "DataProperty:conferenceTimestamp",
-          "source_columns": [
-            "Datum"
-          ]
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_DOMAIN_BACKFILLED",
-        "message": "Backfilled domain_class from data_property_mapping.",
-        "path": "data_properties[DataProperty:conferenceTimestamp]",
-        "payload": {
-          "property_id": "DataProperty:conferenceTimestamp",
-          "domain_class": "Class:Conference"
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_SOURCE_COLUMNS_BACKFILLED",
-        "message": "Backfilled source_columns from data_property_mapping.",
-        "path": "data_properties[DataProperty:organizationType]",
-        "payload": {
-          "property_id": "DataProperty:organizationType",
-          "source_columns": [
-            "Type"
-          ]
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_DOMAIN_BACKFILLED",
-        "message": "Backfilled domain_class from data_property_mapping.",
-        "path": "data_properties[DataProperty:organizationType]",
-        "payload": {
-          "property_id": "DataProperty:organizationType",
-          "domain_class": "Class:Organization"
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_SOURCE_COLUMNS_BACKFILLED",
-        "message": "Backfilled source_columns from data_property_mapping.",
-        "path": "data_properties[DataProperty:organizationName]",
-        "payload": {
-          "property_id": "DataProperty:organizationName",
-          "source_columns": [
-            "Name"
-          ]
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_DOMAIN_BACKFILLED",
-        "message": "Backfilled domain_class from data_property_mapping.",
-        "path": "data_properties[DataProperty:organizationName]",
-        "payload": {
-          "property_id": "DataProperty:organizationName",
-          "domain_class": "Class:Organization"
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_SOURCE_COLUMNS_BACKFILLED",
-        "message": "Backfilled source_columns from data_property_mapping.",
-        "path": "data_properties[DataProperty:organizationAddress]",
-        "payload": {
-          "property_id": "DataProperty:organizationAddress",
-          "source_columns": [
-            "Address"
-          ]
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_DOMAIN_BACKFILLED",
-        "message": "Backfilled domain_class from data_property_mapping.",
-        "path": "data_properties[DataProperty:organizationAddress]",
-        "payload": {
-          "property_id": "DataProperty:organizationAddress",
-          "domain_class": "Class:Organization"
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_SOURCE_COLUMNS_BACKFILLED",
-        "message": "Backfilled source_columns from data_property_mapping.",
-        "path": "data_properties[DataProperty:organizationLocation]",
-        "payload": {
-          "property_id": "DataProperty:organizationLocation",
-          "source_columns": [
-            "Location"
-          ]
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_DOMAIN_BACKFILLED",
-        "message": "Backfilled domain_class from data_property_mapping.",
-        "path": "data_properties[DataProperty:organizationLocation]",
-        "payload": {
-          "property_id": "DataProperty:organizationLocation",
-          "domain_class": "Class:Organization"
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_SOURCE_COLUMNS_BACKFILLED",
-        "message": "Backfilled source_columns from data_property_mapping.",
-        "path": "data_properties[DataProperty:organizationPostcode]",
-        "payload": {
-          "property_id": "DataProperty:organizationPostcode",
-          "source_columns": [
-            "Postcode"
-          ]
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_DOMAIN_BACKFILLED",
-        "message": "Backfilled domain_class from data_property_mapping.",
-        "path": "data_properties[DataProperty:organizationPostcode]",
-        "payload": {
-          "property_id": "DataProperty:organizationPostcode",
-          "domain_class": "Class:Organization"
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_SOURCE_COLUMNS_BACKFILLED",
-        "message": "Backfilled source_columns from data_property_mapping.",
-        "path": "data_properties[DataProperty:organizationCountry]",
-        "payload": {
-          "property_id": "DataProperty:organizationCountry",
-          "source_columns": [
-            "Country"
-          ]
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_DOMAIN_BACKFILLED",
-        "message": "Backfilled domain_class from data_property_mapping.",
-        "path": "data_properties[DataProperty:organizationCountry]",
-        "payload": {
-          "property_id": "DataProperty:organizationCountry",
-          "domain_class": "Class:Organization"
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_SOURCE_COLUMNS_BACKFILLED",
-        "message": "Backfilled source_columns from data_property_mapping.",
-        "path": "data_properties[DataProperty:organizationURI]",
-        "payload": {
-          "property_id": "DataProperty:organizationURI",
-          "source_columns": [
-            "URI"
-          ]
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_DOMAIN_BACKFILLED",
-        "message": "Backfilled domain_class from data_property_mapping.",
-        "path": "data_properties[DataProperty:organizationURI]",
-        "payload": {
-          "property_id": "DataProperty:organizationURI",
-          "domain_class": "Class:Organization"
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_SOURCE_COLUMNS_BACKFILLED",
-        "message": "Backfilled source_columns from data_property_mapping.",
-        "path": "data_properties[DataProperty:organizationHomepage]",
-        "payload": {
-          "property_id": "DataProperty:organizationHomepage",
-          "source_columns": [
-            "Homepage"
-          ]
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_DOMAIN_BACKFILLED",
-        "message": "Backfilled domain_class from data_property_mapping.",
-        "path": "data_properties[DataProperty:organizationHomepage]",
-        "payload": {
-          "property_id": "DataProperty:organizationHomepage",
-          "domain_class": "Class:Organization"
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_SOURCE_COLUMNS_BACKFILLED",
-        "message": "Backfilled source_columns from data_property_mapping.",
-        "path": "data_properties[DataProperty:paperTitle]",
-        "payload": {
-          "property_id": "DataProperty:paperTitle",
-          "source_columns": [
-            "Title"
-          ]
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_DOMAIN_BACKFILLED",
-        "message": "Backfilled domain_class from data_property_mapping.",
-        "path": "data_properties[DataProperty:paperTitle]",
-        "payload": {
-          "property_id": "DataProperty:paperTitle",
-          "domain_class": "Class:Paper"
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_SOURCE_COLUMNS_BACKFILLED",
-        "message": "Backfilled source_columns from data_property_mapping.",
-        "path": "data_properties[DataProperty:paperAbstract]",
-        "payload": {
-          "property_id": "DataProperty:paperAbstract",
-          "source_columns": [
-            "Abstract"
-          ]
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_DOMAIN_BACKFILLED",
-        "message": "Backfilled domain_class from data_property_mapping.",
-        "path": "data_properties[DataProperty:paperAbstract]",
-        "payload": {
-          "property_id": "DataProperty:paperAbstract",
-          "domain_class": "Class:Paper"
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_SOURCE_COLUMNS_BACKFILLED",
-        "message": "Backfilled source_columns from data_property_mapping.",
-        "path": "data_properties[DataProperty:paperURI]",
-        "payload": {
-          "property_id": "DataProperty:paperURI",
-          "source_columns": [
-            "URI"
-          ]
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_DOMAIN_BACKFILLED",
-        "message": "Backfilled domain_class from data_property_mapping.",
-        "path": "data_properties[DataProperty:paperURI]",
-        "payload": {
-          "property_id": "DataProperty:paperURI",
-          "domain_class": "Class:Paper"
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_SOURCE_COLUMNS_BACKFILLED",
-        "message": "Backfilled source_columns from data_property_mapping.",
-        "path": "data_properties[DataProperty:paperYear]",
-        "payload": {
-          "property_id": "DataProperty:paperYear",
-          "source_columns": [
-            "Year"
-          ]
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_DOMAIN_BACKFILLED",
-        "message": "Backfilled domain_class from data_property_mapping.",
-        "path": "data_properties[DataProperty:paperYear]",
-        "payload": {
-          "property_id": "DataProperty:paperYear",
-          "domain_class": "Class:Paper"
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_SOURCE_COLUMNS_BACKFILLED",
-        "message": "Backfilled source_columns from data_property_mapping.",
-        "path": "data_properties[DataProperty:personType]",
-        "payload": {
-          "property_id": "DataProperty:personType",
-          "source_columns": [
-            "Type"
-          ]
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_DOMAIN_BACKFILLED",
-        "message": "Backfilled domain_class from data_property_mapping.",
-        "path": "data_properties[DataProperty:personType]",
-        "payload": {
-          "property_id": "DataProperty:personType",
-          "domain_class": "Class:Person"
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_SOURCE_COLUMNS_BACKFILLED",
-        "message": "Backfilled source_columns from data_property_mapping.",
-        "path": "data_properties[DataProperty:personFirstName]",
-        "payload": {
-          "property_id": "DataProperty:personFirstName",
-          "source_columns": [
-            "FirstName"
-          ]
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_DOMAIN_BACKFILLED",
-        "message": "Backfilled domain_class from data_property_mapping.",
-        "path": "data_properties[DataProperty:personFirstName]",
-        "payload": {
-          "property_id": "DataProperty:personFirstName",
-          "domain_class": "Class:Person"
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_SOURCE_COLUMNS_BACKFILLED",
-        "message": "Backfilled source_columns from data_property_mapping.",
-        "path": "data_properties[DataProperty:personLastName]",
-        "payload": {
-          "property_id": "DataProperty:personLastName",
-          "source_columns": [
-            "LastName"
-          ]
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_DOMAIN_BACKFILLED",
-        "message": "Backfilled domain_class from data_property_mapping.",
-        "path": "data_properties[DataProperty:personLastName]",
-        "payload": {
-          "property_id": "DataProperty:personLastName",
-          "domain_class": "Class:Person"
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_SOURCE_COLUMNS_BACKFILLED",
-        "message": "Backfilled source_columns from data_property_mapping.",
-        "path": "data_properties[DataProperty:personAddress]",
-        "payload": {
-          "property_id": "DataProperty:personAddress",
-          "source_columns": [
-            "Address"
-          ]
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_DOMAIN_BACKFILLED",
-        "message": "Backfilled domain_class from data_property_mapping.",
-        "path": "data_properties[DataProperty:personAddress]",
-        "payload": {
-          "property_id": "DataProperty:personAddress",
-          "domain_class": "Class:Person"
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_SOURCE_COLUMNS_BACKFILLED",
-        "message": "Backfilled source_columns from data_property_mapping.",
-        "path": "data_properties[DataProperty:personEmail]",
-        "payload": {
-          "property_id": "DataProperty:personEmail",
-          "source_columns": [
-            "Email"
-          ]
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_DOMAIN_BACKFILLED",
-        "message": "Backfilled domain_class from data_property_mapping.",
-        "path": "data_properties[DataProperty:personEmail]",
-        "payload": {
-          "property_id": "DataProperty:personEmail",
-          "domain_class": "Class:Person"
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_SOURCE_COLUMNS_BACKFILLED",
-        "message": "Backfilled source_columns from data_property_mapping.",
-        "path": "data_properties[DataProperty:personHomepage]",
-        "payload": {
-          "property_id": "DataProperty:personHomepage",
-          "source_columns": [
-            "Homepage"
-          ]
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_DOMAIN_BACKFILLED",
-        "message": "Backfilled domain_class from data_property_mapping.",
-        "path": "data_properties[DataProperty:personHomepage]",
-        "payload": {
-          "property_id": "DataProperty:personHomepage",
-          "domain_class": "Class:Person"
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_SOURCE_COLUMNS_BACKFILLED",
-        "message": "Backfilled source_columns from data_property_mapping.",
-        "path": "data_properties[DataProperty:personPhone]",
-        "payload": {
-          "property_id": "DataProperty:personPhone",
-          "source_columns": [
-            "Phone"
-          ]
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_DOMAIN_BACKFILLED",
-        "message": "Backfilled domain_class from data_property_mapping.",
-        "path": "data_properties[DataProperty:personPhone]",
-        "payload": {
-          "property_id": "DataProperty:personPhone",
-          "domain_class": "Class:Person"
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_SOURCE_COLUMNS_BACKFILLED",
-        "message": "Backfilled source_columns from data_property_mapping.",
-        "path": "data_properties[DataProperty:personURI]",
-        "payload": {
-          "property_id": "DataProperty:personURI",
-          "source_columns": [
-            "URI"
-          ]
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_DOMAIN_BACKFILLED",
-        "message": "Backfilled domain_class from data_property_mapping.",
-        "path": "data_properties[DataProperty:personURI]",
-        "payload": {
-          "property_id": "DataProperty:personURI",
-          "domain_class": "Class:Person"
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_SOURCE_COLUMNS_BACKFILLED",
-        "message": "Backfilled source_columns from data_property_mapping.",
-        "path": "data_properties[DataProperty:personPhoto]",
-        "payload": {
-          "property_id": "DataProperty:personPhoto",
-          "source_columns": [
-            "Photo"
-          ]
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_DOMAIN_BACKFILLED",
-        "message": "Backfilled domain_class from data_property_mapping.",
-        "path": "data_properties[DataProperty:personPhoto]",
-        "payload": {
-          "property_id": "DataProperty:personPhoto",
-          "domain_class": "Class:Person"
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_SOURCE_COLUMNS_BACKFILLED",
-        "message": "Backfilled source_columns from data_property_mapping.",
-        "path": "data_properties[DataProperty:topicName]",
-        "payload": {
-          "property_id": "DataProperty:topicName",
-          "source_columns": [
-            "TopicName"
-          ]
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_DOMAIN_BACKFILLED",
-        "message": "Backfilled domain_class from data_property_mapping.",
-        "path": "data_properties[DataProperty:topicName]",
-        "payload": {
-          "property_id": "DataProperty:topicName",
-          "domain_class": "Class:Topic"
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_SOURCE_COLUMNS_BACKFILLED",
-        "message": "Backfilled source_columns from data_property_mapping.",
-        "path": "data_properties[DataProperty:topicURI]",
-        "payload": {
-          "property_id": "DataProperty:topicURI",
-          "source_columns": [
-            "URI"
-          ]
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_DOMAIN_BACKFILLED",
-        "message": "Backfilled domain_class from data_property_mapping.",
-        "path": "data_properties[DataProperty:topicURI]",
-        "payload": {
-          "property_id": "DataProperty:topicURI",
-          "domain_class": "Class:Topic"
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_SOURCE_COLUMNS_BACKFILLED",
-        "message": "Backfilled source_columns from data_property_mapping.",
-        "path": "data_properties[DataProperty:paperTopicRelationType]",
-        "payload": {
-          "property_id": "DataProperty:paperTopicRelationType",
-          "source_columns": [
-            "RelationType"
-          ]
-        }
-      },
-      {
-        "level": "info",
-        "code": "DATA_PROPERTY_DOMAIN_BACKFILLED",
-        "message": "Backfilled domain_class from data_property_mapping.",
-        "path": "data_properties[DataProperty:paperTopicRelationType]",
-        "payload": {
-          "property_id": "DataProperty:paperTopicRelationType",
-          "domain_class": "Class:PaperTopicRelation"
-        }
-      }
-    ]
+    "num_infos": 0,
+    "issues": []
   }
 }

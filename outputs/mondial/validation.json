@@ -1,14 +1,12 @@
 {
   "ok": false,
-  "num_errors": 8,
+  "num_errors": 6,
   "errors": [
-    "Class Class:AdministrativeArea has no class mapping.",
-    "Class Class:PopulatedPlace has no class mapping.",
-    "Class Class:GeographicalFeature has no class mapping.",
-    "Class Class:WaterBody has no class mapping.",
-    "Data property DataProperty:featureArea has no data_property_mapping.",
-    "Data property DataProperty:featureLatitude has no data_property_mapping.",
-    "Data property DataProperty:featureLongitude has no data_property_mapping.",
-    "Data property DataProperty:featureElevation has no data_property_mapping."
+    "Object property ObjectProperty:languageSuperlanguage has neither join_paths/object_property_mapping.joins nor dynamicProperty.",
+    "Object property ObjectProperty:countryDependsOnCountry has neither join_paths/object_property_mapping.joins nor dynamicProperty.",
+    "Object property ObjectProperty:riverFlowsIntoRiver has neither join_paths/object_property_mapping.joins nor dynamicProperty.",
+    "Object property ObjectProperty:riverFlowsIntoLake has neither join_paths/object_property_mapping.joins nor dynamicProperty.",
+    "Object property ObjectProperty:riverFlowsIntoSea has neither join_paths/object_property_mapping.joins nor dynamicProperty.",
+    "Object property ObjectProperty:seaMergesWithSea has neither join_paths/object_property_mapping.joins nor dynamicProperty."
   ]
 }

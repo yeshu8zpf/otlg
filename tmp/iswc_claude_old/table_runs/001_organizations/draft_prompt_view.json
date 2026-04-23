@@ -1,0 +1,183 @@
+{
+  "global_summary": {
+    "num_classes": 1,
+    "num_data_properties": 5,
+    "num_object_properties": 0,
+    "accepted_classes": [
+      "Class:Conference"
+    ],
+    "accepted_data_properties": [
+      "DataProperty:hasConferenceName",
+      "DataProperty:hasConferenceURI",
+      "DataProperty:hasConferenceDate",
+      "DataProperty:hasConferenceLocation",
+      "DataProperty:hasConferenceDatum"
+    ],
+    "accepted_object_properties": [],
+    "processed_tables": [
+      "conferences"
+    ],
+    "draft_version": 1
+  },
+  "relevant_draft_slice": {
+    "classes": [
+      {
+        "id": "Class:Conference",
+        "label": "Conference",
+        "source_tables": [
+          "conferences"
+        ],
+        "status": "proposed"
+      }
+    ],
+    "data_properties": [
+      {
+        "id": "DataProperty:hasConferenceName",
+        "label": "has conference name",
+        "domain": "Class:Conference",
+        "datatype": "xsd:string",
+        "source_tables": []
+      },
+      {
+        "id": "DataProperty:hasConferenceURI",
+        "label": "has conference URI",
+        "domain": "Class:Conference",
+        "datatype": "xsd:anyURI",
+        "source_tables": []
+      },
+      {
+        "id": "DataProperty:hasConferenceDate",
+        "label": "has conference date",
+        "domain": "Class:Conference",
+        "datatype": "xsd:string",
+        "source_tables": []
+      },
+      {
+        "id": "DataProperty:hasConferenceLocation",
+        "label": "has conference location",
+        "domain": "Class:Conference",
+        "datatype": "xsd:string",
+        "source_tables": []
+      },
+      {
+        "id": "DataProperty:hasConferenceDatum",
+        "label": "has conference datum",
+        "domain": "Class:Conference",
+        "datatype": "xsd:dateTime",
+        "source_tables": []
+      }
+    ],
+    "object_properties": [],
+    "class_mappings": [
+      {
+        "class_id": "Class:Conference",
+        "mapping_id": "Conference_from_conferences",
+        "from_tables": [
+          "conferences"
+        ],
+        "identifier_kind": "uri_pattern",
+        "identifier_columns": [
+          "conferences.confid"
+        ],
+        "instance_id_template": "conferences/@@conferences.confid@@"
+      }
+    ],
+    "data_property_mappings": [
+      {
+        "data_property_id": "DataProperty:hasConferenceName",
+        "mapping_id": "hasConferenceName_from_Name",
+        "applies_to_class": "Class:Conference",
+        "source_table": "conferences",
+        "source_columns": [
+          "conferences.name"
+        ],
+        "value_kind": "column"
+      },
+      {
+        "data_property_id": "DataProperty:hasConferenceURI",
+        "mapping_id": "hasConferenceURI_from_URI",
+        "applies_to_class": "Class:Conference",
+        "source_table": "conferences",
+        "source_columns": [
+          "conferences.uri"
+        ],
+        "value_kind": "column"
+      },
+      {
+        "data_property_id": "DataProperty:hasConferenceDate",
+        "mapping_id": "hasConferenceDate_from_Date",
+        "applies_to_class": "Class:Conference",
+        "source_table": "conferences",
+        "source_columns": [
+          "conferences.date"
+        ],
+        "value_kind": "column"
+      },
+      {
+        "data_property_id": "DataProperty:hasConferenceLocation",
+        "mapping_id": "hasConferenceLocation_from_Location",
+        "applies_to_class": "Class:Conference",
+        "source_table": "conferences",
+        "source_columns": [
+          "conferences.location"
+        ],
+        "value_kind": "column"
+      },
+      {
+        "data_property_id": "DataProperty:hasConferenceDatum",
+        "mapping_id": "hasConferenceDatum_from_Datum",
+        "applies_to_class": "Class:Conference",
+        "source_table": "conferences",
+        "source_columns": [
+          "conferences.datum"
+        ],
+        "value_kind": "column"
+      }
+    ],
+    "object_property_mappings": []
+  },
+  "related_rejected_candidates": [],
+  "related_open_issues": [
+    {
+      "issue_type": "remaining_ambiguity",
+      "related_table": "conferences",
+      "description": "Date column format and semantics unclear; stored as varchar(50) rather than native date type—may require value sampling to determine if it represents event date or other temporal metadata."
+    },
+    {
+      "issue_type": "remaining_ambiguity",
+      "related_table": "conferences",
+      "description": "Relationship between Date (varchar) and Datum (timestamp) columns not specified; unclear if they represent different temporal aspects or redundant information."
+    },
+    {
+      "issue_type": "remaining_ambiguity",
+      "related_table": "conferences",
+      "description": "URI column purpose ambiguous; unclear if it references external conference resources or serves as internal identifier."
+    },
+    {
+      "issue_type": "needs_probe",
+      "related_table": "conferences",
+      "description": "What are sample values in the Date column? Is it ISO 8601 format, human-readable, or other?"
+    },
+    {
+      "issue_type": "needs_probe",
+      "related_table": "conferences",
+      "description": "Are URI values external references (e.g., http://...) or internal identifiers?"
+    },
+    {
+      "issue_type": "needs_probe",
+      "related_table": "conferences",
+      "description": "Are there foreign key references from other tables to conferences.confid indicating entity relationships?"
+    }
+  ],
+  "update_focus": {
+    "new_table": "organizations",
+    "related_existing_tables": [],
+    "requires_multi_table_reasoning": true,
+    "analysis_reasons": [
+      "structured_value_object_bundle"
+    ],
+    "recommended_tables_for_joint_analysis": [
+      "organizations"
+    ]
+  }
+}

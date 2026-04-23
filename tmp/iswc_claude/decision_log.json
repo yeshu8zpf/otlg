@@ -1,0 +1,503 @@
+[
+  {
+    "step_index": 0,
+    "table_name": "conferences",
+    "decision_summary": [
+      {
+        "decision_type": "C-ENTITY",
+        "target": "Class:Conference",
+        "status": "accepted",
+        "confidence": 0.95,
+        "reason": "conferences table represents a stable entity with primary key ConfID and descriptive attributes (Name, Location, Date, URI, Datum). Semantically represents conference events."
+      },
+      {
+        "decision_type": "DP-LITERAL",
+        "target": "DataProperty:hasConferenceName",
+        "status": "accepted",
+        "confidence": 0.95,
+        "reason": "Name column is a string literal describing the conference title"
+      },
+      {
+        "decision_type": "DP-URI",
+        "target": "DataProperty:hasConferenceURI",
+        "status": "accepted",
+        "confidence": 0.85,
+        "reason": "URI column stores a URI value as a literal string; no evidence of entity-to-entity relation, modeled as data property with xsd:anyURI datatype"
+      },
+      {
+        "decision_type": "DP-LITERAL",
+        "target": "DataProperty:hasConferenceDate",
+        "status": "accepted",
+        "confidence": 0.9,
+        "reason": "Date column is a varchar string representation of conference date; kept as string datatype pending value sample inspection"
+      },
+      {
+        "decision_type": "DP-LITERAL",
+        "target": "DataProperty:hasConferenceLocation",
+        "status": "accepted",
+        "confidence": 0.9,
+        "reason": "Location column is a string literal representing venue; flagged as address-like bundle but no separate location entity table exists"
+      },
+      {
+        "decision_type": "DP-TEMPORAL",
+        "target": "DataProperty:hasConferenceDatum",
+        "status": "accepted",
+        "confidence": 0.95,
+        "reason": "Datum column is a timestamp(0) field; mapped to xsd:dateTime datatype for temporal representation"
+      }
+    ],
+    "remaining_ambiguities": [
+      "Date column is varchar(50) rather than timestamp; unclear if it contains structured date strings, free-text descriptions, or ISO format dates",
+      "Location column flagged as address-like but no separate location entity table exists; unclear if location should be modeled as a separate class or remain as literal",
+      "Relationship between Date (varchar) and Datum (timestamp) columns unclear; both appear to represent temporal information but with different types and purposes"
+    ],
+    "needs_probe": [
+      {
+        "probe_type": "value_sample",
+        "target": "conferences.date",
+        "question": "What are sample values in the Date column? Are they ISO date strings, free-text descriptions, or structured date formats?"
+      },
+      {
+        "probe_type": "value_sample",
+        "target": "conferences.location",
+        "question": "What are sample values in the Location column? Are they city names, venue names, or full addresses?"
+      },
+      {
+        "probe_type": "value_sample",
+        "target": "conferences.uri",
+        "question": "What are sample values in the URI column? Do they reference external conference resources or internal identifiers?"
+      },
+      {
+        "probe_type": "cardinality_check",
+        "target": "conferences",
+        "question": "Are there any foreign key references from other tables to conferences.confid that would establish object properties?"
+      }
+    ],
+    "normalization_warnings": [],
+    "num_additions": 12,
+    "num_revisions": 0,
+    "num_rejections": 0,
+    "num_merges": 0
+  },
+  {
+    "step_index": 1,
+    "table_name": "organizations",
+    "decision_summary": [
+      {
+        "decision_type": "C-ENTITY",
+        "target": "Class:Organization",
+        "status": "accepted",
+        "confidence": 0.95,
+        "reason": "OrgID is a primary key; Name, Type, and Address are core descriptive attributes. Organizations represent stable entities with clear identity and properties."
+      },
+      {
+        "decision_type": "DP-LITERAL",
+        "target": "DataProperty:hasOrganizationType",
+        "status": "accepted",
+        "confidence": 0.9,
+        "reason": "Type column (varchar(50)) stores categorical organization type values; modeled as literal string property."
+      },
+      {
+        "decision_type": "DP-LITERAL",
+        "target": "DataProperty:hasOrganizationName",
+        "status": "accepted",
+        "confidence": 0.95,
+        "reason": "Name column (varchar(200)) stores the organization's official name; standard literal string property."
+      },
+      {
+        "decision_type": "DP-ADDRESS-BUNDLE",
+        "target": "DataProperty:hasOrganizationAddress",
+        "status": "accepted",
+        "confidence": 0.85,
+        "reason": "Address, Location, Postcode, and Country form a geographic address bundle. Modeled as separate literal properties pending discovery of a dedicated Location/Address entity class."
+      },
+      {
+        "decision_type": "DP-LITERAL",
+        "target": "DataProperty:hasOrganizationLocation",
+        "status": "accepted",
+        "confidence": 0.85,
+        "reason": "Location column (varchar(50)) stores locality/city information; part of address bundle. Kept as literal pending evidence of separate Location entity."
+      },
+      {
+        "decision_type": "DP-LITERAL",
+        "target": "DataProperty:hasOrganizationPostcode",
+        "status": "accepted",
+        "confidence": 0.9,
+        "reason": "Postcode column (varchar(10)) stores postal codes; literal string property."
+      },
+      {
+        "decision_type": "DP-LITERAL",
+        "target": "DataProperty:hasOrganizationCountry",
+        "status": "accepted",
+        "confidence": 0.9,
+        "reason": "Country column (varchar(50)) stores country names or codes; literal string property."
+      },
+      {
+        "decision_type": "DP-URI",
+        "target": "DataProperty:hasOrganizationURI",
+        "status": "accepted",
+        "confidence": 0.85,
+        "reason": "URI column (varchar(100)) stores URI values. No evidence of entity-to-entity relation; modeled as data property with xsd:anyURI datatype."
+      },
+      {
+        "decision_type": "DP-URI",
+        "target": "DataProperty:hasOrganizationHomepage",
+        "status": "accepted",
+        "confidence": 0.9,
+        "reason": "Homepage column (varchar(200)) stores web URLs; modeled as data property with xsd:anyURI datatype."
+      },
+      {
+        "decision_type": "FK-DEFERRED",
+        "target": "organizations.Belongsto",
+        "status": "deferred",
+        "confidence": 0.7,
+        "reason": "Belongsto column (int) appears to reference another organization (hierarchical relationship), but no foreign key constraint is defined and no related table is in scope. Deferred pending discovery of target table or explicit FK evidence."
+      }
+    ],
+    "remaining_ambiguities": [
+      "Belongsto column (int) appears to reference another organization entity but lacks explicit foreign key constraint. Unclear if it represents parent organization, organizational unit, or other hierarchical relationship. Requires confirmation of target table and relationship semantics.",
+      "Address bundle (Address, Location, Postcode, Country) is modeled as separate literal properties. If a dedicated Location or Address entity class is discovered in related tables, these should be refactored to object properties.",
+      "URI column semantics unclear: does it reference external organization resources, internal identifiers, or linked data URIs? Current modeling as literal xsd:anyURI is conservative pending sample data inspection.",
+      "Type column values unknown: unclear if it contains standardized organization types (e.g., 'University', 'Company', 'NGO') or free-text descriptions. Affects potential future classification or subclass modeling."
+    ],
+    "needs_probe": [
+      {
+        "probe_type": "value_sample",
+        "target": "organizations.type",
+        "question": "What are 3-5 sample values in the Type column? Are they standardized categories (e.g., 'University', 'Company', 'Government', 'NGO') or free-text descriptions?"
+      },
+      {
+        "probe_type": "value_sample",
+        "target": "organizations.uri",
+        "question": "What are 3-5 sample values in the URI column? Do they reference external linked data resources, internal identifiers, or organization web URIs?"
+      },
+      {
+        "probe_type": "value_sample",
+        "target": "organizations.belongsto",
+        "question": "What are sample values in the Belongsto column? Do they reference OrgID values from the same table (hierarchical parent), or do they reference a different entity type?"
+      },
+      {
+        "probe_type": "schema_evidence",
+        "target": "organizations.belongsto",
+        "question": "Is there an explicit foreign key constraint on organizations.Belongsto? If so, does it reference organizations.OrgID (self-referential) or another table?"
+      },
+      {
+        "probe_type": "value_sample",
+        "target": "organizations.location",
+        "question": "What are 3-5 sample values in the Location column? Are they city names, venue names, region codes, or other location representations?"
+      }
+    ],
+    "normalization_warnings": [],
+    "num_additions": 18,
+    "num_revisions": 0,
+    "num_rejections": 0,
+    "num_merges": 0
+  },
+  {
+    "step_index": 2,
+    "table_name": "papers",
+    "decision_summary": [
+      {
+        "decision_type": "C-ENTITY",
+        "target": "Class:Paper",
+        "status": "accepted",
+        "confidence": 0.95,
+        "reason": "PaperID is a primary key; papers represent stable scholarly entities with descriptive attributes (Title, Abstract, Year, URI)"
+      },
+      {
+        "decision_type": "DP-LITERAL",
+        "target": "DataProperty:hasPaperTitle",
+        "status": "accepted",
+        "confidence": 0.95,
+        "reason": "Title is a varchar(200) descriptive attribute of papers"
+      },
+      {
+        "decision_type": "DP-LITERAL",
+        "target": "DataProperty:hasPaperAbstract",
+        "status": "accepted",
+        "confidence": 0.95,
+        "reason": "Abstract is a varchar(2000) descriptive attribute of papers"
+      },
+      {
+        "decision_type": "DP-URI",
+        "target": "DataProperty:hasPaperURI",
+        "status": "accepted",
+        "confidence": 0.9,
+        "reason": "URI column stores URI values; modeled as data property with xsd:anyURI datatype, not as entity relation (no FK evidence)"
+      },
+      {
+        "decision_type": "DP-LITERAL",
+        "target": "DataProperty:hasPaperYear",
+        "status": "accepted",
+        "confidence": 0.95,
+        "reason": "Year is an int attribute representing publication year"
+      },
+      {
+        "decision_type": "DP-FOREIGN-KEY-REFERENCE",
+        "target": "DataProperty:hasConferenceID",
+        "status": "accepted",
+        "confidence": 0.85,
+        "reason": "Conference column is int and likely a foreign key reference; modeled as data property pending confirmation of related Conference table"
+      },
+      {
+        "decision_type": "DP-FOREIGN-KEY-REFERENCE",
+        "target": "DataProperty:hasPublisherID",
+        "status": "accepted",
+        "confidence": 0.85,
+        "reason": "Publish column is int and likely a foreign key reference; modeled as data property pending confirmation of related Publisher table"
+      }
+    ],
+    "remaining_ambiguities": [
+      "Conference column (int) appears to be a foreign key but no related Conference table was provided; will be converted to object property once Conference table is processed",
+      "Publish column (int) appears to be a foreign key but no related Publisher table was provided; will be converted to object property once Publisher table is processed",
+      "URI column semantics: unclear if it represents a document URI or an entity identifier; currently modeled as data property"
+    ],
+    "needs_probe": [
+      {
+        "probe_type": "value_sample",
+        "target": "papers.conference",
+        "question": "Are Conference values valid identifiers that reference a conferences table?"
+      },
+      {
+        "probe_type": "value_sample",
+        "target": "papers.publish",
+        "question": "Are Publish values valid identifiers that reference a publishers or publications table?"
+      },
+      {
+        "probe_type": "value_sample",
+        "target": "papers.uri",
+        "question": "What format do URI values take? Are they HTTP URIs, DOIs, or other identifiers?"
+      }
+    ],
+    "normalization_warnings": [],
+    "num_additions": 14,
+    "num_revisions": 0,
+    "num_rejections": 0,
+    "num_merges": 0
+  },
+  {
+    "step_index": 2,
+    "table_name": "papers",
+    "decision_summary": [
+      {
+        "decision_type": "C-ENTITY",
+        "target": "Class:Paper",
+        "status": "accepted",
+        "confidence": 0.95,
+        "reason": "PaperID is a primary key; Title, Abstract, URI, and Year are intrinsic paper attributes"
+      },
+      {
+        "decision_type": "DP-LITERAL",
+        "target": "DataProperty:hasTitle",
+        "status": "accepted",
+        "confidence": 0.95,
+        "reason": "Title is a string attribute of papers"
+      },
+      {
+        "decision_type": "DP-LITERAL",
+        "target": "DataProperty:hasAbstract",
+        "status": "accepted",
+        "confidence": 0.95,
+        "reason": "Abstract is a string attribute of papers"
+      },
+      {
+        "decision_type": "DP-URI",
+        "target": "DataProperty:hasURI",
+        "status": "accepted",
+        "confidence": 0.9,
+        "reason": "URI column stores reference URIs; no evidence of entity relation"
+      },
+      {
+        "decision_type": "DP-LITERAL",
+        "target": "DataProperty:hasPublicationYear",
+        "status": "accepted",
+        "confidence": 0.95,
+        "reason": "Year is an integer attribute of papers"
+      },
+      {
+        "decision_type": "FK-DEFERRED",
+        "target": "papers.Conference",
+        "status": "deferred",
+        "confidence": 0.85,
+        "reason": "Foreign key to Conference table; awaiting Conference table definition for object property"
+      },
+      {
+        "decision_type": "FK-DEFERRED",
+        "target": "papers.Publish",
+        "status": "deferred",
+        "confidence": 0.85,
+        "reason": "Foreign key to Publisher table; awaiting Publisher table definition for object property"
+      }
+    ],
+    "remaining_ambiguities": [
+      "Conference and Publish columns are foreign keys but target tables not yet processed; object properties will be added when related tables are analyzed"
+    ],
+    "needs_probe": [
+      {
+        "probe_type": "schema_dependency",
+        "target": "papers.conference",
+        "question": "What is the target table and primary key for the Conference foreign key?"
+      },
+      {
+        "probe_type": "schema_dependency",
+        "target": "papers.publish",
+        "question": "What is the target table and primary key for the Publish foreign key?"
+      }
+    ],
+    "normalization_warnings": [],
+    "num_additions": 10,
+    "num_revisions": 0,
+    "num_rejections": 0,
+    "num_merges": 0
+  },
+  {
+    "step_index": 2,
+    "table_name": "papers",
+    "decision_summary": [
+      {
+        "decision_type": "C-ENTITY",
+        "target": "Class:Paper",
+        "status": "accepted",
+        "confidence": 0.95,
+        "reason": "PaperID is a primary key; Title, Abstract, URI, and Year are intrinsic paper attributes"
+      },
+      {
+        "decision_type": "DP-LITERAL",
+        "target": "DataProperty:hasTitle",
+        "status": "accepted",
+        "confidence": 0.95,
+        "reason": "Title is a string attribute of papers"
+      },
+      {
+        "decision_type": "DP-LITERAL",
+        "target": "DataProperty:hasAbstract",
+        "status": "accepted",
+        "confidence": 0.95,
+        "reason": "Abstract is a string attribute of papers"
+      },
+      {
+        "decision_type": "DP-URI",
+        "target": "DataProperty:hasURI",
+        "status": "accepted",
+        "confidence": 0.9,
+        "reason": "URI column stores reference URIs; no evidence of entity relation"
+      },
+      {
+        "decision_type": "DP-LITERAL",
+        "target": "DataProperty:hasPublicationYear",
+        "status": "accepted",
+        "confidence": 0.95,
+        "reason": "Year is an integer attribute of papers"
+      },
+      {
+        "decision_type": "FK-DEFERRED",
+        "target": "papers.Conference",
+        "status": "deferred",
+        "confidence": 0.85,
+        "reason": "Foreign key to Conference table; awaiting Conference table definition for object property"
+      },
+      {
+        "decision_type": "FK-DEFERRED",
+        "target": "papers.Publish",
+        "status": "deferred",
+        "confidence": 0.85,
+        "reason": "Foreign key to Publisher table; awaiting Publisher table definition for object property"
+      }
+    ],
+    "remaining_ambiguities": [
+      "Conference and Publish columns are foreign keys but target tables not yet processed; object properties will be added when related tables are analyzed"
+    ],
+    "needs_probe": [
+      {
+        "probe_type": "schema_dependency",
+        "target": "papers.conference",
+        "question": "What is the target table and primary key for the Conference foreign key?"
+      },
+      {
+        "probe_type": "schema_dependency",
+        "target": "papers.publish",
+        "question": "What is the target table and primary key for the Publish foreign key?"
+      }
+    ],
+    "normalization_warnings": [],
+    "num_additions": 10,
+    "num_revisions": 0,
+    "num_rejections": 0,
+    "num_merges": 0
+  },
+  {
+    "step_index": 2,
+    "table_name": "papers",
+    "decision_summary": [
+      {
+        "decision_type": "C-ENTITY",
+        "target": "Class:Paper",
+        "status": "accepted",
+        "confidence": 0.95,
+        "reason": "PaperID is a primary key; Title, Abstract, URI, and Year are intrinsic paper attributes"
+      },
+      {
+        "decision_type": "DP-LITERAL",
+        "target": "DataProperty:hasTitle",
+        "status": "accepted",
+        "confidence": 0.95,
+        "reason": "Title is a string attribute of papers"
+      },
+      {
+        "decision_type": "DP-LITERAL",
+        "target": "DataProperty:hasAbstract",
+        "status": "accepted",
+        "confidence": 0.95,
+        "reason": "Abstract is a string attribute of papers"
+      },
+      {
+        "decision_type": "DP-URI",
+        "target": "DataProperty:hasURI",
+        "status": "accepted",
+        "confidence": 0.9,
+        "reason": "URI column stores reference URIs; no evidence of entity relation"
+      },
+      {
+        "decision_type": "DP-LITERAL",
+        "target": "DataProperty:hasPublicationYear",
+        "status": "accepted",
+        "confidence": 0.95,
+        "reason": "Year is an integer attribute of papers"
+      },
+      {
+        "decision_type": "FK-DEFERRED",
+        "target": "papers.Conference",
+        "status": "deferred",
+        "confidence": 0.85,
+        "reason": "Foreign key to Conference table; awaiting Conference table definition for object property"
+      },
+      {
+        "decision_type": "FK-DEFERRED",
+        "target": "papers.Publish",
+        "status": "deferred",
+        "confidence": 0.85,
+        "reason": "Foreign key to Publisher table; awaiting Publisher table definition for object property"
+      }
+    ],
+    "remaining_ambiguities": [
+      "Conference and Publish columns are foreign keys but target tables not yet processed; object properties will be added when related tables are analyzed"
+    ],
+    "needs_probe": [
+      {
+        "probe_type": "schema_dependency",
+        "target": "papers.conference",
+        "question": "What is the target table and primary key for the Conference foreign key?"
+      },
+      {
+        "probe_type": "schema_dependency",
+        "target": "papers.publish",
+        "question": "What is the target table and primary key for the Publish foreign key?"
+      }
+    ],
+    "normalization_warnings": [],
+    "num_additions": 10,
+    "num_revisions": 0,
+    "num_rejections": 0,
+    "num_merges": 0
+  }
+]

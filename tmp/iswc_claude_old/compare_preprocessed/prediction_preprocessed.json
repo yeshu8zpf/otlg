@@ -1,0 +1,287 @@
+{
+  "classes": [
+    {
+      "id": "Conference_from_conferences",
+      "class": "Conference",
+      "name": "Conference",
+      "uriPattern": "@@conferences.confid@@"
+    },
+    {
+      "id": "Organization_from_organizations",
+      "class": "Organization",
+      "name": "Organization",
+      "uriPattern": "@@organizations.orgid@@"
+    },
+    {
+      "id": "Paper_from_papers",
+      "class": "Paper",
+      "name": "Paper",
+      "uriPattern": "@@papers.paperid@@"
+    },
+    {
+      "id": "Person_from_persons",
+      "class": "Person",
+      "name": "Person",
+      "uriPattern": "@@persons.perid@@"
+    },
+    {
+      "id": "Topic_from_rel_paper_topic",
+      "class": "Topic",
+      "name": "Topic",
+      "uriPattern": "@@rel_paper_topic.topicid@@"
+    },
+    {
+      "id": "Topic_from_topics",
+      "class": "Topic",
+      "name": "Topic",
+      "uriPattern": "@@topics.topicid@@"
+    }
+  ],
+  "data_properties": [
+    {
+      "property": "DataProperty:hasConferenceName",
+      "belongsToClassMap": "Conference_from_conferences",
+      "column": "conferences.name",
+      "datatype": "xsd:string"
+    },
+    {
+      "property": "DataProperty:hasConferenceURI",
+      "belongsToClassMap": "Conference_from_conferences",
+      "uriColumn": "conferences.uri",
+      "datatype": "xsd:anyURI",
+      "column": "conferences.uri"
+    },
+    {
+      "property": "DataProperty:hasConferenceDate",
+      "belongsToClassMap": "Conference_from_conferences",
+      "column": "conferences.date",
+      "datatype": "xsd:string"
+    },
+    {
+      "property": "DataProperty:hasConferenceLocation",
+      "belongsToClassMap": "Conference_from_conferences",
+      "column": "conferences.location",
+      "datatype": "xsd:string"
+    },
+    {
+      "property": "DataProperty:hasConferenceDatum",
+      "belongsToClassMap": "Conference_from_conferences",
+      "column": "conferences.datum",
+      "datatype": "xsd:dateTime"
+    },
+    {
+      "property": "DataProperty:hasOrganizationType",
+      "belongsToClassMap": "Organization_from_organizations",
+      "column": "organizations.type",
+      "datatype": "xsd:string"
+    },
+    {
+      "property": "DataProperty:hasOrganizationName",
+      "belongsToClassMap": "Organization_from_organizations",
+      "column": "organizations.name",
+      "datatype": "xsd:string"
+    },
+    {
+      "property": "DataProperty:hasOrganizationURI",
+      "belongsToClassMap": "Organization_from_organizations",
+      "uriColumn": "organizations.uri",
+      "datatype": "xsd:anyURI",
+      "column": "organizations.uri"
+    },
+    {
+      "property": "DataProperty:hasOrganizationHomepage",
+      "belongsToClassMap": "Organization_from_organizations",
+      "uriColumn": "organizations.homepage",
+      "datatype": "xsd:anyURI",
+      "column": "organizations.homepage"
+    },
+    {
+      "property": "DataProperty:hasAddressStreet",
+      "belongsToClassMap": "Class:Address",
+      "column": "organizations.address",
+      "datatype": "xsd:string"
+    },
+    {
+      "property": "DataProperty:hasAddressLocation",
+      "belongsToClassMap": "Class:Address",
+      "column": "organizations.location",
+      "datatype": "xsd:string"
+    },
+    {
+      "property": "DataProperty:hasAddressPostcode",
+      "belongsToClassMap": "Class:Address",
+      "column": "organizations.postcode",
+      "datatype": "xsd:string"
+    },
+    {
+      "property": "DataProperty:hasAddressCountry",
+      "belongsToClassMap": "Class:Address",
+      "column": "organizations.country",
+      "datatype": "xsd:string"
+    },
+    {
+      "property": "DataProperty:hasPaperTitle",
+      "belongsToClassMap": "Paper_from_papers",
+      "column": "papers.title",
+      "datatype": "xsd:string"
+    },
+    {
+      "property": "DataProperty:hasPaperAbstract",
+      "belongsToClassMap": "Paper_from_papers",
+      "column": "papers.abstract",
+      "datatype": "xsd:string"
+    },
+    {
+      "property": "DataProperty:hasPaperURI",
+      "belongsToClassMap": "Paper_from_papers",
+      "uriColumn": "papers.uri",
+      "datatype": "xsd:anyURI",
+      "column": "papers.uri"
+    },
+    {
+      "property": "DataProperty:hasPaperYear",
+      "belongsToClassMap": "Paper_from_papers",
+      "column": "papers.year",
+      "datatype": "xsd:int"
+    },
+    {
+      "property": "DataProperty:hasPersonType",
+      "belongsToClassMap": "Person_from_persons",
+      "column": "persons.type",
+      "datatype": "xsd:string"
+    },
+    {
+      "property": "DataProperty:hasFirstName",
+      "belongsToClassMap": "Person_from_persons",
+      "column": "persons.firstname",
+      "datatype": "xsd:string"
+    },
+    {
+      "property": "DataProperty:hasLastName",
+      "belongsToClassMap": "Person_from_persons",
+      "column": "persons.lastname",
+      "datatype": "xsd:string"
+    },
+    {
+      "property": "DataProperty:hasAddress",
+      "belongsToClassMap": "Person_from_persons",
+      "column": "persons.address",
+      "datatype": "xsd:string"
+    },
+    {
+      "property": "DataProperty:hasEmail",
+      "belongsToClassMap": "Person_from_persons",
+      "column": "persons.email",
+      "datatype": "xsd:string"
+    },
+    {
+      "property": "DataProperty:hasHomepage",
+      "belongsToClassMap": "Person_from_persons",
+      "uriColumn": "persons.homepage",
+      "datatype": "xsd:anyURI",
+      "column": "persons.homepage"
+    },
+    {
+      "property": "DataProperty:hasPhone",
+      "belongsToClassMap": "Person_from_persons",
+      "column": "persons.phone",
+      "datatype": "xsd:string"
+    },
+    {
+      "property": "DataProperty:hasURI",
+      "belongsToClassMap": "Person_from_persons",
+      "uriColumn": "persons.uri",
+      "datatype": "xsd:anyURI",
+      "column": "persons.uri"
+    },
+    {
+      "property": "DataProperty:hasPhoto",
+      "belongsToClassMap": "Person_from_persons",
+      "uriColumn": "persons.photo",
+      "datatype": "xsd:anyURI",
+      "column": "persons.photo"
+    },
+    {
+      "property": "DataProperty:hasRelationType",
+      "belongsToClassMap": "Paper_from_papers",
+      "column": "rel_paper_topic.relationtype",
+      "datatype": "xsd:int"
+    },
+    {
+      "property": "DataProperty:hasTopicName",
+      "belongsToClassMap": "Topic_from_topics",
+      "column": "topics.topicname",
+      "datatype": "xsd:string"
+    },
+    {
+      "property": "DataProperty:hasTopicURI",
+      "belongsToClassMap": "Topic_from_topics",
+      "uriColumn": "topics.uri",
+      "datatype": "xsd:anyURI",
+      "column": "topics.uri"
+    }
+  ],
+  "object_properties": [
+    {
+      "property": "ObjectProperty:hasAddress",
+      "belongsToClassMap": "Organization_from_organizations",
+      "refersToClassMap": "Class:Address"
+    },
+    {
+      "property": "ObjectProperty:belongsToOrganization",
+      "belongsToClassMap": "Organization_from_organizations",
+      "refersToClassMap": "Organization_from_organizations",
+      "join": [
+        "organizations.belongsto = organizations.orgid"
+      ]
+    },
+    {
+      "property": "ObjectProperty:paperPublishedInConference",
+      "belongsToClassMap": "Paper_from_papers",
+      "refersToClassMap": "Conference_from_conferences",
+      "join": [
+        "papers.conference = conferences.confid"
+      ]
+    },
+    {
+      "property": "ObjectProperty:paperCoversTopics",
+      "belongsToClassMap": "Paper_from_papers",
+      "refersToClassMap": "Topic_from_topics"
+    },
+    {
+      "property": "ObjectProperty:worksForOrganization",
+      "belongsToClassMap": "Person_from_persons",
+      "refersToClassMap": "Organization_from_organizations"
+    },
+    {
+      "property": "ObjectProperty:authoredPaper",
+      "belongsToClassMap": "Person_from_persons",
+      "refersToClassMap": "Paper_from_papers"
+    },
+    {
+      "property": "ObjectProperty:hasInterestInTopic",
+      "belongsToClassMap": "Person_from_persons",
+      "refersToClassMap": "Topic_from_topics"
+    },
+    {
+      "property": "ObjectProperty:hasParentTopic",
+      "belongsToClassMap": "Topic_from_topics",
+      "refersToClassMap": "Topic_from_topics",
+      "join": [
+        "topics.parentid = topics.topicid"
+      ]
+    }
+  ],
+  "translation_tables": [],
+  "_canonicalization_debug": {
+    "unresolved_classes": [],
+    "notes": {
+      "uriColumn_mirrored_to_column": true,
+      "bNodeIdColumns_used_for_class_identity": true,
+      "class_prefix_stripped": true,
+      "class_map_refs_resolved": true,
+      "class_map_ids_preserved": true,
+      "case_insensitive_class_map_resolution": true
+    }
+  }
+}

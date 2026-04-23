@@ -1,0 +1,77 @@
+[
+  {
+    "target_type": "class_mapping",
+    "target_id": "Conference_from_conferences",
+    "current_class_id": "Class:Conference",
+    "from_tables": [
+      "conferences"
+    ],
+    "focus": [
+      "condition necessity",
+      "identity strategy correctness",
+      "class scope too broad or too narrow",
+      "possible downstream impact on related properties and relations"
+    ]
+  },
+  {
+    "target_type": "data_property_mapping",
+    "target_id": "hasConferenceName_from_Name",
+    "current_property_id": "DataProperty:hasConferenceName",
+    "focus": [
+      "ordinary literal vs class-defining signal",
+      "datatype mismatch",
+      "possible move from attribute to condition-bearing class revision"
+    ]
+  },
+  {
+    "target_type": "data_property_mapping",
+    "target_id": "hasConferenceURI_from_URI",
+    "current_property_id": "DataProperty:hasConferenceURI",
+    "focus": [
+      "ordinary literal vs class-defining signal",
+      "datatype mismatch",
+      "possible move from attribute to condition-bearing class revision"
+    ]
+  },
+  {
+    "target_type": "data_property_mapping",
+    "target_id": "hasConferenceDate_from_Date",
+    "current_property_id": "DataProperty:hasConferenceDate",
+    "focus": [
+      "ordinary literal vs class-defining signal",
+      "datatype mismatch",
+      "possible move from attribute to condition-bearing class revision"
+    ]
+  },
+  {
+    "target_type": "data_property_mapping",
+    "target_id": "hasConferenceLocation_from_Location",
+    "current_property_id": "DataProperty:hasConferenceLocation",
+    "focus": [
+      "ordinary literal vs class-defining signal",
+      "datatype mismatch",
+      "possible move from attribute to condition-bearing class revision"
+    ]
+  },
+  {
+    "target_type": "data_property_mapping",
+    "target_id": "hasConferenceDatum_from_Datum",
+    "current_property_id": "DataProperty:hasConferenceDatum",
+    "focus": [
+      "ordinary literal vs class-defining signal",
+      "datatype mismatch",
+      "possible move from attribute to condition-bearing class revision"
+    ]
+  },
+  {
+    "target_type": "scope_review",
+    "target_id": "conferences",
+    "focus": [
+      "inspect all columns in local scope",
+      "look for class-defining conditions",
+      "look for over-broad class mappings",
+      "look for identity mistakes",
+      "look for relation/attribute revisions implied by class revision"
+    ]
+  }
+]

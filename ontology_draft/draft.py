@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import asdict, dataclass, field
 from typing import Any, Dict, List, Optional, Tuple
 
-from normalize import normalize_model_output_robust
+from normalization.runner import normalize_model_output_robust
 
 from .builder import (
     build_class_def,

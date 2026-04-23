@@ -1,0 +1,139 @@
+{
+  "work_unit": {
+    "table": "conferences",
+    "related_tables": []
+  },
+  "proposed_additions": {
+    "classes": [],
+    "data_properties": [],
+    "object_properties": [],
+    "subclass_relations": [],
+    "class_mappings": [],
+    "data_property_mappings": [],
+    "object_property_mappings": []
+  },
+  "proposed_revisions": {
+    "classes": [
+      {
+        "target_id": "Class:Conference",
+        "updated_fields": {
+          "description": "A conference event with temporal and spatial properties. Identified by ConfID; represents a distinct conference instance with name, URI reference, date information, and location."
+        }
+      }
+    ],
+    "data_properties": [
+      {
+        "target_id": "DataProperty:hasConferenceDate",
+        "updated_fields": {
+          "description": "The date of the conference as a string representation. Stored as varchar(50); actual format (ISO, free-text, or structured) requires clarification.",
+          "datatype": "xsd:string"
+        }
+      },
+      {
+        "target_id": "DataProperty:hasConferenceLocation",
+        "updated_fields": {
+          "description": "The location or venue of the conference. Stored as varchar(50); may represent city name, venue name, or full address. Modeled as literal pending evidence of separate location entity.",
+          "datatype": "xsd:string"
+        }
+      }
+    ],
+    "object_properties": [],
+    "subclass_relations": [],
+    "class_mappings": [
+      {
+        "target_id": "Conference_from_conferences",
+        "updated_fields": {
+          "description": "Maps each row in conferences table to a Conference instance. No row-selection condition identified; all rows represent valid conference entities.",
+          "class_id": "",
+          "from_tables": [],
+          "identifier_kind": "uri_pattern",
+          "identifier_columns": [],
+          "instance_id_template": "",
+          "mapping_id": "",
+          "bnode_id_columns": []
+        }
+      }
+    ],
+    "data_property_mappings": [],
+    "object_property_mappings": []
+  },
+  "proposed_rejections": [],
+  "proposed_merges": [],
+  "decision_summary": [
+    {
+      "decision_type": "SCOPE-REVIEW",
+      "target": "conferences table",
+      "status": "accepted",
+      "confidence": 0.95,
+      "reason": "All six columns inspected. ConfID is primary key and stable identifier. Name, URI, Date, Location, and Datum are all descriptive attributes with no class-defining conditions detected. No binary flags, type indicators, status fields, or publication states present. Class scope is appropriate: one Conference class per row."
+    },
+    {
+      "decision_type": "IDENTITY-STRATEGY",
+      "target": "Conference_from_conferences",
+      "status": "accepted",
+      "confidence": 0.9,
+      "reason": "uri_pattern with ConfID is appropriate. ConfID is NOT NULL, int primary key, suitable for stable global resource URIs. No bnode conversion justified; conferences are globally identifiable entities."
+    },
+    {
+      "decision_type": "CONDITION-NECESSITY",
+      "target": "Conference_from_conferences",
+      "status": "accepted",
+      "confidence": 0.95,
+      "reason": "No row-selection condition warranted. All columns are descriptive attributes. No flag, status, or type column present to filter class membership. All rows in conferences table represent valid Conference instances."
+    },
+    {
+      "decision_type": "DATATYPE-CONSISTENCY",
+      "target": "hasConferenceDate_from_Date",
+      "status": "accepted",
+      "confidence": 0.85,
+      "reason": "Date column is varchar(50), not timestamp. Datatype remains xsd:string. Actual format unknown; requires probe. Datum (timestamp) is separate column with different semantic role."
+    },
+    {
+      "decision_type": "LOCATION-MODELING",
+      "target": "hasConferenceLocation_from_Location",
+      "status": "accepted",
+      "confidence": 0.8,
+      "reason": "Location remains literal xsd:string. No separate location entity table exists in current scope. Address-like signal noted but insufficient to justify separate Location class without evidence of multi-table location references or location reuse patterns."
+    },
+    {
+      "decision_type": "TEMPORAL-DUALITY",
+      "target": "hasConferenceDatum_from_Datum",
+      "status": "accepted",
+      "confidence": 0.75,
+      "reason": "Both Date (varchar) and Datum (timestamp) retained as separate properties. Semantic distinction unclear but both columns present in schema. Date may be display/description; Datum may be system timestamp. Requires probe to clarify intended use."
+    }
+  ],
+  "remaining_ambiguities": [
+    "{'issue_type': 'datatype_format_ambiguity', 'related_table': 'conferences', 'related_column': 'date', 'description': 'Date column is varchar(50) rather than timestamp; unclear if it contains ISO date strings, free-text descriptions, structured date formats, or date ranges. Affects interpretation of hasConferenceDate property.'}",
+    "{'issue_type': 'semantic_distinction_ambiguity', 'related_table': 'conferences', 'related_columns': ['date', 'datum'], 'description': 'Relationship between Date (varchar) and Datum (timestamp) columns unclear. Both represent temporal information but with different types. Possible interpretations: Date is display/description, Datum is system timestamp; or Date is event date, Datum is record creation time; or both represent same event with different precision.'}",
+    "{'issue_type': 'location_modeling_ambiguity', 'related_table': 'conferences', 'related_column': 'location', 'description': 'Location column flagged as address-like but no separate location entity table exists in current scope. Unclear if location should be modeled as separate Location class (pending discovery of related tables) or remain as literal string property.'}"
+  ],
+  "needs_probe": [
+    {
+      "probe_type": "value_sample",
+      "target": "conferences.date",
+      "question": "What are 3-5 sample values in the Date column? Are they ISO date strings (e.g., '2023-06-15'), free-text descriptions (e.g., 'June 15-17, 2023'), structured formats, or date ranges?"
+    },
+    {
+      "probe_type": "value_sample",
+      "target": "conferences.location",
+      "question": "What are 3-5 sample values in the Location column? Are they city names (e.g., 'Paris'), venue names (e.g., 'Palais Garnier'), full addresses, or other location representations?"
+    },
+    {
+      "probe_type": "value_sample",
+      "target": "conferences.uri",
+      "question": "What are 3-5 sample values in the URI column? Do they reference external conference resources (e.g., 'https://example.org/conf/2023'), internal identifiers, or other URI patterns?"
+    },
+    {
+      "probe_type": "temporal_semantics",
+      "target": "conferences.date,conferences.datum",
+      "question": "What is the semantic distinction between Date (varchar) and Datum (timestamp) columns? Does Date represent event date and Datum represent record creation time, or do both represent the same temporal information?"
+    },
+    {
+      "probe_type": "cardinality_check",
+      "target": "conferences",
+      "question": "Are there any foreign key references from other tables to conferences.confid? This would establish object properties linking other entities to Conference instances."
+    }
+  ],
+  "normalization_warnings": []
+}

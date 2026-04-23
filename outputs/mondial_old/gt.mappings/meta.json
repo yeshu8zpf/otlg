@@ -1,0 +1,13 @@
+{
+    "relation_prefix": "mondial",
+    "prefixes": [
+        {
+            "prefix": "mondial",
+            "uri": "/mondial/"
+        },
+        {
+            "prefix": "base",
+            "uri": "/base/"
+        }
+    ]
+}

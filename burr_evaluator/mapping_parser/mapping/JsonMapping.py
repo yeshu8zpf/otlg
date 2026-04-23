@@ -64,7 +64,7 @@ class JsonMapping(BaseMapping):
     def parse_translation_table(self, table):
         return TranslationTable(mapping_name=table["name"], translation_table=table["translations"])
 
-    def parse_class_entry(self, entry):
+    def parse_class_entry_old(self, entry):
         mapping_name = entry["name"] if "name" in entry else entry["class"]
         cls_ = entry["class"]
         bNodeIdColumns = entry["bNodeIdColumns"] if "bNodeIdColumns" in entry else None
@@ -80,6 +80,35 @@ class JsonMapping(BaseMapping):
         combined_prob = entry.get("combined_prob")
         return ClassMap(mapping_id=mapping_name, prefix=prefix, bNodeIdColumns=bNodeIdColumns, class_uri=cls_, uriPattern=uri_pattern, condition=conditions, join=joins, datastorage=datastorage, parent_classes=parent_classes, translate_with=translate_with, confidence=confidence, cot_prob=cot_prob, combined_prob=combined_prob)
 
+    def parse_class_entry(self, entry):
+        mapping_name = entry["id"] if "id" in entry else (entry["name"] if "name" in entry else entry["class"])
+        cls_ = entry["class"]
+        bNodeIdColumns = entry["bNodeIdColumns"] if "bNodeIdColumns" in entry else None
+        uri_pattern = entry["uriPattern"] if "uriPattern" in entry else None
+        prefix = entry["prefix"].lower() if "prefix" in entry else "base"
+        conditions = entry["condition"] if "condition" in entry else None
+        joins = entry["join"] if "join" in entry else None
+        translate_with = entry["translateWith"] if "translateWith" in entry else None
+        parent_classes = entry["subClassOf"] if "subClassOf" in entry else None
+        datastorage = "database"
+        confidence = entry.get("confidence")
+        cot_prob = entry.get("cot_prob")
+        combined_prob = entry.get("combined_prob")
+        return ClassMap(
+            mapping_id=mapping_name,
+            prefix=prefix,
+            bNodeIdColumns=bNodeIdColumns,
+            class_uri=cls_,
+            uriPattern=uri_pattern,
+            condition=conditions,
+            join=joins,
+            datastorage=datastorage,
+            parent_classes=parent_classes,
+            translate_with=translate_with,
+            confidence=confidence,
+            cot_prob=cot_prob,
+            combined_prob=combined_prob,
+        )
     def parse_property_bridge_entry(self, entry, prefix, mapping_id_counts=None):
         refers_to_class_map = None
         if "refersToClass" in entry or "refersToClassMap" in entry:

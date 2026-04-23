@@ -1,0 +1,68 @@
+{
+  "step_index": 2,
+  "new_table": "papers",
+  "related_existing_tables": [],
+  "local_table": {
+    "name": "papers",
+    "columns": [
+      {
+        "name": "PaperID",
+        "type": "int",
+        "raw": "PaperID int NOT NULL default '0'",
+        "is_primary_key": true
+      },
+      {
+        "name": "Title",
+        "type": "varchar(200)",
+        "raw": "Title varchar(200) default NULL",
+        "is_primary_key": false
+      },
+      {
+        "name": "Abstract",
+        "type": "varchar(2000)",
+        "raw": "Abstract varchar(2000)",
+        "is_primary_key": false
+      },
+      {
+        "name": "URI",
+        "type": "varchar(200)",
+        "raw": "URI varchar(200) default NULL",
+        "is_primary_key": false
+      },
+      {
+        "name": "Year",
+        "type": "int",
+        "raw": "Year int default NULL",
+        "is_primary_key": false
+      },
+      {
+        "name": "Conference",
+        "type": "int",
+        "raw": "Conference int default NULL",
+        "is_primary_key": false
+      },
+      {
+        "name": "Publish",
+        "type": "int",
+        "raw": "Publish int default NULL",
+        "is_primary_key": false
+      }
+    ],
+    "fks": []
+  },
+  "local_fk_edges": [],
+  "related_table_defs": {},
+  "multi_table_signals": {
+    "many_fk_targets": false,
+    "connector_like": false,
+    "association_class_likelihood": false,
+    "address_like_bundle": [],
+    "requires_multi_table_reasoning": false
+  },
+  "suggested_analysis_scope": {
+    "recommended_tables_for_joint_analysis": [
+      "papers"
+    ],
+    "reason": []
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "tables": {},
+  "join_graph": {},
+  "stats": {
+    "num_tables": 0,
+    "num_columns": 0,
+    "num_foreign_keys": 0
+  }
+}

@@ -1,0 +1,925 @@
+{
+  "task": "Revise the current local draft slice. Inspect all columns in the current local scope. Output a revision patch only.",
+  "incremental_step": {
+    "step_index": 2,
+    "new_table": "papers",
+    "related_existing_tables": [],
+    "local_table": {
+      "name": "papers",
+      "columns": [
+        {
+          "name": "PaperID",
+          "type": "int",
+          "raw": "PaperID int NOT NULL default '0'",
+          "is_primary_key": true
+        },
+        {
+          "name": "Title",
+          "type": "varchar(200)",
+          "raw": "Title varchar(200) default NULL",
+          "is_primary_key": false
+        },
+        {
+          "name": "Abstract",
+          "type": "varchar(2000)",
+          "raw": "Abstract varchar(2000)",
+          "is_primary_key": false
+        },
+        {
+          "name": "URI",
+          "type": "varchar(200)",
+          "raw": "URI varchar(200) default NULL",
+          "is_primary_key": false
+        },
+        {
+          "name": "Year",
+          "type": "int",
+          "raw": "Year int default NULL",
+          "is_primary_key": false
+        },
+        {
+          "name": "Conference",
+          "type": "int",
+          "raw": "Conference int default NULL",
+          "is_primary_key": false
+        },
+        {
+          "name": "Publish",
+          "type": "int",
+          "raw": "Publish int default NULL",
+          "is_primary_key": false
+        }
+      ],
+      "fks": []
+    },
+    "local_fk_edges": [],
+    "related_table_defs": {},
+    "multi_table_signals": {
+      "many_fk_targets": false,
+      "connector_like": false,
+      "association_class_likelihood": false,
+      "address_like_bundle": [],
+      "requires_multi_table_reasoning": false
+    },
+    "suggested_analysis_scope": {
+      "recommended_tables_for_joint_analysis": [
+        "papers"
+      ],
+      "reason": []
+    }
+  },
+  "revision_scope": {
+    "scope_tables": [
+      "papers"
+    ],
+    "schema_scope": {
+      "new_table": "papers",
+      "related_existing_tables": [],
+      "local_table": {
+        "name": "papers",
+        "columns": [
+          {
+            "name": "PaperID",
+            "type": "int",
+            "raw": "PaperID int NOT NULL default '0'",
+            "is_primary_key": true
+          },
+          {
+            "name": "Title",
+            "type": "varchar(200)",
+            "raw": "Title varchar(200) default NULL",
+            "is_primary_key": false
+          },
+          {
+            "name": "Abstract",
+            "type": "varchar(2000)",
+            "raw": "Abstract varchar(2000)",
+            "is_primary_key": false
+          },
+          {
+            "name": "URI",
+            "type": "varchar(200)",
+            "raw": "URI varchar(200) default NULL",
+            "is_primary_key": false
+          },
+          {
+            "name": "Year",
+            "type": "int",
+            "raw": "Year int default NULL",
+            "is_primary_key": false
+          },
+          {
+            "name": "Conference",
+            "type": "int",
+            "raw": "Conference int default NULL",
+            "is_primary_key": false
+          },
+          {
+            "name": "Publish",
+            "type": "int",
+            "raw": "Publish int default NULL",
+            "is_primary_key": false
+          }
+        ],
+        "fks": []
+      },
+      "related_tables": [],
+      "multi_table_signals": {
+        "many_fk_targets": false,
+        "connector_like": false,
+        "association_class_likelihood": false,
+        "address_like_bundle": [],
+        "requires_multi_table_reasoning": false
+      }
+    },
+    "draft_slice": {
+      "classes": [
+        {
+          "id": "Class:Paper",
+          "label": "Paper",
+          "description": "A scholarly paper or research publication",
+          "status": "proposed",
+          "confidence": null,
+          "source_tables": [
+            "papers"
+          ],
+          "identifier_columns": [
+            "papers.paperid"
+          ]
+        }
+      ],
+      "data_properties": [
+        {
+          "id": "DataProperty:hasTitle",
+          "label": "has title",
+          "domain": "Class:Paper",
+          "datatype": "xsd:string",
+          "description": "The title of the paper",
+          "status": "proposed",
+          "confidence": null,
+          "source_tables": [],
+          "source_columns": []
+        },
+        {
+          "id": "DataProperty:hasAbstract",
+          "label": "has abstract",
+          "domain": "Class:Paper",
+          "datatype": "xsd:string",
+          "description": "The abstract or summary of the paper",
+          "status": "proposed",
+          "confidence": null,
+          "source_tables": [],
+          "source_columns": []
+        },
+        {
+          "id": "DataProperty:hasURI",
+          "label": "has URI",
+          "domain": "Class:Paper",
+          "datatype": "xsd:anyURI",
+          "description": "The URI or URL reference for the paper",
+          "status": "proposed",
+          "confidence": null,
+          "source_tables": [],
+          "source_columns": []
+        },
+        {
+          "id": "DataProperty:hasPublicationYear",
+          "label": "has publication year",
+          "domain": "Class:Paper",
+          "datatype": "xsd:int",
+          "description": "The year the paper was published",
+          "status": "proposed",
+          "confidence": null,
+          "source_tables": [],
+          "source_columns": []
+        }
+      ],
+      "object_properties": [],
+      "subclass_relations": [],
+      "class_mappings": [
+        {
+          "mapping_id": "Paper_from_papers",
+          "class_id": "Class:Paper",
+          "from_tables": [
+            "papers"
+          ],
+          "identifier_kind": "uri_pattern",
+          "identifier_columns": [
+            "papers.paperid"
+          ],
+          "instance_id_template": "papers/@@papers.PaperID@@",
+          "bnode_id_columns": [],
+          "status": "proposed",
+          "confidence": null,
+          "description": ""
+        }
+      ],
+      "data_property_mappings": [
+        {
+          "mapping_id": "hasTitle_from_Title",
+          "data_property_id": "DataProperty:hasTitle",
+          "applies_to_class": "Class:Paper",
+          "source_table": "papers",
+          "source_columns": [
+            "papers.title"
+          ],
+          "value_kind": "column",
+          "value_template": "",
+          "sql_expression": "",
+          "constant_value": "",
+          "datatype": "xsd:string",
+          "join_paths": [],
+          "condition": []
+        },
+        {
+          "mapping_id": "hasAbstract_from_Abstract",
+          "data_property_id": "DataProperty:hasAbstract",
+          "applies_to_class": "Class:Paper",
+          "source_table": "papers",
+          "source_columns": [
+            "papers.abstract"
+          ],
+          "value_kind": "column",
+          "value_template": "",
+          "sql_expression": "",
+          "constant_value": "",
+          "datatype": "xsd:string",
+          "join_paths": [],
+          "condition": []
+        },
+        {
+          "mapping_id": "hasURI_from_URI",
+          "data_property_id": "DataProperty:hasURI",
+          "applies_to_class": "Class:Paper",
+          "source_table": "papers",
+          "source_columns": [
+            "papers.uri"
+          ],
+          "value_kind": "column",
+          "value_template": "",
+          "sql_expression": "",
+          "constant_value": "",
+          "datatype": "xsd:anyURI",
+          "join_paths": [],
+          "condition": []
+        },
+        {
+          "mapping_id": "hasPublicationYear_from_Year",
+          "data_property_id": "DataProperty:hasPublicationYear",
+          "applies_to_class": "Class:Paper",
+          "source_table": "papers",
+          "source_columns": [
+            "papers.year"
+          ],
+          "value_kind": "column",
+          "value_template": "",
+          "sql_expression": "",
+          "constant_value": "",
+          "datatype": "xsd:int",
+          "join_paths": [],
+          "condition": []
+        }
+      ],
+      "object_property_mappings": [],
+      "draft_metadata": {
+        "processed_tables": [
+          "papers"
+        ],
+        "table_history": [
+          {
+            "table": "papers",
+            "action": "updated",
+            "version": 1
+          }
+        ],
+        "draft_version": 1
+      },
+      "open_issues": [
+        {
+          "issue_type": "remaining_ambiguity",
+          "related_table": "papers",
+          "description": "Conference and Publish columns are foreign keys but target tables not yet processed; object properties will be added when related tables are analyzed"
+        },
+        {
+          "issue_type": "needs_probe",
+          "related_table": "papers",
+          "description": "What is the target table and primary key for the Conference foreign key?",
+          "payload": {
+            "probe_type": "schema_dependency",
+            "target": "papers.conference",
+            "question": "What is the target table and primary key for the Conference foreign key?"
+          }
+        },
+        {
+          "issue_type": "needs_probe",
+          "related_table": "papers",
+          "description": "What is the target table and primary key for the Publish foreign key?",
+          "payload": {
+            "probe_type": "schema_dependency",
+            "target": "papers.publish",
+            "question": "What is the target table and primary key for the Publish foreign key?"
+          }
+        }
+      ]
+    }
+  },
+  "revision_targets": [
+    {
+      "target_type": "class_mapping",
+      "target_id": "Paper_from_papers",
+      "current_class_id": "Class:Paper",
+      "from_tables": [
+        "papers"
+      ],
+      "focus": [
+        "condition necessity",
+        "identity strategy correctness",
+        "class scope too broad or too narrow",
+        "possible downstream impact on related properties and relations"
+      ]
+    },
+    {
+      "target_type": "data_property_mapping",
+      "target_id": "hasTitle_from_Title",
+      "current_property_id": "DataProperty:hasTitle",
+      "focus": [
+        "ordinary literal vs class-defining signal",
+        "datatype mismatch",
+        "possible move from attribute to condition-bearing class revision"
+      ]
+    },
+    {
+      "target_type": "data_property_mapping",
+      "target_id": "hasAbstract_from_Abstract",
+      "current_property_id": "DataProperty:hasAbstract",
+      "focus": [
+        "ordinary literal vs class-defining signal",
+        "datatype mismatch",
+        "possible move from attribute to condition-bearing class revision"
+      ]
+    },
+    {
+      "target_type": "data_property_mapping",
+      "target_id": "hasURI_from_URI",
+      "current_property_id": "DataProperty:hasURI",
+      "focus": [
+        "ordinary literal vs class-defining signal",
+        "datatype mismatch",
+        "possible move from attribute to condition-bearing class revision"
+      ]
+    },
+    {
+      "target_type": "data_property_mapping",
+      "target_id": "hasPublicationYear_from_Year",
+      "current_property_id": "DataProperty:hasPublicationYear",
+      "focus": [
+        "ordinary literal vs class-defining signal",
+        "datatype mismatch",
+        "possible move from attribute to condition-bearing class revision"
+      ]
+    },
+    {
+      "target_type": "scope_review",
+      "target_id": "papers",
+      "focus": [
+        "inspect all columns in local scope",
+        "look for class-defining conditions",
+        "look for over-broad class mappings",
+        "look for identity mistakes",
+        "look for relation/attribute revisions implied by class revision"
+      ]
+    }
+  ],
+  "external_evidence": [
+    {
+      "type": "value_samples",
+      "backend": "schema_sql_dump",
+      "schema_sql_path": "burr_benchmark/real-world/iswc/schema.sql",
+      "columns": [
+        "papers.PaperID",
+        "papers.Title",
+        "papers.Abstract",
+        "papers.URI",
+        "papers.Year",
+        "papers.Conference",
+        "papers.Publish",
+        "papers.title",
+        "papers.abstract",
+        "papers.uri",
+        "papers.year"
+      ],
+      "results": [
+        {
+          "source": "schema_sql_dump",
+          "table": "papers",
+          "column": "PaperID",
+          "sample_values": [
+            1,
+            2,
+            4,
+            5,
+            6
+          ],
+          "distinct_count": 5,
+          "null_count": 0,
+          "row_count": 5,
+          "non_null_ratio": 1.0,
+          "top_distinct_values": [
+            {
+              "value": 1,
+              "count": 1
+            },
+            {
+              "value": 2,
+              "count": 1
+            },
+            {
+              "value": 4,
+              "count": 1
+            },
+            {
+              "value": 5,
+              "count": 1
+            },
+            {
+              "value": 6,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "source": "schema_sql_dump",
+          "table": "papers",
+          "column": "Title",
+          "sample_values": [
+            "Trusting Information Sources One Citizen at a Time",
+            "Automatic Generation of Java/SQL based Inference Engines from RDF Schema and RuleML",
+            "Three Implementations of SquishQL, a Simple RDF Query Language",
+            "A Data Integration Framework for E-commerce Product Classification",
+            "Integrating Vocabularies: Discovering and Representing Vocabulary Maps"
+          ],
+          "distinct_count": 5,
+          "null_count": 0,
+          "row_count": 5,
+          "non_null_ratio": 1.0,
+          "top_distinct_values": [
+            {
+              "value": "A Data Integration Framework for E-commerce Product Classification",
+              "count": 1
+            },
+            {
+              "value": "Automatic Generation of Java/SQL based Inference Engines from RDF Schema and RuleML",
+              "count": 1
+            },
+            {
+              "value": "Integrating Vocabularies: Discovering and Representing Vocabulary Maps",
+              "count": 1
+            },
+            {
+              "value": "Three Implementations of SquishQL, a Simple RDF Query Language",
+              "count": 1
+            },
+            {
+              "value": "Trusting Information Sources One Citizen at a Time",
+              "count": 1
+            }
+          ]
+        },
+        {
+          "source": "schema_sql_dump",
+          "table": "papers",
+          "column": "Abstract",
+          "sample_values": [
+            "This paper describes an approach to derive assessments about information n      sources based on individual feedback about the sources. We describe n      TRELLIS, a system that helps users annotate their analysis of n      alternative information sources that can be contradictory and n      incomplete. As the user makes a decision on which sources to dismiss and n      which to believe in making a final decision, TRELLIS captures the n      derivation of the decision in a semantic markup. TRELLIS then uses these n      annotations to derive an assessment of the source based on the n      annotations of many individuals. Our work builds on the Semantic Web and n      presents a tool that helps users create annotations that are in a mix of n      formal and human language, and exploits the formal representations to n      derive measures of trust in the content of Web resources and their n      original source.",
+            "This paper describes two approaches for automatically converting RDF Schema nand RuleML sources into an inference engine and storage repository. Rather than nusing traditional inference systems, our solution bases on mainstream ntechnologies like Java and relational database systems. While this necessarily nimposes some restrictions, the ease of integration into an existing IT landscape nis a major advantage. We present the conversion tools and their limitations. nFurthermore, an extension to RuleML is proposed, that allows Java-enabled nreaction rules, where calls to Java libraries can be performed upon a rule nfiring. This requires hosts to be Java-enabled when rules and code are moved nacross the web. However, the solution allows for great engineering nflexibility.",
+            "RDF provides a basic way to represent data for the Semantic Web. We have n      been experimenting with the query paradigm for working with RDF data in n      semantic web applications. Query of RDF data provides a declarative n      access mechanism that is suitable for application usage and remote n      access. We describe work on a conceptual model for querying RDF data n      that refines ideas first presented in at the W3C workshop on Query n      Languages and the design of one possible syntax, derived from rdfDB, n      that is suitable for application programmers. Further, we present n      experience gained in three implementations of the query language.",
+            "A marketplace is n      the place in which the demand and supply of buyers and vendors n      participating in a business process may meet. Therefore, electronic n      marketplaces are virtual communities in which buyers may meet proposals n      of several suppliers and make the best choice. In the electronic n      commerce world, the comparison between different products is blocked due n      to the lack of standards (on the contrary, the proliferation of n      standards) describing and classifying them. Therefore, the need for B2B n      and B2C marketplaces is to reclassify products and goods according to n      different standardization models. This paper aims to face this problem n      by suggesting the use of a semi-automatic methodology, supported by a n      tool (SI-Designer), to define the mapping among different e-commerce n      product classification standards. This methodology was developed for the n      MOMIS-system within the Intelligent Integration of Information research n      area. We describe our extension to the methodology that makes it n      applyable in general to product classification standard, by selecting a n      fragment of ECCMA/UNSPSC and ecl@ss standard.",
+            "The Semantic Web would enable new ways of doing business on the<br>Web n      that require development of advanced business document<br>integration n      technologies performing intelligent document<br>transformation. The n      documents use different vocabularies that<br>consist of large n      hierarchies of terms. Accordingly, vocabulary<br>mapping and n      transformation becomes an important task in the whole<br>business n      document transformation process. It includes several<br>subtasks: map n      discovery, map representation, and map execution<br>that must be n      seamlessly integrated into the document integration<br>process. In this n      paper we discuss the process of discovering the<br>maps between two n      vocabularies assuming availability of two sets of<br>documents, each n      using one of the vocabularies. We take the<br>vocabularies of product n      classification codes as a playground and<br>propose a reusable map n      discovery technique based on Bayesian text<br>classification approach. n      We show how the discovered maps can be<br>integrated into the document n      transformation process."
+          ],
+          "distinct_count": 5,
+          "null_count": 0,
+          "row_count": 5,
+          "non_null_ratio": 1.0,
+          "top_distinct_values": [
+            {
+              "value": "A marketplace is n      the place in which the demand and supply of buyers and vendors n      participating in a business process may meet. Therefore, electronic n      marketplaces are virtual communities in which buyers may meet proposals n      of several suppliers and make the best choice. In the electronic n      commerce world, the comparison between different products is blocked due n      to the lack of standards (on the contrary, the proliferation of n      standards) describing and classifying them. Therefore, the need for B2B n      and B2C marketplaces is to reclassify products and goods according to n      different standardization models. This paper aims to face this problem n      by suggesting the use of a semi-automatic methodology, supported by a n      tool (SI-Designer), to define the mapping among different e-commerce n      product classification standards. This methodology was developed for the n      MOMIS-system within the Intelligent Integration of Information research n      area. We describe our extension to the methodology that makes it n      applyable in general to product classification standard, by selecting a n      fragment of ECCMA/UNSPSC and ecl@ss standard.",
+              "count": 1
+            },
+            {
+              "value": "RDF provides a basic way to represent data for the Semantic Web. We have n      been experimenting with the query paradigm for working with RDF data in n      semantic web applications. Query of RDF data provides a declarative n      access mechanism that is suitable for application usage and remote n      access. We describe work on a conceptual model for querying RDF data n      that refines ideas first presented in at the W3C workshop on Query n      Languages and the design of one possible syntax, derived from rdfDB, n      that is suitable for application programmers. Further, we present n      experience gained in three implementations of the query language.",
+              "count": 1
+            },
+            {
+              "value": "The Semantic Web would enable new ways of doing business on the<br>Web n      that require development of advanced business document<br>integration n      technologies performing intelligent document<br>transformation. The n      documents use different vocabularies that<br>consist of large n      hierarchies of terms. Accordingly, vocabulary<br>mapping and n      transformation becomes an important task in the whole<br>business n      document transformation process. It includes several<br>subtasks: map n      discovery, map representation, and map execution<br>that must be n      seamlessly integrated into the document integration<br>process. In this n      paper we discuss the process of discovering the<br>maps between two n      vocabularies assuming availability of two sets of<br>documents, each n      using one of the vocabularies. We take the<br>vocabularies of product n      classification codes as a playground and<br>propose a reusable map n      discovery technique based on Bayesian text<br>classification approach. n      We show how the discovered maps can be<br>integrated into the document n      transformation process.",
+              "count": 1
+            },
+            {
+              "value": "This paper describes an approach to derive assessments about information n      sources based on individual feedback about the sources. We describe n      TRELLIS, a system that helps users annotate their analysis of n      alternative information sources that can be contradictory and n      incomplete. As the user makes a decision on which sources to dismiss and n      which to believe in making a final decision, TRELLIS captures the n      derivation of the decision in a semantic markup. TRELLIS then uses these n      annotations to derive an assessment of the source based on the n      annotations of many individuals. Our work builds on the Semantic Web and n      presents a tool that helps users create annotations that are in a mix of n      formal and human language, and exploits the formal representations to n      derive measures of trust in the content of Web resources and their n      original source.",
+              "count": 1
+            },
+            {
+              "value": "This paper describes two approaches for automatically converting RDF Schema nand RuleML sources into an inference engine and storage repository. Rather than nusing traditional inference systems, our solution bases on mainstream ntechnologies like Java and relational database systems. While this necessarily nimposes some restrictions, the ease of integration into an existing IT landscape nis a major advantage. We present the conversion tools and their limitations. nFurthermore, an extension to RuleML is proposed, that allows Java-enabled nreaction rules, where calls to Java libraries can be performed upon a rule nfiring. This requires hosts to be Java-enabled when rules and code are moved nacross the web. However, the solution allows for great engineering nflexibility.",
+              "count": 1
+            }
+          ]
+        },
+        {
+          "source": "schema_sql_dump",
+          "table": "papers",
+          "column": "URI",
+          "sample_values": [
+            "http://trellis.semanticweb.org/expect/web/semanticweb/iswc02_trellis.pdf#Trusting Information Sources One Citizen at a Time",
+            "http://www.i-u.de/schools/eberhart/iswc2002/#Automatic Generation of Java/SQL based Inference Engines from RDF Schema and RuleML",
+            "http://www-uk.hpl.hp.com/people/afs/Abstracts/ISWC2002-SquishQL-Abstract.html#SquishQL",
+            "http://www.dbgroup.unimo.it/iswc/iswc.html#A Data Integration Framework for E-commerce Product Classification",
+            "http://www.cs.vu.nl/~borys/papers/abstracts/ISWC2002.html#OmelayenkoISWC2002"
+          ],
+          "distinct_count": 5,
+          "null_count": 0,
+          "row_count": 5,
+          "non_null_ratio": 1.0,
+          "top_distinct_values": [
+            {
+              "value": "http://trellis.semanticweb.org/expect/web/semanticweb/iswc02_trellis.pdf#Trusting Information Sources One Citizen at a Time",
+              "count": 1
+            },
+            {
+              "value": "http://www-uk.hpl.hp.com/people/afs/Abstracts/ISWC2002-SquishQL-Abstract.html#SquishQL",
+              "count": 1
+            },
+            {
+              "value": "http://www.cs.vu.nl/~borys/papers/abstracts/ISWC2002.html#OmelayenkoISWC2002",
+              "count": 1
+            },
+            {
+              "value": "http://www.dbgroup.unimo.it/iswc/iswc.html#A Data Integration Framework for E-commerce Product Classification",
+              "count": 1
+            },
+            {
+              "value": "http://www.i-u.de/schools/eberhart/iswc2002/#Automatic Generation of Java/SQL based Inference Engines from RDF Schema and RuleML",
+              "count": 1
+            }
+          ]
+        },
+        {
+          "source": "schema_sql_dump",
+          "table": "papers",
+          "column": "Year",
+          "sample_values": [
+            2002,
+            2002,
+            2003,
+            2002,
+            2003
+          ],
+          "distinct_count": 2,
+          "null_count": 0,
+          "row_count": 5,
+          "non_null_ratio": 1.0,
+          "top_distinct_values": [
+            {
+              "value": 2002,
+              "count": 3
+            },
+            {
+              "value": 2003,
+              "count": 2
+            }
+          ]
+        },
+        {
+          "source": "schema_sql_dump",
+          "table": "papers",
+          "column": "Conference",
+          "sample_values": [
+            23541,
+            23541,
+            23541,
+            23541,
+            23541
+          ],
+          "distinct_count": 1,
+          "null_count": 0,
+          "row_count": 5,
+          "non_null_ratio": 1.0,
+          "top_distinct_values": [
+            {
+              "value": 23541,
+              "count": 5
+            }
+          ]
+        },
+        {
+          "source": "schema_sql_dump",
+          "table": "papers",
+          "column": "Publish",
+          "sample_values": [
+            1,
+            1,
+            1,
+            1,
+            0
+          ],
+          "distinct_count": 2,
+          "null_count": 0,
+          "row_count": 5,
+          "non_null_ratio": 1.0,
+          "top_distinct_values": [
+            {
+              "value": 1,
+              "count": 4
+            },
+            {
+              "value": 0,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "source": "schema_sql_dump",
+          "table": "papers",
+          "column": "title",
+          "sample_values": [
+            "Trusting Information Sources One Citizen at a Time",
+            "Automatic Generation of Java/SQL based Inference Engines from RDF Schema and RuleML",
+            "Three Implementations of SquishQL, a Simple RDF Query Language",
+            "A Data Integration Framework for E-commerce Product Classification",
+            "Integrating Vocabularies: Discovering and Representing Vocabulary Maps"
+          ],
+          "distinct_count": 5,
+          "null_count": 0,
+          "row_count": 5,
+          "non_null_ratio": 1.0,
+          "top_distinct_values": [
+            {
+              "value": "A Data Integration Framework for E-commerce Product Classification",
+              "count": 1
+            },
+            {
+              "value": "Automatic Generation of Java/SQL based Inference Engines from RDF Schema and RuleML",
+              "count": 1
+            },
+            {
+              "value": "Integrating Vocabularies: Discovering and Representing Vocabulary Maps",
+              "count": 1
+            },
+            {
+              "value": "Three Implementations of SquishQL, a Simple RDF Query Language",
+              "count": 1
+            },
+            {
+              "value": "Trusting Information Sources One Citizen at a Time",
+              "count": 1
+            }
+          ]
+        },
+        {
+          "source": "schema_sql_dump",
+          "table": "papers",
+          "column": "abstract",
+          "sample_values": [
+            "This paper describes an approach to derive assessments about information n      sources based on individual feedback about the sources. We describe n      TRELLIS, a system that helps users annotate their analysis of n      alternative information sources that can be contradictory and n      incomplete. As the user makes a decision on which sources to dismiss and n      which to believe in making a final decision, TRELLIS captures the n      derivation of the decision in a semantic markup. TRELLIS then uses these n      annotations to derive an assessment of the source based on the n      annotations of many individuals. Our work builds on the Semantic Web and n      presents a tool that helps users create annotations that are in a mix of n      formal and human language, and exploits the formal representations to n      derive measures of trust in the content of Web resources and their n      original source.",
+            "This paper describes two approaches for automatically converting RDF Schema nand RuleML sources into an inference engine and storage repository. Rather than nusing traditional inference systems, our solution bases on mainstream ntechnologies like Java and relational database systems. While this necessarily nimposes some restrictions, the ease of integration into an existing IT landscape nis a major advantage. We present the conversion tools and their limitations. nFurthermore, an extension to RuleML is proposed, that allows Java-enabled nreaction rules, where calls to Java libraries can be performed upon a rule nfiring. This requires hosts to be Java-enabled when rules and code are moved nacross the web. However, the solution allows for great engineering nflexibility.",
+            "RDF provides a basic way to represent data for the Semantic Web. We have n      been experimenting with the query paradigm for working with RDF data in n      semantic web applications. Query of RDF data provides a declarative n      access mechanism that is suitable for application usage and remote n      access. We describe work on a conceptual model for querying RDF data n      that refines ideas first presented in at the W3C workshop on Query n      Languages and the design of one possible syntax, derived from rdfDB, n      that is suitable for application programmers. Further, we present n      experience gained in three implementations of the query language.",
+            "A marketplace is n      the place in which the demand and supply of buyers and vendors n      participating in a business process may meet. Therefore, electronic n      marketplaces are virtual communities in which buyers may meet proposals n      of several suppliers and make the best choice. In the electronic n      commerce world, the comparison between different products is blocked due n      to the lack of standards (on the contrary, the proliferation of n      standards) describing and classifying them. Therefore, the need for B2B n      and B2C marketplaces is to reclassify products and goods according to n      different standardization models. This paper aims to face this problem n      by suggesting the use of a semi-automatic methodology, supported by a n      tool (SI-Designer), to define the mapping among different e-commerce n      product classification standards. This methodology was developed for the n      MOMIS-system within the Intelligent Integration of Information research n      area. We describe our extension to the methodology that makes it n      applyable in general to product classification standard, by selecting a n      fragment of ECCMA/UNSPSC and ecl@ss standard.",
+            "The Semantic Web would enable new ways of doing business on the<br>Web n      that require development of advanced business document<br>integration n      technologies performing intelligent document<br>transformation. The n      documents use different vocabularies that<br>consist of large n      hierarchies of terms. Accordingly, vocabulary<br>mapping and n      transformation becomes an important task in the whole<br>business n      document transformation process. It includes several<br>subtasks: map n      discovery, map representation, and map execution<br>that must be n      seamlessly integrated into the document integration<br>process. In this n      paper we discuss the process of discovering the<br>maps between two n      vocabularies assuming availability of two sets of<br>documents, each n      using one of the vocabularies. We take the<br>vocabularies of product n      classification codes as a playground and<br>propose a reusable map n      discovery technique based on Bayesian text<br>classification approach. n      We show how the discovered maps can be<br>integrated into the document n      transformation process."
+          ],
+          "distinct_count": 5,
+          "null_count": 0,
+          "row_count": 5,
+          "non_null_ratio": 1.0,
+          "top_distinct_values": [
+            {
+              "value": "A marketplace is n      the place in which the demand and supply of buyers and vendors n      participating in a business process may meet. Therefore, electronic n      marketplaces are virtual communities in which buyers may meet proposals n      of several suppliers and make the best choice. In the electronic n      commerce world, the comparison between different products is blocked due n      to the lack of standards (on the contrary, the proliferation of n      standards) describing and classifying them. Therefore, the need for B2B n      and B2C marketplaces is to reclassify products and goods according to n      different standardization models. This paper aims to face this problem n      by suggesting the use of a semi-automatic methodology, supported by a n      tool (SI-Designer), to define the mapping among different e-commerce n      product classification standards. This methodology was developed for the n      MOMIS-system within the Intelligent Integration of Information research n      area. We describe our extension to the methodology that makes it n      applyable in general to product classification standard, by selecting a n      fragment of ECCMA/UNSPSC and ecl@ss standard.",
+              "count": 1
+            },
+            {
+              "value": "RDF provides a basic way to represent data for the Semantic Web. We have n      been experimenting with the query paradigm for working with RDF data in n      semantic web applications. Query of RDF data provides a declarative n      access mechanism that is suitable for application usage and remote n      access. We describe work on a conceptual model for querying RDF data n      that refines ideas first presented in at the W3C workshop on Query n      Languages and the design of one possible syntax, derived from rdfDB, n      that is suitable for application programmers. Further, we present n      experience gained in three implementations of the query language.",
+              "count": 1
+            },
+            {
+              "value": "The Semantic Web would enable new ways of doing business on the<br>Web n      that require development of advanced business document<br>integration n      technologies performing intelligent document<br>transformation. The n      documents use different vocabularies that<br>consist of large n      hierarchies of terms. Accordingly, vocabulary<br>mapping and n      transformation becomes an important task in the whole<br>business n      document transformation process. It includes several<br>subtasks: map n      discovery, map representation, and map execution<br>that must be n      seamlessly integrated into the document integration<br>process. In this n      paper we discuss the process of discovering the<br>maps between two n      vocabularies assuming availability of two sets of<br>documents, each n      using one of the vocabularies. We take the<br>vocabularies of product n      classification codes as a playground and<br>propose a reusable map n      discovery technique based on Bayesian text<br>classification approach. n      We show how the discovered maps can be<br>integrated into the document n      transformation process.",
+              "count": 1
+            },
+            {
+              "value": "This paper describes an approach to derive assessments about information n      sources based on individual feedback about the sources. We describe n      TRELLIS, a system that helps users annotate their analysis of n      alternative information sources that can be contradictory and n      incomplete. As the user makes a decision on which sources to dismiss and n      which to believe in making a final decision, TRELLIS captures the n      derivation of the decision in a semantic markup. TRELLIS then uses these n      annotations to derive an assessment of the source based on the n      annotations of many individuals. Our work builds on the Semantic Web and n      presents a tool that helps users create annotations that are in a mix of n      formal and human language, and exploits the formal representations to n      derive measures of trust in the content of Web resources and their n      original source.",
+              "count": 1
+            },
+            {
+              "value": "This paper describes two approaches for automatically converting RDF Schema nand RuleML sources into an inference engine and storage repository. Rather than nusing traditional inference systems, our solution bases on mainstream ntechnologies like Java and relational database systems. While this necessarily nimposes some restrictions, the ease of integration into an existing IT landscape nis a major advantage. We present the conversion tools and their limitations. nFurthermore, an extension to RuleML is proposed, that allows Java-enabled nreaction rules, where calls to Java libraries can be performed upon a rule nfiring. This requires hosts to be Java-enabled when rules and code are moved nacross the web. However, the solution allows for great engineering nflexibility.",
+              "count": 1
+            }
+          ]
+        },
+        {
+          "source": "schema_sql_dump",
+          "table": "papers",
+          "column": "uri",
+          "sample_values": [
+            "http://trellis.semanticweb.org/expect/web/semanticweb/iswc02_trellis.pdf#Trusting Information Sources One Citizen at a Time",
+            "http://www.i-u.de/schools/eberhart/iswc2002/#Automatic Generation of Java/SQL based Inference Engines from RDF Schema and RuleML",
+            "http://www-uk.hpl.hp.com/people/afs/Abstracts/ISWC2002-SquishQL-Abstract.html#SquishQL",
+            "http://www.dbgroup.unimo.it/iswc/iswc.html#A Data Integration Framework for E-commerce Product Classification",
+            "http://www.cs.vu.nl/~borys/papers/abstracts/ISWC2002.html#OmelayenkoISWC2002"
+          ],
+          "distinct_count": 5,
+          "null_count": 0,
+          "row_count": 5,
+          "non_null_ratio": 1.0,
+          "top_distinct_values": [
+            {
+              "value": "http://trellis.semanticweb.org/expect/web/semanticweb/iswc02_trellis.pdf#Trusting Information Sources One Citizen at a Time",
+              "count": 1
+            },
+            {
+              "value": "http://www-uk.hpl.hp.com/people/afs/Abstracts/ISWC2002-SquishQL-Abstract.html#SquishQL",
+              "count": 1
+            },
+            {
+              "value": "http://www.cs.vu.nl/~borys/papers/abstracts/ISWC2002.html#OmelayenkoISWC2002",
+              "count": 1
+            },
+            {
+              "value": "http://www.dbgroup.unimo.it/iswc/iswc.html#A Data Integration Framework for E-commerce Product Classification",
+              "count": 1
+            },
+            {
+              "value": "http://www.i-u.de/schools/eberhart/iswc2002/#Automatic Generation of Java/SQL based Inference Engines from RDF Schema and RuleML",
+              "count": 1
+            }
+          ]
+        },
+        {
+          "source": "schema_sql_dump",
+          "table": "papers",
+          "column": "year",
+          "sample_values": [
+            2002,
+            2002,
+            2003,
+            2002,
+            2003
+          ],
+          "distinct_count": 2,
+          "null_count": 0,
+          "row_count": 5,
+          "non_null_ratio": 1.0,
+          "top_distinct_values": [
+            {
+              "value": 2002,
+              "count": 3
+            },
+            {
+              "value": 2003,
+              "count": 2
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "decision_standards": [
+    "Inspect all columns in the current local revision scope, not only pre-flagged columns.",
+    "Use a class-level condition when a column behaves as a row-selection signal for class membership rather than as an ordinary semantic attribute.",
+    "Binary, status-like, publication-state-like, and flag-like columns require explicit review as possible class filters.",
+    "Do not dismiss a binary/status column as an ordinary attribute without explicitly explaining why it is not a class filter.",
+    "Do not convert ordinary descriptive attributes such as title, abstract, name, location, year, or free-text description into class-level conditions unless there is strong evidence.",
+    "If a candidate filter column partitions rows into a semantically meaningful subset, prefer revising the class mapping over leaving the class scope over-broad.",
+    "If evidence is weak, keep class_mappings.condition as [] and record the uncertainty in remaining_ambiguities or needs_probe.",
+    "Use uri_pattern only when there is a stable row identity suitable for global resource construction.",
+    "Use bnode when the mapped object is better modeled as a local structural/value object than as a globally identified entity.",
+    "A URI-like literal column may remain a data property with datatype xsd:anyURI if no entity-to-entity relation is justified.",
+    "If revising a class mapping changes class scope or identity strategy, revise affected attributes and relations if necessary.",
+    "Prefer local, minimal revisions over regenerating the entire draft.",
+    "Output a revision patch, not a full regenerated draft."
+  ],
+  "strict_revision_patch_schema": {
+    "work_unit": {
+      "table": "string",
+      "related_tables": [
+        "string"
+      ]
+    },
+    "proposed_additions": {
+      "classes": [],
+      "data_properties": [],
+      "object_properties": [],
+      "subclass_relations": [],
+      "class_mappings": [],
+      "data_property_mappings": [],
+      "object_property_mappings": []
+    },
+    "proposed_revisions": {
+      "classes": [
+        {
+          "target_id": "Class:Example",
+          "updated_fields": {
+            "description": "..."
+          }
+        }
+      ],
+      "data_properties": [],
+      "object_properties": [],
+      "subclass_relations": [],
+      "class_mappings": [
+        {
+          "target_id": "Paper_from_papers",
+          "updated_fields": {
+            "condition": [
+              "papers.publish = 1"
+            ]
+          }
+        }
+      ],
+      "data_property_mappings": [],
+      "object_property_mappings": []
+    },
+    "proposed_rejections": [],
+    "proposed_merges": [],
+    "decision_summary": [
+      {
+        "decision_type": "REV-CONDITION",
+        "target": "Paper_from_papers",
+        "status": "accepted",
+        "confidence": 0.85,
+        "reason": "..."
+      }
+    ],
+    "remaining_ambiguities": [],
+    "needs_probe": [
+      {
+        "probe_type": "value_sample",
+        "target": "papers.publish",
+        "question": "..."
+      }
+    ]
+  },
+  "column_role_review": [
+    {
+      "column": "papers.PaperID",
+      "candidate_roles": [
+        "ordinary_attribute",
+        "relation_key"
+      ],
+      "must_decide": true
+    },
+    {
+      "column": "papers.Title",
+      "candidate_roles": [
+        "ordinary_attribute"
+      ],
+      "must_decide": true
+    },
+    {
+      "column": "papers.Abstract",
+      "candidate_roles": [
+        "ordinary_attribute"
+      ],
+      "must_decide": true
+    },
+    {
+      "column": "papers.URI",
+      "candidate_roles": [
+        "ordinary_attribute",
+        "possible_relation_indicator"
+      ],
+      "must_decide": true
+    },
+    {
+      "column": "papers.Year",
+      "candidate_roles": [
+        "ordinary_attribute"
+      ],
+      "must_decide": true
+    },
+    {
+      "column": "papers.Conference",
+      "candidate_roles": [
+        "ordinary_attribute",
+        "relation_key"
+      ],
+      "must_decide": true
+    },
+    {
+      "column": "papers.Publish",
+      "candidate_roles": [
+        "ordinary_attribute",
+        "class_filter",
+        "status_attribute"
+      ],
+      "must_decide": true
+    }
+  ],
+  "hard_rules": [
+    "This is a revision pass, not a full regeneration pass.",
+    "Prefer proposed_revisions over proposed_additions unless genuinely new ontology objects are necessary.",
+    "Inspect all columns in the current local scope; do not rely only on pre-flagged columns.",
+    "If no justified revision is needed, return empty proposed_revisions for that section.",
+    "Do not invent unsupported conditions.",
+    "If uncertain, keep condition as [] and use remaining_ambiguities or needs_probe.",
+    "If revising a class mapping changes class scope or identity strategy, revise affected attributes and relations if necessary.",
+    "Return valid JSON only.",
+    "For every plausibly filter-like column in column_role_review, explicitly justify in decision_summary whether it is treated as a class filter, a status attribute, or an ordinary attribute.",
+    "Do not treat a column as a foreign key unless the schema or evidence explicitly supports that interpretation."
+  ]
+}

@@ -1,0 +1,47 @@
+{
+    "classes": [
+        {
+            "id": "@@encompasses.continent@@/@@encompasses.country@@",
+            "class": "Encompassed",
+            "prefix": "mondial"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "encompassedBy",
+            "belongsToClass": "Encompassed",
+            "refersToClass": "Continent",
+            "join": [
+                "encompasses.continent = continent.name"
+            ],
+            "inverseOf": "encompassesInfo"
+        },
+        {
+            "property": "encompassedArea",
+            "belongsToClass": "Encompassed",
+            "refersToClassMap": "CountryFull",
+            "join": [
+                "encompasses.country = country.code"
+            ],
+            "inverseOf": "encompassedByInfo"
+        },
+        {
+            "property": "encompassed",
+            "belongsToClassMap": "CountryFull",
+            "refersToClass": "Continent",
+            "join": [
+                "continent.name = encompasses.continent",
+                "country.code = encompasses.country"
+            ],
+            "inverseOf": "encompasses"
+        }
+    ],
+    "data_properties": [
+        {
+            "property": "percent",
+            "belongsToClass": "Encompassed",
+            "type": "decimal",
+            "column": "encompasses.percentage"
+        }
+    ]
+}

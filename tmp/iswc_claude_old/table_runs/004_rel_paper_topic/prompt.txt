@@ -1,0 +1,370 @@
+[SYSTEM]
+You are an ontology learning assistant for relational databases.
+
+You must output ONLY a JSON patch that follows the strict patch schema.
+Your output is machine-consumed. Schema drift is a serious error.
+
+
+[USER]
+You are given a newly added table in an incremental ontology learning process.
+
+        ## Current task
+        Update the current global ontology/mapping draft based on the new table.
+
+        ## New table incremental context
+        {
+  "step_index": 4,
+  "new_table": "rel_paper_topic",
+  "related_existing_tables": [],
+  "local_table": {
+    "name": "rel_paper_topic",
+    "columns": [
+      {
+        "name": "PaperID",
+        "type": "int",
+        "raw": "PaperID int NOT NULL default '0'",
+        "is_primary_key": true
+      },
+      {
+        "name": "TopicID",
+        "type": "int",
+        "raw": "TopicID int NOT NULL default '0'",
+        "is_primary_key": true
+      },
+      {
+        "name": "RelationType",
+        "type": "int",
+        "raw": "RelationType int default NULL",
+        "is_primary_key": false
+      }
+    ],
+    "fks": []
+  },
+  "local_fk_edges": [],
+  "related_table_defs": {},
+  "multi_table_signals": {
+    "many_fk_targets": false,
+    "connector_like": false,
+    "association_class_likelihood": false,
+    "address_like_bundle": [],
+    "requires_multi_table_reasoning": false
+  },
+  "suggested_analysis_scope": {
+    "recommended_tables_for_joint_analysis": [
+      "rel_paper_topic"
+    ],
+    "reason": []
+  }
+}
+
+        ## Current draft view
+        {
+  "global_summary": {
+    "num_classes": 5,
+    "num_data_properties": 26,
+    "num_object_properties": 3,
+    "accepted_classes": [
+      "Class:Conference",
+      "Class:Organization",
+      "Class:Address",
+      "Class:Paper",
+      "Class:Person"
+    ],
+    "accepted_data_properties": [
+      "DataProperty:hasConferenceName",
+      "DataProperty:hasConferenceURI",
+      "DataProperty:hasConferenceDate",
+      "DataProperty:hasConferenceLocation",
+      "DataProperty:hasConferenceDatum",
+      "DataProperty:hasOrganizationType",
+      "DataProperty:hasOrganizationName",
+      "DataProperty:hasOrganizationURI",
+      "DataProperty:hasOrganizationHomepage",
+      "DataProperty:hasAddressStreet",
+      "DataProperty:hasAddressLocation",
+      "DataProperty:hasAddressPostcode",
+      "DataProperty:hasAddressCountry",
+      "DataProperty:hasPaperTitle",
+      "DataProperty:hasPaperAbstract",
+      "DataProperty:hasPaperURI",
+      "DataProperty:hasPaperYear",
+      "DataProperty:hasPersonType",
+      "DataProperty:hasFirstName",
+      "DataProperty:hasLastName"
+    ],
+    "accepted_object_properties": [
+      "ObjectProperty:hasAddress",
+      "ObjectProperty:belongsToOrganization",
+      "ObjectProperty:paperPublishedInConference"
+    ],
+    "processed_tables": [
+      "conferences",
+      "organizations",
+      "papers",
+      "persons"
+    ],
+    "draft_version": 4
+  },
+  "relevant_draft_slice": {
+    "classes": [
+      {
+        "id": "Class:Paper",
+        "label": "Paper",
+        "source_tables": [
+          "papers"
+        ],
+        "status": "proposed"
+      }
+    ],
+    "data_properties": [],
+    "object_properties": [],
+    "class_mappings": [
+      {
+        "class_id": "Class:Paper",
+        "mapping_id": "Paper_from_papers",
+        "from_tables": [
+          "papers"
+        ],
+        "identifier_kind": "uri_pattern",
+        "identifier_columns": [
+          "papers.paperid"
+        ],
+        "instance_id_template": "papers/@@papers.PaperID@@"
+      }
+    ],
+    "data_property_mappings": [],
+    "object_property_mappings": [
+      {
+        "object_property_id": "ObjectProperty:paperPublishedInConference",
+        "mapping_id": "paperPublishedInConference_from_Conference",
+        "from_class": "Class:Paper",
+        "to_class": "Class:Conference",
+        "from_tables": [
+          "papers"
+        ],
+        "join_paths": [
+          [
+            "papers.conference",
+            "=",
+            "conferences.confid"
+          ]
+        ],
+        "target_type": "entity"
+      }
+    ]
+  },
+  "related_rejected_candidates": [],
+  "related_open_issues": [],
+  "update_focus": {
+    "new_table": "rel_paper_topic",
+    "related_existing_tables": [],
+    "requires_multi_table_reasoning": false,
+    "analysis_reasons": [],
+    "recommended_tables_for_joint_analysis": [
+      "rel_paper_topic"
+    ]
+  }
+}
+
+        ## Local decision reminders
+        - Represent stable entities as classes.
+- Use fully-qualified table.column references in mappings.
+- Use data properties for literal and URI-valued columns unless there is clear entity-to-entity evidence.
+- Only add object properties for real relations with grounded joins.
+- Do not expose identifier support columns as ontology properties unless semantically justified.
+
+        ## STRICT OUTPUT RULES
+
+Use the EXACT field names shown in STRICT_PATCH_SCHEMA.
+Do NOT rename fields.
+Do NOT introduce aliases.
+Do NOT output ontology_class, ontology_class_id, ontology_property, ontology_property_id,
+class_mapping, class_mapping_id, source_column, database_column, source_table/database_table
+variants outside the exact schema below.
+Do NOT output extras, payload, metadata, wrapper objects, or nested containers unless they
+appear in the strict schema.
+Do NOT output plain strings in decision_summary. decision_summary MUST be a list of objects.
+If a section is empty, output [] for that section. Never omit a section. Never output null.
+All identifiers must already use the internal canonical prefixes:
+- class ids: Class:...
+- data properties: DataProperty:...
+- object properties: ObjectProperty:...
+Use fully-qualified table.column format everywhere in mappings and joins.
+For identifier_kind, only use one of:
+- uri_pattern
+- uri_column
+- bnode
+For target_type in object_property_mappings, only use one of:
+- entity
+- resource
+Default rule for URI-like database columns:
+- If the column is just a stored URI value and NOT evidence of a relation to another ontology class,
+  model it as a data property with datatype xsd:anyURI.
+- Only use object_property_mappings when there is clear evidence of an entity-to-entity relation.
+
+
+        ## STRICT PATCH SCHEMA
+        {
+  "work_unit": {
+    "table": "string",
+    "related_tables": [
+      "string"
+    ]
+  },
+  "proposed_additions": {
+    "classes": [
+      {
+        "id": "Class:Conference",
+        "label": "Conference",
+        "description": "string",
+        "source_tables": [
+          "conferences"
+        ],
+        "identifier_columns": [
+          "conferences.confid"
+        ]
+      }
+    ],
+    "data_properties": [
+      {
+        "id": "DataProperty:hasConferenceName",
+        "label": "has conference name",
+        "domain": "Class:Conference",
+        "datatype": "xsd:string",
+        "description": "string"
+      }
+    ],
+    "object_properties": [
+      {
+        "id": "ObjectProperty:paperPublishedInConference",
+        "label": "paper published in conference",
+        "domain": "Class:Paper",
+        "range": "Class:Conference",
+        "description": "string"
+      }
+    ],
+    "subclass_relations": [
+      {
+        "id": "Subclass:Child_to_Parent",
+        "child_class": "Class:Child",
+        "parent_class": "Class:Parent"
+      }
+    ],
+    "class_mappings": [
+      {
+        "mapping_id": "Conference_from_conferences",
+        "class_id": "Class:Conference",
+        "from_tables": [
+          "conferences"
+        ],
+        "identifier_kind": "uri_pattern",
+        "identifier_columns": [
+          "conferences.confid"
+        ],
+        "instance_id_template": "conferences/@@conferences.confid@@",
+        "bnode_id_columns": []
+      }
+    ],
+    "data_property_mappings": [
+      {
+        "mapping_id": "hasConferenceName_from_Name",
+        "data_property_id": "DataProperty:hasConferenceName",
+        "applies_to_class": "Class:Conference",
+        "source_table": "conferences",
+        "source_columns": [
+          "conferences.name"
+        ],
+        "value_kind": "column",
+        "value_template": "",
+        "sql_expression": "",
+        "constant_value": "",
+        "datatype": "xsd:string",
+        "join_paths": [],
+        "condition": []
+      }
+    ],
+    "object_property_mappings": [
+      {
+        "mapping_id": "paperPublishedInConference_from_Conference",
+        "object_property_id": "ObjectProperty:paperPublishedInConference",
+        "from_class": "Class:Paper",
+        "to_class": "Class:Conference",
+        "from_tables": [
+          "papers"
+        ],
+        "source_identifier_columns": [
+          "papers.paperid"
+        ],
+        "target_identifier_columns": [
+          "conferences.confid"
+        ],
+        "join_paths": [
+          [
+            "papers.conference",
+            "=",
+            "conferences.confid"
+          ]
+        ],
+        "condition": [],
+        "target_type": "entity"
+      }
+    ]
+  },
+  "proposed_revisions": {
+    "classes": [],
+    "data_properties": [],
+    "object_properties": [],
+    "subclass_relations": [],
+    "class_mappings": [],
+    "data_property_mappings": [],
+    "object_property_mappings": []
+  },
+  "proposed_rejections": [],
+  "proposed_merges": [],
+  "decision_summary": [
+    {
+      "decision_type": "C-ENTITY",
+      "target": "Class:Conference",
+      "status": "accepted",
+      "confidence": 0.95,
+      "reason": "string"
+    }
+  ],
+  "remaining_ambiguities": [
+    "string"
+  ],
+  "needs_probe": [
+    {
+      "probe_type": "value_sample",
+      "target": "conferences.date",
+      "question": "string"
+    }
+  ]
+}
+
+        ## EXAMPLES
+
+Correct class mapping example:
+{
+  "mapping_id": "Conference_from_conferences",
+  "class_id": "Class:Conference",
+  "from_tables": ["conferences"],
+  "identifier_kind": "uri_pattern",
+  "identifier_columns": ["conferences.confid"],
+  "instance_id_template": "http://example.org/conference/{ConfID}",
+  "bnode_id_columns": []
+}
+
+Wrong examples that must NOT appear:
+- {"id": "Conference_from_conferences", "ontology_class": "Conference", "source_table": "conferences", ...}
+- {"ontology_class_id": "Conference", "database_table": "conferences", ...}
+- {"ontology_property": "hasConferenceName", "source_column": "Name", ...}
+- {"ontology_property_id": "hasConferenceName", "database_column": "conferences.Name", ...}
+- ["Created Conference class ...", "Used uriPattern ..."] as decision_summary
+
+
+        ## Additional instructions
+        - Return JSON only.
+        - Do NOT add commentary outside JSON.
+        - Keep unchanged sections empty.
+        - If evidence is weak, record it in remaining_ambiguities or needs_probe.

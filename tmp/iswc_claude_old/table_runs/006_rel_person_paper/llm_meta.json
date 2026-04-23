@@ -1,0 +1,46 @@
+{
+  "model": "claude-haiku-4-5",
+  "api_url": "https://www.aiapikey.net/v1/chat/completions",
+  "timeout": 300.0,
+  "max_retries": 2,
+  "attempts": [
+    {
+      "attempt": 1,
+      "status": "ok",
+      "status_code": 200,
+      "response_headers": {
+        "date": "Wed, 22 Apr 2026 10:55:09 GMT",
+        "content-type": "text/event-stream",
+        "transfer-encoding": "chunked",
+        "connection": "keep-alive",
+        "server": "cloudflare",
+        "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+        "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=JU4bfc%2B%2BSjvDfU1wH8QaQgTI6F3vHPDdG97XXF%2BFHxBkjRBeq9hvlByuMzUpL%2BTF4twE67uHVvxAbZnuynwv8jJe%2F9g0yGMqljKiG7VrbxSu8x6G%2FqIxYWUQL9VYHr18xljE\"}]}",
+        "cache-control": "no-cache",
+        "x-new-api-version": "v0.12.2",
+        "x-oneapi-request-id": "202604221055078927258337tSEs05n",
+        "cf-cache-status": "DYNAMIC",
+        "cf-ray": "9f0418296f46fd17-SIN",
+        "alt-svc": "h3=\":443\"; ma=86400"
+      },
+      "raw_content_preview": "```json\n{\n  \"work_unit\": {\n    \"table\": \"rel_person_paper\",\n    \"related_tables\": []\n  },\n  \"proposed_additions\": {\n    \"classes\": [],\n    \"data_properties\": [],\n    \"object_properties\": [\n      {\n        \"id\": \"ObjectProperty:authoredPaper\",\n        \"label\": \"authored paper\",\n        \"domain\": \"Class:Person\",\n        \"range\": \"Class:Paper\",\n        \"description\": \"Relation indicating that a person is an author of a paper\"\n      }\n    ],\n    \"subclass_relations\": [],\n    \"class_mappings\": [],\n    \"data_property_mappings\": [],\n    \"object_property_mappings\": [\n      {\n        \"mapping_id\": \"authoredPaper_from_rel_person_paper\",\n        \"object_property_id\": \"ObjectProperty:authoredPaper\",\n        \"from_class\": \"Class:Person\",\n        \"to_class\": \"Class:Paper\",\n        \"from_tables\": [\n          \"rel_person_paper\"\n        ],\n        \"source_identifier_columns\": [\n          \"rel_person_paper.PersonID\"\n        ],\n        \"target_identifier_columns\": [\n          \"rel_person_paper.PaperID\"\n        ],\n        \"join_paths\": [],\n        \"condition\": [],\n        \"target_type\": \"entity\"\n      }\n    ]\n  },\n  \"proposed_revisions\": {\n    \"classes\": [],\n    \"data_properties\": [],\n    \"object_properties\": [],\n    \"subclass_relations\": [],\n    \"class_mappings\": [],\n    \"data_property_mappings\": [],\n    \"object_property_mappings\": []\n  },\n  \"proposed_rejections\": [],\n  \"proposed_merges\": [],\n  \"decision_summary\": [\n    {\n      \"decision_type\": \"OP-RELATION\",\n      \"target\": \"ObjectProperty:authoredPaper\",\n      \"status\": \"accepted\",\n      \"confidence\": 0.95,\n      \"reason\": \"rel_person_paper is a junction table with composite primary key (PersonID, PaperID) establishing a many-to-many authorship relation between Person and Paper entities. No foreign key constraints are declared, but the semantic structure and naming convention strongly indicate this is an association table linking authors to their papers.\"\n    }\n  ],\n  \"remaining_ambiguities\": [\n    \"Foreign key constraints are not explicitly declared in rel_person_paper; relation inferred from table name and structure alone.\"\n  ],\n  \"needs_probe\": []\n}\n```"
+    }
+  ],
+  "status_code": 200,
+  "response_headers": {
+    "date": "Wed, 22 Apr 2026 10:55:09 GMT",
+    "content-type": "text/event-stream",
+    "transfer-encoding": "chunked",
+    "connection": "keep-alive",
+    "server": "cloudflare",
+    "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+    "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=JU4bfc%2B%2BSjvDfU1wH8QaQgTI6F3vHPDdG97XXF%2BFHxBkjRBeq9hvlByuMzUpL%2BTF4twE67uHVvxAbZnuynwv8jJe%2F9g0yGMqljKiG7VrbxSu8x6G%2FqIxYWUQL9VYHr18xljE\"}]}",
+    "cache-control": "no-cache",
+    "x-new-api-version": "v0.12.2",
+    "x-oneapi-request-id": "202604221055078927258337tSEs05n",
+    "cf-cache-status": "DYNAMIC",
+    "cf-ray": "9f0418296f46fd17-SIN",
+    "alt-svc": "h3=\":443\"; ma=86400"
+  },
+  "raw_content_preview": "```json\n{\n  \"work_unit\": {\n    \"table\": \"rel_person_paper\",\n    \"related_tables\": []\n  },\n  \"proposed_additions\": {\n    \"classes\": [],\n    \"data_properties\": [],\n    \"object_properties\": [\n      {\n        \"id\": \"ObjectProperty:authoredPaper\",\n        \"label\": \"authored paper\",\n        \"domain\": \"Class:Person\",\n        \"range\": \"Class:Paper\",\n        \"description\": \"Relation indicating that a person is an author of a paper\"\n      }\n    ],\n    \"subclass_relations\": [],\n    \"class_mappings\": [],\n    \"data_property_mappings\": [],\n    \"object_property_mappings\": [\n      {\n        \"mapping_id\": \"authoredPaper_from_rel_person_paper\",\n        \"object_property_id\": \"ObjectProperty:authoredPaper\",\n        \"from_class\": \"Class:Person\",\n        \"to_class\": \"Class:Paper\",\n        \"from_tables\": [\n          \"rel_person_paper\"\n        ],\n        \"source_identifier_columns\": [\n          \"rel_person_paper.PersonID\"\n        ],\n        \"target_identifier_columns\": [\n          \"rel_person_paper.PaperID\"\n        ],\n        \"join_paths\": [],\n        \"condition\": [],\n        \"target_type\": \"entity\"\n      }\n    ]\n  },\n  \"proposed_revisions\": {\n    \"classes\": [],\n    \"data_properties\": [],\n    \"object_properties\": [],\n    \"subclass_relations\": [],\n    \"class_mappings\": [],\n    \"data_property_mappings\": [],\n    \"object_property_mappings\": []\n  },\n  \"proposed_rejections\": [],\n  \"proposed_merges\": [],\n  \"decision_summary\": [\n    {\n      \"decision_type\": \"OP-RELATION\",\n      \"target\": \"ObjectProperty:authoredPaper\",\n      \"status\": \"accepted\",\n      \"confidence\": 0.95,\n      \"reason\": \"rel_person_paper is a junction table with composite primary key (PersonID, PaperID) establishing a many-to-many authorship relation between Person and Paper entities. No foreign key constraints are declared, but the semantic structure and naming convention strongly indicate this is an association table linking authors to their papers.\"\n    }\n  ],\n  \"remaining_ambiguities\": [\n    \"Foreign key constraints are not explicitly declared in rel_person_paper; relation inferred from table name and structure alone.\"\n  ],\n  \"needs_probe\": []\n}\n```"
+}

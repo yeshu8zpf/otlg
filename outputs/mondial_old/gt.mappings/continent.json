@@ -1,0 +1,24 @@
+{
+    "classes": [
+        {
+            "id": "@@continent.name@@",
+            "class": "Continent",
+            "prefix": "mondial"
+        }
+    ],
+    "object_properties": [],
+    "data_properties": [
+        {
+            "property": "name",
+            "belongsToClass": "Continent",
+            "type": "string",
+            "column": "continent.name"
+        },
+        {
+            "property": "area",
+            "belongsToClass": "Continent",
+            "type": "decimal",
+            "column": "continent.area"
+        }
+    ]
+}

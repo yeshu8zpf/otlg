@@ -1,0 +1,221 @@
+{
+  "classes": [
+    {
+      "id": "Class:Paper",
+      "label": "Paper",
+      "description": "A scholarly paper or research publication",
+      "status": "proposed",
+      "confidence": null,
+      "source_tables": [
+        "papers"
+      ],
+      "identifier_columns": [
+        "papers.paperid"
+      ]
+    }
+  ],
+  "data_properties": [
+    {
+      "id": "DataProperty:hasTitle",
+      "label": "has title",
+      "domain": "Class:Paper",
+      "datatype": "xsd:string",
+      "description": "The title of the paper",
+      "status": "proposed",
+      "confidence": null,
+      "source_tables": [],
+      "source_columns": []
+    },
+    {
+      "id": "DataProperty:hasAbstract",
+      "label": "has abstract",
+      "domain": "Class:Paper",
+      "datatype": "xsd:string",
+      "description": "The abstract or summary of the paper",
+      "status": "proposed",
+      "confidence": null,
+      "source_tables": [],
+      "source_columns": []
+    },
+    {
+      "id": "DataProperty:hasURI",
+      "label": "has URI",
+      "domain": "Class:Paper",
+      "datatype": "xsd:anyURI",
+      "description": "The URI or URL reference for the paper",
+      "status": "proposed",
+      "confidence": null,
+      "source_tables": [],
+      "source_columns": []
+    },
+    {
+      "id": "DataProperty:hasPublicationYear",
+      "label": "has publication year",
+      "domain": "Class:Paper",
+      "datatype": "xsd:int",
+      "description": "The year the paper was published",
+      "status": "proposed",
+      "confidence": null,
+      "source_tables": [],
+      "source_columns": []
+    }
+  ],
+  "object_properties": [],
+  "subclass_relations": [],
+  "class_mappings": [
+    {
+      "mapping_id": "Paper_from_papers",
+      "class_id": "Class:Paper",
+      "from_tables": [
+        "papers"
+      ],
+      "identifier_kind": "uri_pattern",
+      "identifier_columns": [
+        "papers.paperid"
+      ],
+      "instance_id_template": "papers/@@papers.PaperID@@",
+      "bnode_id_columns": [],
+      "status": "proposed",
+      "confidence": null,
+      "description": ""
+    }
+  ],
+  "data_property_mappings": [
+    {
+      "mapping_id": "hasTitle_from_Title",
+      "data_property_id": "DataProperty:hasTitle",
+      "applies_to_class": "Class:Paper",
+      "source_table": "papers",
+      "source_columns": [
+        "papers.title"
+      ],
+      "value_kind": "column",
+      "value_template": "",
+      "sql_expression": "",
+      "constant_value": "",
+      "datatype": "xsd:string",
+      "join_paths": [],
+      "condition": []
+    },
+    {
+      "mapping_id": "hasAbstract_from_Abstract",
+      "data_property_id": "DataProperty:hasAbstract",
+      "applies_to_class": "Class:Paper",
+      "source_table": "papers",
+      "source_columns": [
+        "papers.abstract"
+      ],
+      "value_kind": "column",
+      "value_template": "",
+      "sql_expression": "",
+      "constant_value": "",
+      "datatype": "xsd:string",
+      "join_paths": [],
+      "condition": []
+    },
+    {
+      "mapping_id": "hasURI_from_URI",
+      "data_property_id": "DataProperty:hasURI",
+      "applies_to_class": "Class:Paper",
+      "source_table": "papers",
+      "source_columns": [
+        "papers.uri"
+      ],
+      "value_kind": "column",
+      "value_template": "",
+      "sql_expression": "",
+      "constant_value": "",
+      "datatype": "xsd:anyURI",
+      "join_paths": [],
+      "condition": []
+    },
+    {
+      "mapping_id": "hasPublicationYear_from_Year",
+      "data_property_id": "DataProperty:hasPublicationYear",
+      "applies_to_class": "Class:Paper",
+      "source_table": "papers",
+      "source_columns": [
+        "papers.year"
+      ],
+      "value_kind": "column",
+      "value_template": "",
+      "sql_expression": "",
+      "constant_value": "",
+      "datatype": "xsd:int",
+      "join_paths": [],
+      "condition": []
+    }
+  ],
+  "object_property_mappings": [],
+  "draft_metadata": {
+    "processed_tables": [
+      "papers"
+    ],
+    "table_history": [
+      {
+        "table": "papers",
+        "action": "updated",
+        "version": 1
+      },
+      {
+        "table": "papers",
+        "action": "updated",
+        "version": 2
+      }
+    ],
+    "draft_version": 2
+  },
+  "rejected_candidates": [],
+  "open_issues": [
+    {
+      "issue_type": "remaining_ambiguity",
+      "related_table": "papers",
+      "description": "Conference and Publish columns are foreign keys but target tables not yet processed; object properties will be added when related tables are analyzed"
+    },
+    {
+      "issue_type": "needs_probe",
+      "related_table": "papers",
+      "description": "What is the target table and primary key for the Conference foreign key?",
+      "payload": {
+        "probe_type": "schema_dependency",
+        "target": "papers.conference",
+        "question": "What is the target table and primary key for the Conference foreign key?"
+      }
+    },
+    {
+      "issue_type": "needs_probe",
+      "related_table": "papers",
+      "description": "What is the target table and primary key for the Publish foreign key?",
+      "payload": {
+        "probe_type": "schema_dependency",
+        "target": "papers.publish",
+        "question": "What is the target table and primary key for the Publish foreign key?"
+      }
+    },
+    {
+      "issue_type": "remaining_ambiguity",
+      "related_table": "papers",
+      "description": "{'issue_type': 'deferred_relation', 'related_column': 'papers.Conference', 'description': 'Conference column is likely foreign key; target table and primary key unknown; object property mapping deferred until conferences table is processed'}"
+    },
+    {
+      "issue_type": "needs_probe",
+      "related_table": "papers",
+      "description": "What is the target table and primary key for the Conference foreign key?",
+      "payload": {
+        "probe_type": "schema_dependency",
+        "target": "papers.conference",
+        "question": "What is the target table and primary key for the Conference foreign key?"
+      }
+    },
+    {
+      "issue_type": "needs_probe",
+      "related_table": "papers",
+      "description": "Confirm: does Publish = 1 indicate published papers and Publish = 0 indicate unpublished/draft papers?",
+      "payload": {
+        "probe_type": "schema_dependency",
+        "target": "papers.publish",
+        "question": "Confirm: does Publish = 1 indicate published papers and Publish = 0 indicate unpublished/draft papers?"
+      }
+    }
+  ]
+}

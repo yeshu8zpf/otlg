@@ -1,0 +1,1591 @@
+{
+  "classes": [
+    {
+      "id": "Class:Conference",
+      "label": "Conference",
+      "description": "A conference event with metadata including name, URI, date, and location.",
+      "status": "proposed",
+      "confidence": null,
+      "source_tables": [
+        "conferences"
+      ],
+      "identifier_columns": [
+        "conferences.confid"
+      ]
+    },
+    {
+      "id": "Class:Organization",
+      "label": "Organization",
+      "description": "An organization entity with type, contact information, and hierarchical affiliation.",
+      "status": "proposed",
+      "confidence": null,
+      "source_tables": [
+        "organizations"
+      ],
+      "identifier_columns": [
+        "organizations.orgid"
+      ]
+    },
+    {
+      "id": "Class:Address",
+      "label": "Address",
+      "description": "A structured address value object bundling location, postcode, and country.",
+      "status": "proposed",
+      "confidence": null,
+      "source_tables": [
+        "organizations"
+      ],
+      "identifier_columns": []
+    },
+    {
+      "id": "Class:Paper",
+      "label": "Paper",
+      "description": "Academic paper with metadata including title, abstract, publication year, and conference/publisher associations.",
+      "status": "proposed",
+      "confidence": null,
+      "source_tables": [
+        "papers"
+      ],
+      "identifier_columns": [
+        "papers.paperid"
+      ]
+    },
+    {
+      "id": "Class:Person",
+      "label": "Person",
+      "description": "A person entity with contact information, web presence, and optional type classification.",
+      "status": "proposed",
+      "confidence": null,
+      "source_tables": [
+        "persons"
+      ],
+      "identifier_columns": [
+        "persons.perid"
+      ]
+    },
+    {
+      "id": "Class:Topic",
+      "label": "Topic",
+      "description": "A research topic or subject area associated with papers",
+      "status": "proposed",
+      "confidence": null,
+      "source_tables": [
+        "rel_paper_topic",
+        "topics"
+      ],
+      "identifier_columns": [
+        "rel_paper_topic.topicid",
+        "topics.topicid"
+      ]
+    }
+  ],
+  "data_properties": [
+    {
+      "id": "DataProperty:hasConferenceName",
+      "label": "has conference name",
+      "domain": "Class:Conference",
+      "datatype": "xsd:string",
+      "description": "The name of the conference.",
+      "status": "proposed",
+      "confidence": null,
+      "source_tables": [],
+      "source_columns": []
+    },
+    {
+      "id": "DataProperty:hasConferenceURI",
+      "label": "has conference URI",
+      "domain": "Class:Conference",
+      "datatype": "xsd:anyURI",
+      "description": "The URI identifier for the conference.",
+      "status": "proposed",
+      "confidence": null,
+      "source_tables": [],
+      "source_columns": []
+    },
+    {
+      "id": "DataProperty:hasConferenceDate",
+      "label": "has conference date",
+      "domain": "Class:Conference",
+      "datatype": "xsd:string",
+      "description": "The date of the conference in string format.",
+      "status": "proposed",
+      "confidence": null,
+      "source_tables": [],
+      "source_columns": []
+    },
+    {
+      "id": "DataProperty:hasConferenceLocation",
+      "label": "has conference location",
+      "domain": "Class:Conference",
+      "datatype": "xsd:string",
+      "description": "The location of the conference.",
+      "status": "proposed",
+      "confidence": null,
+      "source_tables": [],
+      "source_columns": []
+    },
+    {
+      "id": "DataProperty:hasConferenceDatum",
+      "label": "has conference datum",
+      "domain": "Class:Conference",
+      "datatype": "xsd:dateTime",
+      "description": "The timestamp of the conference record.",
+      "status": "proposed",
+      "confidence": null,
+      "source_tables": [],
+      "source_columns": []
+    },
+    {
+      "id": "DataProperty:hasOrganizationType",
+      "label": "has organization type",
+      "domain": "Class:Organization",
+      "datatype": "xsd:string",
+      "description": "The type or category of the organization.",
+      "status": "proposed",
+      "confidence": null,
+      "source_tables": [],
+      "source_columns": []
+    },
+    {
+      "id": "DataProperty:hasOrganizationName",
+      "label": "has organization name",
+      "domain": "Class:Organization",
+      "datatype": "xsd:string",
+      "description": "The name of the organization.",
+      "status": "proposed",
+      "confidence": null,
+      "source_tables": [],
+      "source_columns": []
+    },
+    {
+      "id": "DataProperty:hasOrganizationURI",
+      "label": "has organization URI",
+      "domain": "Class:Organization",
+      "datatype": "xsd:anyURI",
+      "description": "A URI identifier or reference for the organization.",
+      "status": "proposed",
+      "confidence": null,
+      "source_tables": [],
+      "source_columns": []
+    },
+    {
+      "id": "DataProperty:hasOrganizationHomepage",
+      "label": "has organization homepage",
+      "domain": "Class:Organization",
+      "datatype": "xsd:anyURI",
+      "description": "The homepage URL of the organization.",
+      "status": "proposed",
+      "confidence": null,
+      "source_tables": [],
+      "source_columns": []
+    },
+    {
+      "id": "DataProperty:hasAddressStreet",
+      "label": "has address street",
+      "domain": "Class:Address",
+      "datatype": "xsd:string",
+      "description": "The street address.",
+      "status": "proposed",
+      "confidence": null,
+      "source_tables": [],
+      "source_columns": []
+    },
+    {
+      "id": "DataProperty:hasAddressLocation",
+      "label": "has address location",
+      "domain": "Class:Address",
+      "datatype": "xsd:string",
+      "description": "The city or locality.",
+      "status": "proposed",
+      "confidence": null,
+      "source_tables": [],
+      "source_columns": []
+    },
+    {
+      "id": "DataProperty:hasAddressPostcode",
+      "label": "has address postcode",
+      "domain": "Class:Address",
+      "datatype": "xsd:string",
+      "description": "The postal code.",
+      "status": "proposed",
+      "confidence": null,
+      "source_tables": [],
+      "source_columns": []
+    },
+    {
+      "id": "DataProperty:hasAddressCountry",
+      "label": "has address country",
+      "domain": "Class:Address",
+      "datatype": "xsd:string",
+      "description": "The country.",
+      "status": "proposed",
+      "confidence": null,
+      "source_tables": [],
+      "source_columns": []
+    },
+    {
+      "id": "DataProperty:hasPaperTitle",
+      "label": "has paper title",
+      "domain": "Class:Paper",
+      "datatype": "xsd:string",
+      "description": "Title of the academic paper.",
+      "status": "proposed",
+      "confidence": null,
+      "source_tables": [],
+      "source_columns": []
+    },
+    {
+      "id": "DataProperty:hasPaperAbstract",
+      "label": "has paper abstract",
+      "domain": "Class:Paper",
+      "datatype": "xsd:string",
+      "description": "Abstract or summary of the paper content.",
+      "status": "proposed",
+      "confidence": null,
+      "source_tables": [],
+      "source_columns": []
+    },
+    {
+      "id": "DataProperty:hasPaperURI",
+      "label": "has paper URI",
+      "domain": "Class:Paper",
+      "datatype": "xsd:anyURI",
+      "description": "URI reference to the paper resource.",
+      "status": "proposed",
+      "confidence": null,
+      "source_tables": [],
+      "source_columns": []
+    },
+    {
+      "id": "DataProperty:hasPaperYear",
+      "label": "has paper year",
+      "domain": "Class:Paper",
+      "datatype": "xsd:int",
+      "description": "Publication year of the paper.",
+      "status": "proposed",
+      "confidence": null,
+      "source_tables": [],
+      "source_columns": []
+    },
+    {
+      "id": "DataProperty:hasPersonType",
+      "label": "has person type",
+      "domain": "Class:Person",
+      "datatype": "xsd:string",
+      "description": "Classification or role type of the person.",
+      "status": "proposed",
+      "confidence": null,
+      "source_tables": [],
+      "source_columns": []
+    },
+    {
+      "id": "DataProperty:hasFirstName",
+      "label": "has first name",
+      "domain": "Class:Person",
+      "datatype": "xsd:string",
+      "description": "Given name of the person.",
+      "status": "proposed",
+      "confidence": null,
+      "source_tables": [],
+      "source_columns": []
+    },
+    {
+      "id": "DataProperty:hasLastName",
+      "label": "has last name",
+      "domain": "Class:Person",
+      "datatype": "xsd:string",
+      "description": "Family name of the person.",
+      "status": "proposed",
+      "confidence": null,
+      "source_tables": [],
+      "source_columns": []
+    },
+    {
+      "id": "DataProperty:hasAddress",
+      "label": "has address",
+      "domain": "Class:Person",
+      "datatype": "xsd:string",
+      "description": "Postal address of the person.",
+      "status": "proposed",
+      "confidence": null,
+      "source_tables": [],
+      "source_columns": []
+    },
+    {
+      "id": "DataProperty:hasEmail",
+      "label": "has email",
+      "domain": "Class:Person",
+      "datatype": "xsd:string",
+      "description": "Email address of the person.",
+      "status": "proposed",
+      "confidence": null,
+      "source_tables": [],
+      "source_columns": []
+    },
+    {
+      "id": "DataProperty:hasHomepage",
+      "label": "has homepage",
+      "domain": "Class:Person",
+      "datatype": "xsd:anyURI",
+      "description": "Web homepage URL of the person.",
+      "status": "proposed",
+      "confidence": null,
+      "source_tables": [],
+      "source_columns": []
+    },
+    {
+      "id": "DataProperty:hasPhone",
+      "label": "has phone",
+      "domain": "Class:Person",
+      "datatype": "xsd:string",
+      "description": "Phone contact information for the person.",
+      "status": "proposed",
+      "confidence": null,
+      "source_tables": [],
+      "source_columns": []
+    },
+    {
+      "id": "DataProperty:hasURI",
+      "label": "has URI",
+      "domain": "Class:Person",
+      "datatype": "xsd:anyURI",
+      "description": "URI identifier or reference for the person.",
+      "status": "proposed",
+      "confidence": null,
+      "source_tables": [],
+      "source_columns": []
+    },
+    {
+      "id": "DataProperty:hasPhoto",
+      "label": "has photo",
+      "domain": "Class:Person",
+      "datatype": "xsd:anyURI",
+      "description": "URL or reference to a photo of the person.",
+      "status": "proposed",
+      "confidence": null,
+      "source_tables": [],
+      "source_columns": []
+    },
+    {
+      "id": "DataProperty:hasRelationType",
+      "label": "has relation type",
+      "domain": "Class:Paper",
+      "datatype": "xsd:int",
+      "description": "Numeric code indicating the type of relation between a paper and a topic",
+      "status": "proposed",
+      "confidence": null,
+      "source_tables": [],
+      "source_columns": []
+    },
+    {
+      "id": "DataProperty:hasTopicName",
+      "label": "has topic name",
+      "domain": "Class:Topic",
+      "datatype": "xsd:string",
+      "description": "The name or label of a topic",
+      "status": "proposed",
+      "confidence": null,
+      "source_tables": [],
+      "source_columns": []
+    },
+    {
+      "id": "DataProperty:hasTopicURI",
+      "label": "has topic URI",
+      "domain": "Class:Topic",
+      "datatype": "xsd:anyURI",
+      "description": "A URI reference for the topic, potentially linking to external resources",
+      "status": "proposed",
+      "confidence": null,
+      "source_tables": [],
+      "source_columns": []
+    }
+  ],
+  "object_properties": [
+    {
+      "id": "ObjectProperty:hasAddress",
+      "label": "has address",
+      "domain": "Class:Organization",
+      "range": "Class:Address",
+      "description": "Links an organization to its address information.",
+      "status": "proposed",
+      "confidence": null,
+      "source_tables": []
+    },
+    {
+      "id": "ObjectProperty:belongsToOrganization",
+      "label": "belongs to organization",
+      "domain": "Class:Organization",
+      "range": "Class:Organization",
+      "description": "Indicates hierarchical affiliation of one organization to another.",
+      "status": "proposed",
+      "confidence": null,
+      "source_tables": []
+    },
+    {
+      "id": "ObjectProperty:paperPublishedInConference",
+      "label": "paper published in conference",
+      "domain": "Class:Paper",
+      "range": "Class:Conference",
+      "description": "Relation indicating a paper was published in a specific conference.",
+      "status": "proposed",
+      "confidence": null,
+      "source_tables": []
+    },
+    {
+      "id": "ObjectProperty:paperCoversTopics",
+      "label": "paper covers topics",
+      "domain": "Class:Paper",
+      "range": "Class:Topic",
+      "description": "Relation indicating that a paper addresses or covers a particular research topic",
+      "status": "proposed",
+      "confidence": null,
+      "source_tables": []
+    },
+    {
+      "id": "ObjectProperty:worksForOrganization",
+      "label": "works for organization",
+      "domain": "Class:Person",
+      "range": "Class:Organization",
+      "description": "Relationship indicating that a person is affiliated with or works for an organization",
+      "status": "proposed",
+      "confidence": null,
+      "source_tables": []
+    },
+    {
+      "id": "ObjectProperty:authoredPaper",
+      "label": "authored paper",
+      "domain": "Class:Person",
+      "range": "Class:Paper",
+      "description": "Relation indicating that a person is an author of a paper",
+      "status": "proposed",
+      "confidence": null,
+      "source_tables": []
+    },
+    {
+      "id": "ObjectProperty:hasInterestInTopic",
+      "label": "has interest in topic",
+      "domain": "Class:Person",
+      "range": "Class:Topic",
+      "description": "Relation indicating a person's interest or expertise in a topic",
+      "status": "proposed",
+      "confidence": null,
+      "source_tables": []
+    },
+    {
+      "id": "ObjectProperty:hasParentTopic",
+      "label": "has parent topic",
+      "domain": "Class:Topic",
+      "range": "Class:Topic",
+      "description": "Hierarchical relationship indicating a topic's parent topic",
+      "status": "proposed",
+      "confidence": null,
+      "source_tables": []
+    }
+  ],
+  "subclass_relations": [],
+  "class_mappings": [
+    {
+      "mapping_id": "Conference_from_conferences",
+      "class_id": "Class:Conference",
+      "from_tables": [
+        "conferences"
+      ],
+      "identifier_kind": "uri_pattern",
+      "identifier_columns": [
+        "conferences.confid"
+      ],
+      "instance_id_template": "conferences/@@conferences.confid@@",
+      "bnode_id_columns": [],
+      "status": "proposed",
+      "confidence": null,
+      "description": ""
+    },
+    {
+      "mapping_id": "Organization_from_organizations",
+      "class_id": "Class:Organization",
+      "from_tables": [
+        "organizations"
+      ],
+      "identifier_kind": "uri_pattern",
+      "identifier_columns": [
+        "organizations.orgid"
+      ],
+      "instance_id_template": "organizations/@@organizations.OrgID@@",
+      "bnode_id_columns": [],
+      "status": "proposed",
+      "confidence": null,
+      "description": ""
+    },
+    {
+      "mapping_id": "Paper_from_papers",
+      "class_id": "Class:Paper",
+      "from_tables": [
+        "papers"
+      ],
+      "identifier_kind": "uri_pattern",
+      "identifier_columns": [
+        "papers.paperid"
+      ],
+      "instance_id_template": "papers/@@papers.PaperID@@",
+      "bnode_id_columns": [],
+      "status": "proposed",
+      "confidence": null,
+      "description": ""
+    },
+    {
+      "mapping_id": "Person_from_persons",
+      "class_id": "Class:Person",
+      "from_tables": [
+        "persons"
+      ],
+      "identifier_kind": "uri_pattern",
+      "identifier_columns": [
+        "persons.perid"
+      ],
+      "instance_id_template": "persons/@@persons.PerID@@",
+      "bnode_id_columns": [],
+      "status": "proposed",
+      "confidence": null,
+      "description": ""
+    },
+    {
+      "mapping_id": "Topic_from_rel_paper_topic",
+      "class_id": "Class:Topic",
+      "from_tables": [
+        "rel_paper_topic"
+      ],
+      "identifier_kind": "uri_pattern",
+      "identifier_columns": [
+        "rel_paper_topic.topicid"
+      ],
+      "instance_id_template": "topics/@@rel_paper_topic.TopicID@@",
+      "bnode_id_columns": [],
+      "status": "proposed",
+      "confidence": null,
+      "description": ""
+    },
+    {
+      "mapping_id": "Topic_from_topics",
+      "class_id": "Class:Topic",
+      "from_tables": [
+        "topics"
+      ],
+      "identifier_kind": "uri_pattern",
+      "identifier_columns": [
+        "topics.topicid"
+      ],
+      "instance_id_template": "topics/@@topics.TopicID@@",
+      "bnode_id_columns": [],
+      "status": "proposed",
+      "confidence": null,
+      "description": ""
+    }
+  ],
+  "data_property_mappings": [
+    {
+      "mapping_id": "hasConferenceName_from_Name",
+      "data_property_id": "DataProperty:hasConferenceName",
+      "applies_to_class": "Class:Conference",
+      "source_table": "conferences",
+      "source_columns": [
+        "conferences.name"
+      ],
+      "value_kind": "column",
+      "value_template": "",
+      "sql_expression": "",
+      "constant_value": "",
+      "datatype": "xsd:string",
+      "join_paths": [],
+      "condition": []
+    },
+    {
+      "mapping_id": "hasConferenceURI_from_URI",
+      "data_property_id": "DataProperty:hasConferenceURI",
+      "applies_to_class": "Class:Conference",
+      "source_table": "conferences",
+      "source_columns": [
+        "conferences.uri"
+      ],
+      "value_kind": "column",
+      "value_template": "",
+      "sql_expression": "",
+      "constant_value": "",
+      "datatype": "xsd:anyURI",
+      "join_paths": [],
+      "condition": []
+    },
+    {
+      "mapping_id": "hasConferenceDate_from_Date",
+      "data_property_id": "DataProperty:hasConferenceDate",
+      "applies_to_class": "Class:Conference",
+      "source_table": "conferences",
+      "source_columns": [
+        "conferences.date"
+      ],
+      "value_kind": "column",
+      "value_template": "",
+      "sql_expression": "",
+      "constant_value": "",
+      "datatype": "xsd:string",
+      "join_paths": [],
+      "condition": []
+    },
+    {
+      "mapping_id": "hasConferenceLocation_from_Location",
+      "data_property_id": "DataProperty:hasConferenceLocation",
+      "applies_to_class": "Class:Conference",
+      "source_table": "conferences",
+      "source_columns": [
+        "conferences.location"
+      ],
+      "value_kind": "column",
+      "value_template": "",
+      "sql_expression": "",
+      "constant_value": "",
+      "datatype": "xsd:string",
+      "join_paths": [],
+      "condition": []
+    },
+    {
+      "mapping_id": "hasConferenceDatum_from_Datum",
+      "data_property_id": "DataProperty:hasConferenceDatum",
+      "applies_to_class": "Class:Conference",
+      "source_table": "conferences",
+      "source_columns": [
+        "conferences.datum"
+      ],
+      "value_kind": "column",
+      "value_template": "",
+      "sql_expression": "",
+      "constant_value": "",
+      "datatype": "xsd:dateTime",
+      "join_paths": [],
+      "condition": []
+    },
+    {
+      "mapping_id": "hasOrganizationType_from_Type",
+      "data_property_id": "DataProperty:hasOrganizationType",
+      "applies_to_class": "Class:Organization",
+      "source_table": "organizations",
+      "source_columns": [
+        "organizations.type"
+      ],
+      "value_kind": "column",
+      "value_template": "",
+      "sql_expression": "",
+      "constant_value": "",
+      "datatype": "xsd:string",
+      "join_paths": [],
+      "condition": []
+    },
+    {
+      "mapping_id": "hasOrganizationName_from_Name",
+      "data_property_id": "DataProperty:hasOrganizationName",
+      "applies_to_class": "Class:Organization",
+      "source_table": "organizations",
+      "source_columns": [
+        "organizations.name"
+      ],
+      "value_kind": "column",
+      "value_template": "",
+      "sql_expression": "",
+      "constant_value": "",
+      "datatype": "xsd:string",
+      "join_paths": [],
+      "condition": []
+    },
+    {
+      "mapping_id": "hasOrganizationURI_from_URI",
+      "data_property_id": "DataProperty:hasOrganizationURI",
+      "applies_to_class": "Class:Organization",
+      "source_table": "organizations",
+      "source_columns": [
+        "organizations.uri"
+      ],
+      "value_kind": "column",
+      "value_template": "",
+      "sql_expression": "",
+      "constant_value": "",
+      "datatype": "xsd:anyURI",
+      "join_paths": [],
+      "condition": []
+    },
+    {
+      "mapping_id": "hasOrganizationHomepage_from_Homepage",
+      "data_property_id": "DataProperty:hasOrganizationHomepage",
+      "applies_to_class": "Class:Organization",
+      "source_table": "organizations",
+      "source_columns": [
+        "organizations.homepage"
+      ],
+      "value_kind": "column",
+      "value_template": "",
+      "sql_expression": "",
+      "constant_value": "",
+      "datatype": "xsd:anyURI",
+      "join_paths": [],
+      "condition": []
+    },
+    {
+      "mapping_id": "hasAddressStreet_from_Address",
+      "data_property_id": "DataProperty:hasAddressStreet",
+      "applies_to_class": "Class:Address",
+      "source_table": "organizations",
+      "source_columns": [
+        "organizations.address"
+      ],
+      "value_kind": "column",
+      "value_template": "",
+      "sql_expression": "",
+      "constant_value": "",
+      "datatype": "xsd:string",
+      "join_paths": [],
+      "condition": []
+    },
+    {
+      "mapping_id": "hasAddressLocation_from_Location",
+      "data_property_id": "DataProperty:hasAddressLocation",
+      "applies_to_class": "Class:Address",
+      "source_table": "organizations",
+      "source_columns": [
+        "organizations.location"
+      ],
+      "value_kind": "column",
+      "value_template": "",
+      "sql_expression": "",
+      "constant_value": "",
+      "datatype": "xsd:string",
+      "join_paths": [],
+      "condition": []
+    },
+    {
+      "mapping_id": "hasAddressPostcode_from_Postcode",
+      "data_property_id": "DataProperty:hasAddressPostcode",
+      "applies_to_class": "Class:Address",
+      "source_table": "organizations",
+      "source_columns": [
+        "organizations.postcode"
+      ],
+      "value_kind": "column",
+      "value_template": "",
+      "sql_expression": "",
+      "constant_value": "",
+      "datatype": "xsd:string",
+      "join_paths": [],
+      "condition": []
+    },
+    {
+      "mapping_id": "hasAddressCountry_from_Country",
+      "data_property_id": "DataProperty:hasAddressCountry",
+      "applies_to_class": "Class:Address",
+      "source_table": "organizations",
+      "source_columns": [
+        "organizations.country"
+      ],
+      "value_kind": "column",
+      "value_template": "",
+      "sql_expression": "",
+      "constant_value": "",
+      "datatype": "xsd:string",
+      "join_paths": [],
+      "condition": []
+    },
+    {
+      "mapping_id": "hasPaperTitle_from_Title",
+      "data_property_id": "DataProperty:hasPaperTitle",
+      "applies_to_class": "Class:Paper",
+      "source_table": "papers",
+      "source_columns": [
+        "papers.title"
+      ],
+      "value_kind": "column",
+      "value_template": "",
+      "sql_expression": "",
+      "constant_value": "",
+      "datatype": "xsd:string",
+      "join_paths": [],
+      "condition": []
+    },
+    {
+      "mapping_id": "hasPaperAbstract_from_Abstract",
+      "data_property_id": "DataProperty:hasPaperAbstract",
+      "applies_to_class": "Class:Paper",
+      "source_table": "papers",
+      "source_columns": [
+        "papers.abstract"
+      ],
+      "value_kind": "column",
+      "value_template": "",
+      "sql_expression": "",
+      "constant_value": "",
+      "datatype": "xsd:string",
+      "join_paths": [],
+      "condition": []
+    },
+    {
+      "mapping_id": "hasPaperURI_from_URI",
+      "data_property_id": "DataProperty:hasPaperURI",
+      "applies_to_class": "Class:Paper",
+      "source_table": "papers",
+      "source_columns": [
+        "papers.uri"
+      ],
+      "value_kind": "column",
+      "value_template": "",
+      "sql_expression": "",
+      "constant_value": "",
+      "datatype": "xsd:anyURI",
+      "join_paths": [],
+      "condition": []
+    },
+    {
+      "mapping_id": "hasPaperYear_from_Year",
+      "data_property_id": "DataProperty:hasPaperYear",
+      "applies_to_class": "Class:Paper",
+      "source_table": "papers",
+      "source_columns": [
+        "papers.year"
+      ],
+      "value_kind": "column",
+      "value_template": "",
+      "sql_expression": "",
+      "constant_value": "",
+      "datatype": "xsd:int",
+      "join_paths": [],
+      "condition": []
+    },
+    {
+      "mapping_id": "hasPersonType_from_Type",
+      "data_property_id": "DataProperty:hasPersonType",
+      "applies_to_class": "Class:Person",
+      "source_table": "persons",
+      "source_columns": [
+        "persons.type"
+      ],
+      "value_kind": "column",
+      "value_template": "",
+      "sql_expression": "",
+      "constant_value": "",
+      "datatype": "xsd:string",
+      "join_paths": [],
+      "condition": []
+    },
+    {
+      "mapping_id": "hasFirstName_from_FirstName",
+      "data_property_id": "DataProperty:hasFirstName",
+      "applies_to_class": "Class:Person",
+      "source_table": "persons",
+      "source_columns": [
+        "persons.firstname"
+      ],
+      "value_kind": "column",
+      "value_template": "",
+      "sql_expression": "",
+      "constant_value": "",
+      "datatype": "xsd:string",
+      "join_paths": [],
+      "condition": []
+    },
+    {
+      "mapping_id": "hasLastName_from_LastName",
+      "data_property_id": "DataProperty:hasLastName",
+      "applies_to_class": "Class:Person",
+      "source_table": "persons",
+      "source_columns": [
+        "persons.lastname"
+      ],
+      "value_kind": "column",
+      "value_template": "",
+      "sql_expression": "",
+      "constant_value": "",
+      "datatype": "xsd:string",
+      "join_paths": [],
+      "condition": []
+    },
+    {
+      "mapping_id": "hasAddress_from_Address",
+      "data_property_id": "DataProperty:hasAddress",
+      "applies_to_class": "Class:Person",
+      "source_table": "persons",
+      "source_columns": [
+        "persons.address"
+      ],
+      "value_kind": "column",
+      "value_template": "",
+      "sql_expression": "",
+      "constant_value": "",
+      "datatype": "xsd:string",
+      "join_paths": [],
+      "condition": []
+    },
+    {
+      "mapping_id": "hasEmail_from_Email",
+      "data_property_id": "DataProperty:hasEmail",
+      "applies_to_class": "Class:Person",
+      "source_table": "persons",
+      "source_columns": [
+        "persons.email"
+      ],
+      "value_kind": "column",
+      "value_template": "",
+      "sql_expression": "",
+      "constant_value": "",
+      "datatype": "xsd:string",
+      "join_paths": [],
+      "condition": []
+    },
+    {
+      "mapping_id": "hasHomepage_from_Homepage",
+      "data_property_id": "DataProperty:hasHomepage",
+      "applies_to_class": "Class:Person",
+      "source_table": "persons",
+      "source_columns": [
+        "persons.homepage"
+      ],
+      "value_kind": "column",
+      "value_template": "",
+      "sql_expression": "",
+      "constant_value": "",
+      "datatype": "xsd:anyURI",
+      "join_paths": [],
+      "condition": []
+    },
+    {
+      "mapping_id": "hasPhone_from_Phone",
+      "data_property_id": "DataProperty:hasPhone",
+      "applies_to_class": "Class:Person",
+      "source_table": "persons",
+      "source_columns": [
+        "persons.phone"
+      ],
+      "value_kind": "column",
+      "value_template": "",
+      "sql_expression": "",
+      "constant_value": "",
+      "datatype": "xsd:string",
+      "join_paths": [],
+      "condition": []
+    },
+    {
+      "mapping_id": "hasURI_from_URI",
+      "data_property_id": "DataProperty:hasURI",
+      "applies_to_class": "Class:Person",
+      "source_table": "persons",
+      "source_columns": [
+        "persons.uri"
+      ],
+      "value_kind": "column",
+      "value_template": "",
+      "sql_expression": "",
+      "constant_value": "",
+      "datatype": "xsd:anyURI",
+      "join_paths": [],
+      "condition": []
+    },
+    {
+      "mapping_id": "hasPhoto_from_Photo",
+      "data_property_id": "DataProperty:hasPhoto",
+      "applies_to_class": "Class:Person",
+      "source_table": "persons",
+      "source_columns": [
+        "persons.photo"
+      ],
+      "value_kind": "column",
+      "value_template": "",
+      "sql_expression": "",
+      "constant_value": "",
+      "datatype": "xsd:anyURI",
+      "join_paths": [],
+      "condition": []
+    },
+    {
+      "mapping_id": "hasRelationType_from_RelationType",
+      "data_property_id": "DataProperty:hasRelationType",
+      "applies_to_class": "Class:Paper",
+      "source_table": "rel_paper_topic",
+      "source_columns": [
+        "rel_paper_topic.relationtype"
+      ],
+      "value_kind": "column",
+      "value_template": "",
+      "sql_expression": "",
+      "constant_value": "",
+      "datatype": "xsd:int",
+      "join_paths": [],
+      "condition": []
+    },
+    {
+      "mapping_id": "hasTopicName_from_TopicName",
+      "data_property_id": "DataProperty:hasTopicName",
+      "applies_to_class": "Class:Topic",
+      "source_table": "topics",
+      "source_columns": [
+        "topics.topicname"
+      ],
+      "value_kind": "column",
+      "value_template": "",
+      "sql_expression": "",
+      "constant_value": "",
+      "datatype": "xsd:string",
+      "join_paths": [],
+      "condition": []
+    },
+    {
+      "mapping_id": "hasTopicURI_from_URI",
+      "data_property_id": "DataProperty:hasTopicURI",
+      "applies_to_class": "Class:Topic",
+      "source_table": "topics",
+      "source_columns": [
+        "topics.uri"
+      ],
+      "value_kind": "column",
+      "value_template": "",
+      "sql_expression": "",
+      "constant_value": "",
+      "datatype": "xsd:anyURI",
+      "join_paths": [],
+      "condition": []
+    }
+  ],
+  "object_property_mappings": [
+    {
+      "mapping_id": "hasAddress_from_organizations",
+      "object_property_id": "ObjectProperty:hasAddress",
+      "from_class": "Class:Organization",
+      "to_class": "Class:Address",
+      "from_tables": [
+        "organizations"
+      ],
+      "source_identifier_columns": [
+        "organizations.orgid"
+      ],
+      "target_identifier_columns": [],
+      "join_paths": [],
+      "condition": [],
+      "target_type": "resource"
+    },
+    {
+      "mapping_id": "belongsToOrganization_from_Belongsto",
+      "object_property_id": "ObjectProperty:belongsToOrganization",
+      "from_class": "Class:Organization",
+      "to_class": "Class:Organization",
+      "from_tables": [
+        "organizations"
+      ],
+      "source_identifier_columns": [
+        "organizations.orgid"
+      ],
+      "target_identifier_columns": [
+        "organizations.orgid"
+      ],
+      "join_paths": [
+        [
+          "organizations.belongsto",
+          "=",
+          "organizations.orgid"
+        ]
+      ],
+      "condition": [],
+      "target_type": "entity"
+    },
+    {
+      "mapping_id": "paperPublishedInConference_from_Conference",
+      "object_property_id": "ObjectProperty:paperPublishedInConference",
+      "from_class": "Class:Paper",
+      "to_class": "Class:Conference",
+      "from_tables": [
+        "papers"
+      ],
+      "source_identifier_columns": [
+        "papers.paperid"
+      ],
+      "target_identifier_columns": [
+        "conferences.confid"
+      ],
+      "join_paths": [
+        [
+          "papers.conference",
+          "=",
+          "conferences.confid"
+        ]
+      ],
+      "condition": [],
+      "target_type": "entity"
+    },
+    {
+      "mapping_id": "paperCoversTopics_from_rel_paper_topic",
+      "object_property_id": "ObjectProperty:paperCoversTopics",
+      "from_class": "Class:Paper",
+      "to_class": "Class:Topic",
+      "from_tables": [
+        "rel_paper_topic"
+      ],
+      "source_identifier_columns": [
+        "rel_paper_topic.paperid"
+      ],
+      "target_identifier_columns": [
+        "rel_paper_topic.topicid"
+      ],
+      "join_paths": [],
+      "condition": [],
+      "target_type": "entity"
+    },
+    {
+      "mapping_id": "worksForOrganization_from_rel_person_organization",
+      "object_property_id": "ObjectProperty:worksForOrganization",
+      "from_class": "Class:Person",
+      "to_class": "Class:Organization",
+      "from_tables": [
+        "rel_person_organization"
+      ],
+      "source_identifier_columns": [
+        "rel_person_organization.personid"
+      ],
+      "target_identifier_columns": [
+        "rel_person_organization.organizationid"
+      ],
+      "join_paths": [],
+      "condition": [],
+      "target_type": "entity"
+    },
+    {
+      "mapping_id": "authoredPaper_from_rel_person_paper",
+      "object_property_id": "ObjectProperty:authoredPaper",
+      "from_class": "Class:Person",
+      "to_class": "Class:Paper",
+      "from_tables": [
+        "rel_person_paper"
+      ],
+      "source_identifier_columns": [
+        "rel_person_paper.personid"
+      ],
+      "target_identifier_columns": [
+        "rel_person_paper.paperid"
+      ],
+      "join_paths": [],
+      "condition": [],
+      "target_type": "entity"
+    },
+    {
+      "mapping_id": "hasInterestInTopic_from_rel_person_topic",
+      "object_property_id": "ObjectProperty:hasInterestInTopic",
+      "from_class": "Class:Person",
+      "to_class": "Class:Topic",
+      "from_tables": [
+        "rel_person_topic"
+      ],
+      "source_identifier_columns": [
+        "rel_person_topic.personid"
+      ],
+      "target_identifier_columns": [
+        "rel_person_topic.topicid"
+      ],
+      "join_paths": [],
+      "condition": [],
+      "target_type": "entity"
+    },
+    {
+      "mapping_id": "hasParentTopic_from_ParentID",
+      "object_property_id": "ObjectProperty:hasParentTopic",
+      "from_class": "Class:Topic",
+      "to_class": "Class:Topic",
+      "from_tables": [
+        "topics"
+      ],
+      "source_identifier_columns": [
+        "topics.topicid"
+      ],
+      "target_identifier_columns": [
+        "topics.topicid"
+      ],
+      "join_paths": [
+        [
+          "topics.parentid",
+          "=",
+          "topics.topicid"
+        ]
+      ],
+      "condition": [],
+      "target_type": "entity"
+    }
+  ],
+  "draft_metadata": {
+    "processed_tables": [
+      "conferences",
+      "organizations",
+      "papers",
+      "persons",
+      "rel_paper_topic",
+      "rel_person_organization",
+      "rel_person_paper",
+      "rel_person_topic",
+      "topics"
+    ],
+    "table_history": [
+      {
+        "table": "conferences",
+        "action": "updated",
+        "version": 1
+      },
+      {
+        "table": "organizations",
+        "action": "updated",
+        "version": 2
+      },
+      {
+        "table": "papers",
+        "action": "updated",
+        "version": 3
+      },
+      {
+        "table": "persons",
+        "action": "updated",
+        "version": 4
+      },
+      {
+        "table": "rel_paper_topic",
+        "action": "updated",
+        "version": 5
+      },
+      {
+        "table": "rel_person_organization",
+        "action": "updated",
+        "version": 6
+      },
+      {
+        "table": "rel_person_paper",
+        "action": "updated",
+        "version": 7
+      },
+      {
+        "table": "rel_person_topic",
+        "action": "updated",
+        "version": 8
+      },
+      {
+        "table": "topics",
+        "action": "updated",
+        "version": 9
+      }
+    ],
+    "draft_version": 9
+  },
+  "rejected_candidates": [],
+  "open_issues": [
+    {
+      "issue_type": "remaining_ambiguity",
+      "related_table": "conferences",
+      "description": "Date column format and semantics unclear; stored as varchar(50) rather than native date type—may require value sampling to determine if it represents event date or other temporal metadata."
+    },
+    {
+      "issue_type": "remaining_ambiguity",
+      "related_table": "conferences",
+      "description": "Relationship between Date (varchar) and Datum (timestamp) columns not specified; unclear if they represent different temporal aspects or redundant information."
+    },
+    {
+      "issue_type": "remaining_ambiguity",
+      "related_table": "conferences",
+      "description": "URI column purpose ambiguous; unclear if it references external conference resources or serves as internal identifier."
+    },
+    {
+      "issue_type": "needs_probe",
+      "related_table": "conferences",
+      "description": "What are sample values in the Date column? Is it ISO 8601 format, human-readable, or other?",
+      "payload": {
+        "probe_type": "value_sample",
+        "target": "conferences.date",
+        "question": "What are sample values in the Date column? Is it ISO 8601 format, human-readable, or other?"
+      }
+    },
+    {
+      "issue_type": "needs_probe",
+      "related_table": "conferences",
+      "description": "Are URI values external references (e.g., http://...) or internal identifiers?",
+      "payload": {
+        "probe_type": "value_sample",
+        "target": "conferences.uri",
+        "question": "Are URI values external references (e.g., http://...) or internal identifiers?"
+      }
+    },
+    {
+      "issue_type": "needs_probe",
+      "related_table": "conferences",
+      "description": "Are there foreign key references from other tables to conferences.confid indicating entity relationships?",
+      "payload": {
+        "probe_type": "cardinality",
+        "target": "conferences",
+        "question": "Are there foreign key references from other tables to conferences.confid indicating entity relationships?"
+      }
+    },
+    {
+      "issue_type": "remaining_ambiguity",
+      "related_table": "organizations",
+      "description": "URI column semantics: unclear if it references external resources or serves as internal identifier; modeled conservatively as data property."
+    },
+    {
+      "issue_type": "remaining_ambiguity",
+      "related_table": "organizations",
+      "description": "Belongsto column nullability: nullable int suggests optional parent affiliation; instances with NULL will not participate in belongsToOrganization relation."
+    },
+    {
+      "issue_type": "remaining_ambiguity",
+      "related_table": "organizations",
+      "description": "Address value object identity: Address instances are not independently identified; each Organization instance generates one Address resource."
+    },
+    {
+      "issue_type": "needs_probe",
+      "related_table": "organizations",
+      "description": "Are URI values external references (e.g., http://...) or internal identifiers?",
+      "payload": {
+        "probe_type": "value_sample",
+        "target": "organizations.uri",
+        "question": "Are URI values external references (e.g., http://...) or internal identifiers?"
+      }
+    },
+    {
+      "issue_type": "needs_probe",
+      "related_table": "organizations",
+      "description": "What are sample values in Belongsto? Do they reference valid OrgID values indicating parent organizations?",
+      "payload": {
+        "probe_type": "value_sample",
+        "target": "organizations.belongsto",
+        "question": "What are sample values in Belongsto? Do they reference valid OrgID values indicating parent organizations?"
+      }
+    },
+    {
+      "issue_type": "needs_probe",
+      "related_table": "organizations",
+      "description": "What percentage of organizations have non-NULL Belongsto values? Is hierarchical affiliation common?",
+      "payload": {
+        "probe_type": "cardinality",
+        "target": "organizations.belongsto",
+        "question": "What percentage of organizations have non-NULL Belongsto values? Is hierarchical affiliation common?"
+      }
+    },
+    {
+      "issue_type": "remaining_ambiguity",
+      "related_table": "papers",
+      "description": "Publish column semantics unclear: integer type suggests foreign key reference, but target table unknown. Deferred pending schema discovery."
+    },
+    {
+      "issue_type": "remaining_ambiguity",
+      "related_table": "papers",
+      "description": "URI column purpose ambiguous: unclear if it references external paper resources or serves as internal identifier."
+    },
+    {
+      "issue_type": "needs_probe",
+      "related_table": "papers",
+      "description": "What table does papers.Publish reference? Is it a foreign key to a publisher or publication entity?",
+      "payload": {
+        "probe_type": "fk_target",
+        "target": "papers.publish",
+        "question": "What table does papers.Publish reference? Is it a foreign key to a publisher or publication entity?"
+      }
+    },
+    {
+      "issue_type": "needs_probe",
+      "related_table": "papers",
+      "description": "Are URI values external references (e.g., http://..., doi:...) or internal identifiers?",
+      "payload": {
+        "probe_type": "value_sample",
+        "target": "papers.uri",
+        "question": "Are URI values external references (e.g., http://..., doi:...) or internal identifiers?"
+      }
+    },
+    {
+      "issue_type": "remaining_ambiguity",
+      "related_table": "persons",
+      "description": "Type column semantics: unclear what classification values are used (e.g., author, reviewer, organizer, attendee). May require value sampling."
+    },
+    {
+      "issue_type": "remaining_ambiguity",
+      "related_table": "persons",
+      "description": "URI column semantics: unclear if it references external resources or serves as internal identifier. Modeled conservatively as data property."
+    },
+    {
+      "issue_type": "remaining_ambiguity",
+      "related_table": "persons",
+      "description": "Address column structure: stored as single varchar(2000) field; unclear if it contains structured subfields (street, city, postcode, country) or unstructured text."
+    },
+    {
+      "issue_type": "remaining_ambiguity",
+      "related_table": "persons",
+      "description": "Photo column format: unclear if it stores file paths, URLs, or other references."
+    },
+    {
+      "issue_type": "remaining_ambiguity",
+      "related_table": "persons",
+      "description": "Relationship to other entities: no foreign keys present; unclear if persons should be linked to organizations, conferences, or papers through future join tables."
+    },
+    {
+      "issue_type": "needs_probe",
+      "related_table": "persons",
+      "description": "What are sample values in the Type column? What classification categories are used?",
+      "payload": {
+        "probe_type": "value_sample",
+        "target": "persons.type",
+        "question": "What are sample values in the Type column? What classification categories are used?"
+      }
+    },
+    {
+      "issue_type": "needs_probe",
+      "related_table": "persons",
+      "description": "Are URI values external references (e.g., http://...) or internal identifiers? What is the format?",
+      "payload": {
+        "probe_type": "value_sample",
+        "target": "persons.uri",
+        "question": "Are URI values external references (e.g., http://...) or internal identifiers? What is the format?"
+      }
+    },
+    {
+      "issue_type": "needs_probe",
+      "related_table": "persons",
+      "description": "Is the Address column structured (with delimiters) or unstructured text? What is the typical format?",
+      "payload": {
+        "probe_type": "value_sample",
+        "target": "persons.address",
+        "question": "Is the Address column structured (with delimiters) or unstructured text? What is the typical format?"
+      }
+    },
+    {
+      "issue_type": "needs_probe",
+      "related_table": "persons",
+      "description": "What format do Photo values take? Are they file paths, URLs, or other references?",
+      "payload": {
+        "probe_type": "value_sample",
+        "target": "persons.photo",
+        "question": "What format do Photo values take? Are they file paths, URLs, or other references?"
+      }
+    },
+    {
+      "issue_type": "needs_probe",
+      "related_table": "persons",
+      "description": "Are there any foreign key constraints or join tables linking persons to organizations, conferences, or papers that are not yet visible in the schema?",
+      "payload": {
+        "probe_type": "schema_probe",
+        "target": "persons table",
+        "question": "Are there any foreign key constraints or join tables linking persons to organizations, conferences, or papers that are not yet visible in the schema?"
+      }
+    },
+    {
+      "issue_type": "remaining_ambiguity",
+      "related_table": "rel_paper_topic",
+      "description": "The semantic meaning of RelationType values is unknown; without sample data or documentation, it is unclear whether this represents a categorical classification, strength indicator, or other qualifier."
+    },
+    {
+      "issue_type": "remaining_ambiguity",
+      "related_table": "rel_paper_topic",
+      "description": "Topic entity definition is incomplete; no attributes (name, description, URI) are present in rel_paper_topic itself, suggesting Topic may be defined in a separate table not yet processed."
+    },
+    {
+      "issue_type": "needs_probe",
+      "related_table": "rel_paper_topic",
+      "description": "What are the distinct values and their semantic meanings for RelationType?",
+      "payload": {
+        "probe_type": "value_sample",
+        "target": "rel_paper_topic.relationtype",
+        "question": "What are the distinct values and their semantic meanings for RelationType?"
+      }
+    },
+    {
+      "issue_type": "needs_probe",
+      "related_table": "rel_paper_topic",
+      "description": "Is there a separate topics table that defines Topic attributes (name, description, etc.)?",
+      "payload": {
+        "probe_type": "schema_discovery",
+        "target": "topic entity definition",
+        "question": "Is there a separate topics table that defines Topic attributes (name, description, etc.)?"
+      }
+    },
+    {
+      "issue_type": "remaining_ambiguity",
+      "related_table": "rel_person_paper",
+      "description": "Foreign key constraints are not explicitly declared in rel_person_paper; relation inferred from table name and structure alone."
+    },
+    {
+      "issue_type": "remaining_ambiguity",
+      "related_table": "rel_person_topic",
+      "description": "Directionality: hasInterestInTopic vs. isTopicOfInterestToPerson—current choice favors Person→Topic direction based on table naming convention."
+    },
+    {
+      "issue_type": "remaining_ambiguity",
+      "related_table": "topics",
+      "description": "URI column in topics table: unclear if it references external topic resources (e.g., DBpedia, SKOS concepts) or serves as an internal identifier. Modeled conservatively as data property."
+    },
+    {
+      "issue_type": "remaining_ambiguity",
+      "related_table": "topics",
+      "description": "ParentID semantics: unclear if NULL values indicate root topics or if there are other conventions for topic hierarchy roots."
+    },
+    {
+      "issue_type": "needs_probe",
+      "related_table": "topics",
+      "description": "Are URI values external references (e.g., http://..., URIs to DBpedia or other ontologies) or internal identifiers?",
+      "payload": {
+        "probe_type": "value_sample",
+        "target": "topics.uri",
+        "question": "Are URI values external references (e.g., http://..., URIs to DBpedia or other ontologies) or internal identifiers?"
+      }
+    },
+    {
+      "issue_type": "needs_probe",
+      "related_table": "topics",
+      "description": "What is the distribution of NULL values in ParentID? Do they indicate root topics or are there other conventions?",
+      "payload": {
+        "probe_type": "value_sample",
+        "target": "topics.parentid",
+        "question": "What is the distribution of NULL values in ParentID? Do they indicate root topics or are there other conventions?"
+      }
+    },
+    {
+      "issue_type": "needs_probe",
+      "related_table": "topics",
+      "description": "How many distinct topics exist? Is the hierarchy deep or shallow?",
+      "payload": {
+        "probe_type": "cardinality",
+        "target": "topics.topicid",
+        "question": "How many distinct topics exist? Is the hierarchy deep or shallow?"
+      }
+    },
+    {
+      "issue_type": "normalization_warnings",
+      "related_table": "topics",
+      "description": "Normalization warnings were recorded for this patch.",
+      "payload": [
+        {
+          "section": "classes",
+          "message": "Dropped revision with empty target_id or updated_fields",
+          "raw_item": {
+            "id": "Class:Topic",
+            "label": "Topic",
+            "description": "A topic or subject area that can be associated with papers and persons. Now grounded in the dedicated topics table with hierarchical structure support.",
+            "source_tables": [
+              "topics",
+              "rel_paper_topic"
+            ],
+            "identifier_columns": [
+              "topics.TopicID"
+            ]
+          }
+        },
+        {
+          "section": "class_mappings",
+          "message": "Dropped revision with empty target_id or updated_fields",
+          "raw_item": {
+            "mapping_id": "Topic_from_topics",
+            "class_id": "Class:Topic",
+            "from_tables": [
+              "topics"
+            ],
+            "identifier_kind": "uri_pattern",
+            "identifier_columns": [
+              "topics.TopicID"
+            ],
+            "instance_id_template": "topics/@@topics.TopicID@@",
+            "bnode_id_columns": []
+          }
+        }
+      ]
+    }
+  ]
+}

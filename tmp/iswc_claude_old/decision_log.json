@@ -1,0 +1,542 @@
+[
+  {
+    "step_index": 0,
+    "table_name": "conferences",
+    "decision_summary": [
+      {
+        "decision_type": "C-ENTITY",
+        "target": "Class:Conference",
+        "status": "accepted",
+        "confidence": 0.95,
+        "reason": "conferences table represents a stable entity with primary key ConfID and descriptive attributes (Name, URI, Date, Location, Datum)."
+      },
+      {
+        "decision_type": "DP-LITERAL",
+        "target": "DataProperty:hasConferenceName",
+        "status": "accepted",
+        "confidence": 0.95,
+        "reason": "Name column contains string literals describing conference names."
+      },
+      {
+        "decision_type": "DP-URI",
+        "target": "DataProperty:hasConferenceURI",
+        "status": "accepted",
+        "confidence": 0.85,
+        "reason": "URI column stores URI values as literals; no evidence of entity-to-entity relation, modeled as data property with xsd:anyURI datatype."
+      },
+      {
+        "decision_type": "DP-LITERAL",
+        "target": "DataProperty:hasConferenceDate",
+        "status": "accepted",
+        "confidence": 0.8,
+        "reason": "Date column contains string representation of conference dates; stored as varchar(50) suggesting flexible date format."
+      },
+      {
+        "decision_type": "DP-LITERAL",
+        "target": "DataProperty:hasConferenceLocation",
+        "status": "accepted",
+        "confidence": 0.9,
+        "reason": "Location column contains string literals for conference locations; flagged as address-like bundle but no separate location entity exists."
+      },
+      {
+        "decision_type": "DP-TIMESTAMP",
+        "target": "DataProperty:hasConferenceDatum",
+        "status": "accepted",
+        "confidence": 0.85,
+        "reason": "Datum column is a timestamp(0) field; mapped to xsd:dateTime for record metadata."
+      }
+    ],
+    "remaining_ambiguities": [
+      "Date column format and semantics unclear; stored as varchar(50) rather than native date type—may require value sampling to determine if it represents event date or other temporal metadata.",
+      "Relationship between Date (varchar) and Datum (timestamp) columns not specified; unclear if they represent different temporal aspects or redundant information.",
+      "URI column purpose ambiguous; unclear if it references external conference resources or serves as internal identifier."
+    ],
+    "needs_probe": [
+      {
+        "probe_type": "value_sample",
+        "target": "conferences.date",
+        "question": "What are sample values in the Date column? Is it ISO 8601 format, human-readable, or other?"
+      },
+      {
+        "probe_type": "value_sample",
+        "target": "conferences.uri",
+        "question": "Are URI values external references (e.g., http://...) or internal identifiers?"
+      },
+      {
+        "probe_type": "cardinality",
+        "target": "conferences",
+        "question": "Are there foreign key references from other tables to conferences.confid indicating entity relationships?"
+      }
+    ],
+    "normalization_warnings": [],
+    "num_additions": 12,
+    "num_revisions": 0,
+    "num_rejections": 0,
+    "num_merges": 0
+  },
+  {
+    "step_index": 1,
+    "table_name": "organizations",
+    "decision_summary": [
+      {
+        "decision_type": "C-ENTITY",
+        "target": "Class:Organization",
+        "status": "accepted",
+        "confidence": 0.95,
+        "reason": "Primary key OrgID and stable attributes (Name, Type, URI) establish Organization as a core entity class."
+      },
+      {
+        "decision_type": "C-VALUE-OBJECT",
+        "target": "Class:Address",
+        "status": "accepted",
+        "confidence": 0.9,
+        "reason": "Address, Location, Postcode, Country form a cohesive address bundle; modeled as value object linked via hasAddress object property."
+      },
+      {
+        "decision_type": "DP-URI-VALUED",
+        "target": "DataProperty:hasOrganizationURI",
+        "status": "accepted",
+        "confidence": 0.85,
+        "reason": "URI column stored as varchar; no evidence of foreign key relation; modeled as data property with xsd:anyURI datatype."
+      },
+      {
+        "decision_type": "OP-SELF-REFERENCE",
+        "target": "ObjectProperty:belongsToOrganization",
+        "status": "accepted",
+        "confidence": 0.9,
+        "reason": "Belongsto column references OrgID within same table; indicates hierarchical organization affiliation."
+      }
+    ],
+    "remaining_ambiguities": [
+      "URI column semantics: unclear if it references external resources or serves as internal identifier; modeled conservatively as data property.",
+      "Belongsto column nullability: nullable int suggests optional parent affiliation; instances with NULL will not participate in belongsToOrganization relation.",
+      "Address value object identity: Address instances are not independently identified; each Organization instance generates one Address resource."
+    ],
+    "needs_probe": [
+      {
+        "probe_type": "value_sample",
+        "target": "organizations.uri",
+        "question": "Are URI values external references (e.g., http://...) or internal identifiers?"
+      },
+      {
+        "probe_type": "value_sample",
+        "target": "organizations.belongsto",
+        "question": "What are sample values in Belongsto? Do they reference valid OrgID values indicating parent organizations?"
+      },
+      {
+        "probe_type": "cardinality",
+        "target": "organizations.belongsto",
+        "question": "What percentage of organizations have non-NULL Belongsto values? Is hierarchical affiliation common?"
+      }
+    ],
+    "normalization_warnings": [],
+    "num_additions": 23,
+    "num_revisions": 0,
+    "num_rejections": 0,
+    "num_merges": 0
+  },
+  {
+    "step_index": 2,
+    "table_name": "papers",
+    "decision_summary": [
+      {
+        "decision_type": "C-ENTITY",
+        "target": "Class:Paper",
+        "status": "accepted",
+        "confidence": 0.95,
+        "reason": "PaperID primary key and semantic content (Title, Abstract, Year) establish Paper as a stable entity class."
+      },
+      {
+        "decision_type": "DP-LITERAL",
+        "target": "DataProperty:hasPaperTitle",
+        "status": "accepted",
+        "confidence": 0.98,
+        "reason": "Title column is a descriptive string attribute of papers."
+      },
+      {
+        "decision_type": "DP-LITERAL",
+        "target": "DataProperty:hasPaperAbstract",
+        "status": "accepted",
+        "confidence": 0.98,
+        "reason": "Abstract column is a descriptive text attribute of papers."
+      },
+      {
+        "decision_type": "DP-URI",
+        "target": "DataProperty:hasPaperURI",
+        "status": "accepted",
+        "confidence": 0.85,
+        "reason": "URI column stored as varchar; modeled as data property with xsd:anyURI datatype. No evidence of entity relation."
+      },
+      {
+        "decision_type": "DP-LITERAL",
+        "target": "DataProperty:hasPaperYear",
+        "status": "accepted",
+        "confidence": 0.98,
+        "reason": "Year column is an integer temporal attribute of papers."
+      },
+      {
+        "decision_type": "OP-RELATION",
+        "target": "ObjectProperty:paperPublishedInConference",
+        "status": "accepted",
+        "confidence": 0.92,
+        "reason": "papers.Conference column references conferences.confid; establishes entity-to-entity relation between Paper and Conference classes."
+      }
+    ],
+    "remaining_ambiguities": [
+      "Publish column semantics unclear: integer type suggests foreign key reference, but target table unknown. Deferred pending schema discovery.",
+      "URI column purpose ambiguous: unclear if it references external paper resources or serves as internal identifier."
+    ],
+    "needs_probe": [
+      {
+        "probe_type": "fk_target",
+        "target": "papers.publish",
+        "question": "What table does papers.Publish reference? Is it a foreign key to a publisher or publication entity?"
+      },
+      {
+        "probe_type": "value_sample",
+        "target": "papers.uri",
+        "question": "Are URI values external references (e.g., http://..., doi:...) or internal identifiers?"
+      }
+    ],
+    "normalization_warnings": [],
+    "num_additions": 12,
+    "num_revisions": 0,
+    "num_rejections": 0,
+    "num_merges": 0
+  },
+  {
+    "step_index": 3,
+    "table_name": "persons",
+    "decision_summary": [
+      {
+        "decision_type": "C-ENTITY",
+        "target": "Class:Person",
+        "status": "accepted",
+        "confidence": 0.95,
+        "reason": "persons table represents a stable entity with unique identifier (PerID) and multiple descriptive attributes. Semantically distinct from Organization and Conference entities already in the ontology."
+      },
+      {
+        "decision_type": "DP-LITERAL",
+        "target": "DataProperty:hasPersonType",
+        "status": "accepted",
+        "confidence": 0.9,
+        "reason": "Type column (varchar(50)) stores classification values; modeled as data property with xsd:string datatype."
+      },
+      {
+        "decision_type": "DP-LITERAL",
+        "target": "DataProperty:hasFirstName",
+        "status": "accepted",
+        "confidence": 0.95,
+        "reason": "FirstName column stores given name as string literal."
+      },
+      {
+        "decision_type": "DP-LITERAL",
+        "target": "DataProperty:hasLastName",
+        "status": "accepted",
+        "confidence": 0.95,
+        "reason": "LastName column stores family name as string literal."
+      },
+      {
+        "decision_type": "DP-LITERAL",
+        "target": "DataProperty:hasAddress",
+        "status": "accepted",
+        "confidence": 0.85,
+        "reason": "Address column (varchar(2000)) stores postal address as string literal. Not modeled as separate Address class instance because no independent identifier exists and no foreign key references from other tables."
+      },
+      {
+        "decision_type": "DP-LITERAL",
+        "target": "DataProperty:hasEmail",
+        "status": "accepted",
+        "confidence": 0.95,
+        "reason": "Email column stores email address as string literal."
+      },
+      {
+        "decision_type": "DP-URI",
+        "target": "DataProperty:hasHomepage",
+        "status": "accepted",
+        "confidence": 0.9,
+        "reason": "Homepage column (varchar(50)) stores URL; modeled as data property with xsd:anyURI datatype. No evidence of entity-to-entity relation."
+      },
+      {
+        "decision_type": "DP-LITERAL",
+        "target": "DataProperty:hasPhone",
+        "status": "accepted",
+        "confidence": 0.95,
+        "reason": "Phone column (varchar(200)) stores phone contact information as string literal."
+      },
+      {
+        "decision_type": "DP-URI",
+        "target": "DataProperty:hasURI",
+        "status": "accepted",
+        "confidence": 0.8,
+        "reason": "URI column (varchar(200)) stores URI reference; modeled as data property with xsd:anyURI datatype. Semantics unclear (external reference vs. internal identifier), but no evidence of entity-to-entity relation to existing ontology classes."
+      },
+      {
+        "decision_type": "DP-URI",
+        "target": "DataProperty:hasPhoto",
+        "status": "accepted",
+        "confidence": 0.85,
+        "reason": "Photo column (varchar(200)) stores URL or reference to photo; modeled as data property with xsd:anyURI datatype."
+      },
+      {
+        "decision_type": "NO-RELATION",
+        "target": "persons table",
+        "status": "accepted",
+        "confidence": 0.9,
+        "reason": "No foreign key columns detected in persons table. No direct entity-to-entity relations to Conference, Organization, or Paper classes can be established without additional join evidence."
+      }
+    ],
+    "remaining_ambiguities": [
+      "Type column semantics: unclear what classification values are used (e.g., author, reviewer, organizer, attendee). May require value sampling.",
+      "URI column semantics: unclear if it references external resources or serves as internal identifier. Modeled conservatively as data property.",
+      "Address column structure: stored as single varchar(2000) field; unclear if it contains structured subfields (street, city, postcode, country) or unstructured text.",
+      "Photo column format: unclear if it stores file paths, URLs, or other references.",
+      "Relationship to other entities: no foreign keys present; unclear if persons should be linked to organizations, conferences, or papers through future join tables."
+    ],
+    "needs_probe": [
+      {
+        "probe_type": "value_sample",
+        "target": "persons.type",
+        "question": "What are sample values in the Type column? What classification categories are used?"
+      },
+      {
+        "probe_type": "value_sample",
+        "target": "persons.uri",
+        "question": "Are URI values external references (e.g., http://...) or internal identifiers? What is the format?"
+      },
+      {
+        "probe_type": "value_sample",
+        "target": "persons.address",
+        "question": "Is the Address column structured (with delimiters) or unstructured text? What is the typical format?"
+      },
+      {
+        "probe_type": "value_sample",
+        "target": "persons.photo",
+        "question": "What format do Photo values take? Are they file paths, URLs, or other references?"
+      },
+      {
+        "probe_type": "schema_probe",
+        "target": "persons table",
+        "question": "Are there any foreign key constraints or join tables linking persons to organizations, conferences, or papers that are not yet visible in the schema?"
+      }
+    ],
+    "normalization_warnings": [],
+    "num_additions": 20,
+    "num_revisions": 0,
+    "num_rejections": 0,
+    "num_merges": 0
+  },
+  {
+    "step_index": 4,
+    "table_name": "rel_paper_topic",
+    "decision_summary": [
+      {
+        "decision_type": "C-ENTITY",
+        "target": "Class:Topic",
+        "status": "proposed",
+        "confidence": 0.85,
+        "reason": "TopicID is a primary key in rel_paper_topic, indicating Topic is a distinct entity type. The table structure suggests a many-to-many relationship between papers and topics."
+      },
+      {
+        "decision_type": "OP-RELATION",
+        "target": "ObjectProperty:paperCoversTopics",
+        "status": "proposed",
+        "confidence": 0.9,
+        "reason": "rel_paper_topic is a junction table with PaperID and TopicID as composite primary key, representing a many-to-many association between Paper and Topic entities."
+      },
+      {
+        "decision_type": "DP-ATTRIBUTE",
+        "target": "DataProperty:hasRelationType",
+        "status": "proposed",
+        "confidence": 0.75,
+        "reason": "RelationType is a non-key integer column that qualifies the paper-topic relationship. Modeled as a data property on Paper to capture the relation type code."
+      }
+    ],
+    "remaining_ambiguities": [
+      "The semantic meaning of RelationType values is unknown; without sample data or documentation, it is unclear whether this represents a categorical classification, strength indicator, or other qualifier.",
+      "Topic entity definition is incomplete; no attributes (name, description, URI) are present in rel_paper_topic itself, suggesting Topic may be defined in a separate table not yet processed."
+    ],
+    "needs_probe": [
+      {
+        "probe_type": "value_sample",
+        "target": "rel_paper_topic.relationtype",
+        "question": "What are the distinct values and their semantic meanings for RelationType?"
+      },
+      {
+        "probe_type": "schema_discovery",
+        "target": "topic entity definition",
+        "question": "Is there a separate topics table that defines Topic attributes (name, description, etc.)?"
+      }
+    ],
+    "normalization_warnings": [],
+    "num_additions": 6,
+    "num_revisions": 0,
+    "num_rejections": 0,
+    "num_merges": 0
+  },
+  {
+    "step_index": 5,
+    "table_name": "rel_person_organization",
+    "decision_summary": [
+      {
+        "decision_type": "OP-RELATION",
+        "target": "ObjectProperty:worksForOrganization",
+        "status": "accepted",
+        "confidence": 0.95,
+        "reason": "rel_person_organization is a junction table with composite primary key (PersonID, OrganizationID) representing a many-to-many relationship between Person and Organization entities already established in the ontology. No additional attributes justify an association class."
+      }
+    ],
+    "remaining_ambiguities": [],
+    "needs_probe": [],
+    "normalization_warnings": [],
+    "num_additions": 2,
+    "num_revisions": 0,
+    "num_rejections": 0,
+    "num_merges": 0
+  },
+  {
+    "step_index": 6,
+    "table_name": "rel_person_paper",
+    "decision_summary": [
+      {
+        "decision_type": "OP-RELATION",
+        "target": "ObjectProperty:authoredPaper",
+        "status": "accepted",
+        "confidence": 0.95,
+        "reason": "rel_person_paper is a junction table with composite primary key (PersonID, PaperID) establishing a many-to-many authorship relation between Person and Paper entities. No foreign key constraints are declared, but the semantic structure and naming convention strongly indicate this is an association table linking authors to their papers."
+      }
+    ],
+    "remaining_ambiguities": [
+      "Foreign key constraints are not explicitly declared in rel_person_paper; relation inferred from table name and structure alone."
+    ],
+    "needs_probe": [],
+    "normalization_warnings": [],
+    "num_additions": 2,
+    "num_revisions": 0,
+    "num_rejections": 0,
+    "num_merges": 0
+  },
+  {
+    "step_index": 7,
+    "table_name": "rel_person_topic",
+    "decision_summary": [
+      {
+        "decision_type": "OP-RELATION",
+        "target": "ObjectProperty:hasInterestInTopic",
+        "status": "accepted",
+        "confidence": 0.9,
+        "reason": "rel_person_topic is a junction table with PersonID and TopicID as composite primary key, establishing a many-to-many relation between Person and Topic entities. No foreign key constraints present, but semantic role is clear from naming and structure."
+      }
+    ],
+    "remaining_ambiguities": [
+      "Directionality: hasInterestInTopic vs. isTopicOfInterestToPerson—current choice favors Person→Topic direction based on table naming convention."
+    ],
+    "needs_probe": [],
+    "normalization_warnings": [],
+    "num_additions": 2,
+    "num_revisions": 0,
+    "num_rejections": 0,
+    "num_merges": 0
+  },
+  {
+    "step_index": 8,
+    "table_name": "topics",
+    "decision_summary": [
+      {
+        "decision_type": "C-ENTITY",
+        "target": "Class:Topic",
+        "status": "accepted",
+        "confidence": 0.95,
+        "reason": "topics table provides a dedicated entity definition for Topic with primary key TopicID, name attribute, URI reference, and hierarchical parent relationship. This resolves the prior ambiguity where Topic was only inferred from rel_paper_topic junction table."
+      },
+      {
+        "decision_type": "DP-ATTRIBUTE",
+        "target": "DataProperty:hasTopicName",
+        "status": "accepted",
+        "confidence": 0.95,
+        "reason": "TopicName column in topics table is a string literal attribute describing the topic label."
+      },
+      {
+        "decision_type": "DP-ATTRIBUTE",
+        "target": "DataProperty:hasTopicURI",
+        "status": "accepted",
+        "confidence": 0.85,
+        "reason": "URI column in topics table stores URI values. Modeled conservatively as data property with xsd:anyURI datatype, as it represents a reference value rather than a direct entity-to-entity relation."
+      },
+      {
+        "decision_type": "OP-RELATION",
+        "target": "ObjectProperty:hasParentTopic",
+        "status": "accepted",
+        "confidence": 0.9,
+        "reason": "ParentID column in topics table references another topic via TopicID, establishing a self-referential hierarchical relationship. This is a clear entity-to-entity relation within the same class."
+      },
+      {
+        "decision_type": "CLASS-MAPPING-UPGRADE",
+        "target": "Topic_from_topics",
+        "status": "accepted",
+        "confidence": 0.95,
+        "reason": "Topic class mapping is upgraded from rel_paper_topic (junction table) to topics (primary entity table), providing a more authoritative and complete source for Topic instances."
+      }
+    ],
+    "remaining_ambiguities": [
+      "URI column in topics table: unclear if it references external topic resources (e.g., DBpedia, SKOS concepts) or serves as an internal identifier. Modeled conservatively as data property.",
+      "ParentID semantics: unclear if NULL values indicate root topics or if there are other conventions for topic hierarchy roots."
+    ],
+    "needs_probe": [
+      {
+        "probe_type": "value_sample",
+        "target": "topics.uri",
+        "question": "Are URI values external references (e.g., http://..., URIs to DBpedia or other ontologies) or internal identifiers?"
+      },
+      {
+        "probe_type": "value_sample",
+        "target": "topics.parentid",
+        "question": "What is the distribution of NULL values in ParentID? Do they indicate root topics or are there other conventions?"
+      },
+      {
+        "probe_type": "cardinality",
+        "target": "topics.topicid",
+        "question": "How many distinct topics exist? Is the hierarchy deep or shallow?"
+      }
+    ],
+    "normalization_warnings": [
+      {
+        "section": "classes",
+        "message": "Dropped revision with empty target_id or updated_fields",
+        "raw_item": {
+          "id": "Class:Topic",
+          "label": "Topic",
+          "description": "A topic or subject area that can be associated with papers and persons. Now grounded in the dedicated topics table with hierarchical structure support.",
+          "source_tables": [
+            "topics",
+            "rel_paper_topic"
+          ],
+          "identifier_columns": [
+            "topics.TopicID"
+          ]
+        }
+      },
+      {
+        "section": "class_mappings",
+        "message": "Dropped revision with empty target_id or updated_fields",
+        "raw_item": {
+          "mapping_id": "Topic_from_topics",
+          "class_id": "Class:Topic",
+          "from_tables": [
+            "topics"
+          ],
+          "identifier_kind": "uri_pattern",
+          "identifier_columns": [
+            "topics.TopicID"
+          ],
+          "instance_id_template": "topics/@@topics.TopicID@@",
+          "bnode_id_columns": []
+        }
+      }
+    ],
+    "num_additions": 8,
+    "num_revisions": 0,
+    "num_rejections": 0,
+    "num_merges": 0
+  }
+]

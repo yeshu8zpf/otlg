@@ -1,0 +1,343 @@
+{
+  "work_unit": {
+    "table": "organizations",
+    "related_tables": []
+  },
+  "proposed_additions": {
+    "classes": [
+      {
+        "id": "Class:Organization",
+        "label": "Organization",
+        "description": "A formal organization entity with type, contact information, and hierarchical relationships.",
+        "source_tables": [
+          "organizations"
+        ],
+        "identifier_columns": [
+          "organizations.OrgID"
+        ]
+      }
+    ],
+    "data_properties": [
+      {
+        "id": "DataProperty:hasOrganizationType",
+        "label": "has organization type",
+        "domain": "Class:Organization",
+        "datatype": "xsd:string",
+        "description": "The type or category of the organization."
+      },
+      {
+        "id": "DataProperty:hasOrganizationName",
+        "label": "has organization name",
+        "domain": "Class:Organization",
+        "datatype": "xsd:string",
+        "description": "The official name of the organization."
+      },
+      {
+        "id": "DataProperty:hasOrganizationAddress",
+        "label": "has organization address",
+        "domain": "Class:Organization",
+        "datatype": "xsd:string",
+        "description": "The street address of the organization."
+      },
+      {
+        "id": "DataProperty:hasOrganizationLocation",
+        "label": "has organization location",
+        "domain": "Class:Organization",
+        "datatype": "xsd:string",
+        "description": "The city or locality where the organization is located."
+      },
+      {
+        "id": "DataProperty:hasOrganizationPostcode",
+        "label": "has organization postcode",
+        "domain": "Class:Organization",
+        "datatype": "xsd:string",
+        "description": "The postal code of the organization."
+      },
+      {
+        "id": "DataProperty:hasOrganizationCountry",
+        "label": "has organization country",
+        "domain": "Class:Organization",
+        "datatype": "xsd:string",
+        "description": "The country where the organization is located."
+      },
+      {
+        "id": "DataProperty:hasOrganizationURI",
+        "label": "has organization URI",
+        "domain": "Class:Organization",
+        "datatype": "xsd:anyURI",
+        "description": "A URI identifier for the organization."
+      },
+      {
+        "id": "DataProperty:hasOrganizationHomepage",
+        "label": "has organization homepage",
+        "domain": "Class:Organization",
+        "datatype": "xsd:anyURI",
+        "description": "The homepage URL of the organization."
+      }
+    ],
+    "object_properties": [],
+    "subclass_relations": [],
+    "class_mappings": [
+      {
+        "mapping_id": "Organization_from_organizations",
+        "class_id": "Class:Organization",
+        "from_tables": [
+          "organizations"
+        ],
+        "identifier_kind": "uri_pattern",
+        "identifier_columns": [
+          "organizations.OrgID"
+        ],
+        "instance_id_template": "organizations/@@organizations.OrgID@@",
+        "bnode_id_columns": []
+      }
+    ],
+    "data_property_mappings": [
+      {
+        "mapping_id": "hasOrganizationType_from_Type",
+        "data_property_id": "DataProperty:hasOrganizationType",
+        "applies_to_class": "Class:Organization",
+        "source_table": "organizations",
+        "source_columns": [
+          "organizations.Type"
+        ],
+        "value_kind": "column",
+        "value_template": "",
+        "sql_expression": "",
+        "constant_value": "",
+        "datatype": "xsd:string",
+        "join_paths": [],
+        "condition": []
+      },
+      {
+        "mapping_id": "hasOrganizationName_from_Name",
+        "data_property_id": "DataProperty:hasOrganizationName",
+        "applies_to_class": "Class:Organization",
+        "source_table": "organizations",
+        "source_columns": [
+          "organizations.Name"
+        ],
+        "value_kind": "column",
+        "value_template": "",
+        "sql_expression": "",
+        "constant_value": "",
+        "datatype": "xsd:string",
+        "join_paths": [],
+        "condition": []
+      },
+      {
+        "mapping_id": "hasOrganizationAddress_from_Address",
+        "data_property_id": "DataProperty:hasOrganizationAddress",
+        "applies_to_class": "Class:Organization",
+        "source_table": "organizations",
+        "source_columns": [
+          "organizations.Address"
+        ],
+        "value_kind": "column",
+        "value_template": "",
+        "sql_expression": "",
+        "constant_value": "",
+        "datatype": "xsd:string",
+        "join_paths": [],
+        "condition": []
+      },
+      {
+        "mapping_id": "hasOrganizationLocation_from_Location",
+        "data_property_id": "DataProperty:hasOrganizationLocation",
+        "applies_to_class": "Class:Organization",
+        "source_table": "organizations",
+        "source_columns": [
+          "organizations.Location"
+        ],
+        "value_kind": "column",
+        "value_template": "",
+        "sql_expression": "",
+        "constant_value": "",
+        "datatype": "xsd:string",
+        "join_paths": [],
+        "condition": []
+      },
+      {
+        "mapping_id": "hasOrganizationPostcode_from_Postcode",
+        "data_property_id": "DataProperty:hasOrganizationPostcode",
+        "applies_to_class": "Class:Organization",
+        "source_table": "organizations",
+        "source_columns": [
+          "organizations.Postcode"
+        ],
+        "value_kind": "column",
+        "value_template": "",
+        "sql_expression": "",
+        "constant_value": "",
+        "datatype": "xsd:string",
+        "join_paths": [],
+        "condition": []
+      },
+      {
+        "mapping_id": "hasOrganizationCountry_from_Country",
+        "data_property_id": "DataProperty:hasOrganizationCountry",
+        "applies_to_class": "Class:Organization",
+        "source_table": "organizations",
+        "source_columns": [
+          "organizations.Country"
+        ],
+        "value_kind": "column",
+        "value_template": "",
+        "sql_expression": "",
+        "constant_value": "",
+        "datatype": "xsd:string",
+        "join_paths": [],
+        "condition": []
+      },
+      {
+        "mapping_id": "hasOrganizationURI_from_URI",
+        "data_property_id": "DataProperty:hasOrganizationURI",
+        "applies_to_class": "Class:Organization",
+        "source_table": "organizations",
+        "source_columns": [
+          "organizations.URI"
+        ],
+        "value_kind": "column",
+        "value_template": "",
+        "sql_expression": "",
+        "constant_value": "",
+        "datatype": "xsd:anyURI",
+        "join_paths": [],
+        "condition": []
+      },
+      {
+        "mapping_id": "hasOrganizationHomepage_from_Homepage",
+        "data_property_id": "DataProperty:hasOrganizationHomepage",
+        "applies_to_class": "Class:Organization",
+        "source_table": "organizations",
+        "source_columns": [
+          "organizations.Homepage"
+        ],
+        "value_kind": "column",
+        "value_template": "",
+        "sql_expression": "",
+        "constant_value": "",
+        "datatype": "xsd:anyURI",
+        "join_paths": [],
+        "condition": []
+      }
+    ],
+    "object_property_mappings": []
+  },
+  "proposed_revisions": {
+    "classes": [],
+    "data_properties": [],
+    "object_properties": [],
+    "subclass_relations": [],
+    "class_mappings": [],
+    "data_property_mappings": [],
+    "object_property_mappings": []
+  },
+  "proposed_rejections": [],
+  "proposed_merges": [],
+  "decision_summary": [
+    {
+      "decision_type": "C-ENTITY",
+      "target": "Class:Organization",
+      "status": "accepted",
+      "confidence": 0.95,
+      "reason": "OrgID is a primary key; Name, Type, and Address are core descriptive attributes. Organizations represent stable entities with clear identity and properties."
+    },
+    {
+      "decision_type": "DP-LITERAL",
+      "target": "DataProperty:hasOrganizationType",
+      "status": "accepted",
+      "confidence": 0.9,
+      "reason": "Type column (varchar(50)) stores categorical organization type values; modeled as literal string property."
+    },
+    {
+      "decision_type": "DP-LITERAL",
+      "target": "DataProperty:hasOrganizationName",
+      "status": "accepted",
+      "confidence": 0.95,
+      "reason": "Name column (varchar(200)) stores the organization's official name; standard literal string property."
+    },
+    {
+      "decision_type": "DP-ADDRESS-BUNDLE",
+      "target": "DataProperty:hasOrganizationAddress",
+      "status": "accepted",
+      "confidence": 0.85,
+      "reason": "Address, Location, Postcode, and Country form a geographic address bundle. Modeled as separate literal properties pending discovery of a dedicated Location/Address entity class."
+    },
+    {
+      "decision_type": "DP-LITERAL",
+      "target": "DataProperty:hasOrganizationLocation",
+      "status": "accepted",
+      "confidence": 0.85,
+      "reason": "Location column (varchar(50)) stores locality/city information; part of address bundle. Kept as literal pending evidence of separate Location entity."
+    },
+    {
+      "decision_type": "DP-LITERAL",
+      "target": "DataProperty:hasOrganizationPostcode",
+      "status": "accepted",
+      "confidence": 0.9,
+      "reason": "Postcode column (varchar(10)) stores postal codes; literal string property."
+    },
+    {
+      "decision_type": "DP-LITERAL",
+      "target": "DataProperty:hasOrganizationCountry",
+      "status": "accepted",
+      "confidence": 0.9,
+      "reason": "Country column (varchar(50)) stores country names or codes; literal string property."
+    },
+    {
+      "decision_type": "DP-URI",
+      "target": "DataProperty:hasOrganizationURI",
+      "status": "accepted",
+      "confidence": 0.85,
+      "reason": "URI column (varchar(100)) stores URI values. No evidence of entity-to-entity relation; modeled as data property with xsd:anyURI datatype."
+    },
+    {
+      "decision_type": "DP-URI",
+      "target": "DataProperty:hasOrganizationHomepage",
+      "status": "accepted",
+      "confidence": 0.9,
+      "reason": "Homepage column (varchar(200)) stores web URLs; modeled as data property with xsd:anyURI datatype."
+    },
+    {
+      "decision_type": "FK-DEFERRED",
+      "target": "organizations.Belongsto",
+      "status": "deferred",
+      "confidence": 0.7,
+      "reason": "Belongsto column (int) appears to reference another organization (hierarchical relationship), but no foreign key constraint is defined and no related table is in scope. Deferred pending discovery of target table or explicit FK evidence."
+    }
+  ],
+  "remaining_ambiguities": [
+    "Belongsto column (int) appears to reference another organization entity but lacks explicit foreign key constraint. Unclear if it represents parent organization, organizational unit, or other hierarchical relationship. Requires confirmation of target table and relationship semantics.",
+    "Address bundle (Address, Location, Postcode, Country) is modeled as separate literal properties. If a dedicated Location or Address entity class is discovered in related tables, these should be refactored to object properties.",
+    "URI column semantics unclear: does it reference external organization resources, internal identifiers, or linked data URIs? Current modeling as literal xsd:anyURI is conservative pending sample data inspection.",
+    "Type column values unknown: unclear if it contains standardized organization types (e.g., 'University', 'Company', 'NGO') or free-text descriptions. Affects potential future classification or subclass modeling."
+  ],
+  "needs_probe": [
+    {
+      "probe_type": "value_sample",
+      "target": "organizations.Type",
+      "question": "What are 3-5 sample values in the Type column? Are they standardized categories (e.g., 'University', 'Company', 'Government', 'NGO') or free-text descriptions?"
+    },
+    {
+      "probe_type": "value_sample",
+      "target": "organizations.URI",
+      "question": "What are 3-5 sample values in the URI column? Do they reference external linked data resources, internal identifiers, or organization web URIs?"
+    },
+    {
+      "probe_type": "value_sample",
+      "target": "organizations.Belongsto",
+      "question": "What are sample values in the Belongsto column? Do they reference OrgID values from the same table (hierarchical parent), or do they reference a different entity type?"
+    },
+    {
+      "probe_type": "schema_evidence",
+      "target": "organizations.Belongsto",
+      "question": "Is there an explicit foreign key constraint on organizations.Belongsto? If so, does it reference organizations.OrgID (self-referential) or another table?"
+    },
+    {
+      "probe_type": "value_sample",
+      "target": "organizations.Location",
+      "question": "What are 3-5 sample values in the Location column? Are they city names, venue names, region codes, or other location representations?"
+    }
+  ]
+}

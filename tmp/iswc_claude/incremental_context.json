@@ -1,0 +1,540 @@
+{
+  "tables": [
+    "conferences",
+    "organizations",
+    "papers",
+    "persons",
+    "rel_paper_topic",
+    "rel_person_organization",
+    "rel_person_paper",
+    "rel_person_topic",
+    "topics"
+  ],
+  "incremental_steps": [
+    {
+      "step_index": 0,
+      "new_table": "conferences",
+      "related_existing_tables": [],
+      "local_table": {
+        "name": "conferences",
+        "columns": [
+          {
+            "name": "ConfID",
+            "type": "int",
+            "raw": "ConfID int NOT NULL default '0'",
+            "is_primary_key": true
+          },
+          {
+            "name": "Name",
+            "type": "varchar(100)",
+            "raw": "Name varchar(100) default NULL",
+            "is_primary_key": false
+          },
+          {
+            "name": "URI",
+            "type": "varchar(200)",
+            "raw": "URI varchar(200) default NULL",
+            "is_primary_key": false
+          },
+          {
+            "name": "Date",
+            "type": "varchar(50)",
+            "raw": "Date varchar(50) default NULL",
+            "is_primary_key": false
+          },
+          {
+            "name": "Location",
+            "type": "varchar(50)",
+            "raw": "Location varchar(50) default NULL",
+            "is_primary_key": false
+          },
+          {
+            "name": "Datum",
+            "type": "timestamp(0)",
+            "raw": "Datum timestamp(0) default NULL",
+            "is_primary_key": false
+          }
+        ],
+        "fks": []
+      },
+      "local_fk_edges": [],
+      "related_table_defs": {},
+      "multi_table_signals": {
+        "many_fk_targets": false,
+        "connector_like": false,
+        "association_class_likelihood": false,
+        "address_like_bundle": [
+          "location"
+        ],
+        "requires_multi_table_reasoning": true
+      },
+      "suggested_analysis_scope": {
+        "recommended_tables_for_joint_analysis": [
+          "conferences"
+        ],
+        "reason": [
+          "structured_value_object_bundle"
+        ]
+      }
+    },
+    {
+      "step_index": 1,
+      "new_table": "organizations",
+      "related_existing_tables": [],
+      "local_table": {
+        "name": "organizations",
+        "columns": [
+          {
+            "name": "OrgID",
+            "type": "int",
+            "raw": "OrgID int NOT NULL default '0'",
+            "is_primary_key": true
+          },
+          {
+            "name": "Type",
+            "type": "varchar(50)",
+            "raw": "Type varchar(50) default NULL",
+            "is_primary_key": false
+          },
+          {
+            "name": "Name",
+            "type": "varchar(200)",
+            "raw": "Name varchar(200) default NULL",
+            "is_primary_key": false
+          },
+          {
+            "name": "Address",
+            "type": "varchar(200)",
+            "raw": "Address varchar(200)",
+            "is_primary_key": false
+          },
+          {
+            "name": "Location",
+            "type": "varchar(50)",
+            "raw": "Location varchar(50) default NULL",
+            "is_primary_key": false
+          },
+          {
+            "name": "Postcode",
+            "type": "varchar(10)",
+            "raw": "Postcode varchar(10) default NULL",
+            "is_primary_key": false
+          },
+          {
+            "name": "Country",
+            "type": "varchar(50)",
+            "raw": "Country varchar(50) default NULL",
+            "is_primary_key": false
+          },
+          {
+            "name": "URI",
+            "type": "varchar(100)",
+            "raw": "URI varchar(100) default NULL",
+            "is_primary_key": false
+          },
+          {
+            "name": "Belongsto",
+            "type": "int",
+            "raw": "Belongsto int default NULL",
+            "is_primary_key": false
+          },
+          {
+            "name": "Homepage",
+            "type": "varchar(200)",
+            "raw": "Homepage varchar(200) default NULL",
+            "is_primary_key": false
+          }
+        ],
+        "fks": []
+      },
+      "local_fk_edges": [],
+      "related_table_defs": {},
+      "multi_table_signals": {
+        "many_fk_targets": false,
+        "connector_like": false,
+        "association_class_likelihood": false,
+        "address_like_bundle": [
+          "address",
+          "location",
+          "postcode",
+          "country"
+        ],
+        "requires_multi_table_reasoning": true
+      },
+      "suggested_analysis_scope": {
+        "recommended_tables_for_joint_analysis": [
+          "organizations"
+        ],
+        "reason": [
+          "structured_value_object_bundle"
+        ]
+      }
+    },
+    {
+      "step_index": 2,
+      "new_table": "papers",
+      "related_existing_tables": [],
+      "local_table": {
+        "name": "papers",
+        "columns": [
+          {
+            "name": "PaperID",
+            "type": "int",
+            "raw": "PaperID int NOT NULL default '0'",
+            "is_primary_key": true
+          },
+          {
+            "name": "Title",
+            "type": "varchar(200)",
+            "raw": "Title varchar(200) default NULL",
+            "is_primary_key": false
+          },
+          {
+            "name": "Abstract",
+            "type": "varchar(2000)",
+            "raw": "Abstract varchar(2000)",
+            "is_primary_key": false
+          },
+          {
+            "name": "URI",
+            "type": "varchar(200)",
+            "raw": "URI varchar(200) default NULL",
+            "is_primary_key": false
+          },
+          {
+            "name": "Year",
+            "type": "int",
+            "raw": "Year int default NULL",
+            "is_primary_key": false
+          },
+          {
+            "name": "Conference",
+            "type": "int",
+            "raw": "Conference int default NULL",
+            "is_primary_key": false
+          },
+          {
+            "name": "Publish",
+            "type": "int",
+            "raw": "Publish int default NULL",
+            "is_primary_key": false
+          }
+        ],
+        "fks": []
+      },
+      "local_fk_edges": [],
+      "related_table_defs": {},
+      "multi_table_signals": {
+        "many_fk_targets": false,
+        "connector_like": false,
+        "association_class_likelihood": false,
+        "address_like_bundle": [],
+        "requires_multi_table_reasoning": false
+      },
+      "suggested_analysis_scope": {
+        "recommended_tables_for_joint_analysis": [
+          "papers"
+        ],
+        "reason": []
+      }
+    },
+    {
+      "step_index": 3,
+      "new_table": "persons",
+      "related_existing_tables": [],
+      "local_table": {
+        "name": "persons",
+        "columns": [
+          {
+            "name": "PerID",
+            "type": "int",
+            "raw": "PerID int NOT NULL default '0'",
+            "is_primary_key": true
+          },
+          {
+            "name": "Type",
+            "type": "varchar(50)",
+            "raw": "Type varchar(50) default NULL",
+            "is_primary_key": false
+          },
+          {
+            "name": "FirstName",
+            "type": "varchar(100)",
+            "raw": "FirstName varchar(100) default NULL",
+            "is_primary_key": false
+          },
+          {
+            "name": "LastName",
+            "type": "varchar(100)",
+            "raw": "LastName varchar(100) default NULL",
+            "is_primary_key": false
+          },
+          {
+            "name": "Address",
+            "type": "varchar(2000)",
+            "raw": "Address varchar(2000) default NULL",
+            "is_primary_key": false
+          },
+          {
+            "name": "Email",
+            "type": "varchar(100)",
+            "raw": "Email varchar(100) default NULL",
+            "is_primary_key": false
+          },
+          {
+            "name": "Homepage",
+            "type": "varchar(50)",
+            "raw": "Homepage varchar(50) default NULL",
+            "is_primary_key": false
+          },
+          {
+            "name": "Phone",
+            "type": "varchar(200)",
+            "raw": "Phone varchar(200) default NULL",
+            "is_primary_key": false
+          },
+          {
+            "name": "URI",
+            "type": "varchar(200)",
+            "raw": "URI varchar(200) default NULL",
+            "is_primary_key": false
+          },
+          {
+            "name": "Photo",
+            "type": "varchar(200)",
+            "raw": "Photo varchar(200) default NULL",
+            "is_primary_key": false
+          }
+        ],
+        "fks": []
+      },
+      "local_fk_edges": [],
+      "related_table_defs": {},
+      "multi_table_signals": {
+        "many_fk_targets": false,
+        "connector_like": false,
+        "association_class_likelihood": false,
+        "address_like_bundle": [
+          "address"
+        ],
+        "requires_multi_table_reasoning": true
+      },
+      "suggested_analysis_scope": {
+        "recommended_tables_for_joint_analysis": [
+          "persons"
+        ],
+        "reason": [
+          "structured_value_object_bundle"
+        ]
+      }
+    },
+    {
+      "step_index": 4,
+      "new_table": "rel_paper_topic",
+      "related_existing_tables": [],
+      "local_table": {
+        "name": "rel_paper_topic",
+        "columns": [
+          {
+            "name": "PaperID",
+            "type": "int",
+            "raw": "PaperID int NOT NULL default '0'",
+            "is_primary_key": true
+          },
+          {
+            "name": "TopicID",
+            "type": "int",
+            "raw": "TopicID int NOT NULL default '0'",
+            "is_primary_key": true
+          },
+          {
+            "name": "RelationType",
+            "type": "int",
+            "raw": "RelationType int default NULL",
+            "is_primary_key": false
+          }
+        ],
+        "fks": []
+      },
+      "local_fk_edges": [],
+      "related_table_defs": {},
+      "multi_table_signals": {
+        "many_fk_targets": false,
+        "connector_like": false,
+        "association_class_likelihood": false,
+        "address_like_bundle": [],
+        "requires_multi_table_reasoning": false
+      },
+      "suggested_analysis_scope": {
+        "recommended_tables_for_joint_analysis": [
+          "rel_paper_topic"
+        ],
+        "reason": []
+      }
+    },
+    {
+      "step_index": 5,
+      "new_table": "rel_person_organization",
+      "related_existing_tables": [],
+      "local_table": {
+        "name": "rel_person_organization",
+        "columns": [
+          {
+            "name": "PersonID",
+            "type": "int",
+            "raw": "PersonID int NOT NULL default '0'",
+            "is_primary_key": true
+          },
+          {
+            "name": "OrganizationID",
+            "type": "int",
+            "raw": "OrganizationID int NOT NULL default '0'",
+            "is_primary_key": true
+          }
+        ],
+        "fks": []
+      },
+      "local_fk_edges": [],
+      "related_table_defs": {},
+      "multi_table_signals": {
+        "many_fk_targets": false,
+        "connector_like": false,
+        "association_class_likelihood": false,
+        "address_like_bundle": [],
+        "requires_multi_table_reasoning": false
+      },
+      "suggested_analysis_scope": {
+        "recommended_tables_for_joint_analysis": [
+          "rel_person_organization"
+        ],
+        "reason": []
+      }
+    },
+    {
+      "step_index": 6,
+      "new_table": "rel_person_paper",
+      "related_existing_tables": [],
+      "local_table": {
+        "name": "rel_person_paper",
+        "columns": [
+          {
+            "name": "PersonID",
+            "type": "int",
+            "raw": "PersonID int NOT NULL default '0'",
+            "is_primary_key": true
+          },
+          {
+            "name": "PaperID",
+            "type": "int",
+            "raw": "PaperID int NOT NULL default '0'",
+            "is_primary_key": true
+          }
+        ],
+        "fks": []
+      },
+      "local_fk_edges": [],
+      "related_table_defs": {},
+      "multi_table_signals": {
+        "many_fk_targets": false,
+        "connector_like": false,
+        "association_class_likelihood": false,
+        "address_like_bundle": [],
+        "requires_multi_table_reasoning": false
+      },
+      "suggested_analysis_scope": {
+        "recommended_tables_for_joint_analysis": [
+          "rel_person_paper"
+        ],
+        "reason": []
+      }
+    },
+    {
+      "step_index": 7,
+      "new_table": "rel_person_topic",
+      "related_existing_tables": [],
+      "local_table": {
+        "name": "rel_person_topic",
+        "columns": [
+          {
+            "name": "PersonID",
+            "type": "int",
+            "raw": "PersonID int NOT NULL default '0'",
+            "is_primary_key": true
+          },
+          {
+            "name": "TopicID",
+            "type": "int",
+            "raw": "TopicID int NOT NULL default '0'",
+            "is_primary_key": true
+          }
+        ],
+        "fks": []
+      },
+      "local_fk_edges": [],
+      "related_table_defs": {},
+      "multi_table_signals": {
+        "many_fk_targets": false,
+        "connector_like": false,
+        "association_class_likelihood": false,
+        "address_like_bundle": [],
+        "requires_multi_table_reasoning": false
+      },
+      "suggested_analysis_scope": {
+        "recommended_tables_for_joint_analysis": [
+          "rel_person_topic"
+        ],
+        "reason": []
+      }
+    },
+    {
+      "step_index": 8,
+      "new_table": "topics",
+      "related_existing_tables": [],
+      "local_table": {
+        "name": "topics",
+        "columns": [
+          {
+            "name": "TopicID",
+            "type": "int",
+            "raw": "TopicID int NOT NULL default '0'",
+            "is_primary_key": true
+          },
+          {
+            "name": "TopicName",
+            "type": "varchar(50)",
+            "raw": "TopicName varchar(50) default NULL",
+            "is_primary_key": false
+          },
+          {
+            "name": "URI",
+            "type": "varchar(200)",
+            "raw": "URI varchar(200) default NULL",
+            "is_primary_key": false
+          },
+          {
+            "name": "ParentID",
+            "type": "int",
+            "raw": "ParentID int default NULL",
+            "is_primary_key": false
+          }
+        ],
+        "fks": []
+      },
+      "local_fk_edges": [],
+      "related_table_defs": {},
+      "multi_table_signals": {
+        "many_fk_targets": false,
+        "connector_like": false,
+        "association_class_likelihood": false,
+        "address_like_bundle": [],
+        "requires_multi_table_reasoning": false
+      },
+      "suggested_analysis_scope": {
+        "recommended_tables_for_joint_analysis": [
+          "topics"
+        ],
+        "reason": []
+      }
+    }
+  ]
+}

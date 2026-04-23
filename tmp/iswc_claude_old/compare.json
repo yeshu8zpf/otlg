@@ -1,0 +1,357 @@
+{
+  "mode": "burr_original_after_preprocess",
+  "scenario_dir": "burr_benchmark/real-world/iswc",
+  "database_name": "iswc",
+  "meta_path": "burr_benchmark/real-world/iswc/meta.json",
+  "effective_meta": {
+    "relation_prefix": "iswc",
+    "prefixes": [
+      {
+        "prefix": "iswc",
+        "uri": "/iswc/"
+      },
+      {
+        "prefix": "base",
+        "uri": "/base/"
+      }
+    ]
+  },
+  "gt_preprocess": {
+    "original_path": "burr_benchmark/real-world/iswc/groundtruth.ttl",
+    "preprocessed_path": "tmp/iswc_claude/compare_preprocessed/gt_preprocessed.ttl",
+    "kind": "single_ttl",
+    "ttl_preprocess_debug": {
+      "num_replacements": 7,
+      "num_additions": 4,
+      "replacements": [
+        {
+          "subject": "file:/Users/richard/D2RQ/workspace/D2RQ/doc/example/mapping-iswc.ttl#organizations_Type_U",
+          "predicate": "http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#uriPattern",
+          "old": "http://annotation.semanticweb.org/iswc/iswc.daml#University",
+          "new": "http://annotation.semanticweb.org/iswc/iswc.daml#university"
+        },
+        {
+          "subject": "file:/Users/richard/D2RQ/workspace/D2RQ/doc/example/mapping-iswc.ttl#organizations_Type_D",
+          "predicate": "http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#uriPattern",
+          "old": "http://annotation.semanticweb.org/iswc/iswc.daml#Department",
+          "new": "http://annotation.semanticweb.org/iswc/iswc.daml#department"
+        },
+        {
+          "subject": "file:/Users/richard/D2RQ/workspace/D2RQ/doc/example/mapping-iswc.ttl#organizations_Type_I",
+          "predicate": "http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#uriPattern",
+          "old": "http://annotation.semanticweb.org/iswc/iswc.daml#Institute",
+          "new": "http://annotation.semanticweb.org/iswc/iswc.daml#institute"
+        },
+        {
+          "subject": "file:/Users/richard/D2RQ/workspace/D2RQ/doc/example/mapping-iswc.ttl#conferences_Datum",
+          "predicate": "http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#condition",
+          "old": "conferences.datum != '0000'",
+          "new": "conferences.datum !='0000'"
+        },
+        {
+          "subject": "file:/Users/richard/D2RQ/workspace/D2RQ/doc/example/mapping-iswc.ttl#organizations_Type_U",
+          "predicate": "http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#condition",
+          "old": "organizations.type = 'U'",
+          "new": "organizations.type ='U'"
+        },
+        {
+          "subject": "file:/Users/richard/D2RQ/workspace/D2RQ/doc/example/mapping-iswc.ttl#organizations_Type_D",
+          "predicate": "http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#condition",
+          "old": "organizations.type = 'D'",
+          "new": "organizations.type ='D'"
+        },
+        {
+          "subject": "file:/Users/richard/D2RQ/workspace/D2RQ/doc/example/mapping-iswc.ttl#organizations_Type_I",
+          "predicate": "http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#condition",
+          "old": "organizations.type = 'I'",
+          "new": "organizations.type ='I'"
+        }
+      ],
+      "additions": [
+        {
+          "subject": "file:/Users/richard/D2RQ/workspace/D2RQ/doc/example/mapping-iswc.ttl#organizations_Homepage",
+          "predicate": "http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#column",
+          "derived_from": "http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#uriColumn",
+          "value": "organizations.homepage"
+        },
+        {
+          "subject": "file:/Users/richard/D2RQ/workspace/D2RQ/doc/example/mapping-iswc.ttl#persons_Homepage",
+          "predicate": "http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#column",
+          "derived_from": "http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#uriColumn",
+          "value": "persons.homepage"
+        },
+        {
+          "subject": "file:/Users/richard/D2RQ/workspace/D2RQ/doc/example/mapping-iswc.ttl#persons_Photo",
+          "predicate": "http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#column",
+          "derived_from": "http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#uriColumn",
+          "value": "persons.photo"
+        },
+        {
+          "subject": "file:/Users/richard/D2RQ/workspace/D2RQ/doc/example/mapping-iswc.ttl#topics_URI",
+          "predicate": "http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#column",
+          "derived_from": "http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#uriColumn",
+          "value": "topics.uri"
+        }
+      ]
+    }
+  },
+  "prediction_preprocess": {
+    "original_path": "tmp/iswc_claude/mapping.json",
+    "preprocessed_path": "tmp/iswc_claude/compare_preprocessed/prediction_preprocessed.json",
+    "kind": "prediction",
+    "canonicalization_debug": {
+      "unresolved_classes": [],
+      "notes": {
+        "uriColumn_mirrored_to_column": true,
+        "bNodeIdColumns_used_for_class_identity": true,
+        "class_prefix_stripped": true,
+        "class_map_refs_resolved": true,
+        "class_map_ids_preserved": true,
+        "case_insensitive_class_map_resolution": true
+      }
+    }
+  },
+  "metrics": {
+    "mapping_based": {
+      "cls_precision": 0.6666666666666666,
+      "cls_recall": 0.6666666666666666,
+      "cls_f1": 0.6666666666666666,
+      "rel_precision": 0.25,
+      "rel_recall": 0.25,
+      "rel_f1": 0.25,
+      "attr_precision": 0.6206896551724138,
+      "attr_recall": 0.72,
+      "attr_f1": 0.6666666666666666
+    },
+    "name_based": {
+      "cls_precision": 0.6,
+      "cls_recall": 0.5,
+      "cls_f1": 0.5454545454545454,
+      "rel_precision": 0.0,
+      "rel_recall": 0.0,
+      "rel_f1": 0.0,
+      "attr_precision": 0.0,
+      "attr_recall": 0.0,
+      "attr_f1": 0.0
+    }
+  },
+  "mismatch_details": {
+    "mapping_based": {
+      "classes": {
+        "num_reference": 6,
+        "num_prediction": 6,
+        "num_matched": 4,
+        "num_missing_in_prediction": 2,
+        "num_extra_in_prediction": 2,
+        "matched": [
+          "ClassMap(uriPattern=conferences/@@conferences.confid@@, class_uri=Conference, eq_strategy=<function concept_based_equality at 0x79c7833135b0>)",
+          "ClassMap(uriPattern=organizations/@@organizations.orgid@@, class_uri=Organization, eq_strategy=<function concept_based_equality at 0x79c7833135b0>)",
+          "ClassMap(uriPattern=topics/@@topics.topicid@@, class_uri=Concept, eq_strategy=<function concept_based_equality at 0x79c7833135b0>)",
+          "ClassMap(uriPattern=persons/@@persons.perid@@, class_uri=Person, eq_strategy=<function concept_based_equality at 0x79c7833135b0>)"
+        ],
+        "missing_in_prediction": [
+          "ClassMap(uriPattern=None, class_uri=Address, eq_strategy=<function concept_based_equality at 0x79c7833135b0>)",
+          "ClassMap(uriPattern=papers/@@papers.paperid@@, class_uri=InProceedings, eq_strategy=<function concept_based_equality at 0x79c7833135b0>)"
+        ],
+        "extra_in_prediction": [
+          "ClassMap(uriPattern=@@papers.paperid@@, class_uri=Paper, eq_strategy=<function concept_based_equality at 0x79c7833135b0>)",
+          "ClassMap(uriPattern=@@rel_paper_topic.topicid@@, class_uri=Topic, eq_strategy=<function concept_based_equality at 0x79c7833135b0>)"
+        ]
+      },
+      "relations": {
+        "num_reference": 8,
+        "num_prediction": 8,
+        "num_matched": 2,
+        "num_missing_in_prediction": 6,
+        "num_extra_in_prediction": 6,
+        "matched": [
+          "Relation(property=conference, belongsToClassMap=ClassMap(uriPattern=papers/@@papers.paperid@@, class_uri=InProceedings, eq_strategy=<function concept_based_equality at 0x79c7833135b0>), refersToClassMap=ClassMap(uriPattern=conferences/@@conferences.confid@@, class_uri=Conference, eq_strategy=<function concept_based_equality at 0x79c7833135b0>), eq_strategy=<function equality_by_edge_query at 0x79c783135ea0>, joins=[Join(left_attribute=SQLAttribute(table='papers', attribute='conference'), right_attribute=SQLAttribute(table='conferences', attribute='confid'))], column=None, condition=None, sql_expression=None)",
+          "Relation(property=broader, belongsToClassMap=ClassMap(uriPattern=topics/@@topics.topicid@@, class_uri=Concept, eq_strategy=<function concept_based_equality at 0x79c7833135b0>), refersToClassMap=ClassMap(uriPattern=topics/@@topics.topicid@@, class_uri=Concept, eq_strategy=<function concept_based_equality at 0x79c7833135b0>), eq_strategy=<function equality_by_edge_query at 0x79c783135ea0>, joins=[Join(left_attribute=SQLAttribute(table='topics', attribute='parentid'), right_attribute=SQLAttribute(table='topics', attribute='topicid'))], column=None, condition=None, sql_expression=None)"
+        ],
+        "missing_in_prediction": [
+          "Relation(property=ADR, belongsToClassMap=ClassMap(uriPattern=organizations/@@organizations.orgid@@, class_uri=Organization, eq_strategy=<function concept_based_equality at 0x79c7833135b0>), refersToClassMap=ClassMap(uriPattern=None, class_uri=Address, eq_strategy=<function concept_based_equality at 0x79c7833135b0>), eq_strategy=<function equality_by_edge_query at 0x79c783135ea0>, joins=None, column=None, condition=None, sql_expression=None)",
+          "Relation(property=primarySubject, belongsToClassMap=ClassMap(uriPattern=papers/@@papers.paperid@@, class_uri=InProceedings, eq_strategy=<function concept_based_equality at 0x79c7833135b0>), refersToClassMap=ClassMap(uriPattern=topics/@@topics.topicid@@, class_uri=Concept, eq_strategy=<function concept_based_equality at 0x79c7833135b0>), eq_strategy=<function equality_by_edge_query at 0x79c783135ea0>, joins=[Join(left_attribute=SQLAttribute(table='rel_paper_topic', attribute='paperid'), right_attribute=SQLAttribute(table='papers', attribute='paperid')), Join(left_attribute=SQLAttribute(table='rel_paper_topic', attribute='topicid'), right_attribute=SQLAttribute(table='topics', attribute='topicid'))], column=None, condition=[<burr_evaluator.mapping_parser.sql_elements.Condition object at 0x79c7821c3970>], sql_expression=None)",
+          "Relation(property=subject, belongsToClassMap=ClassMap(uriPattern=papers/@@papers.paperid@@, class_uri=InProceedings, eq_strategy=<function concept_based_equality at 0x79c7833135b0>), refersToClassMap=ClassMap(uriPattern=topics/@@topics.topicid@@, class_uri=Concept, eq_strategy=<function concept_based_equality at 0x79c7833135b0>), eq_strategy=<function equality_by_edge_query at 0x79c783135ea0>, joins=[Join(left_attribute=SQLAttribute(table='rel_paper_topic', attribute='paperid'), right_attribute=SQLAttribute(table='papers', attribute='paperid')), Join(left_attribute=SQLAttribute(table='rel_paper_topic', attribute='topicid'), right_attribute=SQLAttribute(table='topics', attribute='topicid'))], column=None, condition=[<burr_evaluator.mapping_parser.sql_elements.Condition object at 0x79c7821c3b80>], sql_expression=None)",
+          "Relation(property=has_affiliation, belongsToClassMap=ClassMap(uriPattern=persons/@@persons.perid@@, class_uri=Person, eq_strategy=<function concept_based_equality at 0x79c7833135b0>), refersToClassMap=ClassMap(uriPattern=organizations/@@organizations.orgid@@, class_uri=Organization, eq_strategy=<function concept_based_equality at 0x79c7833135b0>), eq_strategy=<function equality_by_edge_query at 0x79c783135ea0>, joins=[Join(left_attribute=SQLAttribute(table='persons', attribute='perid'), right_attribute=SQLAttribute(table='rel_person_organization', attribute='personid')), Join(left_attribute=SQLAttribute(table='rel_person_organization', attribute='organizationid'), right_attribute=SQLAttribute(table='organizations', attribute='orgid'))], column=None, condition=None, sql_expression=None)",
+          "Relation(property=creator, belongsToClassMap=ClassMap(uriPattern=papers/@@papers.paperid@@, class_uri=InProceedings, eq_strategy=<function concept_based_equality at 0x79c7833135b0>), refersToClassMap=ClassMap(uriPattern=persons/@@persons.perid@@, class_uri=Person, eq_strategy=<function concept_based_equality at 0x79c7833135b0>), eq_strategy=<function equality_by_edge_query at 0x79c783135ea0>, joins=[Join(left_attribute=SQLAttribute(table='persons', attribute='perid'), right_attribute=SQLAttribute(table='rel_person_paper', attribute='personid')), Join(left_attribute=SQLAttribute(table='rel_person_paper', attribute='paperid'), right_attribute=SQLAttribute(table='papers', attribute='paperid'))], column=None, condition=None, sql_expression=None)",
+          "Relation(property=research_interests, belongsToClassMap=ClassMap(uriPattern=persons/@@persons.perid@@, class_uri=Person, eq_strategy=<function concept_based_equality at 0x79c7833135b0>), refersToClassMap=ClassMap(uriPattern=topics/@@topics.topicid@@, class_uri=Concept, eq_strategy=<function concept_based_equality at 0x79c7833135b0>), eq_strategy=<function equality_by_edge_query at 0x79c783135ea0>, joins=[Join(left_attribute=SQLAttribute(table='persons', attribute='perid'), right_attribute=SQLAttribute(table='rel_person_topic', attribute='personid')), Join(left_attribute=SQLAttribute(table='rel_person_topic', attribute='topicid'), right_attribute=SQLAttribute(table='topics', attribute='topicid'))], column=None, condition=None, sql_expression=None)"
+        ],
+        "extra_in_prediction": [
+          "Relation(property=ObjectProperty:hasAddress, belongsToClassMap=Organization_from_organizations, refersToClassMap=Class:Address, eq_strategy=<function equality_by_edge_query at 0x79c783135ea0>, joins=None, column=None, condition=None, sql_expression=None)",
+          "Relation(property=ObjectProperty:belongsToOrganization, belongsToClassMap=Organization_from_organizations, refersToClassMap=Organization_from_organizations, eq_strategy=<function equality_by_edge_query at 0x79c783135ea0>, joins=[Join(left_attribute=SQLAttribute(table='organizations', attribute='belongsto'), right_attribute=SQLAttribute(table='organizations', attribute='orgid'))], column=None, condition=None, sql_expression=None)",
+          "Relation(property=ObjectProperty:paperCoversTopics, belongsToClassMap=Paper_from_papers, refersToClassMap=Topic_from_topics, eq_strategy=<function equality_by_edge_query at 0x79c783135ea0>, joins=None, column=None, condition=None, sql_expression=None)",
+          "Relation(property=ObjectProperty:worksForOrganization, belongsToClassMap=Person_from_persons, refersToClassMap=Organization_from_organizations, eq_strategy=<function equality_by_edge_query at 0x79c783135ea0>, joins=None, column=None, condition=None, sql_expression=None)",
+          "Relation(property=ObjectProperty:authoredPaper, belongsToClassMap=Person_from_persons, refersToClassMap=Paper_from_papers, eq_strategy=<function equality_by_edge_query at 0x79c783135ea0>, joins=None, column=None, condition=None, sql_expression=None)",
+          "Relation(property=ObjectProperty:hasInterestInTopic, belongsToClassMap=Person_from_persons, refersToClassMap=Topic_from_topics, eq_strategy=<function equality_by_edge_query at 0x79c783135ea0>, joins=None, column=None, condition=None, sql_expression=None)"
+        ]
+      },
+      "attributes": {
+        "num_reference": 25,
+        "num_prediction": 29,
+        "num_matched": 18,
+        "num_missing_in_prediction": 7,
+        "num_extra_in_prediction": 11,
+        "matched": [
+          "Relation(property=Street, belongsToClassMap=ClassMap(uriPattern=None, class_uri=Address, eq_strategy=<function concept_based_equality at 0x79c7833135b0>), refersToClassMap=None, eq_strategy=<function equality_by_edge_query at 0x79c783135ea0>, joins=None, column=organizations.address, condition=None, sql_expression=None)",
+          "Relation(property=Country, belongsToClassMap=ClassMap(uriPattern=None, class_uri=Address, eq_strategy=<function concept_based_equality at 0x79c7833135b0>), refersToClassMap=None, eq_strategy=<function equality_by_edge_query at 0x79c783135ea0>, joins=None, column=organizations.country, condition=None, sql_expression=None)",
+          "Relation(property=Locality, belongsToClassMap=ClassMap(uriPattern=None, class_uri=Address, eq_strategy=<function concept_based_equality at 0x79c7833135b0>), refersToClassMap=None, eq_strategy=<function equality_by_edge_query at 0x79c783135ea0>, joins=None, column=organizations.location, condition=None, sql_expression=None)",
+          "Relation(property=Pcode, belongsToClassMap=ClassMap(uriPattern=None, class_uri=Address, eq_strategy=<function concept_based_equality at 0x79c7833135b0>), refersToClassMap=None, eq_strategy=<function equality_by_edge_query at 0x79c783135ea0>, joins=None, column=organizations.postcode, condition=None, sql_expression=None)",
+          "Relation(property=date, belongsToClassMap=ClassMap(uriPattern=conferences/@@conferences.confid@@, class_uri=Conference, eq_strategy=<function concept_based_equality at 0x79c7833135b0>), refersToClassMap=None, eq_strategy=<function equality_by_edge_query at 0x79c783135ea0>, joins=None, column=conferences.date, condition=None, sql_expression=None)",
+          "Relation(property=location, belongsToClassMap=ClassMap(uriPattern=conferences/@@conferences.confid@@, class_uri=Conference, eq_strategy=<function concept_based_equality at 0x79c7833135b0>), refersToClassMap=None, eq_strategy=<function equality_by_edge_query at 0x79c783135ea0>, joins=None, column=conferences.location, condition=None, sql_expression=None)",
+          "Relation(property=label, belongsToClassMap=ClassMap(uriPattern=conferences/@@conferences.confid@@, class_uri=Conference, eq_strategy=<function concept_based_equality at 0x79c7833135b0>), refersToClassMap=None, eq_strategy=<function equality_by_edge_query at 0x79c783135ea0>, joins=None, column=conferences.name, condition=None, sql_expression=None)",
+          "Relation(property=homepage, belongsToClassMap=ClassMap(uriPattern=organizations/@@organizations.orgid@@, class_uri=Organization, eq_strategy=<function concept_based_equality at 0x79c7833135b0>), refersToClassMap=None, eq_strategy=<function equality_by_edge_query at 0x79c783135ea0>, joins=None, column=organizations.homepage, condition=None, sql_expression=None)",
+          "Relation(property=label, belongsToClassMap=ClassMap(uriPattern=organizations/@@organizations.orgid@@, class_uri=Organization, eq_strategy=<function concept_based_equality at 0x79c7833135b0>), refersToClassMap=None, eq_strategy=<function equality_by_edge_query at 0x79c783135ea0>, joins=None, column=organizations.name, condition=None, sql_expression=None)",
+          "Relation(property=abstract, belongsToClassMap=ClassMap(uriPattern=papers/@@papers.paperid@@, class_uri=InProceedings, eq_strategy=<function concept_based_equality at 0x79c7833135b0>), refersToClassMap=None, eq_strategy=<function equality_by_edge_query at 0x79c783135ea0>, joins=None, column=papers.abstract, condition=None, sql_expression=None)",
+          "Relation(property=title, belongsToClassMap=ClassMap(uriPattern=papers/@@papers.paperid@@, class_uri=InProceedings, eq_strategy=<function concept_based_equality at 0x79c7833135b0>), refersToClassMap=None, eq_strategy=<function equality_by_edge_query at 0x79c783135ea0>, joins=None, column=papers.title, condition=None, sql_expression=None)",
+          "Relation(property=date, belongsToClassMap=ClassMap(uriPattern=papers/@@papers.paperid@@, class_uri=InProceedings, eq_strategy=<function concept_based_equality at 0x79c7833135b0>), refersToClassMap=None, eq_strategy=<function equality_by_edge_query at 0x79c783135ea0>, joins=None, column=papers.year, condition=None, sql_expression=None)",
+          "Relation(property=address, belongsToClassMap=ClassMap(uriPattern=persons/@@persons.perid@@, class_uri=Person, eq_strategy=<function concept_based_equality at 0x79c7833135b0>), refersToClassMap=None, eq_strategy=<function equality_by_edge_query at 0x79c783135ea0>, joins=None, column=persons.address, condition=None, sql_expression=None)",
+          "Relation(property=homepage, belongsToClassMap=ClassMap(uriPattern=persons/@@persons.perid@@, class_uri=Person, eq_strategy=<function concept_based_equality at 0x79c7833135b0>), refersToClassMap=None, eq_strategy=<function equality_by_edge_query at 0x79c783135ea0>, joins=None, column=persons.homepage, condition=None, sql_expression=None)",
+          "Relation(property=phone, belongsToClassMap=ClassMap(uriPattern=persons/@@persons.perid@@, class_uri=Person, eq_strategy=<function concept_based_equality at 0x79c7833135b0>), refersToClassMap=None, eq_strategy=<function equality_by_edge_query at 0x79c783135ea0>, joins=None, column=persons.phone, condition=None, sql_expression=None)",
+          "Relation(property=depiction, belongsToClassMap=ClassMap(uriPattern=persons/@@persons.perid@@, class_uri=Person, eq_strategy=<function concept_based_equality at 0x79c7833135b0>), refersToClassMap=None, eq_strategy=<function equality_by_edge_query at 0x79c783135ea0>, joins=None, column=persons.photo, condition=None, sql_expression=None)",
+          "Relation(property=prefLabel, belongsToClassMap=ClassMap(uriPattern=topics/@@topics.topicid@@, class_uri=Concept, eq_strategy=<function concept_based_equality at 0x79c7833135b0>), refersToClassMap=None, eq_strategy=<function equality_by_edge_query at 0x79c783135ea0>, joins=None, column=topics.topicname, condition=None, sql_expression=None)",
+          "Relation(property=sameAs, belongsToClassMap=ClassMap(uriPattern=topics/@@topics.topicid@@, class_uri=Concept, eq_strategy=<function concept_based_equality at 0x79c7833135b0>), refersToClassMap=None, eq_strategy=<function equality_by_edge_query at 0x79c783135ea0>, joins=None, column=topics.uri, condition=None, sql_expression=None)"
+        ],
+        "missing_in_prediction": [
+          "Relation(property=startDate, belongsToClassMap=ClassMap(uriPattern=conferences/@@conferences.confid@@, class_uri=Conference, eq_strategy=<function concept_based_equality at 0x79c7833135b0>), refersToClassMap=None, eq_strategy=<function equality_by_edge_query at 0x79c783135ea0>, joins=None, column=conferences.datum, condition=[<burr_evaluator.mapping_parser.sql_elements.Condition object at 0x79c7821c0130>], sql_expression=None)",
+          "Relation(property=type, belongsToClassMap=ClassMap(uriPattern=organizations/@@organizations.orgid@@, class_uri=Organization, eq_strategy=<function concept_based_equality at 0x79c7833135b0>), refersToClassMap=None, eq_strategy=<function equality_by_edge_query at 0x79c783135ea0>, joins=None, column=None, condition=[<burr_evaluator.mapping_parser.sql_elements.Condition object at 0x79c7821c3d30>], sql_expression=None)",
+          "Relation(property=type, belongsToClassMap=ClassMap(uriPattern=organizations/@@organizations.orgid@@, class_uri=Organization, eq_strategy=<function concept_based_equality at 0x79c7833135b0>), refersToClassMap=None, eq_strategy=<function equality_by_edge_query at 0x79c783135ea0>, joins=None, column=None, condition=[<burr_evaluator.mapping_parser.sql_elements.Condition object at 0x79c7821c00a0>], sql_expression=None)",
+          "Relation(property=type, belongsToClassMap=ClassMap(uriPattern=organizations/@@organizations.orgid@@, class_uri=Organization, eq_strategy=<function concept_based_equality at 0x79c7833135b0>), refersToClassMap=None, eq_strategy=<function equality_by_edge_query at 0x79c783135ea0>, joins=None, column=None, condition=[<burr_evaluator.mapping_parser.sql_elements.Condition object at 0x79c7821c0550>], sql_expression=None)",
+          "Relation(property=mbox, belongsToClassMap=ClassMap(uriPattern=persons/@@persons.perid@@, class_uri=Person, eq_strategy=<function concept_based_equality at 0x79c7833135b0>), refersToClassMap=None, eq_strategy=<function equality_by_edge_query at 0x79c783135ea0>, joins=None, column=None, condition=None, sql_expression=None)",
+          "Relation(property=mbox, belongsToClassMap=ClassMap(uriPattern=persons/@@persons.perid@@, class_uri=Person, eq_strategy=<function concept_based_equality at 0x79c7833135b0>), refersToClassMap=None, eq_strategy=<function equality_by_edge_query at 0x79c783135ea0>, joins=None, column=None, condition=None, sql_expression=None)",
+          "Relation(property=name, belongsToClassMap=ClassMap(uriPattern=persons/@@persons.perid@@, class_uri=Person, eq_strategy=<function concept_based_equality at 0x79c7833135b0>), refersToClassMap=None, eq_strategy=<function equality_by_edge_query at 0x79c783135ea0>, joins=None, column=None, condition=None, sql_expression=None)"
+        ],
+        "extra_in_prediction": [
+          "Relation(property=DataProperty:hasConferenceURI, belongsToClassMap=Conference_from_conferences, refersToClassMap=None, eq_strategy=<function equality_by_edge_query at 0x79c783135ea0>, joins=None, column=conferences.uri, condition=None, sql_expression=None)",
+          "Relation(property=DataProperty:hasConferenceDatum, belongsToClassMap=Conference_from_conferences, refersToClassMap=None, eq_strategy=<function equality_by_edge_query at 0x79c783135ea0>, joins=None, column=conferences.datum, condition=None, sql_expression=None)",
+          "Relation(property=DataProperty:hasOrganizationType, belongsToClassMap=Organization_from_organizations, refersToClassMap=None, eq_strategy=<function equality_by_edge_query at 0x79c783135ea0>, joins=None, column=organizations.type, condition=None, sql_expression=None)",
+          "Relation(property=DataProperty:hasOrganizationURI, belongsToClassMap=Organization_from_organizations, refersToClassMap=None, eq_strategy=<function equality_by_edge_query at 0x79c783135ea0>, joins=None, column=organizations.uri, condition=None, sql_expression=None)",
+          "Relation(property=DataProperty:hasPaperURI, belongsToClassMap=Paper_from_papers, refersToClassMap=None, eq_strategy=<function equality_by_edge_query at 0x79c783135ea0>, joins=None, column=papers.uri, condition=None, sql_expression=None)",
+          "Relation(property=DataProperty:hasPersonType, belongsToClassMap=Person_from_persons, refersToClassMap=None, eq_strategy=<function equality_by_edge_query at 0x79c783135ea0>, joins=None, column=persons.type, condition=None, sql_expression=None)",
+          "Relation(property=DataProperty:hasFirstName, belongsToClassMap=Person_from_persons, refersToClassMap=None, eq_strategy=<function equality_by_edge_query at 0x79c783135ea0>, joins=None, column=persons.firstname, condition=None, sql_expression=None)",
+          "Relation(property=DataProperty:hasLastName, belongsToClassMap=Person_from_persons, refersToClassMap=None, eq_strategy=<function equality_by_edge_query at 0x79c783135ea0>, joins=None, column=persons.lastname, condition=None, sql_expression=None)",
+          "Relation(property=DataProperty:hasEmail, belongsToClassMap=Person_from_persons, refersToClassMap=None, eq_strategy=<function equality_by_edge_query at 0x79c783135ea0>, joins=None, column=persons.email, condition=None, sql_expression=None)",
+          "Relation(property=DataProperty:hasURI, belongsToClassMap=Person_from_persons, refersToClassMap=None, eq_strategy=<function equality_by_edge_query at 0x79c783135ea0>, joins=None, column=persons.uri, condition=None, sql_expression=None)",
+          "Relation(property=DataProperty:hasRelationType, belongsToClassMap=Paper_from_papers, refersToClassMap=None, eq_strategy=<function equality_by_edge_query at 0x79c783135ea0>, joins=None, column=rel_paper_topic.relationtype, condition=None, sql_expression=None)"
+        ]
+      }
+    },
+    "name_based": {
+      "classes": {
+        "num_reference": 6,
+        "num_prediction": 6,
+        "num_matched": 3,
+        "num_missing_in_prediction": 3,
+        "num_extra_in_prediction": 3,
+        "matched": [
+          "ClassMap(uriPattern=conferences/@@conferences.confid@@, class_uri=Conference, eq_strategy=<function name_based_equality at 0x79c783135120>)",
+          "ClassMap(uriPattern=organizations/@@organizations.orgid@@, class_uri=Organization, eq_strategy=<function name_based_equality at 0x79c783135120>)",
+          "ClassMap(uriPattern=persons/@@persons.perid@@, class_uri=Person, eq_strategy=<function name_based_equality at 0x79c783135120>)"
+        ],
+        "missing_in_prediction": [
+          "ClassMap(uriPattern=None, class_uri=Address, eq_strategy=<function name_based_equality at 0x79c783135120>)",
+          "ClassMap(uriPattern=papers/@@papers.paperid@@, class_uri=InProceedings, eq_strategy=<function name_based_equality at 0x79c783135120>)",
+          "ClassMap(uriPattern=topics/@@topics.topicid@@, class_uri=Concept, eq_strategy=<function name_based_equality at 0x79c783135120>)"
+        ],
+        "extra_in_prediction": [
+          "ClassMap(uriPattern=@@papers.paperid@@, class_uri=Paper, eq_strategy=<function name_based_equality at 0x79c783135120>)",
+          "ClassMap(uriPattern=@@rel_paper_topic.topicid@@, class_uri=Topic, eq_strategy=<function name_based_equality at 0x79c783135120>)",
+          "ClassMap(uriPattern=@@rel_paper_topic.topicid@@, class_uri=Topic, eq_strategy=<function name_based_equality at 0x79c783135120>)"
+        ]
+      },
+      "relations": {
+        "num_reference": 8,
+        "num_prediction": 8,
+        "num_matched": 0,
+        "num_missing_in_prediction": 8,
+        "num_extra_in_prediction": 8,
+        "matched": [],
+        "missing_in_prediction": [
+          "Relation(property=ADR, belongsToClassMap=ClassMap(uriPattern=organizations/@@organizations.orgid@@, class_uri=Organization, eq_strategy=<function name_based_equality at 0x79c783135120>), refersToClassMap=ClassMap(uriPattern=None, class_uri=Address, eq_strategy=<function name_based_equality at 0x79c783135120>), eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=None, condition=None, sql_expression=None)",
+          "Relation(property=conference, belongsToClassMap=ClassMap(uriPattern=papers/@@papers.paperid@@, class_uri=InProceedings, eq_strategy=<function name_based_equality at 0x79c783135120>), refersToClassMap=ClassMap(uriPattern=conferences/@@conferences.confid@@, class_uri=Conference, eq_strategy=<function name_based_equality at 0x79c783135120>), eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=[Join(left_attribute=SQLAttribute(table='papers', attribute='conference'), right_attribute=SQLAttribute(table='conferences', attribute='confid'))], column=None, condition=None, sql_expression=None)",
+          "Relation(property=primarySubject, belongsToClassMap=ClassMap(uriPattern=papers/@@papers.paperid@@, class_uri=InProceedings, eq_strategy=<function name_based_equality at 0x79c783135120>), refersToClassMap=ClassMap(uriPattern=topics/@@topics.topicid@@, class_uri=Concept, eq_strategy=<function name_based_equality at 0x79c783135120>), eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=[Join(left_attribute=SQLAttribute(table='rel_paper_topic', attribute='paperid'), right_attribute=SQLAttribute(table='papers', attribute='paperid')), Join(left_attribute=SQLAttribute(table='rel_paper_topic', attribute='topicid'), right_attribute=SQLAttribute(table='topics', attribute='topicid'))], column=None, condition=[<burr_evaluator.mapping_parser.sql_elements.Condition object at 0x79c7821c3730>], sql_expression=None)",
+          "Relation(property=subject, belongsToClassMap=ClassMap(uriPattern=papers/@@papers.paperid@@, class_uri=InProceedings, eq_strategy=<function name_based_equality at 0x79c783135120>), refersToClassMap=ClassMap(uriPattern=topics/@@topics.topicid@@, class_uri=Concept, eq_strategy=<function name_based_equality at 0x79c783135120>), eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=[Join(left_attribute=SQLAttribute(table='rel_paper_topic', attribute='paperid'), right_attribute=SQLAttribute(table='papers', attribute='paperid')), Join(left_attribute=SQLAttribute(table='rel_paper_topic', attribute='topicid'), right_attribute=SQLAttribute(table='topics', attribute='topicid'))], column=None, condition=[<burr_evaluator.mapping_parser.sql_elements.Condition object at 0x79c7823b5510>], sql_expression=None)",
+          "Relation(property=has_affiliation, belongsToClassMap=ClassMap(uriPattern=persons/@@persons.perid@@, class_uri=Person, eq_strategy=<function name_based_equality at 0x79c783135120>), refersToClassMap=ClassMap(uriPattern=organizations/@@organizations.orgid@@, class_uri=Organization, eq_strategy=<function name_based_equality at 0x79c783135120>), eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=[Join(left_attribute=SQLAttribute(table='persons', attribute='perid'), right_attribute=SQLAttribute(table='rel_person_organization', attribute='personid')), Join(left_attribute=SQLAttribute(table='rel_person_organization', attribute='organizationid'), right_attribute=SQLAttribute(table='organizations', attribute='orgid'))], column=None, condition=None, sql_expression=None)",
+          "Relation(property=creator, belongsToClassMap=ClassMap(uriPattern=papers/@@papers.paperid@@, class_uri=InProceedings, eq_strategy=<function name_based_equality at 0x79c783135120>), refersToClassMap=ClassMap(uriPattern=persons/@@persons.perid@@, class_uri=Person, eq_strategy=<function name_based_equality at 0x79c783135120>), eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=[Join(left_attribute=SQLAttribute(table='persons', attribute='perid'), right_attribute=SQLAttribute(table='rel_person_paper', attribute='personid')), Join(left_attribute=SQLAttribute(table='rel_person_paper', attribute='paperid'), right_attribute=SQLAttribute(table='papers', attribute='paperid'))], column=None, condition=None, sql_expression=None)",
+          "Relation(property=research_interests, belongsToClassMap=ClassMap(uriPattern=persons/@@persons.perid@@, class_uri=Person, eq_strategy=<function name_based_equality at 0x79c783135120>), refersToClassMap=ClassMap(uriPattern=topics/@@topics.topicid@@, class_uri=Concept, eq_strategy=<function name_based_equality at 0x79c783135120>), eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=[Join(left_attribute=SQLAttribute(table='persons', attribute='perid'), right_attribute=SQLAttribute(table='rel_person_topic', attribute='personid')), Join(left_attribute=SQLAttribute(table='rel_person_topic', attribute='topicid'), right_attribute=SQLAttribute(table='topics', attribute='topicid'))], column=None, condition=None, sql_expression=None)",
+          "Relation(property=broader, belongsToClassMap=ClassMap(uriPattern=topics/@@topics.topicid@@, class_uri=Concept, eq_strategy=<function name_based_equality at 0x79c783135120>), refersToClassMap=ClassMap(uriPattern=topics/@@topics.topicid@@, class_uri=Concept, eq_strategy=<function name_based_equality at 0x79c783135120>), eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=[Join(left_attribute=SQLAttribute(table='topics', attribute='parentid'), right_attribute=SQLAttribute(table='topics', attribute='topicid'))], column=None, condition=None, sql_expression=None)"
+        ],
+        "extra_in_prediction": [
+          "Relation(property=ObjectProperty:hasAddress, belongsToClassMap=Organization_from_organizations, refersToClassMap=Class:Address, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=None, condition=None, sql_expression=None)",
+          "Relation(property=ObjectProperty:belongsToOrganization, belongsToClassMap=Organization_from_organizations, refersToClassMap=Organization_from_organizations, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=[Join(left_attribute=SQLAttribute(table='organizations', attribute='belongsto'), right_attribute=SQLAttribute(table='organizations', attribute='orgid'))], column=None, condition=None, sql_expression=None)",
+          "Relation(property=ObjectProperty:paperPublishedInConference, belongsToClassMap=Paper_from_papers, refersToClassMap=Conference_from_conferences, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=[Join(left_attribute=SQLAttribute(table='papers', attribute='conference'), right_attribute=SQLAttribute(table='conferences', attribute='confid'))], column=None, condition=None, sql_expression=None)",
+          "Relation(property=ObjectProperty:paperCoversTopics, belongsToClassMap=Paper_from_papers, refersToClassMap=Topic_from_topics, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=None, condition=None, sql_expression=None)",
+          "Relation(property=ObjectProperty:worksForOrganization, belongsToClassMap=Person_from_persons, refersToClassMap=Organization_from_organizations, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=None, condition=None, sql_expression=None)",
+          "Relation(property=ObjectProperty:authoredPaper, belongsToClassMap=Person_from_persons, refersToClassMap=Paper_from_papers, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=None, condition=None, sql_expression=None)",
+          "Relation(property=ObjectProperty:hasInterestInTopic, belongsToClassMap=Person_from_persons, refersToClassMap=Topic_from_topics, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=None, condition=None, sql_expression=None)",
+          "Relation(property=ObjectProperty:hasParentTopic, belongsToClassMap=Topic_from_topics, refersToClassMap=Topic_from_topics, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=[Join(left_attribute=SQLAttribute(table='topics', attribute='parentid'), right_attribute=SQLAttribute(table='topics', attribute='topicid'))], column=None, condition=None, sql_expression=None)"
+        ]
+      },
+      "attributes": {
+        "num_reference": 25,
+        "num_prediction": 29,
+        "num_matched": 0,
+        "num_missing_in_prediction": 25,
+        "num_extra_in_prediction": 29,
+        "matched": [],
+        "missing_in_prediction": [
+          "Relation(property=Street, belongsToClassMap=ClassMap(uriPattern=None, class_uri=Address, eq_strategy=<function name_based_equality at 0x79c783135120>), refersToClassMap=None, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=organizations.address, condition=None, sql_expression=None)",
+          "Relation(property=Country, belongsToClassMap=ClassMap(uriPattern=None, class_uri=Address, eq_strategy=<function name_based_equality at 0x79c783135120>), refersToClassMap=None, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=organizations.country, condition=None, sql_expression=None)",
+          "Relation(property=Locality, belongsToClassMap=ClassMap(uriPattern=None, class_uri=Address, eq_strategy=<function name_based_equality at 0x79c783135120>), refersToClassMap=None, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=organizations.location, condition=None, sql_expression=None)",
+          "Relation(property=Pcode, belongsToClassMap=ClassMap(uriPattern=None, class_uri=Address, eq_strategy=<function name_based_equality at 0x79c783135120>), refersToClassMap=None, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=organizations.postcode, condition=None, sql_expression=None)",
+          "Relation(property=date, belongsToClassMap=ClassMap(uriPattern=conferences/@@conferences.confid@@, class_uri=Conference, eq_strategy=<function name_based_equality at 0x79c783135120>), refersToClassMap=None, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=conferences.date, condition=None, sql_expression=None)",
+          "Relation(property=startDate, belongsToClassMap=ClassMap(uriPattern=conferences/@@conferences.confid@@, class_uri=Conference, eq_strategy=<function name_based_equality at 0x79c783135120>), refersToClassMap=None, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=conferences.datum, condition=[<burr_evaluator.mapping_parser.sql_elements.Condition object at 0x79c7823b6080>], sql_expression=None)",
+          "Relation(property=location, belongsToClassMap=ClassMap(uriPattern=conferences/@@conferences.confid@@, class_uri=Conference, eq_strategy=<function name_based_equality at 0x79c783135120>), refersToClassMap=None, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=conferences.location, condition=None, sql_expression=None)",
+          "Relation(property=label, belongsToClassMap=ClassMap(uriPattern=conferences/@@conferences.confid@@, class_uri=Conference, eq_strategy=<function name_based_equality at 0x79c783135120>), refersToClassMap=None, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=conferences.name, condition=None, sql_expression=None)",
+          "Relation(property=homepage, belongsToClassMap=ClassMap(uriPattern=organizations/@@organizations.orgid@@, class_uri=Organization, eq_strategy=<function name_based_equality at 0x79c783135120>), refersToClassMap=None, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=organizations.homepage, condition=None, sql_expression=None)",
+          "Relation(property=label, belongsToClassMap=ClassMap(uriPattern=organizations/@@organizations.orgid@@, class_uri=Organization, eq_strategy=<function name_based_equality at 0x79c783135120>), refersToClassMap=None, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=organizations.name, condition=None, sql_expression=None)",
+          "Relation(property=type, belongsToClassMap=ClassMap(uriPattern=organizations/@@organizations.orgid@@, class_uri=Organization, eq_strategy=<function name_based_equality at 0x79c783135120>), refersToClassMap=None, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=None, condition=[<burr_evaluator.mapping_parser.sql_elements.Condition object at 0x79c7823b6050>], sql_expression=None)",
+          "Relation(property=type, belongsToClassMap=ClassMap(uriPattern=organizations/@@organizations.orgid@@, class_uri=Organization, eq_strategy=<function name_based_equality at 0x79c783135120>), refersToClassMap=None, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=None, condition=[<burr_evaluator.mapping_parser.sql_elements.Condition object at 0x79c7823b6050>], sql_expression=None)",
+          "Relation(property=type, belongsToClassMap=ClassMap(uriPattern=organizations/@@organizations.orgid@@, class_uri=Organization, eq_strategy=<function name_based_equality at 0x79c783135120>), refersToClassMap=None, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=None, condition=[<burr_evaluator.mapping_parser.sql_elements.Condition object at 0x79c7823b6050>], sql_expression=None)",
+          "Relation(property=abstract, belongsToClassMap=ClassMap(uriPattern=papers/@@papers.paperid@@, class_uri=InProceedings, eq_strategy=<function name_based_equality at 0x79c783135120>), refersToClassMap=None, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=papers.abstract, condition=None, sql_expression=None)",
+          "Relation(property=title, belongsToClassMap=ClassMap(uriPattern=papers/@@papers.paperid@@, class_uri=InProceedings, eq_strategy=<function name_based_equality at 0x79c783135120>), refersToClassMap=None, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=papers.title, condition=None, sql_expression=None)",
+          "Relation(property=date, belongsToClassMap=ClassMap(uriPattern=papers/@@papers.paperid@@, class_uri=InProceedings, eq_strategy=<function name_based_equality at 0x79c783135120>), refersToClassMap=None, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=papers.year, condition=None, sql_expression=None)",
+          "Relation(property=address, belongsToClassMap=ClassMap(uriPattern=persons/@@persons.perid@@, class_uri=Person, eq_strategy=<function name_based_equality at 0x79c783135120>), refersToClassMap=None, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=persons.address, condition=None, sql_expression=None)",
+          "Relation(property=mbox, belongsToClassMap=ClassMap(uriPattern=persons/@@persons.perid@@, class_uri=Person, eq_strategy=<function name_based_equality at 0x79c783135120>), refersToClassMap=None, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=None, condition=None, sql_expression=None)",
+          "Relation(property=homepage, belongsToClassMap=ClassMap(uriPattern=persons/@@persons.perid@@, class_uri=Person, eq_strategy=<function name_based_equality at 0x79c783135120>), refersToClassMap=None, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=persons.homepage, condition=None, sql_expression=None)",
+          "Relation(property=name, belongsToClassMap=ClassMap(uriPattern=persons/@@persons.perid@@, class_uri=Person, eq_strategy=<function name_based_equality at 0x79c783135120>), refersToClassMap=None, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=None, condition=None, sql_expression=None)",
+          "Relation(property=phone, belongsToClassMap=ClassMap(uriPattern=persons/@@persons.perid@@, class_uri=Person, eq_strategy=<function name_based_equality at 0x79c783135120>), refersToClassMap=None, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=persons.phone, condition=None, sql_expression=None)",
+          "Relation(property=depiction, belongsToClassMap=ClassMap(uriPattern=persons/@@persons.perid@@, class_uri=Person, eq_strategy=<function name_based_equality at 0x79c783135120>), refersToClassMap=None, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=persons.photo, condition=None, sql_expression=None)",
+          "Relation(property=type, belongsToClassMap=ClassMap(uriPattern=persons/@@persons.perid@@, class_uri=Person, eq_strategy=<function name_based_equality at 0x79c783135120>), refersToClassMap=None, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=None, condition=None, sql_expression=None)",
+          "Relation(property=prefLabel, belongsToClassMap=ClassMap(uriPattern=topics/@@topics.topicid@@, class_uri=Concept, eq_strategy=<function name_based_equality at 0x79c783135120>), refersToClassMap=None, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=topics.topicname, condition=None, sql_expression=None)",
+          "Relation(property=sameAs, belongsToClassMap=ClassMap(uriPattern=topics/@@topics.topicid@@, class_uri=Concept, eq_strategy=<function name_based_equality at 0x79c783135120>), refersToClassMap=None, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=topics.uri, condition=None, sql_expression=None)"
+        ],
+        "extra_in_prediction": [
+          "Relation(property=DataProperty:hasConferenceName, belongsToClassMap=Conference_from_conferences, refersToClassMap=None, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=conferences.name, condition=None, sql_expression=None)",
+          "Relation(property=DataProperty:hasConferenceURI, belongsToClassMap=Conference_from_conferences, refersToClassMap=None, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=conferences.uri, condition=None, sql_expression=None)",
+          "Relation(property=DataProperty:hasConferenceDate, belongsToClassMap=Conference_from_conferences, refersToClassMap=None, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=conferences.date, condition=None, sql_expression=None)",
+          "Relation(property=DataProperty:hasConferenceLocation, belongsToClassMap=Conference_from_conferences, refersToClassMap=None, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=conferences.location, condition=None, sql_expression=None)",
+          "Relation(property=DataProperty:hasConferenceDatum, belongsToClassMap=Conference_from_conferences, refersToClassMap=None, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=conferences.datum, condition=None, sql_expression=None)",
+          "Relation(property=DataProperty:hasOrganizationType, belongsToClassMap=Organization_from_organizations, refersToClassMap=None, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=organizations.type, condition=None, sql_expression=None)",
+          "Relation(property=DataProperty:hasOrganizationName, belongsToClassMap=Organization_from_organizations, refersToClassMap=None, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=organizations.name, condition=None, sql_expression=None)",
+          "Relation(property=DataProperty:hasOrganizationURI, belongsToClassMap=Organization_from_organizations, refersToClassMap=None, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=organizations.uri, condition=None, sql_expression=None)",
+          "Relation(property=DataProperty:hasOrganizationHomepage, belongsToClassMap=Organization_from_organizations, refersToClassMap=None, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=organizations.homepage, condition=None, sql_expression=None)",
+          "Relation(property=DataProperty:hasAddressStreet, belongsToClassMap=Class:Address, refersToClassMap=None, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=organizations.address, condition=None, sql_expression=None)",
+          "Relation(property=DataProperty:hasAddressLocation, belongsToClassMap=Class:Address, refersToClassMap=None, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=organizations.location, condition=None, sql_expression=None)",
+          "Relation(property=DataProperty:hasAddressPostcode, belongsToClassMap=Class:Address, refersToClassMap=None, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=organizations.postcode, condition=None, sql_expression=None)",
+          "Relation(property=DataProperty:hasAddressCountry, belongsToClassMap=Class:Address, refersToClassMap=None, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=organizations.country, condition=None, sql_expression=None)",
+          "Relation(property=DataProperty:hasPaperTitle, belongsToClassMap=Paper_from_papers, refersToClassMap=None, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=papers.title, condition=None, sql_expression=None)",
+          "Relation(property=DataProperty:hasPaperAbstract, belongsToClassMap=Paper_from_papers, refersToClassMap=None, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=papers.abstract, condition=None, sql_expression=None)",
+          "Relation(property=DataProperty:hasPaperURI, belongsToClassMap=Paper_from_papers, refersToClassMap=None, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=papers.uri, condition=None, sql_expression=None)",
+          "Relation(property=DataProperty:hasPaperYear, belongsToClassMap=Paper_from_papers, refersToClassMap=None, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=papers.year, condition=None, sql_expression=None)",
+          "Relation(property=DataProperty:hasPersonType, belongsToClassMap=Person_from_persons, refersToClassMap=None, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=persons.type, condition=None, sql_expression=None)",
+          "Relation(property=DataProperty:hasFirstName, belongsToClassMap=Person_from_persons, refersToClassMap=None, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=persons.firstname, condition=None, sql_expression=None)",
+          "Relation(property=DataProperty:hasLastName, belongsToClassMap=Person_from_persons, refersToClassMap=None, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=persons.lastname, condition=None, sql_expression=None)",
+          "Relation(property=DataProperty:hasAddress, belongsToClassMap=Person_from_persons, refersToClassMap=None, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=persons.address, condition=None, sql_expression=None)",
+          "Relation(property=DataProperty:hasEmail, belongsToClassMap=Person_from_persons, refersToClassMap=None, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=persons.email, condition=None, sql_expression=None)",
+          "Relation(property=DataProperty:hasHomepage, belongsToClassMap=Person_from_persons, refersToClassMap=None, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=persons.homepage, condition=None, sql_expression=None)",
+          "Relation(property=DataProperty:hasPhone, belongsToClassMap=Person_from_persons, refersToClassMap=None, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=persons.phone, condition=None, sql_expression=None)",
+          "Relation(property=DataProperty:hasURI, belongsToClassMap=Person_from_persons, refersToClassMap=None, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=persons.uri, condition=None, sql_expression=None)",
+          "Relation(property=DataProperty:hasPhoto, belongsToClassMap=Person_from_persons, refersToClassMap=None, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=persons.photo, condition=None, sql_expression=None)",
+          "Relation(property=DataProperty:hasRelationType, belongsToClassMap=Paper_from_papers, refersToClassMap=None, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=rel_paper_topic.relationtype, condition=None, sql_expression=None)",
+          "Relation(property=DataProperty:hasTopicName, belongsToClassMap=Topic_from_topics, refersToClassMap=None, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=topics.topicname, condition=None, sql_expression=None)",
+          "Relation(property=DataProperty:hasTopicURI, belongsToClassMap=Topic_from_topics, refersToClassMap=None, eq_strategy=<function equality_by_property_name_and_classes at 0x79c783135e10>, joins=None, column=topics.uri, condition=None, sql_expression=None)"
+        ]
+      }
+    }
+  }
+}

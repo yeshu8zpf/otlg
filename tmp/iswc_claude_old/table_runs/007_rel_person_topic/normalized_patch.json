@@ -1,0 +1,72 @@
+{
+  "work_unit": {
+    "table": "rel_person_topic",
+    "related_tables": []
+  },
+  "proposed_additions": {
+    "classes": [],
+    "data_properties": [],
+    "object_properties": [
+      {
+        "id": "ObjectProperty:hasInterestInTopic",
+        "label": "has interest in topic",
+        "domain": "Class:Person",
+        "range": "Class:Topic",
+        "description": "Relation indicating a person's interest or expertise in a topic",
+        "status": "proposed",
+        "confidence": null,
+        "source_tables": [
+          "rel_person_topic"
+        ]
+      }
+    ],
+    "subclass_relations": [],
+    "class_mappings": [],
+    "data_property_mappings": [],
+    "object_property_mappings": [
+      {
+        "mapping_id": "hasInterestInTopic_from_rel_person_topic",
+        "object_property_id": "ObjectProperty:hasInterestInTopic",
+        "from_class": "Class:Person",
+        "to_class": "Class:Topic",
+        "from_tables": [
+          "rel_person_topic"
+        ],
+        "source_identifier_columns": [
+          "rel_person_topic.personid"
+        ],
+        "target_identifier_columns": [
+          "rel_person_topic.topicid"
+        ],
+        "join_paths": [],
+        "condition": [],
+        "target_type": "entity"
+      }
+    ]
+  },
+  "proposed_revisions": {
+    "classes": [],
+    "data_properties": [],
+    "object_properties": [],
+    "subclass_relations": [],
+    "class_mappings": [],
+    "data_property_mappings": [],
+    "object_property_mappings": []
+  },
+  "proposed_rejections": [],
+  "proposed_merges": [],
+  "decision_summary": [
+    {
+      "decision_type": "OP-RELATION",
+      "target": "ObjectProperty:hasInterestInTopic",
+      "status": "accepted",
+      "confidence": 0.9,
+      "reason": "rel_person_topic is a junction table with PersonID and TopicID as composite primary key, establishing a many-to-many relation between Person and Topic entities. No foreign key constraints present, but semantic role is clear from naming and structure."
+    }
+  ],
+  "remaining_ambiguities": [
+    "Directionality: hasInterestInTopic vs. isTopicOfInterestToPerson—current choice favors Person→Topic direction based on table naming convention."
+  ],
+  "needs_probe": [],
+  "normalization_warnings": []
+}

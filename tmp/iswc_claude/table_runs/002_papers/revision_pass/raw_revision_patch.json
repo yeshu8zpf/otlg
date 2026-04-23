@@ -1,0 +1,155 @@
+{
+  "work_unit": {
+    "table": "papers",
+    "related_tables": []
+  },
+  "proposed_additions": {
+    "classes": [],
+    "data_properties": [
+      {
+        "id": "DataProperty:isPublished",
+        "label": "is published",
+        "domain": "Class:Paper",
+        "datatype": "xsd:boolean",
+        "description": "Boolean flag indicating whether the paper is published (1) or unpublished (0)",
+        "status": "proposed",
+        "confidence": 0.9,
+        "source_tables": [
+          "papers"
+        ],
+        "source_columns": [
+          "papers.publish"
+        ]
+      }
+    ],
+    "object_properties": [],
+    "subclass_relations": [],
+    "class_mappings": [],
+    "data_property_mappings": [
+      {
+        "mapping_id": "isPublished_from_Publish",
+        "data_property_id": "DataProperty:isPublished",
+        "applies_to_class": "Class:Paper",
+        "source_table": "papers",
+        "source_columns": [
+          "papers.publish"
+        ],
+        "value_kind": "column",
+        "value_template": "",
+        "sql_expression": "",
+        "constant_value": "",
+        "datatype": "xsd:boolean",
+        "join_paths": [],
+        "condition": []
+      }
+    ],
+    "object_property_mappings": []
+  },
+  "proposed_revisions": {
+    "classes": [
+      {
+        "target_id": "Class:Paper",
+        "updated_fields": {
+          "description": "A scholarly paper or research publication that has been published or accepted for publication"
+        }
+      }
+    ],
+    "data_properties": [],
+    "object_properties": [],
+    "subclass_relations": [],
+    "class_mappings": [
+      {
+        "target_id": "Paper_from_papers",
+        "updated_fields": {
+          "condition": [
+            "papers.publish = 1"
+          ]
+        }
+      }
+    ],
+    "data_property_mappings": [],
+    "object_property_mappings": []
+  },
+  "proposed_rejections": [],
+  "proposed_merges": [],
+  "decision_summary": [
+    {
+      "decision_type": "COLUMN-ROLE-DECISION",
+      "target": "papers.PaperID",
+      "assigned_role": "relation_key",
+      "status": "confirmed",
+      "confidence": 1.0,
+      "reason": "Primary key; used as identifier in class mapping instance_id_template. No revision needed."
+    },
+    {
+      "decision_type": "COLUMN-ROLE-DECISION",
+      "target": "papers.Title",
+      "assigned_role": "ordinary_attribute",
+      "status": "confirmed",
+      "confidence": 1.0,
+      "reason": "Descriptive text attribute; all 5 samples are distinct, non-null, and semantically meaningful paper titles. No class-filtering signal. Mapped to DataProperty:hasTitle."
+    },
+    {
+      "decision_type": "COLUMN-ROLE-DECISION",
+      "target": "papers.Abstract",
+      "assigned_role": "ordinary_attribute",
+      "status": "confirmed",
+      "confidence": 1.0,
+      "reason": "Descriptive text attribute; all 5 samples are distinct, non-null, and semantically meaningful paper abstracts. No class-filtering signal. Mapped to DataProperty:hasAbstract."
+    },
+    {
+      "decision_type": "COLUMN-ROLE-DECISION",
+      "target": "papers.URI",
+      "assigned_role": "ordinary_attribute",
+      "status": "confirmed",
+      "confidence": 0.95,
+      "reason": "URI-like literal column containing HTTP URLs with fragments. All 5 samples are distinct, non-null, and valid URIs. Treated as data property (xsd:anyURI) rather than entity relation indicator because: (1) no explicit foreign key constraint; (2) URIs point to external resources, not internal database entities; (3) semantically represents a reference/link attribute of the paper itself. Mapped to DataProperty:hasURI."
+    },
+    {
+      "decision_type": "COLUMN-ROLE-DECISION",
+      "target": "papers.Year",
+      "assigned_role": "ordinary_attribute",
+      "status": "confirmed",
+      "confidence": 1.0,
+      "reason": "Temporal attribute; 5 samples show years 2002 and 2003 with no null values. No class-filtering signal; year is a descriptive property of papers, not a membership criterion. Mapped to DataProperty:hasPublicationYear."
+    },
+    {
+      "decision_type": "COLUMN-ROLE-DECISION",
+      "target": "papers.Conference",
+      "assigned_role": "relation_key",
+      "status": "deferred",
+      "confidence": 0.0,
+      "reason": "All 5 samples show value 23541 (single distinct value, 100% non-null). Schema declares no explicit foreign key constraint. Semantic role cannot be determined without inspecting target table. Deferred to multi-table analysis phase. Recorded in open_issues as needs_probe."
+    },
+    {
+      "decision_type": "REV-CONDITION",
+      "target": "Paper_from_papers",
+      "status": "accepted",
+      "confidence": 0.85,
+      "reason": "The Publish column is a binary flag (values 0 and 1) with 4 out of 5 samples = 1 (published) and 1 sample = 0 (unpublished). This is a class-filtering signal: the ontology class 'Paper' semantically represents published/accepted papers in a scholarly context. Rows with Publish=0 represent unpublished or rejected submissions and should not be instantiated as Paper individuals. Adding condition 'papers.publish = 1' narrows class scope to semantically coherent subset. Simultaneously, Publish column is also mapped as a boolean data property (isPublished) to preserve the publication state information for papers that do satisfy the filter."
+    },
+    {
+      "decision_type": "COLUMN-ROLE-DECISION",
+      "target": "papers.Publish",
+      "assigned_role": "class_filter",
+      "status": "accepted",
+      "confidence": 0.85,
+      "reason": "Binary status column (0/1) with clear semantic meaning: publication state. Evidence: (1) binary domain; (2) 80% of rows have value 1, suggesting a default/normal state; (3) semantically meaningful partition: published vs. unpublished papers are distinct entity types in scholarly contexts. Treated as class-level condition in Paper_from_papers mapping (condition: papers.publish = 1) AND as a boolean data property (isPublished) for papers that pass the filter. This dual treatment preserves both the filtering semantics and the information content."
+    }
+  ],
+  "remaining_ambiguities": [
+    {
+      "issue_type": "deferred_relation",
+      "related_table": "papers",
+      "related_column": "papers.Conference",
+      "description": "Conference column contains integer values (all 23541 in sample). No explicit foreign key constraint in schema. Semantic role (relation key vs. ordinary attribute) cannot be determined without inspecting target table. Deferred to multi-table analysis phase."
+    }
+  ],
+  "needs_probe": [
+    {
+      "probe_type": "schema_dependency",
+      "target": "papers.conference",
+      "question": "What is the target table and primary key for the Conference column? Is it a foreign key to a conferences table?"
+    }
+  ]
+}

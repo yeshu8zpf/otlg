@@ -1,0 +1,211 @@
+{
+    "classes": [
+        {
+            "id": "@@country.code@@",
+            "class": "Country",
+            "name": "CountryFull",
+            "prefix": "mondial"
+        },
+        {
+            "id": "@@politics.country@@",
+            "class": "Country",
+            "name": "CountryPolitics",
+            "prefix": "mondial"
+        },
+        {
+            "id": "@@politics.dependent@@",
+            "class": "Country",
+            "name": "CountryDependent",
+            "prefix": "mondial"
+        },
+        {
+            "id": "@@politics.wasdependent@@",
+            "class": "PoliticalBody",
+            "prefix": "mondial"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "wasDependentOf",
+            "belongsToClassMap": "CountryPolitics",
+            "refersToClass": "PoliticalBody"
+        },
+        {
+            "property": "dependentOf",
+            "belongsToClassMap": "CountryPolitics",
+            "refersToClassMap": "CountryDependent"
+        },
+        {
+            "property": "hasCity",
+            "belongsToClassMap": "CountryFull",
+            "refersToClass": "City",
+            "join": [
+                "city.country = country.code"
+            ],
+            "inverseOf": "cityIn"
+        },
+        {
+            "property": "hasProvince",
+            "belongsToClassMap": "CountryFull",
+            "refersToClass": "Province",
+            "join": [
+                "province.country = country.code"
+            ],
+            "inverseOf": "isProvinceOf"
+        },
+        {
+            "property": "capital",
+            "belongsToClassMap": "CountryFull",
+            "refersToClass": "City",
+            "join": [
+                "country.capital = city.name",
+                "country.code = city.country",
+                "city.province = country.province"
+            ],
+            "inverseOf": "isCapitalOf"
+        },
+        {
+            "property": "neighbor",
+            "belongsToClassMap": "CountryFull",
+            "refersToClassMap": "CountryFull",
+            "join": [
+                "borders.country1 = country.code",
+                "borders.country2 = country.code"
+            ]
+        }
+    ],
+    "data_properties": [
+        {
+            "property": "carCode",
+            "belongsToClassMap": "CountryFull",
+            "type": "string",
+            "column": "Country.Code"
+        },
+        {
+            "property": "name",
+            "belongsToClassMap": "CountryFull",
+            "type": "string",
+            "column": "Country.Name"
+        },
+        {
+            "property": "area",
+            "belongsToClassMap": "CountryFull",
+            "type": "decimal",
+            "column": "Country.Area"
+        },
+        {
+            "property": "population",
+            "belongsToClassMap": "CountryFull",
+            "type": "integer",
+            "column": "Country.Population"
+        },
+        {
+            "property": "gdpTotal",
+            "belongsToClassMap": "CountryFull",
+            "type": "decimal",
+            "column": "economy.gdp",
+            "join": [
+                "country.code = economy.country"
+            ]
+        },
+        {
+            "property": "gdpAgri",
+            "belongsToClassMap": "CountryFull",
+            "type": "decimal",
+            "column": "economy.agriculture",
+            "join": [
+                "country.code = economy.country"
+            ]
+        },
+        {
+            "property": "gdpInd",
+            "belongsToClassMap": "CountryFull",
+            "type": "decimal",
+            "column": "economy.industry",
+            "join": [
+                "country.code = economy.country"
+            ]
+        },
+        {
+            "property": "gdpServ",
+            "belongsToClassMap": "CountryFull",
+            "type": "decimal",
+            "column": "economy.service",
+            "join": [
+                "country.code = economy.country"
+            ]
+        },
+        {
+            "property": "inflation",
+            "belongsToClassMap": "CountryFull",
+            "type": "decimal",
+            "column": "economy.inflation",
+            "join": [
+                "country.code = economy.country"
+            ]
+        },
+        {
+            "property": "unemployment",
+            "belongsToClassMap": "CountryFull",
+            "type": "decimal",
+            "column": "economy.unemployment",
+            "join": [
+                "country.code = economy.country"
+            ]
+        },
+        {
+            "property": "populationGrowth",
+            "belongsToClassMap": "CountryFull",
+            "type": "decimal",
+            "column": "population.population_growth",
+            "join": [
+                "country.code = population.country"
+            ]
+        },
+        {
+            "property": "infantMortality",
+            "belongsToClassMap": "CountryFull",
+            "type": "decimal",
+            "column": "population.infant_mortality",
+            "join": [
+                "country.code = population.country"
+            ]
+        },
+        {
+            "property": "independenceDate",
+            "belongsToClassMap": "CountryFull",
+            "type": "date",
+            "column": "politics.Independence",
+            "join": [
+                "country.code = politics.country"
+            ]
+        },
+        {
+            "property": "government",
+            "belongsToClassMap": "CountryFull",
+            "type": "string",
+            "column": "politics.Government",
+            "join": [
+                "country.code = politics.country"
+            ]
+        },
+        {
+            "property": "othername",
+            "belongsToClassMap": "CountryFull",
+            "type": "string",
+            "column": "countryothername.othername",
+            "join": [
+                "country.code = countryothername.country"
+            ]
+        },
+        {
+            "property": "localname",
+            "belongsToClassMap": "CountryFull",
+            "type": "string",
+            "column": "countrylocalname.localname",
+            "join": [
+                "country.code = countrylocalname.country"
+            ]
+        }
+    ]
+}

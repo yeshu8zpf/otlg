@@ -1,0 +1,281 @@
+{
+  "work_unit": {
+    "table": "conferences",
+    "related_tables": []
+  },
+  "proposed_additions": {
+    "classes": [
+      {
+        "id": "Class:Conference",
+        "label": "Conference",
+        "description": "A conference event with metadata including name, URI, date, and location.",
+        "status": "proposed",
+        "confidence": null,
+        "source_tables": [
+          "conferences"
+        ],
+        "identifier_columns": [
+          "conferences.confid"
+        ]
+      }
+    ],
+    "data_properties": [
+      {
+        "id": "DataProperty:hasConferenceName",
+        "label": "has conference name",
+        "domain": "Class:Conference",
+        "datatype": "xsd:string",
+        "description": "The name of the conference.",
+        "status": "proposed",
+        "confidence": null,
+        "source_tables": [
+          "conferences"
+        ],
+        "source_columns": [
+          "conferences.name"
+        ]
+      },
+      {
+        "id": "DataProperty:hasConferenceURI",
+        "label": "has conference URI",
+        "domain": "Class:Conference",
+        "datatype": "xsd:anyURI",
+        "description": "The URI identifier for the conference.",
+        "status": "proposed",
+        "confidence": null,
+        "source_tables": [
+          "conferences"
+        ],
+        "source_columns": [
+          "conferences.uri"
+        ]
+      },
+      {
+        "id": "DataProperty:hasConferenceDate",
+        "label": "has conference date",
+        "domain": "Class:Conference",
+        "datatype": "xsd:string",
+        "description": "The date of the conference in string format.",
+        "status": "proposed",
+        "confidence": null,
+        "source_tables": [
+          "conferences"
+        ],
+        "source_columns": [
+          "conferences.date"
+        ]
+      },
+      {
+        "id": "DataProperty:hasConferenceLocation",
+        "label": "has conference location",
+        "domain": "Class:Conference",
+        "datatype": "xsd:string",
+        "description": "The location of the conference.",
+        "status": "proposed",
+        "confidence": null,
+        "source_tables": [
+          "conferences"
+        ],
+        "source_columns": [
+          "conferences.location"
+        ]
+      },
+      {
+        "id": "DataProperty:hasConferenceDatum",
+        "label": "has conference datum",
+        "domain": "Class:Conference",
+        "datatype": "xsd:dateTime",
+        "description": "The timestamp of the conference record.",
+        "status": "proposed",
+        "confidence": null,
+        "source_tables": [
+          "conferences"
+        ],
+        "source_columns": [
+          "conferences.datum"
+        ]
+      }
+    ],
+    "object_properties": [],
+    "subclass_relations": [],
+    "class_mappings": [
+      {
+        "mapping_id": "Conference_from_conferences",
+        "class_id": "Class:Conference",
+        "from_tables": [
+          "conferences"
+        ],
+        "identifier_kind": "uri_pattern",
+        "identifier_columns": [
+          "conferences.confid"
+        ],
+        "instance_id_template": "conferences/@@conferences.confid@@",
+        "bnode_id_columns": [],
+        "status": "proposed",
+        "confidence": null,
+        "description": ""
+      }
+    ],
+    "data_property_mappings": [
+      {
+        "mapping_id": "hasConferenceName_from_Name",
+        "data_property_id": "DataProperty:hasConferenceName",
+        "applies_to_class": "Class:Conference",
+        "source_table": "conferences",
+        "source_columns": [
+          "conferences.name"
+        ],
+        "value_kind": "column",
+        "value_template": "",
+        "sql_expression": "",
+        "constant_value": "",
+        "datatype": "xsd:string",
+        "join_paths": [],
+        "condition": []
+      },
+      {
+        "mapping_id": "hasConferenceURI_from_URI",
+        "data_property_id": "DataProperty:hasConferenceURI",
+        "applies_to_class": "Class:Conference",
+        "source_table": "conferences",
+        "source_columns": [
+          "conferences.uri"
+        ],
+        "value_kind": "column",
+        "value_template": "",
+        "sql_expression": "",
+        "constant_value": "",
+        "datatype": "xsd:anyURI",
+        "join_paths": [],
+        "condition": []
+      },
+      {
+        "mapping_id": "hasConferenceDate_from_Date",
+        "data_property_id": "DataProperty:hasConferenceDate",
+        "applies_to_class": "Class:Conference",
+        "source_table": "conferences",
+        "source_columns": [
+          "conferences.date"
+        ],
+        "value_kind": "column",
+        "value_template": "",
+        "sql_expression": "",
+        "constant_value": "",
+        "datatype": "xsd:string",
+        "join_paths": [],
+        "condition": []
+      },
+      {
+        "mapping_id": "hasConferenceLocation_from_Location",
+        "data_property_id": "DataProperty:hasConferenceLocation",
+        "applies_to_class": "Class:Conference",
+        "source_table": "conferences",
+        "source_columns": [
+          "conferences.location"
+        ],
+        "value_kind": "column",
+        "value_template": "",
+        "sql_expression": "",
+        "constant_value": "",
+        "datatype": "xsd:string",
+        "join_paths": [],
+        "condition": []
+      },
+      {
+        "mapping_id": "hasConferenceDatum_from_Datum",
+        "data_property_id": "DataProperty:hasConferenceDatum",
+        "applies_to_class": "Class:Conference",
+        "source_table": "conferences",
+        "source_columns": [
+          "conferences.datum"
+        ],
+        "value_kind": "column",
+        "value_template": "",
+        "sql_expression": "",
+        "constant_value": "",
+        "datatype": "xsd:dateTime",
+        "join_paths": [],
+        "condition": []
+      }
+    ],
+    "object_property_mappings": []
+  },
+  "proposed_revisions": {
+    "classes": [],
+    "data_properties": [],
+    "object_properties": [],
+    "subclass_relations": [],
+    "class_mappings": [],
+    "data_property_mappings": [],
+    "object_property_mappings": []
+  },
+  "proposed_rejections": [],
+  "proposed_merges": [],
+  "decision_summary": [
+    {
+      "decision_type": "C-ENTITY",
+      "target": "Class:Conference",
+      "status": "accepted",
+      "confidence": 0.95,
+      "reason": "conferences table represents a stable entity with primary key ConfID and descriptive attributes (Name, URI, Date, Location, Datum)."
+    },
+    {
+      "decision_type": "DP-LITERAL",
+      "target": "DataProperty:hasConferenceName",
+      "status": "accepted",
+      "confidence": 0.95,
+      "reason": "Name column contains string literals describing conference names."
+    },
+    {
+      "decision_type": "DP-URI",
+      "target": "DataProperty:hasConferenceURI",
+      "status": "accepted",
+      "confidence": 0.85,
+      "reason": "URI column stores URI values as literals; no evidence of entity-to-entity relation, modeled as data property with xsd:anyURI datatype."
+    },
+    {
+      "decision_type": "DP-LITERAL",
+      "target": "DataProperty:hasConferenceDate",
+      "status": "accepted",
+      "confidence": 0.8,
+      "reason": "Date column contains string representation of conference dates; stored as varchar(50) suggesting flexible date format."
+    },
+    {
+      "decision_type": "DP-LITERAL",
+      "target": "DataProperty:hasConferenceLocation",
+      "status": "accepted",
+      "confidence": 0.9,
+      "reason": "Location column contains string literals for conference locations; flagged as address-like bundle but no separate location entity exists."
+    },
+    {
+      "decision_type": "DP-TIMESTAMP",
+      "target": "DataProperty:hasConferenceDatum",
+      "status": "accepted",
+      "confidence": 0.85,
+      "reason": "Datum column is a timestamp(0) field; mapped to xsd:dateTime for record metadata."
+    }
+  ],
+  "remaining_ambiguities": [
+    "Date column format and semantics unclear; stored as varchar(50) rather than native date type—may require value sampling to determine if it represents event date or other temporal metadata.",
+    "Relationship between Date (varchar) and Datum (timestamp) columns not specified; unclear if they represent different temporal aspects or redundant information.",
+    "URI column purpose ambiguous; unclear if it references external conference resources or serves as internal identifier."
+  ],
+  "needs_probe": [
+    {
+      "probe_type": "value_sample",
+      "target": "conferences.date",
+      "question": "What are sample values in the Date column? Is it ISO 8601 format, human-readable, or other?"
+    },
+    {
+      "probe_type": "value_sample",
+      "target": "conferences.uri",
+      "question": "Are URI values external references (e.g., http://...) or internal identifiers?"
+    },
+    {
+      "probe_type": "cardinality",
+      "target": "conferences",
+      "question": "Are there foreign key references from other tables to conferences.confid indicating entity relationships?"
+    }
+  ],
+  "normalization_warnings": []
+}

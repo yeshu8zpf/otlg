@@ -1,0 +1,119 @@
+{
+  "work_unit": {
+    "table": "papers",
+    "related_tables": []
+  },
+  "proposed_additions": {
+    "classes": [],
+    "data_properties": [],
+    "object_properties": [],
+    "subclass_relations": [],
+    "class_mappings": [],
+    "data_property_mappings": [],
+    "object_property_mappings": []
+  },
+  "proposed_revisions": {
+    "classes": [],
+    "data_properties": [],
+    "object_properties": [],
+    "subclass_relations": [],
+    "class_mappings": [
+      {
+        "target_id": "Paper_from_papers",
+        "updated_fields": {
+          "condition": [
+            "papers.publish = 1"
+          ]
+        }
+      }
+    ],
+    "data_property_mappings": [],
+    "object_property_mappings": []
+  },
+  "proposed_rejections": [],
+  "proposed_merges": [],
+  "decision_summary": [
+    {
+      "decision_type": "COLUMN-ROLE",
+      "target": "papers.PaperID",
+      "role": "primary_key",
+      "status": "confirmed",
+      "confidence": 1.0,
+      "reason": "NOT NULL, unique, integer primary key; serves as row identifier for Class:Paper instances"
+    },
+    {
+      "decision_type": "COLUMN-ROLE",
+      "target": "papers.Title",
+      "role": "ordinary_attribute",
+      "status": "confirmed",
+      "confidence": 1.0,
+      "reason": "Descriptive text; all 5 samples non-null and distinct; maps to DataProperty:hasTitle"
+    },
+    {
+      "decision_type": "COLUMN-ROLE",
+      "target": "papers.Abstract",
+      "role": "ordinary_attribute",
+      "status": "confirmed",
+      "confidence": 1.0,
+      "reason": "Descriptive text; all 5 samples non-null and distinct; maps to DataProperty:hasAbstract"
+    },
+    {
+      "decision_type": "COLUMN-ROLE",
+      "target": "papers.URI",
+      "role": "ordinary_attribute",
+      "status": "confirmed",
+      "confidence": 1.0,
+      "reason": "URI/URL reference; all 5 samples non-null and distinct; maps to DataProperty:hasURI as xsd:anyURI; no evidence of entity relation"
+    },
+    {
+      "decision_type": "COLUMN-ROLE",
+      "target": "papers.Year",
+      "role": "ordinary_attribute",
+      "status": "confirmed",
+      "confidence": 1.0,
+      "reason": "Publication year; all 5 samples non-null; 2 distinct values (2002, 2003); maps to DataProperty:hasPublicationYear"
+    },
+    {
+      "decision_type": "COLUMN-ROLE",
+      "target": "papers.Conference",
+      "role": "relation_key",
+      "status": "deferred",
+      "confidence": 0.0,
+      "reason": "Integer column; all 5 samples identical (23541); likely foreign key to conferences table; target table not yet processed; object property mapping deferred"
+    },
+    {
+      "decision_type": "REV-CONDITION",
+      "target": "Paper_from_papers",
+      "status": "accepted",
+      "confidence": 0.9,
+      "reason": "papers.Publish is binary flag (0/1); 4 of 5 samples = 1 (published), 1 sample = 0 (unpublished); semantically partitions rows into published vs. unpublished papers; Class:Paper should represent published papers only; condition papers.publish = 1 narrows class scope appropriately"
+    },
+    {
+      "decision_type": "COLUMN-ROLE",
+      "target": "papers.Publish",
+      "role": "class_filter",
+      "status": "accepted",
+      "confidence": 0.9,
+      "reason": "Binary status column (0/1); acts as publication state flag; justifies class-level condition rather than ordinary attribute; filters rows for Class:Paper membership"
+    }
+  ],
+  "remaining_ambiguities": [
+    {
+      "issue_type": "deferred_relation",
+      "related_column": "papers.Conference",
+      "description": "Conference column is likely foreign key; target table and primary key unknown; object property mapping deferred until conferences table is processed"
+    }
+  ],
+  "needs_probe": [
+    {
+      "probe_type": "schema_dependency",
+      "target": "papers.conference",
+      "question": "What is the target table and primary key for the Conference foreign key?"
+    },
+    {
+      "probe_type": "schema_dependency",
+      "target": "papers.publish",
+      "question": "Confirm: does Publish = 1 indicate published papers and Publish = 0 indicate unpublished/draft papers?"
+    }
+  ]
+}

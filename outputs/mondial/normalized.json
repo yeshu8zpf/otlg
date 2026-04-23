@@ -1,0 +1,4795 @@
+{
+  "classes": [
+    {
+      "id": "Class:Country",
+      "label": "Country",
+      "source_tables": [
+        "Country"
+      ],
+      "identifier_columns": [
+        "Country.Code"
+      ],
+      "instance_id_template": "country/@@country.code@@",
+      "status": "proposed",
+      "confidence": 0.99,
+      "description": "Sovereign country or territory identified by country code."
+    },
+    {
+      "id": "Class:Province",
+      "label": "Province",
+      "source_tables": [
+        "Province"
+      ],
+      "identifier_columns": [
+        "Province.Country",
+        "Province.Name"
+      ],
+      "instance_id_template": "province/@@province.country@@/@@province.name@@",
+      "status": "proposed",
+      "confidence": 0.98,
+      "description": "First-level administrative division identified within a country."
+    },
+    {
+      "id": "Class:City",
+      "label": "City",
+      "source_tables": [
+        "City"
+      ],
+      "identifier_columns": [
+        "City.Country",
+        "City.Province",
+        "City.Name"
+      ],
+      "instance_id_template": "city/@@city.country@@/@@city.province@@/@@city.name@@",
+      "status": "proposed",
+      "confidence": 0.98,
+      "description": "City identified by name within a province and country."
+    },
+    {
+      "id": "Class:Continent",
+      "label": "Continent",
+      "source_tables": [
+        "Continent"
+      ],
+      "identifier_columns": [
+        "Continent.Name"
+      ],
+      "instance_id_template": "continent/@@continent.name@@",
+      "status": "proposed",
+      "confidence": 0.97
+    },
+    {
+      "id": "Class:Organization",
+      "label": "Organization",
+      "source_tables": [
+        "Organization"
+      ],
+      "identifier_columns": [
+        "Organization.Abbreviation"
+      ],
+      "instance_id_template": "organization/@@organization.abbreviation@@",
+      "status": "proposed",
+      "confidence": 0.96
+    },
+    {
+      "id": "Class:Language",
+      "label": "Language",
+      "source_tables": [
+        "Language"
+      ],
+      "identifier_columns": [
+        "Language.Name"
+      ],
+      "instance_id_template": "language/@@language.name@@",
+      "status": "proposed",
+      "confidence": 0.97
+    },
+    {
+      "id": "Class:Mountain",
+      "label": "Mountain",
+      "source_tables": [
+        "Mountain"
+      ],
+      "identifier_columns": [
+        "Mountain.Name"
+      ],
+      "instance_id_template": "mountain/@@mountain.name@@",
+      "status": "proposed",
+      "confidence": 0.97
+    },
+    {
+      "id": "Class:Desert",
+      "label": "Desert",
+      "source_tables": [
+        "Desert"
+      ],
+      "identifier_columns": [
+        "Desert.Name"
+      ],
+      "instance_id_template": "desert/@@desert.name@@",
+      "status": "proposed",
+      "confidence": 0.96
+    },
+    {
+      "id": "Class:Island",
+      "label": "Island",
+      "source_tables": [
+        "Island"
+      ],
+      "identifier_columns": [
+        "Island.Name"
+      ],
+      "instance_id_template": "island/@@island.name@@",
+      "status": "proposed",
+      "confidence": 0.97
+    },
+    {
+      "id": "Class:Lake",
+      "label": "Lake",
+      "source_tables": [
+        "Lake"
+      ],
+      "identifier_columns": [
+        "Lake.Name"
+      ],
+      "instance_id_template": "lake/@@lake.name@@",
+      "status": "proposed",
+      "confidence": 0.97
+    },
+    {
+      "id": "Class:Sea",
+      "label": "Sea",
+      "source_tables": [
+        "Sea"
+      ],
+      "identifier_columns": [
+        "Sea.Name"
+      ],
+      "instance_id_template": "sea/@@sea.name@@",
+      "status": "proposed",
+      "confidence": 0.97
+    },
+    {
+      "id": "Class:River",
+      "label": "River",
+      "source_tables": [
+        "River"
+      ],
+      "identifier_columns": [
+        "River.Name"
+      ],
+      "instance_id_template": "river/@@river.name@@",
+      "status": "proposed",
+      "confidence": 0.98
+    },
+    {
+      "id": "Class:CountryPopulationObservation",
+      "label": "Country Population Observation",
+      "source_tables": [
+        "Countrypops"
+      ],
+      "identifier_columns": [
+        "Countrypops.Country",
+        "Countrypops.Year"
+      ],
+      "instance_id_template": "country-population/@@countrypops.country@@/@@countrypops.year@@",
+      "status": "proposed",
+      "confidence": 0.95,
+      "description": "Year-specific population measurement for a country."
+    },
+    {
+      "id": "Class:ProvincePopulationObservation",
+      "label": "Province Population Observation",
+      "source_tables": [
+        "Provpops"
+      ],
+      "identifier_columns": [
+        "Provpops.Country",
+        "Provpops.Province",
+        "Provpops.Year"
+      ],
+      "instance_id_template": "province-population/@@provpops.country@@/@@provpops.province@@/@@provpops.year@@",
+      "status": "proposed",
+      "confidence": 0.95
+    },
+    {
+      "id": "Class:CityPopulationObservation",
+      "label": "City Population Observation",
+      "source_tables": [
+        "Citypops"
+      ],
+      "identifier_columns": [
+        "Citypops.Country",
+        "Citypops.Province",
+        "Citypops.City",
+        "Citypops.Year"
+      ],
+      "instance_id_template": "city-population/@@citypops.country@@/@@citypops.province@@/@@citypops.city@@/@@citypops.year@@",
+      "status": "proposed",
+      "confidence": 0.95
+    },
+    {
+      "id": "Class:CountryReligionShare",
+      "label": "Country Religion Share",
+      "source_tables": [
+        "Religion"
+      ],
+      "identifier_columns": [
+        "Religion.Country",
+        "Religion.Name"
+      ],
+      "instance_id_template": "country-religion/@@religion.country@@/@@religion.name@@",
+      "status": "proposed",
+      "confidence": 0.93,
+      "description": "Country-specific occurrence of a religion with a percentage value."
+    },
+    {
+      "id": "Class:CountryEthnicGroupShare",
+      "label": "Country Ethnic Group Share",
+      "source_tables": [
+        "EthnicGroup"
+      ],
+      "identifier_columns": [
+        "EthnicGroup.Country",
+        "EthnicGroup.Name"
+      ],
+      "instance_id_template": "country-ethnic-group/@@ethnicgroup.country@@/@@ethnicgroup.name@@",
+      "status": "proposed",
+      "confidence": 0.93
+    },
+    {
+      "id": "Class:CountryLanguageUsage",
+      "label": "Country Language Usage",
+      "source_tables": [
+        "Spoken"
+      ],
+      "identifier_columns": [
+        "Spoken.Country",
+        "Spoken.Language"
+      ],
+      "instance_id_template": "country-language/@@spoken.country@@/@@spoken.language@@",
+      "status": "proposed",
+      "confidence": 0.95
+    },
+    {
+      "id": "Class:CountryContinentCoverage",
+      "label": "Country Continent Coverage",
+      "source_tables": [
+        "encompasses"
+      ],
+      "identifier_columns": [
+        "encompasses.Country",
+        "encompasses.Continent"
+      ],
+      "instance_id_template": "country-continent/@@encompasses.country@@/@@encompasses.continent@@",
+      "status": "proposed",
+      "confidence": 0.94,
+      "description": "Participation of a country in a continent with percentage coverage."
+    },
+    {
+      "id": "Class:OrganizationMembership",
+      "label": "Organization Membership",
+      "source_tables": [
+        "isMember"
+      ],
+      "identifier_columns": [
+        "isMember.Country",
+        "isMember.Organization"
+      ],
+      "instance_id_template": "membership/@@ismember.country@@/@@ismember.organization@@",
+      "status": "proposed",
+      "confidence": 0.94
+    },
+    {
+      "id": "Class:Border",
+      "label": "Border",
+      "source_tables": [
+        "borders"
+      ],
+      "identifier_columns": [
+        "borders.Country1",
+        "borders.Country2"
+      ],
+      "instance_id_template": "border/@@borders.country1@@/@@borders.country2@@",
+      "status": "proposed",
+      "confidence": 0.92,
+      "description": "Border relation between two countries with border length."
+    }
+  ],
+  "data_properties": [
+    {
+      "id": "DataProperty:countryName",
+      "label": "country name",
+      "domain_class": "Class:Country",
+      "range_type": "xsd:string",
+      "source_columns": [
+        "Name"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.99,
+      "datatype": "xsd:string"
+    },
+    {
+      "id": "DataProperty:countryCode",
+      "label": "country code",
+      "domain_class": "Class:Country",
+      "range_type": "xsd:string",
+      "source_columns": [
+        "Code"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.99,
+      "datatype": "xsd:string"
+    },
+    {
+      "id": "DataProperty:countryArea",
+      "label": "country area",
+      "domain_class": "Class:Country",
+      "range_type": "xsd:decimal",
+      "source_columns": [
+        "Area"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.97,
+      "datatype": "xsd:decimal"
+    },
+    {
+      "id": "DataProperty:countryPopulation",
+      "label": "country population",
+      "domain_class": "Class:Country",
+      "range_type": "xsd:decimal",
+      "source_columns": [
+        "Population"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.97,
+      "datatype": "xsd:decimal"
+    },
+    {
+      "id": "DataProperty:countryLocalName",
+      "label": "country local name",
+      "domain_class": "Class:Country",
+      "range_type": "xsd:string",
+      "source_columns": [
+        "localname"
+      ],
+      "join_paths": [
+        [
+          "Country.Code",
+          "=",
+          "Countrylocalname.Country"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.94,
+      "datatype": "xsd:string"
+    },
+    {
+      "id": "DataProperty:countryOtherName",
+      "label": "country other name",
+      "domain_class": "Class:Country",
+      "range_type": "xsd:string",
+      "source_columns": [
+        "othername"
+      ],
+      "join_paths": [
+        [
+          "Country.Code",
+          "=",
+          "Countryothername.Country"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.94,
+      "datatype": "xsd:string"
+    },
+    {
+      "id": "DataProperty:populationGrowth",
+      "label": "population growth",
+      "domain_class": "Class:Country",
+      "range_type": "xsd:decimal",
+      "source_columns": [
+        "Population_Growth"
+      ],
+      "join_paths": [
+        [
+          "Country.Code",
+          "=",
+          "Population.Country"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.93,
+      "datatype": "xsd:decimal"
+    },
+    {
+      "id": "DataProperty:infantMortality",
+      "label": "infant mortality",
+      "domain_class": "Class:Country",
+      "range_type": "xsd:decimal",
+      "source_columns": [
+        "Infant_Mortality"
+      ],
+      "join_paths": [
+        [
+          "Country.Code",
+          "=",
+          "Population.Country"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.93,
+      "datatype": "xsd:decimal"
+    },
+    {
+      "id": "DataProperty:gdp",
+      "label": "GDP",
+      "domain_class": "Class:Country",
+      "range_type": "xsd:decimal",
+      "source_columns": [
+        "GDP"
+      ],
+      "join_paths": [
+        [
+          "Country.Code",
+          "=",
+          "Economy.Country"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.93,
+      "datatype": "xsd:decimal"
+    },
+    {
+      "id": "DataProperty:agricultureShare",
+      "label": "agriculture share",
+      "domain_class": "Class:Country",
+      "range_type": "xsd:decimal",
+      "source_columns": [
+        "Agriculture"
+      ],
+      "join_paths": [
+        [
+          "Country.Code",
+          "=",
+          "Economy.Country"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.91,
+      "datatype": "xsd:decimal"
+    },
+    {
+      "id": "DataProperty:serviceShare",
+      "label": "service share",
+      "domain_class": "Class:Country",
+      "range_type": "xsd:decimal",
+      "source_columns": [
+        "Service"
+      ],
+      "join_paths": [
+        [
+          "Country.Code",
+          "=",
+          "Economy.Country"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.91,
+      "datatype": "xsd:decimal"
+    },
+    {
+      "id": "DataProperty:industryShare",
+      "label": "industry share",
+      "domain_class": "Class:Country",
+      "range_type": "xsd:decimal",
+      "source_columns": [
+        "Industry"
+      ],
+      "join_paths": [
+        [
+          "Country.Code",
+          "=",
+          "Economy.Country"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.91,
+      "datatype": "xsd:decimal"
+    },
+    {
+      "id": "DataProperty:inflation",
+      "label": "inflation",
+      "domain_class": "Class:Country",
+      "range_type": "xsd:decimal",
+      "source_columns": [
+        "Inflation"
+      ],
+      "join_paths": [
+        [
+          "Country.Code",
+          "=",
+          "Economy.Country"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.91,
+      "datatype": "xsd:decimal"
+    },
+    {
+      "id": "DataProperty:unemployment",
+      "label": "unemployment",
+      "domain_class": "Class:Country",
+      "range_type": "xsd:decimal",
+      "source_columns": [
+        "Unemployment"
+      ],
+      "join_paths": [
+        [
+          "Country.Code",
+          "=",
+          "Economy.Country"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.91,
+      "datatype": "xsd:decimal"
+    },
+    {
+      "id": "DataProperty:independenceDate",
+      "label": "independence date",
+      "domain_class": "Class:Country",
+      "range_type": "xsd:date",
+      "source_columns": [
+        "Independence"
+      ],
+      "join_paths": [
+        [
+          "Country.Code",
+          "=",
+          "Politics.Country"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.91,
+      "datatype": "xsd:date"
+    },
+    {
+      "id": "DataProperty:wasDependentName",
+      "label": "was dependent name",
+      "domain_class": "Class:Country",
+      "range_type": "xsd:string",
+      "source_columns": [
+        "WasDependent"
+      ],
+      "join_paths": [
+        [
+          "Country.Code",
+          "=",
+          "Politics.Country"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.83,
+      "datatype": "xsd:string"
+    },
+    {
+      "id": "DataProperty:governmentType",
+      "label": "government type",
+      "domain_class": "Class:Country",
+      "range_type": "xsd:string",
+      "source_columns": [
+        "Government"
+      ],
+      "join_paths": [
+        [
+          "Country.Code",
+          "=",
+          "Politics.Country"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.9,
+      "datatype": "xsd:string"
+    },
+    {
+      "id": "DataProperty:provinceName",
+      "label": "province name",
+      "domain_class": "Class:Province",
+      "range_type": "xsd:string",
+      "source_columns": [
+        "Name"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.98,
+      "datatype": "xsd:string"
+    },
+    {
+      "id": "DataProperty:provinceArea",
+      "label": "province area",
+      "domain_class": "Class:Province",
+      "range_type": "xsd:decimal",
+      "source_columns": [
+        "Area"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.96,
+      "datatype": "xsd:decimal"
+    },
+    {
+      "id": "DataProperty:provincePopulation",
+      "label": "province population",
+      "domain_class": "Class:Province",
+      "range_type": "xsd:decimal",
+      "source_columns": [
+        "Population"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.96,
+      "datatype": "xsd:decimal"
+    },
+    {
+      "id": "DataProperty:provinceLocalName",
+      "label": "province local name",
+      "domain_class": "Class:Province",
+      "range_type": "xsd:string",
+      "source_columns": [
+        "localname"
+      ],
+      "join_paths": [
+        [
+          "Province.Country",
+          "=",
+          "Provincelocalname.Country"
+        ],
+        [
+          "Province.Name",
+          "=",
+          "Provincelocalname.Province"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.93,
+      "datatype": "xsd:string"
+    },
+    {
+      "id": "DataProperty:provinceOtherName",
+      "label": "province other name",
+      "domain_class": "Class:Province",
+      "range_type": "xsd:string",
+      "source_columns": [
+        "othername"
+      ],
+      "join_paths": [
+        [
+          "Province.Country",
+          "=",
+          "Provinceothername.Country"
+        ],
+        [
+          "Province.Name",
+          "=",
+          "Provinceothername.Province"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.93,
+      "datatype": "xsd:string"
+    },
+    {
+      "id": "DataProperty:cityName",
+      "label": "city name",
+      "domain_class": "Class:City",
+      "range_type": "xsd:string",
+      "source_columns": [
+        "Name"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.98,
+      "datatype": "xsd:string"
+    },
+    {
+      "id": "DataProperty:cityPopulation",
+      "label": "city population",
+      "domain_class": "Class:City",
+      "range_type": "xsd:decimal",
+      "source_columns": [
+        "Population"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.96,
+      "datatype": "xsd:decimal"
+    },
+    {
+      "id": "DataProperty:latitude",
+      "label": "latitude",
+      "domain_class": "Class:City",
+      "range_type": "xsd:decimal",
+      "source_columns": [
+        "Latitude"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.95,
+      "datatype": "xsd:decimal"
+    },
+    {
+      "id": "DataProperty:longitude",
+      "label": "longitude",
+      "domain_class": "Class:City",
+      "range_type": "xsd:decimal",
+      "source_columns": [
+        "Longitude"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.95,
+      "datatype": "xsd:decimal"
+    },
+    {
+      "id": "DataProperty:elevation",
+      "label": "elevation",
+      "domain_class": "Class:City",
+      "range_type": "xsd:decimal",
+      "source_columns": [
+        "Elevation"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.95,
+      "datatype": "xsd:decimal"
+    },
+    {
+      "id": "DataProperty:cityLocalName",
+      "label": "city local name",
+      "domain_class": "Class:City",
+      "range_type": "xsd:string",
+      "source_columns": [
+        "localname"
+      ],
+      "join_paths": [
+        [
+          "City.Name",
+          "=",
+          "Citylocalname.City"
+        ],
+        [
+          "City.Country",
+          "=",
+          "Citylocalname.Country"
+        ],
+        [
+          "City.Province",
+          "=",
+          "Citylocalname.Province"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.93,
+      "datatype": "xsd:string"
+    },
+    {
+      "id": "DataProperty:cityOtherName",
+      "label": "city other name",
+      "domain_class": "Class:City",
+      "range_type": "xsd:string",
+      "source_columns": [
+        "othername"
+      ],
+      "join_paths": [
+        [
+          "City.Name",
+          "=",
+          "Cityothername.City"
+        ],
+        [
+          "City.Country",
+          "=",
+          "Cityothername.Country"
+        ],
+        [
+          "City.Province",
+          "=",
+          "Cityothername.Province"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.93,
+      "datatype": "xsd:string"
+    },
+    {
+      "id": "DataProperty:continentName",
+      "label": "continent name",
+      "domain_class": "Class:Continent",
+      "range_type": "xsd:string",
+      "source_columns": [
+        "Name"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.97,
+      "datatype": "xsd:string"
+    },
+    {
+      "id": "DataProperty:continentArea",
+      "label": "continent area",
+      "domain_class": "Class:Continent",
+      "range_type": "xsd:decimal",
+      "source_columns": [
+        "Area"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.95,
+      "datatype": "xsd:decimal"
+    },
+    {
+      "id": "DataProperty:organizationName",
+      "label": "organization name",
+      "domain_class": "Class:Organization",
+      "range_type": "xsd:string",
+      "source_columns": [
+        "Name"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.97,
+      "datatype": "xsd:string"
+    },
+    {
+      "id": "DataProperty:organizationAbbreviation",
+      "label": "organization abbreviation",
+      "domain_class": "Class:Organization",
+      "range_type": "xsd:string",
+      "source_columns": [
+        "Abbreviation"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.97,
+      "datatype": "xsd:string"
+    },
+    {
+      "id": "DataProperty:establishedDate",
+      "label": "established date",
+      "domain_class": "Class:Organization",
+      "range_type": "xsd:date",
+      "source_columns": [
+        "Established"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.95,
+      "datatype": "xsd:date"
+    },
+    {
+      "id": "DataProperty:languageName",
+      "label": "language name",
+      "domain_class": "Class:Language",
+      "range_type": "xsd:string",
+      "source_columns": [
+        "Name"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.97,
+      "datatype": "xsd:string"
+    },
+    {
+      "id": "DataProperty:mountainName",
+      "label": "mountain name",
+      "domain_class": "Class:Mountain",
+      "range_type": "xsd:string",
+      "source_columns": [
+        "Name"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.97,
+      "datatype": "xsd:string"
+    },
+    {
+      "id": "DataProperty:mountainRangeName",
+      "label": "mountain range name",
+      "domain_class": "Class:Mountain",
+      "range_type": "xsd:string",
+      "source_columns": [
+        "Mountains"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.88,
+      "datatype": "xsd:string"
+    },
+    {
+      "id": "DataProperty:mountainElevation",
+      "label": "mountain elevation",
+      "domain_class": "Class:Mountain",
+      "range_type": "xsd:decimal",
+      "source_columns": [
+        "Elevation"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.96,
+      "datatype": "xsd:decimal"
+    },
+    {
+      "id": "DataProperty:mountainType",
+      "label": "mountain type",
+      "domain_class": "Class:Mountain",
+      "range_type": "xsd:string",
+      "source_columns": [
+        "Type"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.88,
+      "datatype": "xsd:string"
+    },
+    {
+      "id": "DataProperty:desertName",
+      "label": "desert name",
+      "domain_class": "Class:Desert",
+      "range_type": "xsd:string",
+      "source_columns": [
+        "Name"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.96,
+      "datatype": "xsd:string"
+    },
+    {
+      "id": "DataProperty:desertArea",
+      "label": "desert area",
+      "domain_class": "Class:Desert",
+      "range_type": "xsd:decimal",
+      "source_columns": [
+        "Area"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.95,
+      "datatype": "xsd:decimal"
+    },
+    {
+      "id": "DataProperty:islandName",
+      "label": "island name",
+      "domain_class": "Class:Island",
+      "range_type": "xsd:string",
+      "source_columns": [
+        "Name"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.97,
+      "datatype": "xsd:string"
+    },
+    {
+      "id": "DataProperty:islandGroupName",
+      "label": "island group name",
+      "domain_class": "Class:Island",
+      "range_type": "xsd:string",
+      "source_columns": [
+        "Islands"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.87,
+      "datatype": "xsd:string"
+    },
+    {
+      "id": "DataProperty:islandArea",
+      "label": "island area",
+      "domain_class": "Class:Island",
+      "range_type": "xsd:decimal",
+      "source_columns": [
+        "Area"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.95,
+      "datatype": "xsd:decimal"
+    },
+    {
+      "id": "DataProperty:islandElevation",
+      "label": "island elevation",
+      "domain_class": "Class:Island",
+      "range_type": "xsd:decimal",
+      "source_columns": [
+        "Elevation"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.94,
+      "datatype": "xsd:decimal"
+    },
+    {
+      "id": "DataProperty:islandType",
+      "label": "island type",
+      "domain_class": "Class:Island",
+      "range_type": "xsd:string",
+      "source_columns": [
+        "Type"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.87,
+      "datatype": "xsd:string"
+    },
+    {
+      "id": "DataProperty:lakeName",
+      "label": "lake name",
+      "domain_class": "Class:Lake",
+      "range_type": "xsd:string",
+      "source_columns": [
+        "Name"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.97,
+      "datatype": "xsd:string"
+    },
+    {
+      "id": "DataProperty:lakeArea",
+      "label": "lake area",
+      "domain_class": "Class:Lake",
+      "range_type": "xsd:decimal",
+      "source_columns": [
+        "Area"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.95,
+      "datatype": "xsd:decimal"
+    },
+    {
+      "id": "DataProperty:lakeElevation",
+      "label": "lake elevation",
+      "domain_class": "Class:Lake",
+      "range_type": "xsd:decimal",
+      "source_columns": [
+        "Elevation"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.94,
+      "datatype": "xsd:decimal"
+    },
+    {
+      "id": "DataProperty:lakeDepth",
+      "label": "lake depth",
+      "domain_class": "Class:Lake",
+      "range_type": "xsd:decimal",
+      "source_columns": [
+        "Depth"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.94,
+      "datatype": "xsd:decimal"
+    },
+    {
+      "id": "DataProperty:lakeHeight",
+      "label": "lake height",
+      "domain_class": "Class:Lake",
+      "range_type": "xsd:decimal",
+      "source_columns": [
+        "Height"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.86,
+      "datatype": "xsd:decimal"
+    },
+    {
+      "id": "DataProperty:lakeType",
+      "label": "lake type",
+      "domain_class": "Class:Lake",
+      "range_type": "xsd:string",
+      "source_columns": [
+        "Type"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.87,
+      "datatype": "xsd:string"
+    },
+    {
+      "id": "DataProperty:seaName",
+      "label": "sea name",
+      "domain_class": "Class:Sea",
+      "range_type": "xsd:string",
+      "source_columns": [
+        "Name"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.97,
+      "datatype": "xsd:string"
+    },
+    {
+      "id": "DataProperty:seaArea",
+      "label": "sea area",
+      "domain_class": "Class:Sea",
+      "range_type": "xsd:decimal",
+      "source_columns": [
+        "Area"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.95,
+      "datatype": "xsd:decimal"
+    },
+    {
+      "id": "DataProperty:seaDepth",
+      "label": "sea depth",
+      "domain_class": "Class:Sea",
+      "range_type": "xsd:decimal",
+      "source_columns": [
+        "Depth"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.95,
+      "datatype": "xsd:decimal"
+    },
+    {
+      "id": "DataProperty:riverName",
+      "label": "river name",
+      "domain_class": "Class:River",
+      "range_type": "xsd:string",
+      "source_columns": [
+        "Name"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.98,
+      "datatype": "xsd:string"
+    },
+    {
+      "id": "DataProperty:riverLength",
+      "label": "river length",
+      "domain_class": "Class:River",
+      "range_type": "xsd:decimal",
+      "source_columns": [
+        "Length"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.95,
+      "datatype": "xsd:decimal"
+    },
+    {
+      "id": "DataProperty:riverArea",
+      "label": "river area",
+      "domain_class": "Class:River",
+      "range_type": "xsd:decimal",
+      "source_columns": [
+        "Area"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.93,
+      "datatype": "xsd:decimal"
+    },
+    {
+      "id": "DataProperty:sourceLatitude",
+      "label": "source latitude",
+      "domain_class": "Class:River",
+      "range_type": "xsd:decimal",
+      "source_columns": [
+        "SourceLatitude"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.92,
+      "datatype": "xsd:decimal"
+    },
+    {
+      "id": "DataProperty:sourceLongitude",
+      "label": "source longitude",
+      "domain_class": "Class:River",
+      "range_type": "xsd:decimal",
+      "source_columns": [
+        "SourceLongitude"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.92,
+      "datatype": "xsd:decimal"
+    },
+    {
+      "id": "DataProperty:sourceElevation",
+      "label": "source elevation",
+      "domain_class": "Class:River",
+      "range_type": "xsd:decimal",
+      "source_columns": [
+        "SourceElevation"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.91,
+      "datatype": "xsd:decimal"
+    },
+    {
+      "id": "DataProperty:estuaryLatitude",
+      "label": "estuary latitude",
+      "domain_class": "Class:River",
+      "range_type": "xsd:decimal",
+      "source_columns": [
+        "EstuaryLatitude"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.91,
+      "datatype": "xsd:decimal"
+    },
+    {
+      "id": "DataProperty:estuaryLongitude",
+      "label": "estuary longitude",
+      "domain_class": "Class:River",
+      "range_type": "xsd:decimal",
+      "source_columns": [
+        "EstuaryLongitude"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.91,
+      "datatype": "xsd:decimal"
+    },
+    {
+      "id": "DataProperty:estuaryElevation",
+      "label": "estuary elevation",
+      "domain_class": "Class:River",
+      "range_type": "xsd:decimal",
+      "source_columns": [
+        "EstuaryElevation"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.9,
+      "datatype": "xsd:decimal"
+    },
+    {
+      "id": "DataProperty:sourceMountainName",
+      "label": "source mountain name",
+      "domain_class": "Class:River",
+      "range_type": "xsd:string",
+      "source_columns": [
+        "Mountains"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.82,
+      "datatype": "xsd:string"
+    },
+    {
+      "id": "DataProperty:observationYear",
+      "label": "observation year",
+      "domain_class": "Class:CountryPopulationObservation",
+      "range_type": "xsd:decimal",
+      "source_columns": [
+        "Year"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.95,
+      "datatype": "xsd:decimal"
+    },
+    {
+      "id": "DataProperty:observedPopulation",
+      "label": "observed population",
+      "domain_class": "Class:CountryPopulationObservation",
+      "range_type": "xsd:decimal",
+      "source_columns": [
+        "Population"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.95,
+      "datatype": "xsd:decimal"
+    },
+    {
+      "id": "DataProperty:provinceObservationYear",
+      "label": "province observation year",
+      "domain_class": "Class:ProvincePopulationObservation",
+      "range_type": "xsd:decimal",
+      "source_columns": [
+        "Year"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.95,
+      "datatype": "xsd:decimal"
+    },
+    {
+      "id": "DataProperty:provinceObservedPopulation",
+      "label": "province observed population",
+      "domain_class": "Class:ProvincePopulationObservation",
+      "range_type": "xsd:decimal",
+      "source_columns": [
+        "Population"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.95,
+      "datatype": "xsd:decimal"
+    },
+    {
+      "id": "DataProperty:cityObservationYear",
+      "label": "city observation year",
+      "domain_class": "Class:CityPopulationObservation",
+      "range_type": "xsd:decimal",
+      "source_columns": [
+        "Year"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.95,
+      "datatype": "xsd:decimal"
+    },
+    {
+      "id": "DataProperty:cityObservedPopulation",
+      "label": "city observed population",
+      "domain_class": "Class:CityPopulationObservation",
+      "range_type": "xsd:decimal",
+      "source_columns": [
+        "Population"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.95,
+      "datatype": "xsd:decimal"
+    },
+    {
+      "id": "DataProperty:religionName",
+      "label": "religion name",
+      "domain_class": "Class:CountryReligionShare",
+      "range_type": "xsd:string",
+      "source_columns": [
+        "Name"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.94,
+      "datatype": "xsd:string"
+    },
+    {
+      "id": "DataProperty:religionPercentage",
+      "label": "religion percentage",
+      "domain_class": "Class:CountryReligionShare",
+      "range_type": "xsd:decimal",
+      "source_columns": [
+        "Percentage"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.94,
+      "datatype": "xsd:decimal"
+    },
+    {
+      "id": "DataProperty:ethnicGroupName",
+      "label": "ethnic group name",
+      "domain_class": "Class:CountryEthnicGroupShare",
+      "range_type": "xsd:string",
+      "source_columns": [
+        "Name"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.94,
+      "datatype": "xsd:string"
+    },
+    {
+      "id": "DataProperty:ethnicGroupPercentage",
+      "label": "ethnic group percentage",
+      "domain_class": "Class:CountryEthnicGroupShare",
+      "range_type": "xsd:decimal",
+      "source_columns": [
+        "Percentage"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.94,
+      "datatype": "xsd:decimal"
+    },
+    {
+      "id": "DataProperty:languagePercentage",
+      "label": "language percentage",
+      "domain_class": "Class:CountryLanguageUsage",
+      "range_type": "xsd:decimal",
+      "source_columns": [
+        "Percentage"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.95,
+      "datatype": "xsd:decimal"
+    },
+    {
+      "id": "DataProperty:coveragePercentage",
+      "label": "coverage percentage",
+      "domain_class": "Class:CountryContinentCoverage",
+      "range_type": "xsd:decimal",
+      "source_columns": [
+        "Percentage"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.94,
+      "datatype": "xsd:decimal"
+    },
+    {
+      "id": "DataProperty:membershipType",
+      "label": "membership type",
+      "domain_class": "Class:OrganizationMembership",
+      "range_type": "xsd:string",
+      "source_columns": [
+        "Type"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.94,
+      "datatype": "xsd:string"
+    },
+    {
+      "id": "DataProperty:borderLength",
+      "label": "border length",
+      "domain_class": "Class:Border",
+      "range_type": "xsd:decimal",
+      "source_columns": [
+        "Length"
+      ],
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.93,
+      "datatype": "xsd:decimal"
+    }
+  ],
+  "object_properties": [
+    {
+      "id": "ObjectProperty:cityInProvince",
+      "label": "city in province",
+      "domain_class": "Class:City",
+      "range_class": "Class:Province",
+      "join_paths": [
+        [
+          "City.Country",
+          "=",
+          "Province.Country"
+        ],
+        [
+          "City.Province",
+          "=",
+          "Province.Name"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.98
+    },
+    {
+      "id": "ObjectProperty:provinceInCountry",
+      "label": "province in country",
+      "domain_class": "Class:Province",
+      "range_class": "Class:Country",
+      "join_paths": [
+        [
+          "Province.Country",
+          "=",
+          "Country.Code"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.99
+    },
+    {
+      "id": "ObjectProperty:countryCapital",
+      "label": "country capital",
+      "domain_class": "Class:Country",
+      "range_class": "Class:City",
+      "join_paths": [
+        [
+          "Country.Capital",
+          "=",
+          "City.Name"
+        ],
+        [
+          "Country.Code",
+          "=",
+          "City.Country"
+        ],
+        [
+          "Country.Province",
+          "=",
+          "City.Province"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.98
+    },
+    {
+      "id": "ObjectProperty:provinceCapital",
+      "label": "province capital",
+      "domain_class": "Class:Province",
+      "range_class": "Class:City",
+      "join_paths": [
+        [
+          "Province.Capital",
+          "=",
+          "City.Name"
+        ],
+        [
+          "Province.Country",
+          "=",
+          "City.Country"
+        ],
+        [
+          "Province.CapProv",
+          "=",
+          "City.Province"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.97
+    },
+    {
+      "id": "ObjectProperty:organizationHeadquarteredIn",
+      "label": "organization headquartered in",
+      "domain_class": "Class:Organization",
+      "range_class": "Class:City",
+      "join_paths": [
+        [
+          "Organization.City",
+          "=",
+          "City.Name"
+        ],
+        [
+          "Organization.Country",
+          "=",
+          "City.Country"
+        ],
+        [
+          "Organization.Province",
+          "=",
+          "City.Province"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.96
+    },
+    {
+      "id": "ObjectProperty:languageSuperlanguage",
+      "label": "language superlanguage",
+      "domain_class": "Class:Language",
+      "range_class": "Class:Language",
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.9,
+      "condition": [
+        [
+          "Language.Superlanguage",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
+    },
+    {
+      "id": "ObjectProperty:countryDependsOnCountry",
+      "label": "country depends on country",
+      "domain_class": "Class:Country",
+      "range_class": "Class:Country",
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.82,
+      "condition": [
+        [
+          "Politics.Dependent",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
+    },
+    {
+      "id": "ObjectProperty:lakeRelatedRiver",
+      "label": "lake related river",
+      "domain_class": "Class:Lake",
+      "range_class": "Class:River",
+      "join_paths": [
+        [
+          "Lake.River",
+          "=",
+          "River.Name"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.78,
+      "condition": [
+        [
+          "Lake.River",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
+    },
+    {
+      "id": "ObjectProperty:riverFlowsIntoRiver",
+      "label": "river flows into river",
+      "domain_class": "Class:River",
+      "range_class": "Class:River",
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.91,
+      "condition": [
+        [
+          "River.River",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
+    },
+    {
+      "id": "ObjectProperty:riverFlowsIntoLake",
+      "label": "river flows into lake",
+      "domain_class": "Class:River",
+      "range_class": "Class:Lake",
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.91,
+      "condition": [
+        [
+          "River.Lake",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
+    },
+    {
+      "id": "ObjectProperty:riverFlowsIntoSea",
+      "label": "river flows into sea",
+      "domain_class": "Class:River",
+      "range_class": "Class:Sea",
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.92,
+      "condition": [
+        [
+          "River.Sea",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
+    },
+    {
+      "id": "ObjectProperty:riverPassesThroughLake",
+      "label": "river passes through lake",
+      "domain_class": "Class:River",
+      "range_class": "Class:Lake",
+      "join_paths": [
+        [
+          "RiverThrough.River",
+          "=",
+          "River.Name"
+        ],
+        [
+          "RiverThrough.Lake",
+          "=",
+          "Lake.Name"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.95
+    },
+    {
+      "id": "ObjectProperty:mountainInProvince",
+      "label": "mountain in province",
+      "domain_class": "Class:Mountain",
+      "range_class": "Class:Province",
+      "join_paths": [
+        [
+          "geo_Mountain.Country",
+          "=",
+          "Province.Country"
+        ],
+        [
+          "geo_Mountain.Province",
+          "=",
+          "Province.Name"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.96
+    },
+    {
+      "id": "ObjectProperty:desertInProvince",
+      "label": "desert in province",
+      "domain_class": "Class:Desert",
+      "range_class": "Class:Province",
+      "join_paths": [
+        [
+          "geo_Desert.Country",
+          "=",
+          "Province.Country"
+        ],
+        [
+          "geo_Desert.Province",
+          "=",
+          "Province.Name"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.95
+    },
+    {
+      "id": "ObjectProperty:islandInProvince",
+      "label": "island in province",
+      "domain_class": "Class:Island",
+      "range_class": "Class:Province",
+      "join_paths": [
+        [
+          "geo_Island.Country",
+          "=",
+          "Province.Country"
+        ],
+        [
+          "geo_Island.Province",
+          "=",
+          "Province.Name"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.95
+    },
+    {
+      "id": "ObjectProperty:riverInProvince",
+      "label": "river in province",
+      "domain_class": "Class:River",
+      "range_class": "Class:Province",
+      "join_paths": [
+        [
+          "geo_River.Country",
+          "=",
+          "Province.Country"
+        ],
+        [
+          "geo_River.Province",
+          "=",
+          "Province.Name"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.95
+    },
+    {
+      "id": "ObjectProperty:seaInProvince",
+      "label": "sea in province",
+      "domain_class": "Class:Sea",
+      "range_class": "Class:Province",
+      "join_paths": [
+        [
+          "geo_Sea.Country",
+          "=",
+          "Province.Country"
+        ],
+        [
+          "geo_Sea.Province",
+          "=",
+          "Province.Name"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.94
+    },
+    {
+      "id": "ObjectProperty:lakeInProvince",
+      "label": "lake in province",
+      "domain_class": "Class:Lake",
+      "range_class": "Class:Province",
+      "join_paths": [
+        [
+          "geo_Lake.Country",
+          "=",
+          "Province.Country"
+        ],
+        [
+          "geo_Lake.Province",
+          "=",
+          "Province.Name"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.94
+    },
+    {
+      "id": "ObjectProperty:riverSourceInProvince",
+      "label": "river source in province",
+      "domain_class": "Class:River",
+      "range_class": "Class:Province",
+      "join_paths": [
+        [
+          "geo_Source.Country",
+          "=",
+          "Province.Country"
+        ],
+        [
+          "geo_Source.Province",
+          "=",
+          "Province.Name"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.93
+    },
+    {
+      "id": "ObjectProperty:riverEstuaryInProvince",
+      "label": "river estuary in province",
+      "domain_class": "Class:River",
+      "range_class": "Class:Province",
+      "join_paths": [
+        [
+          "geo_Estuary.Country",
+          "=",
+          "Province.Country"
+        ],
+        [
+          "geo_Estuary.Province",
+          "=",
+          "Province.Name"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.93
+    },
+    {
+      "id": "ObjectProperty:cityLocatedByRiver",
+      "label": "city located by river",
+      "domain_class": "Class:City",
+      "range_class": "Class:River",
+      "join_paths": [
+        [
+          "located.City",
+          "=",
+          "City.Name"
+        ],
+        [
+          "located.Country",
+          "=",
+          "City.Country"
+        ],
+        [
+          "located.Province",
+          "=",
+          "City.Province"
+        ],
+        [
+          "located.River",
+          "=",
+          "River.Name"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.92,
+      "condition": [
+        [
+          "located.River",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
+    },
+    {
+      "id": "ObjectProperty:cityLocatedByLake",
+      "label": "city located by lake",
+      "domain_class": "Class:City",
+      "range_class": "Class:Lake",
+      "join_paths": [
+        [
+          "located.City",
+          "=",
+          "City.Name"
+        ],
+        [
+          "located.Country",
+          "=",
+          "City.Country"
+        ],
+        [
+          "located.Province",
+          "=",
+          "City.Province"
+        ],
+        [
+          "located.Lake",
+          "=",
+          "Lake.Name"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.92,
+      "condition": [
+        [
+          "located.Lake",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
+    },
+    {
+      "id": "ObjectProperty:cityLocatedBySea",
+      "label": "city located by sea",
+      "domain_class": "Class:City",
+      "range_class": "Class:Sea",
+      "join_paths": [
+        [
+          "located.City",
+          "=",
+          "City.Name"
+        ],
+        [
+          "located.Country",
+          "=",
+          "City.Country"
+        ],
+        [
+          "located.Province",
+          "=",
+          "City.Province"
+        ],
+        [
+          "located.Sea",
+          "=",
+          "Sea.Name"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.92,
+      "condition": [
+        [
+          "located.Sea",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
+    },
+    {
+      "id": "ObjectProperty:cityOnIsland",
+      "label": "city on island",
+      "domain_class": "Class:City",
+      "range_class": "Class:Island",
+      "join_paths": [
+        [
+          "locatedOn.City",
+          "=",
+          "City.Name"
+        ],
+        [
+          "locatedOn.Country",
+          "=",
+          "City.Country"
+        ],
+        [
+          "locatedOn.Province",
+          "=",
+          "City.Province"
+        ],
+        [
+          "locatedOn.Island",
+          "=",
+          "Island.Name"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.95
+    },
+    {
+      "id": "ObjectProperty:islandInSea",
+      "label": "island in sea",
+      "domain_class": "Class:Island",
+      "range_class": "Class:Sea",
+      "join_paths": [
+        [
+          "islandIn.Island",
+          "=",
+          "Island.Name"
+        ],
+        [
+          "islandIn.Sea",
+          "=",
+          "Sea.Name"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.93,
+      "condition": [
+        [
+          "islandIn.Sea",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
+    },
+    {
+      "id": "ObjectProperty:islandInLake",
+      "label": "island in lake",
+      "domain_class": "Class:Island",
+      "range_class": "Class:Lake",
+      "join_paths": [
+        [
+          "islandIn.Island",
+          "=",
+          "Island.Name"
+        ],
+        [
+          "islandIn.Lake",
+          "=",
+          "Lake.Name"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.93,
+      "condition": [
+        [
+          "islandIn.Lake",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
+    },
+    {
+      "id": "ObjectProperty:islandInRiver",
+      "label": "island in river",
+      "domain_class": "Class:Island",
+      "range_class": "Class:River",
+      "join_paths": [
+        [
+          "islandIn.Island",
+          "=",
+          "Island.Name"
+        ],
+        [
+          "islandIn.River",
+          "=",
+          "River.Name"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.93,
+      "condition": [
+        [
+          "islandIn.River",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
+    },
+    {
+      "id": "ObjectProperty:mountainOnIsland",
+      "label": "mountain on island",
+      "domain_class": "Class:Mountain",
+      "range_class": "Class:Island",
+      "join_paths": [
+        [
+          "MountainOnIsland.Mountain",
+          "=",
+          "Mountain.Name"
+        ],
+        [
+          "MountainOnIsland.Island",
+          "=",
+          "Island.Name"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.95
+    },
+    {
+      "id": "ObjectProperty:lakeOnIsland",
+      "label": "lake on island",
+      "domain_class": "Class:Lake",
+      "range_class": "Class:Island",
+      "join_paths": [
+        [
+          "LakeOnIsland.Lake",
+          "=",
+          "Lake.Name"
+        ],
+        [
+          "LakeOnIsland.Island",
+          "=",
+          "Island.Name"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.95
+    },
+    {
+      "id": "ObjectProperty:riverOnIsland",
+      "label": "river on island",
+      "domain_class": "Class:River",
+      "range_class": "Class:Island",
+      "join_paths": [
+        [
+          "RiverOnIsland.River",
+          "=",
+          "River.Name"
+        ],
+        [
+          "RiverOnIsland.Island",
+          "=",
+          "Island.Name"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.95
+    },
+    {
+      "id": "ObjectProperty:seaMergesWithSea",
+      "label": "sea merges with sea",
+      "domain_class": "Class:Sea",
+      "range_class": "Class:Sea",
+      "join_paths": [],
+      "status": "proposed",
+      "confidence": 0.9
+    },
+    {
+      "id": "ObjectProperty:countryPopulationObservationOfCountry",
+      "label": "country population observation of country",
+      "domain_class": "Class:CountryPopulationObservation",
+      "range_class": "Class:Country",
+      "join_paths": [
+        [
+          "Countrypops.Country",
+          "=",
+          "Country.Code"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.97
+    },
+    {
+      "id": "ObjectProperty:provincePopulationObservationOfProvince",
+      "label": "province population observation of province",
+      "domain_class": "Class:ProvincePopulationObservation",
+      "range_class": "Class:Province",
+      "join_paths": [
+        [
+          "Provpops.Country",
+          "=",
+          "Province.Country"
+        ],
+        [
+          "Provpops.Province",
+          "=",
+          "Province.Name"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.97
+    },
+    {
+      "id": "ObjectProperty:cityPopulationObservationOfCity",
+      "label": "city population observation of city",
+      "domain_class": "Class:CityPopulationObservation",
+      "range_class": "Class:City",
+      "join_paths": [
+        [
+          "Citypops.City",
+          "=",
+          "City.Name"
+        ],
+        [
+          "Citypops.Country",
+          "=",
+          "City.Country"
+        ],
+        [
+          "Citypops.Province",
+          "=",
+          "City.Province"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.97
+    },
+    {
+      "id": "ObjectProperty:religionShareOfCountry",
+      "label": "religion share of country",
+      "domain_class": "Class:CountryReligionShare",
+      "range_class": "Class:Country",
+      "join_paths": [
+        [
+          "Religion.Country",
+          "=",
+          "Country.Code"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.97
+    },
+    {
+      "id": "ObjectProperty:ethnicGroupShareOfCountry",
+      "label": "ethnic group share of country",
+      "domain_class": "Class:CountryEthnicGroupShare",
+      "range_class": "Class:Country",
+      "join_paths": [
+        [
+          "EthnicGroup.Country",
+          "=",
+          "Country.Code"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.97
+    },
+    {
+      "id": "ObjectProperty:languageUsageOfCountry",
+      "label": "language usage of country",
+      "domain_class": "Class:CountryLanguageUsage",
+      "range_class": "Class:Country",
+      "join_paths": [
+        [
+          "Spoken.Country",
+          "=",
+          "Country.Code"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.97
+    },
+    {
+      "id": "ObjectProperty:languageUsageLanguage",
+      "label": "language usage language",
+      "domain_class": "Class:CountryLanguageUsage",
+      "range_class": "Class:Language",
+      "join_paths": [
+        [
+          "Spoken.Language",
+          "=",
+          "Language.Name"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.97
+    },
+    {
+      "id": "ObjectProperty:continentCoverageCountry",
+      "label": "continent coverage country",
+      "domain_class": "Class:CountryContinentCoverage",
+      "range_class": "Class:Country",
+      "join_paths": [
+        [
+          "encompasses.Country",
+          "=",
+          "Country.Code"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.97
+    },
+    {
+      "id": "ObjectProperty:continentCoverageContinent",
+      "label": "continent coverage continent",
+      "domain_class": "Class:CountryContinentCoverage",
+      "range_class": "Class:Continent",
+      "join_paths": [
+        [
+          "encompasses.Continent",
+          "=",
+          "Continent.Name"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.97
+    },
+    {
+      "id": "ObjectProperty:membershipCountry",
+      "label": "membership country",
+      "domain_class": "Class:OrganizationMembership",
+      "range_class": "Class:Country",
+      "join_paths": [
+        [
+          "isMember.Country",
+          "=",
+          "Country.Code"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.97
+    },
+    {
+      "id": "ObjectProperty:membershipOrganization",
+      "label": "membership organization",
+      "domain_class": "Class:OrganizationMembership",
+      "range_class": "Class:Organization",
+      "join_paths": [
+        [
+          "isMember.Organization",
+          "=",
+          "Organization.Abbreviation"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.97
+    },
+    {
+      "id": "ObjectProperty:borderCountry1",
+      "label": "border country 1",
+      "domain_class": "Class:Border",
+      "range_class": "Class:Country",
+      "join_paths": [
+        [
+          "borders.Country1",
+          "=",
+          "Country.Code"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.96
+    },
+    {
+      "id": "ObjectProperty:borderCountry2",
+      "label": "border country 2",
+      "domain_class": "Class:Border",
+      "range_class": "Class:Country",
+      "join_paths": [
+        [
+          "borders.Country2",
+          "=",
+          "Country.Code"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.96
+    }
+  ],
+  "subclass_relations": [],
+  "class_mappings": [
+    {
+      "class_id": "Class:Country",
+      "from_tables": [
+        "Country"
+      ],
+      "identifier_columns": [
+        "Country.Code"
+      ],
+      "instance_id_template": "country/@@country.code@@",
+      "status": "proposed",
+      "confidence": 0.99,
+      "identifier_kind": "uri_pattern"
+    },
+    {
+      "class_id": "Class:Province",
+      "from_tables": [
+        "Province"
+      ],
+      "identifier_columns": [
+        "Province.Country",
+        "Province.Name"
+      ],
+      "instance_id_template": "province/@@province.country@@/@@province.name@@",
+      "status": "proposed",
+      "confidence": 0.98,
+      "identifier_kind": "uri_pattern"
+    },
+    {
+      "class_id": "Class:City",
+      "from_tables": [
+        "City"
+      ],
+      "identifier_columns": [
+        "City.Country",
+        "City.Province",
+        "City.Name"
+      ],
+      "instance_id_template": "city/@@city.country@@/@@city.province@@/@@city.name@@",
+      "status": "proposed",
+      "confidence": 0.98,
+      "identifier_kind": "uri_pattern"
+    },
+    {
+      "class_id": "Class:Continent",
+      "from_tables": [
+        "Continent"
+      ],
+      "identifier_columns": [
+        "Continent.Name"
+      ],
+      "instance_id_template": "continent/@@continent.name@@",
+      "status": "proposed",
+      "confidence": 0.97,
+      "identifier_kind": "uri_pattern"
+    },
+    {
+      "class_id": "Class:Organization",
+      "from_tables": [
+        "Organization"
+      ],
+      "identifier_columns": [
+        "Organization.Abbreviation"
+      ],
+      "instance_id_template": "organization/@@organization.abbreviation@@",
+      "status": "proposed",
+      "confidence": 0.97,
+      "identifier_kind": "uri_pattern"
+    },
+    {
+      "class_id": "Class:Language",
+      "from_tables": [
+        "Language"
+      ],
+      "identifier_columns": [
+        "Language.Name"
+      ],
+      "instance_id_template": "language/@@language.name@@",
+      "status": "proposed",
+      "confidence": 0.97,
+      "identifier_kind": "uri_pattern"
+    },
+    {
+      "class_id": "Class:Mountain",
+      "from_tables": [
+        "Mountain"
+      ],
+      "identifier_columns": [
+        "Mountain.Name"
+      ],
+      "instance_id_template": "mountain/@@mountain.name@@",
+      "status": "proposed",
+      "confidence": 0.97,
+      "identifier_kind": "uri_pattern"
+    },
+    {
+      "class_id": "Class:Desert",
+      "from_tables": [
+        "Desert"
+      ],
+      "identifier_columns": [
+        "Desert.Name"
+      ],
+      "instance_id_template": "desert/@@desert.name@@",
+      "status": "proposed",
+      "confidence": 0.96,
+      "identifier_kind": "uri_pattern"
+    },
+    {
+      "class_id": "Class:Island",
+      "from_tables": [
+        "Island"
+      ],
+      "identifier_columns": [
+        "Island.Name"
+      ],
+      "instance_id_template": "island/@@island.name@@",
+      "status": "proposed",
+      "confidence": 0.97,
+      "identifier_kind": "uri_pattern"
+    },
+    {
+      "class_id": "Class:Lake",
+      "from_tables": [
+        "Lake"
+      ],
+      "identifier_columns": [
+        "Lake.Name"
+      ],
+      "instance_id_template": "lake/@@lake.name@@",
+      "status": "proposed",
+      "confidence": 0.97,
+      "identifier_kind": "uri_pattern"
+    },
+    {
+      "class_id": "Class:Sea",
+      "from_tables": [
+        "Sea"
+      ],
+      "identifier_columns": [
+        "Sea.Name"
+      ],
+      "instance_id_template": "sea/@@sea.name@@",
+      "status": "proposed",
+      "confidence": 0.97,
+      "identifier_kind": "uri_pattern"
+    },
+    {
+      "class_id": "Class:River",
+      "from_tables": [
+        "River"
+      ],
+      "identifier_columns": [
+        "River.Name"
+      ],
+      "instance_id_template": "river/@@river.name@@",
+      "status": "proposed",
+      "confidence": 0.98,
+      "identifier_kind": "uri_pattern"
+    },
+    {
+      "class_id": "Class:CountryPopulationObservation",
+      "from_tables": [
+        "Countrypops"
+      ],
+      "identifier_columns": [
+        "Countrypops.Country",
+        "Countrypops.Year"
+      ],
+      "instance_id_template": "country-population/@@countrypops.country@@/@@countrypops.year@@",
+      "status": "proposed",
+      "confidence": 0.96,
+      "identifier_kind": "uri_pattern"
+    },
+    {
+      "class_id": "Class:ProvincePopulationObservation",
+      "from_tables": [
+        "Provpops"
+      ],
+      "identifier_columns": [
+        "Provpops.Country",
+        "Provpops.Province",
+        "Provpops.Year"
+      ],
+      "instance_id_template": "province-population/@@provpops.country@@/@@provpops.province@@/@@provpops.year@@",
+      "status": "proposed",
+      "confidence": 0.96,
+      "identifier_kind": "uri_pattern"
+    },
+    {
+      "class_id": "Class:CityPopulationObservation",
+      "from_tables": [
+        "Citypops"
+      ],
+      "identifier_columns": [
+        "Citypops.Country",
+        "Citypops.Province",
+        "Citypops.City",
+        "Citypops.Year"
+      ],
+      "instance_id_template": "city-population/@@citypops.country@@/@@citypops.province@@/@@citypops.city@@/@@citypops.year@@",
+      "status": "proposed",
+      "confidence": 0.96,
+      "identifier_kind": "uri_pattern"
+    },
+    {
+      "class_id": "Class:CountryReligionShare",
+      "from_tables": [
+        "Religion"
+      ],
+      "identifier_columns": [
+        "Religion.Country",
+        "Religion.Name"
+      ],
+      "instance_id_template": "country-religion/@@religion.country@@/@@religion.name@@",
+      "status": "proposed",
+      "confidence": 0.94,
+      "identifier_kind": "uri_pattern"
+    },
+    {
+      "class_id": "Class:CountryEthnicGroupShare",
+      "from_tables": [
+        "EthnicGroup"
+      ],
+      "identifier_columns": [
+        "EthnicGroup.Country",
+        "EthnicGroup.Name"
+      ],
+      "instance_id_template": "country-ethnic-group/@@ethnicgroup.country@@/@@ethnicgroup.name@@",
+      "status": "proposed",
+      "confidence": 0.94,
+      "identifier_kind": "uri_pattern"
+    },
+    {
+      "class_id": "Class:CountryLanguageUsage",
+      "from_tables": [
+        "Spoken"
+      ],
+      "identifier_columns": [
+        "Spoken.Country",
+        "Spoken.Language"
+      ],
+      "instance_id_template": "country-language/@@spoken.country@@/@@spoken.language@@",
+      "status": "proposed",
+      "confidence": 0.96,
+      "identifier_kind": "uri_pattern"
+    },
+    {
+      "class_id": "Class:CountryContinentCoverage",
+      "from_tables": [
+        "encompasses"
+      ],
+      "identifier_columns": [
+        "encompasses.Country",
+        "encompasses.Continent"
+      ],
+      "instance_id_template": "country-continent/@@encompasses.country@@/@@encompasses.continent@@",
+      "status": "proposed",
+      "confidence": 0.95,
+      "identifier_kind": "uri_pattern"
+    },
+    {
+      "class_id": "Class:OrganizationMembership",
+      "from_tables": [
+        "isMember"
+      ],
+      "identifier_columns": [
+        "isMember.Country",
+        "isMember.Organization"
+      ],
+      "instance_id_template": "membership/@@ismember.country@@/@@ismember.organization@@",
+      "status": "proposed",
+      "confidence": 0.95,
+      "identifier_kind": "uri_pattern"
+    },
+    {
+      "class_id": "Class:Border",
+      "from_tables": [
+        "borders"
+      ],
+      "identifier_columns": [
+        "borders.Country1",
+        "borders.Country2"
+      ],
+      "instance_id_template": "border/@@borders.country1@@/@@borders.country2@@",
+      "status": "proposed",
+      "confidence": 0.93,
+      "identifier_kind": "uri_pattern"
+    }
+  ],
+  "data_property_mappings": [
+    {
+      "property_id": "DataProperty:countryName",
+      "from_class": "Class:Country",
+      "source_table": "Country",
+      "source_columns": [
+        "Name"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.99,
+      "value_kind": "column",
+      "datatype": "xsd:string"
+    },
+    {
+      "property_id": "DataProperty:countryCode",
+      "from_class": "Class:Country",
+      "source_table": "Country",
+      "source_columns": [
+        "Code"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.99,
+      "value_kind": "column",
+      "datatype": "xsd:string"
+    },
+    {
+      "property_id": "DataProperty:countryArea",
+      "from_class": "Class:Country",
+      "source_table": "Country",
+      "source_columns": [
+        "Area"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.97,
+      "value_kind": "column",
+      "datatype": "xsd:decimal"
+    },
+    {
+      "property_id": "DataProperty:countryPopulation",
+      "from_class": "Class:Country",
+      "source_table": "Country",
+      "source_columns": [
+        "Population"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.97,
+      "value_kind": "column",
+      "datatype": "xsd:decimal"
+    },
+    {
+      "property_id": "DataProperty:countryLocalName",
+      "from_class": "Class:Country",
+      "source_table": "Countrylocalname",
+      "source_columns": [
+        "localname"
+      ],
+      "column": "",
+      "joins": [
+        [
+          "Country.Code",
+          "=",
+          "Countrylocalname.Country"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.95,
+      "value_kind": "column",
+      "datatype": "xsd:string"
+    },
+    {
+      "property_id": "DataProperty:countryOtherName",
+      "from_class": "Class:Country",
+      "source_table": "Countryothername",
+      "source_columns": [
+        "othername"
+      ],
+      "column": "",
+      "joins": [
+        [
+          "Country.Code",
+          "=",
+          "Countryothername.Country"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.95,
+      "value_kind": "column",
+      "datatype": "xsd:string"
+    },
+    {
+      "property_id": "DataProperty:populationGrowth",
+      "from_class": "Class:Country",
+      "source_table": "Population",
+      "source_columns": [
+        "Population_Growth"
+      ],
+      "column": "",
+      "joins": [
+        [
+          "Country.Code",
+          "=",
+          "Population.Country"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.93,
+      "value_kind": "column",
+      "datatype": "xsd:decimal"
+    },
+    {
+      "property_id": "DataProperty:infantMortality",
+      "from_class": "Class:Country",
+      "source_table": "Population",
+      "source_columns": [
+        "Infant_Mortality"
+      ],
+      "column": "",
+      "joins": [
+        [
+          "Country.Code",
+          "=",
+          "Population.Country"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.93,
+      "value_kind": "column",
+      "datatype": "xsd:decimal"
+    },
+    {
+      "property_id": "DataProperty:gdp",
+      "from_class": "Class:Country",
+      "source_table": "Economy",
+      "source_columns": [
+        "GDP"
+      ],
+      "column": "",
+      "joins": [
+        [
+          "Country.Code",
+          "=",
+          "Economy.Country"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.93,
+      "value_kind": "column",
+      "datatype": "xsd:decimal"
+    },
+    {
+      "property_id": "DataProperty:agricultureShare",
+      "from_class": "Class:Country",
+      "source_table": "Economy",
+      "source_columns": [
+        "Agriculture"
+      ],
+      "column": "",
+      "joins": [
+        [
+          "Country.Code",
+          "=",
+          "Economy.Country"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.91,
+      "value_kind": "column",
+      "datatype": "xsd:decimal"
+    },
+    {
+      "property_id": "DataProperty:serviceShare",
+      "from_class": "Class:Country",
+      "source_table": "Economy",
+      "source_columns": [
+        "Service"
+      ],
+      "column": "",
+      "joins": [
+        [
+          "Country.Code",
+          "=",
+          "Economy.Country"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.91,
+      "value_kind": "column",
+      "datatype": "xsd:decimal"
+    },
+    {
+      "property_id": "DataProperty:industryShare",
+      "from_class": "Class:Country",
+      "source_table": "Economy",
+      "source_columns": [
+        "Industry"
+      ],
+      "column": "",
+      "joins": [
+        [
+          "Country.Code",
+          "=",
+          "Economy.Country"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.91,
+      "value_kind": "column",
+      "datatype": "xsd:decimal"
+    },
+    {
+      "property_id": "DataProperty:inflation",
+      "from_class": "Class:Country",
+      "source_table": "Economy",
+      "source_columns": [
+        "Inflation"
+      ],
+      "column": "",
+      "joins": [
+        [
+          "Country.Code",
+          "=",
+          "Economy.Country"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.91,
+      "value_kind": "column",
+      "datatype": "xsd:decimal"
+    },
+    {
+      "property_id": "DataProperty:unemployment",
+      "from_class": "Class:Country",
+      "source_table": "Economy",
+      "source_columns": [
+        "Unemployment"
+      ],
+      "column": "",
+      "joins": [
+        [
+          "Country.Code",
+          "=",
+          "Economy.Country"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.91,
+      "value_kind": "column",
+      "datatype": "xsd:decimal"
+    },
+    {
+      "property_id": "DataProperty:independenceDate",
+      "from_class": "Class:Country",
+      "source_table": "Politics",
+      "source_columns": [
+        "Independence"
+      ],
+      "column": "",
+      "joins": [
+        [
+          "Country.Code",
+          "=",
+          "Politics.Country"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.91,
+      "value_kind": "column",
+      "datatype": "xsd:date"
+    },
+    {
+      "property_id": "DataProperty:wasDependentName",
+      "from_class": "Class:Country",
+      "source_table": "Politics",
+      "source_columns": [
+        "WasDependent"
+      ],
+      "column": "",
+      "joins": [
+        [
+          "Country.Code",
+          "=",
+          "Politics.Country"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.83,
+      "value_kind": "column",
+      "datatype": "xsd:string"
+    },
+    {
+      "property_id": "DataProperty:governmentType",
+      "from_class": "Class:Country",
+      "source_table": "Politics",
+      "source_columns": [
+        "Government"
+      ],
+      "column": "",
+      "joins": [
+        [
+          "Country.Code",
+          "=",
+          "Politics.Country"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.9,
+      "value_kind": "column",
+      "datatype": "xsd:string"
+    },
+    {
+      "property_id": "DataProperty:provinceName",
+      "from_class": "Class:Province",
+      "source_table": "Province",
+      "source_columns": [
+        "Name"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.98,
+      "value_kind": "column",
+      "datatype": "xsd:string"
+    },
+    {
+      "property_id": "DataProperty:provinceArea",
+      "from_class": "Class:Province",
+      "source_table": "Province",
+      "source_columns": [
+        "Area"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.96,
+      "value_kind": "column",
+      "datatype": "xsd:decimal"
+    },
+    {
+      "property_id": "DataProperty:provincePopulation",
+      "from_class": "Class:Province",
+      "source_table": "Province",
+      "source_columns": [
+        "Population"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.96,
+      "value_kind": "column",
+      "datatype": "xsd:decimal"
+    },
+    {
+      "property_id": "DataProperty:provinceLocalName",
+      "from_class": "Class:Province",
+      "source_table": "Provincelocalname",
+      "source_columns": [
+        "localname"
+      ],
+      "column": "",
+      "joins": [
+        [
+          "Province.Country",
+          "=",
+          "Provincelocalname.Country"
+        ],
+        [
+          "Province.Name",
+          "=",
+          "Provincelocalname.Province"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.93,
+      "value_kind": "column",
+      "datatype": "xsd:string"
+    },
+    {
+      "property_id": "DataProperty:provinceOtherName",
+      "from_class": "Class:Province",
+      "source_table": "Provinceothername",
+      "source_columns": [
+        "othername"
+      ],
+      "column": "",
+      "joins": [
+        [
+          "Province.Country",
+          "=",
+          "Provinceothername.Country"
+        ],
+        [
+          "Province.Name",
+          "=",
+          "Provinceothername.Province"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.93,
+      "value_kind": "column",
+      "datatype": "xsd:string"
+    },
+    {
+      "property_id": "DataProperty:cityName",
+      "from_class": "Class:City",
+      "source_table": "City",
+      "source_columns": [
+        "Name"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.98,
+      "value_kind": "column",
+      "datatype": "xsd:string"
+    },
+    {
+      "property_id": "DataProperty:cityPopulation",
+      "from_class": "Class:City",
+      "source_table": "City",
+      "source_columns": [
+        "Population"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.96,
+      "value_kind": "column",
+      "datatype": "xsd:decimal"
+    },
+    {
+      "property_id": "DataProperty:latitude",
+      "from_class": "Class:City",
+      "source_table": "City",
+      "source_columns": [
+        "Latitude"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.95,
+      "value_kind": "column",
+      "datatype": "xsd:decimal"
+    },
+    {
+      "property_id": "DataProperty:longitude",
+      "from_class": "Class:City",
+      "source_table": "City",
+      "source_columns": [
+        "Longitude"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.95,
+      "value_kind": "column",
+      "datatype": "xsd:decimal"
+    },
+    {
+      "property_id": "DataProperty:elevation",
+      "from_class": "Class:City",
+      "source_table": "City",
+      "source_columns": [
+        "Elevation"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.95,
+      "value_kind": "column",
+      "datatype": "xsd:decimal"
+    },
+    {
+      "property_id": "DataProperty:cityLocalName",
+      "from_class": "Class:City",
+      "source_table": "Citylocalname",
+      "source_columns": [
+        "localname"
+      ],
+      "column": "",
+      "joins": [
+        [
+          "City.Name",
+          "=",
+          "Citylocalname.City"
+        ],
+        [
+          "City.Country",
+          "=",
+          "Citylocalname.Country"
+        ],
+        [
+          "City.Province",
+          "=",
+          "Citylocalname.Province"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.93,
+      "value_kind": "column",
+      "datatype": "xsd:string"
+    },
+    {
+      "property_id": "DataProperty:cityOtherName",
+      "from_class": "Class:City",
+      "source_table": "Cityothername",
+      "source_columns": [
+        "othername"
+      ],
+      "column": "",
+      "joins": [
+        [
+          "City.Name",
+          "=",
+          "Cityothername.City"
+        ],
+        [
+          "City.Country",
+          "=",
+          "Cityothername.Country"
+        ],
+        [
+          "City.Province",
+          "=",
+          "Cityothername.Province"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.93,
+      "value_kind": "column",
+      "datatype": "xsd:string"
+    },
+    {
+      "property_id": "DataProperty:continentName",
+      "from_class": "Class:Continent",
+      "source_table": "Continent",
+      "source_columns": [
+        "Name"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.97,
+      "value_kind": "column",
+      "datatype": "xsd:string"
+    },
+    {
+      "property_id": "DataProperty:continentArea",
+      "from_class": "Class:Continent",
+      "source_table": "Continent",
+      "source_columns": [
+        "Area"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.95,
+      "value_kind": "column",
+      "datatype": "xsd:decimal"
+    },
+    {
+      "property_id": "DataProperty:organizationName",
+      "from_class": "Class:Organization",
+      "source_table": "Organization",
+      "source_columns": [
+        "Name"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.97,
+      "value_kind": "column",
+      "datatype": "xsd:string"
+    },
+    {
+      "property_id": "DataProperty:organizationAbbreviation",
+      "from_class": "Class:Organization",
+      "source_table": "Organization",
+      "source_columns": [
+        "Abbreviation"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.97,
+      "value_kind": "column",
+      "datatype": "xsd:string"
+    },
+    {
+      "property_id": "DataProperty:establishedDate",
+      "from_class": "Class:Organization",
+      "source_table": "Organization",
+      "source_columns": [
+        "Established"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.95,
+      "value_kind": "column",
+      "datatype": "xsd:date"
+    },
+    {
+      "property_id": "DataProperty:languageName",
+      "from_class": "Class:Language",
+      "source_table": "Language",
+      "source_columns": [
+        "Name"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.97,
+      "value_kind": "column",
+      "datatype": "xsd:string"
+    },
+    {
+      "property_id": "DataProperty:mountainName",
+      "from_class": "Class:Mountain",
+      "source_table": "Mountain",
+      "source_columns": [
+        "Name"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.97,
+      "value_kind": "column",
+      "datatype": "xsd:string"
+    },
+    {
+      "property_id": "DataProperty:mountainRangeName",
+      "from_class": "Class:Mountain",
+      "source_table": "Mountain",
+      "source_columns": [
+        "Mountains"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.88,
+      "value_kind": "column",
+      "datatype": "xsd:string"
+    },
+    {
+      "property_id": "DataProperty:mountainElevation",
+      "from_class": "Class:Mountain",
+      "source_table": "Mountain",
+      "source_columns": [
+        "Elevation"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.96,
+      "value_kind": "column",
+      "datatype": "xsd:decimal"
+    },
+    {
+      "property_id": "DataProperty:mountainType",
+      "from_class": "Class:Mountain",
+      "source_table": "Mountain",
+      "source_columns": [
+        "Type"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.88,
+      "value_kind": "column",
+      "datatype": "xsd:string"
+    },
+    {
+      "property_id": "DataProperty:desertName",
+      "from_class": "Class:Desert",
+      "source_table": "Desert",
+      "source_columns": [
+        "Name"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.96,
+      "value_kind": "column",
+      "datatype": "xsd:string"
+    },
+    {
+      "property_id": "DataProperty:desertArea",
+      "from_class": "Class:Desert",
+      "source_table": "Desert",
+      "source_columns": [
+        "Area"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.95,
+      "value_kind": "column",
+      "datatype": "xsd:decimal"
+    },
+    {
+      "property_id": "DataProperty:islandName",
+      "from_class": "Class:Island",
+      "source_table": "Island",
+      "source_columns": [
+        "Name"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.97,
+      "value_kind": "column",
+      "datatype": "xsd:string"
+    },
+    {
+      "property_id": "DataProperty:islandGroupName",
+      "from_class": "Class:Island",
+      "source_table": "Island",
+      "source_columns": [
+        "Islands"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.87,
+      "value_kind": "column",
+      "datatype": "xsd:string"
+    },
+    {
+      "property_id": "DataProperty:islandArea",
+      "from_class": "Class:Island",
+      "source_table": "Island",
+      "source_columns": [
+        "Area"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.95,
+      "value_kind": "column",
+      "datatype": "xsd:decimal"
+    },
+    {
+      "property_id": "DataProperty:islandElevation",
+      "from_class": "Class:Island",
+      "source_table": "Island",
+      "source_columns": [
+        "Elevation"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.94,
+      "value_kind": "column",
+      "datatype": "xsd:decimal"
+    },
+    {
+      "property_id": "DataProperty:islandType",
+      "from_class": "Class:Island",
+      "source_table": "Island",
+      "source_columns": [
+        "Type"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.87,
+      "value_kind": "column",
+      "datatype": "xsd:string"
+    },
+    {
+      "property_id": "DataProperty:lakeName",
+      "from_class": "Class:Lake",
+      "source_table": "Lake",
+      "source_columns": [
+        "Name"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.97,
+      "value_kind": "column",
+      "datatype": "xsd:string"
+    },
+    {
+      "property_id": "DataProperty:lakeArea",
+      "from_class": "Class:Lake",
+      "source_table": "Lake",
+      "source_columns": [
+        "Area"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.95,
+      "value_kind": "column",
+      "datatype": "xsd:decimal"
+    },
+    {
+      "property_id": "DataProperty:lakeElevation",
+      "from_class": "Class:Lake",
+      "source_table": "Lake",
+      "source_columns": [
+        "Elevation"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.94,
+      "value_kind": "column",
+      "datatype": "xsd:decimal"
+    },
+    {
+      "property_id": "DataProperty:lakeDepth",
+      "from_class": "Class:Lake",
+      "source_table": "Lake",
+      "source_columns": [
+        "Depth"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.94,
+      "value_kind": "column",
+      "datatype": "xsd:decimal"
+    },
+    {
+      "property_id": "DataProperty:lakeHeight",
+      "from_class": "Class:Lake",
+      "source_table": "Lake",
+      "source_columns": [
+        "Height"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.86,
+      "value_kind": "column",
+      "datatype": "xsd:decimal"
+    },
+    {
+      "property_id": "DataProperty:lakeType",
+      "from_class": "Class:Lake",
+      "source_table": "Lake",
+      "source_columns": [
+        "Type"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.87,
+      "value_kind": "column",
+      "datatype": "xsd:string"
+    },
+    {
+      "property_id": "DataProperty:seaName",
+      "from_class": "Class:Sea",
+      "source_table": "Sea",
+      "source_columns": [
+        "Name"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.97,
+      "value_kind": "column",
+      "datatype": "xsd:string"
+    },
+    {
+      "property_id": "DataProperty:seaArea",
+      "from_class": "Class:Sea",
+      "source_table": "Sea",
+      "source_columns": [
+        "Area"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.95,
+      "value_kind": "column",
+      "datatype": "xsd:decimal"
+    },
+    {
+      "property_id": "DataProperty:seaDepth",
+      "from_class": "Class:Sea",
+      "source_table": "Sea",
+      "source_columns": [
+        "Depth"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.95,
+      "value_kind": "column",
+      "datatype": "xsd:decimal"
+    },
+    {
+      "property_id": "DataProperty:riverName",
+      "from_class": "Class:River",
+      "source_table": "River",
+      "source_columns": [
+        "Name"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.98,
+      "value_kind": "column",
+      "datatype": "xsd:string"
+    },
+    {
+      "property_id": "DataProperty:riverLength",
+      "from_class": "Class:River",
+      "source_table": "River",
+      "source_columns": [
+        "Length"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.95,
+      "value_kind": "column",
+      "datatype": "xsd:decimal"
+    },
+    {
+      "property_id": "DataProperty:riverArea",
+      "from_class": "Class:River",
+      "source_table": "River",
+      "source_columns": [
+        "Area"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.93,
+      "value_kind": "column",
+      "datatype": "xsd:decimal"
+    },
+    {
+      "property_id": "DataProperty:sourceLatitude",
+      "from_class": "Class:River",
+      "source_table": "River",
+      "source_columns": [
+        "SourceLatitude"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.92,
+      "value_kind": "column",
+      "datatype": "xsd:decimal"
+    },
+    {
+      "property_id": "DataProperty:sourceLongitude",
+      "from_class": "Class:River",
+      "source_table": "River",
+      "source_columns": [
+        "SourceLongitude"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.92,
+      "value_kind": "column",
+      "datatype": "xsd:decimal"
+    },
+    {
+      "property_id": "DataProperty:sourceElevation",
+      "from_class": "Class:River",
+      "source_table": "River",
+      "source_columns": [
+        "SourceElevation"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.91,
+      "value_kind": "column",
+      "datatype": "xsd:decimal"
+    },
+    {
+      "property_id": "DataProperty:estuaryLatitude",
+      "from_class": "Class:River",
+      "source_table": "River",
+      "source_columns": [
+        "EstuaryLatitude"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.91,
+      "value_kind": "column",
+      "datatype": "xsd:decimal"
+    },
+    {
+      "property_id": "DataProperty:estuaryLongitude",
+      "from_class": "Class:River",
+      "source_table": "River",
+      "source_columns": [
+        "EstuaryLongitude"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.91,
+      "value_kind": "column",
+      "datatype": "xsd:decimal"
+    },
+    {
+      "property_id": "DataProperty:estuaryElevation",
+      "from_class": "Class:River",
+      "source_table": "River",
+      "source_columns": [
+        "EstuaryElevation"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.9,
+      "value_kind": "column",
+      "datatype": "xsd:decimal"
+    },
+    {
+      "property_id": "DataProperty:sourceMountainName",
+      "from_class": "Class:River",
+      "source_table": "River",
+      "source_columns": [
+        "Mountains"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.82,
+      "value_kind": "column",
+      "datatype": "xsd:string"
+    },
+    {
+      "property_id": "DataProperty:observationYear",
+      "from_class": "Class:CountryPopulationObservation",
+      "source_table": "Countrypops",
+      "source_columns": [
+        "Year"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.95,
+      "value_kind": "column",
+      "datatype": "xsd:decimal"
+    },
+    {
+      "property_id": "DataProperty:observedPopulation",
+      "from_class": "Class:CountryPopulationObservation",
+      "source_table": "Countrypops",
+      "source_columns": [
+        "Population"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.95,
+      "value_kind": "column",
+      "datatype": "xsd:decimal"
+    },
+    {
+      "property_id": "DataProperty:provinceObservationYear",
+      "from_class": "Class:ProvincePopulationObservation",
+      "source_table": "Provpops",
+      "source_columns": [
+        "Year"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.95,
+      "value_kind": "column",
+      "datatype": "xsd:decimal"
+    },
+    {
+      "property_id": "DataProperty:provinceObservedPopulation",
+      "from_class": "Class:ProvincePopulationObservation",
+      "source_table": "Provpops",
+      "source_columns": [
+        "Population"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.95,
+      "value_kind": "column",
+      "datatype": "xsd:decimal"
+    },
+    {
+      "property_id": "DataProperty:cityObservationYear",
+      "from_class": "Class:CityPopulationObservation",
+      "source_table": "Citypops",
+      "source_columns": [
+        "Year"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.95,
+      "value_kind": "column",
+      "datatype": "xsd:decimal"
+    },
+    {
+      "property_id": "DataProperty:cityObservedPopulation",
+      "from_class": "Class:CityPopulationObservation",
+      "source_table": "Citypops",
+      "source_columns": [
+        "Population"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.95,
+      "value_kind": "column",
+      "datatype": "xsd:decimal"
+    },
+    {
+      "property_id": "DataProperty:religionName",
+      "from_class": "Class:CountryReligionShare",
+      "source_table": "Religion",
+      "source_columns": [
+        "Name"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.94,
+      "value_kind": "column",
+      "datatype": "xsd:string"
+    },
+    {
+      "property_id": "DataProperty:religionPercentage",
+      "from_class": "Class:CountryReligionShare",
+      "source_table": "Religion",
+      "source_columns": [
+        "Percentage"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.94,
+      "value_kind": "column",
+      "datatype": "xsd:decimal"
+    },
+    {
+      "property_id": "DataProperty:ethnicGroupName",
+      "from_class": "Class:CountryEthnicGroupShare",
+      "source_table": "EthnicGroup",
+      "source_columns": [
+        "Name"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.94,
+      "value_kind": "column",
+      "datatype": "xsd:string"
+    },
+    {
+      "property_id": "DataProperty:ethnicGroupPercentage",
+      "from_class": "Class:CountryEthnicGroupShare",
+      "source_table": "EthnicGroup",
+      "source_columns": [
+        "Percentage"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.94,
+      "value_kind": "column",
+      "datatype": "xsd:decimal"
+    },
+    {
+      "property_id": "DataProperty:languagePercentage",
+      "from_class": "Class:CountryLanguageUsage",
+      "source_table": "Spoken",
+      "source_columns": [
+        "Percentage"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.95,
+      "value_kind": "column",
+      "datatype": "xsd:decimal"
+    },
+    {
+      "property_id": "DataProperty:coveragePercentage",
+      "from_class": "Class:CountryContinentCoverage",
+      "source_table": "encompasses",
+      "source_columns": [
+        "Percentage"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.94,
+      "value_kind": "column",
+      "datatype": "xsd:decimal"
+    },
+    {
+      "property_id": "DataProperty:membershipType",
+      "from_class": "Class:OrganizationMembership",
+      "source_table": "isMember",
+      "source_columns": [
+        "Type"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.94,
+      "value_kind": "column",
+      "datatype": "xsd:string"
+    },
+    {
+      "property_id": "DataProperty:borderLength",
+      "from_class": "Class:Border",
+      "source_table": "borders",
+      "source_columns": [
+        "Length"
+      ],
+      "column": "",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.93,
+      "value_kind": "column",
+      "datatype": "xsd:decimal"
+    }
+  ],
+  "object_property_mappings": [
+    {
+      "property_id": "ObjectProperty:cityInProvince",
+      "from_class": "Class:City",
+      "to_class": "Class:Province",
+      "joins": [
+        [
+          "City.Country",
+          "=",
+          "Province.Country"
+        ],
+        [
+          "City.Province",
+          "=",
+          "Province.Name"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.98
+    },
+    {
+      "property_id": "ObjectProperty:provinceInCountry",
+      "from_class": "Class:Province",
+      "to_class": "Class:Country",
+      "joins": [
+        [
+          "Province.Country",
+          "=",
+          "Country.Code"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.99
+    },
+    {
+      "property_id": "ObjectProperty:countryCapital",
+      "from_class": "Class:Country",
+      "to_class": "Class:City",
+      "joins": [
+        [
+          "Country.Capital",
+          "=",
+          "City.Name"
+        ],
+        [
+          "Country.Code",
+          "=",
+          "City.Country"
+        ],
+        [
+          "Country.Province",
+          "=",
+          "City.Province"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.98
+    },
+    {
+      "property_id": "ObjectProperty:provinceCapital",
+      "from_class": "Class:Province",
+      "to_class": "Class:City",
+      "joins": [
+        [
+          "Province.Capital",
+          "=",
+          "City.Name"
+        ],
+        [
+          "Province.Country",
+          "=",
+          "City.Country"
+        ],
+        [
+          "Province.CapProv",
+          "=",
+          "City.Province"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.97
+    },
+    {
+      "property_id": "ObjectProperty:organizationHeadquarteredIn",
+      "from_class": "Class:Organization",
+      "to_class": "Class:City",
+      "joins": [
+        [
+          "Organization.City",
+          "=",
+          "City.Name"
+        ],
+        [
+          "Organization.Country",
+          "=",
+          "City.Country"
+        ],
+        [
+          "Organization.Province",
+          "=",
+          "City.Province"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.96
+    },
+    {
+      "property_id": "ObjectProperty:languageSuperlanguage",
+      "from_class": "Class:Language",
+      "to_class": "Class:Language",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.9,
+      "condition": [
+        [
+          "Language.Superlanguage",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
+    },
+    {
+      "property_id": "ObjectProperty:countryDependsOnCountry",
+      "from_class": "Class:Country",
+      "to_class": "Class:Country",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.82,
+      "condition": [
+        [
+          "Politics.Dependent",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
+    },
+    {
+      "property_id": "ObjectProperty:lakeRelatedRiver",
+      "from_class": "Class:Lake",
+      "to_class": "Class:River",
+      "joins": [
+        [
+          "Lake.River",
+          "=",
+          "River.Name"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.78,
+      "condition": [
+        [
+          "Lake.River",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
+    },
+    {
+      "property_id": "ObjectProperty:riverFlowsIntoRiver",
+      "from_class": "Class:River",
+      "to_class": "Class:River",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.91,
+      "condition": [
+        [
+          "River.River",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
+    },
+    {
+      "property_id": "ObjectProperty:riverFlowsIntoLake",
+      "from_class": "Class:River",
+      "to_class": "Class:Lake",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.91,
+      "condition": [
+        [
+          "River.Lake",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
+    },
+    {
+      "property_id": "ObjectProperty:riverFlowsIntoSea",
+      "from_class": "Class:River",
+      "to_class": "Class:Sea",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.92,
+      "condition": [
+        [
+          "River.Sea",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
+    },
+    {
+      "property_id": "ObjectProperty:riverPassesThroughLake",
+      "from_class": "Class:River",
+      "to_class": "Class:Lake",
+      "joins": [
+        [
+          "RiverThrough.River",
+          "=",
+          "River.Name"
+        ],
+        [
+          "RiverThrough.Lake",
+          "=",
+          "Lake.Name"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.95
+    },
+    {
+      "property_id": "ObjectProperty:mountainInProvince",
+      "from_class": "Class:Mountain",
+      "to_class": "Class:Province",
+      "joins": [
+        [
+          "geo_Mountain.Country",
+          "=",
+          "Province.Country"
+        ],
+        [
+          "geo_Mountain.Province",
+          "=",
+          "Province.Name"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.96
+    },
+    {
+      "property_id": "ObjectProperty:desertInProvince",
+      "from_class": "Class:Desert",
+      "to_class": "Class:Province",
+      "joins": [
+        [
+          "geo_Desert.Country",
+          "=",
+          "Province.Country"
+        ],
+        [
+          "geo_Desert.Province",
+          "=",
+          "Province.Name"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.95
+    },
+    {
+      "property_id": "ObjectProperty:islandInProvince",
+      "from_class": "Class:Island",
+      "to_class": "Class:Province",
+      "joins": [
+        [
+          "geo_Island.Country",
+          "=",
+          "Province.Country"
+        ],
+        [
+          "geo_Island.Province",
+          "=",
+          "Province.Name"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.95
+    },
+    {
+      "property_id": "ObjectProperty:riverInProvince",
+      "from_class": "Class:River",
+      "to_class": "Class:Province",
+      "joins": [
+        [
+          "geo_River.Country",
+          "=",
+          "Province.Country"
+        ],
+        [
+          "geo_River.Province",
+          "=",
+          "Province.Name"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.95
+    },
+    {
+      "property_id": "ObjectProperty:seaInProvince",
+      "from_class": "Class:Sea",
+      "to_class": "Class:Province",
+      "joins": [
+        [
+          "geo_Sea.Country",
+          "=",
+          "Province.Country"
+        ],
+        [
+          "geo_Sea.Province",
+          "=",
+          "Province.Name"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.94
+    },
+    {
+      "property_id": "ObjectProperty:lakeInProvince",
+      "from_class": "Class:Lake",
+      "to_class": "Class:Province",
+      "joins": [
+        [
+          "geo_Lake.Country",
+          "=",
+          "Province.Country"
+        ],
+        [
+          "geo_Lake.Province",
+          "=",
+          "Province.Name"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.94
+    },
+    {
+      "property_id": "ObjectProperty:riverSourceInProvince",
+      "from_class": "Class:River",
+      "to_class": "Class:Province",
+      "joins": [
+        [
+          "geo_Source.Country",
+          "=",
+          "Province.Country"
+        ],
+        [
+          "geo_Source.Province",
+          "=",
+          "Province.Name"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.93
+    },
+    {
+      "property_id": "ObjectProperty:riverEstuaryInProvince",
+      "from_class": "Class:River",
+      "to_class": "Class:Province",
+      "joins": [
+        [
+          "geo_Estuary.Country",
+          "=",
+          "Province.Country"
+        ],
+        [
+          "geo_Estuary.Province",
+          "=",
+          "Province.Name"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.93
+    },
+    {
+      "property_id": "ObjectProperty:cityLocatedByRiver",
+      "from_class": "Class:City",
+      "to_class": "Class:River",
+      "joins": [
+        [
+          "located.City",
+          "=",
+          "City.Name"
+        ],
+        [
+          "located.Country",
+          "=",
+          "City.Country"
+        ],
+        [
+          "located.Province",
+          "=",
+          "City.Province"
+        ],
+        [
+          "located.River",
+          "=",
+          "River.Name"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.92,
+      "condition": [
+        [
+          "located.River",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
+    },
+    {
+      "property_id": "ObjectProperty:cityLocatedByLake",
+      "from_class": "Class:City",
+      "to_class": "Class:Lake",
+      "joins": [
+        [
+          "located.City",
+          "=",
+          "City.Name"
+        ],
+        [
+          "located.Country",
+          "=",
+          "City.Country"
+        ],
+        [
+          "located.Province",
+          "=",
+          "City.Province"
+        ],
+        [
+          "located.Lake",
+          "=",
+          "Lake.Name"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.92,
+      "condition": [
+        [
+          "located.Lake",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
+    },
+    {
+      "property_id": "ObjectProperty:cityLocatedBySea",
+      "from_class": "Class:City",
+      "to_class": "Class:Sea",
+      "joins": [
+        [
+          "located.City",
+          "=",
+          "City.Name"
+        ],
+        [
+          "located.Country",
+          "=",
+          "City.Country"
+        ],
+        [
+          "located.Province",
+          "=",
+          "City.Province"
+        ],
+        [
+          "located.Sea",
+          "=",
+          "Sea.Name"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.92,
+      "condition": [
+        [
+          "located.Sea",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
+    },
+    {
+      "property_id": "ObjectProperty:cityOnIsland",
+      "from_class": "Class:City",
+      "to_class": "Class:Island",
+      "joins": [
+        [
+          "locatedOn.City",
+          "=",
+          "City.Name"
+        ],
+        [
+          "locatedOn.Country",
+          "=",
+          "City.Country"
+        ],
+        [
+          "locatedOn.Province",
+          "=",
+          "City.Province"
+        ],
+        [
+          "locatedOn.Island",
+          "=",
+          "Island.Name"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.95
+    },
+    {
+      "property_id": "ObjectProperty:islandInSea",
+      "from_class": "Class:Island",
+      "to_class": "Class:Sea",
+      "joins": [
+        [
+          "islandIn.Island",
+          "=",
+          "Island.Name"
+        ],
+        [
+          "islandIn.Sea",
+          "=",
+          "Sea.Name"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.93,
+      "condition": [
+        [
+          "islandIn.Sea",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
+    },
+    {
+      "property_id": "ObjectProperty:islandInLake",
+      "from_class": "Class:Island",
+      "to_class": "Class:Lake",
+      "joins": [
+        [
+          "islandIn.Island",
+          "=",
+          "Island.Name"
+        ],
+        [
+          "islandIn.Lake",
+          "=",
+          "Lake.Name"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.93,
+      "condition": [
+        [
+          "islandIn.Lake",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
+    },
+    {
+      "property_id": "ObjectProperty:islandInRiver",
+      "from_class": "Class:Island",
+      "to_class": "Class:River",
+      "joins": [
+        [
+          "islandIn.Island",
+          "=",
+          "Island.Name"
+        ],
+        [
+          "islandIn.River",
+          "=",
+          "River.Name"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.93,
+      "condition": [
+        [
+          "islandIn.River",
+          "IS",
+          "NOT",
+          "NULL"
+        ]
+      ]
+    },
+    {
+      "property_id": "ObjectProperty:mountainOnIsland",
+      "from_class": "Class:Mountain",
+      "to_class": "Class:Island",
+      "joins": [
+        [
+          "MountainOnIsland.Mountain",
+          "=",
+          "Mountain.Name"
+        ],
+        [
+          "MountainOnIsland.Island",
+          "=",
+          "Island.Name"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.95
+    },
+    {
+      "property_id": "ObjectProperty:lakeOnIsland",
+      "from_class": "Class:Lake",
+      "to_class": "Class:Island",
+      "joins": [
+        [
+          "LakeOnIsland.Lake",
+          "=",
+          "Lake.Name"
+        ],
+        [
+          "LakeOnIsland.Island",
+          "=",
+          "Island.Name"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.95
+    },
+    {
+      "property_id": "ObjectProperty:riverOnIsland",
+      "from_class": "Class:River",
+      "to_class": "Class:Island",
+      "joins": [
+        [
+          "RiverOnIsland.River",
+          "=",
+          "River.Name"
+        ],
+        [
+          "RiverOnIsland.Island",
+          "=",
+          "Island.Name"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.95
+    },
+    {
+      "property_id": "ObjectProperty:seaMergesWithSea",
+      "from_class": "Class:Sea",
+      "to_class": "Class:Sea",
+      "joins": [],
+      "status": "proposed",
+      "confidence": 0.9
+    },
+    {
+      "property_id": "ObjectProperty:countryPopulationObservationOfCountry",
+      "from_class": "Class:CountryPopulationObservation",
+      "to_class": "Class:Country",
+      "joins": [
+        [
+          "Countrypops.Country",
+          "=",
+          "Country.Code"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.97
+    },
+    {
+      "property_id": "ObjectProperty:provincePopulationObservationOfProvince",
+      "from_class": "Class:ProvincePopulationObservation",
+      "to_class": "Class:Province",
+      "joins": [
+        [
+          "Provpops.Country",
+          "=",
+          "Province.Country"
+        ],
+        [
+          "Provpops.Province",
+          "=",
+          "Province.Name"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.97
+    },
+    {
+      "property_id": "ObjectProperty:cityPopulationObservationOfCity",
+      "from_class": "Class:CityPopulationObservation",
+      "to_class": "Class:City",
+      "joins": [
+        [
+          "Citypops.City",
+          "=",
+          "City.Name"
+        ],
+        [
+          "Citypops.Country",
+          "=",
+          "City.Country"
+        ],
+        [
+          "Citypops.Province",
+          "=",
+          "City.Province"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.97
+    },
+    {
+      "property_id": "ObjectProperty:religionShareOfCountry",
+      "from_class": "Class:CountryReligionShare",
+      "to_class": "Class:Country",
+      "joins": [
+        [
+          "Religion.Country",
+          "=",
+          "Country.Code"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.97
+    },
+    {
+      "property_id": "ObjectProperty:ethnicGroupShareOfCountry",
+      "from_class": "Class:CountryEthnicGroupShare",
+      "to_class": "Class:Country",
+      "joins": [
+        [
+          "EthnicGroup.Country",
+          "=",
+          "Country.Code"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.97
+    },
+    {
+      "property_id": "ObjectProperty:languageUsageOfCountry",
+      "from_class": "Class:CountryLanguageUsage",
+      "to_class": "Class:Country",
+      "joins": [
+        [
+          "Spoken.Country",
+          "=",
+          "Country.Code"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.97
+    },
+    {
+      "property_id": "ObjectProperty:languageUsageLanguage",
+      "from_class": "Class:CountryLanguageUsage",
+      "to_class": "Class:Language",
+      "joins": [
+        [
+          "Spoken.Language",
+          "=",
+          "Language.Name"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.97
+    },
+    {
+      "property_id": "ObjectProperty:continentCoverageCountry",
+      "from_class": "Class:CountryContinentCoverage",
+      "to_class": "Class:Country",
+      "joins": [
+        [
+          "encompasses.Country",
+          "=",
+          "Country.Code"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.97
+    },
+    {
+      "property_id": "ObjectProperty:continentCoverageContinent",
+      "from_class": "Class:CountryContinentCoverage",
+      "to_class": "Class:Continent",
+      "joins": [
+        [
+          "encompasses.Continent",
+          "=",
+          "Continent.Name"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.97
+    },
+    {
+      "property_id": "ObjectProperty:membershipCountry",
+      "from_class": "Class:OrganizationMembership",
+      "to_class": "Class:Country",
+      "joins": [
+        [
+          "isMember.Country",
+          "=",
+          "Country.Code"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.97
+    },
+    {
+      "property_id": "ObjectProperty:membershipOrganization",
+      "from_class": "Class:OrganizationMembership",
+      "to_class": "Class:Organization",
+      "joins": [
+        [
+          "isMember.Organization",
+          "=",
+          "Organization.Abbreviation"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.97
+    },
+    {
+      "property_id": "ObjectProperty:borderCountry1",
+      "from_class": "Class:Border",
+      "to_class": "Class:Country",
+      "joins": [
+        [
+          "borders.Country1",
+          "=",
+          "Country.Code"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.96
+    },
+    {
+      "property_id": "ObjectProperty:borderCountry2",
+      "from_class": "Class:Border",
+      "to_class": "Class:Country",
+      "joins": [
+        [
+          "borders.Country2",
+          "=",
+          "Country.Code"
+        ]
+      ],
+      "status": "proposed",
+      "confidence": 0.96
+    }
+  ],
+  "diagnostics": {
+    "source_summary": {
+      "num_tables": 47,
+      "num_columns": 182,
+      "num_foreign_keys": 69,
+      "sample_rows_present": false,
+      "tool_evidence_used": [
+        "schema_profiler"
+      ]
+    },
+    "modeling_decisions": [
+      "One-to-one extension tables Population, Economy, and Politics were folded into Country as data properties rather than promoted to standalone classes.",
+      "Connector tables with meaningful attributes were reified as classes: Border, CountryContinentCoverage, OrganizationMembership, CountryReligionShare, CountryEthnicGroupShare, CountryLanguageUsage, and the three population observation tables.",
+      "Religion and EthnicGroup were not modeled as standalone global classes because the schema provides no independent entity tables or foreign keys for them; their rows are country-specific and percentage-bearing.",
+      "No inverse object properties were added.",
+      "Several self-referential relationships were kept with direct identifier-column mappings and empty join_paths because the relevant foreign-key targets are carried in the same source row."
+    ],
+    "caveats": [
+      "Column semantics for Lake.River and River.Mountains are not fully explicit from schema alone; labels were chosen conservatively.",
+      "The located table has no declared primary key and contains multiple nullable location targets; mappings therefore use separate properties with null-check conditions.",
+      "Self-referential tables such as Politics, Language, River, and mergesWith may require SQL aliasing in some downstream systems even though the abstract mapping draft keeps join_paths empty."
+    ],
+    "omissions": [
+      "No abstract superclass hierarchy was introduced to avoid unsupported abstraction.",
+      "No direct Country-to-Continent or Country-to-Organization shortcut object properties were added because the connector tables carry extra attributes and were reified instead.",
+      "No standalone classes were created for country/province/city alternate-name rows because they behave as auxiliary literal-value tables."
+    ]
+  },
+  "normalization_report": {
+    "num_errors": 0,
+    "num_warnings": 0,
+    "num_infos": 0,
+    "issues": []
+  }
+}

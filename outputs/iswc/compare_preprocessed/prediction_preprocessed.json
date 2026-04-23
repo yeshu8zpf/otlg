@@ -1,0 +1,375 @@
+{
+  "classes": [
+    {
+      "class": "Conference",
+      "name": "Conference",
+      "id": "@@conferences.confid@@"
+    },
+    {
+      "class": "Organization",
+      "name": "Organization",
+      "id": "@@organizations.orgid@@"
+    },
+    {
+      "class": "Paper",
+      "name": "Paper",
+      "id": "@@papers.paperid@@"
+    },
+    {
+      "class": "Person",
+      "name": "Person",
+      "id": "@@persons.perid@@"
+    },
+    {
+      "class": "Topic",
+      "name": "Topic",
+      "id": "@@topics.topicid@@"
+    },
+    {
+      "class": "FullProfessor",
+      "name": "FullProfessor",
+      "id": "@@persons.perid@@",
+      "condition": [
+        "persons.type = 'full_professor'"
+      ],
+      "subClassOf": [
+        "Class:Person"
+      ]
+    },
+    {
+      "class": "Researcher",
+      "name": "Researcher",
+      "id": "@@persons.perid@@",
+      "condition": [
+        "persons.type = 'researcher'"
+      ],
+      "subClassOf": [
+        "Class:Person"
+      ]
+    }
+  ],
+  "object_properties": [
+    {
+      "property": "paper_presented_at_conference",
+      "belongsToClassMap": "Paper",
+      "refersToClassMap": "Conference",
+      "join": [
+        "papers.conference = conferences.confid"
+      ],
+      "condition": [
+        "papers.conference is not null"
+      ]
+    },
+    {
+      "property": "paper_has_topic",
+      "belongsToClassMap": "Paper",
+      "refersToClassMap": "Topic",
+      "join": [
+        "rel_paper_topic.paperid = papers.paperid",
+        "rel_paper_topic.topicid = topics.topicid"
+      ]
+    },
+    {
+      "property": "person_affiliated_with_organization",
+      "belongsToClassMap": "Person",
+      "refersToClassMap": "Organization",
+      "join": [
+        "rel_person_organization.personid = persons.perid",
+        "rel_person_organization.organizationid = organizations.orgid"
+      ]
+    },
+    {
+      "property": "person_author_of_paper",
+      "belongsToClassMap": "Person",
+      "refersToClassMap": "Paper",
+      "join": [
+        "rel_person_paper.personid = persons.perid",
+        "rel_person_paper.paperid = papers.paperid"
+      ]
+    },
+    {
+      "property": "person_has_topic",
+      "belongsToClassMap": "Person",
+      "refersToClassMap": "Topic",
+      "join": [
+        "rel_person_topic.personid = persons.perid",
+        "rel_person_topic.topicid = topics.topicid"
+      ]
+    },
+    {
+      "property": "organization_belongs_to_organization",
+      "belongsToClassMap": "Organization",
+      "refersToClassMap": "Organization",
+      "join": [
+        "organizations.belongsto = organizations.orgid"
+      ],
+      "condition": [
+        "organizations.belongsto is not null"
+      ]
+    },
+    {
+      "property": "topic_broader_topic",
+      "belongsToClassMap": "Topic",
+      "refersToClassMap": "Topic",
+      "join": [
+        "topics.parentid = topics.topicid"
+      ],
+      "condition": [
+        "topics.parentid is not null"
+      ]
+    }
+  ],
+  "data_properties": [
+    {
+      "property": "conference_name",
+      "belongsToClassMap": "Conference",
+      "column": "conferences.name",
+      "datatype": "xsd:string"
+    },
+    {
+      "property": "conference_URI",
+      "belongsToClassMap": "Conference",
+      "column": "conferences.uri",
+      "datatype": "xsd:anyURI",
+      "condition": [
+        "conferences.uri is not null"
+      ]
+    },
+    {
+      "property": "conference_date_text",
+      "belongsToClassMap": "Conference",
+      "column": "conferences.date",
+      "datatype": "xsd:string"
+    },
+    {
+      "property": "conference_location",
+      "belongsToClassMap": "Conference",
+      "column": "conferences.location",
+      "datatype": "xsd:string"
+    },
+    {
+      "property": "conference_timestamp",
+      "belongsToClassMap": "Conference",
+      "column": "conferences.datum",
+      "datatype": "xsd:dateTime",
+      "condition": [
+        "conferences.datum is not null"
+      ]
+    },
+    {
+      "property": "organization_type_literal",
+      "belongsToClassMap": "Organization",
+      "column": "organizations.type",
+      "datatype": "xsd:string",
+      "condition": [
+        "organizations.type is not null"
+      ]
+    },
+    {
+      "property": "organization_name",
+      "belongsToClassMap": "Organization",
+      "column": "organizations.name",
+      "datatype": "xsd:string"
+    },
+    {
+      "property": "organization_address",
+      "belongsToClassMap": "Organization",
+      "column": "organizations.address",
+      "datatype": "xsd:string",
+      "condition": [
+        "organizations.address is not null"
+      ]
+    },
+    {
+      "property": "organization_location",
+      "belongsToClassMap": "Organization",
+      "column": "organizations.location",
+      "datatype": "xsd:string",
+      "condition": [
+        "organizations.location is not null"
+      ]
+    },
+    {
+      "property": "organization_postcode",
+      "belongsToClassMap": "Organization",
+      "column": "organizations.postcode",
+      "datatype": "xsd:string",
+      "condition": [
+        "organizations.postcode is not null"
+      ]
+    },
+    {
+      "property": "organization_country",
+      "belongsToClassMap": "Organization",
+      "column": "organizations.country",
+      "datatype": "xsd:string",
+      "condition": [
+        "organizations.country is not null"
+      ]
+    },
+    {
+      "property": "organization_URI",
+      "belongsToClassMap": "Organization",
+      "column": "organizations.uri",
+      "datatype": "xsd:anyURI",
+      "condition": [
+        "organizations.uri is not null"
+      ]
+    },
+    {
+      "property": "organization_homepage",
+      "belongsToClassMap": "Organization",
+      "column": "organizations.homepage",
+      "datatype": "xsd:anyURI",
+      "condition": [
+        "organizations.homepage is not null"
+      ]
+    },
+    {
+      "property": "paper_title",
+      "belongsToClassMap": "Paper",
+      "column": "papers.title",
+      "datatype": "xsd:string"
+    },
+    {
+      "property": "paper_abstract",
+      "belongsToClassMap": "Paper",
+      "column": "papers.abstract",
+      "datatype": "xsd:string",
+      "condition": [
+        "papers.abstract is not null"
+      ]
+    },
+    {
+      "property": "paper_URI",
+      "belongsToClassMap": "Paper",
+      "column": "papers.uri",
+      "datatype": "xsd:anyURI",
+      "condition": [
+        "papers.uri is not null"
+      ]
+    },
+    {
+      "property": "paper_year",
+      "belongsToClassMap": "Paper",
+      "column": "papers.year",
+      "datatype": "xsd:integer",
+      "condition": [
+        "papers.year is not null"
+      ]
+    },
+    {
+      "property": "paper_publish_flag",
+      "belongsToClassMap": "Paper",
+      "column": "papers.publish",
+      "datatype": "xsd:integer",
+      "condition": [
+        "papers.publish is not null"
+      ]
+    },
+    {
+      "property": "person_type_literal",
+      "belongsToClassMap": "Person",
+      "column": "persons.type",
+      "datatype": "xsd:string",
+      "condition": [
+        "persons.type is not null"
+      ]
+    },
+    {
+      "property": "person_first_name",
+      "belongsToClassMap": "Person",
+      "column": "persons.firstname",
+      "datatype": "xsd:string",
+      "condition": [
+        "persons.firstname is not null"
+      ]
+    },
+    {
+      "property": "person_last_name",
+      "belongsToClassMap": "Person",
+      "column": "persons.lastname",
+      "datatype": "xsd:string",
+      "condition": [
+        "persons.lastname is not null"
+      ]
+    },
+    {
+      "property": "person_address",
+      "belongsToClassMap": "Person",
+      "column": "persons.address",
+      "datatype": "xsd:string",
+      "condition": [
+        "persons.address is not null"
+      ]
+    },
+    {
+      "property": "person_email",
+      "belongsToClassMap": "Person",
+      "column": "persons.email",
+      "datatype": "xsd:string",
+      "condition": [
+        "persons.email is not null"
+      ]
+    },
+    {
+      "property": "person_homepage",
+      "belongsToClassMap": "Person",
+      "column": "persons.homepage",
+      "datatype": "xsd:anyURI",
+      "condition": [
+        "persons.homepage is not null"
+      ]
+    },
+    {
+      "property": "person_phone",
+      "belongsToClassMap": "Person",
+      "column": "persons.phone",
+      "datatype": "xsd:string",
+      "condition": [
+        "persons.phone is not null"
+      ]
+    },
+    {
+      "property": "person_URI",
+      "belongsToClassMap": "Person",
+      "column": "persons.uri",
+      "datatype": "xsd:anyURI",
+      "condition": [
+        "persons.uri is not null"
+      ]
+    },
+    {
+      "property": "person_photo",
+      "belongsToClassMap": "Person",
+      "column": "persons.photo",
+      "datatype": "xsd:anyURI",
+      "condition": [
+        "persons.photo is not null"
+      ]
+    },
+    {
+      "property": "topic_name",
+      "belongsToClassMap": "Topic",
+      "column": "topics.topicname",
+      "datatype": "xsd:string"
+    },
+    {
+      "property": "topic_URI",
+      "belongsToClassMap": "Topic",
+      "column": "topics.uri",
+      "datatype": "xsd:anyURI",
+      "condition": [
+        "topics.uri is not null"
+      ]
+    }
+  ],
+  "translation_tables": [],
+  "_canonicalization_debug": {
+    "unresolved_classes": [],
+    "notes": {
+      "uriColumn_mirrored_to_column": true,
+      "bNodeIdColumns_used_for_class_identity": true
+    }
+  }
+}

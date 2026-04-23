@@ -1,0 +1,107 @@
+[
+  {
+    "target_type": "class_mapping",
+    "target_id": "Organization_from_organizations",
+    "current_class_id": "Class:Organization",
+    "from_tables": [
+      "organizations"
+    ],
+    "focus": [
+      "condition necessity",
+      "identity strategy correctness",
+      "class scope too broad or too narrow",
+      "possible downstream impact on related properties and relations"
+    ]
+  },
+  {
+    "target_type": "data_property_mapping",
+    "target_id": "hasOrganizationType_from_Type",
+    "current_property_id": "DataProperty:hasOrganizationType",
+    "focus": [
+      "ordinary literal vs class-defining signal",
+      "datatype mismatch",
+      "possible move from attribute to condition-bearing class revision"
+    ]
+  },
+  {
+    "target_type": "data_property_mapping",
+    "target_id": "hasOrganizationName_from_Name",
+    "current_property_id": "DataProperty:hasOrganizationName",
+    "focus": [
+      "ordinary literal vs class-defining signal",
+      "datatype mismatch",
+      "possible move from attribute to condition-bearing class revision"
+    ]
+  },
+  {
+    "target_type": "data_property_mapping",
+    "target_id": "hasOrganizationAddress_from_Address",
+    "current_property_id": "DataProperty:hasOrganizationAddress",
+    "focus": [
+      "ordinary literal vs class-defining signal",
+      "datatype mismatch",
+      "possible move from attribute to condition-bearing class revision"
+    ]
+  },
+  {
+    "target_type": "data_property_mapping",
+    "target_id": "hasOrganizationLocation_from_Location",
+    "current_property_id": "DataProperty:hasOrganizationLocation",
+    "focus": [
+      "ordinary literal vs class-defining signal",
+      "datatype mismatch",
+      "possible move from attribute to condition-bearing class revision"
+    ]
+  },
+  {
+    "target_type": "data_property_mapping",
+    "target_id": "hasOrganizationPostcode_from_Postcode",
+    "current_property_id": "DataProperty:hasOrganizationPostcode",
+    "focus": [
+      "ordinary literal vs class-defining signal",
+      "datatype mismatch",
+      "possible move from attribute to condition-bearing class revision"
+    ]
+  },
+  {
+    "target_type": "data_property_mapping",
+    "target_id": "hasOrganizationCountry_from_Country",
+    "current_property_id": "DataProperty:hasOrganizationCountry",
+    "focus": [
+      "ordinary literal vs class-defining signal",
+      "datatype mismatch",
+      "possible move from attribute to condition-bearing class revision"
+    ]
+  },
+  {
+    "target_type": "data_property_mapping",
+    "target_id": "hasOrganizationURI_from_URI",
+    "current_property_id": "DataProperty:hasOrganizationURI",
+    "focus": [
+      "ordinary literal vs class-defining signal",
+      "datatype mismatch",
+      "possible move from attribute to condition-bearing class revision"
+    ]
+  },
+  {
+    "target_type": "data_property_mapping",
+    "target_id": "hasOrganizationHomepage_from_Homepage",
+    "current_property_id": "DataProperty:hasOrganizationHomepage",
+    "focus": [
+      "ordinary literal vs class-defining signal",
+      "datatype mismatch",
+      "possible move from attribute to condition-bearing class revision"
+    ]
+  },
+  {
+    "target_type": "scope_review",
+    "target_id": "organizations",
+    "focus": [
+      "inspect all columns in local scope",
+      "look for class-defining conditions",
+      "look for over-broad class mappings",
+      "look for identity mistakes",
+      "look for relation/attribute revisions implied by class revision"
+    ]
+  }
+]

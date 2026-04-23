@@ -1,0 +1,90 @@
+{
+  "step_index": 3,
+  "new_table": "persons",
+  "related_existing_tables": [],
+  "local_table": {
+    "name": "persons",
+    "columns": [
+      {
+        "name": "PerID",
+        "type": "int",
+        "raw": "PerID int NOT NULL default '0'",
+        "is_primary_key": true
+      },
+      {
+        "name": "Type",
+        "type": "varchar(50)",
+        "raw": "Type varchar(50) default NULL",
+        "is_primary_key": false
+      },
+      {
+        "name": "FirstName",
+        "type": "varchar(100)",
+        "raw": "FirstName varchar(100) default NULL",
+        "is_primary_key": false
+      },
+      {
+        "name": "LastName",
+        "type": "varchar(100)",
+        "raw": "LastName varchar(100) default NULL",
+        "is_primary_key": false
+      },
+      {
+        "name": "Address",
+        "type": "varchar(2000)",
+        "raw": "Address varchar(2000) default NULL",
+        "is_primary_key": false
+      },
+      {
+        "name": "Email",
+        "type": "varchar(100)",
+        "raw": "Email varchar(100) default NULL",
+        "is_primary_key": false
+      },
+      {
+        "name": "Homepage",
+        "type": "varchar(50)",
+        "raw": "Homepage varchar(50) default NULL",
+        "is_primary_key": false
+      },
+      {
+        "name": "Phone",
+        "type": "varchar(200)",
+        "raw": "Phone varchar(200) default NULL",
+        "is_primary_key": false
+      },
+      {
+        "name": "URI",
+        "type": "varchar(200)",
+        "raw": "URI varchar(200) default NULL",
+        "is_primary_key": false
+      },
+      {
+        "name": "Photo",
+        "type": "varchar(200)",
+        "raw": "Photo varchar(200) default NULL",
+        "is_primary_key": false
+      }
+    ],
+    "fks": []
+  },
+  "local_fk_edges": [],
+  "related_table_defs": {},
+  "multi_table_signals": {
+    "many_fk_targets": false,
+    "connector_like": false,
+    "association_class_likelihood": false,
+    "address_like_bundle": [
+      "address"
+    ],
+    "requires_multi_table_reasoning": true
+  },
+  "suggested_analysis_scope": {
+    "recommended_tables_for_joint_analysis": [
+      "persons"
+    ],
+    "reason": [
+      "structured_value_object_bundle"
+    ]
+  }
+}

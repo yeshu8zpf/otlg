@@ -1,0 +1,239 @@
+{
+  "work_unit": {
+    "table": "papers",
+    "related_tables": []
+  },
+  "proposed_additions": {
+    "classes": [
+      {
+        "id": "Class:Paper",
+        "label": "Paper",
+        "description": "Academic paper with metadata including title, abstract, publication year, and conference/publisher associations.",
+        "source_tables": [
+          "papers"
+        ],
+        "identifier_columns": [
+          "papers.PaperID"
+        ]
+      }
+    ],
+    "data_properties": [
+      {
+        "id": "DataProperty:hasPaperTitle",
+        "label": "has paper title",
+        "domain": "Class:Paper",
+        "datatype": "xsd:string",
+        "description": "Title of the academic paper."
+      },
+      {
+        "id": "DataProperty:hasPaperAbstract",
+        "label": "has paper abstract",
+        "domain": "Class:Paper",
+        "datatype": "xsd:string",
+        "description": "Abstract or summary of the paper content."
+      },
+      {
+        "id": "DataProperty:hasPaperURI",
+        "label": "has paper URI",
+        "domain": "Class:Paper",
+        "datatype": "xsd:anyURI",
+        "description": "URI reference to the paper resource."
+      },
+      {
+        "id": "DataProperty:hasPaperYear",
+        "label": "has paper year",
+        "domain": "Class:Paper",
+        "datatype": "xsd:int",
+        "description": "Publication year of the paper."
+      }
+    ],
+    "object_properties": [
+      {
+        "id": "ObjectProperty:paperPublishedInConference",
+        "label": "paper published in conference",
+        "domain": "Class:Paper",
+        "range": "Class:Conference",
+        "description": "Relation indicating a paper was published in a specific conference."
+      }
+    ],
+    "subclass_relations": [],
+    "class_mappings": [
+      {
+        "mapping_id": "Paper_from_papers",
+        "class_id": "Class:Paper",
+        "from_tables": [
+          "papers"
+        ],
+        "identifier_kind": "uri_pattern",
+        "identifier_columns": [
+          "papers.PaperID"
+        ],
+        "instance_id_template": "papers/@@papers.PaperID@@",
+        "bnode_id_columns": []
+      }
+    ],
+    "data_property_mappings": [
+      {
+        "mapping_id": "hasPaperTitle_from_Title",
+        "data_property_id": "DataProperty:hasPaperTitle",
+        "applies_to_class": "Class:Paper",
+        "source_table": "papers",
+        "source_columns": [
+          "papers.Title"
+        ],
+        "value_kind": "column",
+        "value_template": "",
+        "sql_expression": "",
+        "constant_value": "",
+        "datatype": "xsd:string",
+        "join_paths": [],
+        "condition": []
+      },
+      {
+        "mapping_id": "hasPaperAbstract_from_Abstract",
+        "data_property_id": "DataProperty:hasPaperAbstract",
+        "applies_to_class": "Class:Paper",
+        "source_table": "papers",
+        "source_columns": [
+          "papers.Abstract"
+        ],
+        "value_kind": "column",
+        "value_template": "",
+        "sql_expression": "",
+        "constant_value": "",
+        "datatype": "xsd:string",
+        "join_paths": [],
+        "condition": []
+      },
+      {
+        "mapping_id": "hasPaperURI_from_URI",
+        "data_property_id": "DataProperty:hasPaperURI",
+        "applies_to_class": "Class:Paper",
+        "source_table": "papers",
+        "source_columns": [
+          "papers.URI"
+        ],
+        "value_kind": "column",
+        "value_template": "",
+        "sql_expression": "",
+        "constant_value": "",
+        "datatype": "xsd:anyURI",
+        "join_paths": [],
+        "condition": []
+      },
+      {
+        "mapping_id": "hasPaperYear_from_Year",
+        "data_property_id": "DataProperty:hasPaperYear",
+        "applies_to_class": "Class:Paper",
+        "source_table": "papers",
+        "source_columns": [
+          "papers.Year"
+        ],
+        "value_kind": "column",
+        "value_template": "",
+        "sql_expression": "",
+        "constant_value": "",
+        "datatype": "xsd:int",
+        "join_paths": [],
+        "condition": []
+      }
+    ],
+    "object_property_mappings": [
+      {
+        "mapping_id": "paperPublishedInConference_from_Conference",
+        "object_property_id": "ObjectProperty:paperPublishedInConference",
+        "from_class": "Class:Paper",
+        "to_class": "Class:Conference",
+        "from_tables": [
+          "papers"
+        ],
+        "source_identifier_columns": [
+          "papers.PaperID"
+        ],
+        "target_identifier_columns": [
+          "conferences.confid"
+        ],
+        "join_paths": [
+          [
+            "papers.Conference",
+            "=",
+            "conferences.confid"
+          ]
+        ],
+        "condition": [],
+        "target_type": "entity"
+      }
+    ]
+  },
+  "proposed_revisions": {
+    "classes": [],
+    "data_properties": [],
+    "object_properties": [],
+    "subclass_relations": [],
+    "class_mappings": [],
+    "data_property_mappings": [],
+    "object_property_mappings": []
+  },
+  "proposed_rejections": [],
+  "proposed_merges": [],
+  "decision_summary": [
+    {
+      "decision_type": "C-ENTITY",
+      "target": "Class:Paper",
+      "status": "accepted",
+      "confidence": 0.95,
+      "reason": "PaperID primary key and semantic content (Title, Abstract, Year) establish Paper as a stable entity class."
+    },
+    {
+      "decision_type": "DP-LITERAL",
+      "target": "DataProperty:hasPaperTitle",
+      "status": "accepted",
+      "confidence": 0.98,
+      "reason": "Title column is a descriptive string attribute of papers."
+    },
+    {
+      "decision_type": "DP-LITERAL",
+      "target": "DataProperty:hasPaperAbstract",
+      "status": "accepted",
+      "confidence": 0.98,
+      "reason": "Abstract column is a descriptive text attribute of papers."
+    },
+    {
+      "decision_type": "DP-URI",
+      "target": "DataProperty:hasPaperURI",
+      "status": "accepted",
+      "confidence": 0.85,
+      "reason": "URI column stored as varchar; modeled as data property with xsd:anyURI datatype. No evidence of entity relation."
+    },
+    {
+      "decision_type": "DP-LITERAL",
+      "target": "DataProperty:hasPaperYear",
+      "status": "accepted",
+      "confidence": 0.98,
+      "reason": "Year column is an integer temporal attribute of papers."
+    },
+    {
+      "decision_type": "OP-RELATION",
+      "target": "ObjectProperty:paperPublishedInConference",
+      "status": "accepted",
+      "confidence": 0.92,
+      "reason": "papers.Conference column references conferences.confid; establishes entity-to-entity relation between Paper and Conference classes."
+    }
+  ],
+  "remaining_ambiguities": [
+    "Publish column semantics unclear: integer type suggests foreign key reference, but target table unknown. Deferred pending schema discovery.",
+    "URI column purpose ambiguous: unclear if it references external paper resources or serves as internal identifier."
+  ],
+  "needs_probe": [
+    {
+      "probe_type": "fk_target",
+      "target": "papers.Publish",
+      "question": "What table does papers.Publish reference? Is it a foreign key to a publisher or publication entity?"
+    },
+    {
+      "probe_type": "value_sample",
+      "target": "papers.URI",
+      "question": "Are URI values external references (e.g., http://..., doi:...) or internal identifiers?"
+    }
+  ]
+}

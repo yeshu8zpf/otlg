@@ -1,0 +1,109 @@
+{
+    "classes": [
+        {
+            "id": "@@city.country@@/@@city.province@@/@@city.name@@",
+            "class": "City",
+            "prefix": "mondial"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "locatedAt",
+            "belongsToClass": "City",
+            "refersToClassMap": "River1",
+            "join": [
+                "city.name = located.city",
+                "city.province = located.province",
+                "city.country = located.country",
+                "river.name = located.river"
+            ]
+        },
+        {
+            "property": "locatedAt",
+            "belongsToClass": "City",
+            "refersToClass": "Lake",
+            "join": [
+                "city.name = located.city",
+                "city.province = located.province",
+                "city.country = located.country",
+                "lake.name = located.lake"
+            ]
+        },
+        {
+            "property": "locatedAt",
+            "belongsToClass": "City",
+            "refersToClass": "Sea",
+            "join": [
+                "city.name = located.city",
+                "city.province = located.province",
+                "city.country = located.country",
+                "sea.name = located.sea"
+            ]
+        },
+        {
+            "property": "locatedOnIsland",
+            "belongsToClass": "City",
+            "refersToClass": "Island",
+            "join": [
+                "city.name = locatedon.city",
+                "city.province = locatedon.province",
+                "city.country = locatedon.country",
+                "island.name = locatedon.island"
+            ]
+        }
+    ],
+    "data_properties": [
+        {
+            "property": "name",
+            "belongsToClass": "City",
+            "type": "string",
+            "column": "City.Name"
+        },
+        {
+            "property": "population",
+            "belongsToClass": "City",
+            "type": "integer",
+            "column": "City.Population"
+        },
+        {
+            "property": "longitude",
+            "belongsToClass": "City",
+            "type": "decimal",
+            "column": "City.Longitude"
+        },
+        {
+            "property": "latitude",
+            "belongsToClass": "City",
+            "type": "decimal",
+            "column": "City.Latitude"
+        },
+        {
+            "property": "elevation",
+            "belongsToClass": "City",
+            "type": "decimal",
+            "column": "City.Elevation"
+        },
+        {
+            "property": "othername",
+            "belongsToClass": "City",
+            "type": "string",
+            "column": "cityothername.othername",
+            "join": [
+                "city.name = cityothername.city",
+                "city.province = cityothername.province",
+                "city.country = cityothername.country"
+            ]
+        },
+        {
+            "property": "localname",
+            "belongsToClass": "City",
+            "type": "string",
+            "column": "citylocalname.localname",
+            "join": [
+                "city.name = citylocalname.city",
+                "city.province = citylocalname.province",
+                "city.country = citylocalname.country"
+            ]
+        }
+    ]
+}

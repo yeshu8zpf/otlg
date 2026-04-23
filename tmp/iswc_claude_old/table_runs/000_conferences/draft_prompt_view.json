@@ -1,0 +1,33 @@
+{
+  "global_summary": {
+    "num_classes": 0,
+    "num_data_properties": 0,
+    "num_object_properties": 0,
+    "accepted_classes": [],
+    "accepted_data_properties": [],
+    "accepted_object_properties": [],
+    "processed_tables": [],
+    "draft_version": 0
+  },
+  "relevant_draft_slice": {
+    "classes": [],
+    "data_properties": [],
+    "object_properties": [],
+    "class_mappings": [],
+    "data_property_mappings": [],
+    "object_property_mappings": []
+  },
+  "related_rejected_candidates": [],
+  "related_open_issues": [],
+  "update_focus": {
+    "new_table": "conferences",
+    "related_existing_tables": [],
+    "requires_multi_table_reasoning": true,
+    "analysis_reasons": [
+      "structured_value_object_bundle"
+    ],
+    "recommended_tables_for_joint_analysis": [
+      "conferences"
+    ]
+  }
+}

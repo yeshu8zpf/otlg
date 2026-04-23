@@ -1,0 +1,96 @@
+{
+    "classes": [
+        {
+            "id": "@@lake.name@@",
+            "class": "Lake",
+            "prefix": "mondial"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "locatedIn",
+            "belongsToClass": "Lake",
+            "refersToClassMap": "CountryFull",
+            "join": [
+                "geo_lake.lake = lake.name",
+                "geo_lake.country = country.code"
+            ]
+        },
+        {
+            "property": "locatedIn",
+            "belongsToClass": "Lake",
+            "refersToClass": "Province",
+            "join": [
+                "geo_lake.lake = lake.name",
+                "geo_lake.province = province.name"
+            ]
+        },
+        {
+            "property": "flowsInto",
+            "belongsToClass": "Lake",
+            "refersToClassMap": "River1",
+            "join": [
+                "lake.river = river.name"
+            ]
+        },
+        {
+            "property": "locatedOnIsland",
+            "belongsToClass": "Lake",
+            "refersToClass": "Island",
+            "join": [
+                "lake.name = lakeonisland.lake",
+                "lakeonisland.island = island.name"
+            ]
+        }
+    ],
+    "data_properties": [
+        {
+            "property": "name",
+            "belongsToClass": "Lake",
+            "type": "string",
+            "column": "lake.name"
+        },
+        {
+            "property": "latitude",
+            "belongsToClass": "Lake",
+            "type": "decimal",
+            "column": "lake.latitude"
+        },
+        {
+            "property": "longitude",
+            "belongsToClass": "Lake",
+            "type": "decimal",
+            "column": "lake.longitude"
+        },
+        {
+            "property": "area",
+            "belongsToClass": "Lake",
+            "type": "decimal",
+            "column": "lake.area"
+        },
+        {
+            "property": "elevation",
+            "belongsToClass": "Lake",
+            "type": "decimal",
+            "column": "lake.elevation"
+        },
+        {
+            "property": "type",
+            "belongsToClass": "Lake",
+            "type": "string",
+            "column": "lake.type"
+        },
+        {
+            "property": "depth",
+            "belongsToClass": "Lake",
+            "type": "decimal",
+            "column": "lake.depth"
+        },
+        {
+            "property": "height",
+            "belongsToClass": "Lake",
+            "type": "decimal",
+            "column": "lake.height"
+        }
+    ]
+}

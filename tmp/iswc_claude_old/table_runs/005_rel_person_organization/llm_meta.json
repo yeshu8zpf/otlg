@@ -1,0 +1,46 @@
+{
+  "model": "claude-haiku-4-5",
+  "api_url": "https://www.aiapikey.net/v1/chat/completions",
+  "timeout": 300.0,
+  "max_retries": 2,
+  "attempts": [
+    {
+      "attempt": 1,
+      "status": "ok",
+      "status_code": 200,
+      "response_headers": {
+        "date": "Wed, 22 Apr 2026 10:55:07 GMT",
+        "content-type": "text/event-stream",
+        "transfer-encoding": "chunked",
+        "connection": "keep-alive",
+        "server": "cloudflare",
+        "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+        "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=nBBoKlAjqivR1OoSoVlZuCsJhhF9NJPd5XsgQt9G0QgPhqYowK7EOqQuPUgSaDL83M4iMZHX4p2HIL9YciEXbRjikRRFF%2Fu2Vm8k8CCZgHRNujM0SxawoE3JuMmSdCcg7mVu\"}]}",
+        "cache-control": "no-cache",
+        "x-new-api-version": "v0.12.2",
+        "x-oneapi-request-id": "20260422105502673963469dR0M9pt2",
+        "cf-cache-status": "DYNAMIC",
+        "cf-ray": "9f041808ad927097-NRT",
+        "alt-svc": "h3=\":443\"; ma=86400"
+      },
+      "raw_content_preview": "```json\n{\n  \"work_unit\": {\n    \"table\": \"rel_person_organization\",\n    \"related_tables\": []\n  },\n  \"proposed_additions\": {\n    \"classes\": [],\n    \"data_properties\": [],\n    \"object_properties\": [\n      {\n        \"id\": \"ObjectProperty:worksForOrganization\",\n        \"label\": \"works for organization\",\n        \"domain\": \"Class:Person\",\n        \"range\": \"Class:Organization\",\n        \"description\": \"Relationship indicating that a person is affiliated with or works for an organization\"\n      }\n    ],\n    \"subclass_relations\": [],\n    \"class_mappings\": [],\n    \"data_property_mappings\": [],\n    \"object_property_mappings\": [\n      {\n        \"mapping_id\": \"worksForOrganization_from_rel_person_organization\",\n        \"object_property_id\": \"ObjectProperty:worksForOrganization\",\n        \"from_class\": \"Class:Person\",\n        \"to_class\": \"Class:Organization\",\n        \"from_tables\": [\n          \"rel_person_organization\"\n        ],\n        \"source_identifier_columns\": [\n          \"rel_person_organization.PersonID\"\n        ],\n        \"target_identifier_columns\": [\n          \"rel_person_organization.OrganizationID\"\n        ],\n        \"join_paths\": [],\n        \"condition\": [],\n        \"target_type\": \"entity\"\n      }\n    ]\n  },\n  \"proposed_revisions\": {\n    \"classes\": [],\n    \"data_properties\": [],\n    \"object_properties\": [],\n    \"subclass_relations\": [],\n    \"class_mappings\": [],\n    \"data_property_mappings\": [],\n    \"object_property_mappings\": []\n  },\n  \"proposed_rejections\": [],\n  \"proposed_merges\": [],\n  \"decision_summary\": [\n    {\n      \"decision_type\": \"OP-RELATION\",\n      \"target\": \"ObjectProperty:worksForOrganization\",\n      \"status\": \"accepted\",\n      \"confidence\": 0.95,\n      \"reason\": \"rel_person_organization is a junction table with composite primary key (PersonID, OrganizationID) representing a many-to-many relationship between Person and Organization entities already established in the ontology. No additional attributes justify an association class.\"\n    }\n  ],\n  \"remaining_ambiguities\": [],\n  \"needs_probe\": []\n}\n```"
+    }
+  ],
+  "status_code": 200,
+  "response_headers": {
+    "date": "Wed, 22 Apr 2026 10:55:07 GMT",
+    "content-type": "text/event-stream",
+    "transfer-encoding": "chunked",
+    "connection": "keep-alive",
+    "server": "cloudflare",
+    "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+    "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=nBBoKlAjqivR1OoSoVlZuCsJhhF9NJPd5XsgQt9G0QgPhqYowK7EOqQuPUgSaDL83M4iMZHX4p2HIL9YciEXbRjikRRFF%2Fu2Vm8k8CCZgHRNujM0SxawoE3JuMmSdCcg7mVu\"}]}",
+    "cache-control": "no-cache",
+    "x-new-api-version": "v0.12.2",
+    "x-oneapi-request-id": "20260422105502673963469dR0M9pt2",
+    "cf-cache-status": "DYNAMIC",
+    "cf-ray": "9f041808ad927097-NRT",
+    "alt-svc": "h3=\":443\"; ma=86400"
+  },
+  "raw_content_preview": "```json\n{\n  \"work_unit\": {\n    \"table\": \"rel_person_organization\",\n    \"related_tables\": []\n  },\n  \"proposed_additions\": {\n    \"classes\": [],\n    \"data_properties\": [],\n    \"object_properties\": [\n      {\n        \"id\": \"ObjectProperty:worksForOrganization\",\n        \"label\": \"works for organization\",\n        \"domain\": \"Class:Person\",\n        \"range\": \"Class:Organization\",\n        \"description\": \"Relationship indicating that a person is affiliated with or works for an organization\"\n      }\n    ],\n    \"subclass_relations\": [],\n    \"class_mappings\": [],\n    \"data_property_mappings\": [],\n    \"object_property_mappings\": [\n      {\n        \"mapping_id\": \"worksForOrganization_from_rel_person_organization\",\n        \"object_property_id\": \"ObjectProperty:worksForOrganization\",\n        \"from_class\": \"Class:Person\",\n        \"to_class\": \"Class:Organization\",\n        \"from_tables\": [\n          \"rel_person_organization\"\n        ],\n        \"source_identifier_columns\": [\n          \"rel_person_organization.PersonID\"\n        ],\n        \"target_identifier_columns\": [\n          \"rel_person_organization.OrganizationID\"\n        ],\n        \"join_paths\": [],\n        \"condition\": [],\n        \"target_type\": \"entity\"\n      }\n    ]\n  },\n  \"proposed_revisions\": {\n    \"classes\": [],\n    \"data_properties\": [],\n    \"object_properties\": [],\n    \"subclass_relations\": [],\n    \"class_mappings\": [],\n    \"data_property_mappings\": [],\n    \"object_property_mappings\": []\n  },\n  \"proposed_rejections\": [],\n  \"proposed_merges\": [],\n  \"decision_summary\": [\n    {\n      \"decision_type\": \"OP-RELATION\",\n      \"target\": \"ObjectProperty:worksForOrganization\",\n      \"status\": \"accepted\",\n      \"confidence\": 0.95,\n      \"reason\": \"rel_person_organization is a junction table with composite primary key (PersonID, OrganizationID) representing a many-to-many relationship between Person and Organization entities already established in the ontology. No additional attributes justify an association class.\"\n    }\n  ],\n  \"remaining_ambiguities\": [],\n  \"needs_probe\": []\n}\n```"
+}

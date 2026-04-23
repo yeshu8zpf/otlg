@@ -1,0 +1,357 @@
+{
+  "global_summary": {
+    "num_classes": 6,
+    "num_data_properties": 27,
+    "num_object_properties": 7,
+    "accepted_classes": [
+      "Class:Conference",
+      "Class:Organization",
+      "Class:Address",
+      "Class:Paper",
+      "Class:Person",
+      "Class:Topic"
+    ],
+    "accepted_data_properties": [
+      "DataProperty:hasConferenceName",
+      "DataProperty:hasConferenceURI",
+      "DataProperty:hasConferenceDate",
+      "DataProperty:hasConferenceLocation",
+      "DataProperty:hasConferenceDatum",
+      "DataProperty:hasOrganizationType",
+      "DataProperty:hasOrganizationName",
+      "DataProperty:hasOrganizationURI",
+      "DataProperty:hasOrganizationHomepage",
+      "DataProperty:hasAddressStreet",
+      "DataProperty:hasAddressLocation",
+      "DataProperty:hasAddressPostcode",
+      "DataProperty:hasAddressCountry",
+      "DataProperty:hasPaperTitle",
+      "DataProperty:hasPaperAbstract",
+      "DataProperty:hasPaperURI",
+      "DataProperty:hasPaperYear",
+      "DataProperty:hasPersonType",
+      "DataProperty:hasFirstName",
+      "DataProperty:hasLastName"
+    ],
+    "accepted_object_properties": [
+      "ObjectProperty:hasAddress",
+      "ObjectProperty:belongsToOrganization",
+      "ObjectProperty:paperPublishedInConference",
+      "ObjectProperty:paperCoversTopics",
+      "ObjectProperty:worksForOrganization",
+      "ObjectProperty:authoredPaper",
+      "ObjectProperty:hasInterestInTopic"
+    ],
+    "processed_tables": [
+      "conferences",
+      "organizations",
+      "papers",
+      "persons",
+      "rel_paper_topic",
+      "rel_person_organization",
+      "rel_person_paper",
+      "rel_person_topic"
+    ],
+    "draft_version": 8
+  },
+  "relevant_draft_slice": {
+    "classes": [
+      {
+        "id": "Class:Conference",
+        "label": "Conference",
+        "source_tables": [
+          "conferences"
+        ],
+        "status": "proposed"
+      },
+      {
+        "id": "Class:Topic",
+        "label": "Topic",
+        "source_tables": [
+          "rel_paper_topic"
+        ],
+        "status": "proposed"
+      }
+    ],
+    "data_properties": [
+      {
+        "id": "DataProperty:hasConferenceURI",
+        "label": "has conference URI",
+        "domain": "Class:Conference",
+        "datatype": "xsd:anyURI",
+        "source_tables": []
+      },
+      {
+        "id": "DataProperty:hasOrganizationURI",
+        "label": "has organization URI",
+        "domain": "Class:Organization",
+        "datatype": "xsd:anyURI",
+        "source_tables": []
+      },
+      {
+        "id": "DataProperty:hasOrganizationHomepage",
+        "label": "has organization homepage",
+        "domain": "Class:Organization",
+        "datatype": "xsd:anyURI",
+        "source_tables": []
+      },
+      {
+        "id": "DataProperty:hasPaperURI",
+        "label": "has paper URI",
+        "domain": "Class:Paper",
+        "datatype": "xsd:anyURI",
+        "source_tables": []
+      },
+      {
+        "id": "DataProperty:hasHomepage",
+        "label": "has homepage",
+        "domain": "Class:Person",
+        "datatype": "xsd:anyURI",
+        "source_tables": []
+      },
+      {
+        "id": "DataProperty:hasURI",
+        "label": "has URI",
+        "domain": "Class:Person",
+        "datatype": "xsd:anyURI",
+        "source_tables": []
+      },
+      {
+        "id": "DataProperty:hasPhoto",
+        "label": "has photo",
+        "domain": "Class:Person",
+        "datatype": "xsd:anyURI",
+        "source_tables": []
+      }
+    ],
+    "object_properties": [
+      {
+        "id": "ObjectProperty:paperCoversTopics",
+        "label": "paper covers topics",
+        "domain": "Class:Paper",
+        "range": "Class:Topic",
+        "source_tables": []
+      }
+    ],
+    "class_mappings": [
+      {
+        "class_id": "Class:Conference",
+        "mapping_id": "Conference_from_conferences",
+        "from_tables": [
+          "conferences"
+        ],
+        "identifier_kind": "uri_pattern",
+        "identifier_columns": [
+          "conferences.confid"
+        ],
+        "instance_id_template": "conferences/@@conferences.confid@@"
+      },
+      {
+        "class_id": "Class:Organization",
+        "mapping_id": "Organization_from_organizations",
+        "from_tables": [
+          "organizations"
+        ],
+        "identifier_kind": "uri_pattern",
+        "identifier_columns": [
+          "organizations.orgid"
+        ],
+        "instance_id_template": "organizations/@@organizations.OrgID@@"
+      },
+      {
+        "class_id": "Class:Paper",
+        "mapping_id": "Paper_from_papers",
+        "from_tables": [
+          "papers"
+        ],
+        "identifier_kind": "uri_pattern",
+        "identifier_columns": [
+          "papers.paperid"
+        ],
+        "instance_id_template": "papers/@@papers.PaperID@@"
+      },
+      {
+        "class_id": "Class:Person",
+        "mapping_id": "Person_from_persons",
+        "from_tables": [
+          "persons"
+        ],
+        "identifier_kind": "uri_pattern",
+        "identifier_columns": [
+          "persons.perid"
+        ],
+        "instance_id_template": "persons/@@persons.PerID@@"
+      },
+      {
+        "class_id": "Class:Topic",
+        "mapping_id": "Topic_from_rel_paper_topic",
+        "from_tables": [
+          "rel_paper_topic"
+        ],
+        "identifier_kind": "uri_pattern",
+        "identifier_columns": [
+          "rel_paper_topic.topicid"
+        ],
+        "instance_id_template": "topics/@@rel_paper_topic.TopicID@@"
+      }
+    ],
+    "data_property_mappings": [
+      {
+        "data_property_id": "DataProperty:hasConferenceURI",
+        "mapping_id": "hasConferenceURI_from_URI",
+        "applies_to_class": "Class:Conference",
+        "source_table": "conferences",
+        "source_columns": [
+          "conferences.uri"
+        ],
+        "value_kind": "column"
+      },
+      {
+        "data_property_id": "DataProperty:hasOrganizationURI",
+        "mapping_id": "hasOrganizationURI_from_URI",
+        "applies_to_class": "Class:Organization",
+        "source_table": "organizations",
+        "source_columns": [
+          "organizations.uri"
+        ],
+        "value_kind": "column"
+      },
+      {
+        "data_property_id": "DataProperty:hasOrganizationHomepage",
+        "mapping_id": "hasOrganizationHomepage_from_Homepage",
+        "applies_to_class": "Class:Organization",
+        "source_table": "organizations",
+        "source_columns": [
+          "organizations.homepage"
+        ],
+        "value_kind": "column"
+      },
+      {
+        "data_property_id": "DataProperty:hasPaperURI",
+        "mapping_id": "hasPaperURI_from_URI",
+        "applies_to_class": "Class:Paper",
+        "source_table": "papers",
+        "source_columns": [
+          "papers.uri"
+        ],
+        "value_kind": "column"
+      },
+      {
+        "data_property_id": "DataProperty:hasHomepage",
+        "mapping_id": "hasHomepage_from_Homepage",
+        "applies_to_class": "Class:Person",
+        "source_table": "persons",
+        "source_columns": [
+          "persons.homepage"
+        ],
+        "value_kind": "column"
+      },
+      {
+        "data_property_id": "DataProperty:hasURI",
+        "mapping_id": "hasURI_from_URI",
+        "applies_to_class": "Class:Person",
+        "source_table": "persons",
+        "source_columns": [
+          "persons.uri"
+        ],
+        "value_kind": "column"
+      },
+      {
+        "data_property_id": "DataProperty:hasPhoto",
+        "mapping_id": "hasPhoto_from_Photo",
+        "applies_to_class": "Class:Person",
+        "source_table": "persons",
+        "source_columns": [
+          "persons.photo"
+        ],
+        "value_kind": "column"
+      }
+    ],
+    "object_property_mappings": [
+      {
+        "object_property_id": "ObjectProperty:paperCoversTopics",
+        "mapping_id": "paperCoversTopics_from_rel_paper_topic",
+        "from_class": "Class:Paper",
+        "to_class": "Class:Topic",
+        "from_tables": [
+          "rel_paper_topic"
+        ],
+        "join_paths": [],
+        "target_type": "entity"
+      },
+      {
+        "object_property_id": "ObjectProperty:hasInterestInTopic",
+        "mapping_id": "hasInterestInTopic_from_rel_person_topic",
+        "from_class": "Class:Person",
+        "to_class": "Class:Topic",
+        "from_tables": [
+          "rel_person_topic"
+        ],
+        "join_paths": [],
+        "target_type": "entity"
+      }
+    ]
+  },
+  "related_rejected_candidates": [],
+  "related_open_issues": [
+    {
+      "issue_type": "remaining_ambiguity",
+      "related_table": "conferences",
+      "description": "URI column purpose ambiguous; unclear if it references external conference resources or serves as internal identifier."
+    },
+    {
+      "issue_type": "needs_probe",
+      "related_table": "conferences",
+      "description": "Are URI values external references (e.g., http://...) or internal identifiers?"
+    },
+    {
+      "issue_type": "remaining_ambiguity",
+      "related_table": "organizations",
+      "description": "URI column semantics: unclear if it references external resources or serves as internal identifier; modeled conservatively as data property."
+    },
+    {
+      "issue_type": "needs_probe",
+      "related_table": "organizations",
+      "description": "Are URI values external references (e.g., http://...) or internal identifiers?"
+    },
+    {
+      "issue_type": "remaining_ambiguity",
+      "related_table": "papers",
+      "description": "URI column purpose ambiguous: unclear if it references external paper resources or serves as internal identifier."
+    },
+    {
+      "issue_type": "needs_probe",
+      "related_table": "papers",
+      "description": "Are URI values external references (e.g., http://..., doi:...) or internal identifiers?"
+    },
+    {
+      "issue_type": "remaining_ambiguity",
+      "related_table": "persons",
+      "description": "URI column semantics: unclear if it references external resources or serves as internal identifier. Modeled conservatively as data property."
+    },
+    {
+      "issue_type": "needs_probe",
+      "related_table": "persons",
+      "description": "Are URI values external references (e.g., http://...) or internal identifiers? What is the format?"
+    },
+    {
+      "issue_type": "remaining_ambiguity",
+      "related_table": "rel_paper_topic",
+      "description": "Topic entity definition is incomplete; no attributes (name, description, URI) are present in rel_paper_topic itself, suggesting Topic may be defined in a separate table not yet processed."
+    },
+    {
+      "issue_type": "needs_probe",
+      "related_table": "rel_paper_topic",
+      "description": "Is there a separate topics table that defines Topic attributes (name, description, etc.)?"
+    }
+  ],
+  "update_focus": {
+    "new_table": "topics",
+    "related_existing_tables": [],
+    "requires_multi_table_reasoning": false,
+    "analysis_reasons": [],
+    "recommended_tables_for_joint_analysis": [
+      "topics"
+    ]
+  }
+}

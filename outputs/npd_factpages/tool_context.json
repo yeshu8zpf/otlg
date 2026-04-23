@@ -1,0 +1,11 @@
+{
+  "enabled_tools": [
+    "schema_profiler"
+  ],
+  "schema_summary": {
+    "num_tables": 0,
+    "num_columns": 0,
+    "num_foreign_keys": 0
+  },
+  "join_graph": {}
+}

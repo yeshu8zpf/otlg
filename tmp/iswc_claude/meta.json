@@ -1,0 +1,19 @@
+{
+  "schema_path": "burr_benchmark/real-world/iswc/schema.sql",
+  "out_dir": "/root/ontology/tmp/iswc_claude",
+  "model": "claude-haiku-4-5",
+  "api_url": "https://www.aiapikey.net/v1/chat/completions",
+  "timeout": 300.0,
+  "start_step": 2,
+  "end_step": 3,
+  "num_total_steps": 9,
+  "executed_steps": [
+    {
+      "step_index": 2,
+      "table_name": "papers",
+      "llm_called": true,
+      "raw_patch_reused": false
+    }
+  ],
+  "normalization_enabled": true
+}

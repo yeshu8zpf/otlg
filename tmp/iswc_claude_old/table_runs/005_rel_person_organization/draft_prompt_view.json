@@ -1,0 +1,70 @@
+{
+  "global_summary": {
+    "num_classes": 6,
+    "num_data_properties": 27,
+    "num_object_properties": 4,
+    "accepted_classes": [
+      "Class:Conference",
+      "Class:Organization",
+      "Class:Address",
+      "Class:Paper",
+      "Class:Person",
+      "Class:Topic"
+    ],
+    "accepted_data_properties": [
+      "DataProperty:hasConferenceName",
+      "DataProperty:hasConferenceURI",
+      "DataProperty:hasConferenceDate",
+      "DataProperty:hasConferenceLocation",
+      "DataProperty:hasConferenceDatum",
+      "DataProperty:hasOrganizationType",
+      "DataProperty:hasOrganizationName",
+      "DataProperty:hasOrganizationURI",
+      "DataProperty:hasOrganizationHomepage",
+      "DataProperty:hasAddressStreet",
+      "DataProperty:hasAddressLocation",
+      "DataProperty:hasAddressPostcode",
+      "DataProperty:hasAddressCountry",
+      "DataProperty:hasPaperTitle",
+      "DataProperty:hasPaperAbstract",
+      "DataProperty:hasPaperURI",
+      "DataProperty:hasPaperYear",
+      "DataProperty:hasPersonType",
+      "DataProperty:hasFirstName",
+      "DataProperty:hasLastName"
+    ],
+    "accepted_object_properties": [
+      "ObjectProperty:hasAddress",
+      "ObjectProperty:belongsToOrganization",
+      "ObjectProperty:paperPublishedInConference",
+      "ObjectProperty:paperCoversTopics"
+    ],
+    "processed_tables": [
+      "conferences",
+      "organizations",
+      "papers",
+      "persons",
+      "rel_paper_topic"
+    ],
+    "draft_version": 5
+  },
+  "relevant_draft_slice": {
+    "classes": [],
+    "data_properties": [],
+    "object_properties": [],
+    "class_mappings": [],
+    "data_property_mappings": [],
+    "object_property_mappings": []
+  },
+  "related_rejected_candidates": [],
+  "related_open_issues": [],
+  "update_focus": {
+    "new_table": "rel_person_organization",
+    "related_existing_tables": [],
+    "requires_multi_table_reasoning": false,
+    "analysis_reasons": [],
+    "recommended_tables_for_joint_analysis": [
+      "rel_person_organization"
+    ]
+  }
+}

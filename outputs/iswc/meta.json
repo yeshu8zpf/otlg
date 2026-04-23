@@ -4,47 +4,47 @@
   "fk_mode": "fk",
   "model": "gpt-5.4-nano",
   "api_url": "https://www.aiapikey.net/v1/chat/completions",
-  "prompt_chars": 8436,
+  "prompt_chars": 17483,
   "enabled_tools": [
     "schema_profiler"
   ],
   "prompt_includes": {
-    "schema_sql": false,
+    "schema_sql": true,
     "table_defs": true,
-    "sample_rows": false,
+    "sample_rows": true,
     "tool_context": true
   },
   "raw_model_top_level_counts": {
-    "num_classes": 6,
+    "num_classes": 7,
     "num_data_properties": 29,
-    "num_object_properties": 8,
-    "num_subclass_relations": 0,
-    "num_class_mappings": 6,
+    "num_object_properties": 7,
+    "num_subclass_relations": 2,
+    "num_class_mappings": 7,
     "num_data_property_mappings": 29,
-    "num_object_property_mappings": 8
+    "num_object_property_mappings": 7
   },
   "normalized_top_level_counts": {
-    "num_classes": 6,
+    "num_classes": 7,
     "num_data_properties": 29,
-    "num_object_properties": 8,
-    "num_subclass_relations": 0,
-    "num_class_mappings": 6,
+    "num_object_properties": 7,
+    "num_subclass_relations": 2,
+    "num_class_mappings": 7,
     "num_data_property_mappings": 29,
-    "num_object_property_mappings": 8
+    "num_object_property_mappings": 7
   },
   "draft_top_level_counts": {
-    "num_classes": 6,
+    "num_classes": 7,
     "num_data_properties": 29,
-    "num_object_properties": 8,
-    "num_subclass_relations": 0,
-    "num_class_mappings": 6,
+    "num_object_properties": 7,
+    "num_subclass_relations": 2,
+    "num_class_mappings": 7,
     "num_data_property_mappings": 29,
-    "num_object_property_mappings": 8
+    "num_object_property_mappings": 7
   },
   "mapping_top_level_counts": {
-    "num_classes": 6,
+    "num_classes": 7,
     "num_data_properties": 29,
-    "num_object_properties": 8,
+    "num_object_properties": 7,
     "num_subclass_relations": 0,
     "num_class_mappings": 0,
     "num_data_property_mappings": 0,
@@ -71,72 +71,32 @@
     "hypothesis_summary": {},
     "num_cross_table_value_overlap": 0
   },
-  "llm_meta": {
-    "model": "gpt-5.4-nano",
-    "api_url": "https://www.aiapikey.net/v1/chat/completions",
-    "timeout": 300.0,
-    "max_retries": 3,
-    "attempts": [
-      {
-        "attempt": 1,
-        "status": "ok",
-        "status_code": 200,
-        "response_headers": {
-          "date": "Wed, 15 Apr 2026 03:42:28 GMT",
-          "content-type": "text/event-stream",
-          "transfer-encoding": "chunked",
-          "connection": "keep-alive",
-          "server": "cloudflare",
-          "cache-control": "no-cache",
-          "x-new-api-version": "v0.12.2",
-          "x-oneapi-request-id": "2026041503421817706647DnijTKTd",
-          "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
-          "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=qQleNCjDOF7Bfxhf3vGxFqgR33LlT8o4hj6VW9klm%2FQtc09kd%2BD1kQ2j1KNAB4QNWkpURTJR%2BZLDvE9nkoV3Ys9BSvC9MjYBoKPeYVR%2BDK0l7XRT%2B5KGd7HZCnCWIA1BIilj\"}]}",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "9ec7f081b8459c81-SIN",
-          "alt-svc": "h3=\":443\"; ma=86400"
-        },
-        "raw_content_preview": "{\n  \"classes\": [\n    {\n      \"id\": \"Conference\",\n      \"label\": \"Conference\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.98,\n      \"description\": \"Conference or event record derived from the conferences table.\"\n    },\n    {\n      \"id\": \"Organization\",\n      \"label\": \"Organization\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.95,\n      \"description\": \"Organization record derived from the organizations table.\"\n    },\n    {\n      \"id\": \"Paper\",\n      \"label\": \"Paper\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.98,\n      \"description\": \"Scholarly paper derived from the papers table.\"\n    },\n    {\n      \"id\": \"Person\",\n      \"label\": \"Person\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.98,\n      \"description\": \"Person derived from the persons table.\"\n    },\n    {\n      \"id\": \"Topic\",\n      \"label\": \"Topic\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.97,\n      \"description\": \"Topic or subject category derived from the topics table.\"\n    },\n    {\n      \"id\": \"PaperTopicRelation\",\n      \"label\": \"Paper Topic Relation\",\n      \"status\": \"tentative\",\n      \"confidence\": 0.72,\n      \"description\": \"Reified relation between a paper and a topic because rel_paper_topic contains an extra attribute RelationType.\"\n    }\n  ],\n  \"data_properties\": [\n    {\n      \"id\": \"conferenceName\",\n      \"label\": \"conference name\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.99\n    },\n    {\n      \"id\": \"conferenceURI\",\n      \"label\": \"conference URI\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.97\n    },\n    {\n      \"id\": \"conferenceDateText\",\n      \"label\": \"conference date text\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.9\n    },\n    {\n      \"id\": \"conferenceLocation\",\n      \"label\": \"conference location\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.95\n    },\n    {\n      \"id\": \"conferenceTimestamp\",\n      \"label\": \"conference timestamp\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.86\n    },\n    {\n      \"id\": \"organizationType\",\n      \"label\": \"organization type\",\n      \"status\": \"tentative\",\n      \"confidence\": 0.72\n    },\n    {\n      \"id\": \"organizationName\",\n      \"label\": \"organization name\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.99\n    },\n    {\n      \"id\": \"organizationAddress\",\n      \"label\": \"organization address\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.94\n    },\n    {\n      \"id\": \"organizationLocation\",\n      \"label\": \"organization location\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.92\n    },\n    {\n      \"id\": \"organizationPostcode\",\n      \"label\": \"organization postcode\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.92\n    },\n    {\n      \"id\": \"organizationCountry\",\n      \"label\": \"organization country\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.95\n    },\n    {\n      \"id\": \"organizationURI\",\n      \"label\": \"organization URI\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.96\n    },\n    {\n      \"id\": \"organizationHomepage\",\n      \"label\": \"organization homepage\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.96\n    },\n    {\n      \"id\": \"paperTitle\",\n      \"label\": \"paper title\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.99\n    },\n    {\n      \"id\": \"paperAbstract\",\n      \"label\": \"paper abstract\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.98\n    },\n    {\n      \"id\": \"paperURI\",\n      \"label\": \"paper URI\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.97\n    },\n    {\n      \"id\": \"paperYear\",\n      \"label\": \"paper year\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.98\n    },\n    {\n      \"id\": \"personType\",\n      \"label\": \"person type\",\n      \"status\": \"tentative\",\n      \"confidence\": 0.76\n    },\n    {\n      \"id\": \"personFirstName\",\n      \"label\": \"person first name\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.99\n    },\n    {\n      \"id\": \"personLastName\",\n      \"label\": \"person last name\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.99\n    },\n    {\n      \"id\": \"personAddress\",\n      \"label\": \"person address\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.93\n    },\n    {\n      \"id\": \"personEmail\",\n      \"label\": \"person email\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.98\n    },\n    {\n      \"id\": \"personHomepage\",\n      \"label\": \"person homepage\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.96\n    },\n    {\n      \"id\": \"personPhone\",\n      \"label\": \"person phone\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.95\n    },\n    {\n      \"id\": \"personURI\",\n      \"label\": \"person URI\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.97\n    },\n    {\n      \"id\": \"personPhoto\",\n      \"label\": \"person photo\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.96\n    },\n    {\n      \"id\": \"topicName\",\n      \"label\": \"topic name\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.99\n    },\n    {\n      \"id\": \"topicURI\",\n      \"label\": \"topic URI\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.97\n    },\n    {\n      \"id\": \"paperTopicRelationType"
-      }
-    ],
-    "status_code": 200,
-    "response_headers": {
-      "date": "Wed, 15 Apr 2026 03:42:28 GMT",
-      "content-type": "text/event-stream",
-      "transfer-encoding": "chunked",
-      "connection": "keep-alive",
-      "server": "cloudflare",
-      "cache-control": "no-cache",
-      "x-new-api-version": "v0.12.2",
-      "x-oneapi-request-id": "2026041503421817706647DnijTKTd",
-      "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
-      "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=qQleNCjDOF7Bfxhf3vGxFqgR33LlT8o4hj6VW9klm%2FQtc09kd%2BD1kQ2j1KNAB4QNWkpURTJR%2BZLDvE9nkoV3Ys9BSvC9MjYBoKPeYVR%2BDK0l7XRT%2B5KGd7HZCnCWIA1BIilj\"}]}",
-      "cf-cache-status": "DYNAMIC",
-      "cf-ray": "9ec7f081b8459c81-SIN",
-      "alt-svc": "h3=\":443\"; ma=86400"
-    },
-    "raw_content_preview": "{\n  \"classes\": [\n    {\n      \"id\": \"Conference\",\n      \"label\": \"Conference\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.98,\n      \"description\": \"Conference or event record derived from the conferences table.\"\n    },\n    {\n      \"id\": \"Organization\",\n      \"label\": \"Organization\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.95,\n      \"description\": \"Organization record derived from the organizations table.\"\n    },\n    {\n      \"id\": \"Paper\",\n      \"label\": \"Paper\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.98,\n      \"description\": \"Scholarly paper derived from the papers table.\"\n    },\n    {\n      \"id\": \"Person\",\n      \"label\": \"Person\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.98,\n      \"description\": \"Person derived from the persons table.\"\n    },\n    {\n      \"id\": \"Topic\",\n      \"label\": \"Topic\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.97,\n      \"description\": \"Topic or subject category derived from the topics table.\"\n    },\n    {\n      \"id\": \"PaperTopicRelation\",\n      \"label\": \"Paper Topic Relation\",\n      \"status\": \"tentative\",\n      \"confidence\": 0.72,\n      \"description\": \"Reified relation between a paper and a topic because rel_paper_topic contains an extra attribute RelationType.\"\n    }\n  ],\n  \"data_properties\": [\n    {\n      \"id\": \"conferenceName\",\n      \"label\": \"conference name\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.99\n    },\n    {\n      \"id\": \"conferenceURI\",\n      \"label\": \"conference URI\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.97\n    },\n    {\n      \"id\": \"conferenceDateText\",\n      \"label\": \"conference date text\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.9\n    },\n    {\n      \"id\": \"conferenceLocation\",\n      \"label\": \"conference location\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.95\n    },\n    {\n      \"id\": \"conferenceTimestamp\",\n      \"label\": \"conference timestamp\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.86\n    },\n    {\n      \"id\": \"organizationType\",\n      \"label\": \"organization type\",\n      \"status\": \"tentative\",\n      \"confidence\": 0.72\n    },\n    {\n      \"id\": \"organizationName\",\n      \"label\": \"organization name\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.99\n    },\n    {\n      \"id\": \"organizationAddress\",\n      \"label\": \"organization address\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.94\n    },\n    {\n      \"id\": \"organizationLocation\",\n      \"label\": \"organization location\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.92\n    },\n    {\n      \"id\": \"organizationPostcode\",\n      \"label\": \"organization postcode\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.92\n    },\n    {\n      \"id\": \"organizationCountry\",\n      \"label\": \"organization country\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.95\n    },\n    {\n      \"id\": \"organizationURI\",\n      \"label\": \"organization URI\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.96\n    },\n    {\n      \"id\": \"organizationHomepage\",\n      \"label\": \"organization homepage\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.96\n    },\n    {\n      \"id\": \"paperTitle\",\n      \"label\": \"paper title\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.99\n    },\n    {\n      \"id\": \"paperAbstract\",\n      \"label\": \"paper abstract\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.98\n    },\n    {\n      \"id\": \"paperURI\",\n      \"label\": \"paper URI\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.97\n    },\n    {\n      \"id\": \"paperYear\",\n      \"label\": \"paper year\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.98\n    },\n    {\n      \"id\": \"personType\",\n      \"label\": \"person type\",\n      \"status\": \"tentative\",\n      \"confidence\": 0.76\n    },\n    {\n      \"id\": \"personFirstName\",\n      \"label\": \"person first name\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.99\n    },\n    {\n      \"id\": \"personLastName\",\n      \"label\": \"person last name\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.99\n    },\n    {\n      \"id\": \"personAddress\",\n      \"label\": \"person address\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.93\n    },\n    {\n      \"id\": \"personEmail\",\n      \"label\": \"person email\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.98\n    },\n    {\n      \"id\": \"personHomepage\",\n      \"label\": \"person homepage\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.96\n    },\n    {\n      \"id\": \"personPhone\",\n      \"label\": \"person phone\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.95\n    },\n    {\n      \"id\": \"personURI\",\n      \"label\": \"person URI\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.97\n    },\n    {\n      \"id\": \"personPhoto\",\n      \"label\": \"person photo\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.96\n    },\n    {\n      \"id\": \"topicName\",\n      \"label\": \"topic name\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.99\n    },\n    {\n      \"id\": \"topicURI\",\n      \"label\": \"topic URI\",\n      \"status\": \"confirmed\",\n      \"confidence\": 0.97\n    },\n    {\n      \"id\": \"paperTopicRelationType"
-  },
+  "llm_meta": {},
   "normalization_report": {
     "ok": true,
-    "num_messages": 76,
-    "by_level": {
-      "info": 76
-    },
-    "by_code": {
-      "CLASS_SOURCE_TABLES_BACKFILLED_FROM_MAPPING": 6,
-      "CLASS_IDENTIFIER_COLUMNS_BACKFILLED": 6,
-      "CLASS_INSTANCE_TEMPLATE_BACKFILLED": 6,
-      "DATA_PROPERTY_SOURCE_COLUMNS_BACKFILLED": 29,
-      "DATA_PROPERTY_DOMAIN_BACKFILLED": 29
-    },
+    "num_messages": 0,
+    "by_level": {},
+    "by_code": {},
     "stats": {
       "num_errors": 0,
       "num_warnings": 0,
-      "num_infos": 76
+      "num_infos": 0
     }
   },
   "fail_fast_on_invalid_draft": false,
+  "resume": "auto",
+  "requested_start_from": null,
+  "effective_start_from": "normalize",
+  "reused_files": [
+    "raw_model.json"
+  ],
+  "rerun_files": [
+    "normalized.json",
+    "draft.json",
+    "validation.json",
+    "verifier.json",
+    "mapping.json"
+  ],
   "gt_artifacts": {
     "gt_kind": "missing",
     "copied_files": [

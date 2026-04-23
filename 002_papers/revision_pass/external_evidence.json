@@ -1,0 +1,388 @@
+[
+  {
+    "type": "value_samples",
+    "backend": "schema_sql_dump",
+    "schema_sql_path": "burr_benchmark/real-world/iswc/schema.sql",
+    "columns": [
+      "papers.PaperID",
+      "papers.Title",
+      "papers.Abstract",
+      "papers.URI",
+      "papers.Year",
+      "papers.Conference",
+      "papers.Publish",
+      "papers.title",
+      "papers.abstract",
+      "papers.uri",
+      "papers.year"
+    ],
+    "results": [
+      {
+        "source": "schema_sql_dump",
+        "table": "papers",
+        "column": "PaperID",
+        "sample_values": [
+          1,
+          2,
+          4,
+          5,
+          6
+        ],
+        "distinct_count": 5,
+        "null_count": 0,
+        "row_count": 5,
+        "non_null_ratio": 1.0,
+        "top_distinct_values": [
+          {
+            "value": 1,
+            "count": 1
+          },
+          {
+            "value": 2,
+            "count": 1
+          },
+          {
+            "value": 4,
+            "count": 1
+          },
+          {
+            "value": 5,
+            "count": 1
+          },
+          {
+            "value": 6,
+            "count": 1
+          }
+        ]
+      },
+      {
+        "source": "schema_sql_dump",
+        "table": "papers",
+        "column": "Title",
+        "sample_values": [
+          "Trusting Information Sources One Citizen at a Time",
+          "Automatic Generation of Java/SQL based Inference Engines from RDF Schema and RuleML",
+          "Three Implementations of SquishQL, a Simple RDF Query Language",
+          "A Data Integration Framework for E-commerce Product Classification",
+          "Integrating Vocabularies: Discovering and Representing Vocabulary Maps"
+        ],
+        "distinct_count": 5,
+        "null_count": 0,
+        "row_count": 5,
+        "non_null_ratio": 1.0,
+        "top_distinct_values": [
+          {
+            "value": "A Data Integration Framework for E-commerce Product Classification",
+            "count": 1
+          },
+          {
+            "value": "Automatic Generation of Java/SQL based Inference Engines from RDF Schema and RuleML",
+            "count": 1
+          },
+          {
+            "value": "Integrating Vocabularies: Discovering and Representing Vocabulary Maps",
+            "count": 1
+          },
+          {
+            "value": "Three Implementations of SquishQL, a Simple RDF Query Language",
+            "count": 1
+          },
+          {
+            "value": "Trusting Information Sources One Citizen at a Time",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "source": "schema_sql_dump",
+        "table": "papers",
+        "column": "Abstract",
+        "sample_values": [
+          "This paper describes an approach to derive assessments about information n      sources based on individual feedback about the sources. We describe n      TRELLIS, a system that helps users annotate their analysis of n      alternative information sources that can be contradictory and n      incomplete. As the user makes a decision on which sources to dismiss and n      which to believe in making a final decision, TRELLIS captures the n      derivation of the decision in a semantic markup. TRELLIS then uses these n      annotations to derive an assessment of the source based on the n      annotations of many individuals. Our work builds on the Semantic Web and n      presents a tool that helps users create annotations that are in a mix of n      formal and human language, and exploits the formal representations to n      derive measures of trust in the content of Web resources and their n      original source.",
+          "This paper describes two approaches for automatically converting RDF Schema nand RuleML sources into an inference engine and storage repository. Rather than nusing traditional inference systems, our solution bases on mainstream ntechnologies like Java and relational database systems. While this necessarily nimposes some restrictions, the ease of integration into an existing IT landscape nis a major advantage. We present the conversion tools and their limitations. nFurthermore, an extension to RuleML is proposed, that allows Java-enabled nreaction rules, where calls to Java libraries can be performed upon a rule nfiring. This requires hosts to be Java-enabled when rules and code are moved nacross the web. However, the solution allows for great engineering nflexibility.",
+          "RDF provides a basic way to represent data for the Semantic Web. We have n      been experimenting with the query paradigm for working with RDF data in n      semantic web applications. Query of RDF data provides a declarative n      access mechanism that is suitable for application usage and remote n      access. We describe work on a conceptual model for querying RDF data n      that refines ideas first presented in at the W3C workshop on Query n      Languages and the design of one possible syntax, derived from rdfDB, n      that is suitable for application programmers. Further, we present n      experience gained in three implementations of the query language.",
+          "A marketplace is n      the place in which the demand and supply of buyers and vendors n      participating in a business process may meet. Therefore, electronic n      marketplaces are virtual communities in which buyers may meet proposals n      of several suppliers and make the best choice. In the electronic n      commerce world, the comparison between different products is blocked due n      to the lack of standards (on the contrary, the proliferation of n      standards) describing and classifying them. Therefore, the need for B2B n      and B2C marketplaces is to reclassify products and goods according to n      different standardization models. This paper aims to face this problem n      by suggesting the use of a semi-automatic methodology, supported by a n      tool (SI-Designer), to define the mapping among different e-commerce n      product classification standards. This methodology was developed for the n      MOMIS-system within the Intelligent Integration of Information research n      area. We describe our extension to the methodology that makes it n      applyable in general to product classification standard, by selecting a n      fragment of ECCMA/UNSPSC and ecl@ss standard.",
+          "The Semantic Web would enable new ways of doing business on the<br>Web n      that require development of advanced business document<br>integration n      technologies performing intelligent document<br>transformation. The n      documents use different vocabularies that<br>consist of large n      hierarchies of terms. Accordingly, vocabulary<br>mapping and n      transformation becomes an important task in the whole<br>business n      document transformation process. It includes several<br>subtasks: map n      discovery, map representation, and map execution<br>that must be n      seamlessly integrated into the document integration<br>process. In this n      paper we discuss the process of discovering the<br>maps between two n      vocabularies assuming availability of two sets of<br>documents, each n      using one of the vocabularies. We take the<br>vocabularies of product n      classification codes as a playground and<br>propose a reusable map n      discovery technique based on Bayesian text<br>classification approach. n      We show how the discovered maps can be<br>integrated into the document n      transformation process."
+        ],
+        "distinct_count": 5,
+        "null_count": 0,
+        "row_count": 5,
+        "non_null_ratio": 1.0,
+        "top_distinct_values": [
+          {
+            "value": "A marketplace is n      the place in which the demand and supply of buyers and vendors n      participating in a business process may meet. Therefore, electronic n      marketplaces are virtual communities in which buyers may meet proposals n      of several suppliers and make the best choice. In the electronic n      commerce world, the comparison between different products is blocked due n      to the lack of standards (on the contrary, the proliferation of n      standards) describing and classifying them. Therefore, the need for B2B n      and B2C marketplaces is to reclassify products and goods according to n      different standardization models. This paper aims to face this problem n      by suggesting the use of a semi-automatic methodology, supported by a n      tool (SI-Designer), to define the mapping among different e-commerce n      product classification standards. This methodology was developed for the n      MOMIS-system within the Intelligent Integration of Information research n      area. We describe our extension to the methodology that makes it n      applyable in general to product classification standard, by selecting a n      fragment of ECCMA/UNSPSC and ecl@ss standard.",
+            "count": 1
+          },
+          {
+            "value": "RDF provides a basic way to represent data for the Semantic Web. We have n      been experimenting with the query paradigm for working with RDF data in n      semantic web applications. Query of RDF data provides a declarative n      access mechanism that is suitable for application usage and remote n      access. We describe work on a conceptual model for querying RDF data n      that refines ideas first presented in at the W3C workshop on Query n      Languages and the design of one possible syntax, derived from rdfDB, n      that is suitable for application programmers. Further, we present n      experience gained in three implementations of the query language.",
+            "count": 1
+          },
+          {
+            "value": "The Semantic Web would enable new ways of doing business on the<br>Web n      that require development of advanced business document<br>integration n      technologies performing intelligent document<br>transformation. The n      documents use different vocabularies that<br>consist of large n      hierarchies of terms. Accordingly, vocabulary<br>mapping and n      transformation becomes an important task in the whole<br>business n      document transformation process. It includes several<br>subtasks: map n      discovery, map representation, and map execution<br>that must be n      seamlessly integrated into the document integration<br>process. In this n      paper we discuss the process of discovering the<br>maps between two n      vocabularies assuming availability of two sets of<br>documents, each n      using one of the vocabularies. We take the<br>vocabularies of product n      classification codes as a playground and<br>propose a reusable map n      discovery technique based on Bayesian text<br>classification approach. n      We show how the discovered maps can be<br>integrated into the document n      transformation process.",
+            "count": 1
+          },
+          {
+            "value": "This paper describes an approach to derive assessments about information n      sources based on individual feedback about the sources. We describe n      TRELLIS, a system that helps users annotate their analysis of n      alternative information sources that can be contradictory and n      incomplete. As the user makes a decision on which sources to dismiss and n      which to believe in making a final decision, TRELLIS captures the n      derivation of the decision in a semantic markup. TRELLIS then uses these n      annotations to derive an assessment of the source based on the n      annotations of many individuals. Our work builds on the Semantic Web and n      presents a tool that helps users create annotations that are in a mix of n      formal and human language, and exploits the formal representations to n      derive measures of trust in the content of Web resources and their n      original source.",
+            "count": 1
+          },
+          {
+            "value": "This paper describes two approaches for automatically converting RDF Schema nand RuleML sources into an inference engine and storage repository. Rather than nusing traditional inference systems, our solution bases on mainstream ntechnologies like Java and relational database systems. While this necessarily nimposes some restrictions, the ease of integration into an existing IT landscape nis a major advantage. We present the conversion tools and their limitations. nFurthermore, an extension to RuleML is proposed, that allows Java-enabled nreaction rules, where calls to Java libraries can be performed upon a rule nfiring. This requires hosts to be Java-enabled when rules and code are moved nacross the web. However, the solution allows for great engineering nflexibility.",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "source": "schema_sql_dump",
+        "table": "papers",
+        "column": "URI",
+        "sample_values": [
+          "http://trellis.semanticweb.org/expect/web/semanticweb/iswc02_trellis.pdf#Trusting Information Sources One Citizen at a Time",
+          "http://www.i-u.de/schools/eberhart/iswc2002/#Automatic Generation of Java/SQL based Inference Engines from RDF Schema and RuleML",
+          "http://www-uk.hpl.hp.com/people/afs/Abstracts/ISWC2002-SquishQL-Abstract.html#SquishQL",
+          "http://www.dbgroup.unimo.it/iswc/iswc.html#A Data Integration Framework for E-commerce Product Classification",
+          "http://www.cs.vu.nl/~borys/papers/abstracts/ISWC2002.html#OmelayenkoISWC2002"
+        ],
+        "distinct_count": 5,
+        "null_count": 0,
+        "row_count": 5,
+        "non_null_ratio": 1.0,
+        "top_distinct_values": [
+          {
+            "value": "http://trellis.semanticweb.org/expect/web/semanticweb/iswc02_trellis.pdf#Trusting Information Sources One Citizen at a Time",
+            "count": 1
+          },
+          {
+            "value": "http://www-uk.hpl.hp.com/people/afs/Abstracts/ISWC2002-SquishQL-Abstract.html#SquishQL",
+            "count": 1
+          },
+          {
+            "value": "http://www.cs.vu.nl/~borys/papers/abstracts/ISWC2002.html#OmelayenkoISWC2002",
+            "count": 1
+          },
+          {
+            "value": "http://www.dbgroup.unimo.it/iswc/iswc.html#A Data Integration Framework for E-commerce Product Classification",
+            "count": 1
+          },
+          {
+            "value": "http://www.i-u.de/schools/eberhart/iswc2002/#Automatic Generation of Java/SQL based Inference Engines from RDF Schema and RuleML",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "source": "schema_sql_dump",
+        "table": "papers",
+        "column": "Year",
+        "sample_values": [
+          2002,
+          2002,
+          2003,
+          2002,
+          2003
+        ],
+        "distinct_count": 2,
+        "null_count": 0,
+        "row_count": 5,
+        "non_null_ratio": 1.0,
+        "top_distinct_values": [
+          {
+            "value": 2002,
+            "count": 3
+          },
+          {
+            "value": 2003,
+            "count": 2
+          }
+        ]
+      },
+      {
+        "source": "schema_sql_dump",
+        "table": "papers",
+        "column": "Conference",
+        "sample_values": [
+          23541,
+          23541,
+          23541,
+          23541,
+          23541
+        ],
+        "distinct_count": 1,
+        "null_count": 0,
+        "row_count": 5,
+        "non_null_ratio": 1.0,
+        "top_distinct_values": [
+          {
+            "value": 23541,
+            "count": 5
+          }
+        ]
+      },
+      {
+        "source": "schema_sql_dump",
+        "table": "papers",
+        "column": "Publish",
+        "sample_values": [
+          1,
+          1,
+          1,
+          1,
+          0
+        ],
+        "distinct_count": 2,
+        "null_count": 0,
+        "row_count": 5,
+        "non_null_ratio": 1.0,
+        "top_distinct_values": [
+          {
+            "value": 1,
+            "count": 4
+          },
+          {
+            "value": 0,
+            "count": 1
+          }
+        ]
+      },
+      {
+        "source": "schema_sql_dump",
+        "table": "papers",
+        "column": "title",
+        "sample_values": [
+          "Trusting Information Sources One Citizen at a Time",
+          "Automatic Generation of Java/SQL based Inference Engines from RDF Schema and RuleML",
+          "Three Implementations of SquishQL, a Simple RDF Query Language",
+          "A Data Integration Framework for E-commerce Product Classification",
+          "Integrating Vocabularies: Discovering and Representing Vocabulary Maps"
+        ],
+        "distinct_count": 5,
+        "null_count": 0,
+        "row_count": 5,
+        "non_null_ratio": 1.0,
+        "top_distinct_values": [
+          {
+            "value": "A Data Integration Framework for E-commerce Product Classification",
+            "count": 1
+          },
+          {
+            "value": "Automatic Generation of Java/SQL based Inference Engines from RDF Schema and RuleML",
+            "count": 1
+          },
+          {
+            "value": "Integrating Vocabularies: Discovering and Representing Vocabulary Maps",
+            "count": 1
+          },
+          {
+            "value": "Three Implementations of SquishQL, a Simple RDF Query Language",
+            "count": 1
+          },
+          {
+            "value": "Trusting Information Sources One Citizen at a Time",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "source": "schema_sql_dump",
+        "table": "papers",
+        "column": "abstract",
+        "sample_values": [
+          "This paper describes an approach to derive assessments about information n      sources based on individual feedback about the sources. We describe n      TRELLIS, a system that helps users annotate their analysis of n      alternative information sources that can be contradictory and n      incomplete. As the user makes a decision on which sources to dismiss and n      which to believe in making a final decision, TRELLIS captures the n      derivation of the decision in a semantic markup. TRELLIS then uses these n      annotations to derive an assessment of the source based on the n      annotations of many individuals. Our work builds on the Semantic Web and n      presents a tool that helps users create annotations that are in a mix of n      formal and human language, and exploits the formal representations to n      derive measures of trust in the content of Web resources and their n      original source.",
+          "This paper describes two approaches for automatically converting RDF Schema nand RuleML sources into an inference engine and storage repository. Rather than nusing traditional inference systems, our solution bases on mainstream ntechnologies like Java and relational database systems. While this necessarily nimposes some restrictions, the ease of integration into an existing IT landscape nis a major advantage. We present the conversion tools and their limitations. nFurthermore, an extension to RuleML is proposed, that allows Java-enabled nreaction rules, where calls to Java libraries can be performed upon a rule nfiring. This requires hosts to be Java-enabled when rules and code are moved nacross the web. However, the solution allows for great engineering nflexibility.",
+          "RDF provides a basic way to represent data for the Semantic Web. We have n      been experimenting with the query paradigm for working with RDF data in n      semantic web applications. Query of RDF data provides a declarative n      access mechanism that is suitable for application usage and remote n      access. We describe work on a conceptual model for querying RDF data n      that refines ideas first presented in at the W3C workshop on Query n      Languages and the design of one possible syntax, derived from rdfDB, n      that is suitable for application programmers. Further, we present n      experience gained in three implementations of the query language.",
+          "A marketplace is n      the place in which the demand and supply of buyers and vendors n      participating in a business process may meet. Therefore, electronic n      marketplaces are virtual communities in which buyers may meet proposals n      of several suppliers and make the best choice. In the electronic n      commerce world, the comparison between different products is blocked due n      to the lack of standards (on the contrary, the proliferation of n      standards) describing and classifying them. Therefore, the need for B2B n      and B2C marketplaces is to reclassify products and goods according to n      different standardization models. This paper aims to face this problem n      by suggesting the use of a semi-automatic methodology, supported by a n      tool (SI-Designer), to define the mapping among different e-commerce n      product classification standards. This methodology was developed for the n      MOMIS-system within the Intelligent Integration of Information research n      area. We describe our extension to the methodology that makes it n      applyable in general to product classification standard, by selecting a n      fragment of ECCMA/UNSPSC and ecl@ss standard.",
+          "The Semantic Web would enable new ways of doing business on the<br>Web n      that require development of advanced business document<br>integration n      technologies performing intelligent document<br>transformation. The n      documents use different vocabularies that<br>consist of large n      hierarchies of terms. Accordingly, vocabulary<br>mapping and n      transformation becomes an important task in the whole<br>business n      document transformation process. It includes several<br>subtasks: map n      discovery, map representation, and map execution<br>that must be n      seamlessly integrated into the document integration<br>process. In this n      paper we discuss the process of discovering the<br>maps between two n      vocabularies assuming availability of two sets of<br>documents, each n      using one of the vocabularies. We take the<br>vocabularies of product n      classification codes as a playground and<br>propose a reusable map n      discovery technique based on Bayesian text<br>classification approach. n      We show how the discovered maps can be<br>integrated into the document n      transformation process."
+        ],
+        "distinct_count": 5,
+        "null_count": 0,
+        "row_count": 5,
+        "non_null_ratio": 1.0,
+        "top_distinct_values": [
+          {
+            "value": "A marketplace is n      the place in which the demand and supply of buyers and vendors n      participating in a business process may meet. Therefore, electronic n      marketplaces are virtual communities in which buyers may meet proposals n      of several suppliers and make the best choice. In the electronic n      commerce world, the comparison between different products is blocked due n      to the lack of standards (on the contrary, the proliferation of n      standards) describing and classifying them. Therefore, the need for B2B n      and B2C marketplaces is to reclassify products and goods according to n      different standardization models. This paper aims to face this problem n      by suggesting the use of a semi-automatic methodology, supported by a n      tool (SI-Designer), to define the mapping among different e-commerce n      product classification standards. This methodology was developed for the n      MOMIS-system within the Intelligent Integration of Information research n      area. We describe our extension to the methodology that makes it n      applyable in general to product classification standard, by selecting a n      fragment of ECCMA/UNSPSC and ecl@ss standard.",
+            "count": 1
+          },
+          {
+            "value": "RDF provides a basic way to represent data for the Semantic Web. We have n      been experimenting with the query paradigm for working with RDF data in n      semantic web applications. Query of RDF data provides a declarative n      access mechanism that is suitable for application usage and remote n      access. We describe work on a conceptual model for querying RDF data n      that refines ideas first presented in at the W3C workshop on Query n      Languages and the design of one possible syntax, derived from rdfDB, n      that is suitable for application programmers. Further, we present n      experience gained in three implementations of the query language.",
+            "count": 1
+          },
+          {
+            "value": "The Semantic Web would enable new ways of doing business on the<br>Web n      that require development of advanced business document<br>integration n      technologies performing intelligent document<br>transformation. The n      documents use different vocabularies that<br>consist of large n      hierarchies of terms. Accordingly, vocabulary<br>mapping and n      transformation becomes an important task in the whole<br>business n      document transformation process. It includes several<br>subtasks: map n      discovery, map representation, and map execution<br>that must be n      seamlessly integrated into the document integration<br>process. In this n      paper we discuss the process of discovering the<br>maps between two n      vocabularies assuming availability of two sets of<br>documents, each n      using one of the vocabularies. We take the<br>vocabularies of product n      classification codes as a playground and<br>propose a reusable map n      discovery technique based on Bayesian text<br>classification approach. n      We show how the discovered maps can be<br>integrated into the document n      transformation process.",
+            "count": 1
+          },
+          {
+            "value": "This paper describes an approach to derive assessments about information n      sources based on individual feedback about the sources. We describe n      TRELLIS, a system that helps users annotate their analysis of n      alternative information sources that can be contradictory and n      incomplete. As the user makes a decision on which sources to dismiss and n      which to believe in making a final decision, TRELLIS captures the n      derivation of the decision in a semantic markup. TRELLIS then uses these n      annotations to derive an assessment of the source based on the n      annotations of many individuals. Our work builds on the Semantic Web and n      presents a tool that helps users create annotations that are in a mix of n      formal and human language, and exploits the formal representations to n      derive measures of trust in the content of Web resources and their n      original source.",
+            "count": 1
+          },
+          {
+            "value": "This paper describes two approaches for automatically converting RDF Schema nand RuleML sources into an inference engine and storage repository. Rather than nusing traditional inference systems, our solution bases on mainstream ntechnologies like Java and relational database systems. While this necessarily nimposes some restrictions, the ease of integration into an existing IT landscape nis a major advantage. We present the conversion tools and their limitations. nFurthermore, an extension to RuleML is proposed, that allows Java-enabled nreaction rules, where calls to Java libraries can be performed upon a rule nfiring. This requires hosts to be Java-enabled when rules and code are moved nacross the web. However, the solution allows for great engineering nflexibility.",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "source": "schema_sql_dump",
+        "table": "papers",
+        "column": "uri",
+        "sample_values": [
+          "http://trellis.semanticweb.org/expect/web/semanticweb/iswc02_trellis.pdf#Trusting Information Sources One Citizen at a Time",
+          "http://www.i-u.de/schools/eberhart/iswc2002/#Automatic Generation of Java/SQL based Inference Engines from RDF Schema and RuleML",
+          "http://www-uk.hpl.hp.com/people/afs/Abstracts/ISWC2002-SquishQL-Abstract.html#SquishQL",
+          "http://www.dbgroup.unimo.it/iswc/iswc.html#A Data Integration Framework for E-commerce Product Classification",
+          "http://www.cs.vu.nl/~borys/papers/abstracts/ISWC2002.html#OmelayenkoISWC2002"
+        ],
+        "distinct_count": 5,
+        "null_count": 0,
+        "row_count": 5,
+        "non_null_ratio": 1.0,
+        "top_distinct_values": [
+          {
+            "value": "http://trellis.semanticweb.org/expect/web/semanticweb/iswc02_trellis.pdf#Trusting Information Sources One Citizen at a Time",
+            "count": 1
+          },
+          {
+            "value": "http://www-uk.hpl.hp.com/people/afs/Abstracts/ISWC2002-SquishQL-Abstract.html#SquishQL",
+            "count": 1
+          },
+          {
+            "value": "http://www.cs.vu.nl/~borys/papers/abstracts/ISWC2002.html#OmelayenkoISWC2002",
+            "count": 1
+          },
+          {
+            "value": "http://www.dbgroup.unimo.it/iswc/iswc.html#A Data Integration Framework for E-commerce Product Classification",
+            "count": 1
+          },
+          {
+            "value": "http://www.i-u.de/schools/eberhart/iswc2002/#Automatic Generation of Java/SQL based Inference Engines from RDF Schema and RuleML",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "source": "schema_sql_dump",
+        "table": "papers",
+        "column": "year",
+        "sample_values": [
+          2002,
+          2002,
+          2003,
+          2002,
+          2003
+        ],
+        "distinct_count": 2,
+        "null_count": 0,
+        "row_count": 5,
+        "non_null_ratio": 1.0,
+        "top_distinct_values": [
+          {
+            "value": 2002,
+            "count": 3
+          },
+          {
+            "value": 2003,
+            "count": 2
+          }
+        ]
+      }
+    ]
+  }
+]

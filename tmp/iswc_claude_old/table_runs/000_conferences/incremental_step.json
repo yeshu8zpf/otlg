@@ -1,0 +1,66 @@
+{
+  "step_index": 0,
+  "new_table": "conferences",
+  "related_existing_tables": [],
+  "local_table": {
+    "name": "conferences",
+    "columns": [
+      {
+        "name": "ConfID",
+        "type": "int",
+        "raw": "ConfID int NOT NULL default '0'",
+        "is_primary_key": true
+      },
+      {
+        "name": "Name",
+        "type": "varchar(100)",
+        "raw": "Name varchar(100) default NULL",
+        "is_primary_key": false
+      },
+      {
+        "name": "URI",
+        "type": "varchar(200)",
+        "raw": "URI varchar(200) default NULL",
+        "is_primary_key": false
+      },
+      {
+        "name": "Date",
+        "type": "varchar(50)",
+        "raw": "Date varchar(50) default NULL",
+        "is_primary_key": false
+      },
+      {
+        "name": "Location",
+        "type": "varchar(50)",
+        "raw": "Location varchar(50) default NULL",
+        "is_primary_key": false
+      },
+      {
+        "name": "Datum",
+        "type": "timestamp(0)",
+        "raw": "Datum timestamp(0) default NULL",
+        "is_primary_key": false
+      }
+    ],
+    "fks": []
+  },
+  "local_fk_edges": [],
+  "related_table_defs": {},
+  "multi_table_signals": {
+    "many_fk_targets": false,
+    "connector_like": false,
+    "association_class_likelihood": false,
+    "address_like_bundle": [
+      "location"
+    ],
+    "requires_multi_table_reasoning": true
+  },
+  "suggested_analysis_scope": {
+    "recommended_tables_for_joint_analysis": [
+      "conferences"
+    ],
+    "reason": [
+      "structured_value_object_bundle"
+    ]
+  }
+}

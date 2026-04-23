@@ -1,0 +1,135 @@
+{
+  "scenario_dir": "/root/ontology/burr_benchmark/real-world/mondial",
+  "schema_path": "/root/ontology/burr_benchmark/real-world/mondial/real_world__mondial__fk.sql",
+  "fk_mode": "fk",
+  "model": "gpt-5.4-nano",
+  "api_url": "https://www.aiapikey.net/v1/chat/completions",
+  "prompt_chars": 51482,
+  "enabled_tools": [
+    "schema_profiler"
+  ],
+  "prompt_includes": {
+    "schema_sql": true,
+    "table_defs": true,
+    "sample_rows": true,
+    "tool_context": true
+  },
+  "raw_model_top_level_counts": {
+    "num_classes": 21,
+    "num_data_properties": 79,
+    "num_object_properties": 44,
+    "num_subclass_relations": 0,
+    "num_class_mappings": 21,
+    "num_data_property_mappings": 79,
+    "num_object_property_mappings": 44
+  },
+  "normalized_top_level_counts": {
+    "num_classes": 21,
+    "num_data_properties": 79,
+    "num_object_properties": 44,
+    "num_subclass_relations": 0,
+    "num_class_mappings": 21,
+    "num_data_property_mappings": 79,
+    "num_object_property_mappings": 44
+  },
+  "draft_top_level_counts": {
+    "num_classes": 21,
+    "num_data_properties": 79,
+    "num_object_properties": 44,
+    "num_subclass_relations": 0,
+    "num_class_mappings": 21,
+    "num_data_property_mappings": 79,
+    "num_object_property_mappings": 44
+  },
+  "mapping_top_level_counts": {
+    "num_classes": 21,
+    "num_data_properties": 79,
+    "num_object_properties": 44,
+    "num_subclass_relations": 0,
+    "num_class_mappings": 0,
+    "num_data_property_mappings": 0,
+    "num_object_property_mappings": 0
+  },
+  "draft_validation": {
+    "ok": false,
+    "num_errors": 6,
+    "errors": [
+      "Object property ObjectProperty:languageSuperlanguage has neither join_paths/object_property_mapping.joins nor dynamicProperty.",
+      "Object property ObjectProperty:countryDependsOnCountry has neither join_paths/object_property_mapping.joins nor dynamicProperty.",
+      "Object property ObjectProperty:riverFlowsIntoRiver has neither join_paths/object_property_mapping.joins nor dynamicProperty.",
+      "Object property ObjectProperty:riverFlowsIntoLake has neither join_paths/object_property_mapping.joins nor dynamicProperty.",
+      "Object property ObjectProperty:riverFlowsIntoSea has neither join_paths/object_property_mapping.joins nor dynamicProperty.",
+      "Object property ObjectProperty:seaMergesWithSea has neither join_paths/object_property_mapping.joins nor dynamicProperty."
+    ]
+  },
+  "lite_verification_summary": {
+    "ok": true,
+    "num_errors": 0,
+    "num_warnings": 0,
+    "num_infos": 0
+  },
+  "verification_feedback": null,
+  "tool_context_summary": {
+    "schema_summary": {
+      "num_tables": 47,
+      "num_columns": 182,
+      "num_foreign_keys": 69
+    },
+    "hypothesis_summary": {},
+    "num_cross_table_value_overlap": 0
+  },
+  "llm_meta": {},
+  "normalization_report": {
+    "ok": true,
+    "num_messages": 0,
+    "by_level": {},
+    "by_code": {},
+    "stats": {
+      "num_errors": 0,
+      "num_warnings": 0,
+      "num_infos": 0
+    }
+  },
+  "fail_fast_on_invalid_draft": false,
+  "resume": "auto",
+  "requested_start_from": null,
+  "effective_start_from": "normalize",
+  "reused_files": [
+    "raw_model.json"
+  ],
+  "rerun_files": [
+    "normalized.json",
+    "draft.json",
+    "validation.json",
+    "verifier.json",
+    "mapping.json"
+  ],
+  "gt_artifacts": {
+    "gt_kind": "mapping_dir",
+    "copied_files": [
+      "/root/ontology/outputs/mondial/gt.mappings/border.json",
+      "/root/ontology/outputs/mondial/gt.mappings/city.json",
+      "/root/ontology/outputs/mondial/gt.mappings/continent.json",
+      "/root/ontology/outputs/mondial/gt.mappings/country.json",
+      "/root/ontology/outputs/mondial/gt.mappings/desert.json",
+      "/root/ontology/outputs/mondial/gt.mappings/encompassed.json",
+      "/root/ontology/outputs/mondial/gt.mappings/estuary.json",
+      "/root/ontology/outputs/mondial/gt.mappings/ethnicgroup.json",
+      "/root/ontology/outputs/mondial/gt.mappings/island.json",
+      "/root/ontology/outputs/mondial/gt.mappings/lake.json",
+      "/root/ontology/outputs/mondial/gt.mappings/language.json",
+      "/root/ontology/outputs/mondial/gt.mappings/meta.json",
+      "/root/ontology/outputs/mondial/gt.mappings/mountain.json",
+      "/root/ontology/outputs/mondial/gt.mappings/organization.json",
+      "/root/ontology/outputs/mondial/gt.mappings/populationcount.json",
+      "/root/ontology/outputs/mondial/gt.mappings/province.json",
+      "/root/ontology/outputs/mondial/gt.mappings/religion.json",
+      "/root/ontology/outputs/mondial/gt.mappings/river.json",
+      "/root/ontology/outputs/mondial/gt.mappings/sea.json",
+      "/root/ontology/outputs/mondial/gt.mappings/source.json"
+    ],
+    "mapping_json": null,
+    "mappings_dir": "/root/ontology/burr_benchmark/real-world/mondial/mappings",
+    "meta_json": null
+  }
+}

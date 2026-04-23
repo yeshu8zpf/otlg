@@ -1,0 +1,67 @@
+[
+  {
+    "target_type": "class_mapping",
+    "target_id": "Paper_from_papers",
+    "current_class_id": "Class:Paper",
+    "from_tables": [
+      "papers"
+    ],
+    "focus": [
+      "condition necessity",
+      "identity strategy correctness",
+      "class scope too broad or too narrow",
+      "possible downstream impact on related properties and relations"
+    ]
+  },
+  {
+    "target_type": "data_property_mapping",
+    "target_id": "hasTitle_from_Title",
+    "current_property_id": "DataProperty:hasTitle",
+    "focus": [
+      "ordinary literal vs class-defining signal",
+      "datatype mismatch",
+      "possible move from attribute to condition-bearing class revision"
+    ]
+  },
+  {
+    "target_type": "data_property_mapping",
+    "target_id": "hasAbstract_from_Abstract",
+    "current_property_id": "DataProperty:hasAbstract",
+    "focus": [
+      "ordinary literal vs class-defining signal",
+      "datatype mismatch",
+      "possible move from attribute to condition-bearing class revision"
+    ]
+  },
+  {
+    "target_type": "data_property_mapping",
+    "target_id": "hasURI_from_URI",
+    "current_property_id": "DataProperty:hasURI",
+    "focus": [
+      "ordinary literal vs class-defining signal",
+      "datatype mismatch",
+      "possible move from attribute to condition-bearing class revision"
+    ]
+  },
+  {
+    "target_type": "data_property_mapping",
+    "target_id": "hasPublicationYear_from_Year",
+    "current_property_id": "DataProperty:hasPublicationYear",
+    "focus": [
+      "ordinary literal vs class-defining signal",
+      "datatype mismatch",
+      "possible move from attribute to condition-bearing class revision"
+    ]
+  },
+  {
+    "target_type": "scope_review",
+    "target_id": "papers",
+    "focus": [
+      "inspect all columns in local scope",
+      "look for class-defining conditions",
+      "look for over-broad class mappings",
+      "look for identity mistakes",
+      "look for relation/attribute revisions implied by class revision"
+    ]
+  }
+]

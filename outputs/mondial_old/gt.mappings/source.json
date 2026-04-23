@@ -1,0 +1,58 @@
+{
+    "classes": [
+        {
+            "id": "@@river.name@@",
+            "class": "Source",
+            "prefix": "mondial"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "locatedIn",
+            "belongsToClass": "Source",
+            "refersToClassMap": "CountryFull",
+            "join": [
+                "geo_source.river = river.name",
+                "geo_source.country = country.code"
+            ]
+        },
+        {
+            "property": "locatedIn",
+            "belongsToClass": "Source",
+            "refersToClass": "Province",
+            "join": [
+                "geo_source.river = river.name",
+                "geo_source.province = province.name",
+                "geo_source.country = province.country"
+            ]
+        },
+        {
+            "property": "inMountains",
+            "belongsToClass": "Source",
+            "refersToClass": "MountainRange",
+            "join": [
+                "river.mountains = mountain.mountains"
+            ]
+        }
+    ],
+    "data_properties": [
+        {
+            "property": "elevation",
+            "belongsToClass": "Source",
+            "type": "decimal",
+            "column": "river.sourceelevation"
+        },
+        {
+            "property": "latitude",
+            "belongsToClass": "Source",
+            "type": "decimal",
+            "column": "river.sourcelatitude"
+        },
+        {
+            "property": "longitude",
+            "belongsToClass": "Source",
+            "type": "decimal",
+            "column": "river.sourcelongitude"
+        }
+    ]
+}

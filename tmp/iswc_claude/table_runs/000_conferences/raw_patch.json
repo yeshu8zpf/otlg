@@ -1,0 +1,240 @@
+{
+  "work_unit": {
+    "table": "conferences",
+    "related_tables": []
+  },
+  "proposed_additions": {
+    "classes": [
+      {
+        "id": "Class:Conference",
+        "label": "Conference",
+        "description": "A conference event with temporal and spatial properties",
+        "source_tables": [
+          "conferences"
+        ],
+        "identifier_columns": [
+          "conferences.confid"
+        ]
+      }
+    ],
+    "data_properties": [
+      {
+        "id": "DataProperty:hasConferenceName",
+        "label": "has conference name",
+        "domain": "Class:Conference",
+        "datatype": "xsd:string",
+        "description": "The name or title of the conference"
+      },
+      {
+        "id": "DataProperty:hasConferenceURI",
+        "label": "has conference URI",
+        "domain": "Class:Conference",
+        "datatype": "xsd:anyURI",
+        "description": "A URI reference to the conference resource"
+      },
+      {
+        "id": "DataProperty:hasConferenceDate",
+        "label": "has conference date",
+        "domain": "Class:Conference",
+        "datatype": "xsd:string",
+        "description": "The date of the conference as a string representation"
+      },
+      {
+        "id": "DataProperty:hasConferenceLocation",
+        "label": "has conference location",
+        "domain": "Class:Conference",
+        "datatype": "xsd:string",
+        "description": "The location or venue of the conference"
+      },
+      {
+        "id": "DataProperty:hasConferenceDatum",
+        "label": "has conference datum",
+        "domain": "Class:Conference",
+        "datatype": "xsd:dateTime",
+        "description": "The timestamp of the conference event"
+      }
+    ],
+    "object_properties": [],
+    "subclass_relations": [],
+    "class_mappings": [
+      {
+        "mapping_id": "Conference_from_conferences",
+        "class_id": "Class:Conference",
+        "from_tables": [
+          "conferences"
+        ],
+        "identifier_kind": "uri_pattern",
+        "identifier_columns": [
+          "conferences.confid"
+        ],
+        "instance_id_template": "conferences/@@conferences.confid@@",
+        "bnode_id_columns": []
+      }
+    ],
+    "data_property_mappings": [
+      {
+        "mapping_id": "hasConferenceName_from_Name",
+        "data_property_id": "DataProperty:hasConferenceName",
+        "applies_to_class": "Class:Conference",
+        "source_table": "conferences",
+        "source_columns": [
+          "conferences.name"
+        ],
+        "value_kind": "column",
+        "value_template": "",
+        "sql_expression": "",
+        "constant_value": "",
+        "datatype": "xsd:string",
+        "join_paths": [],
+        "condition": []
+      },
+      {
+        "mapping_id": "hasConferenceURI_from_URI",
+        "data_property_id": "DataProperty:hasConferenceURI",
+        "applies_to_class": "Class:Conference",
+        "source_table": "conferences",
+        "source_columns": [
+          "conferences.uri"
+        ],
+        "value_kind": "column",
+        "value_template": "",
+        "sql_expression": "",
+        "constant_value": "",
+        "datatype": "xsd:anyURI",
+        "join_paths": [],
+        "condition": []
+      },
+      {
+        "mapping_id": "hasConferenceDate_from_Date",
+        "data_property_id": "DataProperty:hasConferenceDate",
+        "applies_to_class": "Class:Conference",
+        "source_table": "conferences",
+        "source_columns": [
+          "conferences.date"
+        ],
+        "value_kind": "column",
+        "value_template": "",
+        "sql_expression": "",
+        "constant_value": "",
+        "datatype": "xsd:string",
+        "join_paths": [],
+        "condition": []
+      },
+      {
+        "mapping_id": "hasConferenceLocation_from_Location",
+        "data_property_id": "DataProperty:hasConferenceLocation",
+        "applies_to_class": "Class:Conference",
+        "source_table": "conferences",
+        "source_columns": [
+          "conferences.location"
+        ],
+        "value_kind": "column",
+        "value_template": "",
+        "sql_expression": "",
+        "constant_value": "",
+        "datatype": "xsd:string",
+        "join_paths": [],
+        "condition": []
+      },
+      {
+        "mapping_id": "hasConferenceDatum_from_Datum",
+        "data_property_id": "DataProperty:hasConferenceDatum",
+        "applies_to_class": "Class:Conference",
+        "source_table": "conferences",
+        "source_columns": [
+          "conferences.datum"
+        ],
+        "value_kind": "column",
+        "value_template": "",
+        "sql_expression": "",
+        "constant_value": "",
+        "datatype": "xsd:dateTime",
+        "join_paths": [],
+        "condition": []
+      }
+    ],
+    "object_property_mappings": []
+  },
+  "proposed_revisions": {
+    "classes": [],
+    "data_properties": [],
+    "object_properties": [],
+    "subclass_relations": [],
+    "class_mappings": [],
+    "data_property_mappings": [],
+    "object_property_mappings": []
+  },
+  "proposed_rejections": [],
+  "proposed_merges": [],
+  "decision_summary": [
+    {
+      "decision_type": "C-ENTITY",
+      "target": "Class:Conference",
+      "status": "accepted",
+      "confidence": 0.95,
+      "reason": "conferences table represents a stable entity with primary key ConfID and descriptive attributes (Name, Location, Date, URI, Datum). Semantically represents conference events."
+    },
+    {
+      "decision_type": "DP-LITERAL",
+      "target": "DataProperty:hasConferenceName",
+      "status": "accepted",
+      "confidence": 0.95,
+      "reason": "Name column is a string literal describing the conference title"
+    },
+    {
+      "decision_type": "DP-URI",
+      "target": "DataProperty:hasConferenceURI",
+      "status": "accepted",
+      "confidence": 0.85,
+      "reason": "URI column stores a URI value as a literal string; no evidence of entity-to-entity relation, modeled as data property with xsd:anyURI datatype"
+    },
+    {
+      "decision_type": "DP-LITERAL",
+      "target": "DataProperty:hasConferenceDate",
+      "status": "accepted",
+      "confidence": 0.9,
+      "reason": "Date column is a varchar string representation of conference date; kept as string datatype pending value sample inspection"
+    },
+    {
+      "decision_type": "DP-LITERAL",
+      "target": "DataProperty:hasConferenceLocation",
+      "status": "accepted",
+      "confidence": 0.9,
+      "reason": "Location column is a string literal representing venue; flagged as address-like bundle but no separate location entity table exists"
+    },
+    {
+      "decision_type": "DP-TEMPORAL",
+      "target": "DataProperty:hasConferenceDatum",
+      "status": "accepted",
+      "confidence": 0.95,
+      "reason": "Datum column is a timestamp(0) field; mapped to xsd:dateTime datatype for temporal representation"
+    }
+  ],
+  "remaining_ambiguities": [
+    "Date column is varchar(50) rather than timestamp; unclear if it contains structured date strings, free-text descriptions, or ISO format dates",
+    "Location column flagged as address-like but no separate location entity table exists; unclear if location should be modeled as a separate class or remain as literal",
+    "Relationship between Date (varchar) and Datum (timestamp) columns unclear; both appear to represent temporal information but with different types and purposes"
+  ],
+  "needs_probe": [
+    {
+      "probe_type": "value_sample",
+      "target": "conferences.date",
+      "question": "What are sample values in the Date column? Are they ISO date strings, free-text descriptions, or structured date formats?"
+    },
+    {
+      "probe_type": "value_sample",
+      "target": "conferences.location",
+      "question": "What are sample values in the Location column? Are they city names, venue names, or full addresses?"
+    },
+    {
+      "probe_type": "value_sample",
+      "target": "conferences.uri",
+      "question": "What are sample values in the URI column? Do they reference external conference resources or internal identifiers?"
+    },
+    {
+      "probe_type": "cardinality_check",
+      "target": "conferences",
+      "question": "Are there any foreign key references from other tables to conferences.confid that would establish object properties?"
+    }
+  ]
+}

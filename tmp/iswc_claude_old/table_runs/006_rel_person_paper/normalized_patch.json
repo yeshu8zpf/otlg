@@ -1,0 +1,72 @@
+{
+  "work_unit": {
+    "table": "rel_person_paper",
+    "related_tables": []
+  },
+  "proposed_additions": {
+    "classes": [],
+    "data_properties": [],
+    "object_properties": [
+      {
+        "id": "ObjectProperty:authoredPaper",
+        "label": "authored paper",
+        "domain": "Class:Person",
+        "range": "Class:Paper",
+        "description": "Relation indicating that a person is an author of a paper",
+        "status": "proposed",
+        "confidence": null,
+        "source_tables": [
+          "rel_person_paper"
+        ]
+      }
+    ],
+    "subclass_relations": [],
+    "class_mappings": [],
+    "data_property_mappings": [],
+    "object_property_mappings": [
+      {
+        "mapping_id": "authoredPaper_from_rel_person_paper",
+        "object_property_id": "ObjectProperty:authoredPaper",
+        "from_class": "Class:Person",
+        "to_class": "Class:Paper",
+        "from_tables": [
+          "rel_person_paper"
+        ],
+        "source_identifier_columns": [
+          "rel_person_paper.personid"
+        ],
+        "target_identifier_columns": [
+          "rel_person_paper.paperid"
+        ],
+        "join_paths": [],
+        "condition": [],
+        "target_type": "entity"
+      }
+    ]
+  },
+  "proposed_revisions": {
+    "classes": [],
+    "data_properties": [],
+    "object_properties": [],
+    "subclass_relations": [],
+    "class_mappings": [],
+    "data_property_mappings": [],
+    "object_property_mappings": []
+  },
+  "proposed_rejections": [],
+  "proposed_merges": [],
+  "decision_summary": [
+    {
+      "decision_type": "OP-RELATION",
+      "target": "ObjectProperty:authoredPaper",
+      "status": "accepted",
+      "confidence": 0.95,
+      "reason": "rel_person_paper is a junction table with composite primary key (PersonID, PaperID) establishing a many-to-many authorship relation between Person and Paper entities. No foreign key constraints are declared, but the semantic structure and naming convention strongly indicate this is an association table linking authors to their papers."
+    }
+  ],
+  "remaining_ambiguities": [
+    "Foreign key constraints are not explicitly declared in rel_person_paper; relation inferred from table name and structure alone."
+  ],
+  "needs_probe": [],
+  "normalization_warnings": []
+}

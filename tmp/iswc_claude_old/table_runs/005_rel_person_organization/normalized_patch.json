@@ -1,0 +1,70 @@
+{
+  "work_unit": {
+    "table": "rel_person_organization",
+    "related_tables": []
+  },
+  "proposed_additions": {
+    "classes": [],
+    "data_properties": [],
+    "object_properties": [
+      {
+        "id": "ObjectProperty:worksForOrganization",
+        "label": "works for organization",
+        "domain": "Class:Person",
+        "range": "Class:Organization",
+        "description": "Relationship indicating that a person is affiliated with or works for an organization",
+        "status": "proposed",
+        "confidence": null,
+        "source_tables": [
+          "rel_person_organization"
+        ]
+      }
+    ],
+    "subclass_relations": [],
+    "class_mappings": [],
+    "data_property_mappings": [],
+    "object_property_mappings": [
+      {
+        "mapping_id": "worksForOrganization_from_rel_person_organization",
+        "object_property_id": "ObjectProperty:worksForOrganization",
+        "from_class": "Class:Person",
+        "to_class": "Class:Organization",
+        "from_tables": [
+          "rel_person_organization"
+        ],
+        "source_identifier_columns": [
+          "rel_person_organization.personid"
+        ],
+        "target_identifier_columns": [
+          "rel_person_organization.organizationid"
+        ],
+        "join_paths": [],
+        "condition": [],
+        "target_type": "entity"
+      }
+    ]
+  },
+  "proposed_revisions": {
+    "classes": [],
+    "data_properties": [],
+    "object_properties": [],
+    "subclass_relations": [],
+    "class_mappings": [],
+    "data_property_mappings": [],
+    "object_property_mappings": []
+  },
+  "proposed_rejections": [],
+  "proposed_merges": [],
+  "decision_summary": [
+    {
+      "decision_type": "OP-RELATION",
+      "target": "ObjectProperty:worksForOrganization",
+      "status": "accepted",
+      "confidence": 0.95,
+      "reason": "rel_person_organization is a junction table with composite primary key (PersonID, OrganizationID) representing a many-to-many relationship between Person and Organization entities already established in the ontology. No additional attributes justify an association class."
+    }
+  ],
+  "remaining_ambiguities": [],
+  "needs_probe": [],
+  "normalization_warnings": []
+}

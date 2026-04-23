@@ -1,0 +1,134 @@
+{
+  "global_summary": {
+    "num_classes": 6,
+    "num_data_properties": 27,
+    "num_object_properties": 5,
+    "accepted_classes": [
+      "Class:Conference",
+      "Class:Organization",
+      "Class:Address",
+      "Class:Paper",
+      "Class:Person",
+      "Class:Topic"
+    ],
+    "accepted_data_properties": [
+      "DataProperty:hasConferenceName",
+      "DataProperty:hasConferenceURI",
+      "DataProperty:hasConferenceDate",
+      "DataProperty:hasConferenceLocation",
+      "DataProperty:hasConferenceDatum",
+      "DataProperty:hasOrganizationType",
+      "DataProperty:hasOrganizationName",
+      "DataProperty:hasOrganizationURI",
+      "DataProperty:hasOrganizationHomepage",
+      "DataProperty:hasAddressStreet",
+      "DataProperty:hasAddressLocation",
+      "DataProperty:hasAddressPostcode",
+      "DataProperty:hasAddressCountry",
+      "DataProperty:hasPaperTitle",
+      "DataProperty:hasPaperAbstract",
+      "DataProperty:hasPaperURI",
+      "DataProperty:hasPaperYear",
+      "DataProperty:hasPersonType",
+      "DataProperty:hasFirstName",
+      "DataProperty:hasLastName"
+    ],
+    "accepted_object_properties": [
+      "ObjectProperty:hasAddress",
+      "ObjectProperty:belongsToOrganization",
+      "ObjectProperty:paperPublishedInConference",
+      "ObjectProperty:paperCoversTopics",
+      "ObjectProperty:worksForOrganization"
+    ],
+    "processed_tables": [
+      "conferences",
+      "organizations",
+      "papers",
+      "persons",
+      "rel_paper_topic",
+      "rel_person_organization"
+    ],
+    "draft_version": 6
+  },
+  "relevant_draft_slice": {
+    "classes": [
+      {
+        "id": "Class:Paper",
+        "label": "Paper",
+        "source_tables": [
+          "papers"
+        ],
+        "status": "proposed"
+      }
+    ],
+    "data_properties": [],
+    "object_properties": [],
+    "class_mappings": [
+      {
+        "class_id": "Class:Paper",
+        "mapping_id": "Paper_from_papers",
+        "from_tables": [
+          "papers"
+        ],
+        "identifier_kind": "uri_pattern",
+        "identifier_columns": [
+          "papers.paperid"
+        ],
+        "instance_id_template": "papers/@@papers.PaperID@@"
+      }
+    ],
+    "data_property_mappings": [],
+    "object_property_mappings": [
+      {
+        "object_property_id": "ObjectProperty:paperPublishedInConference",
+        "mapping_id": "paperPublishedInConference_from_Conference",
+        "from_class": "Class:Paper",
+        "to_class": "Class:Conference",
+        "from_tables": [
+          "papers"
+        ],
+        "join_paths": [
+          [
+            "papers.conference",
+            "=",
+            "conferences.confid"
+          ]
+        ],
+        "target_type": "entity"
+      },
+      {
+        "object_property_id": "ObjectProperty:paperCoversTopics",
+        "mapping_id": "paperCoversTopics_from_rel_paper_topic",
+        "from_class": "Class:Paper",
+        "to_class": "Class:Topic",
+        "from_tables": [
+          "rel_paper_topic"
+        ],
+        "join_paths": [],
+        "target_type": "entity"
+      },
+      {
+        "object_property_id": "ObjectProperty:worksForOrganization",
+        "mapping_id": "worksForOrganization_from_rel_person_organization",
+        "from_class": "Class:Person",
+        "to_class": "Class:Organization",
+        "from_tables": [
+          "rel_person_organization"
+        ],
+        "join_paths": [],
+        "target_type": "entity"
+      }
+    ]
+  },
+  "related_rejected_candidates": [],
+  "related_open_issues": [],
+  "update_focus": {
+    "new_table": "rel_person_paper",
+    "related_existing_tables": [],
+    "requires_multi_table_reasoning": false,
+    "analysis_reasons": [],
+    "recommended_tables_for_joint_analysis": [
+      "rel_person_paper"
+    ]
+  }
+}

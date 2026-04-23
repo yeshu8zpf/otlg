@@ -1,0 +1,539 @@
+{
+  "task": "Revise the current local draft slice. Inspect all columns in the current local scope. Output a revision patch only.",
+  "incremental_step": {
+    "step_index": 0,
+    "new_table": "conferences",
+    "related_existing_tables": [],
+    "local_table": {
+      "name": "conferences",
+      "columns": [
+        {
+          "name": "ConfID",
+          "type": "int",
+          "raw": "ConfID int NOT NULL default '0'",
+          "is_primary_key": true
+        },
+        {
+          "name": "Name",
+          "type": "varchar(100)",
+          "raw": "Name varchar(100) default NULL",
+          "is_primary_key": false
+        },
+        {
+          "name": "URI",
+          "type": "varchar(200)",
+          "raw": "URI varchar(200) default NULL",
+          "is_primary_key": false
+        },
+        {
+          "name": "Date",
+          "type": "varchar(50)",
+          "raw": "Date varchar(50) default NULL",
+          "is_primary_key": false
+        },
+        {
+          "name": "Location",
+          "type": "varchar(50)",
+          "raw": "Location varchar(50) default NULL",
+          "is_primary_key": false
+        },
+        {
+          "name": "Datum",
+          "type": "timestamp(0)",
+          "raw": "Datum timestamp(0) default NULL",
+          "is_primary_key": false
+        }
+      ],
+      "fks": []
+    },
+    "local_fk_edges": [],
+    "related_table_defs": {},
+    "multi_table_signals": {
+      "many_fk_targets": false,
+      "connector_like": false,
+      "association_class_likelihood": false,
+      "address_like_bundle": [
+        "location"
+      ],
+      "requires_multi_table_reasoning": true
+    },
+    "suggested_analysis_scope": {
+      "recommended_tables_for_joint_analysis": [
+        "conferences"
+      ],
+      "reason": [
+        "structured_value_object_bundle"
+      ]
+    }
+  },
+  "revision_scope": {
+    "scope_tables": [
+      "conferences"
+    ],
+    "schema_scope": {
+      "new_table": "conferences",
+      "related_existing_tables": [],
+      "local_table": {
+        "name": "conferences",
+        "columns": [
+          {
+            "name": "ConfID",
+            "type": "int",
+            "raw": "ConfID int NOT NULL default '0'",
+            "is_primary_key": true
+          },
+          {
+            "name": "Name",
+            "type": "varchar(100)",
+            "raw": "Name varchar(100) default NULL",
+            "is_primary_key": false
+          },
+          {
+            "name": "URI",
+            "type": "varchar(200)",
+            "raw": "URI varchar(200) default NULL",
+            "is_primary_key": false
+          },
+          {
+            "name": "Date",
+            "type": "varchar(50)",
+            "raw": "Date varchar(50) default NULL",
+            "is_primary_key": false
+          },
+          {
+            "name": "Location",
+            "type": "varchar(50)",
+            "raw": "Location varchar(50) default NULL",
+            "is_primary_key": false
+          },
+          {
+            "name": "Datum",
+            "type": "timestamp(0)",
+            "raw": "Datum timestamp(0) default NULL",
+            "is_primary_key": false
+          }
+        ],
+        "fks": []
+      },
+      "related_tables": [],
+      "multi_table_signals": {
+        "many_fk_targets": false,
+        "connector_like": false,
+        "association_class_likelihood": false,
+        "address_like_bundle": [
+          "location"
+        ],
+        "requires_multi_table_reasoning": true
+      }
+    },
+    "draft_slice": {
+      "classes": [
+        {
+          "id": "Class:Conference",
+          "label": "Conference",
+          "description": "A conference event with temporal and spatial properties",
+          "status": "proposed",
+          "confidence": null,
+          "source_tables": [
+            "conferences"
+          ],
+          "identifier_columns": [
+            "conferences.confid"
+          ]
+        }
+      ],
+      "data_properties": [
+        {
+          "id": "DataProperty:hasConferenceName",
+          "label": "has conference name",
+          "domain": "Class:Conference",
+          "datatype": "xsd:string",
+          "description": "The name or title of the conference",
+          "status": "proposed",
+          "confidence": null,
+          "source_tables": [],
+          "source_columns": []
+        },
+        {
+          "id": "DataProperty:hasConferenceURI",
+          "label": "has conference URI",
+          "domain": "Class:Conference",
+          "datatype": "xsd:anyURI",
+          "description": "A URI reference to the conference resource",
+          "status": "proposed",
+          "confidence": null,
+          "source_tables": [],
+          "source_columns": []
+        },
+        {
+          "id": "DataProperty:hasConferenceDate",
+          "label": "has conference date",
+          "domain": "Class:Conference",
+          "datatype": "xsd:string",
+          "description": "The date of the conference as a string representation",
+          "status": "proposed",
+          "confidence": null,
+          "source_tables": [],
+          "source_columns": []
+        },
+        {
+          "id": "DataProperty:hasConferenceLocation",
+          "label": "has conference location",
+          "domain": "Class:Conference",
+          "datatype": "xsd:string",
+          "description": "The location or venue of the conference",
+          "status": "proposed",
+          "confidence": null,
+          "source_tables": [],
+          "source_columns": []
+        },
+        {
+          "id": "DataProperty:hasConferenceDatum",
+          "label": "has conference datum",
+          "domain": "Class:Conference",
+          "datatype": "xsd:dateTime",
+          "description": "The timestamp of the conference event",
+          "status": "proposed",
+          "confidence": null,
+          "source_tables": [],
+          "source_columns": []
+        }
+      ],
+      "object_properties": [],
+      "subclass_relations": [],
+      "class_mappings": [
+        {
+          "mapping_id": "Conference_from_conferences",
+          "class_id": "Class:Conference",
+          "from_tables": [
+            "conferences"
+          ],
+          "identifier_kind": "uri_pattern",
+          "identifier_columns": [
+            "conferences.confid"
+          ],
+          "instance_id_template": "conferences/@@conferences.confid@@",
+          "bnode_id_columns": [],
+          "status": "proposed",
+          "confidence": null,
+          "description": ""
+        }
+      ],
+      "data_property_mappings": [
+        {
+          "mapping_id": "hasConferenceName_from_Name",
+          "data_property_id": "DataProperty:hasConferenceName",
+          "applies_to_class": "Class:Conference",
+          "source_table": "conferences",
+          "source_columns": [
+            "conferences.name"
+          ],
+          "value_kind": "column",
+          "value_template": "",
+          "sql_expression": "",
+          "constant_value": "",
+          "datatype": "xsd:string",
+          "join_paths": [],
+          "condition": []
+        },
+        {
+          "mapping_id": "hasConferenceURI_from_URI",
+          "data_property_id": "DataProperty:hasConferenceURI",
+          "applies_to_class": "Class:Conference",
+          "source_table": "conferences",
+          "source_columns": [
+            "conferences.uri"
+          ],
+          "value_kind": "column",
+          "value_template": "",
+          "sql_expression": "",
+          "constant_value": "",
+          "datatype": "xsd:anyURI",
+          "join_paths": [],
+          "condition": []
+        },
+        {
+          "mapping_id": "hasConferenceDate_from_Date",
+          "data_property_id": "DataProperty:hasConferenceDate",
+          "applies_to_class": "Class:Conference",
+          "source_table": "conferences",
+          "source_columns": [
+            "conferences.date"
+          ],
+          "value_kind": "column",
+          "value_template": "",
+          "sql_expression": "",
+          "constant_value": "",
+          "datatype": "xsd:string",
+          "join_paths": [],
+          "condition": []
+        },
+        {
+          "mapping_id": "hasConferenceLocation_from_Location",
+          "data_property_id": "DataProperty:hasConferenceLocation",
+          "applies_to_class": "Class:Conference",
+          "source_table": "conferences",
+          "source_columns": [
+            "conferences.location"
+          ],
+          "value_kind": "column",
+          "value_template": "",
+          "sql_expression": "",
+          "constant_value": "",
+          "datatype": "xsd:string",
+          "join_paths": [],
+          "condition": []
+        },
+        {
+          "mapping_id": "hasConferenceDatum_from_Datum",
+          "data_property_id": "DataProperty:hasConferenceDatum",
+          "applies_to_class": "Class:Conference",
+          "source_table": "conferences",
+          "source_columns": [
+            "conferences.datum"
+          ],
+          "value_kind": "column",
+          "value_template": "",
+          "sql_expression": "",
+          "constant_value": "",
+          "datatype": "xsd:dateTime",
+          "join_paths": [],
+          "condition": []
+        }
+      ],
+      "object_property_mappings": [],
+      "draft_metadata": {
+        "processed_tables": [
+          "conferences"
+        ],
+        "table_history": [
+          {
+            "table": "conferences",
+            "action": "updated",
+            "version": 1
+          }
+        ],
+        "draft_version": 1
+      },
+      "open_issues": [
+        {
+          "issue_type": "remaining_ambiguity",
+          "related_table": "conferences",
+          "description": "Date column is varchar(50) rather than timestamp; unclear if it contains structured date strings, free-text descriptions, or ISO format dates"
+        },
+        {
+          "issue_type": "remaining_ambiguity",
+          "related_table": "conferences",
+          "description": "Location column flagged as address-like but no separate location entity table exists; unclear if location should be modeled as a separate class or remain as literal"
+        },
+        {
+          "issue_type": "remaining_ambiguity",
+          "related_table": "conferences",
+          "description": "Relationship between Date (varchar) and Datum (timestamp) columns unclear; both appear to represent temporal information but with different types and purposes"
+        },
+        {
+          "issue_type": "needs_probe",
+          "related_table": "conferences",
+          "description": "What are sample values in the Date column? Are they ISO date strings, free-text descriptions, or structured date formats?",
+          "payload": {
+            "probe_type": "value_sample",
+            "target": "conferences.date",
+            "question": "What are sample values in the Date column? Are they ISO date strings, free-text descriptions, or structured date formats?"
+          }
+        },
+        {
+          "issue_type": "needs_probe",
+          "related_table": "conferences",
+          "description": "What are sample values in the Location column? Are they city names, venue names, or full addresses?",
+          "payload": {
+            "probe_type": "value_sample",
+            "target": "conferences.location",
+            "question": "What are sample values in the Location column? Are they city names, venue names, or full addresses?"
+          }
+        },
+        {
+          "issue_type": "needs_probe",
+          "related_table": "conferences",
+          "description": "What are sample values in the URI column? Do they reference external conference resources or internal identifiers?",
+          "payload": {
+            "probe_type": "value_sample",
+            "target": "conferences.uri",
+            "question": "What are sample values in the URI column? Do they reference external conference resources or internal identifiers?"
+          }
+        },
+        {
+          "issue_type": "needs_probe",
+          "related_table": "conferences",
+          "description": "Are there any foreign key references from other tables to conferences.confid that would establish object properties?",
+          "payload": {
+            "probe_type": "cardinality_check",
+            "target": "conferences",
+            "question": "Are there any foreign key references from other tables to conferences.confid that would establish object properties?"
+          }
+        }
+      ]
+    }
+  },
+  "revision_targets": [
+    {
+      "target_type": "class_mapping",
+      "target_id": "Conference_from_conferences",
+      "current_class_id": "Class:Conference",
+      "from_tables": [
+        "conferences"
+      ],
+      "focus": [
+        "condition necessity",
+        "identity strategy correctness",
+        "class scope too broad or too narrow",
+        "possible downstream impact on related properties and relations"
+      ]
+    },
+    {
+      "target_type": "data_property_mapping",
+      "target_id": "hasConferenceName_from_Name",
+      "current_property_id": "DataProperty:hasConferenceName",
+      "focus": [
+        "ordinary literal vs class-defining signal",
+        "datatype mismatch",
+        "possible move from attribute to condition-bearing class revision"
+      ]
+    },
+    {
+      "target_type": "data_property_mapping",
+      "target_id": "hasConferenceURI_from_URI",
+      "current_property_id": "DataProperty:hasConferenceURI",
+      "focus": [
+        "ordinary literal vs class-defining signal",
+        "datatype mismatch",
+        "possible move from attribute to condition-bearing class revision"
+      ]
+    },
+    {
+      "target_type": "data_property_mapping",
+      "target_id": "hasConferenceDate_from_Date",
+      "current_property_id": "DataProperty:hasConferenceDate",
+      "focus": [
+        "ordinary literal vs class-defining signal",
+        "datatype mismatch",
+        "possible move from attribute to condition-bearing class revision"
+      ]
+    },
+    {
+      "target_type": "data_property_mapping",
+      "target_id": "hasConferenceLocation_from_Location",
+      "current_property_id": "DataProperty:hasConferenceLocation",
+      "focus": [
+        "ordinary literal vs class-defining signal",
+        "datatype mismatch",
+        "possible move from attribute to condition-bearing class revision"
+      ]
+    },
+    {
+      "target_type": "data_property_mapping",
+      "target_id": "hasConferenceDatum_from_Datum",
+      "current_property_id": "DataProperty:hasConferenceDatum",
+      "focus": [
+        "ordinary literal vs class-defining signal",
+        "datatype mismatch",
+        "possible move from attribute to condition-bearing class revision"
+      ]
+    },
+    {
+      "target_type": "scope_review",
+      "target_id": "conferences",
+      "focus": [
+        "inspect all columns in local scope",
+        "look for class-defining conditions",
+        "look for over-broad class mappings",
+        "look for identity mistakes",
+        "look for relation/attribute revisions implied by class revision"
+      ]
+    }
+  ],
+  "external_evidence": [],
+  "decision_standards": [
+    "Inspect all columns in the current local revision scope, not only pre-flagged columns.",
+    "Use a class-level condition only when a column acts as a row-selection signal for class membership.",
+    "Do not convert ordinary descriptive attributes into class-level conditions.",
+    "Binary, flag-like, type-like, status-like, category-like, and publication-state-like columns deserve special attention, but all columns must still be checked.",
+    "If evidence is weak, keep class_mappings.condition as [] and record uncertainty in remaining_ambiguities or needs_probe.",
+    "Use uri_pattern only when there is a stable row identity suitable for global resource construction.",
+    "Use bnode when the mapped object is better modeled as a local structural/value object than as a globally identified entity.",
+    "A URI-like literal column may remain a data property with datatype xsd:anyURI if no entity-to-entity relation is justified.",
+    "If revising a class mapping changes class scope or identity strategy, revise affected attributes and relations if necessary.",
+    "Prefer local, minimal revisions over regenerating the entire draft.",
+    "Output a revision patch, not a full regenerated draft."
+  ],
+  "strict_revision_patch_schema": {
+    "work_unit": {
+      "table": "string",
+      "related_tables": [
+        "string"
+      ]
+    },
+    "proposed_additions": {
+      "classes": [],
+      "data_properties": [],
+      "object_properties": [],
+      "subclass_relations": [],
+      "class_mappings": [],
+      "data_property_mappings": [],
+      "object_property_mappings": []
+    },
+    "proposed_revisions": {
+      "classes": [
+        {
+          "target_id": "Class:Example",
+          "updated_fields": {
+            "description": "..."
+          }
+        }
+      ],
+      "data_properties": [],
+      "object_properties": [],
+      "subclass_relations": [],
+      "class_mappings": [
+        {
+          "target_id": "Paper_from_papers",
+          "updated_fields": {
+            "condition": [
+              "papers.publish = 1"
+            ]
+          }
+        }
+      ],
+      "data_property_mappings": [],
+      "object_property_mappings": []
+    },
+    "proposed_rejections": [],
+    "proposed_merges": [],
+    "decision_summary": [
+      {
+        "decision_type": "REV-CONDITION",
+        "target": "Paper_from_papers",
+        "status": "accepted",
+        "confidence": 0.85,
+        "reason": "..."
+      }
+    ],
+    "remaining_ambiguities": [],
+    "needs_probe": [
+      {
+        "probe_type": "value_sample",
+        "target": "papers.publish",
+        "question": "..."
+      }
+    ]
+  },
+  "hard_rules": [
+    "This is a revision pass, not a full regeneration pass.",
+    "Prefer proposed_revisions over proposed_additions unless genuinely new ontology objects are necessary.",
+    "Inspect all columns in the current local scope; do not rely only on pre-flagged columns.",
+    "If no justified revision is needed, return empty proposed_revisions for that section.",
+    "Do not invent unsupported conditions.",
+    "If uncertain, keep condition as [] and use remaining_ambiguities or needs_probe.",
+    "If revising a class mapping changes class scope or identity strategy, revise affected attributes and relations if necessary.",
+    "Return valid JSON only."
+  ]
+}

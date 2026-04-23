@@ -1,0 +1,162 @@
+{
+  "work_unit": {
+    "table": "rel_paper_topic",
+    "related_tables": []
+  },
+  "proposed_additions": {
+    "classes": [
+      {
+        "id": "Class:Topic",
+        "label": "Topic",
+        "description": "A research topic or subject area associated with papers",
+        "status": "proposed",
+        "confidence": null,
+        "source_tables": [
+          "rel_paper_topic"
+        ],
+        "identifier_columns": [
+          "rel_paper_topic.topicid"
+        ]
+      }
+    ],
+    "data_properties": [
+      {
+        "id": "DataProperty:hasRelationType",
+        "label": "has relation type",
+        "domain": "Class:Paper",
+        "datatype": "xsd:int",
+        "description": "Numeric code indicating the type of relation between a paper and a topic",
+        "status": "proposed",
+        "confidence": null,
+        "source_tables": [
+          "rel_paper_topic"
+        ],
+        "source_columns": [
+          "rel_paper_topic.relationtype"
+        ]
+      }
+    ],
+    "object_properties": [
+      {
+        "id": "ObjectProperty:paperCoversTopics",
+        "label": "paper covers topics",
+        "domain": "Class:Paper",
+        "range": "Class:Topic",
+        "description": "Relation indicating that a paper addresses or covers a particular research topic",
+        "status": "proposed",
+        "confidence": null,
+        "source_tables": [
+          "rel_paper_topic"
+        ]
+      }
+    ],
+    "subclass_relations": [],
+    "class_mappings": [
+      {
+        "mapping_id": "Topic_from_rel_paper_topic",
+        "class_id": "Class:Topic",
+        "from_tables": [
+          "rel_paper_topic"
+        ],
+        "identifier_kind": "uri_pattern",
+        "identifier_columns": [
+          "rel_paper_topic.topicid"
+        ],
+        "instance_id_template": "topics/@@rel_paper_topic.TopicID@@",
+        "bnode_id_columns": [],
+        "status": "proposed",
+        "confidence": null,
+        "description": ""
+      }
+    ],
+    "data_property_mappings": [
+      {
+        "mapping_id": "hasRelationType_from_RelationType",
+        "data_property_id": "DataProperty:hasRelationType",
+        "applies_to_class": "Class:Paper",
+        "source_table": "rel_paper_topic",
+        "source_columns": [
+          "rel_paper_topic.relationtype"
+        ],
+        "value_kind": "column",
+        "value_template": "",
+        "sql_expression": "",
+        "constant_value": "",
+        "datatype": "xsd:int",
+        "join_paths": [],
+        "condition": []
+      }
+    ],
+    "object_property_mappings": [
+      {
+        "mapping_id": "paperCoversTopics_from_rel_paper_topic",
+        "object_property_id": "ObjectProperty:paperCoversTopics",
+        "from_class": "Class:Paper",
+        "to_class": "Class:Topic",
+        "from_tables": [
+          "rel_paper_topic"
+        ],
+        "source_identifier_columns": [
+          "rel_paper_topic.paperid"
+        ],
+        "target_identifier_columns": [
+          "rel_paper_topic.topicid"
+        ],
+        "join_paths": [],
+        "condition": [],
+        "target_type": "entity"
+      }
+    ]
+  },
+  "proposed_revisions": {
+    "classes": [],
+    "data_properties": [],
+    "object_properties": [],
+    "subclass_relations": [],
+    "class_mappings": [],
+    "data_property_mappings": [],
+    "object_property_mappings": []
+  },
+  "proposed_rejections": [],
+  "proposed_merges": [],
+  "decision_summary": [
+    {
+      "decision_type": "C-ENTITY",
+      "target": "Class:Topic",
+      "status": "proposed",
+      "confidence": 0.85,
+      "reason": "TopicID is a primary key in rel_paper_topic, indicating Topic is a distinct entity type. The table structure suggests a many-to-many relationship between papers and topics."
+    },
+    {
+      "decision_type": "OP-RELATION",
+      "target": "ObjectProperty:paperCoversTopics",
+      "status": "proposed",
+      "confidence": 0.9,
+      "reason": "rel_paper_topic is a junction table with PaperID and TopicID as composite primary key, representing a many-to-many association between Paper and Topic entities."
+    },
+    {
+      "decision_type": "DP-ATTRIBUTE",
+      "target": "DataProperty:hasRelationType",
+      "status": "proposed",
+      "confidence": 0.75,
+      "reason": "RelationType is a non-key integer column that qualifies the paper-topic relationship. Modeled as a data property on Paper to capture the relation type code."
+    }
+  ],
+  "remaining_ambiguities": [
+    "The semantic meaning of RelationType values is unknown; without sample data or documentation, it is unclear whether this represents a categorical classification, strength indicator, or other qualifier.",
+    "Topic entity definition is incomplete; no attributes (name, description, URI) are present in rel_paper_topic itself, suggesting Topic may be defined in a separate table not yet processed."
+  ],
+  "needs_probe": [
+    {
+      "probe_type": "value_sample",
+      "target": "rel_paper_topic.relationtype",
+      "question": "What are the distinct values and their semantic meanings for RelationType?"
+    },
+    {
+      "probe_type": "schema_discovery",
+      "target": "topic entity definition",
+      "question": "Is there a separate topics table that defines Topic attributes (name, description, etc.)?"
+    }
+  ],
+  "normalization_warnings": []
+}

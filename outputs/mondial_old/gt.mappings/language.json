@@ -1,0 +1,55 @@
+{
+    "classes": [
+        {
+            "id": "@@language.name@@",
+            "class": "Language",
+            "prefix": "mondial"
+        },
+        {
+            "id": "@@spoken.language@@/@@spoken.country@@",
+            "class": "SpokenBy",
+            "prefix": "mondial"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "languageInfo-",
+            "inverseOf": "languageInfo",
+            "belongsToClass": "SpokenBy",
+            "refersToClassMap": "CountryFull",
+            "join": [
+                "country.code = spoken.country"
+            ]
+        },
+        {
+            "property": "onLanguage",
+            "belongsToClass": "SpokenBy",
+            "refersToClass": "Language",
+            "inverseOf": "spokenInInfo"
+        },
+        {
+            "property": "speakLanguage",
+            "inverseOf": "spokenInCountry",
+            "belongsToClassMap": "CountryFull",
+            "refersToClass": "Language",
+            "join": [
+                "country.code = spoken.country",
+                "language.name = spoken.language"
+            ]
+        }
+    ],
+    "data_properties": [
+        {
+            "property": "name",
+            "belongsToClass": "Language",
+            "type": "string",
+            "column": "language.name"
+        },
+        {
+            "property": "percentage",
+            "belongsToClass": "SpokenBy",
+            "type": "decimal",
+            "column": "spoken.percentage"
+        }
+    ]
+}

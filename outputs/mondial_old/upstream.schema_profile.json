@@ -1,0 +1,3951 @@
+{
+  "tables": {
+    "Country": {
+      "name": "Country",
+      "columns": [
+        {
+          "name": "Name",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": false,
+          "is_primary_key": false,
+          "raw_sql": "Name VARCHAR(50) NOT NULL UNIQUE"
+        },
+        {
+          "name": "Code",
+          "sql_type": "VARCHAR(4)",
+          "is_nullable": true,
+          "is_primary_key": true,
+          "raw_sql": "Code VARCHAR(4) CONSTRAINT CountryKey PRIMARY KEY"
+        },
+        {
+          "name": "Capital",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Capital VARCHAR(50)"
+        },
+        {
+          "name": "Province",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Province VARCHAR(50)"
+        },
+        {
+          "name": "Area",
+          "sql_type": "DECIMAL",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Area DECIMAL"
+        },
+        {
+          "name": "Population",
+          "sql_type": "DECIMAL",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Population DECIMAL"
+        }
+      ],
+      "primary_key": [
+        "Code"
+      ],
+      "foreign_keys": [
+        {
+          "columns": [
+            "Capital",
+            "Code",
+            "Province"
+          ],
+          "referenced_table": "City",
+          "referenced_columns": [
+            "Name",
+            "Country",
+            "Province"
+          ]
+        }
+      ],
+      "unique_constraints": [],
+      "raw_sql_body": "Name VARCHAR(50) NOT NULL UNIQUE,\n Code VARCHAR(4) CONSTRAINT CountryKey PRIMARY KEY,\n Capital VARCHAR(50),\n Province VARCHAR(50),\n Area DECIMAL,\n Population DECIMAL"
+    },
+    "City": {
+      "name": "City",
+      "columns": [
+        {
+          "name": "Name",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Name VARCHAR(50)"
+        },
+        {
+          "name": "Country",
+          "sql_type": "VARCHAR(4)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Country VARCHAR(4)"
+        },
+        {
+          "name": "Province",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Province VARCHAR(50)"
+        },
+        {
+          "name": "Population",
+          "sql_type": "DECIMAL",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Population DECIMAL"
+        },
+        {
+          "name": "Latitude",
+          "sql_type": "DECIMAL",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Latitude DECIMAL"
+        },
+        {
+          "name": "Longitude",
+          "sql_type": "DECIMAL",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Longitude DECIMAL"
+        },
+        {
+          "name": "Elevation",
+          "sql_type": "DECIMAL",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Elevation DECIMAL"
+        }
+      ],
+      "primary_key": [
+        "Name",
+        "Country",
+        "Province"
+      ],
+      "foreign_keys": [
+        {
+          "columns": [
+            "Country",
+            "Province"
+          ],
+          "referenced_table": "Province",
+          "referenced_columns": [
+            "Country",
+            "Name"
+          ]
+        }
+      ],
+      "unique_constraints": [],
+      "raw_sql_body": "Name VARCHAR(50),\n Country VARCHAR(4),\n Province VARCHAR(50),\n Population DECIMAL,\n Latitude DECIMAL,\n Longitude DECIMAL,\n Elevation DECIMAL,\n CONSTRAINT CityKey PRIMARY KEY (Name, Country, Province)\n "
+    },
+    "Population": {
+      "name": "Population",
+      "columns": [
+        {
+          "name": "Country",
+          "sql_type": "VARCHAR(4)",
+          "is_nullable": true,
+          "is_primary_key": true,
+          "raw_sql": "Country VARCHAR(4) CONSTRAINT PopKey PRIMARY KEY"
+        },
+        {
+          "name": "Population_Growth",
+          "sql_type": "DECIMAL",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Population_Growth DECIMAL"
+        },
+        {
+          "name": "Infant_Mortality",
+          "sql_type": "DECIMAL",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Infant_Mortality DECIMAL"
+        }
+      ],
+      "primary_key": [
+        "Country"
+      ],
+      "foreign_keys": [
+        {
+          "columns": [
+            "Country"
+          ],
+          "referenced_table": "Country",
+          "referenced_columns": [
+            "Code"
+          ]
+        }
+      ],
+      "unique_constraints": [],
+      "raw_sql_body": "Country VARCHAR(4) CONSTRAINT PopKey PRIMARY KEY,\n Population_Growth DECIMAL,\n Infant_Mortality DECIMAL\n "
+    },
+    "Province": {
+      "name": "Province",
+      "columns": [
+        {
+          "name": "Name",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": false,
+          "is_primary_key": false,
+          "raw_sql": "Name VARCHAR(50) CONSTRAINT PrName NOT NULL"
+        },
+        {
+          "name": "Country",
+          "sql_type": "VARCHAR(4)",
+          "is_nullable": false,
+          "is_primary_key": false,
+          "raw_sql": "Country  VARCHAR(4) CONSTRAINT PrCountry NOT NULL"
+        },
+        {
+          "name": "Population",
+          "sql_type": "DECIMAL",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Population DECIMAL"
+        },
+        {
+          "name": "Area",
+          "sql_type": "DECIMAL",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Area DECIMAL"
+        },
+        {
+          "name": "Capital",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Capital VARCHAR(50)"
+        },
+        {
+          "name": "CapProv",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "CapProv VARCHAR(50)"
+        }
+      ],
+      "primary_key": [
+        "Name",
+        "Country"
+      ],
+      "foreign_keys": [
+        {
+          "columns": [
+            "Country"
+          ],
+          "referenced_table": "Country",
+          "referenced_columns": [
+            "Code"
+          ]
+        },
+        {
+          "columns": [
+            "Capital",
+            "Country",
+            "CapProv"
+          ],
+          "referenced_table": "City",
+          "referenced_columns": [
+            "Name",
+            "Country",
+            "Province"
+          ]
+        }
+      ],
+      "unique_constraints": [],
+      "raw_sql_body": "Name VARCHAR(50) CONSTRAINT PrName NOT NULL ,\n Country  VARCHAR(4) CONSTRAINT PrCountry NOT NULL ,\n Population DECIMAL,\n Area DECIMAL,\n Capital VARCHAR(50),\n CapProv VARCHAR(50),\n CONSTRAINT PrKey PRIMARY KEY (Name, Country)\n "
+    },
+    "Economy": {
+      "name": "Economy",
+      "columns": [
+        {
+          "name": "Country",
+          "sql_type": "VARCHAR(4)",
+          "is_nullable": true,
+          "is_primary_key": true,
+          "raw_sql": "Country VARCHAR(4) CONSTRAINT EconomyKey PRIMARY KEY"
+        },
+        {
+          "name": "GDP",
+          "sql_type": "DECIMAL",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "GDP DECIMAL"
+        },
+        {
+          "name": "Agriculture",
+          "sql_type": "DECIMAL",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Agriculture DECIMAL"
+        },
+        {
+          "name": "Service",
+          "sql_type": "DECIMAL",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Service DECIMAL"
+        },
+        {
+          "name": "Industry",
+          "sql_type": "DECIMAL",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Industry DECIMAL"
+        },
+        {
+          "name": "Inflation",
+          "sql_type": "DECIMAL",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Inflation DECIMAL"
+        },
+        {
+          "name": "Unemployment",
+          "sql_type": "DECIMAL",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Unemployment DECIMAL"
+        }
+      ],
+      "primary_key": [
+        "Country"
+      ],
+      "foreign_keys": [
+        {
+          "columns": [
+            "Country"
+          ],
+          "referenced_table": "Country",
+          "referenced_columns": [
+            "Code"
+          ]
+        }
+      ],
+      "unique_constraints": [],
+      "raw_sql_body": "Country VARCHAR(4) CONSTRAINT EconomyKey PRIMARY KEY,\n GDP DECIMAL,\n Agriculture DECIMAL,\n Service DECIMAL,\n Industry DECIMAL,\n Inflation DECIMAL,\n Unemployment DECIMAL\n "
+    },
+    "Politics": {
+      "name": "Politics",
+      "columns": [
+        {
+          "name": "Country",
+          "sql_type": "VARCHAR(4)",
+          "is_nullable": true,
+          "is_primary_key": true,
+          "raw_sql": "Country VARCHAR(4) CONSTRAINT PoliticsKey PRIMARY KEY"
+        },
+        {
+          "name": "Independence",
+          "sql_type": "DATE",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Independence DATE"
+        },
+        {
+          "name": "WasDependent",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "WasDependent VARCHAR(50)"
+        },
+        {
+          "name": "Dependent",
+          "sql_type": "VARCHAR(4)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Dependent  VARCHAR(4)"
+        },
+        {
+          "name": "Government",
+          "sql_type": "VARCHAR(120)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Government VARCHAR(120)"
+        }
+      ],
+      "primary_key": [
+        "Country"
+      ],
+      "foreign_keys": [
+        {
+          "columns": [
+            "Country"
+          ],
+          "referenced_table": "Country",
+          "referenced_columns": [
+            "Code"
+          ]
+        },
+        {
+          "columns": [
+            "Dependent"
+          ],
+          "referenced_table": "Country",
+          "referenced_columns": [
+            "Code"
+          ]
+        }
+      ],
+      "unique_constraints": [],
+      "raw_sql_body": "Country VARCHAR(4) CONSTRAINT PoliticsKey PRIMARY KEY,\n Independence DATE,\n WasDependent VARCHAR(50),\n Dependent  VARCHAR(4),\n Government VARCHAR(120)\n "
+    },
+    "Religion": {
+      "name": "Religion",
+      "columns": [
+        {
+          "name": "Country",
+          "sql_type": "VARCHAR(4)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Country VARCHAR(4)"
+        },
+        {
+          "name": "Name",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Name VARCHAR(50)"
+        },
+        {
+          "name": "Percentage",
+          "sql_type": "DECIMAL",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Percentage DECIMAL"
+        }
+      ],
+      "primary_key": [
+        "Name",
+        "Country"
+      ],
+      "foreign_keys": [
+        {
+          "columns": [
+            "Country"
+          ],
+          "referenced_table": "Country",
+          "referenced_columns": [
+            "Code"
+          ]
+        }
+      ],
+      "unique_constraints": [],
+      "raw_sql_body": "Country VARCHAR(4),\n Name VARCHAR(50),\n Percentage DECIMAL,\n CONSTRAINT ReligionKey PRIMARY KEY (Name, Country)\n "
+    },
+    "EthnicGroup": {
+      "name": "EthnicGroup",
+      "columns": [
+        {
+          "name": "Country",
+          "sql_type": "VARCHAR(4)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Country VARCHAR(4)"
+        },
+        {
+          "name": "Name",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Name VARCHAR(50)"
+        },
+        {
+          "name": "Percentage",
+          "sql_type": "DECIMAL",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Percentage DECIMAL"
+        }
+      ],
+      "primary_key": [
+        "Name",
+        "Country"
+      ],
+      "foreign_keys": [
+        {
+          "columns": [
+            "Country"
+          ],
+          "referenced_table": "Country",
+          "referenced_columns": [
+            "Code"
+          ]
+        }
+      ],
+      "unique_constraints": [],
+      "raw_sql_body": "Country VARCHAR(4),\n Name VARCHAR(50),\n Percentage DECIMAL,\n CONSTRAINT EthnicKey PRIMARY KEY (Name, Country)"
+    },
+    "Spoken": {
+      "name": "Spoken",
+      "columns": [
+        {
+          "name": "Country",
+          "sql_type": "VARCHAR(4)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Country VARCHAR(4)"
+        },
+        {
+          "name": "Language",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Language VARCHAR(50)"
+        },
+        {
+          "name": "Percentage",
+          "sql_type": "DECIMAL",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Percentage DECIMAL"
+        }
+      ],
+      "primary_key": [
+        "Country",
+        "Language"
+      ],
+      "foreign_keys": [
+        {
+          "columns": [
+            "Country"
+          ],
+          "referenced_table": "Country",
+          "referenced_columns": [
+            "Code"
+          ]
+        },
+        {
+          "columns": [
+            "Language"
+          ],
+          "referenced_table": "Language",
+          "referenced_columns": [
+            "Name"
+          ]
+        }
+      ],
+      "unique_constraints": [],
+      "raw_sql_body": "Country VARCHAR(4),\n Language VARCHAR(50),\n Percentage DECIMAL,\n CONSTRAINT SpokenKey PRIMARY KEY (Country, Language)\n "
+    },
+    "Language": {
+      "name": "Language",
+      "columns": [
+        {
+          "name": "Name",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Name VARCHAR(50)"
+        },
+        {
+          "name": "Superlanguage",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Superlanguage VARCHAR(50)"
+        }
+      ],
+      "primary_key": [
+        "Name"
+      ],
+      "foreign_keys": [
+        {
+          "columns": [
+            "Superlanguage"
+          ],
+          "referenced_table": "Language",
+          "referenced_columns": [
+            "Name"
+          ]
+        }
+      ],
+      "unique_constraints": [],
+      "raw_sql_body": "Name VARCHAR(50) ,\n Superlanguage VARCHAR(50),\n CONSTRAINT LanguageKey PRIMARY KEY (Name)\n "
+    },
+    "Countrypops": {
+      "name": "Countrypops",
+      "columns": [
+        {
+          "name": "Country",
+          "sql_type": "VARCHAR(4)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Country VARCHAR(4)"
+        },
+        {
+          "name": "Year",
+          "sql_type": "DECIMAL",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Year DECIMAL"
+        },
+        {
+          "name": "Population",
+          "sql_type": "DECIMAL",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Population DECIMAL"
+        }
+      ],
+      "primary_key": [
+        "Country",
+        "Year"
+      ],
+      "foreign_keys": [
+        {
+          "columns": [
+            "Country"
+          ],
+          "referenced_table": "Country",
+          "referenced_columns": [
+            "Code"
+          ]
+        }
+      ],
+      "unique_constraints": [],
+      "raw_sql_body": "Country VARCHAR(4),\n Year DECIMAL,\n Population DECIMAL,\n CONSTRAINT CountryPopsKey PRIMARY KEY (Country, Year)\n "
+    },
+    "Countryothername": {
+      "name": "Countryothername",
+      "columns": [
+        {
+          "name": "Country",
+          "sql_type": "VARCHAR(4)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Country VARCHAR(4)"
+        },
+        {
+          "name": "othername",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "othername VARCHAR(50)"
+        }
+      ],
+      "primary_key": [
+        "Country",
+        "othername"
+      ],
+      "foreign_keys": [
+        {
+          "columns": [
+            "Country"
+          ],
+          "referenced_table": "Country",
+          "referenced_columns": [
+            "Code"
+          ]
+        }
+      ],
+      "unique_constraints": [],
+      "raw_sql_body": "Country VARCHAR(4),\n othername VARCHAR(50),\n CONSTRAINT CountryOthernameKey PRIMARY KEY (Country, othername)"
+    },
+    "Countrylocalname": {
+      "name": "Countrylocalname",
+      "columns": [
+        {
+          "name": "Country",
+          "sql_type": "VARCHAR(4)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Country VARCHAR(4)"
+        },
+        {
+          "name": "localname",
+          "sql_type": "VARCHAR(300)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "localname VARCHAR(300)"
+        }
+      ],
+      "primary_key": [
+        "Country"
+      ],
+      "foreign_keys": [
+        {
+          "columns": [
+            "Country"
+          ],
+          "referenced_table": "Country",
+          "referenced_columns": [
+            "Code"
+          ]
+        }
+      ],
+      "unique_constraints": [],
+      "raw_sql_body": "Country VARCHAR(4),\n localname VARCHAR(300),\n CONSTRAINT CountrylocalnameKey PRIMARY KEY (Country)\n "
+    },
+    "Provpops": {
+      "name": "Provpops",
+      "columns": [
+        {
+          "name": "Province",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Province VARCHAR(50)"
+        },
+        {
+          "name": "Country",
+          "sql_type": "VARCHAR(4)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Country VARCHAR(4)"
+        },
+        {
+          "name": "Year",
+          "sql_type": "DECIMAL",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Year DECIMAL"
+        },
+        {
+          "name": "Population",
+          "sql_type": "DECIMAL",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Population DECIMAL"
+        }
+      ],
+      "primary_key": [
+        "Country",
+        "Province",
+        "Year"
+      ],
+      "foreign_keys": [
+        {
+          "columns": [
+            "Country",
+            "Province"
+          ],
+          "referenced_table": "Province",
+          "referenced_columns": [
+            "Country",
+            "Name"
+          ]
+        }
+      ],
+      "unique_constraints": [],
+      "raw_sql_body": "Province VARCHAR(50),\n Country VARCHAR(4),\n Year DECIMAL ,\n Population DECIMAL,\n CONSTRAINT ProvPopKey PRIMARY KEY (Country, Province, Year)\n "
+    },
+    "Provinceothername": {
+      "name": "Provinceothername",
+      "columns": [
+        {
+          "name": "Province",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Province VARCHAR(50)"
+        },
+        {
+          "name": "Country",
+          "sql_type": "VARCHAR(4)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Country VARCHAR(4)"
+        },
+        {
+          "name": "othername",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "othername VARCHAR(50)"
+        }
+      ],
+      "primary_key": [
+        "Country",
+        "Province",
+        "othername"
+      ],
+      "foreign_keys": [
+        {
+          "columns": [
+            "Country",
+            "Province"
+          ],
+          "referenced_table": "Province",
+          "referenced_columns": [
+            "Country",
+            "Name"
+          ]
+        }
+      ],
+      "unique_constraints": [],
+      "raw_sql_body": "Province VARCHAR(50),\n Country VARCHAR(4),\n othername VARCHAR(50),\n CONSTRAINT ProvOthernameKey PRIMARY KEY (Country, Province, othername)\n "
+    },
+    "Provincelocalname": {
+      "name": "Provincelocalname",
+      "columns": [
+        {
+          "name": "Province",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Province VARCHAR(50)"
+        },
+        {
+          "name": "Country",
+          "sql_type": "VARCHAR(4)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Country VARCHAR(4)"
+        },
+        {
+          "name": "localname",
+          "sql_type": "VARCHAR(300)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "localname VARCHAR(300)"
+        }
+      ],
+      "primary_key": [
+        "Country",
+        "Province"
+      ],
+      "foreign_keys": [
+        {
+          "columns": [
+            "Country",
+            "Province"
+          ],
+          "referenced_table": "Province",
+          "referenced_columns": [
+            "Country",
+            "Name"
+          ]
+        }
+      ],
+      "unique_constraints": [],
+      "raw_sql_body": "Province VARCHAR(50),\n Country VARCHAR(4),\n localname VARCHAR(300),\n CONSTRAINT ProvlocalnameKey PRIMARY KEY (Country, Province)\n "
+    },
+    "Citypops": {
+      "name": "Citypops",
+      "columns": [
+        {
+          "name": "City",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "City VARCHAR(50)"
+        },
+        {
+          "name": "Country",
+          "sql_type": "VARCHAR(4)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Country VARCHAR(4)"
+        },
+        {
+          "name": "Province",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Province VARCHAR(50)"
+        },
+        {
+          "name": "Year",
+          "sql_type": "DECIMAL",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Year DECIMAL"
+        },
+        {
+          "name": "Population",
+          "sql_type": "DECIMAL",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Population DECIMAL"
+        }
+      ],
+      "primary_key": [
+        "Country",
+        "Province",
+        "City",
+        "Year"
+      ],
+      "foreign_keys": [
+        {
+          "columns": [
+            "City",
+            "Country",
+            "Province"
+          ],
+          "referenced_table": "City",
+          "referenced_columns": [
+            "Name",
+            "Country",
+            "Province"
+          ]
+        }
+      ],
+      "unique_constraints": [],
+      "raw_sql_body": "City VARCHAR(50),\n Country VARCHAR(4),\n Province VARCHAR(50),\n Year DECIMAL,\n Population DECIMAL,\n CONSTRAINT CityPopKey PRIMARY KEY (Country, Province, City, Year)\n "
+    },
+    "Cityothername": {
+      "name": "Cityothername",
+      "columns": [
+        {
+          "name": "City",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "City VARCHAR(50)"
+        },
+        {
+          "name": "Country",
+          "sql_type": "VARCHAR(4)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Country VARCHAR(4)"
+        },
+        {
+          "name": "Province",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Province VARCHAR(50)"
+        },
+        {
+          "name": "othername",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "othername VARCHAR(50)"
+        }
+      ],
+      "primary_key": [
+        "Country",
+        "Province",
+        "City",
+        "othername"
+      ],
+      "foreign_keys": [
+        {
+          "columns": [
+            "City",
+            "Country",
+            "Province"
+          ],
+          "referenced_table": "City",
+          "referenced_columns": [
+            "Name",
+            "Country",
+            "Province"
+          ]
+        }
+      ],
+      "unique_constraints": [],
+      "raw_sql_body": "City VARCHAR(50),\n Country VARCHAR(4),\n Province VARCHAR(50),\n othername VARCHAR(50),\n CONSTRAINT CityOthernameKey PRIMARY KEY (Country, Province, City, othername)\n "
+    },
+    "Citylocalname": {
+      "name": "Citylocalname",
+      "columns": [
+        {
+          "name": "City",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "City VARCHAR(50)"
+        },
+        {
+          "name": "Country",
+          "sql_type": "VARCHAR(4)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Country VARCHAR(4)"
+        },
+        {
+          "name": "Province",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Province VARCHAR(50)"
+        },
+        {
+          "name": "localname",
+          "sql_type": "VARCHAR(300)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "localname VARCHAR(300)"
+        }
+      ],
+      "primary_key": [
+        "Country",
+        "Province",
+        "City"
+      ],
+      "foreign_keys": [
+        {
+          "columns": [
+            "City",
+            "Country",
+            "Province"
+          ],
+          "referenced_table": "City",
+          "referenced_columns": [
+            "Name",
+            "Country",
+            "Province"
+          ]
+        }
+      ],
+      "unique_constraints": [],
+      "raw_sql_body": "City VARCHAR(50),\n Country VARCHAR(4),\n Province VARCHAR(50),\n localname VARCHAR(300),\n CONSTRAINT CitylocalnameKey PRIMARY KEY (Country, Province, City)\n "
+    },
+    "Continent": {
+      "name": "Continent",
+      "columns": [
+        {
+          "name": "Name",
+          "sql_type": "VARCHAR(20)",
+          "is_nullable": true,
+          "is_primary_key": true,
+          "raw_sql": "Name VARCHAR(20) CONSTRAINT ContinentKey PRIMARY KEY"
+        },
+        {
+          "name": "Area",
+          "sql_type": "DECIMAL(10)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Area DECIMAL(10)"
+        }
+      ],
+      "primary_key": [
+        "Name"
+      ],
+      "foreign_keys": [],
+      "unique_constraints": [],
+      "raw_sql_body": "Name VARCHAR(20) CONSTRAINT ContinentKey PRIMARY KEY,\n Area DECIMAL(10)\n "
+    },
+    "borders": {
+      "name": "borders",
+      "columns": [
+        {
+          "name": "Country1",
+          "sql_type": "VARCHAR(4)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Country1 VARCHAR(4)"
+        },
+        {
+          "name": "Country2",
+          "sql_type": "VARCHAR(4)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Country2 VARCHAR(4)"
+        },
+        {
+          "name": "Length",
+          "sql_type": "DECIMAL",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Length DECIMAL"
+        }
+      ],
+      "primary_key": [
+        "Country1",
+        "Country2"
+      ],
+      "foreign_keys": [
+        {
+          "columns": [
+            "Country1"
+          ],
+          "referenced_table": "Country",
+          "referenced_columns": [
+            "Code"
+          ]
+        },
+        {
+          "columns": [
+            "Country2"
+          ],
+          "referenced_table": "Country",
+          "referenced_columns": [
+            "Code"
+          ]
+        }
+      ],
+      "unique_constraints": [],
+      "raw_sql_body": "Country1 VARCHAR(4),\n Country2 VARCHAR(4),\n Length DECIMAL ,\n CONSTRAINT BorderKey PRIMARY KEY (Country1,Country2)\n "
+    },
+    "encompasses": {
+      "name": "encompasses",
+      "columns": [
+        {
+          "name": "Country",
+          "sql_type": "VARCHAR(4)",
+          "is_nullable": false,
+          "is_primary_key": false,
+          "raw_sql": "Country VARCHAR(4) NOT NULL"
+        },
+        {
+          "name": "Continent",
+          "sql_type": "VARCHAR(20)",
+          "is_nullable": false,
+          "is_primary_key": false,
+          "raw_sql": "Continent VARCHAR(20) NOT NULL"
+        },
+        {
+          "name": "Percentage",
+          "sql_type": "DECIMAL",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Percentage DECIMAL"
+        }
+      ],
+      "primary_key": [
+        "Country",
+        "Continent"
+      ],
+      "foreign_keys": [
+        {
+          "columns": [
+            "Country"
+          ],
+          "referenced_table": "Country",
+          "referenced_columns": [
+            "Code"
+          ]
+        },
+        {
+          "columns": [
+            "Continent"
+          ],
+          "referenced_table": "Continent",
+          "referenced_columns": [
+            "Name"
+          ]
+        }
+      ],
+      "unique_constraints": [],
+      "raw_sql_body": "Country VARCHAR(4) NOT NULL,\n Continent VARCHAR(20) NOT NULL,\n Percentage DECIMAL,\n CONSTRAINT EncompassesKey PRIMARY KEY (Country,Continent)\n "
+    },
+    "Organization": {
+      "name": "Organization",
+      "columns": [
+        {
+          "name": "Abbreviation",
+          "sql_type": "VARCHAR(12)",
+          "is_nullable": true,
+          "is_primary_key": true,
+          "raw_sql": "Abbreviation VARCHAR(12) Constraint OrgKey PRIMARY KEY"
+        },
+        {
+          "name": "Name",
+          "sql_type": "VARCHAR(100)",
+          "is_nullable": false,
+          "is_primary_key": false,
+          "raw_sql": "Name VARCHAR(100) NOT NULL"
+        },
+        {
+          "name": "City",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "City VARCHAR(50)"
+        },
+        {
+          "name": "Country",
+          "sql_type": "VARCHAR(4)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Country VARCHAR(4)"
+        },
+        {
+          "name": "Province",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Province VARCHAR(50)"
+        },
+        {
+          "name": "Established",
+          "sql_type": "DATE",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Established DATE"
+        }
+      ],
+      "primary_key": [
+        "Abbreviation"
+      ],
+      "foreign_keys": [
+        {
+          "columns": [
+            "City",
+            "Country",
+            "Province"
+          ],
+          "referenced_table": "City",
+          "referenced_columns": [
+            "Name",
+            "Country",
+            "Province"
+          ]
+        }
+      ],
+      "unique_constraints": [],
+      "raw_sql_body": "Abbreviation VARCHAR(12) Constraint OrgKey PRIMARY KEY,\n Name VARCHAR(100) NOT NULL,\n City VARCHAR(50) ,\n Country VARCHAR(4) , \n Province VARCHAR(50) ,\n Established DATE,\n CONSTRAINT OrgNameUnique UNIQUE (Name)\n "
+    },
+    "isMember": {
+      "name": "isMember",
+      "columns": [
+        {
+          "name": "Country",
+          "sql_type": "VARCHAR(4)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Country VARCHAR(4)"
+        },
+        {
+          "name": "Organization",
+          "sql_type": "VARCHAR(12)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Organization VARCHAR(12)"
+        },
+        {
+          "name": "Type",
+          "sql_type": "VARCHAR(60)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Type VARCHAR(60) DEFAULT 'member'"
+        }
+      ],
+      "primary_key": [
+        "Country",
+        "Organization"
+      ],
+      "foreign_keys": [
+        {
+          "columns": [
+            "Country"
+          ],
+          "referenced_table": "Country",
+          "referenced_columns": [
+            "Code"
+          ]
+        },
+        {
+          "columns": [
+            "Organization"
+          ],
+          "referenced_table": "Organization",
+          "referenced_columns": [
+            "Abbreviation"
+          ]
+        }
+      ],
+      "unique_constraints": [],
+      "raw_sql_body": "Country VARCHAR(4),\n Organization VARCHAR(12),\n Type VARCHAR(60) DEFAULT 'member',\n CONSTRAINT MemberKey PRIMARY KEY (Country,Organization)\n  "
+    },
+    "Mountain": {
+      "name": "Mountain",
+      "columns": [
+        {
+          "name": "Name",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": true,
+          "raw_sql": "Name VARCHAR(50) CONSTRAINT MountainKey PRIMARY KEY"
+        },
+        {
+          "name": "Mountains",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Mountains VARCHAR(50)"
+        },
+        {
+          "name": "Elevation",
+          "sql_type": "DECIMAL",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Elevation DECIMAL"
+        },
+        {
+          "name": "Type",
+          "sql_type": "VARCHAR(10)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Type VARCHAR(10)"
+        },
+        {
+          "name": "Latitude",
+          "sql_type": "DECIMAL",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Latitude DECIMAL"
+        },
+        {
+          "name": "Longitude",
+          "sql_type": "DECIMAL",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Longitude DECIMAL"
+        }
+      ],
+      "primary_key": [
+        "Name"
+      ],
+      "foreign_keys": [],
+      "unique_constraints": [],
+      "raw_sql_body": "Name VARCHAR(50) CONSTRAINT MountainKey PRIMARY KEY,\n Mountains VARCHAR(50),\n Elevation DECIMAL,\n Type VARCHAR(10),\n Latitude DECIMAL,\n  Longitude DECIMAL"
+    },
+    "Desert": {
+      "name": "Desert",
+      "columns": [
+        {
+          "name": "Name",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": true,
+          "raw_sql": "Name VARCHAR(50) CONSTRAINT DesertKey PRIMARY KEY"
+        },
+        {
+          "name": "Area",
+          "sql_type": "DECIMAL",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Area DECIMAL"
+        },
+        {
+          "name": "Latitude",
+          "sql_type": "DECIMAL",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Latitude DECIMAL"
+        },
+        {
+          "name": "Longitude",
+          "sql_type": "DECIMAL",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Longitude DECIMAL"
+        }
+      ],
+      "primary_key": [
+        "Name"
+      ],
+      "foreign_keys": [],
+      "unique_constraints": [],
+      "raw_sql_body": "Name VARCHAR(50) CONSTRAINT DesertKey PRIMARY KEY,\n Area DECIMAL,\n Latitude DECIMAL,\n  Longitude DECIMAL"
+    },
+    "Island": {
+      "name": "Island",
+      "columns": [
+        {
+          "name": "Name",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": true,
+          "raw_sql": "Name VARCHAR(50) CONSTRAINT IslandKey PRIMARY KEY"
+        },
+        {
+          "name": "Islands",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Islands VARCHAR(50)"
+        },
+        {
+          "name": "Area",
+          "sql_type": "DECIMAL",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Area DECIMAL"
+        },
+        {
+          "name": "Elevation",
+          "sql_type": "DECIMAL",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Elevation DECIMAL"
+        },
+        {
+          "name": "Type",
+          "sql_type": "VARCHAR(15)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Type VARCHAR(15)"
+        },
+        {
+          "name": "Latitude",
+          "sql_type": "DECIMAL",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Latitude DECIMAL"
+        },
+        {
+          "name": "Longitude",
+          "sql_type": "DECIMAL",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Longitude DECIMAL"
+        }
+      ],
+      "primary_key": [
+        "Name"
+      ],
+      "foreign_keys": [],
+      "unique_constraints": [],
+      "raw_sql_body": "Name VARCHAR(50) CONSTRAINT IslandKey PRIMARY KEY,\n Islands VARCHAR(50),\n Area DECIMAL ,\n Elevation DECIMAL,\n Type VARCHAR(15),\n Latitude DECIMAL,\n  Longitude DECIMAL"
+    },
+    "Lake": {
+      "name": "Lake",
+      "columns": [
+        {
+          "name": "Name",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": true,
+          "raw_sql": "Name VARCHAR(50) CONSTRAINT LakeKey PRIMARY KEY"
+        },
+        {
+          "name": "River",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "River VARCHAR(50)"
+        },
+        {
+          "name": "Area",
+          "sql_type": "DECIMAL",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Area DECIMAL"
+        },
+        {
+          "name": "Elevation",
+          "sql_type": "DECIMAL",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Elevation DECIMAL"
+        },
+        {
+          "name": "Depth",
+          "sql_type": "DECIMAL",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Depth DECIMAL"
+        },
+        {
+          "name": "Height",
+          "sql_type": "DECIMAL",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Height DECIMAL"
+        },
+        {
+          "name": "Type",
+          "sql_type": "VARCHAR(12)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Type VARCHAR(12)"
+        },
+        {
+          "name": "Latitude",
+          "sql_type": "DECIMAL",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Latitude DECIMAL"
+        },
+        {
+          "name": "Longitude",
+          "sql_type": "DECIMAL",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Longitude DECIMAL"
+        }
+      ],
+      "primary_key": [
+        "Name"
+      ],
+      "foreign_keys": [
+        {
+          "columns": [
+            "River"
+          ],
+          "referenced_table": "River",
+          "referenced_columns": [
+            "Name"
+          ]
+        }
+      ],
+      "unique_constraints": [],
+      "raw_sql_body": "Name VARCHAR(50) CONSTRAINT LakeKey PRIMARY KEY,\n River VARCHAR(50),\n Area DECIMAL ,\n Elevation DECIMAL,\n Depth DECIMAL,\n Height DECIMAL,\n Type VARCHAR(12),\n Latitude DECIMAL,\n  Longitude DECIMAL  \n"
+    },
+    "Sea": {
+      "name": "Sea",
+      "columns": [
+        {
+          "name": "Name",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": true,
+          "raw_sql": "Name VARCHAR(50) CONSTRAINT SeaKey PRIMARY KEY"
+        },
+        {
+          "name": "Area",
+          "sql_type": "DECIMAL",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Area DECIMAL"
+        },
+        {
+          "name": "Depth",
+          "sql_type": "DECIMAL",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Depth DECIMAL"
+        }
+      ],
+      "primary_key": [
+        "Name"
+      ],
+      "foreign_keys": [],
+      "unique_constraints": [],
+      "raw_sql_body": "Name VARCHAR(50) CONSTRAINT SeaKey PRIMARY KEY,\n Area DECIMAL,\n Depth DECIMAL"
+    },
+    "River": {
+      "name": "River",
+      "columns": [
+        {
+          "name": "Name",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": true,
+          "raw_sql": "Name VARCHAR(50) CONSTRAINT RiverKey PRIMARY KEY"
+        },
+        {
+          "name": "River",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "River VARCHAR(50)"
+        },
+        {
+          "name": "Lake",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Lake VARCHAR(50)"
+        },
+        {
+          "name": "Sea",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Sea VARCHAR(50)"
+        },
+        {
+          "name": "Length",
+          "sql_type": "DECIMAL",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Length DECIMAL"
+        },
+        {
+          "name": "Area",
+          "sql_type": "DECIMAL",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Area DECIMAL"
+        },
+        {
+          "name": "SourceLatitude",
+          "sql_type": "DECIMAL",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "SourceLatitude DECIMAL"
+        },
+        {
+          "name": "SourceLongitude",
+          "sql_type": "DECIMAL",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "SourceLongitude DECIMAL"
+        },
+        {
+          "name": "Mountains",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Mountains VARCHAR(50)"
+        },
+        {
+          "name": "SourceElevation",
+          "sql_type": "DECIMAL",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "SourceElevation DECIMAL"
+        },
+        {
+          "name": "EstuaryLatitude",
+          "sql_type": "DECIMAL",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "EstuaryLatitude DECIMAL"
+        },
+        {
+          "name": "EstuaryLongitude",
+          "sql_type": "DECIMAL",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "EstuaryLongitude DECIMAL"
+        },
+        {
+          "name": "EstuaryElevation",
+          "sql_type": "DECIMAL",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "EstuaryElevation DECIMAL"
+        }
+      ],
+      "primary_key": [
+        "Name"
+      ],
+      "foreign_keys": [
+        {
+          "columns": [
+            "River"
+          ],
+          "referenced_table": "River",
+          "referenced_columns": [
+            "Name"
+          ]
+        },
+        {
+          "columns": [
+            "Lake"
+          ],
+          "referenced_table": "Lake",
+          "referenced_columns": [
+            "Name"
+          ]
+        },
+        {
+          "columns": [
+            "Sea"
+          ],
+          "referenced_table": "Sea",
+          "referenced_columns": [
+            "Name"
+          ]
+        }
+      ],
+      "unique_constraints": [],
+      "raw_sql_body": "Name VARCHAR(50) CONSTRAINT RiverKey PRIMARY KEY,\n River VARCHAR(50),\n Lake VARCHAR(50),\n Sea VARCHAR(50),\n Length DECIMAL,\n Area DECIMAL,\n SourceLatitude DECIMAL,\n SourceLongitude DECIMAL,\n Mountains VARCHAR(50),\n SourceElevation DECIMAL,\n EstuaryLatitude DECIMAL,\n EstuaryLongitude DECIMAL,\n EstuaryElevation DECIMAL,\n CONSTRAINT RivFlowsInto \n     CHECK ((River IS NULL AND Lake IS NULL)\n            OR (River IS NULL AND Sea IS NULL)\n            OR (Lake IS NULL AND Sea is NULL))\n"
+    },
+    "RiverThrough": {
+      "name": "RiverThrough",
+      "columns": [
+        {
+          "name": "River",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "River VARCHAR(50)"
+        },
+        {
+          "name": "Lake",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Lake  VARCHAR(50)"
+        }
+      ],
+      "primary_key": [
+        "River",
+        "Lake"
+      ],
+      "foreign_keys": [
+        {
+          "columns": [
+            "River"
+          ],
+          "referenced_table": "River",
+          "referenced_columns": [
+            "Name"
+          ]
+        },
+        {
+          "columns": [
+            "Lake"
+          ],
+          "referenced_table": "Lake",
+          "referenced_columns": [
+            "Name"
+          ]
+        }
+      ],
+      "unique_constraints": [],
+      "raw_sql_body": "River VARCHAR(50),\n Lake  VARCHAR(50),\n CONSTRAINT RThroughKey PRIMARY KEY (River,Lake)\n  "
+    },
+    "geo_Mountain": {
+      "name": "geo_Mountain",
+      "columns": [
+        {
+          "name": "Mountain",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Mountain VARCHAR(50)"
+        },
+        {
+          "name": "Country",
+          "sql_type": "VARCHAR(4)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Country VARCHAR(4)"
+        },
+        {
+          "name": "Province",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Province VARCHAR(50)"
+        }
+      ],
+      "primary_key": [
+        "Province",
+        "Country",
+        "Mountain"
+      ],
+      "foreign_keys": [
+        {
+          "columns": [
+            "Country",
+            "Province"
+          ],
+          "referenced_table": "Province",
+          "referenced_columns": [
+            "Country",
+            "Name"
+          ]
+        },
+        {
+          "columns": [
+            "Mountain"
+          ],
+          "referenced_table": "Mountain",
+          "referenced_columns": [
+            "Name"
+          ]
+        }
+      ],
+      "unique_constraints": [],
+      "raw_sql_body": "Mountain VARCHAR(50) ,\n Country VARCHAR(4) ,\n Province VARCHAR(50) ,\n CONSTRAINT GMountainKey PRIMARY KEY (Province,Country,Mountain)\n  "
+    },
+    "geo_Desert": {
+      "name": "geo_Desert",
+      "columns": [
+        {
+          "name": "Desert",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Desert VARCHAR(50)"
+        },
+        {
+          "name": "Country",
+          "sql_type": "VARCHAR(4)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Country VARCHAR(4)"
+        },
+        {
+          "name": "Province",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Province VARCHAR(50)"
+        }
+      ],
+      "primary_key": [
+        "Province",
+        "Country",
+        "Desert"
+      ],
+      "foreign_keys": [
+        {
+          "columns": [
+            "Country",
+            "Province"
+          ],
+          "referenced_table": "Province",
+          "referenced_columns": [
+            "Country",
+            "Name"
+          ]
+        },
+        {
+          "columns": [
+            "Desert"
+          ],
+          "referenced_table": "Desert",
+          "referenced_columns": [
+            "Name"
+          ]
+        }
+      ],
+      "unique_constraints": [],
+      "raw_sql_body": "Desert VARCHAR(50) ,\n Country VARCHAR(4) ,\n Province VARCHAR(50) ,\n CONSTRAINT GDesertKey PRIMARY KEY (Province, Country, Desert)\n  "
+    },
+    "geo_Island": {
+      "name": "geo_Island",
+      "columns": [
+        {
+          "name": "Island",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Island VARCHAR(50)"
+        },
+        {
+          "name": "Country",
+          "sql_type": "VARCHAR(4)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Country VARCHAR(4)"
+        },
+        {
+          "name": "Province",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Province VARCHAR(50)"
+        }
+      ],
+      "primary_key": [
+        "Province",
+        "Country",
+        "Island"
+      ],
+      "foreign_keys": [
+        {
+          "columns": [
+            "Country",
+            "Province"
+          ],
+          "referenced_table": "Province",
+          "referenced_columns": [
+            "Country",
+            "Name"
+          ]
+        },
+        {
+          "columns": [
+            "Island"
+          ],
+          "referenced_table": "Island",
+          "referenced_columns": [
+            "Name"
+          ]
+        }
+      ],
+      "unique_constraints": [],
+      "raw_sql_body": "Island VARCHAR(50) , \n Country VARCHAR(4) ,\n Province VARCHAR(50) ,\n CONSTRAINT GIslandKey PRIMARY KEY (Province, Country, Island)\n  "
+    },
+    "geo_River": {
+      "name": "geo_River",
+      "columns": [
+        {
+          "name": "River",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "River VARCHAR(50)"
+        },
+        {
+          "name": "Country",
+          "sql_type": "VARCHAR(4)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Country VARCHAR(4)"
+        },
+        {
+          "name": "Province",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Province VARCHAR(50)"
+        }
+      ],
+      "primary_key": [
+        "Province",
+        "Country",
+        "River"
+      ],
+      "foreign_keys": [
+        {
+          "columns": [
+            "Country",
+            "Province"
+          ],
+          "referenced_table": "Province",
+          "referenced_columns": [
+            "Country",
+            "Name"
+          ]
+        },
+        {
+          "columns": [
+            "River"
+          ],
+          "referenced_table": "River",
+          "referenced_columns": [
+            "Name"
+          ]
+        }
+      ],
+      "unique_constraints": [],
+      "raw_sql_body": "River VARCHAR(50), \n Country VARCHAR(4),\n Province VARCHAR(50),\n CONSTRAINT GRiverKey PRIMARY KEY (Province ,Country, River)\n  "
+    },
+    "geo_Sea": {
+      "name": "geo_Sea",
+      "columns": [
+        {
+          "name": "Sea",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Sea VARCHAR(50)"
+        },
+        {
+          "name": "Country",
+          "sql_type": "VARCHAR(4)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Country VARCHAR(4)"
+        },
+        {
+          "name": "Province",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Province VARCHAR(50)"
+        }
+      ],
+      "primary_key": [
+        "Province",
+        "Country",
+        "Sea"
+      ],
+      "foreign_keys": [
+        {
+          "columns": [
+            "Country",
+            "Province"
+          ],
+          "referenced_table": "Province",
+          "referenced_columns": [
+            "Country",
+            "Name"
+          ]
+        },
+        {
+          "columns": [
+            "Sea"
+          ],
+          "referenced_table": "Sea",
+          "referenced_columns": [
+            "Name"
+          ]
+        }
+      ],
+      "unique_constraints": [],
+      "raw_sql_body": "Sea VARCHAR(50) ,\n Country VARCHAR(4)  ,\n Province VARCHAR(50) ,\n CONSTRAINT GSeaKey PRIMARY KEY (Province, Country, Sea)\n  "
+    },
+    "geo_Lake": {
+      "name": "geo_Lake",
+      "columns": [
+        {
+          "name": "Lake",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Lake VARCHAR(50)"
+        },
+        {
+          "name": "Country",
+          "sql_type": "VARCHAR(4)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Country VARCHAR(4)"
+        },
+        {
+          "name": "Province",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Province VARCHAR(50)"
+        }
+      ],
+      "primary_key": [
+        "Province",
+        "Country",
+        "Lake"
+      ],
+      "foreign_keys": [
+        {
+          "columns": [
+            "Country",
+            "Province"
+          ],
+          "referenced_table": "Province",
+          "referenced_columns": [
+            "Country",
+            "Name"
+          ]
+        },
+        {
+          "columns": [
+            "Lake"
+          ],
+          "referenced_table": "Lake",
+          "referenced_columns": [
+            "Name"
+          ]
+        }
+      ],
+      "unique_constraints": [],
+      "raw_sql_body": "Lake VARCHAR(50) ,\n Country VARCHAR(4) ,\n Province VARCHAR(50) ,\n CONSTRAINT GLakeKey PRIMARY KEY (Province, Country, Lake)\n  "
+    },
+    "geo_Source": {
+      "name": "geo_Source",
+      "columns": [
+        {
+          "name": "River",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "River VARCHAR(50)"
+        },
+        {
+          "name": "Country",
+          "sql_type": "VARCHAR(4)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Country VARCHAR(4)"
+        },
+        {
+          "name": "Province",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Province VARCHAR(50)"
+        }
+      ],
+      "primary_key": [
+        "Province",
+        "Country",
+        "River"
+      ],
+      "foreign_keys": [
+        {
+          "columns": [
+            "River"
+          ],
+          "referenced_table": "River",
+          "referenced_columns": [
+            "Name"
+          ]
+        },
+        {
+          "columns": [
+            "Country",
+            "Province"
+          ],
+          "referenced_table": "Province",
+          "referenced_columns": [
+            "Country",
+            "Name"
+          ]
+        }
+      ],
+      "unique_constraints": [],
+      "raw_sql_body": "River VARCHAR(50) ,\n Country VARCHAR(4) ,\n Province VARCHAR(50) ,\n CONSTRAINT GSourceKey PRIMARY KEY (Province, Country, River)\n  "
+    },
+    "geo_Estuary": {
+      "name": "geo_Estuary",
+      "columns": [
+        {
+          "name": "River",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "River VARCHAR(50)"
+        },
+        {
+          "name": "Country",
+          "sql_type": "VARCHAR(4)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Country VARCHAR(4)"
+        },
+        {
+          "name": "Province",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Province VARCHAR(50)"
+        }
+      ],
+      "primary_key": [
+        "Province",
+        "Country",
+        "River"
+      ],
+      "foreign_keys": [
+        {
+          "columns": [
+            "River"
+          ],
+          "referenced_table": "River",
+          "referenced_columns": [
+            "Name"
+          ]
+        },
+        {
+          "columns": [
+            "Country",
+            "Province"
+          ],
+          "referenced_table": "Province",
+          "referenced_columns": [
+            "Country",
+            "Name"
+          ]
+        }
+      ],
+      "unique_constraints": [],
+      "raw_sql_body": "River VARCHAR(50) ,\n Country VARCHAR(4) ,\n Province VARCHAR(50) ,\n CONSTRAINT GEstuaryKey PRIMARY KEY (Province, Country, River)\n  "
+    },
+    "mergesWith": {
+      "name": "mergesWith",
+      "columns": [
+        {
+          "name": "Sea1",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Sea1 VARCHAR(50)"
+        },
+        {
+          "name": "Sea2",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Sea2 VARCHAR(50)"
+        }
+      ],
+      "primary_key": [
+        "Sea1",
+        "Sea2"
+      ],
+      "foreign_keys": [
+        {
+          "columns": [
+            "Sea1"
+          ],
+          "referenced_table": "Sea",
+          "referenced_columns": [
+            "Name"
+          ]
+        },
+        {
+          "columns": [
+            "Sea2"
+          ],
+          "referenced_table": "Sea",
+          "referenced_columns": [
+            "Name"
+          ]
+        }
+      ],
+      "unique_constraints": [],
+      "raw_sql_body": "Sea1 VARCHAR(50) ,\n Sea2 VARCHAR(50) ,\n CONSTRAINT MergesWithKey PRIMARY KEY (Sea1, Sea2)\n  "
+    },
+    "located": {
+      "name": "located",
+      "columns": [
+        {
+          "name": "City",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "City VARCHAR(50)"
+        },
+        {
+          "name": "Province",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Province VARCHAR(50)"
+        },
+        {
+          "name": "Country",
+          "sql_type": "VARCHAR(4)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Country VARCHAR(4)"
+        },
+        {
+          "name": "River",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "River VARCHAR(50)"
+        },
+        {
+          "name": "Lake",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Lake VARCHAR(50)"
+        },
+        {
+          "name": "Sea",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Sea VARCHAR(50)"
+        }
+      ],
+      "primary_key": [],
+      "foreign_keys": [
+        {
+          "columns": [
+            "River"
+          ],
+          "referenced_table": "River",
+          "referenced_columns": [
+            "Name"
+          ]
+        },
+        {
+          "columns": [
+            "Lake"
+          ],
+          "referenced_table": "Lake",
+          "referenced_columns": [
+            "Name"
+          ]
+        },
+        {
+          "columns": [
+            "Sea"
+          ],
+          "referenced_table": "Sea",
+          "referenced_columns": [
+            "Name"
+          ]
+        }
+      ],
+      "unique_constraints": [],
+      "raw_sql_body": "City VARCHAR(50) ,\n Province VARCHAR(50) ,\n Country VARCHAR(4) ,\n River VARCHAR(50),\n Lake VARCHAR(50),\n Sea VARCHAR(50)"
+    },
+    "locatedOn": {
+      "name": "locatedOn",
+      "columns": [
+        {
+          "name": "City",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "City VARCHAR(50)"
+        },
+        {
+          "name": "Province",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Province VARCHAR(50)"
+        },
+        {
+          "name": "Country",
+          "sql_type": "VARCHAR(4)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Country VARCHAR(4)"
+        },
+        {
+          "name": "Island",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Island VARCHAR(50)"
+        }
+      ],
+      "primary_key": [
+        "City",
+        "Province",
+        "Country",
+        "Island"
+      ],
+      "foreign_keys": [
+        {
+          "columns": [
+            "City",
+            "Country",
+            "Province"
+          ],
+          "referenced_table": "City",
+          "referenced_columns": [
+            "Name",
+            "Country",
+            "Province"
+          ]
+        },
+        {
+          "columns": [
+            "Island"
+          ],
+          "referenced_table": "Island",
+          "referenced_columns": [
+            "Name"
+          ]
+        }
+      ],
+      "unique_constraints": [],
+      "raw_sql_body": "City VARCHAR(50) ,\n Province VARCHAR(50) ,\n Country VARCHAR(4) ,\n Island VARCHAR(50) ,\n CONSTRAINT locatedOnKey PRIMARY KEY (City, Province, Country, Island)\n  "
+    },
+    "islandIn": {
+      "name": "islandIn",
+      "columns": [
+        {
+          "name": "Island",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Island VARCHAR(50)"
+        },
+        {
+          "name": "Sea",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Sea VARCHAR(50)"
+        },
+        {
+          "name": "Lake",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Lake VARCHAR(50)"
+        },
+        {
+          "name": "River",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "River VARCHAR(50)"
+        }
+      ],
+      "primary_key": [],
+      "foreign_keys": [
+        {
+          "columns": [
+            "Island"
+          ],
+          "referenced_table": "Island",
+          "referenced_columns": [
+            "Name"
+          ]
+        },
+        {
+          "columns": [
+            "River"
+          ],
+          "referenced_table": "River",
+          "referenced_columns": [
+            "Name"
+          ]
+        },
+        {
+          "columns": [
+            "Lake"
+          ],
+          "referenced_table": "Lake",
+          "referenced_columns": [
+            "Name"
+          ]
+        },
+        {
+          "columns": [
+            "Sea"
+          ],
+          "referenced_table": "Sea",
+          "referenced_columns": [
+            "Name"
+          ]
+        }
+      ],
+      "unique_constraints": [],
+      "raw_sql_body": "Island VARCHAR(50) ,\n Sea VARCHAR(50) ,\n Lake VARCHAR(50) ,\n River VARCHAR(50)\n  "
+    },
+    "MountainOnIsland": {
+      "name": "MountainOnIsland",
+      "columns": [
+        {
+          "name": "Mountain",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Mountain VARCHAR(50)"
+        },
+        {
+          "name": "Island",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Island   VARCHAR(50)"
+        }
+      ],
+      "primary_key": [
+        "Mountain",
+        "Island"
+      ],
+      "foreign_keys": [
+        {
+          "columns": [
+            "Mountain"
+          ],
+          "referenced_table": "Mountain",
+          "referenced_columns": [
+            "Name"
+          ]
+        },
+        {
+          "columns": [
+            "Island"
+          ],
+          "referenced_table": "Island",
+          "referenced_columns": [
+            "Name"
+          ]
+        }
+      ],
+      "unique_constraints": [],
+      "raw_sql_body": "Mountain VARCHAR(50),\n Island   VARCHAR(50),\n CONSTRAINT MountainIslKey PRIMARY KEY (Mountain, Island)\n  "
+    },
+    "LakeOnIsland": {
+      "name": "LakeOnIsland",
+      "columns": [
+        {
+          "name": "Lake",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Lake    VARCHAR(50)"
+        },
+        {
+          "name": "Island",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Island  VARCHAR(50)"
+        }
+      ],
+      "primary_key": [
+        "Lake",
+        "Island"
+      ],
+      "foreign_keys": [
+        {
+          "columns": [
+            "Lake"
+          ],
+          "referenced_table": "Lake",
+          "referenced_columns": [
+            "Name"
+          ]
+        },
+        {
+          "columns": [
+            "Island"
+          ],
+          "referenced_table": "Island",
+          "referenced_columns": [
+            "Name"
+          ]
+        }
+      ],
+      "unique_constraints": [],
+      "raw_sql_body": "Lake    VARCHAR(50),\n Island  VARCHAR(50),\n CONSTRAINT LakeIslKey PRIMARY KEY (Lake, Island)\n  "
+    },
+    "RiverOnIsland": {
+      "name": "RiverOnIsland",
+      "columns": [
+        {
+          "name": "River",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "River   VARCHAR(50)"
+        },
+        {
+          "name": "Island",
+          "sql_type": "VARCHAR(50)",
+          "is_nullable": true,
+          "is_primary_key": false,
+          "raw_sql": "Island  VARCHAR(50)"
+        }
+      ],
+      "primary_key": [
+        "River",
+        "Island"
+      ],
+      "foreign_keys": [
+        {
+          "columns": [
+            "River"
+          ],
+          "referenced_table": "River",
+          "referenced_columns": [
+            "Name"
+          ]
+        },
+        {
+          "columns": [
+            "Island"
+          ],
+          "referenced_table": "Island",
+          "referenced_columns": [
+            "Name"
+          ]
+        }
+      ],
+      "unique_constraints": [],
+      "raw_sql_body": "River   VARCHAR(50),\n Island  VARCHAR(50),\n CONSTRAINT RiverIslKey PRIMARY KEY (River, Island)\n  "
+    },
+    "Located": {
+      "name": "Located",
+      "columns": [],
+      "primary_key": [],
+      "foreign_keys": [
+        {
+          "columns": [
+            "City",
+            "Country",
+            "Province"
+          ],
+          "referenced_table": "City",
+          "referenced_columns": [
+            "Name",
+            "Country",
+            "Province"
+          ]
+        }
+      ],
+      "unique_constraints": [],
+      "raw_sql_body": ""
+    }
+  },
+  "join_graph": {
+    "Country": [
+      {
+        "to_table": "City",
+        "from_columns": [
+          "Capital",
+          "Code",
+          "Province"
+        ],
+        "to_columns": [
+          "Name",
+          "Country",
+          "Province"
+        ],
+        "joins": [
+          [
+            "Country.Capital",
+            "=",
+            "City.Name"
+          ],
+          [
+            "Country.Code",
+            "=",
+            "City.Country"
+          ],
+          [
+            "Country.Province",
+            "=",
+            "City.Province"
+          ]
+        ]
+      }
+    ],
+    "City": [
+      {
+        "to_table": "Province",
+        "from_columns": [
+          "Country",
+          "Province"
+        ],
+        "to_columns": [
+          "Country",
+          "Name"
+        ],
+        "joins": [
+          [
+            "City.Country",
+            "=",
+            "Province.Country"
+          ],
+          [
+            "City.Province",
+            "=",
+            "Province.Name"
+          ]
+        ]
+      }
+    ],
+    "Population": [
+      {
+        "to_table": "Country",
+        "from_columns": [
+          "Country"
+        ],
+        "to_columns": [
+          "Code"
+        ],
+        "joins": [
+          [
+            "Population.Country",
+            "=",
+            "Country.Code"
+          ]
+        ]
+      }
+    ],
+    "Province": [
+      {
+        "to_table": "Country",
+        "from_columns": [
+          "Country"
+        ],
+        "to_columns": [
+          "Code"
+        ],
+        "joins": [
+          [
+            "Province.Country",
+            "=",
+            "Country.Code"
+          ]
+        ]
+      },
+      {
+        "to_table": "City",
+        "from_columns": [
+          "Capital",
+          "Country",
+          "CapProv"
+        ],
+        "to_columns": [
+          "Name",
+          "Country",
+          "Province"
+        ],
+        "joins": [
+          [
+            "Province.Capital",
+            "=",
+            "City.Name"
+          ],
+          [
+            "Province.Country",
+            "=",
+            "City.Country"
+          ],
+          [
+            "Province.CapProv",
+            "=",
+            "City.Province"
+          ]
+        ]
+      }
+    ],
+    "Economy": [
+      {
+        "to_table": "Country",
+        "from_columns": [
+          "Country"
+        ],
+        "to_columns": [
+          "Code"
+        ],
+        "joins": [
+          [
+            "Economy.Country",
+            "=",
+            "Country.Code"
+          ]
+        ]
+      }
+    ],
+    "Politics": [
+      {
+        "to_table": "Country",
+        "from_columns": [
+          "Country"
+        ],
+        "to_columns": [
+          "Code"
+        ],
+        "joins": [
+          [
+            "Politics.Country",
+            "=",
+            "Country.Code"
+          ]
+        ]
+      },
+      {
+        "to_table": "Country",
+        "from_columns": [
+          "Dependent"
+        ],
+        "to_columns": [
+          "Code"
+        ],
+        "joins": [
+          [
+            "Politics.Dependent",
+            "=",
+            "Country.Code"
+          ]
+        ]
+      }
+    ],
+    "Religion": [
+      {
+        "to_table": "Country",
+        "from_columns": [
+          "Country"
+        ],
+        "to_columns": [
+          "Code"
+        ],
+        "joins": [
+          [
+            "Religion.Country",
+            "=",
+            "Country.Code"
+          ]
+        ]
+      }
+    ],
+    "EthnicGroup": [
+      {
+        "to_table": "Country",
+        "from_columns": [
+          "Country"
+        ],
+        "to_columns": [
+          "Code"
+        ],
+        "joins": [
+          [
+            "EthnicGroup.Country",
+            "=",
+            "Country.Code"
+          ]
+        ]
+      }
+    ],
+    "Spoken": [
+      {
+        "to_table": "Country",
+        "from_columns": [
+          "Country"
+        ],
+        "to_columns": [
+          "Code"
+        ],
+        "joins": [
+          [
+            "Spoken.Country",
+            "=",
+            "Country.Code"
+          ]
+        ]
+      },
+      {
+        "to_table": "Language",
+        "from_columns": [
+          "Language"
+        ],
+        "to_columns": [
+          "Name"
+        ],
+        "joins": [
+          [
+            "Spoken.Language",
+            "=",
+            "Language.Name"
+          ]
+        ]
+      }
+    ],
+    "Language": [
+      {
+        "to_table": "Language",
+        "from_columns": [
+          "Superlanguage"
+        ],
+        "to_columns": [
+          "Name"
+        ],
+        "joins": [
+          [
+            "Language.Superlanguage",
+            "=",
+            "Language.Name"
+          ]
+        ]
+      }
+    ],
+    "Countrypops": [
+      {
+        "to_table": "Country",
+        "from_columns": [
+          "Country"
+        ],
+        "to_columns": [
+          "Code"
+        ],
+        "joins": [
+          [
+            "Countrypops.Country",
+            "=",
+            "Country.Code"
+          ]
+        ]
+      }
+    ],
+    "Countryothername": [
+      {
+        "to_table": "Country",
+        "from_columns": [
+          "Country"
+        ],
+        "to_columns": [
+          "Code"
+        ],
+        "joins": [
+          [
+            "Countryothername.Country",
+            "=",
+            "Country.Code"
+          ]
+        ]
+      }
+    ],
+    "Countrylocalname": [
+      {
+        "to_table": "Country",
+        "from_columns": [
+          "Country"
+        ],
+        "to_columns": [
+          "Code"
+        ],
+        "joins": [
+          [
+            "Countrylocalname.Country",
+            "=",
+            "Country.Code"
+          ]
+        ]
+      }
+    ],
+    "Provpops": [
+      {
+        "to_table": "Province",
+        "from_columns": [
+          "Country",
+          "Province"
+        ],
+        "to_columns": [
+          "Country",
+          "Name"
+        ],
+        "joins": [
+          [
+            "Provpops.Country",
+            "=",
+            "Province.Country"
+          ],
+          [
+            "Provpops.Province",
+            "=",
+            "Province.Name"
+          ]
+        ]
+      }
+    ],
+    "Provinceothername": [
+      {
+        "to_table": "Province",
+        "from_columns": [
+          "Country",
+          "Province"
+        ],
+        "to_columns": [
+          "Country",
+          "Name"
+        ],
+        "joins": [
+          [
+            "Provinceothername.Country",
+            "=",
+            "Province.Country"
+          ],
+          [
+            "Provinceothername.Province",
+            "=",
+            "Province.Name"
+          ]
+        ]
+      }
+    ],
+    "Provincelocalname": [
+      {
+        "to_table": "Province",
+        "from_columns": [
+          "Country",
+          "Province"
+        ],
+        "to_columns": [
+          "Country",
+          "Name"
+        ],
+        "joins": [
+          [
+            "Provincelocalname.Country",
+            "=",
+            "Province.Country"
+          ],
+          [
+            "Provincelocalname.Province",
+            "=",
+            "Province.Name"
+          ]
+        ]
+      }
+    ],
+    "Citypops": [
+      {
+        "to_table": "City",
+        "from_columns": [
+          "City",
+          "Country",
+          "Province"
+        ],
+        "to_columns": [
+          "Name",
+          "Country",
+          "Province"
+        ],
+        "joins": [
+          [
+            "Citypops.City",
+            "=",
+            "City.Name"
+          ],
+          [
+            "Citypops.Country",
+            "=",
+            "City.Country"
+          ],
+          [
+            "Citypops.Province",
+            "=",
+            "City.Province"
+          ]
+        ]
+      }
+    ],
+    "Cityothername": [
+      {
+        "to_table": "City",
+        "from_columns": [
+          "City",
+          "Country",
+          "Province"
+        ],
+        "to_columns": [
+          "Name",
+          "Country",
+          "Province"
+        ],
+        "joins": [
+          [
+            "Cityothername.City",
+            "=",
+            "City.Name"
+          ],
+          [
+            "Cityothername.Country",
+            "=",
+            "City.Country"
+          ],
+          [
+            "Cityothername.Province",
+            "=",
+            "City.Province"
+          ]
+        ]
+      }
+    ],
+    "Citylocalname": [
+      {
+        "to_table": "City",
+        "from_columns": [
+          "City",
+          "Country",
+          "Province"
+        ],
+        "to_columns": [
+          "Name",
+          "Country",
+          "Province"
+        ],
+        "joins": [
+          [
+            "Citylocalname.City",
+            "=",
+            "City.Name"
+          ],
+          [
+            "Citylocalname.Country",
+            "=",
+            "City.Country"
+          ],
+          [
+            "Citylocalname.Province",
+            "=",
+            "City.Province"
+          ]
+        ]
+      }
+    ],
+    "Continent": [],
+    "borders": [
+      {
+        "to_table": "Country",
+        "from_columns": [
+          "Country1"
+        ],
+        "to_columns": [
+          "Code"
+        ],
+        "joins": [
+          [
+            "borders.Country1",
+            "=",
+            "Country.Code"
+          ]
+        ]
+      },
+      {
+        "to_table": "Country",
+        "from_columns": [
+          "Country2"
+        ],
+        "to_columns": [
+          "Code"
+        ],
+        "joins": [
+          [
+            "borders.Country2",
+            "=",
+            "Country.Code"
+          ]
+        ]
+      }
+    ],
+    "encompasses": [
+      {
+        "to_table": "Country",
+        "from_columns": [
+          "Country"
+        ],
+        "to_columns": [
+          "Code"
+        ],
+        "joins": [
+          [
+            "encompasses.Country",
+            "=",
+            "Country.Code"
+          ]
+        ]
+      },
+      {
+        "to_table": "Continent",
+        "from_columns": [
+          "Continent"
+        ],
+        "to_columns": [
+          "Name"
+        ],
+        "joins": [
+          [
+            "encompasses.Continent",
+            "=",
+            "Continent.Name"
+          ]
+        ]
+      }
+    ],
+    "Organization": [
+      {
+        "to_table": "City",
+        "from_columns": [
+          "City",
+          "Country",
+          "Province"
+        ],
+        "to_columns": [
+          "Name",
+          "Country",
+          "Province"
+        ],
+        "joins": [
+          [
+            "Organization.City",
+            "=",
+            "City.Name"
+          ],
+          [
+            "Organization.Country",
+            "=",
+            "City.Country"
+          ],
+          [
+            "Organization.Province",
+            "=",
+            "City.Province"
+          ]
+        ]
+      }
+    ],
+    "isMember": [
+      {
+        "to_table": "Country",
+        "from_columns": [
+          "Country"
+        ],
+        "to_columns": [
+          "Code"
+        ],
+        "joins": [
+          [
+            "isMember.Country",
+            "=",
+            "Country.Code"
+          ]
+        ]
+      },
+      {
+        "to_table": "Organization",
+        "from_columns": [
+          "Organization"
+        ],
+        "to_columns": [
+          "Abbreviation"
+        ],
+        "joins": [
+          [
+            "isMember.Organization",
+            "=",
+            "Organization.Abbreviation"
+          ]
+        ]
+      }
+    ],
+    "Mountain": [],
+    "Desert": [],
+    "Island": [],
+    "Lake": [
+      {
+        "to_table": "River",
+        "from_columns": [
+          "River"
+        ],
+        "to_columns": [
+          "Name"
+        ],
+        "joins": [
+          [
+            "Lake.River",
+            "=",
+            "River.Name"
+          ]
+        ]
+      }
+    ],
+    "Sea": [],
+    "River": [
+      {
+        "to_table": "River",
+        "from_columns": [
+          "River"
+        ],
+        "to_columns": [
+          "Name"
+        ],
+        "joins": [
+          [
+            "River.River",
+            "=",
+            "River.Name"
+          ]
+        ]
+      },
+      {
+        "to_table": "Lake",
+        "from_columns": [
+          "Lake"
+        ],
+        "to_columns": [
+          "Name"
+        ],
+        "joins": [
+          [
+            "River.Lake",
+            "=",
+            "Lake.Name"
+          ]
+        ]
+      },
+      {
+        "to_table": "Sea",
+        "from_columns": [
+          "Sea"
+        ],
+        "to_columns": [
+          "Name"
+        ],
+        "joins": [
+          [
+            "River.Sea",
+            "=",
+            "Sea.Name"
+          ]
+        ]
+      }
+    ],
+    "RiverThrough": [
+      {
+        "to_table": "River",
+        "from_columns": [
+          "River"
+        ],
+        "to_columns": [
+          "Name"
+        ],
+        "joins": [
+          [
+            "RiverThrough.River",
+            "=",
+            "River.Name"
+          ]
+        ]
+      },
+      {
+        "to_table": "Lake",
+        "from_columns": [
+          "Lake"
+        ],
+        "to_columns": [
+          "Name"
+        ],
+        "joins": [
+          [
+            "RiverThrough.Lake",
+            "=",
+            "Lake.Name"
+          ]
+        ]
+      }
+    ],
+    "geo_Mountain": [
+      {
+        "to_table": "Province",
+        "from_columns": [
+          "Country",
+          "Province"
+        ],
+        "to_columns": [
+          "Country",
+          "Name"
+        ],
+        "joins": [
+          [
+            "geo_Mountain.Country",
+            "=",
+            "Province.Country"
+          ],
+          [
+            "geo_Mountain.Province",
+            "=",
+            "Province.Name"
+          ]
+        ]
+      },
+      {
+        "to_table": "Mountain",
+        "from_columns": [
+          "Mountain"
+        ],
+        "to_columns": [
+          "Name"
+        ],
+        "joins": [
+          [
+            "geo_Mountain.Mountain",
+            "=",
+            "Mountain.Name"
+          ]
+        ]
+      }
+    ],
+    "geo_Desert": [
+      {
+        "to_table": "Province",
+        "from_columns": [
+          "Country",
+          "Province"
+        ],
+        "to_columns": [
+          "Country",
+          "Name"
+        ],
+        "joins": [
+          [
+            "geo_Desert.Country",
+            "=",
+            "Province.Country"
+          ],
+          [
+            "geo_Desert.Province",
+            "=",
+            "Province.Name"
+          ]
+        ]
+      },
+      {
+        "to_table": "Desert",
+        "from_columns": [
+          "Desert"
+        ],
+        "to_columns": [
+          "Name"
+        ],
+        "joins": [
+          [
+            "geo_Desert.Desert",
+            "=",
+            "Desert.Name"
+          ]
+        ]
+      }
+    ],
+    "geo_Island": [
+      {
+        "to_table": "Province",
+        "from_columns": [
+          "Country",
+          "Province"
+        ],
+        "to_columns": [
+          "Country",
+          "Name"
+        ],
+        "joins": [
+          [
+            "geo_Island.Country",
+            "=",
+            "Province.Country"
+          ],
+          [
+            "geo_Island.Province",
+            "=",
+            "Province.Name"
+          ]
+        ]
+      },
+      {
+        "to_table": "Island",
+        "from_columns": [
+          "Island"
+        ],
+        "to_columns": [
+          "Name"
+        ],
+        "joins": [
+          [
+            "geo_Island.Island",
+            "=",
+            "Island.Name"
+          ]
+        ]
+      }
+    ],
+    "geo_River": [
+      {
+        "to_table": "Province",
+        "from_columns": [
+          "Country",
+          "Province"
+        ],
+        "to_columns": [
+          "Country",
+          "Name"
+        ],
+        "joins": [
+          [
+            "geo_River.Country",
+            "=",
+            "Province.Country"
+          ],
+          [
+            "geo_River.Province",
+            "=",
+            "Province.Name"
+          ]
+        ]
+      },
+      {
+        "to_table": "River",
+        "from_columns": [
+          "River"
+        ],
+        "to_columns": [
+          "Name"
+        ],
+        "joins": [
+          [
+            "geo_River.River",
+            "=",
+            "River.Name"
+          ]
+        ]
+      }
+    ],
+    "geo_Sea": [
+      {
+        "to_table": "Province",
+        "from_columns": [
+          "Country",
+          "Province"
+        ],
+        "to_columns": [
+          "Country",
+          "Name"
+        ],
+        "joins": [
+          [
+            "geo_Sea.Country",
+            "=",
+            "Province.Country"
+          ],
+          [
+            "geo_Sea.Province",
+            "=",
+            "Province.Name"
+          ]
+        ]
+      },
+      {
+        "to_table": "Sea",
+        "from_columns": [
+          "Sea"
+        ],
+        "to_columns": [
+          "Name"
+        ],
+        "joins": [
+          [
+            "geo_Sea.Sea",
+            "=",
+            "Sea.Name"
+          ]
+        ]
+      }
+    ],
+    "geo_Lake": [
+      {
+        "to_table": "Province",
+        "from_columns": [
+          "Country",
+          "Province"
+        ],
+        "to_columns": [
+          "Country",
+          "Name"
+        ],
+        "joins": [
+          [
+            "geo_Lake.Country",
+            "=",
+            "Province.Country"
+          ],
+          [
+            "geo_Lake.Province",
+            "=",
+            "Province.Name"
+          ]
+        ]
+      },
+      {
+        "to_table": "Lake",
+        "from_columns": [
+          "Lake"
+        ],
+        "to_columns": [
+          "Name"
+        ],
+        "joins": [
+          [
+            "geo_Lake.Lake",
+            "=",
+            "Lake.Name"
+          ]
+        ]
+      }
+    ],
+    "geo_Source": [
+      {
+        "to_table": "River",
+        "from_columns": [
+          "River"
+        ],
+        "to_columns": [
+          "Name"
+        ],
+        "joins": [
+          [
+            "geo_Source.River",
+            "=",
+            "River.Name"
+          ]
+        ]
+      },
+      {
+        "to_table": "Province",
+        "from_columns": [
+          "Country",
+          "Province"
+        ],
+        "to_columns": [
+          "Country",
+          "Name"
+        ],
+        "joins": [
+          [
+            "geo_Source.Country",
+            "=",
+            "Province.Country"
+          ],
+          [
+            "geo_Source.Province",
+            "=",
+            "Province.Name"
+          ]
+        ]
+      }
+    ],
+    "geo_Estuary": [
+      {
+        "to_table": "River",
+        "from_columns": [
+          "River"
+        ],
+        "to_columns": [
+          "Name"
+        ],
+        "joins": [
+          [
+            "geo_Estuary.River",
+            "=",
+            "River.Name"
+          ]
+        ]
+      },
+      {
+        "to_table": "Province",
+        "from_columns": [
+          "Country",
+          "Province"
+        ],
+        "to_columns": [
+          "Country",
+          "Name"
+        ],
+        "joins": [
+          [
+            "geo_Estuary.Country",
+            "=",
+            "Province.Country"
+          ],
+          [
+            "geo_Estuary.Province",
+            "=",
+            "Province.Name"
+          ]
+        ]
+      }
+    ],
+    "mergesWith": [
+      {
+        "to_table": "Sea",
+        "from_columns": [
+          "Sea1"
+        ],
+        "to_columns": [
+          "Name"
+        ],
+        "joins": [
+          [
+            "mergesWith.Sea1",
+            "=",
+            "Sea.Name"
+          ]
+        ]
+      },
+      {
+        "to_table": "Sea",
+        "from_columns": [
+          "Sea2"
+        ],
+        "to_columns": [
+          "Name"
+        ],
+        "joins": [
+          [
+            "mergesWith.Sea2",
+            "=",
+            "Sea.Name"
+          ]
+        ]
+      }
+    ],
+    "located": [
+      {
+        "to_table": "River",
+        "from_columns": [
+          "River"
+        ],
+        "to_columns": [
+          "Name"
+        ],
+        "joins": [
+          [
+            "located.River",
+            "=",
+            "River.Name"
+          ]
+        ]
+      },
+      {
+        "to_table": "Lake",
+        "from_columns": [
+          "Lake"
+        ],
+        "to_columns": [
+          "Name"
+        ],
+        "joins": [
+          [
+            "located.Lake",
+            "=",
+            "Lake.Name"
+          ]
+        ]
+      },
+      {
+        "to_table": "Sea",
+        "from_columns": [
+          "Sea"
+        ],
+        "to_columns": [
+          "Name"
+        ],
+        "joins": [
+          [
+            "located.Sea",
+            "=",
+            "Sea.Name"
+          ]
+        ]
+      }
+    ],
+    "locatedOn": [
+      {
+        "to_table": "City",
+        "from_columns": [
+          "City",
+          "Country",
+          "Province"
+        ],
+        "to_columns": [
+          "Name",
+          "Country",
+          "Province"
+        ],
+        "joins": [
+          [
+            "locatedOn.City",
+            "=",
+            "City.Name"
+          ],
+          [
+            "locatedOn.Country",
+            "=",
+            "City.Country"
+          ],
+          [
+            "locatedOn.Province",
+            "=",
+            "City.Province"
+          ]
+        ]
+      },
+      {
+        "to_table": "Island",
+        "from_columns": [
+          "Island"
+        ],
+        "to_columns": [
+          "Name"
+        ],
+        "joins": [
+          [
+            "locatedOn.Island",
+            "=",
+            "Island.Name"
+          ]
+        ]
+      }
+    ],
+    "islandIn": [
+      {
+        "to_table": "Island",
+        "from_columns": [
+          "Island"
+        ],
+        "to_columns": [
+          "Name"
+        ],
+        "joins": [
+          [
+            "islandIn.Island",
+            "=",
+            "Island.Name"
+          ]
+        ]
+      },
+      {
+        "to_table": "River",
+        "from_columns": [
+          "River"
+        ],
+        "to_columns": [
+          "Name"
+        ],
+        "joins": [
+          [
+            "islandIn.River",
+            "=",
+            "River.Name"
+          ]
+        ]
+      },
+      {
+        "to_table": "Lake",
+        "from_columns": [
+          "Lake"
+        ],
+        "to_columns": [
+          "Name"
+        ],
+        "joins": [
+          [
+            "islandIn.Lake",
+            "=",
+            "Lake.Name"
+          ]
+        ]
+      },
+      {
+        "to_table": "Sea",
+        "from_columns": [
+          "Sea"
+        ],
+        "to_columns": [
+          "Name"
+        ],
+        "joins": [
+          [
+            "islandIn.Sea",
+            "=",
+            "Sea.Name"
+          ]
+        ]
+      }
+    ],
+    "MountainOnIsland": [
+      {
+        "to_table": "Mountain",
+        "from_columns": [
+          "Mountain"
+        ],
+        "to_columns": [
+          "Name"
+        ],
+        "joins": [
+          [
+            "MountainOnIsland.Mountain",
+            "=",
+            "Mountain.Name"
+          ]
+        ]
+      },
+      {
+        "to_table": "Island",
+        "from_columns": [
+          "Island"
+        ],
+        "to_columns": [
+          "Name"
+        ],
+        "joins": [
+          [
+            "MountainOnIsland.Island",
+            "=",
+            "Island.Name"
+          ]
+        ]
+      }
+    ],
+    "LakeOnIsland": [
+      {
+        "to_table": "Lake",
+        "from_columns": [
+          "Lake"
+        ],
+        "to_columns": [
+          "Name"
+        ],
+        "joins": [
+          [
+            "LakeOnIsland.Lake",
+            "=",
+            "Lake.Name"
+          ]
+        ]
+      },
+      {
+        "to_table": "Island",
+        "from_columns": [
+          "Island"
+        ],
+        "to_columns": [
+          "Name"
+        ],
+        "joins": [
+          [
+            "LakeOnIsland.Island",
+            "=",
+            "Island.Name"
+          ]
+        ]
+      }
+    ],
+    "RiverOnIsland": [
+      {
+        "to_table": "River",
+        "from_columns": [
+          "River"
+        ],
+        "to_columns": [
+          "Name"
+        ],
+        "joins": [
+          [
+            "RiverOnIsland.River",
+            "=",
+            "River.Name"
+          ]
+        ]
+      },
+      {
+        "to_table": "Island",
+        "from_columns": [
+          "Island"
+        ],
+        "to_columns": [
+          "Name"
+        ],
+        "joins": [
+          [
+            "RiverOnIsland.Island",
+            "=",
+            "Island.Name"
+          ]
+        ]
+      }
+    ],
+    "Located": [
+      {
+        "to_table": "City",
+        "from_columns": [
+          "City",
+          "Country",
+          "Province"
+        ],
+        "to_columns": [
+          "Name",
+          "Country",
+          "Province"
+        ],
+        "joins": [
+          [
+            "Located.City",
+            "=",
+            "City.Name"
+          ],
+          [
+            "Located.Country",
+            "=",
+            "City.Country"
+          ],
+          [
+            "Located.Province",
+            "=",
+            "City.Province"
+          ]
+        ]
+      }
+    ]
+  },
+  "stats": {
+    "num_tables": 47,
+    "num_columns": 182,
+    "num_foreign_keys": 69
+  }
+}

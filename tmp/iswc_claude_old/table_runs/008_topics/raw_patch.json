@@ -1,0 +1,218 @@
+{
+  "work_unit": {
+    "table": "topics",
+    "related_tables": []
+  },
+  "proposed_additions": {
+    "classes": [
+      {
+        "id": "Class:Topic",
+        "label": "Topic",
+        "description": "A topic or subject area that can be associated with papers and persons",
+        "source_tables": [
+          "topics"
+        ],
+        "identifier_columns": [
+          "topics.TopicID"
+        ]
+      }
+    ],
+    "data_properties": [
+      {
+        "id": "DataProperty:hasTopicName",
+        "label": "has topic name",
+        "domain": "Class:Topic",
+        "datatype": "xsd:string",
+        "description": "The name or label of a topic"
+      },
+      {
+        "id": "DataProperty:hasTopicURI",
+        "label": "has topic URI",
+        "domain": "Class:Topic",
+        "datatype": "xsd:anyURI",
+        "description": "A URI reference for the topic, potentially linking to external resources"
+      }
+    ],
+    "object_properties": [
+      {
+        "id": "ObjectProperty:hasParentTopic",
+        "label": "has parent topic",
+        "domain": "Class:Topic",
+        "range": "Class:Topic",
+        "description": "Hierarchical relationship indicating a topic's parent topic"
+      }
+    ],
+    "subclass_relations": [],
+    "class_mappings": [
+      {
+        "mapping_id": "Topic_from_topics",
+        "class_id": "Class:Topic",
+        "from_tables": [
+          "topics"
+        ],
+        "identifier_kind": "uri_pattern",
+        "identifier_columns": [
+          "topics.TopicID"
+        ],
+        "instance_id_template": "topics/@@topics.TopicID@@",
+        "bnode_id_columns": []
+      }
+    ],
+    "data_property_mappings": [
+      {
+        "mapping_id": "hasTopicName_from_TopicName",
+        "data_property_id": "DataProperty:hasTopicName",
+        "applies_to_class": "Class:Topic",
+        "source_table": "topics",
+        "source_columns": [
+          "topics.TopicName"
+        ],
+        "value_kind": "column",
+        "value_template": "",
+        "sql_expression": "",
+        "constant_value": "",
+        "datatype": "xsd:string",
+        "join_paths": [],
+        "condition": []
+      },
+      {
+        "mapping_id": "hasTopicURI_from_URI",
+        "data_property_id": "DataProperty:hasTopicURI",
+        "applies_to_class": "Class:Topic",
+        "source_table": "topics",
+        "source_columns": [
+          "topics.URI"
+        ],
+        "value_kind": "column",
+        "value_template": "",
+        "sql_expression": "",
+        "constant_value": "",
+        "datatype": "xsd:anyURI",
+        "join_paths": [],
+        "condition": []
+      }
+    ],
+    "object_property_mappings": [
+      {
+        "mapping_id": "hasParentTopic_from_ParentID",
+        "object_property_id": "ObjectProperty:hasParentTopic",
+        "from_class": "Class:Topic",
+        "to_class": "Class:Topic",
+        "from_tables": [
+          "topics"
+        ],
+        "source_identifier_columns": [
+          "topics.TopicID"
+        ],
+        "target_identifier_columns": [
+          "topics.TopicID"
+        ],
+        "join_paths": [
+          [
+            "topics.ParentID",
+            "=",
+            "topics.TopicID"
+          ]
+        ],
+        "condition": [],
+        "target_type": "entity"
+      }
+    ]
+  },
+  "proposed_revisions": {
+    "classes": [
+      {
+        "id": "Class:Topic",
+        "label": "Topic",
+        "description": "A topic or subject area that can be associated with papers and persons. Now grounded in the dedicated topics table with hierarchical structure support.",
+        "source_tables": [
+          "topics",
+          "rel_paper_topic"
+        ],
+        "identifier_columns": [
+          "topics.TopicID"
+        ]
+      }
+    ],
+    "data_properties": [],
+    "object_properties": [],
+    "subclass_relations": [],
+    "class_mappings": [
+      {
+        "mapping_id": "Topic_from_topics",
+        "class_id": "Class:Topic",
+        "from_tables": [
+          "topics"
+        ],
+        "identifier_kind": "uri_pattern",
+        "identifier_columns": [
+          "topics.TopicID"
+        ],
+        "instance_id_template": "topics/@@topics.TopicID@@",
+        "bnode_id_columns": []
+      }
+    ],
+    "data_property_mappings": [],
+    "object_property_mappings": []
+  },
+  "proposed_rejections": [],
+  "proposed_merges": [],
+  "decision_summary": [
+    {
+      "decision_type": "C-ENTITY",
+      "target": "Class:Topic",
+      "status": "accepted",
+      "confidence": 0.95,
+      "reason": "topics table provides a dedicated entity definition for Topic with primary key TopicID, name attribute, URI reference, and hierarchical parent relationship. This resolves the prior ambiguity where Topic was only inferred from rel_paper_topic junction table."
+    },
+    {
+      "decision_type": "DP-ATTRIBUTE",
+      "target": "DataProperty:hasTopicName",
+      "status": "accepted",
+      "confidence": 0.95,
+      "reason": "TopicName column in topics table is a string literal attribute describing the topic label."
+    },
+    {
+      "decision_type": "DP-ATTRIBUTE",
+      "target": "DataProperty:hasTopicURI",
+      "status": "accepted",
+      "confidence": 0.85,
+      "reason": "URI column in topics table stores URI values. Modeled conservatively as data property with xsd:anyURI datatype, as it represents a reference value rather than a direct entity-to-entity relation."
+    },
+    {
+      "decision_type": "OP-RELATION",
+      "target": "ObjectProperty:hasParentTopic",
+      "status": "accepted",
+      "confidence": 0.9,
+      "reason": "ParentID column in topics table references another topic via TopicID, establishing a self-referential hierarchical relationship. This is a clear entity-to-entity relation within the same class."
+    },
+    {
+      "decision_type": "CLASS-MAPPING-UPGRADE",
+      "target": "Topic_from_topics",
+      "status": "accepted",
+      "confidence": 0.95,
+      "reason": "Topic class mapping is upgraded from rel_paper_topic (junction table) to topics (primary entity table), providing a more authoritative and complete source for Topic instances."
+    }
+  ],
+  "remaining_ambiguities": [
+    "URI column in topics table: unclear if it references external topic resources (e.g., DBpedia, SKOS concepts) or serves as an internal identifier. Modeled conservatively as data property.",
+    "ParentID semantics: unclear if NULL values indicate root topics or if there are other conventions for topic hierarchy roots."
+  ],
+  "needs_probe": [
+    {
+      "probe_type": "value_sample",
+      "target": "topics.URI",
+      "question": "Are URI values external references (e.g., http://..., URIs to DBpedia or other ontologies) or internal identifiers?"
+    },
+    {
+      "probe_type": "value_sample",
+      "target": "topics.ParentID",
+      "question": "What is the distribution of NULL values in ParentID? Do they indicate root topics or are there other conventions?"
+    },
+    {
+      "probe_type": "cardinality",
+      "target": "topics.TopicID",
+      "question": "How many distinct topics exist? Is the hierarchy deep or shallow?"
+    }
+  ]
+}
